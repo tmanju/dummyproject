@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="facilityBE">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="facilityBE_list">
+		<tns:component id="facilityBE_add">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="facilityBE_copy">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>
+	<tns:canvas id="facilityBE_crud">
+	
+		<tns:canvas id="facilityBE_facAllocators_EditCanvas">
+		
+		<tns:component id="facilityBE_fundingPlacementTransactions_tab">
+				<tns:default>
+					<![CDATA[
+						if(root != null && root_facAllocators != null && root_facAllocators.getCapitalProvider() != null && root_facAllocators.getCapitalProvider().getCustomerAssociated() != null && root_facAllocators.getCapitalProvider().getCustomerAssociated().getInterestBalance() != null){
+							return true;
+						}
+						return false;
+					]]>
+				</tns:default>
+			</tns:component>
+					
+		
+			<tns:component id="facAllocator_transactions_quick_menu_command">
+				<tns:default>
+					<![CDATA[
+						if(root_facAllocators != null && root_facAllocators_transactions != null){
+							if((root_facAllocators_transactions.getId() == null) || (root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_NEW"))){
+								return true;
+							} 
+						}
+						return false;
+					]]>
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="facAllocator_transactions_edit">
+				<tns:default>
+					<![CDATA[
+							if(root_facAllocators != null && root_facAllocators_transactions != null){
+								if(root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_SUBMITTED")){
+									return false;
+								} 
+							}
+							return true;
+						]]>
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="facAllocator_transactions_delete">
+				<tns:default>
+					<![CDATA[
+						if(root_facAllocators != null && root_facAllocators_transactions != null){
+							if(root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_SUBMITTED")){
+								return false;
+							} 
+						}
+						return true;
+					]]>
+				</tns:default>
+			</tns:component>
+			
+			<tns:canvas id="facAllocator_transactions_EditCanvas">
+				<tns:component id="doTransaction">
+					<tns:default>
+						<![CDATA[
+							if(root_facAllocators != null && root_facAllocators_transactions != null){
+								if((root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_SUBMITTED"))){
+									return false;
+								} 
+							}
+							return true;
+						]]>
+					</tns:default>
+			</tns:component>
+			<tns:component id="subpageEditSaveBtn">
+					<tns:default>
+						<![CDATA[
+							if(root_facAllocators != null && root_facAllocators_transactions != null){
+								if(root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_SUBMITTED")){
+									return false;
+								} 
+							}
+							return true;
+						]]>
+					</tns:default>
+			</tns:component>
+			</tns:canvas>
+		</tns:canvas>
+	
+		<tns:canvas id="facilityBE_facAllocators_EditCanvas">
+		
+		<tns:component id="facilityBE_fundingPlacementTransactions_tab">
+				<tns:default>
+					<![CDATA[
+						if(root != null && root_facAllocators != null && root_facAllocators.getCapitalProvider() != null && root_facAllocators.getCapitalProvider().getCustomerAssociated() != null && root_facAllocators.getCapitalProvider().getCustomerAssociated().getInterestBalance() != null){
+							return true;
+						}
+						return false;
+					]]>
+				</tns:default>
+			</tns:component>
+					
+		
+			<tns:component id="facAllocator_transactions_quick_menu_command">
+				<tns:default>
+					<![CDATA[
+						if(root_facAllocators != null && root_facAllocators_transactions != null){
+							if(root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_NEW")){
+								return true;
+							} 
+						}
+						return false;
+					]]>
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="facAllocator_transactions_edit">
+				<tns:default>
+					<![CDATA[
+						if(root_facAllocators != null && root_facAllocators_transactions != null){
+							if(root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_SUBMITTED")){
+								return false;
+							} 
+						}
+						return true;
+					]]>
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="facAllocator_transactions_delete">
+				<tns:default>
+					<![CDATA[
+						if(root_facAllocators != null && root_facAllocators_transactions != null){
+							if(root_facAllocators_transactions.getWfStatus() != null && root_facAllocators_transactions.getWfStatus().getStatusKey().equals("TXN_STATUS_SUBMITTED")){
+								return false;
+							} 
+						}
+						return true;
+					]]>
+				</tns:default>
+			</tns:component>
+		</tns:canvas>	
+		
+		<tns:component id="cpCommitted">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getId() != null && root.getWfStatus !=null && root.getWfStatus.getStatusKey.equals("DEALS_STATUS_ACCEPTED") && root.getCpCommittedFlag()) {
+								isVisible=true;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="processInterimBalSettlement">
+			<tns:default>
+				<![CDATA[
+						boolean isVisible=false;
+							if (root.getInterimBalance() != null && root.getInterimBalance().compareTo(new java.math.BigDecimal(0)) != 0) {
+								isVisible=true;
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="quick_facAllocatorSettlement">
+			<tns:default>
+				<![CDATA[
+						boolean isVisible=false;
+							if (root_facAllocators != null && root_facAllocators.getCpSettlementAmt() != null && root_facAllocators.getCpSettlementAmt().compareTo(new java.math.BigDecimal(0)) != 0) {
+								isVisible=true;
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="facilityBE_facAllocators_EditCanvas.facAllocatorSettlement">
+			<tns:default>
+				<![CDATA[
+						boolean isVisible=false;
+							if (root_facAllocators != null && root_facAllocators.getCpSettlementAmt() != null && root_facAllocators.getCpSettlementAmt().compareTo(new java.math.BigDecimal(0)) != 0) {
+								isVisible=true;
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="facilityBE_selectedFacilityBE_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="facilityBE_facAllocators_add">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root.getSumAllocatedPer() != null && root.getSumAllocatedPer() >= 100) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		 <tns:component id="facilityBE_facAllocators_delete">
+         	<tns:default><![CDATA[if (root_facAllocators !=null && (root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_ACCEPTED"))) {
+										return  false;
+									} else {
+										return true;
+									}
+				]]></tns:default>
+         </tns:component>
+         <tns:component id="facilityBE_facAllocators_quick_menu_command">
+         	<tns:default><![CDATA[
+					if (root.inWfStatus("DEALS_STATUS_UNASSIGNED")
+						|| root_facAllocators !=null && ((root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_UNASSIGNED","DEALS_STATUS_FUNDED")) ) ) {
+						return  false;
+					} else {
+						return true;
+					}
+				]]></tns:default>
+         </tns:component>
+
+ 		<tns:component id="facilityBE_facAllocators_actions">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getSumAllocatedPer() != null && root.getSumAllocatedPer() >= 100) {
+								isVisible=true;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component> 
+		<tns:component id="facilityBE_capitalProviders_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+		 <tns:component id="facilityBE_facAllocators_EditCanvas.facAllocator_rejReason">
+         	<tns:default><![CDATA[
+         	if (root_facAllocators !=null && root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED")) {
+										return  true;
+									} else {
+										return false;
+									}
+				]]></tns:default>
+         </tns:component>
+          <tns:component id="facilityBE_facAllocators_EditCanvas.acceptFacAllobvcation">
+         	<tns:default><![CDATA[
+	         	boolean isVisible = false;
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) && (root_facAllocators.getId() != null)) {
+											isVisible = true;
+										} 
+	         	if (root.inWfStatus("DEALS_STATUS_UNASSIGNED")
+						|| root_facAllocators !=null && (root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_ACCEPTED","DEALS_STATUS_FUNDED"))) {
+											isVisible = false;
+										}
+										
+								return isVisible;
+				]]></tns:default>
+         </tns:component>
+
+        <tns:component id="facilityBE_facAllocators_EditCanvas.rejectFacAllobvcation">
+         	<tns:default><![CDATA[
+				boolean isVisible = false;
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) && (root_facAllocators.getId() != null) && (! root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED"))) {
+											isVisible = true;
+										} 
+	         	if (root_facAllocators !=null && (root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_FUNDED","DEALS_STATUS_ASSIGNED"))) {
+											isVisible = false;
+										} 
+								return isVisible;
+
+				]]></tns:default>
+         </tns:component>
+
+          <tns:component id="facilityBE_facAllocators_EditCanvas.facAllocator_facilityBE_capitalProviders_actionsCol">
+         	<tns:default>false</tns:default>
+         </tns:component>
+         
+		<tns:component id="facilityBE_facAllocators_EditCanvas.fundedFacAllobvcation">
+			<tns:default><![CDATA[
+				boolean isVisible = false;
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) 
+					&& (root_facAllocators.getId() != null) && (! root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED"))) {
+											isVisible = true;
+										} 
+										
+	         	if (root_facAllocators !=null && (root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_FUNDED","DEALS_STATUS_ASSIGNED"))) {
+											isVisible = false;
+										} 
+								return isVisible;
+			]]></tns:default>
+		</tns:component>
+		<tns:component id="facilityBE_facAllocators_EditCanvas.submitFacAllocation">
+			<tns:default><![CDATA[
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) && (root_facAllocators.getId() != null)) {
+										return  false;
+									} else {
+										return  true;
+									} 
+			]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="facilityBE_facAllocators_EditCanvas.subpageEditCancelBtn">
+			<tns:default><![CDATA[
+				if ((root_facAllocators != null) && (! root_facAllocators.inWfStatus("DEALS_STATUS_UNASSIGNED"))) {
+										return  false;
+									} else {
+										return true;
+									}
+			]]></tns:default>
+		</tns:component>
+		<tns:component id="facilityBE_facAllocators_EditCanvas.subpageEditSaveBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="facilityBE_facAllocators_EditCanvas.subpageEditDoneBtn">
+			<tns:default><![CDATA[
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) && (root_facAllocators.getId() != null)) {
+										return  true;
+									} else {
+										return false;
+									}
+			]]></tns:default>
+		</tns:component>
+		<tns:component id="quick_acceptFacAllobvcation">
+			<tns:default><![CDATA[
+	         	boolean isVisible = false;
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) && (root_facAllocators.getId() != null)) {
+											isVisible = true;
+										} 
+	         	if (root_facAllocators !=null && (root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_ACCEPTED","DEALS_STATUS_FUNDED"))) {
+											isVisible = false;
+										}
+										
+								return isVisible;
+				]]></tns:default>
+		</tns:component>
+        <tns:component id="quick_rejectFacAllobvcation">
+         	<tns:default><![CDATA[
+				boolean isVisible = false;
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) && (root_facAllocators.getId() != null) && (! root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED"))) {
+											isVisible = true;
+										} 
+	         	if (root_facAllocators !=null && (root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_FUNDED","DEALS_STATUS_ASSIGNED"))) {
+											isVisible = false;
+										} 
+								return isVisible;
+				]]></tns:default>
+         </tns:component>
+		<tns:component id="quick_fundedFacAllobvcation">
+			<tns:default><![CDATA[
+				boolean isVisible = false;
+				if ((root_facAllocators != null) && (root_facAllocators.getSessionId() !=null) && (root_facAllocators.getId() != null) && (! root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED"))) {
+											isVisible = true;
+										} 
+	         	if (root_facAllocators !=null && (root_facAllocators.inWfStatus("DEALS_STATUS_REJECTED","DEALS_STATUS_FUNDED","DEALS_STATUS_ASSIGNED"))) {
+											isVisible = false;
+										} 
+								return isVisible;
+			]]></tns:default>
+		</tns:component>
+		<tns:component id="quick_submitFacAllocation">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>	
+</tns:ui-permissions>

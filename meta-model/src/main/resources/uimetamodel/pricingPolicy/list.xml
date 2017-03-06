@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="pricingPolicy" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<data-table name="pricingPolicyList" row="pricingPolicy" sortBy="pricingPolicy.name"
+		sortOrder="ascending" label="Pricing Policies Search Results">
+		<columns>
+			<column name="pricingPolicy.name" label="Policy Name" />
+			<column name="pricingPolicy.ou" label="OU" />
+			<column name="pricingPolicy.sbu" label="SBU" />
+			<column name="pricingPolicy.statusDer" label="Status" />
+			<column name="pricingPolicy.effectiveToDate" label="Expires" />
+		</columns>
+	</data-table>	
+	<beans>
+		<bean name="pricingPolicyList" type="com.thirdpillar.codify.loanpath.model.PricingPolicy" />
+	</beans>
+</canvas>
+

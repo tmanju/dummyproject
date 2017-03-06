@@ -1,0 +1,485 @@
+	<!-- <?xml version=1.0 encoding=UTF-8?> -->
+<list>
+	<!-- Recommendation Reason Seed -->
+	<RecomReasonSeed>
+		<recomCode>1</recomCode>
+		<recomReason>Delinquent manner of payment on consumer credit or other consumer obligations</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_DELINQUENT_MANNER_PAYMENT_CONSUMER_CREDIT_OBG</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>2</recomCode>
+		<recomReason>Poor consumer credit performance with Citibank and/or Citibank affiliates.</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_POOR_CONSUMER_CREDIT_PERFORMANCE_WITH_CITIBANK</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>3</recomCode>
+		<recomReason>One or more collection items, or outstanding suits, liens, or judgments reported on consumer credit report</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_ONE_MORE_COLLECTION_ITEMS_SUITS_LIENS_CONSUMER</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>4</recomCode>
+		<recomReason>Consumer Bankruptcy</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_CONSUMERL_BANKRUPTCY</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>5</recomCode>
+		<recomReason>Excessive requests for consumer credit</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_REQUEST_OF_CONSUMER_CREDIT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>6</recomCode>
+		<recomReason>Excessive consumer credit obligations</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_CONSUMERL_CREDIT_OBG</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>7</recomCode>
+		<recomReason>Limited Consumer Credit History</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_LIMITED_CONSUMER_CREDIT_HISTORY</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>8</recomCode>
+		<recomReason>Excessive utilization of consumer revolving lines</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_UTILIZATION_OF_CONSUMER_REV_LINES</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>9</recomCode>
+		<recomReason>Excessive consumer credit trade lines recently opened</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_CONSUMER_CREDIT_TRADE_LINES</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>10</recomCode>
+		<recomReason>Unable To Confirm Your Application Request Per Your Credit Report Fraud Victim Alert</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_UNABLE_TO_CONFIRM_APPLICATION_REQUEST</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>11</recomCode>
+		<recomReason>Unable To Verify Social Security Number</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_UNABLE_TO_VERIFY_SOCIAL_SECURITY</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>12</recomCode>
+		<recomReason>Delinquent manner of payment on commercial credit or other commercial obligations</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_DELINQUENT_MANNER_PAYMENT_COMM_CREDIT_OBG</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>13</recomCode>
+		<recomReason>Poor commercial credit performance with Citibank and/or Citibank affiliates.</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_POOR_COMMERCIAL_CREDIT_PERFORMANCE_WITH_CITIBANK</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>14</recomCode>
+		<recomReason>One or more collection items, or outstanding suits, liens, or judgments reported on commercial credit report</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_ONE_MORE_COLLECTION_ITEMS_SUITS_LIENS_COMMERCIAL</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>15</recomCode>
+		<recomReason>Commercial Bankruptcy</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_COMMERCIAL_BANKRUPTCY</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>16</recomCode>
+		<recomReason>Excessive requests for commercial credit</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_REQUEST_OF_COMMERCIAL_CREDIT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>17</recomCode>
+		<recomReason>Excessive commercial credit obligations</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_COMMERCIAL_CREDIT_OBG</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>18</recomCode>
+		<recomReason>Limited Commercial Credit History</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_LIMITED_COMMERCIAL_CREDIT_HISTORY</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>19</recomCode>
+		<recomReason>Excessive utilization of commercial revolving lines</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_UTILIZATION_OF_COMMERCIAL_REV_LINES</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>20</recomCode>
+		<recomReason>Excessive commercial credit trade lines recently opened</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_COMMERCIAL_CREDIT_TRADE_LINES</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>21</recomCode>
+		<recomReason>Credit is not available under the pricing or terms requested</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_CREDIT_NOT_AVAILABLE_UNDER_PRICING_TERMS</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>22</recomCode>
+		<recomReason>Value Or Type Of Collateral Offered Is Insufficient</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_ TYPE_OF_COLLATERAL_OFFERED_INSUFFICIENT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>23</recomCode>
+		<recomReason>Lack of established earnings record</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_LACK_OF_ESTABLISHED_EARNING_RECD</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>24</recomCode>
+		<recomReason>Insufficient time in business.</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_INSUFFICIENT_TIME_IN_BUSINESS</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>25</recomCode>
+		<recomReason>Failure To Supply Requested Information</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_FAILURE_TO_SUPPLY_REQUESTED_INFORMATION</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>26</recomCode>
+		<recomReason>Insufficient cash flow to support the credit requested</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_INSUFFICIENT_CASH_FLOW_SUPPORT_CREDIT_REQUEST</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>27</recomCode>
+		<recomReason>Obligations In Relation To Equity Are Considered
+			Unacceptable</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_OBLIGATIONS_IN_RELATION_TO_EQUITY_UNACCEPTABLE</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>28</recomCode>
+		<recomReason>Quality Of Financial Reporting Is Considered Inadequate</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_QUALITY_OF_FINANCIAL_REPORTING_INADEQUATE</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>29</recomCode>
+		<recomReason>Concentration of Accounts Receivable</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_CONCENTRATION_RECEIVABLE</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>30</recomCode>
+		<recomReason>Financial condition does not adequately support the credit requested</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_FINANCIAL_CONDITION_NOT_ADEQUATE_SUPPORT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>31</recomCode>
+		<recomReason>Excessive number of overdrafts or unacceptable handling of bank accounts</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESSIVE_NO_OF_OVERDRAFTS_OR_HANDLES_BANK</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>32</recomCode>
+		<recomReason>Principal business activity outside targeted industries for lending</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_PRINCIPAL_BUSINESS_ACTIVITY_NOT_MEET_CREDIT_GRANTING</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>33</recomCode>
+		<recomReason>Unable To Obtain A First Lien Position Against The Applicant's Assets</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_UNABLE_TO_OBTAIN_POSITION_AGAINST_ASSETS</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>34</recomCode>
+		<recomReason>Inadequate Liquidity</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_INADEQUATE_LIQUIDITY</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>35</recomCode>
+		<recomReason>Unable to verify financial information</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>
+			CREDIT_DENIAL_REASONS_UNABLE_TO_VERIFY_FINANCIAL_INFORMATION
+</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>36</recomCode>
+		<recomReason>Revenue and/or deposits do not support the amount requested</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_REVENUE_OR_DEPOSITS_NOT_SUPPORT_AMT_REQUESTED</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>37</recomCode>
+		<recomReason>Professional license to practice and/or malpractice insurance is not currently in effect</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_PROFESSIONAL_LICENSE_PRACTICE_INSURANCE_NOT_IN_EFFECT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>38</recomCode>
+		<recomReason>Inconsistent information on file with Citibank</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_INCONSISTENT_INFO_ON_FILE_CITIBANK</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>39</recomCode>
+		<recomReason>Unable To Determine Business Ownership</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_UNABLE_TO_DETERMINE_BUSINESS_OWNERSHIP</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>40</recomCode>
+		<recomReason>Limited Personal Net Worth Of Guarantor(S)</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_LIMITED_PERSONAL_NET_WORTH_OF_GUARANTOR</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>41</recomCode>
+		<recomReason>Lack of personal guarantees</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_LACK_OF_PERSONAL_GUARANTEES</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>42</recomCode>
+		<recomReason>Applicant is not located within Market Area</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_APPLICANT_NOT_LOCATED_WITHIN_MKT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>43</recomCode>
+		<recomReason>Time since Professional license was issued is insufficient</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_TIME_PROFESSION_LICENSE_ISSUED_INSUFFICIENT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>44</recomCode>
+		<recomReason>Applicant/Guarantor Lacks Capacity to Enter into a Binding Contract</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_APPLICANT_LACKS_CAPACITY_BINDING_CONTRACT</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>46</recomCode>
+		<recomReason>Too few accounts currently paying as agreed</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_TOO_FEW_ACC_CURR_PAY_AS_AGREED</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>47</recomCode>
+		<recomReason>Number of Revolving Accounts</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_NUM_OF_REV_ACC</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>48</recomCode>
+		<recomReason>Number of Established accounts</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_NUM_OF_EST_ACC</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>49</recomCode>
+		<recomReason>Number of Finance Company accounts established relative to length of Finance history</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_NUM_OF_FIN_COMP_ACC_EST_REL_LEN_FIN</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>50</recomCode>
+		<recomReason>Poor commercial credit performance by affiliate(s) of applicant with Citibank and/or Citibank affiliates.</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_COMMERCIAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_POOR_COMM_CREDIT_PERF_AFFLI_APP</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>51</recomCode>
+		<recomReason>Excessive Utilization on Consumer Loans</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_CONSUMER</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_EXCESS_UTIL_ON_CONS_LOANS</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>52</recomCode>
+		<recomReason>Inadequate history of business credit relationship with Citi</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>CREDIT_DENIAL_REASONS_INADEQ_HIST_OF_BUS_CRED_REL_WITH_CITI</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>53</recomCode>
+		<recomReason>Account opened recently or line increase granted recently</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>ACCOUNT_OPENED_RECENTLY_OR_LINE_INCREASE_GRANTED_RECENTLY</key>
+	</RecomReasonSeed>
+	<RecomReasonSeed>
+		<recomCode>54</recomCode>
+		<recomReason>Low limits on existing credit products</recomReason>
+		<type>
+			<key>CREDIT_DENIAL_REASON_TYPE_JUDGMENTAL</key>
+		</type>
+		<active>true</active>
+		<key>LOW_LIMITS_ON_EXISTING_CREDIT_PRODUCTS</key>
+	</RecomReasonSeed>
+
+</list>

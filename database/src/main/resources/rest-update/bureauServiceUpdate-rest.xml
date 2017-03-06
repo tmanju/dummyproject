@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+<attribute>
+		<key>BUREAU_NAME</key>
+		<name>Bureau Name</name>
+		<description>#DONE</description>
+		<attributeChoices>
+			<attributeChoice>
+				<value>Transunion</value>
+				<key>BUREAU_NAME_TRANSUNION</key>
+				<externalIdentifier>tuna_us_con</externalIdentifier>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Experian Consumer</value>
+				<key>BUREAU_NAME_EXPERIAN_CONSUMER</key>
+				<externalIdentifier>exp_con</externalIdentifier>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Experian Commercial</value>
+				<key>BUREAU_NAME_EXPERIAN_COMMERCIAL</key>
+				<externalIdentifier>exp_com</externalIdentifier>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Equifax Consumer</value>
+				<key>BUREAU_NAME_EQUIFAX_CONSUMER</key>
+				<externalIdentifier>efx_con</externalIdentifier>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Equifax Commercial</value>
+				<key>BUREAU_NAME_EQUIFAX_COMMERCIAL</key>
+				<externalIdentifier>efx_com</externalIdentifier>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>DNB</value>
+				<key>BUREAU_NAME_DNB</key>
+				<externalIdentifier>dnb_com</externalIdentifier>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+		</list>
+</mod:sr.addEntityRequest>

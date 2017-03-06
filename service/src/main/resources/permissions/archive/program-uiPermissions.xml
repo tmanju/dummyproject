@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+		<tns:component id="program">
+			<tns:read>true</tns:read>
+		</tns:component>
+		
+		<tns:canvas id="crud">
+			<tns:canvas id="prgAdvanceMoneyEdit">
+				<tns:component id="advanceMoney_advancePmtAmt_1" >
+					<tns:default>if(root_advanceMonies!=null &amp;&amp; root_advanceMonies.paymentType!=null){
+									if(root_advanceMonies.paymentType.key == 'PAYMENT_TYPE_PERCENT'){
+										return false;
+									}else{return true;}
+								}else{return true;}</tns:default>
+				</tns:component>
+				<tns:component id="advanceMoney_advancePmtPct_1" >
+					<tns:default>if(root_advanceMonies!=null &amp;&amp; root_advanceMonies.paymentType!=null){
+									if(root_advanceMonies.paymentType.key == 'PAYMENT_TYPE_AMOUNT'){
+										return false;
+									}else{return true;}
+								}else{return true;}</tns:default>
+				</tns:component>
+			</tns:canvas>
+		</tns:canvas>
+</tns:ui-permissions>

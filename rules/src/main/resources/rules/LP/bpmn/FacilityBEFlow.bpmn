@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+
+  <itemDefinition id="_2-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_2-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_2-entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_2-entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_2-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_2-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+
+  <itemDefinition id="_5-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_5-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_5-entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_5-entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_5-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_5-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+
+  <itemDefinition id="_12-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_12-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_12-entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_12-entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_12-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_12-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+
+  <process processType="Private" isExecutable="true" id="FacilityBEFlow" name="FacilityBEFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="com.thirdpillar.foundation.component.CodifyMessage" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="integrationResultStatus" itemSubjectRef="_integrationResultStatusItem"/>
+    <property id="entityIn" itemSubjectRef="_entityInItem"/>
+    <property id="entityOut" itemSubjectRef="_entityOutItem"/>
+    <property id="sfdcInputMap" itemSubjectRef="_sfdcInputMapItem"/>
+    <property id="integrationExchange" itemSubjectRef="_integrationExchangeItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <task id="_2" name="FacilityBE Flow Wait" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <endEvent id="_3" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <intermediateCatchEvent id="_4" name="Signal" >
+      <signalEventDefinition signalRef="interimBalSettlement"/>
+    </intermediateCatchEvent>
+    <task id="_5" name="Process Settlement" tns:taskName="BusinessOperationTask" >
+      <ioSpecification>
+        <dataInput id="_5_entityInput" name="entity" />
+        <dataInput id="_5_businessOperationNameInput" name="businessOperationName" />
+        <inputSet>
+          <dataInputRefs>_5_entityInput</dataInputRefs>
+          <dataInputRefs>_5_businessOperationNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_5_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_businessOperationNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">processInterimBalSettlement</from>
+          <to xsi:type="tFormalExpression">_5_businessOperationNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_6" name="End" />
+    <endEvent id="_10" name="End" />
+    <intermediateCatchEvent id="_11" name="cpCommitted" >
+      <signalEventDefinition signalRef="cpCommitted"/>
+    </intermediateCatchEvent>
+    <task id="_12" name="Update to CRM" tns:taskName="IntegrationTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Updating data to CRM - Approved to be Notified==========================&gt;");
+FacilityBE dataObject = (FacilityBE) context.getVariable("contextEntity");
+
+Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+inputMap.put("contextEntity",dataObject);
+inputMap.put("entityOut",dataObject);
+inputMap.put("entity","facilitybe");
+inputMap.put("objectType","facilitybe");
+
+inputMap.put("clientId","internex");
+inputMap.put("action","update");
+
+context.setVariable("sfdcInputMap", inputMap);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
+ if ("ERROR".equals(rStatus)) {
+
+ System.out.println("******* Call Failed");
+ 	CodifyMessage.addMessage("ERR_INT_HTTP_RESP_ERROR",CodifyMessage.Severity.ERROR, new String[]{"CRM Service"});
+	CodifyMessage.addMessage("ERR_INT_HTTP_REQ_FAIL",CodifyMessage.Severity.ERROR, new String[]{"CRM Service"});
+ }else{
+ 	 FacilityBE dataObject = (FacilityBE) context.getVariable("contextEntity");
+ 	 
+ 	IntegrationExchange integrationExchangeObj = (IntegrationExchange) context.getVariable("integrationExchange");
+	FacilityBE fac = (FacilityBE)integrationExchange.getTaskOutput();
+
+    	StringBuffer buffer = new StringBuffer();
+    				if(dataObject.getServiceMessages() != null){
+    					dataObject.getServiceMessages().clear();
+    				}
+    				if(dataObject.getServiceMessages() != null){
+    					dataObject.getServiceMessages().addAll(fac.getServiceMessages());
+    					for(ServiceMessage msg : dataObject.getServiceMessages()){
+    						buffer.append(msg.getMessage());
+    						buffer.append("\n");
+    					}
+    				}
+    				if(buffer.toString().length()&gt;0){
+    					buffer = buffer.delete(buffer.length()-1, buffer.length());
+    					CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"CRM service",buffer.toString()});
+    				}			
+ 	 
+ 	 
+ 	 if(dataObject.getServiceMessages() != null &amp;&amp; dataObject.getServiceMessages().isEmpty()){
+	 	dataObject.setCpCommittedFlag(false);
+	 }
+	System.out.println("******* Crm Update Successful");
+}
+
+context.setVariable("integrationResultStatus",null);
+context.setVariable("integrationExchange",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_12_inputInput" name="input" />
+        <dataInput id="_12_entityInput" name="entity" />
+        <dataInput id="_12_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_12_entityOutput" name="entity" />
+        <dataOutput id="_12_ResultExchangeOutput" name="ResultExchange" />
+        <dataOutput id="_12_ResultStatusOutput" name="ResultStatus" />
+        <inputSet>
+          <dataInputRefs>_12_inputInput</dataInputRefs>
+          <dataInputRefs>_12_entityInput</dataInputRefs>
+          <dataInputRefs>_12_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_12_entityOutput</dataOutputRefs>
+          <dataOutputRefs>_12_ResultExchangeOutput</dataOutputRefs>
+          <dataOutputRefs>_12_ResultStatusOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>sfdcInputMap</sourceRef>
+        <targetRef>_12_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_12_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_12_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">crmService</from>
+          <to xsi:type="tFormalExpression">_12_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_12_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_12_ResultExchangeOutput</sourceRef>
+        <targetRef>integrationExchange</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_12_ResultStatusOutput</sourceRef>
+        <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
+    <sequenceFlow id="_5-_6" sourceRef="_5" targetRef="_6" />
+    <sequenceFlow id="_12-_10" sourceRef="_12" targetRef="_10" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="FacilityBEFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="61" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="16" y="96" width="138" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="61" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="231" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="186" y="96" width="138" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="231" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="382" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="382" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="356" y="96" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="85" y="40" />
+        <di:waypoint x="85" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="85" y="120" />
+        <di:waypoint x="85" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="255" y="40" />
+        <di:waypoint x="255" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_6" >
+        <di:waypoint x="255" y="120" />
+        <di:waypoint x="255" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_10" >
+        <di:waypoint x="406" y="120" />
+        <di:waypoint x="406" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="406" y="40" />
+        <di:waypoint x="406" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

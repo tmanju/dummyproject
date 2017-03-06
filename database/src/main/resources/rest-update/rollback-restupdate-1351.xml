@@ -1,0 +1,63 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+  <coaDefinition>
+    <coaCategory>
+      <attributeChoiceCodes/>
+      <key>COA_CATEGORY_COLLATERAL</key>
+      <metaInfo/>
+      <value>Collateral</value>
+    </coaCategory>
+    <coaCondition>Verify Bank Accounts and Balances</coaCondition>
+    <coaId>888.4</coaId>
+    <internal>
+      <attributeChoiceCodes/>
+      <key>YES_OR_NO_NO</key>
+      <metaInfo/>
+      <value>No</value>
+    </internal>
+    <nonStandard>
+      <attributeChoiceCodes/>
+      <key>YES_OR_NO_YES</key>
+      <metaInfo/>
+      <value>Yes</value>
+    </nonStandard>
+    <priorTo>Any disbursement</priorTo>
+    <productCatProject>
+      <attributeChoiceCodes/>
+      <key>YES_OR_NO_NO</key>
+      <metaInfo/>
+      <value>No</value>
+    </productCatProject>
+    <variableTextReq>
+      <attributeChoiceCodes/>
+      <key>YES_OR_NO_NO</key>
+      <metaInfo/>
+      <value>No</value>
+    </variableTextReq>
+	<docRequired>
+      <attributeChoiceCodes/>
+      <key>YES_OR_NO_YES</key>
+      <metaInfo/>
+      <value>Yes</value>
+    </docRequired>
+	<documentClass>
+      <attributeChoiceCodes/>
+      <key>DOCUMENT_CLASS_UPLOADED_DOC</key>
+      <metaInfo/>
+      <value>Uploaded Doc</value>
+    </documentClass>
+	<documentCategory>
+      <attributeChoiceCodes/>
+      <key>DOCUMENT_CATEGORY_COLLATERAL_DOCUMENTS</key>
+      <metaInfo/>
+      <value>Collateral Documents</value>
+    </documentCategory>
+	<documentType>
+      <attributeChoiceCodes/>
+      <key>DOCUMENT_TYPE_CUSTOM_AGREEMENT</key>
+      <metaInfo/>
+      <value>Custom Agreement</value>
+    </documentType>
+  </coaDefinition>
+</list>
+</mod:sr.addEntityRequest>

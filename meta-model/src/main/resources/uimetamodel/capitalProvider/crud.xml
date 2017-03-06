@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="capitalProvider" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<panel id="capitalProvider.detail" label="Funding Provider">
+		<field name="capitalProvider.customerAssociated" type="SearchNSelect" />
+		<field name="capitalProvider.availableCashDer" label="Remaining To Fund"/>
+		<field name="capitalProvider.pending" />
+		<field name="capitalProvider.outstandingPrincipal" />
+		<field name="capitalProvider.customerAssociated.pledgedAmt" targetFields="capitalProvider.detail" label="Pledged Amount"/> 
+		<field name="capitalProvider.participatingInMPsince" />
+		<field name="capitalProvider.noOfFundedDeal" />
+		<field name="capitalProvider.lastDealDt" />
+		<field name="capitalProvider.customerAssociated.maxConcentrationPercent" label="Max Debtor Concentration Allowed %" />
+	</panel>
+	<panel id="preference" label ="Preference" >
+ 		<field name="capitalProvider.exIndustry" /> 
+		<field name="capitalProvider.region" />
+	</panel>
+	<data-table name="capitalProvider.customerAssociated.allocations" row="allocation" label="Allocations">
+		<columns>
+			<column name="allocation.clientRating" />
+			<column name="allocation.allocPercentage" />
+			<column name="allocation.allAmt" />
+		</columns>
+	</data-table>
+	<panel id="capitalProvider.customerAssociated.businessDetail" label="Business Details">
+		<field name="capitalProvider.customerAssociated.legalName" label="Legal Name"/>
+		<field name="capitalProvider.customerAssociated.federalTaxId" label="Taxpayer ID(FEIN)" />
+		<data-table name="capitalProvider.customerAssociated.primarySite.siteDetails.addresses" id="capitalProvider_customer_business_primarySite_siteDetails_addresses" row="address" label="Address">
+			<columns>
+				<column name="address.address1" label="Address" />
+				<!-- <column name="address.address2" label="Address 2" /> -->
+				<column name="address.city" label="City" />
+				<column name="address.stateProvince" label="State" />
+				<column name="address.country" label="Country" />		
+				<column name="address.postalCode" label="Postal Code" />
+				<column name="address.usage" label="Usage" />
+			</columns>
+			<quickedit-canvas id="address">
+				<panel id="capitalProvider.customerAssociated.contactDetailsInformation" label="Address Details">
+					<field name="address.address1" label="Address" />
+					<!-- <field name="address.address2" label="Address 2" /> -->
+					<field name="address.city" label="City" />
+					<field name="address.country" label="Country" />
+					<field name="address.stateProvince" label="State" />
+					<field name="address.postalCode" label="Postal Code" />
+					<field name="address.usage" label="Usage" />
+				</panel>
+			</quickedit-canvas>
+		</data-table>	
+	</panel>
+	<panel id="capitalProvider.customerAssociated.contactInformation" label="Primary Contact Information">
+		<field name="capitalProvider.customerAssociated.primarySite.siteDetails.firstName" label="First Name" />
+		<field name="capitalProvider.customerAssociated.primarySite.siteDetails.lastName" label="Last Name" />
+<!-- 		<field name="capitalProvider.customerAssociated.primarySite.siteDetails.role" label="Role" /> -->
+		<field name="capitalProvider.customerAssociated.primarySite.siteDetails.businessPhone" label="Business Phone" />
+		<field name="capitalProvider.customerAssociated.primarySite.siteDetails.otherPhone" label="Other Phone" />
+		<field name="capitalProvider.customerAssociated.primarySite.siteDetails.homePhone" label="Home Phone" />
+				<field name="capitalProvider.customerAssociated.primarySite.siteDetails.mobilePhone" label="Mobile Phone" />
+				<field name="capitalProvider.customerAssociated.primarySite.siteDetails.email" label="Primary Email" />
+				<field name="capitalProvider.customerAssociated.primarySite.siteDetails.businessFax" label="Fax" />
+
+		<data-table name="capitalProvider.customerAssociated.primarySite.siteDetails.addresses" id="customer_primarySite_siteDetails_addresses" row="address" label="Address">
+					<columns>
+						<column name="address.address1" label="Address" />
+						<column name="address.address2" label="Address 2" />
+						<column name="address.city" label="City" />
+						<column name="address.stateProvince" label="State" />
+						<column name="address.country" label="Country" />						
+						<column name="address.use" label="Usage" />
+					</columns>
+					<quickedit-canvas>
+						<panel id="customerAssociated.contactDetailsInformation" label="Address Details">
+							<field name="address.address1" label="Address" />
+							<field name="address.address2" label="Address 2" />
+							<field name="address.city" label="City" />
+							<field name="address.country" label="Country" />
+							<field name="address.stateProvince" label="State" />
+							<field name="address.postalCode" label="Postal Code" />
+							<field name="address.use" label="Usage" />
+						</panel>
+					</quickedit-canvas>
+		</data-table>
+		<data-table name="capitalProvider.customerAssociated.primarySite.contacts" row="custContact" label="Customer Contact">
+					<columns>
+<!-- 						<column name="custContact.role" /> -->
+						<column name="custContact.firstName" />
+						<column name="custContact.lastName" />
+						<column name="custContact.homePhone" />
+						<column name="custContact.mobilePhone" />
+						<column name="custContact.businessPhone" />
+						<column name="custContact.email" />
+	
+					</columns>
+				</data-table>
+			</panel>
+		<data-table name="capitalProvider.customerAssociated.bankTrades" row="bankInformation" label="Bank Information">
+						<columns>
+							<column name="bankInformation.name" label="Bank Name"/>
+							<column name="bankInformation.branchAddress.city" label="City"/>
+							<column name="bankInformation.branchAddress.stateProvince" label="State"/>
+							<column name="bankInformation.primary" label="Primary"/>
+						</columns>
+						<edit-canvas id="bankInformationEditCanvas">
+							<tabs>
+								<tab id="tab.capitalProvider.customerAssociated.BankInformation" label="Bank Information">
+									<panel id="capitalProvider.customerAssociated.bankInformation" label="Bank Information">
+										<field name="bankTrades.name" label="Bank Name" />
+										<field name="bankTrades.phoneNumber" label="Phone Number"/>
+										<field name="bankTrades.faxNumber" label="Fax Number" />
+										<field name="bankTrades.primary" label="Primary Flag" />
+										<field name="bankTrades.routingNumber" label="Routing Number" />
+										<field name="bankTrades.branchName" label="Branch" />
+										<field name="bankTrades.branchAddress.address1" label="Street Address" />
+										<field name="bankTrades.branchAddress.city" label="City" />
+										<field name="bankTrades.branchAddress.stateProvince" label="State" />
+										<field name="bankTrades.branchAddress.postalCode" label="Postal Code" />
+										<field name="bankTrades.branchAddress.country" label="Country" />
+									</panel>
+									<panel id="capitalProvider.customerAssociated.accountInformation" label="Account Information">
+										<field name="bankTrades.accountType" label="Account Type" />
+										<field name="bankTrades.bankAccountNumber" label="Account Number" />
+										<field name="bankTrades.bankTradeType" label="Personal/Business" />
+										<field name="bankTrades.month1DepositAmount" label="Recent Deposits - Month 1" />
+										<field name="bankTrades.month2DepositAmount" label="Recent Deposits - Month 2" />
+										<field name="bankTrades.month3DepositAmount" label="Recent Deposits - Month 3" />
+										<field name="bankTrades.lineOfCreditAmount" label="Line of Credit Amount" />
+										<field name="bankTrades.presentBalance" label="Current Balance" />
+										<field name="bankTrades.accountOpenedDttm" label="Account Opened Date" />
+										<field name="bankTrades.accountExpOrRenewalDttm" label="Expiration Date"/>
+									</panel>
+								</tab>
+							</tabs>
+						</edit-canvas>
+				</data-table>
+						
+	<beans>
+		<bean name="capitalProvider"
+			type="com.thirdpillar.codify.loanpath.model.CapitalProvider" />
+	</beans>
+</canvas>

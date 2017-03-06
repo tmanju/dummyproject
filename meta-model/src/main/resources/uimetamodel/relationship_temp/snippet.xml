@@ -1,0 +1,27 @@
+<canvas id="relationship" type="snippet"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">	
+	
+	
+			<panel id="relationship.relationshipInformation" label="Relationship Information">					
+						<field name="relationship.name"/> 
+						<field name="relationship.relationshipDetails"/>
+						<!--<field name="relationship.metainfo.createdAt" label="Relationship Created Date"/>-->
+						<!--<field name="relationship.relationshipCreditApproval"/>
+						<field name="relationship.relationshipCreditAvailable"/>
+						<field name="relationship.relCreditAppExpiration"/>-->
+			</panel>
+						
+			<data-table name="relationship.allRelationshipParties" row="relParty">
+				<columns>
+					<column name="relParty.customer" label="Name"/>
+					<column name="relParty.partyRole" label="Role"/>
+					<column name="relParty.parentRelationshipParty" label="Related To" />
+				</columns>
+			</data-table>
+			
+	<beans>
+		<bean name="relationship" type="com.thirdpillar.codify.loanpath.model.Relationship" />
+	</beans>	
+</canvas>

@@ -1,0 +1,106 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.EntityService;
+
+import java.math.BigDecimal;
+
+rule "SetProgramStatus"
+    agenda-group "NEW" 
+    when
+        program:Program()
+    then 
+        WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "PROGRAM_STATUS_NEW");
+		program.setWfStatus(status);
+		program.setAutoApproveFlag(true);
+	  	//program.setAutoDeclineFlag(true);
+                                
+end
+
+rule "Set_FeePolicyParams_In_Program_Fee"
+ when
+  changeModelEvent:PrgFee.ChangeModelEvent(property == "feePolicy")
+ then
+	  PrgFee prgFee = (PrgFee) changeModelEvent.getEntity();
+	  if(changeModelEvent.getNewValue() != null){
+		   FeePolicy feePolicy = (FeePolicy)changeModelEvent.getNewValue();
+		   prgFee.setName(feePolicy.getName());
+		   prgFee.setFeeType(feePolicy.getFeeType());
+		   prgFee.setOu(feePolicy.getOu());
+		   prgFee.setSbu(feePolicy.getSbu());
+		   prgFee.setCurrency(feePolicy.getCurrency());
+		   prgFee.setMayBeDisclosed(feePolicy.getMayBeDisclosed());
+		   prgFee.setMinimumPct(feePolicy.getMinimumPct());
+		   prgFee.setMaximumPct(feePolicy.getMaximumPct());
+		   prgFee.setDefaultAmt(feePolicy.getDefaultAmt());
+		   prgFee.setDefaultPct(feePolicy.getDefaultPct());
+		   prgFee.setCalculationMethod(feePolicy.getCalculationMethod());  
+		   prgFee.setMinFeeAmt(feePolicy.getMinimumAmt());
+		   prgFee.setMaxFeeAmt(feePolicy.getMaximumAmt());
+	  }else{
+		   prgFee.setName("");
+		   prgFee.setFeeType(null);
+		   prgFee.setOu(null);
+		   prgFee.setSbu(null);
+		   prgFee.setCurrency(null);
+		   prgFee.setMayBeDisclosed(false);
+		   prgFee.setMinimumPct(null);
+		   prgFee.setMaximumPct(null);
+		   prgFee.setDefaultAmt(null);
+		   prgFee.setDefaultPct(null);
+		   prgFee.setCalculationMethod(null);  
+		   prgFee.setMinFeeAmt(null);
+		   prgFee.setMaxFeeAmt(null);
+	  }
+end
+
+rule "Set_PricingPolicyParams_In_Program_Pricing_Profiles"
+ when
+  changeModelEvent:PrgPricingProfile.ChangeModelEvent(property == "pricingPolicy")
+ then
+	  PrgPricingProfile prgPricingProfile = (PrgPricingProfile) changeModelEvent.getEntity();
+	  if(changeModelEvent.getNewValue() != null){
+		   PricingPolicy pricingPolicy = (PricingPolicy)changeModelEvent.getNewValue();
+		   prgPricingProfile.setName(pricingPolicy.getName());
+		   prgPricingProfile.setDiscription(pricingPolicy.getDescription());
+		   prgPricingProfile.setEffectiveDttm(pricingPolicy.getEffectiveFromDate());
+		   
+	  }else{
+	  	   prgPricingProfile.setName("");
+		   prgPricingProfile.setDiscription("");
+		   prgPricingProfile.setEffectiveDttm(null);
+	  }
+end
+
+rule "Set_FeePolicyParams_In_Program_Promotions"
+ when
+  changeModelEvent:PrgPromotion.ChangeModelEvent(property == "promotionPolicy")
+ then
+	  PrgPromotion prgPromotion = (PrgPromotion) changeModelEvent.getEntity();
+	  if(changeModelEvent.getNewValue() != null){
+		   PromotionPolicy promotionPolicy = (PromotionPolicy)changeModelEvent.getNewValue();
+		   prgPromotion.setPromotionName(promotionPolicy.getName());
+		   prgPromotion.setPromotionRefId(promotionPolicy.getRefNumber());
+		   prgPromotion.setPromotionDescription(promotionPolicy.getDescription());
+		   prgPromotion.setExpirationDttm(promotionPolicy.getEffectiveFromDate());
+		   prgPromotion.setEffectiveDttm(promotionPolicy.getEffectiveToDate());
+	  }else{
+		   prgPromotion.setPromotionName("");
+		   prgPromotion.setPromotionRefId("");
+		   prgPromotion.setPromotionDescription("");
+		   prgPromotion.setExpirationDttm(null);
+		   prgPromotion.setEffectiveDttm(null);
+	  }
+end
+
+rule "Set_AssetSub-Type_Null_On_Change_Value_Of_AssetType"
+ when 
+  changeModelEvent:Program.ChangeModelEvent(property == "assetClass")
+ then
+	  Program program = (Program) changeModelEvent.getEntity();
+	  System.out.println("changeModelEvent.getNewValue()"+changeModelEvent.getNewValue());
+      program.setAssetSubclass(null); 
+end

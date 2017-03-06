@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_taskActionItem" structureRef="String" />
+  <itemDefinition id="_teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_emailRecipientItem" structureRef="String" />
+
+  <itemDefinition id="_42-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_42-taskActionItem" structureRef="String" />
+  <itemDefinition id="_42-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_42-emailRecipientItem" structureRef="String" />
+
+  <itemDefinition id="_49-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_49-taskActionItem" structureRef="String" />
+  <itemDefinition id="_49-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_49-emailRecipientItem" structureRef="String" />
+
+  <itemDefinition id="_52-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_52-taskActionItem" structureRef="String" />
+  <itemDefinition id="_52-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_52-emailRecipientItem" structureRef="String" />
+
+  <itemDefinition id="_53-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_53-taskActionItem" structureRef="String" />
+  <itemDefinition id="_53-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_53-emailRecipientItem" structureRef="String" />
+
+  <itemDefinition id="_55-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_55-taskActionItem" structureRef="String" />
+  <itemDefinition id="_55-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_55-emailRecipientItem" structureRef="String" />
+
+  <itemDefinition id="_56-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_56-taskActionItem" structureRef="String" />
+  <itemDefinition id="_56-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_56-emailRecipientItem" structureRef="String" />
+
+  <itemDefinition id="_58-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+  <itemDefinition id="_58-taskActionItem" structureRef="String" />
+  <itemDefinition id="_58-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_58-emailRecipientItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="CustomerBackendFlow" name="CustomerBackendFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.CustomerExposureLimit" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Team" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.BureauReport" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Compliance" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approval" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approver" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.WorkflowStatus" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.service.Context" />
+     <tns:import name="com.thirdpillar.foundation.service.ContextHolder" />
+     <tns:import name="java.util.Set" />
+     <tns:import name="java.util.HashSet" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="java.util.Calendar" />
+     <tns:import name="com.thirdpillar.foundation.model.BaseDataObject" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="taskAction" itemSubjectRef="_taskActionItem"/>
+    <property id="team" itemSubjectRef="_teamItem"/>
+    <property id="emailRecipient" itemSubjectRef="_emailRecipientItem"/>
+
+    <!-- nodes -->
+    <endEvent id="_33" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <startEvent id="_34" name="Start" />
+    <scriptTask id="_35" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>
+    </script>
+    </scriptTask>
+    <task id="_42" name="Wait State" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <intermediateCatchEvent id="_43" name="Signal" >
+      <signalEventDefinition signalRef="ExposureAmtBreached"/>
+    </intermediateCatchEvent>
+    <scriptTask id="_44" name="Logger" scriptFormat="http://www.java.com/java" >
+      <script>CustomerBackend customerBackend = (CustomerBackend)context.getVariable("contextEntity");
+
+if(customerBackend != null &amp;&amp; customerBackend.getCustomerExposureLimits() != null){
+	for(CustomerExposureLimit customerExposureLimit : customerBackend.getCustomerExposureLimits()){
+	}
+}else{
+}</script>
+    </scriptTask>
+    <endEvent id="_45" name="End" />
+    <intermediateCatchEvent id="_46" name="Signal" >
+      <signalEventDefinition signalRef="ExposureLimitExpired"/>
+    </intermediateCatchEvent>
+    <endEvent id="_47" name="End" />
+    <scriptTask id="_48" name="Logger" scriptFormat="http://www.java.com/java" >
+      <script>CustomerBackend customerBackend = (CustomerBackend)context.getVariable("contextEntity");
+
+if(customerBackend != null &amp;&amp; customerBackend.getCustomerExposureLimits() != null){
+	for(CustomerExposureLimit customerExposureLimit : customerBackend.getCustomerExposureLimits()){
+	}
+}else{
+}</script>
+    </scriptTask>
+    <task id="_49" name="Exposure Limit Breached" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>Team currentTeam = (Team) LookupService.getResult("Team.byName","name", "Covenant Team"); 
+context.setVariable("team", currentTeam);</tns:script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <tns:script>context.setVariable("team", null);</tns:script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_49_entityInput" name="entity" />
+        <dataInput id="_49_Reply-ToInput" name="Reply-To" />
+        <dataInput id="_49_CommentInput" name="Comment" />
+        <dataInput id="_49_ActionsInput" name="Actions" />
+        <dataInput id="_49_TaskNameInput" name="TaskName" />
+        <dataInput id="_49_ContentInput" name="Content" />
+        <dataInput id="_49_ToInput" name="To" />
+        <dataInput id="_49_FromInput" name="From" />
+        <dataInput id="_49_BodyInput" name="Body" />
+        <dataInput id="_49_SubjectInput" name="Subject" />
+        <dataInput id="_49_notifyInput" name="notify" />
+        <dataInput id="_49_GroupIdInput" name="GroupId" />
+        <dataOutput id="_49_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_49_entityInput</dataInputRefs>
+          <dataInputRefs>_49_Reply-ToInput</dataInputRefs>
+          <dataInputRefs>_49_CommentInput</dataInputRefs>
+          <dataInputRefs>_49_ActionsInput</dataInputRefs>
+          <dataInputRefs>_49_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_49_ContentInput</dataInputRefs>
+          <dataInputRefs>_49_ToInput</dataInputRefs>
+          <dataInputRefs>_49_FromInput</dataInputRefs>
+          <dataInputRefs>_49_BodyInput</dataInputRefs>
+          <dataInputRefs>_49_SubjectInput</dataInputRefs>
+          <dataInputRefs>_49_notifyInput</dataInputRefs>
+          <dataInputRefs>_49_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_49_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_49_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_49_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.customerBackendName}: Has breached exposure limits</from>
+          <to xsi:type="tFormalExpression">_49_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Complete:ExposureLimitBreached</from>
+          <to xsi:type="tFormalExpression">_49_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Exposure Limit Breached</from>
+          <to xsi:type="tFormalExpression">_49_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.customerBackendName}: Has breached exposure limits</from>
+          <to xsi:type="tFormalExpression">_49_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_49_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_49_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">exposure_limit_breached_task_email_body</from>
+          <to xsi:type="tFormalExpression">_49_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.customerBackendName}: Exposure limits may have been breached</from>
+          <to xsi:type="tFormalExpression">_49_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_49_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.name}</from>
+          <to xsi:type="tFormalExpression">_49_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_49_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_50" name="Set Limit Escalation Date" scriptFormat="http://www.java.com/java" >
+      <script>CustomerBackend customerBackend = (CustomerBackend)context.getVariable("contextEntity");
+
+if(customerBackend != null){
+	customerBackend.setLimitEscalationDate(new java.util.Date());
+}
+
+</script>
+    </scriptTask>
+    <scriptTask id="_51" name="Set Limit Escalation Date" scriptFormat="http://www.java.com/java" >
+      <script>CustomerBackend customerBackend = (CustomerBackend)context.getVariable("contextEntity");
+
+if(customerBackend != null){
+	customerBackend.setLimitEscalationDate(null);
+}
+</script>
+    </scriptTask>
+    <task id="_52" name="Save CustomerBackend" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_52_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_52_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_52_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_53" name="Save CustomerBackend" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_53_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_53_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_53_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_54" name="Set Limit Escalation Date" scriptFormat="http://www.java.com/java" >
+      <script>CustomerBackend customerBackend = (CustomerBackend)context.getVariable("contextEntity");
+
+if(customerBackend != null){
+	customerBackend.setLimitEscalationDate(new java.util.Date());
+}
+</script>
+    </scriptTask>
+    <task id="_55" name="Save CustomerBackend" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_55_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_55_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_55_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_56" name="Exposure Limit About to Expire" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>Team currentTeam = (Team) LookupService.getResult("Team.byName","name", "Covenant Team"); 
+context.setVariable("team", currentTeam);</tns:script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <tns:script>context.setVariable("team", null);</tns:script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_56_entityInput" name="entity" />
+        <dataInput id="_56_Reply-ToInput" name="Reply-To" />
+        <dataInput id="_56_CommentInput" name="Comment" />
+        <dataInput id="_56_ActionsInput" name="Actions" />
+        <dataInput id="_56_TaskNameInput" name="TaskName" />
+        <dataInput id="_56_ContentInput" name="Content" />
+        <dataInput id="_56_ToInput" name="To" />
+        <dataInput id="_56_FromInput" name="From" />
+        <dataInput id="_56_BodyInput" name="Body" />
+        <dataInput id="_56_SubjectInput" name="Subject" />
+        <dataInput id="_56_notifyInput" name="notify" />
+        <dataInput id="_56_GroupIdInput" name="GroupId" />
+        <dataOutput id="_56_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_56_entityInput</dataInputRefs>
+          <dataInputRefs>_56_Reply-ToInput</dataInputRefs>
+          <dataInputRefs>_56_CommentInput</dataInputRefs>
+          <dataInputRefs>_56_ActionsInput</dataInputRefs>
+          <dataInputRefs>_56_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_56_ContentInput</dataInputRefs>
+          <dataInputRefs>_56_ToInput</dataInputRefs>
+          <dataInputRefs>_56_FromInput</dataInputRefs>
+          <dataInputRefs>_56_BodyInput</dataInputRefs>
+          <dataInputRefs>_56_SubjectInput</dataInputRefs>
+          <dataInputRefs>_56_notifyInput</dataInputRefs>
+          <dataInputRefs>_56_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_56_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_56_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_56_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.customerBackendName}: Has exposure limits for renewal</from>
+          <to xsi:type="tFormalExpression">_56_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Complete</from>
+          <to xsi:type="tFormalExpression">_56_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Exposure Limit About to Expire</from>
+          <to xsi:type="tFormalExpression">_56_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.customerBackendName}: Has exposure limits for renewal</from>
+          <to xsi:type="tFormalExpression">_56_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_56_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_56_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">exposure_limit_expire_task_email_body</from>
+          <to xsi:type="tFormalExpression">_56_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.customerBackendName}: Exposure limits need renewal</from>
+          <to xsi:type="tFormalExpression">_56_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_56_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_56_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.name}</from>
+          <to xsi:type="tFormalExpression">_56_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_56_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_57" name="Set Limit Escalation Date" scriptFormat="http://www.java.com/java" >
+      <script>CustomerBackend customerBackend = (CustomerBackend)context.getVariable("contextEntity");
+
+if(customerBackend != null){
+	customerBackend.setLimitEscalationDate(null);
+}
+</script>
+    </scriptTask>
+    <task id="_58" name="Save CustomerBackend" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_58_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_58_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_58_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_42-_33" sourceRef="_42" targetRef="_33" />
+    <sequenceFlow id="_34-_35" sourceRef="_34" targetRef="_35" />
+    <sequenceFlow id="_35-_42" sourceRef="_35" targetRef="_42" />
+    <sequenceFlow id="_43-_44" sourceRef="_43" targetRef="_44" />
+    <sequenceFlow id="_53-_45" sourceRef="_53" targetRef="_45" />
+    <sequenceFlow id="_58-_47" sourceRef="_58" targetRef="_47" />
+    <sequenceFlow id="_46-_48" sourceRef="_46" targetRef="_48" />
+    <sequenceFlow id="_52-_49" sourceRef="_52" targetRef="_49" />
+    <sequenceFlow id="_44-_50" sourceRef="_44" targetRef="_50" />
+    <sequenceFlow id="_49-_51" sourceRef="_49" targetRef="_51" />
+    <sequenceFlow id="_50-_52" sourceRef="_50" targetRef="_52" />
+    <sequenceFlow id="_51-_53" sourceRef="_51" targetRef="_53" />
+    <sequenceFlow id="_48-_54" sourceRef="_48" targetRef="_54" />
+    <sequenceFlow id="_54-_55" sourceRef="_54" targetRef="_55" />
+    <sequenceFlow id="_55-_56" sourceRef="_55" targetRef="_56" />
+    <sequenceFlow id="_56-_57" sourceRef="_56" targetRef="_57" />
+    <sequenceFlow id="_57-_58" sourceRef="_57" targetRef="_58" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="CustomerBackendFlow" >
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="43" y="283" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="42" y="33" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="26" y="121" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42" >
+        <dc:Bounds x="22" y="200" width="88" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_43" >
+        <dc:Bounds x="434" y="25" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_44" >
+        <dc:Bounds x="370" y="106" width="169" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_45" >
+        <dc:Bounds x="436" y="573" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_46" >
+        <dc:Bounds x="688" y="28" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_47" >
+        <dc:Bounds x="685" y="570" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_48" >
+        <dc:Bounds x="611" y="103" width="207" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_49" >
+        <dc:Bounds x="366" y="333" width="190" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_50" >
+        <dc:Bounds x="361" y="183" width="198" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_51" >
+        <dc:Bounds x="370" y="407" width="183" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_52" >
+        <dc:Bounds x="395" y="257" width="210" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_53" >
+        <dc:Bounds x="390" y="491" width="145" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_54" >
+        <dc:Bounds x="625" y="173" width="174" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_55" >
+        <dc:Bounds x="640" y="253" width="142" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_56" >
+        <dc:Bounds x="602" y="328" width="216" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_57" >
+        <dc:Bounds x="621" y="403" width="182" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_58" >
+        <dc:Bounds x="643" y="484" width="132" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_42-_33" >
+        <di:waypoint x="66" y="227" />
+        <di:waypoint x="67" y="307" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_35" >
+        <di:waypoint x="66" y="57" />
+        <di:waypoint x="66" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_42" >
+        <di:waypoint x="66" y="145" />
+        <di:waypoint x="66" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_43-_44" >
+        <di:waypoint x="458" y="49" />
+        <di:waypoint x="454" y="130" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_53-_45" >
+        <di:waypoint x="462" y="515" />
+        <di:waypoint x="460" y="597" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_58-_47" >
+        <di:waypoint x="709" y="508" />
+        <di:waypoint x="709" y="594" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_46-_48" >
+        <di:waypoint x="712" y="52" />
+        <di:waypoint x="714" y="127" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_52-_49" >
+        <di:waypoint x="500" y="281" />
+        <di:waypoint x="461" y="357" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_44-_50" >
+        <di:waypoint x="454" y="130" />
+        <di:waypoint x="460" y="207" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_49-_51" >
+        <di:waypoint x="461" y="357" />
+        <di:waypoint x="461" y="431" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_50-_52" >
+        <di:waypoint x="460" y="207" />
+        <di:waypoint x="500" y="281" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_51-_53" >
+        <di:waypoint x="461" y="431" />
+        <di:waypoint x="462" y="515" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_48-_54" >
+        <di:waypoint x="714" y="127" />
+        <di:waypoint x="712" y="197" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_54-_55" >
+        <di:waypoint x="712" y="197" />
+        <di:waypoint x="711" y="277" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_55-_56" >
+        <di:waypoint x="711" y="277" />
+        <di:waypoint x="710" y="352" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_56-_57" >
+        <di:waypoint x="710" y="352" />
+        <di:waypoint x="712" y="427" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_57-_58" >
+        <di:waypoint x="712" y="427" />
+        <di:waypoint x="709" y="508" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

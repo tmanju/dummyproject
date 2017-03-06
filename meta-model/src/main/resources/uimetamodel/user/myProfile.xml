@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="myProfile" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="user.userInformation">
+		<field name="user.username" label="User Name" />
+		<field name="user.contact.firstName" />
+		<field name="user.contact.middleName" />
+		<field name="user.contact.lastName" />
+		<field name="user.userType" />
+		<field name="user.wfStatus" />
+		<field name="user.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+		<field name="user.metaInfo.lastModifiedByUser" label="Last Updated By"/>
+	    <field name="user.userSource" targetFields="user.userInformation" label="Source System"/>
+    	<field name="user.externalIdentifier"/>
+	</panel>
+	<panel id="user.contactDetails">
+		<field name="user.contact.mobilePhone" label="Phone Number (Mobile)" />
+		<field name="user.contact.businessPhone" label="Phone Number (Business)" />
+		<field name="user.contact.businessFax" />
+		<field name="user.contact.email"  label="Email Address"/>
+		<field name="user.emailEnabled" label="Email Enabled" />
+	</panel>
+	<panel id="user.profile">
+		<field name="user.timeZone"/>
+		<field name="user.language"/>
+		<field name="user.currency"/>
+	</panel>
+	<beans>
+		<bean name="user" type="com.thirdpillar.codify.loanpath.model.User" />
+	</beans>	
+</canvas>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+
+            <tns:canvas id="partner_crud">
+                <tns:component id="PartnerSubmit">
+                    <tns:default>   
+                                <![CDATA[
+                                    return (root.id != null) && (root.wfStatus != null) && (root.wfStatus.statusKey == 'PARTNER_STATUS_NEW');
+                                ]]>
+                    </tns:default>
+                </tns:component>
+                
+            </tns:canvas>
+</tns:ui-permissions>

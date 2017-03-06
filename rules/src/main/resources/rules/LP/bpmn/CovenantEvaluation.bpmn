@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CovenantEvaluation" />
+  <itemDefinition id="_taskActionItem" structureRef="String" />
+  <itemDefinition id="_requestItem" structureRef="com.thirdpillar.loanpath.model.Request" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CovenantEvaluation" />
+  <itemDefinition id="_3-taskActionItem" structureRef="String" />
+  <itemDefinition id="_3-requestItem" structureRef="com.thirdpillar.loanpath.model.Request" />
+
+  <itemDefinition id="_11-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CovenantEvaluation" />
+  <itemDefinition id="_11-taskActionItem" structureRef="String" />
+  <itemDefinition id="_11-requestItem" structureRef="com.thirdpillar.loanpath.model.Request" />
+
+  <itemDefinition id="_14-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CovenantEvaluation" />
+  <itemDefinition id="_14-taskActionItem" structureRef="String" />
+  <itemDefinition id="_14-requestItem" structureRef="com.thirdpillar.loanpath.model.Request" />
+
+  <itemDefinition id="_16-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CovenantEvaluation" />
+  <itemDefinition id="_16-taskActionItem" structureRef="String" />
+  <itemDefinition id="_16-requestItem" structureRef="com.thirdpillar.loanpath.model.Request" />
+
+  <process processType="Private" isExecutable="true" id="CovenantEvaluation" name="CovenantEvaluation.b" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.CovenantEvaluation" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Covenant" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="java.math.BigDecimal" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="taskAction" itemSubjectRef="_taskActionItem"/>
+    <property id="request" itemSubjectRef="_requestItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <task id="_3" name="Covenant Task" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>CovenantEvaluation evaluation = (CovenantEvaluation) context.getVariable("contextEntity");
+context.setVariable("request",evaluation.getRequest());</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_3_covenantEvaluationInput" name="covenantEvaluation" />
+        <dataInput id="_3_entityInput" name="entity" />
+        <dataInput id="_3_BodyInput" name="Body" />
+        <dataInput id="_3_SubjectInput" name="Subject" />
+        <dataInput id="_3_notifyInput" name="notify" />
+        <dataInput id="_3_ToInput" name="To" />
+        <dataInput id="_3_CommentInput" name="Comment" />
+        <dataInput id="_3_ActionsInput" name="Actions" />
+        <dataInput id="_3_TaskNameInput" name="TaskName" />
+        <dataInput id="_3_ContentInput" name="Content" />
+        <dataInput id="_3_GroupIdInput" name="GroupId" />
+        <dataInput id="_3_FromInput" name="From" />
+        <dataInput id="_3_Reply-ToInput" name="Reply-To" />
+        <dataOutput id="_3_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_3_covenantEvaluationInput</dataInputRefs>
+          <dataInputRefs>_3_entityInput</dataInputRefs>
+          <dataInputRefs>_3_BodyInput</dataInputRefs>
+          <dataInputRefs>_3_SubjectInput</dataInputRefs>
+          <dataInputRefs>_3_notifyInput</dataInputRefs>
+          <dataInputRefs>_3_ToInput</dataInputRefs>
+          <dataInputRefs>_3_CommentInput</dataInputRefs>
+          <dataInputRefs>_3_ActionsInput</dataInputRefs>
+          <dataInputRefs>_3_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_3_ContentInput</dataInputRefs>
+          <dataInputRefs>_3_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_3_FromInput</dataInputRefs>
+          <dataInputRefs>_3_Reply-ToInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_covenantEvaluationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>request</sourceRef>
+        <targetRef>_3_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">covenantEvaluation_email_body</from>
+          <to xsi:type="tFormalExpression">_3_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending</from>
+          <to xsi:type="tFormalExpression">_3_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_3_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.covenant.teamAssigned.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_3_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending</from>
+          <to xsi:type="tFormalExpression">_3_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Clear,Fail,Waive</from>
+          <to xsi:type="tFormalExpression">_3_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Covenant</from>
+          <to xsi:type="tFormalExpression">_3_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending</from>
+          <to xsi:type="tFormalExpression">_3_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.covenant.teamAssigned.name}</from>
+          <to xsi:type="tFormalExpression">_3_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_3_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_3_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_4" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_5" name="Cleared Status" scriptFormat="http://www.java.com/java" >
+      <script>CovenantEvaluation evaluation = (CovenantEvaluation) context.getVariable("contextEntity");
+AttributeChoice status =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","COVENANT_EVALUATION_STATUS_CLEARED");
+evaluation.setCovenantEvalStatus(status);</script>
+    </scriptTask>
+    <exclusiveGateway id="_6" name="Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_7" name="Gateway" gatewayDirection="Converging" />
+    <scriptTask id="_8" name="Failed Status" scriptFormat="http://www.java.com/java" >
+      <script>CovenantEvaluation evaluation = (CovenantEvaluation) context.getVariable("contextEntity");
+AttributeChoice status =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","COVENANT_EVALUATION_STATUS_FAILED");
+evaluation.setCovenantEvalStatus(status);</script>
+    </scriptTask>
+    <scriptTask id="_9" name="Waived Status" scriptFormat="http://www.java.com/java" >
+      <script>CovenantEvaluation evaluation = (CovenantEvaluation) context.getVariable("contextEntity");
+AttributeChoice status =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","COVENANT_EVALUATION_STATUS_WAIVED");
+evaluation.setCovenantEvalStatus(status);</script>
+    </scriptTask>
+    <exclusiveGateway id="_10" name="Gateway" gatewayDirection="Diverging" />
+    <task id="_11" name="Covenant Range Test Task" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>CovenantEvaluation evaluation = (CovenantEvaluation) context.getVariable("contextEntity");
+context.setVariable("request",evaluation.getRequest());</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_11_covenantEvaluationInput" name="covenantEvaluation" />
+        <dataInput id="_11_entityInput" name="entity" />
+        <dataInput id="_11_BodyInput" name="Body" />
+        <dataInput id="_11_SubjectInput" name="Subject" />
+        <dataInput id="_11_ToInput" name="To" />
+        <dataInput id="_11_notifyInput" name="notify" />
+        <dataInput id="_11_CommentInput" name="Comment" />
+        <dataInput id="_11_ActionsInput" name="Actions" />
+        <dataInput id="_11_TaskNameInput" name="TaskName" />
+        <dataInput id="_11_ContentInput" name="Content" />
+        <dataInput id="_11_GroupIdInput" name="GroupId" />
+        <dataInput id="_11_FromInput" name="From" />
+        <dataInput id="_11_Reply-ToInput" name="Reply-To" />
+        <dataOutput id="_11_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_11_covenantEvaluationInput</dataInputRefs>
+          <dataInputRefs>_11_entityInput</dataInputRefs>
+          <dataInputRefs>_11_BodyInput</dataInputRefs>
+          <dataInputRefs>_11_SubjectInput</dataInputRefs>
+          <dataInputRefs>_11_ToInput</dataInputRefs>
+          <dataInputRefs>_11_notifyInput</dataInputRefs>
+          <dataInputRefs>_11_CommentInput</dataInputRefs>
+          <dataInputRefs>_11_ActionsInput</dataInputRefs>
+          <dataInputRefs>_11_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_11_ContentInput</dataInputRefs>
+          <dataInputRefs>_11_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_11_FromInput</dataInputRefs>
+          <dataInputRefs>_11_Reply-ToInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_11_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_11_covenantEvaluationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>request</sourceRef>
+        <targetRef>_11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">covenantEvaluation_email_body</from>
+          <to xsi:type="tFormalExpression">_11_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending</from>
+          <to xsi:type="tFormalExpression">_11_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.covenant.teamAssigned.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_11_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_11_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending</from>
+          <to xsi:type="tFormalExpression">_11_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Complete</from>
+          <to xsi:type="tFormalExpression">_11_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Covenant</from>
+          <to xsi:type="tFormalExpression">_11_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending</from>
+          <to xsi:type="tFormalExpression">_11_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.covenant.teamAssigned.name}</from>
+          <to xsi:type="tFormalExpression">_11_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_11_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_11_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_11_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_12" name="Range Test" scriptFormat="http://www.java.com/java" >
+      <script>BigDecimal min = contextEntity.getCovenant().getMin();
+BigDecimal max = contextEntity.getCovenant().getMax();
+BigDecimal value = contextEntity.getValue();
+
+boolean pass = false;
+if (value != null) {
+	if (min != null &amp;&amp; value.doubleValue() &gt; min.doubleValue()) {
+		pass = true;
+	} else if (min != null &amp;&amp;  value.doubleValue() &lt;= min.doubleValue()) {
+		pass= false;
+	}
+	
+	if (max != null &amp;&amp; value.doubleValue() &lt; max.doubleValue()) {
+		pass = true;
+	} else if (max != null &amp;&amp;  value.doubleValue() &gt;= max.doubleValue()) {
+		pass= false;
+	}
+	
+	if (min == null &amp;&amp; max == null) {
+		pass= true;
+	}
+}
+
+if (pass) {
+	AttributeChoice status =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","COVENANT_EVALUATION_STATUS_CLEARED");
+	contextEntity.setCovenantEvalStatus(status);
+} else {
+	AttributeChoice status =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","COVENANT_EVALUATION_STATUS_FAILED");
+	contextEntity.setCovenantEvalStatus(status);
+}</script>
+    </scriptTask>
+    <scriptTask id="_13" name="Create Upload Document" scriptFormat="http://www.java.com/java" >
+      <script>Request r = contextEntity.getRequest();
+DocumentGroup dg =  r.getDocumentGroup();  
+if (dg == null) {
+  dg = new com.thirdpillar.codify.loanpath.model.DocumentGroup();
+  r.setDocumentGroup(dg);
+}
+ EntityService es = new EntityService();
+  Document doc = (Document) es.createNew(Document.class);
+ doc.setDocumentClass(contextEntity.getCovenant().getDocumentClass());
+ doc.setDocumentCategory(contextEntity.getCovenant().getDocumentCategory());
+ doc.setDocumentType(contextEntity.getCovenant().getDocumentType());
+ doc.setRequestLevel(true);
+ doc.setAssociatedRequest(r);
+         
+  DocumentGroup dgImpl = (DocumentGroup) dg;        
+ dgImpl.addToUploadedDocuments(doc);
+ doc.setUploadedDocumentGroup(dg); </script>
+    </scriptTask>
+    <task id="_14" name="Covenant Document Upload Task" tns:taskName="LPUserTask" >
+      <ioSpecification>
+        <dataInput id="_14_covenantEvaluationInput" name="covenantEvaluation" />
+        <dataInput id="_14_entityInput" name="entity" />
+        <dataInput id="_14_BodyInput" name="Body" />
+        <dataInput id="_14_SubjectInput" name="Subject" />
+        <dataInput id="_14_ToInput" name="To" />
+        <dataInput id="_14_notifyInput" name="notify" />
+        <dataInput id="_14_CommentInput" name="Comment" />
+        <dataInput id="_14_ActionsInput" name="Actions" />
+        <dataInput id="_14_TaskNameInput" name="TaskName" />
+        <dataInput id="_14_ContentInput" name="Content" />
+        <dataInput id="_14_GroupIdInput" name="GroupId" />
+        <dataInput id="_14_FromInput" name="From" />
+        <dataInput id="_14_Reply-ToInput" name="Reply-To" />
+        <dataOutput id="_14_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_14_covenantEvaluationInput</dataInputRefs>
+          <dataInputRefs>_14_entityInput</dataInputRefs>
+          <dataInputRefs>_14_BodyInput</dataInputRefs>
+          <dataInputRefs>_14_SubjectInput</dataInputRefs>
+          <dataInputRefs>_14_ToInput</dataInputRefs>
+          <dataInputRefs>_14_notifyInput</dataInputRefs>
+          <dataInputRefs>_14_CommentInput</dataInputRefs>
+          <dataInputRefs>_14_ActionsInput</dataInputRefs>
+          <dataInputRefs>_14_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_14_ContentInput</dataInputRefs>
+          <dataInputRefs>_14_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_14_FromInput</dataInputRefs>
+          <dataInputRefs>_14_Reply-ToInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_14_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_14_covenantEvaluationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>request</sourceRef>
+        <targetRef>_14_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">covenantEvaluation_email_body</from>
+          <to xsi:type="tFormalExpression">_14_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending for Upload Document</from>
+          <to xsi:type="tFormalExpression">_14_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.covenant.teamAssigned.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_14_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_14_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending for Upload Document</from>
+          <to xsi:type="tFormalExpression">_14_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Complete</from>
+          <to xsi:type="tFormalExpression">_14_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Covenant</from>
+          <to xsi:type="tFormalExpression">_14_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.request.nullSafeNameFromAccountDer}: Application #{contextEntity.request.refNumber}  has Covenant - #{contextEntity.covenant.covenantDefinition.covenantName} pending for Upload Document</from>
+          <to xsi:type="tFormalExpression">_14_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.covenant.teamAssigned.name}</from>
+          <to xsi:type="tFormalExpression">_14_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_14_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_14_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_14_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_15" name="Set Status" scriptFormat="http://www.java.com/java" >
+      <script>	AttributeChoice status =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","COVENANT_EVALUATION_STATUS_CLEARED");
+	contextEntity.setCovenantEvalStatus(status);
+</script>
+    </scriptTask>
+    <scriptTask id="_17" name="Set Request" scriptFormat="http://www.java.com/java" >
+      <script>CovenantEvaluation evaluation = (CovenantEvaluation) context.getVariable("contextEntity");
+context.setVariable("request",evaluation.getRequest());</script>
+    </scriptTask>
+    <task id="_16" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_16_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_16_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>request</sourceRef>
+        <targetRef>_16_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_10-_3" sourceRef="_10" targetRef="_3" name="Event Type - Task" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if (contextEntity.getCovenant().getEventType() == null
+		|| "EVENT_TYPE_TASK".equals(contextEntity.getCovenant().getEventType().getKey())
+		|| "EVENT_TYPE_QUESTIONNAIRE".equals(contextEntity.getCovenant().getEventType().getKey())) {
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_7-_4" sourceRef="_7" targetRef="_4" />
+    <sequenceFlow id="_6-_5" sourceRef="_6" targetRef="_5" name="Clear Action" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if ("Clear".equals(taskAction)) {
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_3-_6" sourceRef="_3" targetRef="_6" />
+    <sequenceFlow id="_5-_7" sourceRef="_5" targetRef="_7" />
+    <sequenceFlow id="_8-_7" sourceRef="_8" targetRef="_7" />
+    <sequenceFlow id="_9-_7" sourceRef="_9" targetRef="_7" />
+    <sequenceFlow id="_12-_7" sourceRef="_12" targetRef="_7" />
+    <sequenceFlow id="_15-_7" sourceRef="_15" targetRef="_7" />
+    <sequenceFlow id="_6-_8" sourceRef="_6" targetRef="_8" name="Fail Action" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if ("Fail".equals(taskAction)) {
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-_9" sourceRef="_6" targetRef="_9" name="Waive Action" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if ("Waive".equals(taskAction)) {
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_1-_10" sourceRef="_1" targetRef="_10" />
+    <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" name="Event Type - Range Test" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if (contextEntity.getCovenant().getEventType() != null
+		&amp;&amp; "EVENT_TYPE_RANGE_TEST".equals(contextEntity.getCovenant().getEventType().getKey())) {
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" />
+    <sequenceFlow id="_10-_13" sourceRef="_10" targetRef="_13" name="Event Type - Upload Document" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if (contextEntity.getCovenant().getEventType() != null
+		&amp;&amp; "EVENT_TYPE_UPLOAD_DOCUMENT".equals(contextEntity.getCovenant().getEventType().getKey())) {
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_16-_14" sourceRef="_16" targetRef="_14" />
+    <sequenceFlow id="_14-_15" sourceRef="_14" targetRef="_15" />
+    <sequenceFlow id="_13-_17" sourceRef="_13" targetRef="_17" />
+    <sequenceFlow id="_17-_16" sourceRef="_17" targetRef="_16" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="CovenantEvaluation" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="101" y="100" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="36" y="427" width="175" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="897" y="862" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="45" y="649" width="136" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="93" y="535" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="895" y="772" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="266" y="651" width="143" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="467" y="650" width="143" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="99" y="232" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="667" y="432" width="228" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="686" y="549" width="201" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="1031" y="231" width="230" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="1041" y="528" width="209" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="1084" y="613" width="144" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="1056" y="332" width="187" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="1081" y="432" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_10-_3" >
+        <di:waypoint x="123" y="256" />
+        <di:waypoint x="123" y="451" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_4" >
+        <di:waypoint x="919" y="796" />
+        <di:waypoint x="921" y="886" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_5" >
+        <di:waypoint x="117" y="559" />
+        <di:waypoint x="113" y="673" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_6" >
+        <di:waypoint x="123" y="451" />
+        <di:waypoint x="117" y="559" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_7" >
+        <di:waypoint x="113" y="673" />
+        <di:waypoint x="919" y="796" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_7" >
+        <di:waypoint x="337" y="675" />
+        <di:waypoint x="919" y="796" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_7" >
+        <di:waypoint x="538" y="674" />
+        <di:waypoint x="919" y="796" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_7" >
+        <di:waypoint x="786" y="573" />
+        <di:waypoint x="919" y="796" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_7" >
+        <di:waypoint x="1156" y="637" />
+        <di:waypoint x="919" y="796" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_8" >
+        <di:waypoint x="117" y="559" />
+        <di:waypoint x="335" y="600" />
+        <di:waypoint x="337" y="675" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_9" >
+        <di:waypoint x="117" y="559" />
+        <di:waypoint x="539" y="596" />
+        <di:waypoint x="538" y="674" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_10" >
+        <di:waypoint x="125" y="124" />
+        <di:waypoint x="123" y="256" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_11" >
+        <di:waypoint x="123" y="256" />
+        <di:waypoint x="781" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="781" y="456" />
+        <di:waypoint x="786" y="573" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_13" >
+        <di:waypoint x="123" y="256" />
+        <di:waypoint x="1146" y="255" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_14" >
+        <di:waypoint x="1131" y="456" />
+        <di:waypoint x="1145" y="552" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_15" >
+        <di:waypoint x="1145" y="552" />
+        <di:waypoint x="1156" y="637" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_17" >
+        <di:waypoint x="1146" y="255" />
+        <di:waypoint x="1149" y="356" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_16" >
+        <di:waypoint x="1149" y="356" />
+        <di:waypoint x="1131" y="456" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

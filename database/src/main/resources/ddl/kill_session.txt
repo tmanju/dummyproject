@@ -1,0 +1,28 @@
+--
+-- Kill all sessions for user
+--
+
+set head off;
+set pagesize 10000;
+set lines 2000;
+set feedback off;
+
+spool ../kill_session;
+
+select 'alter system kill session ''' || sid || ',' || serial# || ''';' 
+from v$session 
+where upper(username) = upper('&1');
+
+spool off;
+set head on;
+set feedback on;
+
+
+start ../kill_session.lst;
+
+
+-- =============== NOTES =============
+-- 1)  was seeing this error in the logs; some corrective action maybe required.
+--   SP2-0734: unknown command beginning "old         3: w..." - rest of line ignored.
+--   SP2-0734: unknown command beginning "new         3: w..." - rest of line ignored.
+-- 

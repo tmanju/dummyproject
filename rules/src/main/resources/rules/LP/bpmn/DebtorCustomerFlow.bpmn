@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DebtorCustomer" />
+  <itemDefinition id="_requestEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_integrationResultStatusItem" structureRef="java.lang.String" />
+  <itemDefinition id="_creditMgrUserItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_allDebtorsItem" structureRef="java.util.List" />
+  <itemDefinition id="_teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_2-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DebtorCustomer" />
+  <itemDefinition id="_2-requestEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_2-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_2-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_2-integrationResultStatusItem" structureRef="java.lang.String" />
+  <itemDefinition id="_2-creditMgrUserItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_2-allDebtorsItem" structureRef="java.util.List" />
+  <itemDefinition id="_2-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_2-teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_42-2-1-debtorItem" />
+
+  <itemDefinition id="_42-2-4-debtorItem" />
+
+  <itemDefinition id="_42-2-5-debtorItem" />
+
+  <itemDefinition id="_42-2-8-debtorItem" />
+
+  <itemDefinition id="_42-2-11-debtorItem" />
+
+  <itemDefinition id="_11-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DebtorCustomer" />
+  <itemDefinition id="_11-requestEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_11-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_11-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_11-integrationResultStatusItem" structureRef="java.lang.String" />
+  <itemDefinition id="_11-creditMgrUserItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_11-allDebtorsItem" structureRef="java.util.List" />
+  <itemDefinition id="_11-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_11-teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_12-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DebtorCustomer" />
+  <itemDefinition id="_12-requestEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_12-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_12-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_12-integrationResultStatusItem" structureRef="java.lang.String" />
+  <itemDefinition id="_12-creditMgrUserItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_12-allDebtorsItem" structureRef="java.util.List" />
+  <itemDefinition id="_12-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_12-teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_16-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DebtorCustomer" />
+  <itemDefinition id="_16-requestEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_16-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_16-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_16-integrationResultStatusItem" structureRef="java.lang.String" />
+  <itemDefinition id="_16-creditMgrUserItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_16-allDebtorsItem" structureRef="java.util.List" />
+  <itemDefinition id="_16-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_16-teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_20-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DebtorCustomer" />
+  <itemDefinition id="_20-requestEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_20-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_20-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_20-integrationResultStatusItem" structureRef="java.lang.String" />
+  <itemDefinition id="_20-creditMgrUserItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_20-allDebtorsItem" structureRef="java.util.List" />
+  <itemDefinition id="_20-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_20-teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_42_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="DebtorCustomerFlow" name="DebtorFlow" tns:packageName="LP" >
+
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="requestEntity" itemSubjectRef="_requestEntityItem"/>
+    <property id="sfdcInputMap" itemSubjectRef="_sfdcInputMapItem"/>
+    <property id="integrationExchange" itemSubjectRef="_integrationExchangeItem"/>
+    <property id="integrationResultStatus" itemSubjectRef="_integrationResultStatusItem"/>
+    <property id="creditMgrUser" itemSubjectRef="_creditMgrUserItem"/>
+    <property id="allDebtors" itemSubjectRef="_allDebtorsItem"/>
+    <property id="team" itemSubjectRef="_teamItem"/>
+    <property id="teams" itemSubjectRef="_teamsItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <exclusiveGateway id="_33" name="Gateway" gatewayDirection="Converging" />
+    <task id="_2" name="Wait State" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <endEvent id="_3" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <intermediateCatchEvent id="_41" name="Signal" >
+      <signalEventDefinition signalRef="addDebtor"/>
+    </intermediateCatchEvent>
+    <subProcess id="_42" name="Multiple Instances"  >
+      <ioSpecification>
+        <dataInput id="_42_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>allDebtors</sourceRef>
+        <targetRef>_42_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_42_input</loopDataInputRef>
+        <inputDataItem id="debtor" itemSubjectRef="_42_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <task id="_42-2-1" name="StatusUpdate" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_42-2-1_entityInput" name="entity" />
+        <dataInput id="_42-2-1_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_42-2-1_entityInput</dataInputRefs>
+          <dataInputRefs>_42-2-1_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>debtor</sourceRef>
+        <targetRef>_42-2-1_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_42-2-1_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">DEBTOR_STATUS_PENDING</from>
+          <to xsi:type="tFormalExpression">_42-2-1_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <startEvent id="_42-2-2" name="Start" />
+    <task id="_42-2-4" name="Update Debtor to Akritiv" tns:taskName="IntegrationTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>DebtorCustomer debtor1 = (DebtorCustomer) debtor;
+//DebtorCustomer debtor = (DebtorCustomer) context.getVariable("contextEntity");
+System.out.println("==============dataObject========"+debtor1);
+
+Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+inputMap.put("contextEntity",debtor1);
+inputMap.put("entityOut",debtor1);
+inputMap.put("entityIn",debtor1);
+inputMap.put("entityName","debtor__c");
+inputMap.put("objectType","debtor__c");
+inputMap.put("action","update");
+
+context.setVariable("sfdcInputMap", inputMap);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
+
+IntegrationExchange integrationExchangeObj = (IntegrationExchange) context.getVariable("integrationExchange");
+
+if ("ERROR".equals(rStatus)) {
+		 System.out.println("******* Call Failed");
+ }else{
+			 Object object = integrationExchangeObj.getTaskOutput();
+			 		 System.out.println("*******Sucesss*********");
+ }
+	 
+context.setVariable("integrationExchange", null);
+context.setVariable("integrationResultStatus", null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_42-2-4_inputInput" name="input" />
+        <dataInput id="_42-2-4_entityInput" name="entity" />
+        <dataInput id="_42-2-4_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_42-2-4_ResultExchangeOutput" name="ResultExchange" />
+        <dataOutput id="_42-2-4_ResultStatusOutput" name="ResultStatus" />
+        <dataOutput id="_42-2-4_entityOutput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_42-2-4_inputInput</dataInputRefs>
+          <dataInputRefs>_42-2-4_entityInput</dataInputRefs>
+          <dataInputRefs>_42-2-4_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_42-2-4_ResultExchangeOutput</dataOutputRefs>
+          <dataOutputRefs>_42-2-4_ResultStatusOutput</dataOutputRefs>
+          <dataOutputRefs>_42-2-4_entityOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>sfdcInputMap</sourceRef>
+        <targetRef>_42-2-4_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>debtor</sourceRef>
+        <targetRef>_42-2-4_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_42-2-4_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">akritivService</from>
+          <to xsi:type="tFormalExpression">_42-2-4_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_42-2-4_ResultExchangeOutput</sourceRef>
+        <targetRef>integrationExchange</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_42-2-4_ResultStatusOutput</sourceRef>
+        <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_42-2-4_entityOutput</sourceRef>
+        <targetRef>debtor</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_42-2-5" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_42-2-5_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_42-2-5_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>debtor</sourceRef>
+        <targetRef>_42-2-5_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_42-2-6" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>DebtorCustomer d = (DebtorCustomer)debtor;
+
+context.setVariable("requestEntity",d.getFacility().getRequest());</script>
+    </scriptTask>
+    <callActivity id="_42-2-7" name="Update Exposure" calledElement="UpdateExposureFlow" >
+      <ioSpecification>
+        <dataInput id="_42-2-7_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_42-2-7_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>requestEntity</sourceRef>
+        <targetRef>_42-2-7_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <task id="_42-2-8" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_42-2-8_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_42-2-8_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>debtor</sourceRef>
+        <targetRef>_42-2-8_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_42-2-9" name="End" />
+    <task id="_42-2-11" name="Debtor Decision Task" tns:taskName="CustomUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Processing Debtor********"+(DebtorCustomer)debtor);
+Team currentTeam = (Team) LookupService.getResult("Team.byName","name", "Credit Decision Team"); 
+((DebtorCustomer)debtor).setAkritivCustomer(false);
+List&lt;Team&gt; t = new ArrayList();
+t.add(currentTeam);
+context.setVariable("teams",t);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("teams",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_42-2-11_debtorEntityInput" name="debtorEntity" />
+        <dataInput id="_42-2-11_potentialTeamsInput" name="potentialTeams" />
+        <dataInput id="_42-2-11_entityInput" name="entity" />
+        <dataInput id="_42-2-11_TaskConfigurationKeyInput" name="TaskConfigurationKey" />
+        <dataInput id="_42-2-11_ActionsInput" name="Actions" />
+        <dataOutput id="_42-2-11_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_42-2-11_debtorEntityInput</dataInputRefs>
+          <dataInputRefs>_42-2-11_potentialTeamsInput</dataInputRefs>
+          <dataInputRefs>_42-2-11_entityInput</dataInputRefs>
+          <dataInputRefs>_42-2-11_TaskConfigurationKeyInput</dataInputRefs>
+          <dataInputRefs>_42-2-11_ActionsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_42-2-11_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_42-2-11_debtorEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>teams</sourceRef>
+        <targetRef>_42-2-11_potentialTeamsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity.facility.request</sourceRef>
+        <targetRef>_42-2-11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_42-2-11_TaskConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_DEBTOR_DECISION_TASK_KEY</from>
+          <to xsi:type="tFormalExpression">_42-2-11_TaskConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_42-2-11_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Approve:debtorDecision</from>
+          <to xsi:type="tFormalExpression">_42-2-11_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_42-2-11_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <!-- connections -->
+    <sequenceFlow id="_42-2-2-_42-2-1" sourceRef="_42-2-2" targetRef="_42-2-1" />
+    <sequenceFlow id="_42-2-11-_42-2-4" sourceRef="_42-2-11" targetRef="_42-2-4" />
+    <sequenceFlow id="_42-2-4-_42-2-5" sourceRef="_42-2-4" targetRef="_42-2-5" />
+    <sequenceFlow id="_42-2-5-_42-2-6" sourceRef="_42-2-5" targetRef="_42-2-6" />
+    <sequenceFlow id="_42-2-6-_42-2-7" sourceRef="_42-2-6" targetRef="_42-2-7" />
+    <sequenceFlow id="_42-2-7-_42-2-8" sourceRef="_42-2-7" targetRef="_42-2-8" />
+    <sequenceFlow id="_42-2-8-_42-2-9" sourceRef="_42-2-8" targetRef="_42-2-9" />
+    <sequenceFlow id="_42-2-1-_42-2-11" sourceRef="_42-2-1" targetRef="_42-2-11" />
+    </subProcess>
+    <intermediateCatchEvent id="_10" name="" >
+      <signalEventDefinition signalRef="declineDebtor"/>
+    </intermediateCatchEvent>
+    <scriptTask id="_43" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>
+EntityService es = new EntityService();
+List&lt;DebtorCustomer&gt; debtors = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.byAkritivCustomer", "akritivCustomer", true);
+
+//List&lt;DebtorCustomer&gt; debtors = (List&lt;DebtorCustomer&gt;) LookupService.getResult("DebtorCustomer.byAkritivCustomer", "akritivCustomer", true);
+System.out.println("Here are the debtors------------------------&gt;&gt;"+debtors);
+context.setVariable("allDebtors",debtors);
+</script>
+    </scriptTask>
+    <task id="_11" name="StatusUpdate" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_11_entityInput" name="entity" />
+        <dataInput id="_11_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_11_entityInput</dataInputRefs>
+          <dataInputRefs>_11_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">DEBTOR_STATUS_INELIGIBLE</from>
+          <to xsi:type="tFormalExpression">_11_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_12" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_12_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_12_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_12_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_44" name="End" />
+    <endEvent id="_15" name="End" />
+    <task id="_16" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_16_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_16_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_16_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_17" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>DebtorCustomer debtorCustomer = (DebtorCustomer)context.getVariable("contextEntity");
+context.setVariable("requestEntity",debtorCustomer.getFacility().getRequest());</script>
+    </scriptTask>
+    <callActivity id="_18" name="Update Exposure" calledElement="UpdateExposureFlow" >
+      <ioSpecification>
+        <dataInput id="_18_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_18_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>requestEntity</sourceRef>
+        <targetRef>_18_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <intermediateCatchEvent id="_19" name="Signal" >
+      <signalEventDefinition signalRef="approveDebtor"/>
+    </intermediateCatchEvent>
+    <task id="_20" name="StatusUpdate" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_20_entityInput" name="entity" />
+        <dataInput id="_20_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_20_entityInput</dataInputRefs>
+          <dataInputRefs>_20_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_20_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_20_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">DEBTOR_STATUS_ELIGIBLE</from>
+          <to xsi:type="tFormalExpression">_20_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_20-_33" sourceRef="_20" targetRef="_33" />
+    <sequenceFlow id="_11-_33" sourceRef="_11" targetRef="_33" />
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_43-_42" sourceRef="_43" targetRef="_42" />
+    <sequenceFlow id="_41-_43" sourceRef="_41" targetRef="_43" />
+    <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" />
+    <sequenceFlow id="_33-_12" sourceRef="_33" targetRef="_12" />
+    <sequenceFlow id="_42-_44" sourceRef="_42" targetRef="_44" />
+    <sequenceFlow id="_16-_15" sourceRef="_16" targetRef="_15" />
+    <sequenceFlow id="_18-_16" sourceRef="_18" targetRef="_16" />
+    <sequenceFlow id="_12-_17" sourceRef="_12" targetRef="_17" />
+    <sequenceFlow id="_17-_18" sourceRef="_17" targetRef="_18" />
+    <sequenceFlow id="_19-_20" sourceRef="_19" targetRef="_20" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="DebtorCustomerFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="43" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="241" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="17" y="96" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="43" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_41" >
+        <dc:Bounds x="1136" y="0" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42" >
+        <dc:Bounds x="771" y="165" width="815" height="376" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-1" >
+        <dc:Bounds x="894" y="219" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-2" >
+        <dc:Bounds x="806" y="216" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-4" >
+        <dc:Bounds x="1407" y="225" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-5" >
+        <dc:Bounds x="1409" y="384" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-6" >
+        <dc:Bounds x="1272" y="387" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-7" >
+        <dc:Bounds x="1064" y="389" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-8" >
+        <dc:Bounds x="1069" y="466" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-9" >
+        <dc:Bounds x="870" y="466" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42-2-11" >
+        <dc:Bounds x="1223" y="221" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="175" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_43" >
+        <dc:Bounds x="1120" y="89" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="149" y="96" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="215" y="257" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_44" >
+        <dc:Bounds x="916" y="595" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="241" y="577" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="215" y="497" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="225" y="337" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="199" y="417" width="133" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="307" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="281" y="96" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-2-_42-2-1" >
+        <di:waypoint x="59" y="75" />
+        <di:waypoint x="173" y="78" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-11-_42-2-4" >
+        <di:waypoint x="502" y="80" />
+        <di:waypoint x="686" y="84" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-4-_42-2-5" >
+        <di:waypoint x="686" y="84" />
+        <di:waypoint x="688" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-5-_42-2-6" >
+        <di:waypoint x="688" y="243" />
+        <di:waypoint x="541" y="246" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-6-_42-2-7" >
+        <di:waypoint x="541" y="246" />
+        <di:waypoint x="348" y="248" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-7-_42-2-8" >
+        <di:waypoint x="348" y="248" />
+        <di:waypoint x="348" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-8-_42-2-9" >
+        <di:waypoint x="348" y="325" />
+        <di:waypoint x="123" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-2-1-_42-2-11" >
+        <di:waypoint x="173" y="78" />
+        <di:waypoint x="502" y="80" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_33" >
+        <di:waypoint x="331" y="120" />
+        <di:waypoint x="265" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_33" >
+        <di:waypoint x="199" y="120" />
+        <di:waypoint x="265" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="67" y="40" />
+        <di:waypoint x="67" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="67" y="120" />
+        <di:waypoint x="67" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_43-_42" >
+        <di:waypoint x="1160" y="113" />
+        <di:waypoint x="1178" y="353" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_41-_43" >
+        <di:waypoint x="1160" y="24" />
+        <di:waypoint x="1160" y="113" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_11" >
+        <di:waypoint x="199" y="40" />
+        <di:waypoint x="199" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_33-_12" >
+        <di:waypoint x="265" y="200" />
+        <di:waypoint x="265" y="281" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-_44" >
+        <di:waypoint x="1178" y="353" />
+        <di:waypoint x="940" y="619" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_15" >
+        <di:waypoint x="265" y="521" />
+        <di:waypoint x="265" y="601" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_16" >
+        <di:waypoint x="265" y="441" />
+        <di:waypoint x="265" y="521" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_17" >
+        <di:waypoint x="265" y="281" />
+        <di:waypoint x="265" y="361" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_18" >
+        <di:waypoint x="265" y="361" />
+        <di:waypoint x="265" y="441" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_20" >
+        <di:waypoint x="331" y="40" />
+        <di:waypoint x="331" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

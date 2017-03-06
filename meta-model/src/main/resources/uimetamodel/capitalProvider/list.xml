@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="capitalProvider" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="capitalProvider" row="cProvider" >
+		<columns>
+			<column name="cProvider.customerAssociated" />
+			<column name="cProvider.availableCashDer" />
+			<column name="cProvider.pending" />
+			<column name="cProvider.outstandingPrincipal" />
+<!-- 		<column name="capitalProvider.accValue" /> -->
+			<column name="cProvider.participatingInMPsince" />
+			<column name="cProvider.noOfFundedDeal" />
+			<column name="cProvider.lastDealDt" />
+<!-- 			<column name="capitalProvider.maxConcentrationPercent" /> -->
+		</columns>		
+		<data-table name="cProvider.customerAssociated.allocations" row="allocation" label="Allocations">
+		  <columns>
+		  	 <column name="allocation.clientRating" />
+		  	 <column name="allocation.allocPercentage"/>
+		   	 <column name="allocation.allAmt"/>
+		   </columns>
+		</data-table>
+	</data-table>	
+	<beans>
+		<bean name="capitalProvider" type="com.thirdpillar.codify.loanpath.model.CapitalProvider" />
+	</beans>
+</canvas>
+

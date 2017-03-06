@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="scrRcmRuleSeed" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="scrRcmRuleSeed.scrRcmRuleSeedEdit"  label="Scoring Rule Search">
+		<field name="scrRcmRuleSeed.name" label="Name Of the Rule *"/>
+		<field name="scrRcmRuleSeed.description" label="ON Screen Description *"/>
+		<field name="scrRcmRuleSeed.applicability" label="Applicability *" />
+		<field name="scrRcmRuleSeed.recommendationCategory" label="Recommendation Category *"/>
+		<field name="scrRcmRuleSeed.recommendation" label="Recommendation *" />
+		<field name="scrRcmRuleSeed.program"  label="Program *" />
+		<field name="scrRcmRuleSeed.recommendationLevel"  label="Recommendation Level *" />
+		<field name="scrRcmRuleSeed.recommendationReasonCode"   label="Recommendation Reason Code *" />
+		<field name="scrRcmRuleSeed.reasonLevel" label="Reason Level *" />
+		<field name="scrRcmRuleSeed.exceptionAuthority" label="Exception Authority *"  />
+		<field name="scrRcmRuleSeed.effectiveFrom" label="Effective From *" />
+		<field name="scrRcmRuleSeed.effectiveTo" label="Effective To *"/>
+		<field name="scrRcmRuleSeed.firstScrRuleParam.paramKey" />
+		<field name="scrRcmRuleSeed.firstScrRuleParam.paramName" />
+		<field name="scrRcmRuleSeed.firstScrRuleParam.paramValue" label="Parameter Value *"/>
+	</panel>
+
+
+	<data-table name="scrRcmRuleSeed.scrRuleParams" row="scrRuleParam"
+		label="Scoring Parameters" empty-message="Nothing found to display.">
+		<columns>
+			<column name="scrRuleParam.paramName"  label="Parameter Name"/>
+			<column name="scrRuleParam.paramValue"  label="Parameter Value *"/>
+		</columns>
+	</data-table>
+
+
+	<beans>
+		<bean name="scrRcmRuleSeed" type="com.thirdpillar.codify.loanpath.model.ScrRcmRuleSeed" />
+	</beans>
+
+</canvas>

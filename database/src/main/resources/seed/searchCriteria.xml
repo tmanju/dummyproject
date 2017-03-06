@@ -1,0 +1,18 @@
+<list>
+	<com.thirdpillar.foundation.search.api.SearchCriteria>
+		<criterions>
+			<entry>
+				<string>name</string>
+				<com.thirdpillar.foundation.search.api.SearchCriterion>
+					<operator>LIKE</operator>
+					<property>name</property>
+					<value class="com.thirdpillar.foundation.search.api.StringCriterionValue">
+						<value>California%</value>
+					</value>
+				</com.thirdpillar.foundation.search.api.SearchCriterion>
+			</entry>
+		</criterions>
+		<searchClazz>com.thirdpillar.codify.loanpath.model.State</searchClazz>
+		<searchClazzName>com.thirdpillar.codify.loanpath.model.State</searchClazzName>
+	</com.thirdpillar.foundation.search.api.SearchCriteria>
+</list>

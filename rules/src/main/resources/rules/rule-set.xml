@@ -1,0 +1,68 @@
+<change-set xmlns='http://drools.org/drools-5.0/change-set'
+             xmlns:xs='http://www.w3.org/2001/XMLSchema-instance'>
+  <add>
+  	<!-- All rules should be in LP folder -->  
+  	<resource source='classpath:rules/LP/bpmn/CustomerFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/RequestFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/FacilityFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/UCCFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/DocumentFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/UserFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/PartnerFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/ProgramFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/SolveForOption.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/SolveForFacility.bpmn' type='BPMN2' />
+	<resource source='classpath:rules/LP/bpmn/PricingPipeline.bpmn' type='BPMN2' />
+	<resource source='classpath:rules/LP/bpmn/CalculateOption.bpmn' type='BPMN2' />
+	<resource source='classpath:rules/LP/bpmn/CalculateOptionForFacility.bpmn' type='BPMN2'/>
+	<resource source='classpath:rules/LP/bpmn/DocumentPackage.bpmn' type='BPMN2'/>
+	<resource source='classpath:rules/LP/bpmn/ThirdPartyRequestFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/RequestFlowCRE.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FundAllocatorFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FundAllocatorSubProcessFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FundAllocatorHistoryFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/DealFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/DebtorCustomerFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacAllocatorFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacPlacementAuditFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacAllocatorSubProcessFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacilityBEFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacilityPaymentFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacilityPaymentPlacementFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacPlacementAuditFlowAccept.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacAllocatorTxnFlow.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/FacAllocatorTxn.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/CoaEvaluationFlow.bpmn' type='BPMN2'/>
+  	<!-- Reused Sub Process -->
+  	
+  	<resource source='classpath:rules/LP/bpmn/UpdateIntegrationCallProcess.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/IntegrationCallSubProcess.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/SalesforceUpdateProcess.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/UpdateExposureFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/UpdateProductStatus.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/UpdateRequestToSFDC.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/Approval.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/ResidualReferenceAssetDetailsFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/ApprovalPartner.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/ApprovalProgram.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/DocCheckList.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/GeneratedDocuments.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/UpdateProductStatusToWithdraw.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/ScoringSubProcess.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/UpdateDebtorStatus.bpmn' type='BPMN2'/>
+  	<resource source='classpath:rules/LP/bpmn/RequestDeclineSubflow.bpmn' type='BPMN2'/>
+  	<!-- <resource source='classpath:rules/LP/bpmn/DebtorSubProcessFlow.bpmn' type='BPMN2'/> -->
+  	
+  	<!-- Adhoc processes -->
+  	<resource source='classpath:rules/LP/bpmn/RequestPreSubmitForDecision.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/UCCSubmitForFiling.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/GenerateCOAFlow.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/COASubmitForReview.bpmn' type='BPMN2' />
+  	<resource source='classpath:rules/LP/bpmn/CovenantEvaluation.bpmn' type='BPMN2' />    	
+  	
+  		<!-- MP BE -->  
+<!--   	<resource source='classpath:rules/LP/bpmn/CustomerBackendFlow.bpmn' type='BPMN2' /> -->
+  	
+  	
+  </add>      
+ </change-set>

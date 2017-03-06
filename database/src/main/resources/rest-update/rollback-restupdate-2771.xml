@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+    <list>
+        <workflowStatus><statusKey>REQUEST_STATUS_APPROVED_DOCUMENTATION</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>REQUEST_STATUS_APPROVED_BOOKING_COMPLETE</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>REQUEST_STATUS_PENDING_SPREADS</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>REQUEST_STATUS_PENDING_INTERVIEW</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>REQUEST_STATUS_PENDING_SPREADS_COMPLETION</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>REQUEST_STATUS_APPROVED_DISBURSEMENT</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>REQUEST_STATUS_APPROVED_FULLY_DISBURSED</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>REQUEST_STATUS_PENDING_APPEAL_SALES</statusKey><workflowEntity>WORKFLOW_ENTITY_REQUEST</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_QC_PENDING</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_VALIDATION_PASSED</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_VALIDATION_FAILED</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_BOOKED</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_APPROVED_DISBURSEMENT</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_FULLY_DISBURSED</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_FINAL_FUNDING_REQUESTED</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+        <workflowStatus><statusKey>FACILITY_STATUS_APPROVED_DOCUMENTATION</statusKey><workflowEntity>WORKFLOW_ENTITY_FACILITY</workflowEntity></workflowStatus>
+    </list>
+</mod:sr.upsertEntityRequest>

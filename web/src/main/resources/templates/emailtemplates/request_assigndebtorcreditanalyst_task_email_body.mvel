@@ -1,0 +1,3 @@
+@{contextEntity.facilityCustomerRole} task for Application @{contextEntity.facility.request.refNumber} is assigned to you for Decision.  
+Click here to view the application. <a href="@{CONFIG.getString("webapp.server.baseurl")}/crud/request/edit.seam?
+canvasType=crud&eid=@{contextEntity.facility.request.id}">@{CONFIG.getString("webapp.server.baseurl")}</a>

@@ -1,0 +1,96 @@
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.MetaInfo;
+import org.apache.commons.lang.StringUtils;
+import com.thirdpillar.foundation.model.BaseDataObject;
+import com.thirdpillar.codify.loanpath.model.Request;
+import com.thirdpillar.codify.loanpath.model.Scoring;
+import com.thirdpillar.codify.loanpath.model.Relationship;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.Customer;
+import com.thirdpillar.codify.loanpath.util.Utility;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.FacScoring;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.constants.Constants;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.math.BigDecimal;
+
+
+rule "FAC_RULE_REQUESTED_AMOUNT"
+	agenda-group "CalcScoringRecommRuleFacility" 
+	when
+		request : Request()
+		f:Facility() from request.allFacilities
+	then
+		Scoring scoring = request.getLatestAppScoring();
+		boolean flag = true;
+		for(FacScoring facScoring : scoring.getFacScorings())
+		{
+			ScoringRecommRule recommRule = facScoring.findRecommRuleByKey("FAC_RULE_REQUESTED_AMOUNT");
+			BigDecimal amountToCheck = new BigDecimal("250000");
+			BigDecimal total = new BigDecimal(0);
+			if(f.getRequestedLoanAmtDer() != null && f.getRequestedLoanAmtDer().compareTo(amountToCheck) > 0 ){
+				total = f.getRequestedLoanAmtDer();
+				flag = false;
+			}
+			scoring.setRuleResult(recommRule, flag);	
+		}
+end
+
+rule "FAC_RULE_CREDIT_SCORE"
+	agenda-group "CalcScoringRecommRuleFacility" 
+	when
+		request : Request()
+		f:Facility() from request.allFacilities
+	then
+		Scoring scoring = request.getLatestAppScoring();
+		boolean flag = false;
+		for(FacScoring facScoring : scoring.getFacScorings())
+		{
+			ScoringRecommRule recommRule = facScoring.findRecommRuleByKey("FAC_RULE_CREDIT_SCORE");
+			List<FacilityCustomerRole> borrowerRoles = request.getAllCustomerRolesInRoles("PARTY_ROLE_TYPE_BORROWER");
+		 
+			List<BureauReport> reports = new ArrayList<BureauReport>();
+			int maxFicoScore = 0;
+			for (FacilityCustomerRole role : borrowerRoles) {
+				Customer customer = null;
+				if (role.getCustomer() != null && role.getCustomer().isIndividual()) {
+					customer = role.getCustomer();
+				} else if (role.getCustomer() != null && role.getCustomer().isNonIndividual()){
+					FacilityCustomerRole primaryContactRole = role.getPrimaryContactRole();
+					if (primaryContactRole != null) {
+						customer = primaryContactRole.getCustomer();
+					}
+				}
+				if (customer != null && customer.isIndividual()) {
+					Map<String,BureauReport> reportMap = request.getLatestBureauReports(customer);
+					for (String reportName : reportMap.keySet()) {
+						BureauReport report = reportMap.get(reportName);
+						int ficoScore =0;
+						if(report.getFicoScore()!=null && !report.getFicoScore().equals("")) {
+							ficoScore=Integer.parseInt(report.getFicoScore());
+							if (ficoScore >= 700) {
+								flag=true;
+								break;
+							}
+								
+						}
+					}
+				}
+				
+				//breaking Customer Loop.
+				if(flag) {
+					break;
+				}	
+			}
+			scoring.setRuleResult(recommRule, flag); 
+		}
+end

@@ -1,0 +1,19 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+			<tns:component id="configuration">                      
+			  <tns:read><![CDATA[ boolean allowed = false;
+				  			for (String role : ctx.getRoles()) {
+				  				allowed = allowed ||  (role == 'ROLE_CATEGORY_SYSTEM_ADMINISTRATOR') ||
+				  						(role == 'ROLE_CATEGORY_AUDITOR') ||
+				  						(role == 'ROLE_CATEGORY_SUPER_ADMINISTRATOR');
+				  			}
+			  		return allowed;
+			  	]]></tns:read>
+			</tns:component>
+			<!-- <tns:component id="documentCatalogItem">                      
+			  <tns:read>true</tns:read>
+			</tns:component> -->
+			
+			
+	</tns:ui-permissions>

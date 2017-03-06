@@ -1,0 +1,2 @@
+--Migration of use reference to usage collection for individual counterparty. Thi script should be run only once.
+INSERT INTO int_uat.LP_ADDRESS_USE (LP_ADDRESS_ID,LP_ATTRB_CHC_ID) SELECT LP_ADDRESS_ID,USE_ID FROM int_uat.LP_ADDRESS Where USE_ID is not null;

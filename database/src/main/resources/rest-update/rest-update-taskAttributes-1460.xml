@@ -1,0 +1,176 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<attribute>
+		<key>ASSIGNED_TEAM_INDIVIDUAL</key>
+		<name>Assigned Team or Individual</name>
+		<description>#DONE</description>
+		<attributeChoices>
+			<attributeChoice>
+				<value>Team</value>
+				<key>ASSIGNED_TEAM_INDIVIDUAL_TEAM</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Individual</value>
+				<key>ASSIGNED_TEAM_INDIVIDUAL_INDIVIDUAL</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Expression</value>
+				<key>ASSIGNED_TEAM_INDIVIDUAL_EXPRESSION</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+	<attribute>
+		<key>WORK_ENTITY_TYPE</key>
+		<name>Work Entity Type</name>
+		<description>#DONE</description>
+		<attributeChoices>
+			<attributeChoice>
+				<value>Application</value>
+				<key>WORK_ENTITY_TYPE_APPLICATION</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Partner</value>
+				<key>WORK_ENTITY_TYPE_PARTNER</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Program</value>
+				<key>WORK_ENTITY_TYPE_PROGRAM</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+	<attribute>
+		<key>TASK_PRIORITY</key>
+		<name>Task Priority</name>
+		<description>#DONE</description>
+		<attributeChoices>
+			<attributeChoice>
+				<sequence>4</sequence>
+				<code>4</code>
+				<value>Severe</value>
+				<key>TASK_PRIORITY_URGENT</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>3</sequence>
+				<code>3</code>
+				<value>High</value>
+				<key>TASK_PRIORITY_HIGH</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>2</sequence>
+				<code>2</code>
+				<value>Medium</value>
+				<key>TASK_PRIORITY_MEDIUM</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>1</sequence>
+				<code>1</code>
+				<value>Low</value>
+				<key>TASK_PRIORITY_LOW</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>	
+	<attribute>
+		<key>REASON_CODE_REASSIGN</key>
+		<name>Reason Code Reassign</name>
+		<attributeChoices>
+			<attributeChoice>
+				<value>Missing Information</value>
+				<key>REASON_CODE_REASSIGN_MISSINFO</key>
+				<code>2</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Re-entry</value>
+				<key>REASON_CODE_REASSIGN_REENTRY</key>
+				<code>3</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Correction of Data (client request)</value>
+				<key>REASON_CODE_REASSIGN_CORC</key>
+				<code>4</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Correction of Data (internal error)</value>
+				<key>REASON_CODE_REASSIGN_IERR</key>
+				<code>5</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Other</value>
+				<key>REASON_CODE_REASSIGN_OTHER</key>
+				<code>6</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+	<attribute>
+		<key>REASON_CODE_SUSPEND</key>
+		<name>Reason Code Suspend</name>
+		<attributeChoices>
+			<attributeChoice>
+				<value>Missing Information</value>
+				<key>REASON_CODE_SUSPEND_MISSINFO</key>
+				<code>2</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Re-entry</value>
+				<key>REASON_CODE_SUSPEND_REENTRY</key>
+				<code>3</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Correction of Data (client request)</value>
+				<key>REASON_CODE_SUSPEND_CORC</key>
+				<code>4</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Correction of Data (internal error)</value>
+				<key>REASON_CODE_SUSPEND_IERR</key>
+				<code>5</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Other</value>
+				<key>REASON_CODE_SUSPEND_OTHER</key>
+				<code>6</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+	<attribute>
+		<key>REASSIGN_STRATEGY</key>
+		<name>Reassign Strategy</name>
+		<attributeChoices>
+			<attributeChoice>
+				<value>Anybody</value>
+				<key>REASSIGN_STRATEGY_ANYBODY</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Nobody</value>
+				<key>REASSIGN_STRATEGY_NOBODY</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>Potential Owners</value>
+				<key>REASSIGN_STRATEGY_POT_OWNERS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+</list>
+</mod:sr.addEntityRequest>

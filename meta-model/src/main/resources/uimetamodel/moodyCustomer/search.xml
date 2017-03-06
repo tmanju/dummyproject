@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="moodyCustomer" type="search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<section id="moodyCustomer.customerSearch">
+		<field name="moodyCustomer.customerName" label="*Moody's Customer Name"/>
+	</section>
+	<commands>
+		<command id="searchAction" name="Search" action="com.thirdpillar.codify.loanpath.model.MoodyCustomer.MoodyCustomerSearch" type="businessOp"/>
+	</commands>
+	<beans>
+		<bean name="moodyCustomer" type="com.thirdpillar.codify.loanpath.model.MoodyCustomer"/>
+	</beans>
+</canvas>
+
+

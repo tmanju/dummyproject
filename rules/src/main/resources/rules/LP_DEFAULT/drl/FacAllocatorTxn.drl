@@ -1,0 +1,35 @@
+#created on: September 23, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.model.FacilityCustomerRole;
+import com.thirdpillar.codify.loanpath.constants.ConstantsRules;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.CoasetDefinition;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.PricingOption;
+import com.thirdpillar.codify.loanpath.model.Structure;
+import com.thirdpillar.codify.loanpath.model.UCC;
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+global com.thirdpillar.foundation.service.Context appContext;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.math.BigDecimal;
+import java.lang.Integer;
+
+rule "SetTxnStatusToNew"
+  agenda-group "NEW" 
+  when
+    #conditions
+        f:FacAllocatorTxn()
+  then 
+    #actions
+    WorkflowStatus status=( WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "TXN_STATUS_NEW");
+    f.setWfStatus(status);
+end

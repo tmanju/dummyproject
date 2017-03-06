@@ -1,0 +1,51 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="Address" ignore-annotations="false">
+      <map:class> 
+      
+       <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{postalCode.numeric.validation.leadingzeros}</map:message>
+        <map:element name="matchedExpr"><![CDATA[
+				boolean match = true;
+				if(o.postalCode != empty)
+				{
+					if((o.postalCode.length() == 5 && o.isNumeric(o.postalCode))|| o.postalCode.length() == 6){
+						match= true;
+					}
+				 	else if(o.postalCode.length() == 9 && o.isNumeric(o.postalCode) && !(o.postalCode.contains("-"))){
+						 match= true;
+						 StringBuffer sb = new StringBuffer(o.getPostalCode());
+						 if(sb.indexOf("-")<0){	
+	   					 sb.insert(5,"-");
+	   					 o.setPostalCode(sb.toString());
+	   					}
+					}
+					else if(o.postalCode.length() == 10 && o.postalCode.contains("-"))
+					{
+						match=true;
+					}
+					else
+					{
+						match= false;
+					}
+				 }	
+			 return match;
+		]]>
+		</map:element>
+      </map:constraint>
+           
+      </map:class>
+        <map:field name="city">
+	  <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{address.city.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>  
+	  </map:field>
+	 <!--  <map:field name="postalCode">
+	  <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{address.postalCode.pattern}</map:message>
+		     <map:element name="regexp">[0-9]{0,10}</map:element>
+		   </map:constraint>  
+	  </map:field> -->  
+    </map:bean>
+</map:constraint-mappings>

@@ -1,0 +1,33 @@
+<list>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Created in Last 30 Days</filterName>
+		<groupFilterName>By Created Date</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.Request</entityClazzName>
+		<searchCriteriaXML><![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+				<entry>
+				  <string>metaInfo.createdAt</string>
+				  <sc.searchCriterion>
+					<collection>false</collection>
+					<property>metaInfo.createdAt</property>
+					<value class="sc.rangeCriterionValue">
+					  <defaultOperator>BETWEEN</defaultOperator>
+					  <from class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(org.apache.commons.lang.time.DateUtils.addDays(new java.util.Date(), -30))}</value>
+					  </from>
+					  <to class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{Now}</value>
+					  </to>
+					</value>
+				  </sc.searchCriterion>
+				</entry>				
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.Request</searchClazzName>
+			  <sortOrderList/>
+			</sc.searchCriteria>]]>
+		</searchCriteriaXML>
+	</com.thirdpillar.foundation.model.SearchFilter>
+</list>

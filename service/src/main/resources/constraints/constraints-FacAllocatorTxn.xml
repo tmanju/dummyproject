@@ -1,0 +1,90 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="FacAllocatorTxn" ignore-annotations="false">
+        <map:class>
+        	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{facAllocatorTxn.paidInterest.nonNegative}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CPPaidInterestSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.paidInterest != null;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[
+		                if(o.paidInterest.compareTo(new java.math.BigDecimal("0")) < 0){
+		                	return false;
+		                }
+		                return true;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{facAllocatorTxn.paidInterest.gtBalance}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CPPaidInterestSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.paidInterest != null;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[
+		                if(o.paidInterest.compareTo(o.facAllocator.capitalProvider.customerAssociated.interestBalance) > 0){
+		                	return false;
+		                }
+		                return true;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{facAllocatorTxn.paidUnusedFee.nonNegative}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CPPaidInterestSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.paidUnusedFee != null;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[
+		                if(o.paidUnusedFee.compareTo(new java.math.BigDecimal("0")) < 0){
+		                	return false;
+		                }
+		                return true;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{facAllocatorTxn.paidUnusedFee.gtBalance}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CPPaidInterestSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.paidUnusedFee != null;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[
+		                if(o.paidUnusedFee.compareTo(o.facAllocator.capitalProvider.customerAssociated.unusedFeeBalance) > 0){
+		                	return false;
+		                }
+		                return true;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{facAllocatorTxn.paidServicingFee.nonNegative}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CPPaidInterestSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.paidServicingFee != null;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[
+		                if(o.paidServicingFee.compareTo(new java.math.BigDecimal("0")) < 0){
+		                	return false;
+		                }
+		                return true;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{facAllocatorTxn.paidServicingFee.gtBalance}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CPPaidInterestSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.paidServicingFee != null;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[
+		                if(o.paidServicingFee.compareTo(o.facAllocator.capitalProvider.customerAssociated.servicingFeeBalance) > 0){
+		                	return false;
+		                }
+		                return true;
+		                ]]></map:element>
+			</map:constraint>
+        </map:class>
+    </map:bean>
+</map:constraint-mappings>

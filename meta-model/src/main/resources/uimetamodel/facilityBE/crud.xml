@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="facilityBE" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<panel id="facilityBE.information" label="Facility Information">
+		<field name="facilityBE.refNumber"  label="Facility Number"/>
+		<field name="facilityBE.servicingIdentifier"  label="Servicing Identifier"/>
+	</panel>
+	<tabs>
+		<tab id="tab.infoCustomerBackend" label="Placement">
+			<data-table name="facilityBE.selectedFacilityBE" row="facilityBE" label="">
+				<columns>
+					<column name="facilityBE.customer.refNumber" label="Account Number" /> <!--not sure refNumber should be here -->
+					<column name="facilityBE.customer.legalName" label="Client Name" />
+					<column name="facilityBE.estimatedYield" />
+					<column name="facilityBE.term" />
+					<column name="facilityBE.productType" />
+					<column name="facilityBE.maturityDt" />
+					<column name="facilityBE.creditFacAmt"/>
+					<column name="facilityBE.minUtilizationAmtDer" />
+					<column name="facilityBE.yearsInBusiness" />
+<!-- 					<column name="facilityBE.largestDebtorConcenPer" /> -->
+					<column name="facilityBE.clientRating" /><!--  this should come from customer, pushed from grade -->
+					<column name="facilityBE.stateCountry" label="State"/>
+					<column name="facilityBE.unusedLineRate" label="FAC. Unused Line Rate" />
+					
+					<column name="facilityBE.wfStatus" label="Status"/>
+					<column name="facilityBE.statusChngDt" />
+					
+				</columns>
+			</data-table>
+			<panel id="facilityBE.funding.breakup" label="">
+				<field name="facilityBE.creditFacAmt" label="Total Credit Facility" />
+				<field name="facilityBE.availableCashDer" />
+				<data-table name="facilityBE.facAllocators" row="facAllocator"	label="Facility Placement">
+					<columns>
+						<column name="facAllocator.dbid" />
+						<column name="facAllocator.capitalProvider" />
+						<column name="facAllocator.percentOrAmt" targetFields="facilityBE.funding.breakup" />
+						<column name="facAllocator.fundAmtDer"  footer-name="facilityBE.sumAllocatedAmt"  targetFields="facilityBE.funding.breakup" />
+						<column name="facAllocator.fundPer" footer-name="facilityBE.sumAllocatedPer"  targetFields="facilityBE.funding.breakup"/>
+						<column name="facAllocator.minUtilizationAmtDer" />
+						<column name="facAllocator.placementRate"  />
+						<column name="facAllocator.spread"/>
+						<column name="facAllocator.capitalProvider.customerAssociated.servicingFee" label="Servicing Fee"/>
+						<column name="facAllocator.lastUpdate"  />
+						<column name="facAllocator.wfStatus"/>
+					</columns>
+					<edit-canvas>
+						<tabs>
+							<tab id="facilityBE.fundingPlacement" label="Placement">
+								<panel id="facilityBE.funding.panel"  label="Select Capital Provider" >
+									<field name="facAllocator.facilityBE.availableCashDer" label="Remaining To Assign"  />					
+									<field name="facAllocator.capitalProvider" targetFields="facilityBE.funding.panel"/>
+									<field name="facAllocator.percentOrAmt" targetFields="facilityBE.funding.panel" />
+									<field name="facAllocator.fundAmt"  targetFields="facilityBE.funding.panel"/>
+									<field name="facAllocator.fundPer" targetFields="facilityBE.funding.panel"/>
+									<field name="facAllocator.minUtilizationAmtDer" />
+									<field name="facAllocator.placementRate"  targetFields="facilityBE.funding.panel"/>
+									<field name="facAllocator.unusedLineRate"  label="Unused Line Rate"  targetFields="facilityBE.funding.panel"/>
+									<field name="facAllocator.spread"/>
+									<field name="facAllocator.capitalProvider.customerAssociated.servicingFee" label="Servicing Fee"/>
+									<field name="facAllocator.cpBalance" label="Capital Provider Balance"/>
+									<field name="facAllocator.cpSettlementAmt" label="Capital Provider Settlement Amount"/>
+									<field name="facAllocator.wfStatus" />
+									<field name="facAllocator.offeredDt"  />
+									<field name="facAllocator.lastUpdate"  />
+									<field name="facAllocator.principle" label="Principle for Interest"/>
+									<field name="facAllocator.dailyIntAccrual" label="Daily Interest Accrual"/>
+									<field name="facAllocator.servicingFeeCollateral" label="Servicing Fee on Collateral"/>
+									<field name="facAllocator.unusedLineFee" label="Unused Line Fee"/>
+									<field name="facAllocator.rejReason" />
+									<field name="facAllocator.inxMiscFee" />
+									<field name="facAllocator.unusedLineFeeSpr" /> 
+								</panel>
+								<panel id ="facilityBE.fp.list"  label="">
+									<data-table name="facAllocator.facilityBE.capitalProviders" row="capitalProvider" label="Funding Provider">
+										<columns>
+											<column name="capitalProvider.customerAssociated" />
+											<column name="capitalProvider.availableCashDer" />
+											<column name="capitalProvider.pending" />
+											<column name="capitalProvider.outstandingPrincipal" />
+											<column name="capitalProvider.customerAssociated.pledgedAmt"  label="Pledged Amount" />
+											<column name="capitalProvider.participatingInMPsince" />
+											<column name="capitalProvider.noOfFundedDeal" />
+											<column name="capitalProvider.lastDealDt" />
+											<column name="capitalProvider.customerAssociated.maxConcentrationPercent" />
+											<column name="capitalProvider.hasExIndustry" /> 
+										</columns>
+									<data-table name="capitalProvider.customerAssociated.allocations" row="allocation"
+										label="Allocations">
+										<columns>
+											<column name="allocation.clientRating" />
+											<column name="allocation.allocPercentage" />
+											<column name="allocation.allAmt" />
+										</columns>
+										</data-table>
+									</data-table>
+								</panel>
+							</tab>
+							<tab id="facilityBE.fundingPlacementTransactions" label="Transactions">
+								<panel id="facAllocator.transactionspanel" label=" ">
+									<field name="facAllocator.capitalProvider.customerAssociated.interestBalance" label="Interest Balance"/>
+									<field name="facAllocator.capitalProvider.customerAssociated.unusedFeeBalance" label="Unused Fees Balance"/>
+									<field name="facAllocator.capitalProvider.customerAssociated.servicingFeeBalance" label="Servicing Fees Balance"/>
+									<data-table name="facAllocator.transactions" row="transaction" label="Recent Transactions">
+										<columns>
+											<column name="transaction.refNumber" label="Txn Number"/>
+											<column name="transaction.paidInterest" label="Paid Interest"/>
+											<column name="transaction.paidUnusedFee" label="Paid Unused Line Fee"/>
+											<column name="transaction.paidServicingFee" label="Servicing Fee Paid to INX"/>
+											<column name="transaction.totalPaidToCp" label="Total Paid to CP"/>
+											<column name="transaction.netOff" label="Net"/>
+											<column name="transaction.txnDate" label="TransactionDate"/>
+											<column name="transaction.wfStatus" label="Transaction Status"/>
+										</columns>
+										<edit-canvas>
+											<panel id="transaction.addTransaction" label="Create Transaction">
+												<panel id="facAllocatorBalances" label="">
+													<field name="transaction.facAllocator.capitalProvider.customerAssociated.interestBalance" label="Interest Balance"/>
+													<field name="transaction.facAllocator.capitalProvider.customerAssociated.unusedFeeBalance" label="Unused Fees Balance"/>
+													<field name="transaction.facAllocator.capitalProvider.customerAssociated.servicingFeeBalance" label="Servicing Fees Balance"/>
+												</panel>
+												<field name="transaction.paidInterest" label="Interest" targetFields="transaction.addTransaction"/>
+												<field name="transaction.paidUnusedFee" label="Unused Line Fee" targetFields="transaction.addTransaction"/>
+												<field name="transaction.totalPaidToCp" label="Total Paid to CP"/>
+												<field name="transaction.metaInfo.lastModifiedAt" label="Updated At"/>
+												<field name="transaction.paidServicingFee" label="Servicing Fee" targetFields="transaction.addTransaction"/>
+												<field name="transaction.netOff" label="Net" targetFields="transaction.addTransaction"/>
+												<field name="transaction.txnDate" label="Transaction Date"/>
+												<field name="transaction.wfStatus" label="Transaction Status"/>
+											</panel>
+											<commands>
+												<command id="doTransaction" name="Submit Transaction" action="submitCPTransaction" type="businessOp"/>
+											</commands>
+										</edit-canvas>
+									</data-table>									
+								</panel>
+							</tab>
+						</tabs>
+							<commands>
+									<command id="acceptFacAllobvcation" name="Accept" action="acceptFacAllocation" type="businessOp"/>
+									<command id="rejectFacAllobvcation" name="Decline" action="rejectFacAllocation" type="businessOp">
+										<dialog-canvas>
+								            <section id="rejectedReasonPanel" label="Reason for Decline" cols="1" orientation="horizontal" label-alignment="top">
+								                <field name="facAllocator.rejReason"  />
+								            </section>
+							        	</dialog-canvas> 
+							        </command>
+							        <command id="submitFacAllocation" name="Submit" action="submitFacAllocation" type="businessOp"/>
+				   			        <command id="fundedFacAllobvcation" name="Sold" action="fundedFacAllocation" type="businessOp">
+				   			        	<dialog-canvas>
+								            <section id="SellToDiffCP" label="Select new Capital Provider" cols="1" orientation="horizontal" label-alignment="top">
+								                <field name="facAllocator.newCP" label="New Capital Provider"  />
+								            </section>
+							        	</dialog-canvas> 
+							        </command>
+									<command id="facAllocatorSettlement" action="cpSettlement" name="Settle" type="businessOp"/>
+								</commands>
+					</edit-canvas>
+					<data-table name="facAllocator.oldCPs" row="oldCP"	>
+							<columns>
+								<column name="oldCP.dbid" />
+								<column name="oldCP.capitalProvider" />
+								<column name="oldCP.newCP" />
+								<column name="oldCP.percentOrAmt" />
+								<column name="oldCP.fundAmtDer" />
+								<column name="oldCP.fundPer" />
+								<column name="oldCP.minUtilizationAmtDer" />
+								<column name="oldCP.placementRate"  />
+								<column name="oldCP.spread"/>
+								<column name="oldCP.servicefee"/>
+								<column name="oldCP.createdAt"/>
+								<column name="oldCP.wfStatus"/>
+								<column name="oldCP.inxMiscFee" />
+								<column name="oldCP.unusedLineFeeSpr" /> 
+							</columns>
+						</data-table>
+				</data-table>
+			</panel>
+		                
+			<data-table name="facilityBE.capitalProviders" row="capitalProvider"
+				label="Capital Provider">
+				<columns>
+					<column name="capitalProvider.customerAssociated" />
+					<column name="capitalProvider.availableCashDer" />
+					<column name="capitalProvider.pending" />
+					<column name="capitalProvider.outstandingPrincipal" />
+					<column name="capitalProvider.customerAssociated.pledgedAmt" label="Pledged Amount" />
+					<column name="capitalProvider.participatingInMPsince" />
+					<column name="capitalProvider.noOfFundedDeal" />
+					<column name="capitalProvider.lastDealDt" />
+					<column name="capitalProvider.customerAssociated.maxConcentrationPercent" label="Max Debtor Concentration Allowed %"/>
+					<!-- 	<column name="capitalProvider.exIndustry" />-->
+				<column name="capitalProvider.hasExIndustry" /> 
+					
+				</columns>
+				<quickedit-canvas>
+					<panel id="quick.capitalProvider" label="Exclude Industry">
+						<field name="capitalProvider.customerAssociated.exIndustry" />
+					</panel>
+				</quickedit-canvas>
+				<data-table name="capitalProvider.customerAssociated.allocations" row="allocation"
+					label="Allocations">
+					<columns>
+						<column name="allocation.clientRating" />
+						<column name="allocation.allocPercentage" />
+						<column name="allocation.allAmt" />
+					</columns>
+				</data-table>
+			</data-table>
+			</tab>
+		<tab id="tab.Accounting" label="Accounting">
+			<panel id="facilityBE.accounting" label="">
+				<field name="facilityBE.creditFacAmt" label="Credit Facility"/>
+				<field name="facilityBE.minUtilizationAmtDer" />
+				<field name="facilityBE.facBalance" label="Funds in Use"/>
+				<field name="facilityBE.unusedAmtDer" label="Unused Amount"/>
+				<field name="facilityBE.grossAR" label="Gross AR"/>
+				<field name="facilityBE.totalCpBalance" label="Total Capital Provider Balance"/>
+				<field name="facilityBE.interimBalance" label="Interim Balance"/>
+				<field name="facilityBE.settlementAmt" label="Settlement Amount"/>
+				<field name="facilityBE.pendingFundingReq" label="Pending Funding Request"/>
+			</panel>
+		</tab>
+		</tabs>
+		<commands>
+			<command id="processInterimBalSettlement" action="interimBalSettlement" name="Process Settlement" type="businessOp"/>
+			<command id="cpCommitted" name="CP Committed" action="cpCommitted" type="businessOp"/>
+		</commands>
+	<beans>
+		<bean name="facilityBE" type="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+	</beans>
+</canvas>

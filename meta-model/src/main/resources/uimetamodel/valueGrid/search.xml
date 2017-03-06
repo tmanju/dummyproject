@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="valueGrid" type="search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="valueGrid.valueGridSearch" label="ValueGrid Search">
+		<field name="valueGrid.name" label="Name" />
+		<field name="valueGrid.effectiveFromDate" label="Start Date" />
+		<field name="valueGrid.effectiveToDate" label="End Date" />
+	</panel>
+
+	<beans>
+		<bean name="valueGrid" type="com.thirdpillar.codify.loanpath.model.ValueGrid" />
+	</beans>
+
+</canvas>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+		<tns:component id="taskView">
+			<tns:read>if(ctxUser.roles !=null &amp;&amp; ctxUser.roles.size() >0){
+						 	foreach(role : ctxUser.roles){
+						 		if(role.roleCategory !=null &amp;&amp; role.roleCategory.key == 'ROLE_CATEGORY_VIEW_ONLY_ROLE'){
+						 			return false;
+						 		}
+						 	} 	
+					      }
+					      return true;</tns:read>
+		</tns:component>
+</tns:ui-permissions>

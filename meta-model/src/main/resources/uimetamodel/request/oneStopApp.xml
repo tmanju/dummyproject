@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="oneStopApp" type="crud" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd" xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<panel id="oneStopApp.loanDetails" label="Loan Information">
+		<field name="request.refNumber" label="Application Number"/>
+		<field name="request.oneStopApp.productType" label="Product Type *" targetFields="request.oneStopApp.purposeCode,request.oneStopApp.term,oneStopApp.propertyAddress,oneStopApp.guarantorInformation,oneStopApp.loanDetails,oneStopApp.collateralInformation,oneStopApp.entityInformation"/>
+		<field name="request.oneStopApp.facilitySubType" label="Product Sub-type"/>
+		<field name="request.oneStopApp.requestedAmt" label="Requested Loan Amount *"/>
+		<field name="request.oneStopApp.purposeCode" />
+		<field name="request.oneStopApp.productPurpose" />
+		<field name="request.oneStopApp.term"/>
+		<field name="request.oneStopApp.dayCountConvention" label="Day Count Convention" />
+		<field name="request.oneStopApp.amortizationTerm" label="Amortization Term(M)"/>
+		<field name="request.oneStopApp.interestRate" label="Interest Rate(%)"/>
+		<field name="request.oneStopApp.capRate" label="Cap Rate(%)"/>
+	</panel>
+	<panel id="oneStopApp.propertyAddress" label="Property Address">
+		<field name="request.oneStopApp.propertyAddress.address1" label="Suite/Street Name *"/>
+		<field name="request.oneStopApp.propertyAddress.address2" label="Address Line 2"/>
+		<field name="request.oneStopApp.propertyAddress.city" label="City *"/>
+		<field name="request.oneStopApp.propertyAddress.stateProvince" label="State/Province *"/>
+		<field name="request.oneStopApp.propertyAddress.country" label="Country *"/>
+		<field name="request.oneStopApp.propertyAddress.county" label="County"/>
+		<field name="request.oneStopApp.propertyAddress.postalCode" label="Postal Code *"/>
+		<field name="request.oneStopApp.propertyAddress.postalCodePlus4" />
+	</panel>
+	<panel id="oneStopApp.entityInformation" label="Borrower Information">
+		<field name="request.oneStopApp.nonIndividualCustomer" label="Borrower" allow="create" targetFields="oneStopApp.entityInformation,oneStopApp.collateralInformation"/>
+		<field name="request.oneStopApp.legalEntityType" label="Legal Entity Type *"/>
+		<field name="request.oneStopApp.entityName" label="Legal Name *"/>
+		<field name="request.oneStopApp.federalTaxId" label="Tax ID *"/>
+		<field />
+		<field />
+		<field name="request.oneStopApp.contactCustomer" label="Contact " allow="create" targetFields="oneStopApp.entityInformation"/>		
+		<field name="request.oneStopApp.contact.firstName" label="Contact First Name *"/>
+		<field name="request.oneStopApp.contact.lastName" label="Contact Last Name *"/>
+		<field name="request.oneStopApp.contact.otherPhone"/>
+		<field name="request.oneStopApp.contact.email" label="Email *"/>
+		
+		<data-table name="request.oneStopApp.contact.addresses" row="address" label="Address">
+			<columns>
+				<column name="address.address1" label="Address 1" />
+				<column name="address.address2" label="Address 2" />
+				<column name="address.city" label="City" />
+				<column name="address.stateProvince" label="State" />
+				<column name="address.country" label="Country" />						
+				<column name="address.use" label="Usage" />
+			</columns>
+			<quickedit-canvas>
+				<panel id="request.oneStopApp.contactDetailsInformation" label="Address Details">
+					<field name="address.address1" label="Address 1" />
+					<field name="address.address2" label="Address 2" />
+					<field name="address.city" label="City" />
+					<field name="address.country" label="Country" />
+					<field name="address.stateProvince" label="State" />
+					<field name="address.postalCode" label="Postal Code" />
+					<field name="address.use" label="Usage" />
+				</panel>
+			</quickedit-canvas>
+		</data-table>
+	</panel>
+	<panel id="oneStopApp.guarantorInformation" label="Guarantor Information">
+		<field name="request.oneStopApp.guarantorCustomer" label="Guarantor" targetFields="oneStopApp.guarantorInformation"/>
+		<field name="request.oneStopApp.guarantor.firstName" label="First Name"/>
+		<field name="request.oneStopApp.guarantor.lastName" label="Last Name"/>
+		<field name="request.oneStopApp.guarantorSsn" label="Social Security Number"/>
+		<field name="request.oneStopApp.guarantor.mobilePhone" label="Mobile Phone"/>
+		<field name="request.oneStopApp.guarantor.otherPhone" label="Other Phone"/>
+		<field name="request.oneStopApp.guarantor.email" label="Email"/>
+		<data-table name="request.oneStopApp.guarantor.addresses" row="address" label="Address">
+			<columns>
+				<column name="address.address1" label="Address 1" />
+				<column name="address.address2" label="Address 2" />
+				<column name="address.city" label="City" />
+				<column name="address.stateProvince" label="State" />
+				<column name="address.country" label="Country" />						
+				<column name="address.use" label="Usage" />
+			</columns>
+			<quickedit-canvas>
+				<panel id="oneStopApp.guarantorInformation.addressInformation" label="Address Details">
+					<field name="address.address1" label="Address 1" />
+					<field name="address.address2" label="Address 2" />
+					<field name="address.city" label="City" />
+					<field name="address.country" label="Country" />
+					<field name="address.stateProvince" label="State" />
+					<field name="address.postalCode" label="Postal Code" />
+					<field name="address.use" label="Usage" />
+				</panel>
+			</quickedit-canvas>
+		</data-table>		
+	</panel>
+	<panel id="oneStopApp.collateralInformation" label="Collateral Information">
+		<data-table name="request.oneStopApp.collaterals" row="collateral" label="Collateral">
+			<columns>
+					<column name="collateral.refNumber" label="Seq No." />
+					<column name="collateral.collateralName" label="Collateral Name"/>
+					<column name="collateral.collateralCategory" label="Collateral Category"/>
+					<column name="collateral.collateralType" label="Collateral Sub-category" />
+					<column name="collateral.collateralDescription" label="Collateral Desc" />
+					<column name="collateral.metaInfo.createdAt" label="Date Created" />
+					<column name="collateral.metaInfo.lastModifiedAt" label="Date Recorded" />
+				</columns>
+				<quickedit-canvas>
+					<panel id="quick.oneStopApp.collateral.information" label="Collateral Information">
+						<field name="collateral.useExistingCollateral" label="Use Existing Collateral" targetFields="oneStopApp.collateralInformation"/>
+						<field name="collateral.collateralDers" label="Available Collaterals" targetFields="oneStopApp.collateralInformation"/>
+						<field name="collateral.collateralName" label="Collateral Name *"/>
+						<field name="collateral.collateralCategory" targetFields="oneStopApp.collateralInformation"/>
+						<field name="collateral.collateralType" />
+						<field name="collateral.collateralDescription" />
+						<field name="collateral.locationHeld" label="Location Held" />
+						<field name="collateral.noi" label="NOI" />
+					</panel>
+					<panel id="quick.oneStopApp.collateral.addressInformation" label="Address Information">
+						<field name="collateral.location.address1" />
+						<field name="collateral.location.address2" />
+						<field name="collateral.location.city" />
+						<field name="collateral.location.stateProvince" />
+						<field name="collateral.location.country" />
+						<field name="collateral.location.county" />
+						<field name="collateral.location.postalCode">
+							<field name="collateral.location.postalCodePlus4" label="-" />
+						</field>
+					</panel>
+			</quickedit-canvas>
+		</data-table>
+		<!-- <field name="request.oneStopApp.collateralCustomer" label="Collateral" targetFields="oneStopApp.collateralInformation"/>
+		<field name="request.oneStopApp.collateral.collateralName" label="Collateral Name" />
+		<field name="request.oneStopApp.collateral.collateralCategory" label="Collateral Category" />
+		<field name="request.oneStopApp.collateral.collateralType" label="Collateral Type"/>
+		<field name="request.oneStopApp.collateral.collateralDescription" label="Collateral Description"/>
+		<field name="request.oneStopApp.collateral.locationHeld" label="Location Held" />
+		<panel id="oneStopApp.collateralInformation.propertyAddress" label="Address Information">
+			<field name="request.oneStopApp.collateral.location.address1" label="Suite/Street Name *"/>
+			<field name="request.oneStopApp.collateral.location.address2" label="Address Line 2"/>
+			<field name="request.oneStopApp.collateral.location.city" label="City *"/>
+			<field name="request.oneStopApp.collateral.location.stateProvince" label="State/Province *"/>
+			<field name="request.oneStopApp.collateral.location.country" label="Country *"/>
+			<field name="request.oneStopApp.collateral.location.county" label="County"/>
+			<field name="request.oneStopApp.collateral.location.postalCode" label="Postal Code *">
+				<field name="request.oneStopApp.collateral.location.postalCodePlus4" label="-" />
+			</field>
+		</panel> -->
+	</panel>		
+  <!--
+	<panel id="oneStopApp.assetLiabilities" label="Asset/Liabilities">
+		<section id="oneStopApp.assetsLiabilities.detail" label="Assets and Liabilities" orientation="horizontal">
+			<section id="oneStopApp.assetsLiabilities.assets" label="Assets">
+				<data-table name="request.assetLiability.assetRealEstates" row="assetRealEstate" label="Real Estate" >
+					<columns>
+						<column name="assetRealEstate.borrower" label="Borrower"/>
+						<column name="assetRealEstate.address.address1" label="Street"/>
+						<column name="assetRealEstate.address.address2" label="Address Line2"/>
+						<column name="assetRealEstate.address.city" label="City"/>
+						<column name="assetRealEstate.address.stateProvince" label="State"/>
+						<column name="assetRealEstate.address.country" label="Country"/>
+						<column name="assetRealEstate.address.postalCode" label="Postal Code"/>
+						<column name="assetRealEstate.assetValue" label="Value" footer-name="request.assetLiability.totalREValue" targetFields="oneStopApp.assetLiabilities.summary,request.assetLiability.assetRealEstates"/>
+					</columns>
+				</data-table>
+				<data-table name="request.assetLiability.assetSecurities" row="assetSecurity" label="Shares, Cash in bank and other Investments" >
+					<columns>
+						<column name="assetSecurity.borrower" label="Borrower"/>
+						<column name="assetSecurity.description" />
+						<column name="assetSecurity.assetValue" label="Value" footer-name="request.assetLiability.totalSecuritiesValue" targetFields="oneStopApp.assetLiabilities.summary,request.assetLiability.assetSecurities"/>
+					</columns>
+				</data-table>
+			</section>
+			<section id="oneStopApp.assetsLiabilities.liabilities" label="Liabilities">
+					<data-table name="request.assetLiability.liabilityMortgages" row="liabilityMortgage" label="Mortgage" >
+						<columns>
+							<column name="liabilityMortgage.borrower" label="Borrower"/>
+							<column name="liabilityMortgage.mortgagee" label="Bank"/>
+							<column name="liabilityMortgage.limit" label="Limit" footer-name="request.assetLiability.totalMortgageLimit" targetFields="oneStopApp.assetLiabilities.summary,request.assetLiability.liabilityMortgages"/>
+							<column name="liabilityMortgage.balance" label="Balance" footer-name="request.assetLiability.totalMortgageBalance" targetFields="oneStopApp.assetLiabilities.summary,request.assetLiability.liabilityMortgages"/>
+						</columns>
+					</data-table>
+					<data-table name="request.assetLiability.liabilityLoans" row="liabilityLoan" label="Other Loans &amp; credit cards" >
+						<columns>
+							<column name="liabilityLoan.borrower" label="Borrower"/>
+							<column name="liabilityLoan.loanType" label="Loan Type" />
+							<column name="liabilityLoan.loanFor" label="For" />
+							<column name="liabilityLoan.loanLender" label="Lender" />
+							<column name="liabilityLoan.limit" label="Limit" footer-name="request.assetLiability.totalLoanLimit" targetFields="oneStopApp.assetLiabilities.summary,request.assetLiability.liabilityLoans"/>
+							<column name="liabilityLoan.balance" label="Balance" footer-name="request.assetLiability.totalLoanBalance" targetFields="oneStopApp.assetLiabilities.summary,request.assetLiability.liabilityLoans"/>
+						</columns>
+					</data-table>	
+			</section>
+		</section>
+		<panel id="oneStopApp.assetLiabilities.summary" label="Summary" cols="1" orientation="horizontal">
+			<section id="oneStopApp.assetLiabilities.summary.assets" cols="1">
+				<field name="request.assetLiability.totalAssetValue" label="Total Assets"/>
+			</section>
+			<section id="oneStopApp.assetLiabilities.summary.liabilities" cols="1">
+				<field name="request.assetLiability.totalLiabilityBalance" label="Total Liabilities"/>
+				<field name="request.assetLiability.netWorth" label="Net Worth"/>
+			</section>						
+		</panel>										
+	</panel>
+  -->
+	<beans>
+		<bean name="request" type="com.thirdpillar.codify.loanpath.model.Request"/>
+	</beans>
+</canvas>

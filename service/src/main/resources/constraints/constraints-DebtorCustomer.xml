@@ -1,0 +1,131 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="DebtorCustomer" ignore-annotations="false">
+      <map:class> 
+      	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{debtorCustomer.borrowingBaseRes.require}</map:message>
+                <map:element name="matchedExpr"><![CDATA[
+                   if(o.borrowingBaseRes == null){
+                   	return false;
+                   }else{
+                   	return true;
+                   }
+                ]]></map:element>
+        </map:constraint>
+        	
+        	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+	        		<map:message>{debtor.customer.required}</map:message>
+	        		<map:element name="matchedExpr"><![CDATA[
+						return o.debtorCustomerAllowed();
+	        		]]></map:element>
+	       	</map:constraint>
+	       	
+	       	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+	        		<map:message>{debtor.customer.duplicate}</map:message>
+	        		<map:element name="matchedExpr"><![CDATA[
+						return !o.debtorDupCustomerAllowed();
+	        		]]></map:element>
+	       	</map:constraint>
+        	
+        	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        		<map:message>{customer.debtor.facility.required}</map:message>
+        		<map:element name="matchedExpr"><![CDATA[
+        		if(o.facility == empty){
+        			return false;
+        		}
+        		return true;
+        		]]></map:element>
+        	</map:constraint>
+        	
+        	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.debtor.duns.required}</map:message>
+						<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecision</map:value>
+						</map:groups>
+						<map:element name="triggerExpr"><![CDATA[return (o != empty && o.facilityCustomerRole != empty && o.facilityCustomerRole.customer != empty && o.facilityCustomerRole.customer.isNonIndividual());]]></map:element>
+						<map:element name="matchedExpr"><![CDATA[return (o.facilityCustomerRole.customer.duns != empty);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.debtor.duns.unique}</map:message>
+						<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecision</map:value>
+						</map:groups>
+						<map:element name="triggerExpr"><![CDATA[return (o != empty && o.facilityCustomerRole != empty && o.facilityCustomerRole.customer != empty && o.facilityCustomerRole.customer.isNonIndividual() && o.facilityCustomerRole.customer.duns != empty);]]></map:element>
+						<map:element name="matchedExpr"><![CDATA[
+							boolean match = true;
+               	 			match = o.facilityCustomerRole.customer.validateDUNSDedupe("CUSTOMER_TYPE_NON_INDIVIDUAL");
+                   	 		return match;
+						]]></map:element>
+			</map:constraint>
+			
+			
+        <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{debtorCustomer.debtorDecision.required}</map:message>
+                <map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ApproveDebtorValidationsGroup</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                   if(o.wfStatus.statusKey ==  'DEBTOR_STATUS_PENDING'){
+                   	return false;
+                   }else{
+                   	return true;
+                   }
+                ]]></map:element>
+        </map:constraint>
+
+      	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{debtorCustomer.eligibleARLimit.required}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecisionEligible</map:value>
+				</map:groups>
+                <map:element name="matchedExpr"><![CDATA[
+                   if(o.eligibleARLimit == null){
+                   	return false;
+                   }else{
+                   	return true;
+                   }
+                ]]></map:element>
+        </map:constraint>
+      	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{debtorCustomer.concLimit.required}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecisionEligible</map:value>
+				</map:groups>
+                <map:element name="matchedExpr"><![CDATA[
+                   if(o.concLimit == null){
+                   	return false;
+                   }else{
+                   	return true;
+                   }
+                ]]></map:element>
+        </map:constraint>
+      	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{debtorCustomer.retention.required}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecisionEligible</map:value>
+				</map:groups>
+                <map:element name="matchedExpr"><![CDATA[
+                   if(o.retention == null){
+                   	return false;
+                   }else{
+                   	return true;
+                   }
+                ]]></map:element>
+        </map:constraint>
+      	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{debtorCustomer.creditPeriod.required}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecisionEligible</map:value>
+				</map:groups>
+                <map:element name="matchedExpr"><![CDATA[
+                   if(o.creditPeriod == null){
+                   	return false;
+                   }else{
+                   	return true;
+                   }
+                ]]></map:element>
+        </map:constraint>
+      </map:class>
+    </map:bean>
+</map:constraint-mappings>

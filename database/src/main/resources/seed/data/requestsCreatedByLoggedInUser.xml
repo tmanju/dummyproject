@@ -1,0 +1,26 @@
+<list>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Created by Current User</filterName>
+		<groupFilterName>Created By</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.Request</entityClazzName>
+		<searchCriteriaXML><![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+				<entry>
+				  <string>metaInfo.createdByUser.username</string>
+				  <sc.searchCriterion>
+					<collection>false</collection>
+					<property>metaInfo.createdByUser.username</property>
+					<value class="sc.stringCriterionValue">
+					  <defaultOperator>ILIKE</defaultOperator>
+					  <value>@{ctxUser.username}</value>
+					</value>
+				  </sc.searchCriterion>
+				</entry>				
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.Request</searchClazzName>
+			  <sortOrderList/>
+			</sc.searchCriteria>]]>
+		</searchCriteriaXML>
+	</com.thirdpillar.foundation.model.SearchFilter>
+</list>

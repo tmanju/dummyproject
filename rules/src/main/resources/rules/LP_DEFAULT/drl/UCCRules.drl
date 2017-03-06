@@ -1,0 +1,34 @@
+#created on: November 21, 2014
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.lang.Integer;
+
+
+rule "UCCStatus_New"
+	agenda-group "NEW" 
+	when
+		ucc:UCC()
+	then
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "UCC_STATUS_NEW");
+		ucc.setWfStatus(status);
+end
+
+rule "UCCStatus_Save"
+	agenda-group "SAVE" 
+	when
+		ucc:UCC(wfStatus == null || wfStatus.statusKey == "UCC_STATUS_NEW")
+	then
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "UCC_STATUS_SAVED");
+		ucc.setWfStatus(status);
+end
+

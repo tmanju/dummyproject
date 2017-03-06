@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="moodyCustomer_financialInfo" type="crud" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd" xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+		<section id="moody.customerInfo">
+			<field name="moodyCustomer.customerNameDer" label="Moody's Customer Name"/>
+			<field name="moodyCustomer.industryModel" label="Industry Model"/>
+		</section>
+		<data-table id="moodyCustomer_generalIndustry_income" name="moodyCustomer.financialStatements" row="financialStatement" label="Income Summary" type="vertical" sortBy="financialStatement.statementDate">
+			<columns>									
+				<column name="financialStatement.statementDate" />
+				<column name="financialStatement.monthsCovered" />
+				<column name="financialStatement.auditMethod" />
+				<column name="financialStatement.generalIndustryModel.financialScale" />
+				<column name="financialStatement.generalIndustryModel.netSales" />
+				<column name="financialStatement.generalIndustryModel.costOfGoodsSold" />
+				<column name="financialStatement.generalIndustryModel.cogsDepreciation" />
+				<column name="financialStatement.generalIndustryModel.grossProfit" />
+				<column name="financialStatement.generalIndustryModel.sgaExpense" />
+				<column name="financialStatement.generalIndustryModel.operatingExpense" />
+				<column name="financialStatement.generalIndustryModel.officersCompensation" />
+				<column name="financialStatement.generalIndustryModel.deprecExpense" />
+				<column name="financialStatement.generalIndustryModel.amortization" />
+				<column name="financialStatement.generalIndustryModel.totalOperatingExpenses" />
+				<column name="financialStatement.generalIndustryModel.netOperatingProfit" />
+				<column name="financialStatement.generalIndustryModel.grossInterestExpense" />
+				<column name="financialStatement.generalIndustryModel.interestIncome" />
+				<column name="financialStatement.generalIndustryModel.incomeFromSubs" />
+				<column name="financialStatement.generalIndustryModel.gainLossOnAssetSale" />
+				<column name="financialStatement.generalIndustryModel.totalOtherIncomeExpense" />
+				<column name="financialStatement.generalIndustryModel.profitBeforeTaxes" />
+				<column name="financialStatement.generalIndustryModel.incomeTaxExpense" />
+				<column name="financialStatement.generalIndustryModel.minorityInterestExpense" />
+				<column name="financialStatement.generalIndustryModel.profitBeforeExtraordinaryItems" />
+				<column name="financialStatement.generalIndustryModel.profitBeforeExtraordinaryItems" />
+				<column name="financialStatement.generalIndustryModel.netIncome" />
+				<column name="financialStatement.generalIndustryModel.dividendsCommon" />
+				<column name="financialStatement.generalIndustryModel.dividendsPreferred" />
+				<column name="financialStatement.generalIndustryModel.dividendsStock" />
+			</columns>
+		</data-table>
+		<data-table id="moodyCustomer_generalIndustry_balanceSheet" name="moodyCustomer.financialStatements" row="financialStatement" label="Balance Sheet" type="vertical" sortBy="financialStatement.statementDate">
+			<columns>									
+				<column name="financialStatement.statementDate" />
+				<column name="financialStatement.monthsCovered" />
+				<column name="financialStatement.auditMethod" />				
+				<column name="financialStatement.generalIndustryModel.cash" />
+				<column name="financialStatement.generalIndustryModel.marketableSecurities" />
+				<column name="financialStatement.generalIndustryModel.accountsReceivableTrade" />
+				<column name="financialStatement.generalIndustryModel.accountsReceivableOther" />
+				<column name="financialStatement.generalIndustryModel.badDebtReserve" />
+				<column name="financialStatement.generalIndustryModel.inventories" />
+				<column name="financialStatement.generalIndustryModel.totalCurrentAssets" />
+				<column name="financialStatement.generalIndustryModel.netPPAndE" />
+				<column name="financialStatement.generalIndustryModel.deferredAssets" />
+				<column name="financialStatement.generalIndustryModel.intangibleAssets" />
+				<column name="financialStatement.generalIndustryModel.totalAssets" />
+				<column name="financialStatement.generalIndustryModel.shortTermDebt" />
+				<column name="financialStatement.generalIndustryModel.curMatOfLTD" />
+				<column name="financialStatement.generalIndustryModel.accountsPayableTrade" />
+				<column name="financialStatement.generalIndustryModel.accountsPayableOther" />
+				<column name="financialStatement.generalIndustryModel.accruedLiabilities" />
+				<column name="financialStatement.generalIndustryModel.taxesPayable" />
+				<column name="financialStatement.generalIndustryModel.totalCurrentLiabilities" />
+				<column name="financialStatement.generalIndustryModel.longTermDebt" />
+				<column name="financialStatement.generalIndustryModel.capitalLeaseObligations" />
+				<column name="financialStatement.generalIndustryModel.minorityInterestLiabilities" />
+				<column name="financialStatement.generalIndustryModel.subordinatedDebt" />
+				<column name="financialStatement.generalIndustryModel.totalNoncurrentLiabilities" />
+				<column name="financialStatement.generalIndustryModel.totalLiabilities" />
+				<column name="financialStatement.generalIndustryModel.commonStock" />
+				<column name="financialStatement.generalIndustryModel.preferredStock" />
+				<column name="financialStatement.generalIndustryModel.retainedEarnings" />
+				<column name="financialStatement.generalIndustryModel.totalNetWorth" />
+				<column name="financialStatement.generalIndustryModel.totalLiabilitiesPlusNetWorth" />
+			</columns>
+		</data-table>
+		<data-table id="moodyCustomer_generalIndustry_stocks_ratios" name="moodyCustomer.financialStatements" row="financialStatement" label="Stocks/Ratios" type="vertical" sortBy="financialStatement.statementDate">
+			<columns>									
+				<column name="financialStatement.statementDate" />
+				<column name="financialStatement.monthsCovered" />
+				<column name="financialStatement.auditMethod" />
+				<column name="financialStatement.generalIndustryModel.grossRentalExpense" />
+				<column name="financialStatement.generalIndustryModel.interestCapitalized" />
+				<column name="financialStatement.generalIndustryModel.lifoReserve" />
+				<column name="financialStatement.generalIndustryModel.otherNoncashCosts" />
+				<column name="financialStatement.generalIndustryModel.taxRate" />
+				<column name="financialStatement.generalIndustryModel.netSalesGrowth" />
+				<column name="financialStatement.generalIndustryModel.netOperatingMargin" />
+				<column name="financialStatement.generalIndustryModel.netMargin" />
+				<column name="financialStatement.generalIndustryModel.currentRatio" />
+				<column name="financialStatement.generalIndustryModel.quickRatio" />
+				<column name="financialStatement.generalIndustryModel.netAccountsReceivableDays" />
+				<column name="financialStatement.generalIndustryModel.accountsPayableDays" />
+				<column name="financialStatement.generalIndustryModel.inventoryDays" />
+				<column name="financialStatement.generalIndustryModel.tangibleNetWorth" />
+				<column name="financialStatement.generalIndustryModel.debtToTangibleNetWorth" />
+				<column name="financialStatement.generalIndustryModel.ebitda" />
+				<column name="financialStatement.generalIndustryModel.interestCoverage" />
+				<column name="financialStatement.generalIndustryModel.fixedChargeCoverage" />
+				<column name="financialStatement.generalIndustryModel.ebitdaToIntCPLTD" />
+				<column name="financialStatement.generalIndustryModel.riskCalcOneYearPD" />
+				<column name="financialStatement.generalIndustryModel.oneYearBondDefaultRate" />
+				<column name="financialStatement.generalIndustryModel.leverage" />
+			</columns>
+		</data-table>
+	<beans>
+		<bean name="moodyCustomer" type="com.thirdpillar.codify.loanpath.model.MoodyCustomer"/>
+	</beans>
+</canvas>
+

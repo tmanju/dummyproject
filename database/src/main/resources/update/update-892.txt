@@ -1,0 +1,6 @@
+ALTER TABLE internex.lp_cust ADD COLUMN  state_of_incorp_id  bigint ;
+ALTER TABLE internex.lp_cust_ ADD COLUMN state_of_incorp_id  bigint ;
+
+
+ALTER TABLE internex.lp_bank_and_trd ADD COLUMN name_on_act character varying(255);
+ALTER TABLE internex.lp_bank_and_trd_ ADD COLUMN name_on_act character varying(255);

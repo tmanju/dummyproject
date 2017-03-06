@@ -1,0 +1,1077 @@
+<list>
+	<user>
+		<contact>
+			<email>testemail@thirdpillar.com</email>
+			<firstName>System</firstName>
+			<lastName>Administrator</lastName>
+		</contact>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>System Administrator</description>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2100-01-01T00:00:00.000Z</lastPasswordResetDate>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>System Administrator</name>
+			</role>
+		</roles>
+		<teams>
+			<team>
+				<name>Credit Queue Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>System.Admin</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>testemail@thirdpillar.com</email>
+			<firstName>Integration</firstName>
+			<lastName>User</lastName>
+		</contact>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Integration User</description>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2100-01-01T00:00:00.000Z
+		</lastPasswordResetDate>
+		<password>password</password>
+		<roles />
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>integration.user</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>testemail@thirdpillar.com</email>
+			<firstName>Salesforce</firstName>
+			<lastName>User</lastName>
+		</contact>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Salesforce integration User</description>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2100-01-01T00:00:00.000Z
+		</lastPasswordResetDate>
+		<password>password</password>
+		<roles />
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>salesforce.user</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>testemail@thirdpillar.com</email>
+			<firstName>Customer</firstName>
+		</contact>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Customer Portal User</description>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2100-01-01T00:00:00.000Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<roles />
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>portal.user</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Colin</firstName>
+			<lastName>Casey</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>MarketPlace User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-27T13:25:25.256Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>MarketPlace Admin</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>colin</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Colin</firstName>
+			<lastName>Casey</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+			<value>Level 7</value>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Grade User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-27T13:26:08.093Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+			<role>
+				<name>Super Administrator</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+			</team>
+			<team>
+				<name>Document Specialist Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>colinc</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Lin</firstName>
+			<lastName>Chua</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>linc</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<locked>false</locked>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>MarketPlace Admin</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>linc</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<addresses />
+			<email>mock@mock.com</email>
+			<firstName>jim</firstName>
+			<lastName>miller</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+			<value>Level 7</value>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Grade User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-26T22:08:32.645Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+			<value>Level 7</value>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+			<role>
+				<name>Super Administrator</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+				<teamCategory>
+					<key>TEAM_CATEGORY_CREDIT</key>
+				</teamCategory>
+			</team>
+			<team>
+				<name>Document Specialist Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>jmiller</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<accountExpiryDate>2025-07-31T07:00:00.000Z</accountExpiryDate>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Paul</firstName>
+			<lastName>Puryear</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>puryearp Manager User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-29T16:20:01.490Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>MarketPlace Admin</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>puryearp</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<accountExpiryDate>2025-08-31T07:00:00.000Z</accountExpiryDate>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Atul</firstName>
+			<lastName>Kumar</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-08-29T08:00:00.000Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+				<teamCategory>
+					<key>TEAM_CATEGORY_CREDIT</key>
+					<value>Credit</value>
+				</teamCategory>
+			</team>
+			<team>
+				<name>Document Specialist Team</name>
+				<teamCategory>
+					<key>TEAM_CATEGORY_DOCUMENTATION</key>
+				</teamCategory>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>atulk</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<addresses />
+			<email>mock@mock.com</email>
+			<firstName>jim</firstName>
+			<lastName>miller</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>MarketPlace User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-26T22:09:37.772Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>MarketPlace Admin</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>jim</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<addresses />
+			<email>testemail@thirdpillar.com</email>
+			<firstName>Credit</firstName>
+			<lastName>Analyst</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Credit Analyst</description>
+		<emailEnabled>false</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<locked>false</locked>
+		<password>password</password>
+		<systemUser>false</systemUser>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+			</team>
+		</teams>		
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>credit.analyst</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Paul</firstName>
+			<lastName>Puryear</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>paulp</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-28T20:37:27.895Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+			<role>
+				<name>Credit Officer</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL1 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL2 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL3 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL4 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL5 Team</name>
+			</team>
+			<team>
+				<name>Chief Credit Approval CAL &lt;= 5 Team</name>
+			</team>
+			<team>
+				<name>Chief Credit Approval CAL &gt; 5 Team</name>
+			</team>
+			<team>
+				<name>Document Specialist Team</name>
+			</team>
+			<team>
+				<name>Credit Decision Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>paulp</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>testemail@thirdpillar.com</email>
+			<firstName>Super</firstName>
+			<lastName>Administrator</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Super Administrator</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>Super Administrator</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Queue Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>Super.Admin</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>nikhil.kala@genpact.com</email>
+			<firstName>nikhil</firstName>
+			<lastName>kala</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Sourcing User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-27T11:56:50.249Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>MarketPlace Admin</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>nikhil.kala</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<accountExpiryDate>2025-08-31T07:00:00.000Z</accountExpiryDate>
+		<contact>
+			<email>nikhil.kala@genpact.com</email>
+			<firstName>Nikhil</firstName>
+			<lastName>Kala</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+			<value>Level 7</value>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-08-29T08:00:00.000Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+			<value>Level 7</value>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+			</team>
+			<team>
+				<name>Document Specialist Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>nikhilk</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Simon MPBE</firstName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>MarketPlace User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-07-26T21:09:27.705Z
+		</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>MarketPlace Admin</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams />
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>simon</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<accountExpiryDate>2025-07-31T07:00:00.000Z</accountExpiryDate>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Simon Grade</firstName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Grade User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-08-01T19:07:27.388Z</lastPasswordResetDate>
+		<locked>false</locked>
+		<password>password</password>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+		</racExceptionAuthority>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+			<role>
+				<name>Credit Officer</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL1 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL2 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL3 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL4 Team</name>
+			</team>
+			<team>
+				<name>Credit Approval CAL5 Team</name>
+			</team>
+			<team>
+				<name>Chief Credit Approval CAL &lt;= 5 Team</name>
+			</team>
+			<team>
+				<name>Chief Credit Approval CAL &gt; 5 Team</name>
+			</team>
+			<team>
+				<name>Document Specialist Team</name>
+			</team>
+			<team>
+				<name>Credit Decision Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>simonh</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>mock@mock.com</email>
+			<firstName>Credit Mgr</firstName>
+			<lastName>User</lastName>
+		</contact>
+		<createdInEsig>false</createdInEsig>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Credit Manager User</description>
+		<emailEnabled>true</emailEnabled>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<locked>false</locked>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>Credit Officer</name>
+			</role>
+		</roles>
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Chief Credit Approval CAL &lt;= 5 Team</name>
+			</team>
+			<team>
+				<name>Chief Credit Approval CAL &gt; 5 Team</name>
+			</team>
+			<team>
+				<name>Credit Decision Team</name>
+			</team>
+			<team>
+				<name>Credit Manager Team</name>
+			</team>
+			<team>
+				<name>Credit Queue Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>credit.mgr</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<contact>
+			<email>vishal.agarwal@genpact.com</email>
+			<firstName>Vishal</firstName>
+			<lastName>Agarwal</lastName>
+		</contact>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+			<value>Level 7</value>
+		</creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<description>Vishal Agarwal</description>
+		<emailEnabled>true</emailEnabled>
+		<externalIdentifier>vishal.agarwal@genpact.com</externalIdentifier>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<lastPasswordResetDate>2016-08-02T13:06:24.203Z
+		</lastPasswordResetDate>
+		<password>password</password>
+		<roles>
+			<role>
+				<name>Credit Analyst</name>
+			</role>
+		</roles>
+
+		<systemUser>false</systemUser>
+		<teams>
+			<team>
+				<name>Credit Analyst Team</name>
+			</team>
+			<team>
+				<name>Document Specialist Team</name>
+			</team>
+		</teams>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<username>vishal.agarwal</username>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+	</user>
+	<user>
+		<username>document.specialist</username>
+		<description>Document Specialist</description>
+		<password>password</password>
+		<externalIdentifier />
+		<contact>
+			<firstName>Document</firstName>
+			<lastName>Specialist</lastName>
+			<email>testemail@thirdpillar.com</email>
+		</contact>
+		<roles>
+			<role>
+				<name>Documentation Specialist</name>
+			</role>
+		</roles>
+		<teams>
+			<team>
+				<name>Document Specialist Team</name>
+			</team>
+		</teams>
+		<lastPasswordResetDate>2100-01-01T00:00:00.000-08:00</lastPasswordResetDate>
+		<timeZone>
+			<isoCode>America/New_York</isoCode>
+		</timeZone>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<racExceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+		</racExceptionAuthority>
+		<creditAuthorityLevel>
+			<key>CREDIT_AUTHORITY_LEVEL_7</key>
+		</creditAuthorityLevel>
+		<userType>
+			<key>USER_TYPE_INTERNAL</key>
+		</userType>
+		<userSource>
+			<key>USER_SOURCE_INTERNAL</key>
+		</userSource>
+		<wfStatus class="workflowStatus">
+			<statusKey>USER_STATUS_ACTIVE</statusKey>
+		</wfStatus>
+		<systemUser>false</systemUser>
+	</user>
+    <user>
+      <accountExpiryDate>2025-10-31T04:00:00.000Z</accountExpiryDate>
+      <contact>
+        <addresses/>
+        <email>mock@mock.com</email>
+        <firstName>Ben</firstName>
+        <lastName>Baratz</lastName>
+      </contact>
+      <createdInEsig>false</createdInEsig>
+      <creditAuthorityLevel>
+        <key>CREDIT_AUTHORITY_LEVEL_7</key>
+      </creditAuthorityLevel>
+		<currency>
+			<isoCode>USD</isoCode>
+		</currency>
+		<language>
+			<isoCode>en</isoCode>
+		</language>
+      <emailEnabled>true</emailEnabled>
+      <locked>false</locked>
+	  <password>password</password>
+      <racExceptionAuthority>
+        <key>RAC_EXCEPTION_AUTHORITY_LEVEL_7</key>
+      </racExceptionAuthority>
+      <roles>
+        <role>
+          <name>Credit Analyst</name>
+        </role>
+        <role>
+          <name>Super Administrator</name>
+        </role>
+      </roles>
+      <systemUser>false</systemUser>
+      <teams>
+        <team>
+          <name>Credit Analyst Team</name>
+        </team>
+        <team>
+          <name>Document Specialist Team</name>
+        </team>
+      </teams>
+	<timeZone>
+		<isoCode>America/New_York</isoCode>
+	</timeZone>
+      <userSource>
+        <key>USER_SOURCE_INTERNAL</key>
+      </userSource>
+      <userType>
+        <key>USER_TYPE_INTERNAL</key>
+      </userType>
+      <username>ben</username>
+      <wfStatus class="workflowStatus">
+        <statusKey>USER_STATUS_ACTIVE</statusKey>
+      </wfStatus>
+    </user>
+</list>

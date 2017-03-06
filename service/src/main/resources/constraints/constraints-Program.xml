@@ -1,0 +1,107 @@
+<map:constraint-mappings
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd"
+	xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="Program" ignore-annotations="false">
+	<map:class>
+	
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{program.autoApprovalFICOScore.message}</map:message>
+              <map:element name="matchedExpr">
+              <![CDATA[
+                     boolean match = true;
+                     if(o.id!=null && o.autoApproveFlag==true && o.autoApprovalFICOScore == null) {
+                        match = false;
+                     }
+                return match;
+              
+              ]]>
+              </map:element>
+        </map:constraint> 
+        
+        <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{program.autoApprovalMinYears.message}</map:message>
+              <map:element name="matchedExpr">
+              <![CDATA[
+                     boolean match = true;
+                     if(o.id!=null && o.autoApproveFlag==true && o.autoApprovalMinYears == null) {
+                        match = false;
+                     }
+                return match;
+              
+              ]]>
+              </map:element>
+        </map:constraint> 
+        
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{program.autoApprovalMaxAmount.message}</map:message>
+              <map:element name="matchedExpr">
+              <![CDATA[
+                     boolean match = true;
+                     if(o.id!=null && o.autoApproveFlag==false && o.autoApprovalMaxAmount != null) {
+                        match = false;
+                     }
+                return match;
+              
+              ]]>
+              </map:element>
+        </map:constraint> 
+        
+       <!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{program.autoDeclineMaxAmount.message}</map:message>
+              <map:element name="matchedExpr">
+              <![CDATA[
+                     boolean match = true;
+                     if(o.id!=null && o.autoDeclineFlag==false && o.autoDeclineMaxAmount != null) {
+                        match = false;
+                     }
+                return match;
+              
+              ]]>
+              </map:element>
+        </map:constraint>   -->
+        
+        <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{program.guaranteeBasis.message}</map:message>
+                <map:element name="triggerExpr"><![CDATA[return o.id!=null && o.guarantees != null;]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                                    boolean match = true;
+                                       foreach(guarantees : o.guarantees){
+                                           if(guarantees.guaranteeBasis==null && guarantees.guaranteePercent != null){
+                                               match = false;
+                                               }
+                                           }
+                                        return match;]]></map:element>
+                
+	</map:constraint>
+	
+	 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{program.approverRequired}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ProgramSubmit</map:value>
+                </map:groups>
+                <map:element name="matchedExpr"><![CDATA[
+                	boolean match = false;
+                	if(o.approval!=null && o.approval.approvalLevels != null){
+	                	foreach(approvalLevel : o.approval.approvalLevels){
+	                		if (approvalLevel.approverList != null && approvalLevel.approverList.size > 0) {
+	                			match = true;
+	                		}
+	                	}
+	                }	
+                	return match;
+                ]]></map:element>
+	</map:constraint> 
+	</map:class>
+	<map:field name="pmtDueDay">            
+	     <map:constraint annotation="javax.validation.constraints.Min">
+	     	<map:message>{program.pmtDueDay}</map:message>
+	         <map:element name="value">1</map:element>
+	     </map:constraint>
+	     <map:constraint annotation="javax.validation.constraints.Max">
+	     	 <map:message>{program.pmtDueDay}</map:message>
+	         <map:element name="value">31</map:element>
+	     </map:constraint> 
+    </map:field>      
+	</map:bean>
+</map:constraint-mappings>

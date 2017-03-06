@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="deal" type="search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<section id="deal.dealSearch">
+		<field name="deal.facilityBE.customer.refNumber" label="Account Number" /> <!--not sure refNumber should be here -->
+		<field name="deal.facilityBE.customer.legalName" label="Client Name" />
+		<field name="deal.fundAllocators.capitalProvider.customerAssociated.legalName" label="Capital Provider" />
+		<field name="deal.productType" />
+		<field name="deal.fundAllocators.drawRequestedDate" label="Draw Requested Date" />
+		<field name="deal.statusChngDt" label="Last Update"/>
+		<field name="deal.wfStatus" label="Funding Status"/>
+	</section>
+
+	<beans>
+		<bean name="deal" type="com.thirdpillar.codify.loanpath.model.Deal" />
+	</beans>
+</canvas>

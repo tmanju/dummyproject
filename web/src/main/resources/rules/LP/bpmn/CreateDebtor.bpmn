@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+  <itemDefinition id="_ResultItem" structureRef="String" />
+
+  <itemDefinition id="_3-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_3-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_3-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+  <itemDefinition id="_3-ResultItem" structureRef="String" />
+
+  <itemDefinition id="_7-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_7-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_7-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_7-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+  <itemDefinition id="_7-ResultItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="CreateDebtor" name="CreateDebtor" tns:packageName="LP.web" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Customer" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="flowState" itemSubjectRef="_flowStateItem"/>
+    <property id="parentPage" itemSubjectRef="_parentPageItem"/>
+    <property id="integrationInputMap" itemSubjectRef="_integrationInputMapItem"/>
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="Result" itemSubjectRef="_ResultItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <scriptTask id="_2" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Detor called-----------------------------------------&gt;");
+FlowState fs  = (FlowState) context.getVariable("flowState");
+context.setVariable("contextEntity",((EntityBean)fs.getEntry().getPrimaryBean()).getEntity());</script>
+    </scriptTask>
+    <task id="_3" name="Search and Select Customer" tns:taskName="PageFlow" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Executing select-----------------&gt;");</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_3_parentPageInput" name="parentPage" />
+        <dataInput id="_3_entityInput" name="entity" />
+        <dataInput id="_3_flowStateInput" name="flowState" />
+        <dataInput id="_3_operationInput" name="operation" />
+        <dataInput id="_3_enameInput" name="ename" />
+        <dataInput id="_3_propertyInput" name="property" />
+        <dataOutput id="_3_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_3_parentPageInput</dataInputRefs>
+          <dataInputRefs>_3_entityInput</dataInputRefs>
+          <dataInputRefs>_3_flowStateInput</dataInputRefs>
+          <dataInputRefs>_3_operationInput</dataInputRefs>
+          <dataInputRefs>_3_enameInput</dataInputRefs>
+          <dataInputRefs>_3_propertyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_3_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_3_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_operationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">SNSOne_ReferredReference</from>
+          <to xsi:type="tFormalExpression">_3_operationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">customer</from>
+          <to xsi:type="tFormalExpression">_3_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_propertyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">customer</from>
+          <to xsi:type="tFormalExpression">_3_propertyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_ResultOutput</sourceRef>
+        <targetRef>Result</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_5" name="End" />
+    <scriptTask id="_6" name="Select Debtor" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Exceting----------------------&gt;");
+FacilityCustomerRole fcr = (FacilityCustomerRole) context.getVariable("contextEntity");
+FacilityCustomerRole pbRole = null;
+for(FacilityCustomerRole facilityCustomerRole : fcr.getFacility().getFacilityCustomerRoles()){
+    		if(facilityCustomerRole.getPartyRole() != null 
+    				&amp;&amp; ("PARTY_ROLE_TYPE_CLIENT".equals(facilityCustomerRole.getPartyRole().getKey()))
+    				&amp;&amp; facilityCustomerRole.getPrimaryBorrower()){
+    			pbRole = facilityCustomerRole;
+    			break;
+    		}
+    	}
+AttributeChoice ac = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","PARTY_ROLE_TYPE_DEBTOR");
+fcr.setPartyRole(ac);
+Customer primaryBorrower = fcr.getFacility().getPrimaryBorrower();
+fcr.setParentRole(pbRole);
+Customer customer = fcr.getCustomer();
+
+System.out.println("Exceting----------------------&gt;"+customer);
+System.out.println("Exceting----------------------&gt;"+customer.getFirstName());</script>
+    </scriptTask>
+    <task id="_7" name="End Page Flow" tns:taskName="EndPageFlow" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Hi I am here-------");</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_7_inputInput" name="input" />
+        <dataInput id="_7_parentPageInput" name="parentPage" />
+        <dataInput id="_7_entityInput" name="entity" />
+        <dataInput id="_7_flowStateInput" name="flowState" />
+        <dataInput id="_7_redirectOperationInput" name="redirectOperation" />
+        <dataInput id="_7_enameInput" name="ename" />
+        <inputSet>
+          <dataInputRefs>_7_inputInput</dataInputRefs>
+          <dataInputRefs>_7_parentPageInput</dataInputRefs>
+          <dataInputRefs>_7_entityInput</dataInputRefs>
+          <dataInputRefs>_7_flowStateInput</dataInputRefs>
+          <dataInputRefs>_7_redirectOperationInput</dataInputRefs>
+          <dataInputRefs>_7_enameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>integrationInputMap</sourceRef>
+        <targetRef>_7_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_7_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_7_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_7_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_7_redirectOperationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_7_redirectOperationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_7_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">facility</from>
+          <to xsi:type="tFormalExpression">_7_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_7-_5" sourceRef="_7" targetRef="_5" />
+    <sequenceFlow id="_3-_6" sourceRef="_3" targetRef="_6" />
+    <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="CreateDebtor" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="103" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="29" y="96" width="197" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="16" y="176" width="222" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="103" y="411" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="16" y="256" width="223" height="43" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="28" y="331" width="199" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="127" y="40" />
+        <di:waypoint x="127" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="127" y="120" />
+        <di:waypoint x="127" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_5" >
+        <di:waypoint x="127" y="355" />
+        <di:waypoint x="127" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_6" >
+        <di:waypoint x="127" y="200" />
+        <di:waypoint x="127" y="277" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_7" >
+        <di:waypoint x="127" y="277" />
+        <di:waypoint x="127" y="355" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

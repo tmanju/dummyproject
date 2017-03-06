@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_facilityBEItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+
+  <itemDefinition id="_4-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_4-facilityBEItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+
+  <itemDefinition id="_6-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_6-facilityBEItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+
+  <itemDefinition id="_9-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_9-facilityBEItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+
+  <process processType="Private" isExecutable="true" id="FacAllocatorSubProcessFlow" name="FacAllocatorSubProcessFlow" tns:packageName="defaultPackage" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="java.util.Date" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="facilityBE" itemSubjectRef="_facilityBEItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_4" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_4_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_4_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_4_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_5" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocatorObj =(FacAllocator)context.getVariable("contextEntity");
+if(facAllocatorObj !=null){
+context.setVariable("facilityBE", facAllocatorObj.getFacilityBE());
+}
+//LastUpdate
+facAllocatorObj.setLastUpdate(new Date());
+facAllocatorObj.setOfferedDt(new Date());
+</script>
+    </scriptTask>
+    <task id="_6" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_6_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_6_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>facilityBE</sourceRef>
+        <targetRef>_6_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_7" name="update CP's Offered Facility Amount " scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+BigDecimal newOfferedFacAmt= facAllocator.getFundAmt();
+if(newOfferedFacAmt==null )
+	newOfferedFacAmt=BigDecimal.ZERO; 
+	
+CapitalProvider cp= facAllocator.getCapitalProvider();
+CustomerBackend cd=cp.getCustomerAssociated();
+BigDecimal offeredFacAmt= cd.getOfferedFacAmt();
+if(offeredFacAmt==null )
+	offeredFacAmt=BigDecimal.ZERO; 
+cd.setOfferedFacAmt(offeredFacAmt.add(newOfferedFacAmt));</script>
+    </scriptTask>
+    <task id="_9" name="Fac Allocator Status update to Offerd " tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("***************FacAllocatorSubProcess  MY OWN start*****************************************");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("***************FacAllocatorSubProcess end*****************************************");</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_9_entityInput" name="entity" />
+        <dataInput id="_9_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_9_entityInput</dataInputRefs>
+          <dataInputRefs>_9_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_9_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">DEALS_STATUS_ASSIGNED</from>
+          <to xsi:type="tFormalExpression">_9_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_6-_2" sourceRef="_6" targetRef="_2" />
+    <sequenceFlow id="_9-_4" sourceRef="_9" targetRef="_4" />
+    <sequenceFlow id="_1-_5" sourceRef="_1" targetRef="_5" />
+    <sequenceFlow id="_4-_6" sourceRef="_4" targetRef="_6" />
+    <sequenceFlow id="_5-_7" sourceRef="_5" targetRef="_7" />
+    <sequenceFlow id="_7-_9" sourceRef="_7" targetRef="_9" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="FacAllocatorSubProcessFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="143" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="143" y="507" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="70" y="342" width="195" height="51" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="77" y="96" width="181" height="42" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="90" y="425" width="155" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="16" y="170" width="302" height="60" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="43" y="262" width="248" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_6-_2" >
+        <di:waypoint x="167" y="450" />
+        <di:waypoint x="167" y="531" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_4" >
+        <di:waypoint x="167" y="286" />
+        <di:waypoint x="167" y="367" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_5" >
+        <di:waypoint x="167" y="40" />
+        <di:waypoint x="167" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_6" >
+        <di:waypoint x="167" y="367" />
+        <di:waypoint x="167" y="450" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_7" >
+        <di:waypoint x="167" y="117" />
+        <di:waypoint x="167" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_9" >
+        <di:waypoint x="167" y="200" />
+        <di:waypoint x="167" y="286" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="request" type="list" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="results" row="app" label="Applications">
+		<columns>
+			<column name="app.refNumber" label="Application Number"/>
+			<column name="app.requestName"/>
+			<column name="app.totalRequestedLoanAmt" label="Total Requested Exposure"/>
+			<column name="app.wfStatus.value" label="Status"/>
+			<column name="app.creditAnalyst" label="Credit Analyst"/>
+			<column name="app.confidential" label="Confidential"/>
+			<column name="app.receivedDate" label="Application Date"/>
+<!-- 			<column name="app.regbDttm" label="Reg B Start Date"/>	 -->
+		</columns>
+		<data-table name="app.allFacilities" row="Facility" label="All Products">
+		  <columns>
+		  	 <column name="Facility.refNumber" label="Product Number"/>
+		  	 <column name="Facility.effectiveProductType" label="Facility Type"/>
+		   	 <column name="Facility.requestedLoanAmt" label="Amount"/>
+		   	 <column name="Facility.pricingOption.structure.contractStartDate" label="Expected Close Date"/>
+		   </columns>
+		</data-table>
+		<commands>
+			<!-- <command id="createAction2" name="CRE Request" action="CreateOneStopApp" type="pageflow"/> -->
+			<!--<command id="createAction3" name="Exposure Limit Request" action="CreateOneStopExposure" type="pageflow"/>	-->
+			<command name="Export CSV" action="Request-ExportCSV" type="exportCsv"/>
+		</commands>	
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.Request"/>
+	</beans>
+</canvas>

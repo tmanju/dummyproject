@@ -1,0 +1,24 @@
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.configuration.RuleBasedProperties;
+import com.thirdpillar.foundation.rules.RuleFunctions;
+import com.thirdpillar.foundation.service.Context;
+
+rule "InxOpsAdminSetup"
+	agenda-group "SessionConfiguration"
+	when
+		ctx:Context(user#User.hasRole("MarketPlace Admin"))
+		ruleBasedProperties:RuleBasedProperties()
+    then
+        ruleBasedProperties.setProperty("default.homeUrl","/search/facilityBE/main/results.seam");        
+end
+
+rule "InxCMAnalyst"
+	agenda-group "SessionConfiguration"
+	when
+		ctx:Context(user#User.hasRole("MarketPlace Analyst"))
+		ruleBasedProperties:RuleBasedProperties()
+    then
+        ruleBasedProperties.setProperty("default.homeUrl","/search/facilityBE/main/results.seam");        
+end

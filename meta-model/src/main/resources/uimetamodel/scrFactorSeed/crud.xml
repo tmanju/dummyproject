@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="scrFactorSeed" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<panel id="scrFactorSeed.scrFactorSeedEdit"  label="Edit Scoring Factor">
+		  <field name="scrFactorSeed.code" label="Code *" />
+			<field name="scrFactorSeed.message" label="Message *"/>
+	    	<field name="scrFactorSeed.recommendationReason"  label="Recommendation Reason *" type="SearchNSelect" />
+			<field name="scrFactorSeed.applicability" label="Applicability *"/>
+			<field name="scrFactorSeed.active"/>
+		
+	</panel>
+	<beans>
+		<bean name="scrFactorSeed" type="com.thirdpillar.codify.loanpath.model.ScrFactorSeed" />
+	</beans>
+	
+</canvas>

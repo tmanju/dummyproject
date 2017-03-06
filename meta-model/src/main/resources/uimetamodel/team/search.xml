@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="team" type="search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+		
+		
+		<section id="team.teamSearch">
+			<field name="team.name" label="Team Name"/>
+			<field name="team.teamCategory" label="Team Category"/>
+			<field name="team.status" label="Team Status"/>
+		</section>
+		
+		<beans>
+			<bean name="team" type="com.thirdpillar.codify.loanpath.model.Team" />
+		</beans>
+
+
+</canvas>

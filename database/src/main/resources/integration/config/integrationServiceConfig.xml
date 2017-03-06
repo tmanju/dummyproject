@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<integration>
+	<logTransitionalXmls overwrite="false" enabled="true"/>
+	<logFinalXmls overwrite="false" enabled="true"/>
+	<xstreamConfigLoaderClass>com.thirdpillar.foundation.webservices.utils.CodifyXstreamExtConfigLoader</xstreamConfigLoaderClass>
+	<service name="modelServiceClient" enabled="true">
+		<interceptor interceptorClass="com.thirdpillar.foundation.dataexec.executor.ModelServiceRequestInterceptor"/>
+		<transport webServiceUrl="http://localhost:8080/loanpath-piedmont-web/services/soap/modelService/" />
+	</service>	
+</integration>

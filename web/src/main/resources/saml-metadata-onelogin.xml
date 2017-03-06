@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="https://app.onelogin.com/saml2">
+  <IDPSSODescriptor xmlns:ds="http://www.w3.org/2000/09/xmldsig#" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+    <KeyDescriptor use="signing">
+      <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+        <ds:X509Data>
+          <ds:X509Certificate>MIIBrTCCAaGgAwIBAgIBATADBgEAMGcxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApD
+YWxpZm9ybmlhMRUwEwYDVQQHDAxTYW50YSBNb25pY2ExETAPBgNVBAoMCE9uZUxv
+Z2luMRkwFwYDVQQDDBBhcHAub25lbG9naW4uY29tMB4XDTExMDUyNTEyMTMyNFoX
+DTE2MDUyNDEyMTMyNFowZzELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3Ju
+aWExFTATBgNVBAcMDFNhbnRhIE1vbmljYTERMA8GA1UECgwIT25lTG9naW4xGTAX
+BgNVBAMMEGFwcC5vbmVsb2dpbi5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJ
+AoGBAMIUJ8NhB1FsbMAXflETLKBGkFugxwhf2yePkNB7Ip/DRs/LH4ZXKv/BSL6t
+SM1u56rCqZGYnkGnzHRYbeRv6zla98NABVFTWw35wi8eM8byfkt6UTBp0bZ4kQaj
+y+Eo4cJXMEOfsm34IoX3K/uL1Mg2bpgubYgtx5qN6fMkxc3vAgMBAAEwAwYBAAMB
+AA==</ds:X509Certificate>
+        </ds:X509Data>
+      </ds:KeyInfo>
+    </KeyDescriptor>
+    <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</NameIDFormat>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="https://app.onelogin.com/trust/saml2/http-post/sso/24790"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://app.onelogin.com/trust/saml2/http-post/sso/24790"/>
+    <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:SOAP" Location="https://app.onelogin.com/trust/saml2/soap/sso/24790"/>    
+    <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://app.onelogin.com/trust/saml2/http-post/slo/24790"/>
+  </IDPSSODescriptor>
+  <ContactPerson contactType="technical">
+    <SurName>Support</SurName>
+    <EmailAddress>support@onelogin.com</EmailAddress>
+  </ContactPerson>
+</EntityDescriptor>

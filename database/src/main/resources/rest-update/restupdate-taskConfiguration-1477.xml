@@ -1,0 +1,154 @@
+	<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+		<taskConfiguration>
+			<taskConfiguration>false</taskConfiguration> 
+			<assignedToExpression></assignedToExpression> 
+			
+			<businessAdministrators /> 
+			
+			<escalationTeams /> 
+			<escalationUsers /> 
+			<potentialTeams>
+				<team>
+					<name>Credit Analyst Team</name>
+				</team>
+			</potentialTeams>
+			<potentialUsers /> 
+			<taskDescription>@{entity.nullSafeNameFromAccountDer}: Application @{entity.refNumber} (Requested Amount: @{entity.totalRequestedLoanAmt}) is Pending Analysis</taskDescription> 
+			<taskName>Credit Analysis</taskName> 
+			<asynchronous>false</asynchronous> 
+			<taskPriority>
+				<key>TASK_PRIORITY_MEDIUM</key> 
+				<value>Medium</value> 
+			</taskPriority>
+			<taskSummary>@{entity.nullSafeNameFromAccountDer}: Application @{entity.refNumber} (Requested Amount: @{entity.totalRequestedLoanAmt}) is Pending Analysis</taskSummary> 
+			<workEntityType>
+				<key>WORK_ENTITY_TYPE_APPLICATION</key> 
+				<value>Application</value> 
+			</workEntityType>
+			<taskKey>REQUEST_CREDIT_ANALYSIS_TASK_KEY</taskKey> 
+		</taskConfiguration>
+		
+		<taskConfiguration>
+			<taskConfiguration>false</taskConfiguration> 
+			<assignedToExpression></assignedToExpression> 
+			
+			<businessAdministrators /> 
+			
+			<escalationTeams /> 
+			<escalationUsers /> 
+			<potentialTeams>
+				<team>
+					<name>Document Specialist Team</name>
+				</team>
+			</potentialTeams>
+			<potentialUsers /> 
+			<taskDescription>@{entity.nullSafeNameFromAccountDer}: Documents on Application @{entity.refNumber},  Requested Amount: @{entity.totalRequestedLoanAmt} is Pending Completion.</taskDescription> 
+			<taskName>Document Specialist</taskName> 
+			<asynchronous>false</asynchronous> 
+			<taskPriority>
+				<key>TASK_PRIORITY_MEDIUM</key> 
+				<value>Medium</value> 
+			</taskPriority>
+			<taskSummary>@{entity.nullSafeNameFromAccountDer}: Documents on Application @{entity.refNumber},  Requested Amount: @{entity.totalRequestedLoanAmt} is Pending Completion.</taskSummary>
+			<workEntityType>
+				<key>WORK_ENTITY_TYPE_APPLICATION</key> 
+				<value>Application</value> 
+			</workEntityType>
+			<taskKey>REQUEST_DOCUMENT_SPECIALIST_TASK_KEY</taskKey> 
+		</taskConfiguration>
+		
+		<taskConfiguration>
+			<taskConfiguration>false</taskConfiguration> 
+			<assignedToExpression></assignedToExpression> 
+			
+			<businessAdministrators /> 
+			
+			<escalationTeams /> 
+			<escalationUsers /> 
+			<potentialTeams>
+				<team>
+					<name>Credit Manager Team</name>
+				</team>
+				<team>
+					<name>Credit Decision Team</name>
+				</team>
+			</potentialTeams>
+			<potentialUsers /> 
+			<taskDescription>@{entity.requestName}: Application @{entity.refNumber} (Requested Amount: @{entity.totalRequestedLoanAmt}) is Pending Decision</taskDescription> 
+			<taskName>Credit Decision</taskName> 
+			<asynchronous>false</asynchronous> 
+			<taskPriority>
+				<key>TASK_PRIORITY_MEDIUM</key> 
+				<value>Medium</value> 
+			</taskPriority>
+			<taskSummary>@{entity.requestName}: Application @{entity.refNumber} (Requested Amount: @{entity.totalRequestedLoanAmt}) is Pending Decision</taskSummary>
+			<workEntityType>
+				<key>WORK_ENTITY_TYPE_APPLICATION</key> 
+				<value>Application</value> 
+			</workEntityType>
+			<taskKey>REQUEST_CREDIT_DECISION_TASK_KEY</taskKey> 
+		</taskConfiguration>
+		
+		<taskConfiguration>
+			<taskConfiguration>false</taskConfiguration> 
+			<assignedToExpression></assignedToExpression> 
+			
+			<businessAdministrators /> 
+			
+			<escalationTeams /> 
+			<escalationUsers /> 
+			<potentialTeams>
+				<team>
+					<name>Credit Manager Team</name>
+				</team>
+			</potentialTeams>
+			<potentialUsers /> 
+			<taskDescription>@{coaFacility.request.requestName}: Application @{coaFacility.request.refNumber} (Requested Amount: @{coaFacility.requestedLoanAmtDer}) is Pending-COAs</taskDescription> 
+			<taskName>Verify Conditions Precedent</taskName> 
+			<asynchronous>false</asynchronous> 
+			<taskPriority>
+				<key>TASK_PRIORITY_MEDIUM</key> 
+				<value>Medium</value> 
+			</taskPriority>
+			<taskSummary>@{coaFacility.request.requestName}: Application @{coaFacility.request.refNumber} (Requested Amount: @{coaFacility.requestedLoanAmtDer}) is Pending-COAs.</taskSummary>
+			<workEntityType>
+				<key>WORK_ENTITY_TYPE_APPLICATION</key> 
+				<value>Application</value> 
+			</workEntityType>
+			<taskKey>REQUEST_CLEAR_COA_TASK_KEY</taskKey> 
+		</taskConfiguration>
+		
+		<taskConfiguration>
+			<taskConfiguration>false</taskConfiguration> 
+			<assignedToExpression></assignedToExpression> 
+			
+			<businessAdministrators /> 
+			
+			<escalationTeams /> 
+			<escalationUsers /> 
+			<potentialTeams>
+				<team>
+					<name>Credit Manager Team</name>
+				</team>
+				<team>
+					<name>Credit Decision Team</name>
+				</team>
+			</potentialTeams>
+			<potentialUsers /> 
+			<taskDescription>@{debtorEntity.facilityCustomerRole}:  Application @{debtorEntity.facility.request.refNumber}  @{debtorEntity.facility.request.requestName} is Pending Decision.</taskDescription> 
+			<taskName>Debtor Decision</taskName> 
+			<asynchronous>false</asynchronous> 
+			<taskPriority>
+				<key>TASK_PRIORITY_MEDIUM</key> 
+				<value>Medium</value> 
+			</taskPriority>
+			<taskSummary>@{debtorEntity.facilityCustomerRole}:  Application @{debtorEntity.facility.request.refNumber}  @{debtorEntity.facility.request.requestName} is Pending Decision.</taskSummary>
+			<workEntityType>
+				<key>WORK_ENTITY_TYPE_APPLICATION</key> 
+				<value>Application</value> 
+			</workEntityType>
+			<taskKey>REQUEST_DEBTOR_DECISION_TASK_KEY</taskKey> 
+		</taskConfiguration>
+	</list>
+</mod:sr.addEntityRequest>

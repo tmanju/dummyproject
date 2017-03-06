@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_signalItem" structureRef="String" />
+
+  <itemDefinition id="_4-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_4-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_4-signalItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="FacPlacementAuditFlowAccept" name="FacPlacementAuditFlowAccept" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="java.util.Date" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="facPlacementAudit" itemSubjectRef="_facPlacementAuditItem"/>
+    <property id="signal" itemSubjectRef="_signalItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <scriptTask id="_3" name="FacAllocator Sold" scriptFormat="http://www.java.com/java" >
+      <script>String signalName=(String)context.getVariable("signal");
+FacAllocator facAllocator=(FacAllocator)context.getVariable("facAllocContextEntity");
+System.out.println("=========Inside Fac Placement Audit accept Flow=============status"+ facAllocator.getWfStatus().getStatusKey() +"  signalName = " +signalName);	
+//saving old starts
+//WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "DEALS_STATUS_FUNDED");
+WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", signalName);
+
+
+ EntityService es = new EntityService();
+ FacPlacementAudit old = (FacPlacementAudit) es.createNew(FacPlacementAudit.class);
+//FacPlacementAudit old= new FacPlacementAudit();
+old.setCapitalProvider(facAllocator.getCapitalProvider());
+old.setNewCP(facAllocator.getCapitalProvider()); //in case of "accept" or "reject" CP remains same
+old.setPercentOrAmt(facAllocator.getPercentOrAmt());
+old.setMinUtilizationAmt(facAllocator.getMinUtilizationAmt());
+old.setFundPer(facAllocator.getFundPer());
+old.setFundAmt(facAllocator.getFundAmt());
+old.setPlacementRate(facAllocator.getPlacementRate());
+old.setSpread(facAllocator.getSpread());
+old.setServicefee(facAllocator.getServicefee());
+old.setWfStatus(status);
+old.setFacilityBE(facAllocator.getFacilityBE());
+old.setCreatedAt(new Date());
+old.setFacAllocator(facAllocator);
+ old.setInxMiscFee(facAllocator.getInxMiscFee());
+  old.setUnusedLineFeeSpr(facAllocator.getUnusedLineFeeSpr());
+ 
+context.setVariable("contextEntity",old);
+facAllocator.getOldCPs().add(old);
+System.out.println("=======End==Inside Fac Placement Audit accetp Flow=============9999"+ old);
+</script>
+    </scriptTask>
+    <task id="_4" name="Save Entity - FacPlacement Audit" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_4_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_4_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_4_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_4-_2" sourceRef="_4" targetRef="_2" />
+    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="FacPlacementAuditFlowAccept" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="103" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="103" y="256" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="16" y="96" width="222" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="20" y="176" width="214" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_4-_2" >
+        <di:waypoint x="127" y="200" />
+        <di:waypoint x="127" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
+        <di:waypoint x="127" y="40" />
+        <di:waypoint x="127" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="127" y="120" />
+        <di:waypoint x="127" y="200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="notificationConfiguration" type="search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="notificationConfiguration.search" label="Notification Configuration Search">
+		<field name="notificationConfiguration.notificationName" label="Notification Name" />
+		
+	</panel>
+	
+	<beans>
+		<bean name="notificationConfiguration" type="com.thirdpillar.codify.loanpath.model.NotificationConfiguration" />
+	</beans>
+</canvas>
+

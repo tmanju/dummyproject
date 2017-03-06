@@ -1,0 +1,312 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.util.*;
+import com.thirdpillar.foundation.service.EntityService;
+import java.util.Date;
+import java.util.Calendar;
+global com.thirdpillar.foundation.service.Context appContext;
+
+import java.math.BigDecimal;
+
+rule "SetStructureLanguage_New"
+    agenda-group "NEW" 
+    when
+		structure:Structure()
+	then
+		Language languageCode = (Language)LookupService.getResult("Language.byIsoCode", "isoCode", "en");
+		structure.setLanguage(languageCode);
+end
+
+rule "SetStructureCurrency_New"
+    agenda-group "NEW" 
+    when
+		structure:Structure()
+	then
+		Currency currencyCode = (Currency)LookupService.getResult("Currency.byIsoCode", "isoCode", "USD");
+		structure.setCurrency(currencyCode);
+end
+
+
+rule "SetPaymentFrequency_New" 
+    agenda-group "NEW" 
+    when
+    	#conditions
+        paymentSchedule:PaymentSchedule()
+	then
+		#actions
+		paymentSchedule.setPaymentFrequency((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "PAYMENT_FREQUENCY_MONTHLY"));
+end
+
+rule "SetContractStartDate_New" 
+    agenda-group "NEW" 
+    when
+    	#conditions
+        structure:Structure()
+	then
+		#actions
+		structure.setContractStartDate(new Date());
+end
+
+rule "SetAdvancedOrArrears_New" 
+    agenda-group "NEW" 
+    when
+    	#conditions
+        structure:Structure()
+	then
+		#actions
+		structure.setAdvancedOrArrears((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "ADVANCE_OR_ARREARS_ADVANCE"));
+end
+
+
+
+rule "SetPaymentScheduleType_New" 
+    agenda-group "NEW" 
+    when
+    	#conditions
+        paymentSchedule:PaymentSchedule()
+	then
+		#actions
+		paymentSchedule.setPaymentScheduleType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "PAYMENT_SCHEDULE_TYPE_REGULAR"));
+end
+
+
+rule "SetDateForFee_New" 
+    agenda-group "NEW" 
+    when
+    	#conditions
+        fee:Fee()
+	then
+		#actions
+		if (appContext != null && appContext.getContextEntity() != null && appContext.getContextEntity() instanceof PricingOption) {
+	      	PricingOption pricingOption = (PricingOption) appContext.getContextEntity();
+	      	if(pricingOption.getStructure() != null){
+	      		fee.setCmmncmntDate(pricingOption.getStructure().getPaymentStartDate());
+	      	}	
+		}
+end
+
+rule "setBorrowingBaseRes_New" 
+    agenda-group "NEW" 
+    when
+    	#conditions
+        structure:Structure()
+	then
+		#actions
+		structure.setBorrowingBaseRes(new BigDecimal("0"));
+end
+
+rule "SetDateForFeeOnChangeOfPaymentStartDate" 
+    when
+     	changeModelEvent:Structure.ChangeModelEvent(property == "paymentStartDate")
+	then
+		#actions
+		Date newCmmncmntDate = (Date) changeModelEvent.getNewValue();
+		Structure structure = (Structure) changeModelEvent.getEntity();
+		if(structure.getFees() != null){
+			for(Fee fee : structure.getFees()){
+				fee.setCmmncmntDate(newCmmncmntDate);
+			}
+		}
+end
+
+rule "SetInterestRateOnMarginChange" 
+    when
+     	changeModelEvent:Structure.ChangeModelEvent(property == "margin", newValue != null)
+	then
+		BigDecimal margin = (BigDecimal) changeModelEvent.getNewValue();
+		Structure str = (Structure) changeModelEvent.getEntity();
+		if(str.getIndexValue() != null){
+			BigDecimal sum = com.thirdpillar.codify.loanpath.util.Utility.add(margin,str.getIndexValue(),3);
+			str.setCustomerRate(sum);
+		}
+end
+
+rule "SetInterestRateOnIndexValueChange" 
+    when
+     	changeModelEvent:Structure.ChangeModelEvent(property == "indexValue", newValue != null)
+	then
+		BigDecimal indexValue = (BigDecimal) changeModelEvent.getNewValue();
+		Structure str = (Structure) changeModelEvent.getEntity();
+		if(str.getMargin() != null){
+			BigDecimal sum = com.thirdpillar.codify.loanpath.util.Utility.add(indexValue,str.getMargin(),3);
+			str.setCustomerRate(sum);
+		}
+end
+
+rule "SetIndexValueOnIndexChange"
+	when
+		changeModelEvent:Structure.ChangeModelEvent(property == "pricingIndex", newValue != null)
+	then
+		AttributeChoice at = (AttributeChoice) changeModelEvent.getNewValue();
+		Structure str = (Structure) changeModelEvent.getEntity();
+		if(at.getKey().equals("PRICING_INDICES_WS_PRIME")){
+			FeePolicy feePolicy = (FeePolicy)LookupService.getResult("FeePolicy.byPricingIndex", "key",at.getKey());
+			
+	   		if(feePolicy !=null && feePolicy.getDefaultPct() !=null){
+	   			str.setIndexValue(feePolicy.getDefaultPct());
+	   		}
+		}
+end
+
+rule "SetIUFReserveAmountOnChangeOfInterestRate"
+  when
+    #conditions
+        changeModelEvent:Structure.ChangeModelEvent(property == "customerRate", newValue != null)        
+  then 
+    #actions
+    Structure str = (Structure)changeModelEvent.getEntity();
+    Facility facility = null;
+    if(appContext != null){
+    	facility = (Facility) appContext.getNamedContext().get("root_allFacilities");
+    }else{
+    	facility = str.getFacility();
+    }
+    if(facility != null){
+    	BigDecimal reserveUtilization = BigDecimal.ZERO;
+    	BigDecimal approvedLoanAmt = facility.getApprovedLoanAmt();
+    	
+    	BigDecimal unusedLineFeeRate = BigDecimal.ZERO;
+    	BigDecimal interestRate = BigDecimal.ZERO;
+		BigDecimal interestRateNew = (BigDecimal) changeModelEvent.getNewValue();
+    	BigDecimal iufReserveAmount = BigDecimal.ZERO;
+    	System.out.println("=====================SetIUFReserveAmountOnChangeOfInterestRate=================");
+    	
+    	if(facility.getPricingOption() !=null && facility.getPricingOption().getStructure() !=null && facility.getPricingOption().getStructure().getReserveUtilization() !=null){
+    		reserveUtilization = facility.getPricingOption().getStructure().getReserveUtilization();
+    	}
+    	
+    	if(facility.getAdditionalOptions() !=null){
+    		List<PricingOption> pricingOptions = facility.getAdditionalOptions();
+    		for(PricingOption pricingOption : pricingOptions){
+    			if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getCustomerRate() !=null && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FLOATING".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		interestRate = interestRateNew;
+		    	}
+		    	
+		    	if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getInterestRate() !=null  && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FIXED".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		unusedLineFeeRate = pricingOption.getStructure().getInterestRate();
+		    	}
+    		}
+    	}
+    	
+    	if(approvedLoanAmt !=null && interestRate !=null && unusedLineFeeRate !=null && facility.getPricingOption() !=null && facility.getPricingOption().getStructure() !=null){
+    		
+    		BigDecimal reserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(reserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal reserveUtilizationMulApprovedLoanAmtMulInterestRate = Utility.multiply(reserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(interestRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			BigDecimal oneSubReserveUtilization = Utility.subtract(new BigDecimal("100"),reserveUtilization,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(oneSubReserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate = Utility.multiply(oneSubReserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(unusedLineFeeRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			iufReserveAmount = Utility.add(reserveUtilizationMulApprovedLoanAmtMulInterestRate,oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate,4);
+ 			facility.getPricingOption().getStructure().setReserveReq(iufReserveAmount);
+ 			new EntityService().save(facility.getPricingOption().getStructure());
+ 			System.out.println("=====================iufReserveAmount================="+iufReserveAmount);
+    	}
+    	
+    }
+end
+
+rule "SetIUFReserveAmountOnChangeOfUnusedLineFeeRate"
+  when
+    #conditions
+        changeModelEvent:Structure.ChangeModelEvent(property == "interestRate", newValue != null)        
+  then 
+    #actions
+   	Structure str = (Structure)changeModelEvent.getEntity();
+    Facility facility = null;
+    if(appContext != null){
+    	facility = (Facility) appContext.getNamedContext().get("root_allFacilities");
+    }else{
+    	facility = str.getFacility();
+    }
+    if(facility != null){
+    	BigDecimal reserveUtilization = BigDecimal.ZERO;
+    	BigDecimal approvedLoanAmt = facility.getApprovedLoanAmt();
+    	
+    	BigDecimal unusedLineFeeRate = BigDecimal.ZERO;
+    	BigDecimal unusedLineFeeRateNew = (BigDecimal) changeModelEvent.getNewValue();
+    	BigDecimal interestRate = BigDecimal.ZERO;
+    	BigDecimal iufReserveAmount = BigDecimal.ZERO;
+    	System.out.println("=====================SetIUFReserveAmountOnChangeOfUnusedLineFeeRate=================");
+    	
+    	if(facility.getPricingOption() !=null && facility.getPricingOption().getStructure() !=null && facility.getPricingOption().getStructure().getReserveUtilization() !=null){
+    		reserveUtilization = facility.getPricingOption().getStructure().getReserveUtilization();
+    	}
+    	
+    	if(facility.getAdditionalOptions() !=null){
+    		List<PricingOption> pricingOptions = facility.getAdditionalOptions();
+    		for(PricingOption pricingOption : pricingOptions){
+    			if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getCustomerRate() !=null && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FLOATING".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		interestRate = pricingOption.getStructure().getCustomerRate();
+		    	}
+		    	
+		    	if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getInterestRate() !=null  && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FIXED".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		unusedLineFeeRate = unusedLineFeeRateNew;
+		    		
+		    		pricingOption.getStructure().setReserveReq(iufReserveAmount);
+		    	}
+    		}
+    	}
+    	
+    	if(approvedLoanAmt !=null && interestRate !=null && unusedLineFeeRate !=null && facility.getPricingOption() !=null && facility.getPricingOption().getStructure() !=null){
+    		
+    		BigDecimal reserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(reserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal reserveUtilizationMulApprovedLoanAmtMulInterestRate = Utility.multiply(reserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(interestRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			BigDecimal oneSubReserveUtilization = Utility.subtract(new BigDecimal("100"),reserveUtilization,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(oneSubReserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate = Utility.multiply(oneSubReserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(unusedLineFeeRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			iufReserveAmount = Utility.add(reserveUtilizationMulApprovedLoanAmtMulInterestRate,oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate,4);
+    		facility.getPricingOption().getStructure().setReserveReq(iufReserveAmount);
+    		new EntityService().save(facility.getPricingOption().getStructure());
+ 			System.out.println("=====================iufReserveAmount================="+iufReserveAmount);
+    	}
+    	
+    }
+end
+
+
+rule "SetIUFReserveAmountOnChangeOfReserveUtilization"
+  when
+    #conditions
+        changeModelEvent:Structure.ChangeModelEvent(property == "reserveUtilization", newValue != null)        
+  then 
+    #actions
+    Facility facility = (Facility) appContext.getNamedContext().get("root_allFacilities");
+    if(facility != null){
+    	BigDecimal reserveUtilization = (BigDecimal) changeModelEvent.getNewValue();
+    	BigDecimal approvedLoanAmt = facility.getApprovedLoanAmt();
+    	
+    	BigDecimal unusedLineFeeRate = BigDecimal.ZERO;
+    	BigDecimal interestRate = BigDecimal.ZERO;
+    	BigDecimal iufReserveAmount = BigDecimal.ZERO;
+    	System.out.println("=====================SetIUFReserveAmountOnChangeOfReserveUtilization=================");
+    	if(facility.getAdditionalOptions() !=null){
+    		List<PricingOption> pricingOptions = facility.getAdditionalOptions();
+    		for(PricingOption pricingOption : pricingOptions){
+    			if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getCustomerRate() !=null && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FLOATING".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		interestRate = pricingOption.getStructure().getCustomerRate();
+		    	}
+		    	
+		    	if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getInterestRate() !=null  && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FIXED".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		unusedLineFeeRate = pricingOption.getStructure().getInterestRate();
+		    	}
+    		}
+    	}
+    	
+    	if(approvedLoanAmt !=null && interestRate !=null && unusedLineFeeRate !=null && facility.getPricingOption() !=null && facility.getPricingOption().getStructure() !=null){
+    		
+    		BigDecimal reserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(reserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal reserveUtilizationMulApprovedLoanAmtMulInterestRate = Utility.multiply(reserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(interestRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			BigDecimal oneSubReserveUtilization = Utility.subtract(new BigDecimal("100"),reserveUtilization,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(oneSubReserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate = Utility.multiply(oneSubReserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(unusedLineFeeRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			iufReserveAmount = Utility.add(reserveUtilizationMulApprovedLoanAmtMulInterestRate,oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate,4);
+    		facility.getPricingOption().getStructure().setReserveReq(iufReserveAmount);
+    		new EntityService().save(facility.getPricingOption().getStructure());
+ 			System.out.println("=====================iufReserveAmount================="+iufReserveAmount);
+    	}
+    	
+    }
+end

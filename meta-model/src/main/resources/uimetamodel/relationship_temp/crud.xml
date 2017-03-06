@@ -1,0 +1,135 @@
+<canvas id="relationship" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">	
+	
+	
+			<panel id="relationship.relationshipInformation" label="">					
+						<field name="relationship.name"/> 
+						<field name="relationship.relationshipDetails"/>
+						<field name="relationship.portfolioAdministrtr" label="Portfolio Administrator"/>
+						<field name="relationship.portfolioAdministrtr2" label="Portfolio Administrator 2"/>
+						<!--<field name="relationship.metainfo.createdAt" label="Relationship Created Date"/>-->
+						<!--<field name="relationship.relationshipCreditApproval"/>
+						<field name="relationship.relationshipCreditAvailable"/>
+						<field name="relationship.relCreditAppExpiration"/>-->
+			</panel>
+			<!-- <panel id="relationship.periodicCreditReview"> 
+						<field name="relationship.periodicManualReviewReq"/>
+						<field name="relationship.periodicManualReview"/>
+						<field name="relationship.manualReviewDate"/>
+						<field name="relationship.nextManualReviewDate"/>		
+			</panel> -->
+			
+			<panel id="relationship.WatchList" label="Watch List"> 
+				<field name="relationship.watchList" label="Watch List"/>
+				<field name="relationship.watchListDate" label="Watch List Date"/>
+				<field name="relationship.watchListRootCause" label="Watch List Root Cause"/>
+				<field name="relationship.watchListRootAnalysis" label="Watch List Root Cause Analysis"/>
+				<field name="relationship.watchlistStrategy" />
+				<field name="relationship.relNotes" label="Notes"/>
+			</panel>
+			
+			<panel id="relationship.creditProfileInfo" label="Credit Profile Information Panel"> 
+				<field name="relationship.creditProfileInfo.profileDate"/>
+				<field name="relationship.creditProfileInfo.lastCreditVisit" label="Last Credit Visit Completed"/>
+				<field name="relationship.creditProfileInfo.lastCreditVisitBy" label="Last Credit Visit Completed By"/>
+				<field name="relationship.nextCreditVisitDue" label="Next Credit Visit Due"/>
+				<field name="relationship.creditProfileInfo.yearOfTaxReturn" label="Year of Tax Return Utilized for Topsheet"/>
+				<field name="relationship.creditProfileInfo.mostRecentFYEType" label="Most Recent FYE Type"/>
+				<field name="relationship.creditProfileInfo.interimPLType" label="Interim P and L Type"/>
+				<field name="relationship.creditProfileInfo.interimPLThrough" label="Interim P and L Through"/>
+				<field name="relationship.creditProfileInfo.consolidtdOrConsolidtng" label="Consolidated or Consolidating"/>
+				<field name="relationship.creditProfileInfo.numberOfLocations" />
+				<field name="relationship.creditProfileInfo.intendsToExpand" />
+				<field name="relationship.creditProfileInfo.crossDefltdGuaranteed" label="Cross-Defaulted/Cross-Guaranteed?"/>
+				<field name="relationship.creditProfileInfo.mostRcntFYEFixdChrg" label="Most Recent FYE Fixed Charge Coverage"/>
+				<field name="relationship.creditProfileInfo.currentYrInterimFixdChrg" label="Current Year Interim Fixed Charge Coverage"/>
+				<field name="relationship.creditProfileInfo.loanToGrossFrmTopsheet" label="Loan To Gross from Topsheet"/>
+				<field name="relationship.creditProfileInfo.lowestFYEPersonalDSC" label="Lowest FYE Personal DSC(If Multiple Owners)"/>
+				<field name="relationship.creditProfileInfo.combinedPrsnlLiquidity" label="Combined Personal Liquidity (All Owners)"/>
+				<field name="relationship.creditProfileInfo.monthlyBusinessDebtSrvc" label="Monthly Business Debt Service"/>
+				<field name="relationship.creditProfileInfo.numberOfMonthsLiquidity" label="Number of Months Liquidity Coverage"/>
+				<field name="relationship.creditProfileInfo.totalBusinessIndebted" label="Total Business Indebtedness"/>
+			</panel>
+			
+			<panel id="relationship.annualReviewInfo" label="Annual Review Information"> 
+				<field name="relationship.annualReviewInfo.dueDate"/>
+				<field name="relationship.annualReviewInfo.last1040Date" label="Last 1040 Date"/>
+				<field name="relationship.annualReviewInfo.ffpReceivedDate" label="FFP Received Date"/>
+				<field name="relationship.annualReviewInfo.currentReviewStatus"/>
+				<field name="relationship.annualReviewInfo.waiverReason"/>
+				<field name="relationship.annualReviewInfo.completionDate"/>
+				<field name="relationship.annualReviewInfo.nextDueDate"/>
+				<field name="relationship.annualReviewInfo.annualReviewDttm" label="Annual Review Date"/>
+			</panel>
+			
+			 <data-table name="relationship.allRelationshipParties" row="relParty" label="Roles">
+			  	<columns>
+				<!-- 	<column name="relParty.accountName" label="Account"/>  -->
+					<column name="relParty.partyRole" label="Role"/>
+					<column name="relParty.customer" label="Name"/>
+					<column name="relParty.parentRelationshipParty" label="Related To" />
+					<column name="relParty.customer.partyDetail.formattedTaxIDNum" label="Taxpayer ID Number"/>
+					<column name="relParty.pctOwned" label="% Owned"/>
+					<column name="relParty.percentGuaranteed" label="% Guaranteed"/>		
+					<column name="relParty.customer.partyDetail.createdInOpenAM" label="Provisioned"/>		
+				</columns>
+				<edit-canvas>
+					<panel id="relationshipParty.customerInformation">
+						<field name="relParty.customer" label="Name"/>
+						<field name="relParty.partyRole" label="Role"/>
+						<field name="relParty.parentRelationshipParty" label="Related To"/>
+						<field name="relParty.pctOwned" label="% Owned"/>
+						<field name="relParty.percentGuaranteed" label="% Guaranteed"/>
+						
+							<!--<panel id="relParty.innerPanel1" label="">
+								<field name="relParty.partyDetail.partyDetailType" />
+								<field name="relParty.partyDetail.companyNumber" />
+								<field name="relParty.partyDetail.businessChannel" />
+							
+							</panel>
+							<panel id="customer.customerInformation.innerPanel2" label="">
+								<field name="relParty.partyDetail.firstName" />
+								<field name="relParty.partyDetail.lastName" />
+								<field name="relParty.partyDetail.legalName" />	
+								<field name="relParty.partyDetail.legalNameConfirmed" />		
+								<field name="relParty.partyDetail.cgrqrdForPrmitdLesses" />
+								<field name="relParty.partyDetail.accountName" />	
+								<field name="relParty.partyDetail.verifiedDate" />
+								<field name="relParty.partyDetail.ndaInPlace" />
+								<field name="Tax Id" />	Need to create utility method 
+								<field name="relParty.partyDetail.sector" />
+								<field name="relParty.partyDetail.customerCanBeContacted" />
+								<field name="Tax Id Number" />	Need to create utility method 
+								<field name="relParty.partyDetail.equityCapitalization" />
+								<field name="relParty.partyDetail.lastActivityDate" />
+								<commands>
+									<command name="Retrieve" />
+								</commands>
+								<field name="relParty.partyDetail.stateIncorporated" />
+								<field name="relParty.partyDetail.servicingTier" />
+								<field name="relParty.partyDetail.organizationNumber" />
+						</panel>
+						<panel id="customer.customerInformation.innerPanel3" label="">
+							<field name="Customer has given permission to pull bureau report." />	Need to create utility method
+							<field name="relParty.partyDetail.birthDttm" />
+							<field name="relParty.partyDetail.title" />								
+							<field name="relParty.partyDetail.countryOfCitizenship" />
+							<field name="relParty.partyDetail.birthCity" label="Place of Birth(City)"/>
+							<field name="relParty.partyDetail.birthCountry" label="Place of Birth(Country)"/>
+							<field name="relParty.partyDetail.ownershipPct" />
+							<field name="relParty.partyDetail.contactInfo.email" label="Email Address"/>
+							<field name="relParty.partyDetail.contactInfo.telephoneNumber" label="Mobile Number"/>Need utility method
+						</panel>
+					--></panel> 
+				</edit-canvas>
+			  </data-table>
+				
+
+	<commands>
+	</commands>
+	<beans>
+		<bean name="relationship" type="com.thirdpillar.codify.loanpath.model.Relationship" />
+	</beans>	
+</canvas>

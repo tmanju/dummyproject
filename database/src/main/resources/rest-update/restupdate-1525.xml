@@ -1,0 +1,56 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+		<team>
+			<description>Credit Analyst Team</description>
+			<name>Credit Analyst Team</name>
+			<teamCategory>
+				<key>TEAM_CATEGORY_CREDIT</key>
+			</teamCategory>
+			<status>
+				<key>TEAM_STATUS_ACTIVE</key>
+			</status>
+			<teamManager>
+				<username>credit.analyst</username>
+			</teamManager>
+		</team>
+		<team>
+			<description>Credit Manager Team</description>
+			<name>Credit Manager Team</name>
+			<teamCategory>
+				<key>TEAM_CATEGORY_CREDIT</key>
+			</teamCategory>
+			<status>
+				<key>TEAM_STATUS_ACTIVE</key>
+			</status>
+			<teamManager>
+				<username>credit.mgr</username>
+			</teamManager>
+		</team>
+		<team>
+			<description>Credit Decision Team</description>
+			<name>Credit Decision Team</name>
+			<teamCategory>
+				<key>TEAM_CATEGORY_CREDIT</key>
+			</teamCategory>
+			<status>
+				<key>TEAM_STATUS_ACTIVE</key>
+			</status>
+			<teamManager>
+				<username>credit.mgr</username>
+			</teamManager>
+		</team>
+		<team>
+			<description>Document Specialist Team</description>
+			<name>Document Specialist Team</name>
+			<teamCategory>
+				<key>TEAM_CATEGORY_DOCUMENTATION</key>
+			</teamCategory>
+			<status>
+				<key>TEAM_STATUS_ACTIVE</key>
+			</status>
+			<teamManager>
+				<username>document.specialist</username>
+			</teamManager>
+		</team>
+	</list>
+</mod:sr.addEntityRequest>

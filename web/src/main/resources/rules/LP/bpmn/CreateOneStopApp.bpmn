@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_2-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_2-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_2-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_3-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_3-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_5-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_5-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_5-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <process processType="Private" isExecutable="true" id="CreateOneStopApp" name="CreateOneStopApp" tns:packageName="LP.web" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+     <tns:import name="com.thirdpillar.codify.foundation.jsf.EntityBean" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="flowState" itemSubjectRef="_flowStateItem"/>
+    <property id="parentPage" itemSubjectRef="_parentPageItem"/>
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_2" name="One Stop App" tns:taskName="PageFlow" >
+      <ioSpecification>
+        <dataInput id="_2_parentPageInput" name="parentPage" />
+        <dataInput id="_2_flowStateInput" name="flowState" />
+        <dataInput id="_2_operationInput" name="operation" />
+        <dataInput id="_2_enameInput" name="ename" />
+        <dataInput id="_2_canvasInput" name="canvas" />
+        <dataInput id="_2_actionsInput" name="actions" />
+        <inputSet>
+          <dataInputRefs>_2_parentPageInput</dataInputRefs>
+          <dataInputRefs>_2_flowStateInput</dataInputRefs>
+          <dataInputRefs>_2_operationInput</dataInputRefs>
+          <dataInputRefs>_2_enameInput</dataInputRefs>
+          <dataInputRefs>_2_canvasInput</dataInputRefs>
+          <dataInputRefs>_2_actionsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_2_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_2_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_operationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ShowCrud</from>
+          <to xsi:type="tFormalExpression">_2_operationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">request</from>
+          <to xsi:type="tFormalExpression">_2_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_canvasInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">oneStopApp</from>
+          <to xsi:type="tFormalExpression">_2_canvasInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_actionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">next:OneStopAppValidationGroup</from>
+          <to xsi:type="tFormalExpression">_2_actionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_3" name="End Page Flow" tns:taskName="EndPageFlow" >
+      <ioSpecification>
+        <dataInput id="_3_parentPageInput" name="parentPage" />
+        <dataInput id="_3_flowStateInput" name="flowState" />
+        <dataInput id="_3_redirectOperationInput" name="redirectOperation" />
+        <dataInput id="_3_enameInput" name="ename" />
+        <inputSet>
+          <dataInputRefs>_3_parentPageInput</dataInputRefs>
+          <dataInputRefs>_3_flowStateInput</dataInputRefs>
+          <dataInputRefs>_3_redirectOperationInput</dataInputRefs>
+          <dataInputRefs>_3_enameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_3_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_3_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_redirectOperationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">EditEntity</from>
+          <to xsi:type="tFormalExpression">_3_redirectOperationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">request</from>
+          <to xsi:type="tFormalExpression">_3_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_4" name="End" />
+    <task id="_5" name="Convert To Request" tns:taskName="BusinessOperationTask" >
+      <ioSpecification>
+        <dataInput id="_5_entityInput" name="entity" />
+        <dataInput id="_5_businessOperationNameInput" name="businessOperationName" />
+        <inputSet>
+          <dataInputRefs>_5_entityInput</dataInputRefs>
+          <dataInputRefs>_5_businessOperationNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_5_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_businessOperationNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">convertOneStopAppToRequest</from>
+          <to xsi:type="tFormalExpression">_5_businessOperationNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_6" name="Set contextEntity" scriptFormat="http://www.java.com/java" >
+      <script>FlowState fs  = (FlowState) context.getVariable("flowState");
+context.setVariable("contextEntity",((EntityBean)fs.getEntry().getPrimaryBean()).getEntity());</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_6-_2" sourceRef="_6" targetRef="_2" />
+    <sequenceFlow id="_5-_3" sourceRef="_5" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_2-_5" sourceRef="_2" targetRef="_5" />
+    <sequenceFlow id="_1-_6" sourceRef="_1" targetRef="_6" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="CreateOneStopApp" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="78" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="26" y="176" width="153" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="52" y="336" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="78" y="416" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="16" y="256" width="172" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="37" y="96" width="130" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_6-_2" >
+        <di:waypoint x="102" y="120" />
+        <di:waypoint x="102" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_3" >
+        <di:waypoint x="102" y="280" />
+        <di:waypoint x="102" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="102" y="360" />
+        <di:waypoint x="102" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_5" >
+        <di:waypoint x="102" y="200" />
+        <di:waypoint x="102" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_6" >
+        <di:waypoint x="102" y="40" />
+        <di:waypoint x="102" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

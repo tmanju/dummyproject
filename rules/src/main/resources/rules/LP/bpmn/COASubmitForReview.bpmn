@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+  <itemDefinition id="_teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_requestItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_entityInItem" />
+  <itemDefinition id="_entityOutItem" />
+  <itemDefinition id="_entityNameItem" />
+  <itemDefinition id="_actionItem" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+  <itemDefinition id="_3-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_3-requestItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_3-entityInItem" />
+  <itemDefinition id="_3-entityOutItem" />
+  <itemDefinition id="_3-entityNameItem" />
+  <itemDefinition id="_3-actionItem" />
+
+  <itemDefinition id="_5-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+  <itemDefinition id="_5-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_5-requestItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_5-entityInItem" />
+  <itemDefinition id="_5-entityOutItem" />
+  <itemDefinition id="_5-entityNameItem" />
+  <itemDefinition id="_5-actionItem" />
+
+  <process processType="Private" isExecutable="true" id="COASubmitForReview" name="COASubmitForReview" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Team" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="team" itemSubjectRef="_teamItem"/>
+    <property id="request" itemSubjectRef="_requestItem"/>
+    <property id="entityIn" itemSubjectRef="_entityInItem"/>
+    <property id="entityOut" itemSubjectRef="_entityOutItem"/>
+    <property id="entityName" itemSubjectRef="_entityNameItem"/>
+    <property id="action" itemSubjectRef="_actionItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_3" name="Save Entity - COA Evaluation" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_3_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_3_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_4" name="Determine Team" scriptFormat="http://www.java.com/java" >
+      <script>CoaEvaluation coaEvaluation = (CoaEvaluation) context.getVariable("contextEntity");
+Facility product = coaEvaluation.getProduct();
+String teamName = "Team Blue"; // default
+if (coaEvaluation.getCoaDefinition() != null 
+			&amp;&amp; coaEvaluation.getCoaDefinition().getCoaCategory() != null 
+			&amp;&amp; "COA_CATEGORY_UCC".equals(coaEvaluation.getCoaDefinition().getCoaCategory().getKey())) {
+	teamName = "Team White";
+} else if ("CREDIT_FACILITY_TYPE_START_UP_LOAN".equals(product.getFacilityType().getKey())) {
+	teamName = "Team Red";
+} else if ("CREDIT_FACILITY_TYPE_ESTABLISHED_PRACTICE_LOAN".equals(product.getFacilityType().getKey()) &amp;&amp; "PROJECT".equals(product.getFacilityCategory().getKey())) {
+	teamName = "Team Red";
+} else if ("CREDIT_FACILITY_TYPE_EXPRESS_LOAN".equals(product.getFacilityType().getKey())) {
+	teamName = "Team Red";
+} else if ("CREDIT_FACILITY_TYPE_LINE_OF_CREDIT".equals(product.getFacilityType().getKey())) {
+	teamName = "Team Blue";
+} else if ("CREDIT_FACILITY_TYPE_ESTABLISHED_PRACTICE_LOAN".equals(product.getFacilityType().getKey()) &amp;&amp; "NON_PROJECT".equals(product.getFacilityCategory().getKey())) {
+	teamName = "Team Blue";
+} else if ("CREDIT_FACILITY_TYPE_PSA".equals(product.getFacilityType().getKey())) {
+	teamName = "Team Blue";
+} else if ("CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE".equals(product.getFacilityType().getKey())) {
+	teamName = "Team Green";
+}                
+
+Team currentTeam = (Team) LookupService.getResult("Team.byName","name", teamName); 
+context.setVariable("team", currentTeam);
+
+</script>
+    </scriptTask>
+    <task id="_5" name="COA Review Task" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>CoaEvaluation coaEvaluation = (CoaEvaluation) context.getVariable("contextEntity");
+Request wiRequest = coaEvaluation.getProduct().getRequest();
+context.setVariable("request",wiRequest);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script>
+          <script>context.setVariable("request",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_5_entityInput" name="entity" />
+        <dataInput id="_5_coaEvalInput" name="coaEval" />
+        <dataInput id="_5_BodyInput" name="Body" />
+        <dataInput id="_5_SubjectInput" name="Subject" />
+        <dataInput id="_5_notifyInput" name="notify" />
+        <dataInput id="_5_ToInput" name="To" />
+        <dataInput id="_5_CommentInput" name="Comment" />
+        <dataInput id="_5_ContentInput" name="Content" />
+        <dataInput id="_5_TaskNameInput" name="TaskName" />
+        <dataInput id="_5_GroupIdInput" name="GroupId" />
+        <dataInput id="_5_FromInput" name="From" />
+        <inputSet>
+          <dataInputRefs>_5_entityInput</dataInputRefs>
+          <dataInputRefs>_5_coaEvalInput</dataInputRefs>
+          <dataInputRefs>_5_BodyInput</dataInputRefs>
+          <dataInputRefs>_5_SubjectInput</dataInputRefs>
+          <dataInputRefs>_5_notifyInput</dataInputRefs>
+          <dataInputRefs>_5_ToInput</dataInputRefs>
+          <dataInputRefs>_5_CommentInput</dataInputRefs>
+          <dataInputRefs>_5_ContentInput</dataInputRefs>
+          <dataInputRefs>_5_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_5_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_5_FromInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>request</sourceRef>
+        <targetRef>_5_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_5_coaEvalInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">coaReview_task_email_body</from>
+          <to xsi:type="tFormalExpression">_5_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.product.request.nullSafeNameFromRelationshipDer}: COA ID (#{contextEntity.coaDefinition.coaId}) Category #{contextEntity.coaDefinition.coaCategory.value} on Application #{contextEntity.product.request.refNumber} on Product #{contextEntity.product.facilityType.value} has been submitted for your review.</from>
+          <to xsi:type="tFormalExpression">_5_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_5_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_5_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.product.request.nullSafeNameFromRelationshipDer}: COA ID (#{contextEntity.coaDefinition.coaId}) Category #{contextEntity.coaDefinition.coaCategory.value} on Application #{contextEntity.product.request.refNumber} on Product #{contextEntity.product.facilityType.value} has been submitted for your review.</from>
+          <to xsi:type="tFormalExpression">_5_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.product.request.nullSafeNameFromRelationshipDer}: COA ID (#{contextEntity.coaDefinition.coaId}) Category #{contextEntity.coaDefinition.coaCategory.value} on Application #{contextEntity.product.request.refNumber} on Product #{contextEntity.product.facilityType.value} has been submitted for your review.</from>
+          <to xsi:type="tFormalExpression">_5_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">COA Review</from>
+          <to xsi:type="tFormalExpression">_5_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.name}</from>
+          <to xsi:type="tFormalExpression">_5_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_5_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_8" name="Set SFDC Status tp &quot;Ready For Review&quot;" scriptFormat="http://www.java.com/java" >
+      <script>CoaEvaluation coaEvaluation = (CoaEvaluation) context.getVariable("contextEntity");
+coaEvaluation.setSfdcCaseStatus("Ready for Review");</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_5-_2" sourceRef="_5" targetRef="_2" />
+    <sequenceFlow id="_8-_3" sourceRef="_8" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
+    <sequenceFlow id="_1-_8" sourceRef="_1" targetRef="_8" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="COASubmitForReview" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="136" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="136" y="416" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="55" y="176" width="210" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="86" y="256" width="149" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="16" y="336" width="288" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="36" y="96" width="249" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_5-_2" >
+        <di:waypoint x="160" y="360" />
+        <di:waypoint x="160" y="440" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_3" >
+        <di:waypoint x="160" y="120" />
+        <di:waypoint x="160" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="160" y="200" />
+        <di:waypoint x="160" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="160" y="280" />
+        <di:waypoint x="160" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_8" >
+        <di:waypoint x="160" y="40" />
+        <di:waypoint x="160" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

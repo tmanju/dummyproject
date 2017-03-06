@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_2-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_2-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_5-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_5-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_6-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_6-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_7-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_7-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_8-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_8-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_9-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_9-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_10-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_10-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_11-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_11-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_12-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_12-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <itemDefinition id="_13-entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_13-ResultItem" structureRef="com.thirdpillar.foundation.model.Scoring" />
+
+  <process processType="Private" isExecutable="true" id="ScoringSubProcess" name="ScoringSubProcess" tns:packageName="LP" >
+
+    <!-- process variables -->
+    <property id="entity" itemSubjectRef="_entityItem"/>
+    <property id="Result" itemSubjectRef="_ResultItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_2" name="Init Scoring" tns:taskName="BusinessOperationTask" >
+      <ioSpecification>
+        <dataInput id="_2_entityInput" name="entity" />
+        <dataInput id="_2_businessOperationNameInput" name="businessOperationName" />
+        <dataOutput id="_2_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_2_entityInput</dataInputRefs>
+          <dataInputRefs>_2_businessOperationNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_2_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_2_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_businessOperationNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">calcScoring</from>
+          <to xsi:type="tFormalExpression">_2_businessOperationNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_2_ResultOutput</sourceRef>
+        <targetRef>Result</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_4" name="End" />
+    <task id="_5" name="Scoring Rule Recomm Application" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_5_entityInput" name="entity" />
+        <dataInput id="_5_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_5_entityInput</dataInputRefs>
+          <dataInputRefs>_5_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_5_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringRecommRuleApplication</from>
+          <to xsi:type="tFormalExpression">_5_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_6" name="Scoring Attribute Calculations Indiviual" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_6_entityInput" name="entity" />
+        <dataInput id="_6_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_6_entityInput</dataInputRefs>
+          <dataInputRefs>_6_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_6_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringAttrIndividual</from>
+          <to xsi:type="tFormalExpression">_6_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_7" name="Set Facility Recommendations" tns:taskName="BusinessOperationTask" >
+      <ioSpecification>
+        <dataInput id="_7_entityInput" name="entity" />
+        <dataInput id="_7_businessOperationNameInput" name="businessOperationName" />
+        <inputSet>
+          <dataInputRefs>_7_entityInput</dataInputRefs>
+          <dataInputRefs>_7_businessOperationNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_7_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_7_businessOperationNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">setFacilityRecommendation</from>
+          <to xsi:type="tFormalExpression">_7_businessOperationNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_8" name="Scoring Attribute Calculations Non Indiviual" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_8_entityInput" name="entity" />
+        <dataInput id="_8_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_8_entityInput</dataInputRefs>
+          <dataInputRefs>_8_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_8_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_8_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringAttrNonIndividual</from>
+          <to xsi:type="tFormalExpression">_8_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_9" name="Scoring Attribute Calculations Facility" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_9_entityInput" name="entity" />
+        <dataInput id="_9_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_9_entityInput</dataInputRefs>
+          <dataInputRefs>_9_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_9_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringAttrFacility</from>
+          <to xsi:type="tFormalExpression">_9_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_10" name="Scoring RecommRule Calculations Indiviual" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_10_parameterInput" name="parameter" />
+        <dataInput id="_10_entityInput" name="entity" />
+        <dataInput id="_10_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_10_parameterInput</dataInputRefs>
+          <dataInputRefs>_10_entityInput</dataInputRefs>
+          <dataInputRefs>_10_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>variable</sourceRef>
+        <targetRef>_10_parameterInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_10_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_10_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringRecommRuleIndividual</from>
+          <to xsi:type="tFormalExpression">_10_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_11" name="Scoring RecommRule Calculations Non Indiviual" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_11_entityInput" name="entity" />
+        <dataInput id="_11_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_11_entityInput</dataInputRefs>
+          <dataInputRefs>_11_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringRecommRuleIndividual</from>
+          <to xsi:type="tFormalExpression">_11_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_12" name="Scoring RecommRule Calculations Facility" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_12_entityInput" name="entity" />
+        <dataInput id="_12_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_12_entityInput</dataInputRefs>
+          <dataInputRefs>_12_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_12_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_12_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringRecommRuleFacility</from>
+          <to xsi:type="tFormalExpression">_12_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_13" name="Scoring Attribute Calculations Application" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_13_entityInput" name="entity" />
+        <dataInput id="_13_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_13_entityInput</dataInputRefs>
+          <dataInputRefs>_13_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_13_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_13_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CalcScoringAttrApplication</from>
+          <to xsi:type="tFormalExpression">_13_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_5-_4" sourceRef="_5" targetRef="_4" />
+    <sequenceFlow id="_13-_5" sourceRef="_13" targetRef="_5" />
+    <sequenceFlow id="_2-_6" sourceRef="_2" targetRef="_6" />
+    <sequenceFlow id="_12-_7" sourceRef="_12" targetRef="_7" />
+    <sequenceFlow id="_10-_8" sourceRef="_10" targetRef="_8" />
+    <sequenceFlow id="_11-_9" sourceRef="_11" targetRef="_9" />
+    <sequenceFlow id="_6-_10" sourceRef="_6" targetRef="_10" />
+    <sequenceFlow id="_8-_11" sourceRef="_8" targetRef="_11" />
+    <sequenceFlow id="_9-_12" sourceRef="_9" targetRef="_12" />
+    <sequenceFlow id="_7-_13" sourceRef="_7" targetRef="_13" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="ScoringSubProcess" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="46" y="55" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="170" y="55" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="544" y="319" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="687" y="316" width="223" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="346" y="58" width="235" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="392" y="232" width="220" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="694" y="142" width="255" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="41" y="146" width="294" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="690" y="53" width="268" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="357" y="144" width="277" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="34" y="237" width="307" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="640" y="228" width="297" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="70" y="79" />
+        <di:waypoint x="220" y="79" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_4" >
+        <di:waypoint x="798" y="340" />
+        <di:waypoint x="568" y="343" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_5" >
+        <di:waypoint x="788" y="252" />
+        <di:waypoint x="798" y="340" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_6" >
+        <di:waypoint x="220" y="79" />
+        <di:waypoint x="463" y="82" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_7" >
+        <di:waypoint x="187" y="261" />
+        <di:waypoint x="502" y="256" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_8" >
+        <di:waypoint x="824" y="77" />
+        <di:waypoint x="821" y="166" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_9" >
+        <di:waypoint x="495" y="168" />
+        <di:waypoint x="188" y="170" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_10" >
+        <di:waypoint x="463" y="82" />
+        <di:waypoint x="824" y="77" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_11" >
+        <di:waypoint x="821" y="166" />
+        <di:waypoint x="495" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_12" >
+        <di:waypoint x="188" y="170" />
+        <di:waypoint x="187" y="261" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_13" >
+        <di:waypoint x="502" y="256" />
+        <di:waypoint x="788" y="252" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_2-2-2-facilityItem" />
+
+  <itemDefinition id="_2_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="UpdateProductStatusToWithdraw" name="UpdateProductStatusToWithdraw" tns:packageName="LP" >
+
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <subProcess id="_2" name="Multiple Instances"  >
+      <ioSpecification>
+        <dataInput id="_2_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity.allFacilities</sourceRef>
+        <targetRef>_2_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_2_input</loopDataInputRef>
+        <inputDataItem id="facility" itemSubjectRef="_2_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <startEvent id="_2-2-1" name="Start" />
+    <task id="_2-2-2" name="Withdrawn" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_2-2-2_entityInput" name="entity" />
+        <dataInput id="_2-2-2_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_2-2-2_entityInput</dataInputRefs>
+          <dataInputRefs>_2-2-2_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>facility</sourceRef>
+        <targetRef>_2-2-2_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2-2-2_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">FACILITY_STATUS_WITHDRAWN</from>
+          <to xsi:type="tFormalExpression">_2-2-2_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_2-2-3" name="End" />
+    <!-- connections -->
+    <sequenceFlow id="_2-2-1-_2-2-2" sourceRef="_2-2-1" targetRef="_2-2-2" />
+    <sequenceFlow id="_2-2-2-_2-2-3" sourceRef="_2-2-2" targetRef="_2-2-3" />
+    </subProcess>
+    <endEvent id="_3" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="UpdateProductStatusToWithdraw" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="400" y="19" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="161" y="119" width="520" height="208" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-1" >
+        <dc:Bounds x="211" y="180" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-2" >
+        <dc:Bounds x="341" y="176" width="131" height="61" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-3" >
+        <dc:Bounds x="542" y="184" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="397" y="412" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_2-2-1-_2-2-2" >
+        <di:waypoint x="74" y="85" />
+        <di:waypoint x="245" y="87" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-2-2-_2-2-3" >
+        <di:waypoint x="245" y="87" />
+        <di:waypoint x="405" y="89" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="424" y="43" />
+        <di:waypoint x="421" y="223" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="421" y="223" />
+        <di:waypoint x="421" y="436" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

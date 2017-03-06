@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd ">
+	<bean id="onerac.toExcel" class="com.thirdpillar.foundation.util.reflect.MvelTemplates">
+		<property name="valuesMap">
+			<map>
+			<!-- 
+				<entry key="B4">
+					<value><![CDATA[
+							String borrowerName = "";
+							int index = 0;
+							customers = entity.getAllCustomersInRolesAsList("PARTY_ROLE_TYPE_CORPORATE_BORROWER");
+							if (customers != null && customers.size > index) {
+								borrowerName = customers[index].helper.displayValue; 
+							}
+							return borrowerName;
+						]]></value>
+				</entry>
+				<entry key="C14">
+					<value><![CDATA[
+							String guarantorName = "";
+							int index = 0;
+							customers = entity.getAllCustomersInRolesAsList("PARTY_ROLE_TYPE_BORROWER");
+							if (customers != null && customers.size > index) {
+								guarantorName = customers[index].helper.displayValue; 
+							}
+							return guarantorName;
+						]]></value>
+				</entry>				
+				<entry key="D14">
+					<value><![CDATA[
+							String guarantorName = "";
+							int index = 0;
+							customers = entity.getAllCustomersInRolesAsList("PARTY_ROLE_TYPE_GUARANTOR");
+							if (customers != null && customers.size > index) {
+								guarantorName = customers[index].helper.displayValue; 
+							}
+							return guarantorName;
+						]]></value>
+				</entry>				
+				<entry key="E14">
+					<value><![CDATA[
+							String guarantorName = "";
+							int index = 1;
+							customers = entity.getAllCustomersInRolesAsList("PARTY_ROLE_TYPE_GUARANTOR");
+							if (customers != null && customers.size > index) {
+								guarantorName = customers[index].helper.displayValue; 
+							}
+							return guarantorName;
+						]]></value>
+				</entry>				
+				<entry key="F14">
+					<value><![CDATA[
+							String guarantorName = "";
+							int index = 2;
+							customers = entity.getAllCustomersInRolesAsList("PARTY_ROLE_TYPE_GUARANTOR");
+							if (customers != null && customers.size > index) {
+								guarantorName = customers[index].helper.displayValue; 
+							}
+							return guarantorName;
+						]]></value>
+				</entry>				
+				<entry key="G14">
+					<value><![CDATA[
+							String guarantorName = "";
+							int index = 3;
+							customers = entity.getAllCustomersInRolesAsList("PARTY_ROLE_TYPE_GUARANTOR");
+							if (customers != null && customers.size > index) {
+								guarantorName = customers[index].helper.displayValue; 
+							}
+							return guarantorName;
+						]]></value>
+				</entry>	
+				<entry key="A30">
+					<value><![CDATA[
+							String facilityTypeName = "";
+							int index = 0;
+							if (entity.allFacilities.size() > index) {
+								facility = entity.allFacilities.get(index);
+								if (facility.facilityType != null) {
+									facilityTypeName = facility.facilityType.helper.displayValue;
+								} 
+							}
+							return facilityTypeName;
+						]]></value>
+				</entry>	
+				<entry key="A31">
+					<value><![CDATA[
+							String facilityTypeName = "";
+							int index = 1;
+							if (entity.allFacilities.size() > index) {
+								facility = entity.allFacilities.get(index);
+								if (facility.facilityType != null) {
+									facilityTypeName = facility.facilityType.helper.displayValue;
+								} 
+							}
+							return facilityTypeName;
+						]]></value>
+				</entry>	
+				<entry key="A32">
+					<value><![CDATA[
+							String facilityTypeName = "";
+							int index = 2;
+							if (entity.allFacilities.size() > index) {
+								facility = entity.allFacilities.get(index);
+								if (facility.facilityType != null) {
+									facilityTypeName = facility.facilityType.helper.displayValue;
+								} 
+							}
+							return facilityTypeName;
+						]]></value>
+				</entry>	
+				<entry key="A33">
+					<value><![CDATA[
+							String facilityTypeName = "";
+							int index = 3;
+							if (entity.allFacilities.size() > index) {
+								facility = entity.allFacilities.get(index);
+								if (facility.facilityType != null) {
+									facilityTypeName = facility.facilityType.helper.displayValue;
+								} 
+							}
+							return facilityTypeName;
+						]]></value>
+				</entry>	
+				<entry key="A34">
+					<value><![CDATA[
+							String facilityTypeName = "";
+							int index = 4;
+							if (entity.allFacilities.size() > index) {
+								facility = entity.allFacilities.get(index);
+								if (facility.facilityType != null) {
+									facilityTypeName = facility.facilityType.helper.displayValue;
+								} 
+							}
+							return facilityTypeName;
+						]]></value>
+				</entry>	
+				-->
+			</map>
+		</property>
+	</bean>
+</beans>

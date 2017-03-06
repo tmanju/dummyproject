@@ -1,0 +1,154 @@
+#created on: August 27, 2015
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.Guarantee;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+
+global com.thirdpillar.foundation.service.Context appContext;
+
+rule "initilize_status_on_fac_allocation_portion"
+  agenda-group "NEW" 
+  when
+    facAllocator:FacAllocator()    
+  then
+  	System.out.println(" >> Entering Rule: " + drools.getRule().getName());
+ 	facAllocator.setPercentOrAmt((AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","AMOUNT_OR_PERCENT_PERCENT"));
+  	logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+  	facAllocator.setInxMiscFee(BigDecimal.ZERO);
+  	modifyStatusFacAllocator(facAllocator,"DEALS_STATUS_UNASSIGNED");
+  	FacilityBE facilityBE=facAllocator.getFacilityBE();
+	//do not know why facilitybe is null, that's why not able to set defauld spread
+	if(facilityBE !=null && facilityBE.getEstimatedYield() !=null){
+		//facAllocator.setSpread(facilityBE.getEstimatedYield());
+	}
+  	logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+  	
+end
+
+rule "reset_facAllocator_on_percentOrAmtChange"
+	when
+		#condition
+		changeModelEvent:FacAllocator.ChangeModelEvent(property == "percentOrAmt")
+	then
+		#action
+		FacAllocator facAllocator= (FacAllocator)changeModelEvent.getEntity();
+		AttributeChoice ac = (AttributeChoice) changeModelEvent.getNewValue();
+		if(ac != null && ac.getKey().equals("AMOUNT_OR_PERCENT_PERCENT")){
+			facAllocator.setFundAmt(null);
+		}else if(ac != null && ac.getKey().equals("AMOUNT_OR_PERCENT_AMOUNT")){
+			facAllocator.setFundPer(null);
+		}
+end
+
+rule "reset_fundPer_on_fundAmtChange_facAllocation"
+	when
+		#condition
+		changeModelEvent:FacAllocator.ChangeModelEvent(property == "fundAmt")
+		
+	then
+		System.out.println(" >> Entering Rule: " + drools.getRule().getName());
+		FacAllocator facAllo= (FacAllocator)changeModelEvent.getEntity();
+		//setFundPer and setFundAmt call each other rule resulting in infinite loop. Below if is to avoid this. 
+		if(facAllo.getPercentOrAmt() != null && facAllo.getPercentOrAmt().getKey().equals("AMOUNT_OR_PERCENT_AMOUNT")){
+			BigDecimal newFundAmt = (BigDecimal) changeModelEvent.getNewValue();
+			System.out.println("############        reset_fundPer_on_fundAmtChange  " +newFundAmt);
+			BigDecimal creditFacAmt = facAllo.getFacilityBE().getCreditFacAmt() == null? BigDecimal.ZERO: facAllo.getFacilityBE().getCreditFacAmt().getAmount();
+			if (creditFacAmt != null
+					&& (creditFacAmt.compareTo(BigDecimal.ZERO) > 0)&& newFundAmt !=null) {
+				facAllo.setFundPer(getNewPercentage(creditFacAmt, newFundAmt));
+				System.out.print("^^^^^^^^^^^^^^^^^^^^ val" + creditFacAmt +"  new value"+ getNewPercentage(creditFacAmt, newFundAmt));
+			}
+		}
+				System.out.println(" >> Ending Rule: " + drools.getRule().getName());
+end
+
+rule "reset_fundAmt_on_fundPerChange_facAllocation"
+	when
+		#condition
+		changeModelEvent:FacAllocator.ChangeModelEvent(property == "fundPer")
+	then
+		#action
+		System.out.println(" >> Starting Rule: " + drools.getRule().getName());
+		FacAllocator facAllo= (FacAllocator)changeModelEvent.getEntity();
+		//setFundPer and setFundAmt call each other rule resulting in infinite loop. Below if is to avoid this. 
+		if(facAllo.getPercentOrAmt() != null && facAllo.getPercentOrAmt().getKey().equals("AMOUNT_OR_PERCENT_PERCENT")){
+			BigDecimal percentage = (BigDecimal) changeModelEvent.getNewValue();
+			System.out.println("#####0000009999reset_fundAmt_on_fundPerChange   "+ percentage);
+			BigDecimal creditFacAmt = facAllo.getFacilityBE().getCreditFacAmt() == null? BigDecimal.ZERO: facAllo.getFacilityBE().getCreditFacAmt().getAmount();
+			if (creditFacAmt != null
+					&& (creditFacAmt.compareTo(BigDecimal.ZERO) > 0)&& percentage!=null) {
+					BigDecimal per=percentage(creditFacAmt, percentage);
+					facAllo.setFundAmt(per);
+				System.out.print("^^^^^^^^^^^^^^^^^^^^ val=   creditFacAmt "+creditFacAmt+"  percentage"+per);
+			}
+		}		
+		System.out.println(" >> Ending Rule: " + drools.getRule().getName());
+end
+
+rule "calculateCPBalanceOnCPChange"
+	when
+		changeModelEvent:FacAllocator.ChangeModelEvent(property == "fundPer", newValue != null)
+	then
+		System.out.println(" >> Starting Rule: " + drools.getRule().getName());
+		FacAllocator facAllocator = (FacAllocator)changeModelEvent.getEntity();
+		BigDecimal percent = (BigDecimal)changeModelEvent.getNewValue();
+		if(facAllocator != null){
+			FacilityBE facilityBE = facAllocator.getFacilityBE();
+			if(facilityBE != null && facilityBE.getMinUtilizationAmt() != null){
+				facAllocator.setCpBalance(facilityBE.getMinUtilizationAmt().multiply(percent).divide(new BigDecimal(100)));
+			}
+		}
+		System.out.println(" >> Ending Rule: " + drools.getRule().getName());
+end
+
+
+rule "set_INXInterestSpread_facility_placement"
+	when
+		#condition
+		changeModelEvent:FacAllocator.ChangeModelEvent(property == "placementRate")
+	then
+		System.out.println(" >> Starting Rule: " + drools.getRule().getName());
+		FacAllocator facAllocator = (FacAllocator)changeModelEvent.getEntity();
+		BigDecimal placementRate = (BigDecimal)changeModelEvent.getNewValue();
+		FacilityBE facilityBE = facAllocator.getFacilityBE();
+		if(facilityBE.getEstimatedYield() !=null &&  NumberUtils.isNumber(facilityBE.getEstimatedYield()) ){
+			BigDecimal b=new BigDecimal(facilityBE.getEstimatedYield()).subtract(placementRate);
+			facAllocator.setSpread(b+"");
+		}
+		System.out.println(" >> Ending Rule: " + drools.getRule().getName());
+end
+//INX Unused Line Fee spread = Facility Unused Line Rate - CP Unused Line Rate
+rule "set_InxUnusedLineFeeSpread_facility_placement"
+	when
+		#condition
+		changeModelEvent:FacAllocator.ChangeModelEvent(property == "unusedLineRate")
+	then
+		System.out.println(" >> Starting Rule: " + drools.getRule().getName());	
+		FacAllocator facAllocator = (FacAllocator)changeModelEvent.getEntity();
+		BigDecimal cpUnusedLineRate = (BigDecimal)changeModelEvent.getNewValue();
+		FacilityBE facilityBE = facAllocator.getFacilityBE();
+		if(facilityBE.getUnusedLineRate() !=null){
+			BigDecimal b=facilityBE.getUnusedLineRate().subtract(cpUnusedLineRate);
+			facAllocator.setUnusedLineFeeSpr(b);
+		}
+		System.out.println(" >> Ending Rule: " + drools.getRule().getName());
+end
+
+function BigDecimal percentage(BigDecimal base, BigDecimal pct) {
+		return (base.multiply(pct)).divide(new BigDecimal(100),2,RoundingMode.DOWN);
+}
+function BigDecimal getNewPercentage(BigDecimal base, BigDecimal newAmt) {
+		return (newAmt.multiply(new BigDecimal(100))).divide(base,2,RoundingMode.DOWN);
+}
+
+function void modifyStatusFacAllocator(FacAllocator facAllocator , String wfStatusKey)
+{
+		System.out.println("====================modifyStatusFacAllocator in facAllocator.drl================================");
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", wfStatusKey);
+		facAllocator.setWfStatus(status);
+		
+ }

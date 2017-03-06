@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+		<coaDefinition>
+			<priorTo>Funding of Loan</priorTo>
+			<coaId>9001</coaId>
+		</coaDefinition>
+		<coaDefinition>
+			<priorTo>Funding of Loan</priorTo>
+			<coaId>10100</coaId>
+		</coaDefinition>
+	</list>
+</mod:sr.addEntityRequest>

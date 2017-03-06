@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="relationship" type="search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="relationship.search" label="Relationship Search">
+	
+		<field name="relationship.name" label="Relationship Name"/>
+		<field name="relationship.portfolioAdministrtr" label="Portfolio Administrator"/>
+
+	</panel>
+	<beans>
+		<bean name="relationship" type="com.thirdpillar.codify.loanpath.model.Relationship"/>
+	</beans>
+</canvas>

@@ -1,0 +1,98 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+  <map:bean class="User" ignore-annotations="false">
+    <map:class>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.userName.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.username!=null && o.username.length>0]]></map:element>
+      </map:constraint>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.firstName.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.firstName!=null && o.firstName.length>0]]></map:element>
+      </map:constraint>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.lastName.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.lastName!=null && o.lastName.length>0]]></map:element>
+      </map:constraint>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.userType.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.userType!=null]]></map:element>
+      </map:constraint>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.status.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.status!=null]]></map:element>
+      </map:constraint>
+      <!--
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.email.required}</map:message>
+        <map:element name="triggerExpr"><![CDATA[o.contact!=null]]></map:element>
+        <map:element name="matchedExpr"><![CDATA[o.contact.email!=null && o.contact.email.length>0]]></map:element>
+      </map:constraint>-->
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.ou.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.ou!=null]]></map:element>
+      </map:constraint>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.sbu.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.sbu!=null]]></map:element>
+      </map:constraint>
+      
+      <!-- map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.teams.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.teams!=null && o.teams.size > 0]]></map:element>
+      </map:constraint-->
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.userSource.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.userSource!=null]]></map:element>
+      </map:constraint>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.externalRefId.required}</map:message>
+        <map:element name="triggerExpr"><![CDATA[o.userSource != null && o.userSource.key == 'USER_SOURCE_SAML']]></map:element>        
+        <map:element name="matchedExpr"><![CDATA[o.externalRefId!=null && o.externalRefId.length>0]]></map:element>
+      </map:constraint>
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.password.required}</map:message>
+        <map:element name="triggerExpr"><![CDATA[o.userSource != null && o.userSource.key == 'USER_SOURCE_INTERNAL']]></map:element>        
+        <map:element name="matchedExpr"><![CDATA[o.password!=null  && o.password.length>0]]></map:element>
+      </map:constraint>
+     <!--  <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+           <map:message>{user.emailEnabledFlag.required}</map:message>
+           <map:groups>
+               <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$EsignatureGroup</map:value>
+           </map:groups>
+           <map:element name="matchedExpr"><![CDATA[o.emailEnabledFlag == true]]></map:element>
+      </map:constraint> -->
+      
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+           <map:message>{user.createESignature.button.validation}</map:message>
+           <map:groups>
+               <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$EsignatureGroup</map:value>
+           </map:groups>
+           <map:element name="matchedExpr"><![CDATA[o.status!=null &&  o.status.key =='USER_STATUS_ACTIVE']]></map:element>
+      </map:constraint> 
+      
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+           <map:message>{user.contact.email.required}</map:message>
+           <map:groups>
+               <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$EsignatureGroup</map:value>
+           </map:groups>
+           <map:element name="triggerExpr"><![CDATA[o.status!=null &&  o.status.key =='USER_STATUS_ACTIVE']]></map:element>
+           <map:element name="matchedExpr"><![CDATA[o.contact !=null && o.contact.email != null && o.contact.email.length>0]]></map:element>
+      </map:constraint>
+      
+      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+        <map:message>{user.externalRefId.required}</map:message>
+         <map:groups>
+               <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$EsignatureGroup</map:value>
+           </map:groups>
+        <map:element name="triggerExpr"><![CDATA[o.userSource != null && o.userSource.key == 'USER_SOURCE_SAML']]></map:element>        
+        <map:element name="matchedExpr"><![CDATA[o.externalRefId!=null && o.externalRefId.length>0]]></map:element>
+      </map:constraint>
+      
+       <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+           <map:message>{user.contact.email.required}</map:message>
+        <map:element name="matchedExpr"><![CDATA[o.contact !=null && o.contact.email != null && o.contact.email.length>0]]></map:element>
+      </map:constraint>
+    </map:class>
+  </map:bean>
+</map:constraint-mappings>

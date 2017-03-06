@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.PricingOption" />
+
+  <process processType="Private" isExecutable="true" id="ResidualReferenceAssetDetailsFlow" name="ResidualReferenceAssetDetailsFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.Calendar" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="com.thirdpillar.foundation.service.workitems.WorkItemConstants" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.PricingOption" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.SolveFor" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Structure" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Asset" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ResidualReference" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.util.StringUtils" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <endEvent id="_3" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_5" name="Lookup Residual Reference Script" scriptFormat="http://www.java.com/java" >
+      <script>PricingOption option = (PricingOption) context.getVariable("contextEntity");
+if(option.getAssets() != null &amp;&amp; option.getAssets().size() &gt; 0){
+		for(Asset asset: option.getAssets()){
+		String[] param = new String[5];
+		param[0] = "operatingUnit_key";
+		param[1] = "sbu_key";
+		param[2] = "assetClass_key";
+		param[3] = "assetSubclass_key";
+		param[4] = "assetsCondition_key";
+
+		Object[] values = new Object[5];
+
+		if ((asset.getAssetClass() != null) &amp;&amp; (asset.getAssetSubclass() != null)
+				&amp;&amp; (asset.getConditionOfEquipment() != null)) {
+			values[0] = "OPERATING_UNIT_OPERATING_UNIT";
+			values[1] = "STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT";
+			values[2] = asset.getAssetClass().getKey();
+			values[3] = asset.getAssetSubclass().getKey();
+			values[4] = asset.getConditionOfEquipment().getKey();
+
+			List residualRefItemList = LookupService.getResults("ResidualReference.byAssetClassSubclassAndCondition", param,	values);
+			if(residualRefItemList == null || residualRefItemList.size() == 0){
+				residualRefItemList = LookupService.getResults("ResidualReference.byAssetClassAndSubclass", param,	values);
+			}if(residualRefItemList == null || residualRefItemList.size() == 0){
+				residualRefItemList = LookupService.getResults("ResidualReference.byAssetClassAndCondition", param,	values);
+			}if(residualRefItemList == null || residualRefItemList.size() == 0){
+				residualRefItemList = LookupService.getResults("ResidualReference.byAssetClass", param,	values);
+			}if(residualRefItemList != null &amp;&amp; residualRefItemList.size() &gt; 0){
+				if(residualRefItemList.get(0) instanceof ResidualReference){
+					 ResidualReference residualRefItem = (ResidualReference)residualRefItemList.get(0);
+					asset.setResidualReference(residualRefItem);
+				}
+			}
+			
+		}
+		
+     }
+  }
+</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_5-_3" sourceRef="_5" targetRef="_3" />
+    <sequenceFlow id="_1-_5" sourceRef="_1" targetRef="_5" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="ResidualReferenceAssetDetailsFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="109" y="35" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="110" y="269" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="0" y="140" width="268" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_5-_3" >
+        <di:waypoint x="134" y="164" />
+        <di:waypoint x="134" y="293" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_5" >
+        <di:waypoint x="133" y="59" />
+        <di:waypoint x="134" y="164" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

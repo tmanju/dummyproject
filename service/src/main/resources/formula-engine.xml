@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:fe="http://www.thirdpillar.com/schema/fe"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+  	http://www.thirdpillar.com/schema/fe http://www.thirdpillar.com/schema/fe/formula-engine.xsd">
+  	
+  <bean id="formulaEngine" class="com.thirdpillar.foundation.fe.FormulaEngine">
+  	<property name="formulaConfig" ref="formulaConfig" />
+  	<property name="gridFinder" ref="gridFinder"/>
+  </bean>
+  
+  <bean name="gridFinder" class="com.thirdpillar.codify.loanpath.service.ValueGridFinder" />  
+  
+  <!-- 
+  See (LP4) http://subversion.thirdpillar.com/repos/loanpath/trunk/beacon-core/src/main/java/com/thirdpillar/beacon/core/pricing/PriceableAsset.java
+  for definitions of variable values. In the context of the grid lookups, the resulting values from the relevant variables are used as dimension values to
+  determine the precise grid coordinate, and thus the desired grid value.
+   -->  
+  <fe:formula-config id="formulaConfig" name="formulaConfig">
+  	<fe:variable name="Now" data-type="DATE" display-name="Now">
+  		<fe:get-mvel-script>return new java.util.Date();</fe:get-mvel-script>  		
+  	</fe:variable>
+  	<fe:variable name="Index" data-type="TEXT" display-name="Index">
+  		<fe:get-mvel-script>return pricingOption.?structure.?pricingIndex.key;</fe:get-mvel-script>
+  	</fe:variable>
+  	<fe:variable name="IndexValue" data-type="PERCENT" display-name="Index Value">
+  		<fe:get-mvel-script>return pricingOption.?structure.indexValue;</fe:get-mvel-script>
+		<fe:set-mvel-script>pricingOption.?structure.indexValue = _value</fe:set-mvel-script>  		  		
+  	</fe:variable>
+  	<fe:variable name="IsFloatingRate" data-type="BOOLEAN" display-name="Is Floating Rate">
+  		<fe:get-mvel-script>
+  			return (pricingOption.?structure.?rateType.key == 'RATE_TYPE_FLOATING');
+		</fe:get-mvel-script>
+  	</fe:variable>
+  	<fe:variable name="ProductSubtype" data-type="TEXT" display-name="Product Sub-type">
+  		<fe:get-mvel-script>return pricingOption.?facility.?facilitySubType.key;</fe:get-mvel-script>
+  	</fe:variable>
+	<fe:variable name="Term" data-type="INT" display-name="Term">
+  		<fe:get-mvel-script>return pricingOption.?facility.requestedTerm</fe:get-mvel-script>  		
+  	</fe:variable>
+  	<fe:variable name="TotalRequestedAmount" data-type="AMOUNT" display-name="Total Requested Amount">
+  		<fe:get-mvel-script>return pricingOption.?facility.requestedLoanAmt;</fe:get-mvel-script>
+  	</fe:variable>
+	<fe:variable name="CeilingRate" data-type="PERCENT" display-name="Ceiling Rate">
+  		<fe:get-mvel-script>return pricingOption.?structure.ceilingRate;</fe:get-mvel-script>
+  		<fe:set-mvel-script>pricingOption.?structure.ceilingRate = _value</fe:set-mvel-script>
+  	</fe:variable>
+  	<fe:variable name="FloorRate" data-type="PERCENT" display-name="Floor Rate">
+  		<fe:get-mvel-script>return pricingOption.?structure.floorRate;</fe:get-mvel-script>
+  		<fe:set-mvel-script>pricingOption.?structure.floorRate = _value</fe:set-mvel-script>
+  	</fe:variable>
+	<fe:variable name="CustomerRate" data-type="PERCENT" display-name="Rate">
+  		<fe:get-mvel-script>return pricingOption.?structure.customerRate;</fe:get-mvel-script>
+  		<fe:set-mvel-script>pricingOption.?structure.customerRate = _value</fe:set-mvel-script>
+  	</fe:variable>
+  	<fe:variable name="AmountFinanced" data-type="AMOUNT" display-name="Amount Financed">
+  		<fe:get-mvel-script>return facility.amountFinanced;</fe:get-mvel-script>
+  	</fe:variable>
+  </fe:formula-config>
+</beans>

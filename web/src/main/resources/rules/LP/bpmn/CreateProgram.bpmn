@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_flowStateItem" structureRef="com.thirdpillar.codify.jsf.flow.FlowState" />
+  <itemDefinition id="_parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+
+  <itemDefinition id="_2-flowStateItem" structureRef="com.thirdpillar.codify.jsf.flow.FlowState" />
+  <itemDefinition id="_2-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+
+  <itemDefinition id="_5-flowStateItem" structureRef="com.thirdpillar.codify.jsf.flow.FlowState" />
+  <itemDefinition id="_5-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+
+  <process processType="Private" isExecutable="true" id="CreateProgram" name="CreateProgram" tns:packageName="LP.web" >
+
+    <!-- process variables -->
+    <property id="flowState" itemSubjectRef="_flowStateItem"/>
+    <property id="parentPage" itemSubjectRef="_parentPageItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <task id="_2" name="Create Program Flow" tns:taskName="PageFlow" >
+      <ioSpecification>
+        <dataInput id="_2_parentPageInput" name="parentPage" />
+        <dataInput id="_2_flowStateInput" name="flowState" />
+        <dataInput id="_2_canvasInput" name="canvas" />
+        <dataInput id="_2_enameInput" name="ename" />
+        <dataInput id="_2_actionsInput" name="actions" />
+        <dataInput id="_2_operationInput" name="operation" />
+        <inputSet>
+          <dataInputRefs>_2_parentPageInput</dataInputRefs>
+          <dataInputRefs>_2_flowStateInput</dataInputRefs>
+          <dataInputRefs>_2_canvasInput</dataInputRefs>
+          <dataInputRefs>_2_enameInput</dataInputRefs>
+          <dataInputRefs>_2_actionsInput</dataInputRefs>
+          <dataInputRefs>_2_operationInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_2_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_2_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_canvasInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">createProgram</from>
+          <to xsi:type="tFormalExpression">_2_canvasInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">program</from>
+          <to xsi:type="tFormalExpression">_2_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_actionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">save</from>
+          <to xsi:type="tFormalExpression">_2_actionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2_operationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ShowCrud</from>
+          <to xsi:type="tFormalExpression">_2_operationInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_4" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_5" name="End Page Flow" tns:taskName="EndPageFlow" >
+      <ioSpecification>
+        <dataInput id="_5_parentPageInput" name="parentPage" />
+        <dataInput id="_5_flowStateInput" name="flowState" />
+        <dataInput id="_5_redirectInput" name="redirect" />
+        <dataInput id="_5_enameInput" name="ename" />
+        <dataInput id="_5_redirectOperationInput" name="redirectOperation" />
+        <inputSet>
+          <dataInputRefs>_5_parentPageInput</dataInputRefs>
+          <dataInputRefs>_5_flowStateInput</dataInputRefs>
+          <dataInputRefs>_5_redirectInput</dataInputRefs>
+          <dataInputRefs>_5_enameInput</dataInputRefs>
+          <dataInputRefs>_5_redirectOperationInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_5_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_5_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_redirectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_5_redirectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">program</from>
+          <to xsi:type="tFormalExpression">_5_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_redirectOperationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">EditEntity</from>
+          <to xsi:type="tFormalExpression">_5_redirectOperationInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_5-_4" sourceRef="_5" targetRef="_4" />
+    <sequenceFlow id="_2-_5" sourceRef="_2" targetRef="_5" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="CreateProgram" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="72" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="16" y="96" width="160" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="70" y="274" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="46" y="176" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="96" y="40" />
+        <di:waypoint x="96" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_4" >
+        <di:waypoint x="96" y="200" />
+        <di:waypoint x="94" y="298" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_5" >
+        <di:waypoint x="96" y="120" />
+        <di:waypoint x="96" y="200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

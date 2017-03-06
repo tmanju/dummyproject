@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_entityNameItem" structureRef="java.lang.String" />
+  <itemDefinition id="_actionItem" structureRef="java.lang.String" />
+
+  <process processType="Private" isExecutable="true" id="UpdateRequestToSFDC" name="Update Request To SFDC" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="entityName" itemSubjectRef="_entityNameItem"/>
+    <property id="action" itemSubjectRef="_actionItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_33" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <callActivity id="_38" name="Update SFDC Common Process" calledElement="SalesforceUpdateProcess" >
+      <ioSpecification>
+        <dataInput id="_38_rootEntityInput" name="rootEntity" />
+        <dataInput id="_38_actionInput" name="action" />
+        <dataInput id="_38_contextEntityInput" name="contextEntity" />
+        <dataInput id="_38_entityNameInput" name="entityName" />
+        <inputSet>
+          <dataInputRefs>_38_rootEntityInput</dataInputRefs>
+          <dataInputRefs>_38_actionInput</dataInputRefs>
+          <dataInputRefs>_38_contextEntityInput</dataInputRefs>
+          <dataInputRefs>_38_entityNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_38_rootEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>action</sourceRef>
+        <targetRef>_38_actionInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_38_contextEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>entityName</sourceRef>
+        <targetRef>_38_entityNameInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <scriptTask id="_39" name="Set Entity Name and Action" scriptFormat="http://www.java.com/java" >
+      <script>context.setVariable("entityName","application");
+context.setVariable("action","update");</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_38-_33" sourceRef="_38" targetRef="_33" />
+    <sequenceFlow id="_39-_38" sourceRef="_39" targetRef="_38" />
+    <sequenceFlow id="_1-_39" sourceRef="_1" targetRef="_39" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="UpdateRequestToSFDC" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="280" y="90" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="280" y="449" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_38" >
+        <dc:Bounds x="205" y="328" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_39" >
+        <dc:Bounds x="195" y="203" width="222" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_38-_33" >
+        <di:waypoint x="305" y="352" />
+        <di:waypoint x="304" y="473" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_39-_38" >
+        <di:waypoint x="306" y="227" />
+        <di:waypoint x="305" y="352" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_39" >
+        <di:waypoint x="304" y="114" />
+        <di:waypoint x="306" y="227" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

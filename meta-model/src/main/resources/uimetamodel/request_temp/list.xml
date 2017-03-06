@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="request" type="list" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="results" row="app" label="Applications">
+		<columns>
+			<column name="app.refNumber" label="Application Number"/>
+			<column name="app.relationship.name"/>
+			<column name="app.wfStatus.value" label="Status"/>
+			<column name="app.creditAnalyst" label="Credit Analyst"/>
+			<column name="app.interviewDttm" label="Interview Date"/>
+			<column name="app.applicationReceivedDttm" label="Application Date"/>
+			<column name="app.regbDttm" label="Reg B Start Date"/>	
+		</columns>
+		<data-table name="app.allFacilities" row="Facility" label="All Products">
+		  <columns>
+		  	 <column name="Facility.refNumber" label="Product Number"/>
+		   	 <column name="Facility.pricingOption.structure.requestedAmt" label="Amount"/>
+		   	 <column name="Facility.pricingOption.structure.contractStartDttm" label="Expected Close Date"/>
+		   </columns>
+		</data-table>
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.Request"/>
+	</beans>
+</canvas>

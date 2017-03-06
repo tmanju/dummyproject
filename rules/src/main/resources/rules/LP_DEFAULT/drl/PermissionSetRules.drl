@@ -1,0 +1,41 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.model.*;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.logDebug;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Set;
+import java.util.HashSet;
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+
+global com.thirdpillar.foundation.service.Context appContext;
+
+
+rule "Set up description on save to change version number"
+	agenda-group "SAVE"
+	when
+		 permissionSet:PermissionSet() 
+	then
+	    
+	    String desc = permissionSet.getDescription();
+	    if(StringUtils.isNotBlank(desc)){
+	    	if(desc.contains(";")){
+	    		String[] parts = desc.split(";");
+	    		desc = parts[0] + " ; Changed on " + new java.util.Date();
+	    		permissionSet.setDescription(desc);
+	    	}else{
+	    		permissionSet.setDescription(desc + " ; Changed on " + new java.util.Date());
+	    	}
+	    }else{
+	    	permissionSet.setDescription("Desc ; Changed on " + new java.util.Date());
+	    }	  
+end

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+		<coaDefinition>
+			<coaCondition>Executed Secured Health Care Premium Credit Line for Business Addendum</coaCondition>
+			<coaId>518.1</coaId>
+		</coaDefinition>
+	</list>
+</mod:sr.addEntityRequest>

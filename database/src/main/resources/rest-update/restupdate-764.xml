@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+<user>
+	<username>colinc</username>
+	<password>password</password>
+	<description>Grade User</description>
+	<contact>
+		<firstName>Colin</firstName>
+		<lastName>Casey </lastName>
+		<email>colin@internexcapital.com</email>
+	</contact>
+	<teams>
+	</teams>
+	<userType>
+		<key>USER_TYPE_INTERNAL</key>
+	</userType>
+	<userSource>
+		<key>USER_SOURCE_INTERNAL</key>
+	</userSource>
+	<wfStatus class="workflowStatus">
+		<statusKey>USER_STATUS_ACTIVE</statusKey>
+	</wfStatus>
+	<roles>
+		<role>
+			<name>Super Administrator</name>
+		</role>
+	</roles>
+	<systemUser>false</systemUser>
+	<lastPasswordResetDate>2100-01-01T00:00:00.000-08:00</lastPasswordResetDate>
+	<timeZone>
+		<isoCode>America/Los_Angeles</isoCode>
+	</timeZone>
+	<language>
+	  <isoCode>en</isoCode>
+	</language>
+	<currency>
+	  <isoCode>USD</isoCode>
+	</currency>
+</user>
+<user>
+	<username>simonh</username>
+	<password>password</password>
+	<description>Grade User</description>
+	<contact>
+		<firstName>simon</firstName>
+		<lastName></lastName>
+		<email>simon@internexcapital.com</email>
+	</contact>
+	<teams>
+	</teams>
+	<userType>
+		<key>USER_TYPE_INTERNAL</key>
+	</userType>
+	<userSource>
+		<key>USER_SOURCE_INTERNAL</key>
+	</userSource>
+	<wfStatus class="workflowStatus">
+		<statusKey>USER_STATUS_ACTIVE</statusKey>
+	</wfStatus>
+	<roles>
+		<role>
+			<name>Super Administrator</name>
+		</role>
+	</roles>
+	<systemUser>false</systemUser>
+	<lastPasswordResetDate>2100-01-01T00:00:00.000-08:00</lastPasswordResetDate>
+	<timeZone>
+		<isoCode>America/Los_Angeles</isoCode>
+	</timeZone>
+	<language>
+	  <isoCode>en</isoCode>
+	</language>
+	<currency>
+	  <isoCode>USD</isoCode>
+	</currency>
+</user>
+<user>
+	<username>jmiller</username>
+	<password>password</password>
+	<description>Grade User</description>
+	<contact>
+		<firstName>jim</firstName>
+		<lastName>miller</lastName>
+		<email>jim@internexcapital.com</email>
+	</contact>
+	<teams>
+	</teams>
+	<userType>
+		<key>USER_TYPE_INTERNAL</key>
+	</userType>
+	<userSource>
+		<key>USER_SOURCE_INTERNAL</key>
+	</userSource>
+	<wfStatus class="workflowStatus">
+		<statusKey>USER_STATUS_ACTIVE</statusKey>
+	</wfStatus>
+	<roles>
+		<role>
+			<name>Super Administrator</name>
+		</role>
+	</roles>
+	<systemUser>false</systemUser>
+	<lastPasswordResetDate>2100-01-01T00:00:00.000-08:00</lastPasswordResetDate>
+	<timeZone>
+		<isoCode>America/Los_Angeles</isoCode>
+	</timeZone>
+	<language>
+	  <isoCode>en</isoCode>
+	</language>
+	<currency>
+	  <isoCode>USD</isoCode>
+	</currency>
+</user>
+
+<user>
+	<username>colin</username>
+	<password>password</password>
+	<description>MarketPlace User</description>
+	<contact>
+		<firstName>Colin</firstName>
+		<lastName>Casey </lastName>
+		<email>colin@internexcapital.com</email>
+	</contact>
+	<teams>
+	</teams>
+	<userType>
+		<key>USER_TYPE_INTERNAL</key>
+	</userType>
+	<userSource>
+		<key>USER_SOURCE_INTERNAL</key>
+	</userSource>
+	<wfStatus class="workflowStatus">
+		<statusKey>USER_STATUS_ACTIVE</statusKey>
+	</wfStatus>
+	<roles>
+		<role>
+			<name>MarketPlace Admin</name>
+		</role>
+	</roles>
+	<systemUser>false</systemUser>
+	<lastPasswordResetDate>2100-01-01T00:00:00.000-08:00</lastPasswordResetDate>
+	<timeZone>
+		<isoCode>America/Los_Angeles</isoCode>
+	</timeZone>
+	<language>
+	  <isoCode>en</isoCode>
+	</language>
+	<currency>
+	  <isoCode>USD</isoCode>
+	</currency>
+</user>
+<user>
+	<username>simon</username>
+	<password>password</password>
+	<description>MarketPlace User</description>
+	<contact>
+		<firstName>simon</firstName>
+		<lastName></lastName>
+		<email>simon@internexcapital.com</email>
+	</contact>
+	<teams>
+	</teams>
+	<userType>
+		<key>USER_TYPE_INTERNAL</key>
+	</userType>
+	<userSource>
+		<key>USER_SOURCE_INTERNAL</key>
+	</userSource>
+	<wfStatus class="workflowStatus">
+		<statusKey>USER_STATUS_ACTIVE</statusKey>
+	</wfStatus>
+	<roles>
+		<role>
+			<name>MarketPlace Admin</name>
+		</role>
+	</roles>
+	<systemUser>false</systemUser>
+	<lastPasswordResetDate>2100-01-01T00:00:00.000-08:00</lastPasswordResetDate>
+	<timeZone>
+		<isoCode>America/Los_Angeles</isoCode>
+	</timeZone>
+	<language>
+	  <isoCode>en</isoCode>
+	</language>
+	<currency>
+	  <isoCode>USD</isoCode>
+	</currency>
+</user>
+<user>
+	<username>jim</username>
+	<password>password</password>
+	<description>MarketPlace User</description>
+	<contact>
+		<firstName>jim</firstName>
+		<lastName>miller</lastName>
+		<email>jim@internexcapital.com</email>
+	</contact>
+	<teams>
+	</teams>
+	<userType>
+		<key>USER_TYPE_INTERNAL</key>
+	</userType>
+	<userSource>
+		<key>USER_SOURCE_INTERNAL</key>
+	</userSource>
+	<wfStatus class="workflowStatus">
+		<statusKey>USER_STATUS_ACTIVE</statusKey>
+	</wfStatus>
+	<roles>
+		<role>
+			<name>MarketPlace Admin</name>
+		</role>
+	</roles>
+	<systemUser>false</systemUser>
+	<lastPasswordResetDate>2100-01-01T00:00:00.000-08:00</lastPasswordResetDate>
+	<timeZone>
+		<isoCode>America/Los_Angeles</isoCode>
+	</timeZone>
+	<language>
+	  <isoCode>en</isoCode>
+	</language>
+	<currency>
+	  <isoCode>USD</isoCode>
+	</currency>
+</user>
+</list>
+</mod:sr.upsertEntityRequest>

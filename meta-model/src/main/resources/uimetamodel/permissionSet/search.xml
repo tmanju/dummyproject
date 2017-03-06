@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="permissionSet" type="search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="permissionSet.search" label="Permission Set Search">
+		<field name="permissionSet.name" label="Permission Name" />
+		<field name="permissionSet.description" label="Description" />
+		<field name="permissionSet.active" label="Active?" />
+		<field name="permissionSet.metaInfo.lastModifiedByUser" label="Last Modified By" />
+		<field name="permissionSet.metaInfo.lastModifiedAt" label="last Modified At" />
+	</panel>
+	
+	<beans>
+		<bean name="permissionSet" type="com.thirdpillar.codify.loanpath.model.PermissionSet" />
+	</beans>
+</canvas>

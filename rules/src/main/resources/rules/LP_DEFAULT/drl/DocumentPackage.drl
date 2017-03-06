@@ -1,0 +1,127 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.Document;
+import com.thirdpillar.codify.loanpath.model.DocumentGroup;
+import com.thirdpillar.codify.loanpath.model.Request;
+import java.util.ArrayList;
+import com.thirdpillar.codify.loanpath.model.DocumentPackageDetail;
+import java.util.List;
+import java.lang.StringBuilder;
+import java.math.BigDecimal;
+import com.thirdpillar.foundation.model.BaseDataObject;
+
+
+global com.thirdpillar.foundation.service.Context appContext;
+
+
+rule "SetUploadedAndGeneratedDocumentsInDocumentPackage"
+                agenda-group "NEW" 
+                when
+                        #conditions
+        				docPackage:DocumentPackage()
+        	    then 
+                        #actions  
+                        if(appContext != null && appContext.getRootContextEntity() !=null && (appContext.getRootContextEntity())instanceof Request){
+                         	Request req=(Request)appContext.getRootContextEntity();
+	                     	List<DocumentPackageDetail> uploadedAndGeneratedDocList = new ArrayList<DocumentPackageDetail>();
+	                     	EntityService es = new EntityService();
+	                     	DocumentPackageDetail documentPackageDetailObj = null;
+	                     	int orderInpackage = 0;
+	                     	for(Document document : ((DocumentGroup)req.getDocumentGroup()).getGeneratedDocuments()){
+	                    		if(document != null && document.getUploadedStream() != null){
+		                    		orderInpackage++;
+			                    	documentPackageDetailObj = (DocumentPackageDetail)es.createNew(DocumentPackageDetail.class);
+			                    	documentPackageDetailObj.setDocument(document);
+			                    	documentPackageDetailObj.setOrderInpackage(orderInpackage);
+			                    	uploadedAndGeneratedDocList.add(documentPackageDetailObj);
+				                 }	
+		   					}
+		   					for(Document document : ((DocumentGroup)req.getDocumentGroup()).getUploadedDocuments()){
+	                    		if(document != null && document.getUploadedStream() != null){
+		                    		orderInpackage++;
+			                    	documentPackageDetailObj = (DocumentPackageDetail)es.createNew(DocumentPackageDetail.class);
+			                    	documentPackageDetailObj.setDocument(document);
+			                    	documentPackageDetailObj.setOrderInpackage(orderInpackage);
+			                    	uploadedAndGeneratedDocList.add(documentPackageDetailObj);
+				                 }	
+		   					}
+		   					docPackage.setGenAndUploadedDoc(uploadedAndGeneratedDocList);
+		   				}
+		   					
+end
+
+rule "SetDocumentPackageName"
+        agenda-group "NEW" 
+        when
+                #conditions
+				docPackage:DocumentPackage()
+	    then 
+                #actions  
+	                if(appContext != null && appContext.getRootContextEntity() !=null && (appContext.getRootContextEntity())instanceof Request){
+	                 	Request req=(Request)appContext.getRootContextEntity();
+	                 	StringBuilder packageName = new StringBuilder();
+	                 	if(req.getRequestName() != null){
+	                 		packageName.append(req.getRequestName());
+	                 		packageName.append("_");
+	                 	}
+	                 	packageName.append(req.getRefNumber());
+	                 	packageName.append("_");
+	                 	if(((DocumentGroup)req.getDocumentGroup()).getDocumentPackages() != null ){
+	                 	 	packageName.append(((DocumentGroup)req.getDocumentGroup()).getDocumentPackages().size()+1);
+	                 	}else{
+	                 		packageName.append("1");
+	                 	}
+	                 	docPackage.setPackageName(packageName.toString());
+                 }	
+end
+
+rule "SetDocPackageRequestBeforeGenerate"
+                agenda-group "NEW" 
+                when
+                        #conditions
+                        docPackage:DocumentPackage()
+                        #appContext:Context()
+                        #appContext1:Context(root:rootContextEntity, eval(root instanceof Request))
+                        
+        	    then 
+                        #actions
+                        if(appContext != null && appContext.getRootContextEntity() !=null && (appContext.getRootContextEntity())instanceof Request)
+                        {
+	                        Request req=(Request)appContext.getRootContextEntity();
+	                        docPackage.setApplication(req);
+                        } 
+end
+
+rule "SetDocumentPackageVersionOnStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:DocumentPackage.ChangeModelEvent(property == "uploadedStream", newValue != null)
+        	    then 
+                        #actions 
+                        DocumentPackage docPackage = (DocumentPackage) changeModelEvent.getEntity();
+                        if (docPackage.getVersionNumber() != null) {
+                        	docPackage.setVersionNumber(docPackage.getVersionNumber() + 1);
+                        } else {
+                        	docPackage.setVersionNumber(1);
+                        }
+end
+
+rule "SetDocumentPackageGeneratedByAndDttmOnStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:DocumentPackage.ChangeModelEvent(property == "uploadedStream", newValue != null)        				
+        	    then 
+                        #actions 
+                        DocumentPackage docPackage = (DocumentPackage) changeModelEvent.getEntity();
+                        docPackage.setGeneratedDttm(new Date());
+                        if (appContext != null && appContext.getUser() != null && (appContext.getUser() instanceof User)) {
+                        	docPackage.setGeneratedStreamBy((User)appContext.getUser());
+                        } else {                        
+                        	docPackage.setGeneratedStreamBy(null);
+                        }
+end
+
+
+

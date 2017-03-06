@@ -1,0 +1,65 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="Document" ignore-annotations="false">
+		<map:class>
+		
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.generatedDocument.readOnly.mustBe.true}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.esignatureRqd  && !o.wetSignature ]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.readOnly]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.document.associatedProducts.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[!o.requestLevel]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.associatedProducts != null]]></map:element>
+			</map:constraint>
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.document.requestLevel.associatedProdcuts.onerequired}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.requestLevel]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.associatedProducts == null]]></map:element>
+			</map:constraint>
+			<!--  			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.generatedDocument.docGroup.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.documentClass != null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.generatedDocument.docCategory.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.documentCategory != null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.generatedDocument.docType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.documentType != null]]></map:element>
+			</map:constraint>
+			-->
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.generatedDocument.decDecision.required}</map:message>
+				<map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DocumentStatusValidationsGroup</map:value>
+                </map:groups>
+				<map:element name="matchedExpr"><![CDATA[
+				
+				if(o.documentStatus!=null && !(o.documentStatus.key=='DOCUMENT_STATUS_APPROVED' || o.documentStatus.key=='DOCUMENT_STATUS_DECLINED'))
+				  {
+				     return false;
+				  }
+				  else
+				  {
+				     return true;
+				  }
+				
+				]]></map:element>
+			</map:constraint>
+			
+			
+														
+						
+			</map:class>
+	</map:bean>
+	
+</map:constraint-mappings>

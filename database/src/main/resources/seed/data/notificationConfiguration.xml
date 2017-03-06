@@ -1,0 +1,278 @@
+						<list>
+	<notificationConfiguration>
+		<bodyText>BackGround job @{asyncJob.displayName} Failed to execute. Maximum(@{asyncJob.numberOfTries}) number of attempts exceeded. &lt;br /&gt;  &#xd;
+			&#xd;
+			Entity   : @{asyncJob.entityName}&lt;br /&gt;
+			@{asyncJob.errorMessage} &lt;br /&gt;&#xd;	
+		</bodyText>
+		<notificationKey>BACKGROUND_JOB_EXCEEDED_MAXIMUM_ATTEMPTS_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>BackGround Job exceeded maximum number of attempts</notificationName>
+		<subject>BackGround job @{asyncJob.displayName} Failed.</subject>
+		<toRecipients>@{toRecipients}</toRecipients>
+	</notificationConfiguration>
+
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is created and assigned to you as potential owner &lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>CREATE_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Create Task Notification</notificationName>
+		<subject>Task @{task.taskSummary} is created</subject>
+		<toRecipients>@{task.potentialTaskOwnerMailRecipients}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} has met its deadline and not completed yet &lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>ESCALATION_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Escalation Task Notification</notificationName>
+		<subject>Task @{task.taskSummary} has met its deadline</subject>
+		<toRecipients>@{task.businessAdministratorsMailId}</toRecipients>
+	</notificationConfiguration>		
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is InProgress &lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>START_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Start Task Notification</notificationName>
+		<subject>Task @{task.taskSummary} is InProgress</subject>
+		<toRecipients>@{task.ownerMailId},@{task.createdByMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is Suspended&lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>SUSPEND_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Suspend Task Notification</notificationName>
+		<subject>Task @{task.taskName} is Suspended</subject>
+		<toRecipients>@{task.ownerMailId},@{task.businessAdministratorsMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is Claimed by you &lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>CLAIM_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Claim Task Notification</notificationName>
+		<subject>Task @{task.taskName} is Claimed by you</subject>
+		<toRecipients>@{task.ownerMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is Resumed &lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>RESUME_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Resume Task Notification</notificationName>
+		<subject>Task @{task.taskName} is Resumed</subject>
+		<toRecipients>@{task.ownerMailId},@{task.businessAdministratorsMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is Completed&lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>COMPLETE_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Complete Task Notification</notificationName>
+		<subject>Task @{task.taskName} is Complete</subject>
+		<toRecipients>@{task.ownerMailId},@{task.businessAdministratorsMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>@{task.taskName} is reassigned to @{task.reassignOwner} user on the task &lt;br /&gt;&#xd;
+			&lt;br /&gt;&#xd;
+			Task Details: &lt;br /&gt;&#xd;
+			&lt;ul&gt;
+				&lt;li&gt;
+					Task Name - @{task.taskName} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+				&lt;li&gt;
+					Task ID -	&lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+				&lt;li&gt;
+					Due Date - @{task.dueDate} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;	
+				&lt;li&gt;
+					Previously assigned to - @{task.owner} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+				&lt;li&gt;
+					Re-assigned to - @{task.reassignOwner} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+				&lt;li&gt;
+					Comments - @{task.reassignReasonCommentDerived} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+				&lt;li&gt;
+					Date of re-assignment - @{task.assignedDate} &lt;br /&gt;&#xd;	
+				&lt;/ li&gt;
+				&lt;li&gt;
+					@{task.getLoggedInUser()} re-assigned the task &lt;br /&gt;&#xd;
+				&lt;/li&gt;
+			&lt;/ul&gt; &#xd;
+			&lt;span&gt;
+			Work Item Details:
+			&lt;/span&gt;
+			&lt;ul&gt;
+				&lt;li&gt;
+					@{task.getWorkItemObj().getClass().getSimpleName()} @{task.getEntityRefNumber()} &lt;br/&gt;&#xd; 
+				&lt;/li&gt;
+			&lt;/ul&gt;
+		</bodyText>
+		<notificationKey>REASSIGN_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Task reassignment notification</notificationName>
+		<subject>@{task.taskName} is reassigned to @{task.reassignOwner} user on the task</subject>
+		<toRecipients>@{task.reassignOwnerMailId};@{task.ownerMailId};@{task.businessAdministratorsMailId};@{teamManagerEmail}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is Cancelled&lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>SKIP_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Cancel Task Notification</notificationName>
+		<subject>Task @{task.taskName} is Cancelled</subject>
+		<toRecipients>@{task.ownerMailId},@{task.businessAdministratorsMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is Stopped&lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>STOP_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Stop Task Notification</notificationName>
+		<subject>Task @{task.taskName} is Stopped</subject>
+		<toRecipients>@{task.ownerMailId},@{task.businessAdministratorsMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>Task @{task.taskSummary} is Forwarded &lt;br /&gt;&#xd;
+			&#xd;
+			Task #        : &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/humanTask/edit.seam?canvasType=crud&amp;eid=@{task.id}&quot;&gt;@{task.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Name         : @{task.taskName} &lt;br /&gt;&#xd;
+			Subject       : @{task.taskSummary} &lt;br /&gt;&#xd;
+			Description : @{task.taskDescription} &lt;br /&gt;&#xd;
+			Owner        : @{task.owner} &lt;br /&gt;&#xd;
+			Status        : @{task.wfStatus} &lt;br /&gt;&#xd;
+			Priority       : @{task.taskPriority} &lt;br /&gt;&#xd;
+			Due Date   : @{task.dueDate}&lt;br /&gt;</bodyText>
+		<notificationKey>FORWARD_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>Forward Task Notification</notificationName>
+		<subject>Task @{task.taskName} is Forwarded</subject>
+		<toRecipients>@{task.ownerMailId},@{task.businessAdministratorsMailId}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>User has released @{task.taskName} &lt;br /&gt;&#xd;
+			Task Details:&lt;br /&gt;&#xd;
+			&lt;ul&gt;
+				&lt;li&gt;
+					Task Name - @{task.taskName} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+				&lt;li&gt;
+					Task ID - @{task.refNumber} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+				&lt;li&gt;	
+					Due Date - @{task.dueDate}&lt;br /&gt;&#xd;	
+				&lt;/ li&gt;
+				&lt;li&gt;	
+					Task Status - @{task.wfStatus} &lt;br /&gt;&#xd;
+				&lt;/ li&gt;
+			&lt;/ul&gt; &#xd;
+			&lt;span&gt;
+				@{task.getWorkItemObj().getClass().getSimpleName()} details: &lt;br /&gt;&#xd;
+			&lt;/span&gt;
+					&lt;ul&gt;
+						&lt;li&gt;
+							@{task.getWorkItemObj().getClass().getSimpleName()} Name - @{task.getWorkItemDisplayValue()} &lt;br/&gt;&#xd;
+						&lt;/li&gt;
+						&lt;li&gt;
+							@{task.getWorkItemObj().getClass().getSimpleName()} Number - @{task.getEntityRefNumber()} &lt;br/&gt;&#xd;
+						&lt;/li&gt;
+					&lt;/ul&gt;
+		</bodyText>
+		<notificationKey>RELEASE_TASK_NOTIFICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>User released the assigned tasks</notificationName>
+		<subject>User has released @{task.taskName}</subject>
+		<toRecipients>@{task.ownerMailId},@{task.businessAdministratorsMailId},@{teamManagerEmail}</toRecipients>
+	</notificationConfiguration>
+	<notificationConfiguration>
+		<bodyText>A new Application is created on Grade &lt;br /&gt;&#xd;
+			APPLICATION LINK: &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/request/edit.seam?canvasType=crud&amp;eid=@{entity.id}&quot;&gt;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/request/edit.seam?canvasType=crud&amp;eid=@{entity.id}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Application ID: &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/request/edit.seam?canvasType=crud&amp;eid=@{entity.id}&quot;&gt;@{entity.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Application NAME: @{entity.requestName}&lt;br /&gt;&#xd;
+			Application DATE: @{entity.receivedDate}&lt;br /&gt;&#xd;
+		</bodyText>
+		<notificationKey>NEW_GRADE_APPLICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>NEW GRADE APPLICATION</notificationName>
+		<subject>NEW GRADE APP: #@{entity.refNumber} - @{entity.requestName}</subject>
+		<toRecipients>testing@internexcapital.com</toRecipients>
+	</notificationConfiguration>
+</list>

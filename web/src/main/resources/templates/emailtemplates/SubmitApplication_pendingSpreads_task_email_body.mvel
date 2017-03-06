@@ -1,0 +1,2 @@
+Application @{entity.refNumber} is Pending Spreads.<br>Click here to view the application.
+<br>@{CONFIG.getString("webapp.server.baseurl")}/pages/request/view-@{entity.id}?ntype=nest <br>

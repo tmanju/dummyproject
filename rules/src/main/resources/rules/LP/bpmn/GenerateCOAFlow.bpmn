@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_27-2-4-facilityItem" />
+
+  <itemDefinition id="_27-2-5-facilityItem" />
+
+  <itemDefinition id="_27_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="GenerateCOAFlow" name="GenerateCOAFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.CoasetDefinition" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_10" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <subProcess id="_27" name="Multiple Instances"  >
+      <ioSpecification>
+        <dataInput id="_27_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity.allFacilities</sourceRef>
+        <targetRef>_27_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_27_input</loopDataInputRef>
+        <inputDataItem id="facility" itemSubjectRef="_27_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <startEvent id="_27-2-1" name="Start" />
+    <endEvent id="_27-2-2" name="End" />
+    <scriptTask id="_27-2-3" name="Setup COA" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Inside generate COA");
+if (((Facility) facility).getCoasetDefinition() == null  ) {
+	EntityService es = new EntityService();
+	CoasetDefinition coasetDefinition = (CoasetDefinition) es.createNew(CoasetDefinition.class);
+    ((Facility) facility).setCoasetDefinition(new CoasetDefinition()); 
+    System.out.println("Inside generate COA-((Facility) facility).getCoasetDefinition()");
+ } else if (((Facility) facility).getCoasetDefinition().getCoaEvls() !=null){
+    ((Facility) facility).getCoasetDefinition().getCoaEvls().clear();  
+    System.out.println("Inside generate COA-getCoaEvls().clear()");
+ }</script>
+    </scriptTask>
+    <task id="_27-2-4" name="[Rules] Generate COA" tns:taskName="RuleServiceTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Inside Generate COA- Entry Action");</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_27-2-4_entityInput" name="entity" />
+        <dataInput id="_27-2-4_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_27-2-4_entityInput</dataInputRefs>
+          <dataInputRefs>_27-2-4_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>facility</sourceRef>
+        <targetRef>_27-2-4_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_27-2-4_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GenerateCOA</from>
+          <to xsi:type="tFormalExpression">_27-2-4_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_27-2-5" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_27-2-5_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_27-2-5_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_27-2-5_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <!-- connections -->
+    <sequenceFlow id="_27-2-5-_27-2-2" sourceRef="_27-2-5" targetRef="_27-2-2" />
+    <sequenceFlow id="_27-2-1-_27-2-3" sourceRef="_27-2-1" targetRef="_27-2-3" />
+    <sequenceFlow id="_27-2-3-_27-2-4" sourceRef="_27-2-3" targetRef="_27-2-4" />
+    <sequenceFlow id="_27-2-4-_27-2-5" sourceRef="_27-2-4" targetRef="_27-2-5" />
+    </subProcess>
+
+    <!-- connections -->
+    <sequenceFlow id="_27-_10" sourceRef="_27" targetRef="_10" />
+    <sequenceFlow id="_1-_27" sourceRef="_1" targetRef="_27" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="GenerateCOAFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="93" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="94" y="520" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="16" y="96" width="202" height="389" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27-2-1" >
+        <dc:Bounds x="86" y="110" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27-2-2" >
+        <dc:Bounds x="97" y="425" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27-2-3" >
+        <dc:Bounds x="58" y="185" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27-2-4" >
+        <dc:Bounds x="36" y="269" width="163" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27-2-5" >
+        <dc:Bounds x="67" y="351" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_27-2-5-_27-2-2" >
+        <di:waypoint x="101" y="279" />
+        <di:waypoint x="105" y="353" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-2-1-_27-2-3" >
+        <di:waypoint x="94" y="38" />
+        <di:waypoint x="97" y="113" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-2-3-_27-2-4" >
+        <di:waypoint x="97" y="113" />
+        <di:waypoint x="101" y="197" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-2-4-_27-2-5" >
+        <di:waypoint x="101" y="197" />
+        <di:waypoint x="101" y="279" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_10" >
+        <di:waypoint x="117" y="290" />
+        <di:waypoint x="118" y="544" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_27" >
+        <di:waypoint x="117" y="40" />
+        <di:waypoint x="117" y="290" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<AfsFee>
+		<afsValue>Administration Fee</afsValue>
+		<afsCode>515</afsCode>
+		<afsKey>AFS_FEE_TYPE_ADMINISTRATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Agent Fee</afsValue>
+		<afsCode>522</afsCode>
+		<afsKey>AFS_FEE_TYPE_AGENT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Amendment Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_AMENDMENT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Amendment/ Waiver/ Redoc Fees</afsValue>
+		<afsCode>536</afsCode>
+		<afsKey>AFS_FEE_TYPE_AMENDMENT_WAIVER_REDOC_FEES</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Amendment/Waiver Fee</afsValue>
+		<afsCode>531</afsCode>
+		<afsKey>AFS_FEE_TYPE_AMENDMENT_WAIVER_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Annual Fee</afsValue>
+		<afsCode>590</afsCode>
+		<afsKey>AFS_FEE_TYPE_ANNUAL_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Annual Fee NA</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_ANNUAL_FEE_NA</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Annual Fees for loans &lt; or = 1 year</afsValue>
+		<afsCode>521</afsCode>
+		<afsKey>AFS_FEE_TYPE_ANNUAL_FEES_FOR_LOANS_LESS_THAN_OR_EQUAL_TO_ONE_YEAR
+		</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Application Fee</afsValue>
+		<afsCode>501</afsCode>
+		<afsKey>AFS_FEE_TYPE_APPLICATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Arranger Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_ARRANGER_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Bankers Accept Fee on Particip Bought</afsValue>
+		<afsCode>539</afsCode>
+		<afsKey>AFS_FEE_TYPE_BANKERS_ACCEPT_FEE_ON_PARTICIP_BOUGHT</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Bankers Acceptance Fees</afsValue>
+		<afsCode>541</afsCode>
+		<afsKey>AFS_FEE_TYPE_BANKERS_ACCEPTANCE_FEES</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>BCA - Event Driven Fee</afsValue>
+		<afsCode>518</afsCode>
+		<afsKey>AFS_FEE_TYPE_BCA_EVENT_DRIVEN_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>BCA Annual Fee</afsValue>
+		<afsCode>517</afsCode>
+		<afsKey>AFS_FEE_TYPE_BCA_ANNUAL_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Clean Bankers Accept Commission Rate</afsValue>
+		<afsCode>540</afsCode>
+		<afsKey>AFS_FEE_TYPE_CLEAN_BANKERS_ACCEPT_COMMISSION_RATE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Closing Fee</afsValue>
+		<afsCode>507</afsCode>
+		<afsKey>AFS_FEE_TYPE_CLOSING_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Closing Fees for loans &lt; or = 1 year</afsValue>
+		<afsCode>508</afsCode>
+		<afsKey>AFS_FEE_TYPE_CLOSING_FEES_FOR_LOANS_LESSTHAN_OR_EQUAL_TO
+			_ONE_YEAR
+		</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Commitment Fee</afsValue>
+		<afsCode>519</afsCode>
+		<afsKey>AFS_FEE_TYPE_COMMITMENT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Demand Payoff Fee</afsValue>
+		<afsCode>527</afsCode>
+		<afsKey>AFS_FEE_TYPE_DEMAND_PAYOFF_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Demand Update Payoff Letter</afsValue>
+		<afsCode>528</afsCode>
+		<afsKey>AFS_FEE_TYPE_DEMAND_UPDATE_PAYOFF_LETTER</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Derivative Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_DERIVATIVE_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Doc Ltr of Credit Fee on Particip Bought</afsValue>
+		<afsCode>537</afsCode>
+		<afsKey>AFS_FEE_TYPE_DOC_LTR_OF_CREDIT_FEE_ON_PARTICIP_BOUGHT</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Extension Fee</afsValue>
+		<afsCode>535</afsCode>
+		<afsKey>AFS_FEE_TYPE_EXTENSION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Facility Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_FACILITY_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB Closing Fee</afsValue>
+		<afsCode>561</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_CLOSING_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB Commitment Fee</afsValue>
+		<afsCode>562</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_COMMITMENT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB Origination Fee</afsValue>
+		<afsCode>560</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_ORIGINATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB Renewal/Annual Fee</afsValue>
+		<afsCode>563</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_RENEWAL/ANNUAL_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB Syndication Fee</afsValue>
+		<afsCode>564</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_SYNDICATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB- Amendment/waiver/redoc</afsValue>
+		<afsCode>571</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_AMENDMENT_WAIVER_REDOC</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB- Documentary Letter of Credit Fee</afsValue>
+		<afsCode>572</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_DOCUMENTARY_LETTER_OF_CREDIT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>FASB- Stand by Letter of Credit Fee</afsValue>
+		<afsCode>573</afsCode>
+		<afsKey>AFS_FEE_TYPE_FASB_STAND_BY_LETTER_OF_CREDIT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Fees Related to Payments</afsValue>
+		<afsCode>546</afsCode>
+		<afsKey>AFS_FEE_TYPE_FEES_RELATED_TO_PAYMENTS</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Filing/ Recording/ Certification Fees</afsValue>
+		<afsCode>514</afsCode>
+		<afsKey>AFS_FEE_TYPE_FILING_RECORDING_CERTIFICATION_FEES</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Flood Search</afsValue>
+		<afsCode>513</afsCode>
+		<afsKey>AFS_FEE_TYPE_FLOOD_SEARCH</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Florida Documentation Stamp Fee</afsValue>
+		<afsCode>511</afsCode>
+		<afsKey>AFS_FEE_TYPE_FLORIDA_DOCUMENTATION_STAMP_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Front End Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_FRONT_END_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Good Faith Deposit</afsValue>
+		<afsCode>504</afsCode>
+		<afsKey>AFS_FEE_TYPE_GOOD_FAITH_DEPOSIT</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Guarantee/SBLC Commission</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_GUARANTEE_SBLC_COMMISSION</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>LC Commission</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_LC_COMMISSION</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>LIBOR Breakage Fee</afsValue>
+		<afsCode>542</afsCode>
+		<afsKey>AFS_FEE_TYPE_LIBOR_BREAKAGE_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Manager Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_MANAGER_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Member Fee</afsValue>
+		<afsCode>516</afsCode>
+		<afsKey>AFS_FEE_TYPE_MEMBER_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Miscellaneous Fees</afsValue>
+		<afsCode>530</afsCode>
+		<afsKey>AFS_FEE_TYPE_MISCELLANEOUS_FEES</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Miscellaneous New Account Fee</afsValue>
+		<afsCode>505</afsCode>
+		<afsKey>AFS_FEE_TYPE_MISCELLANEOUS_NEW_ACCOUNT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Origination Fee</afsValue>
+		<afsCode>506</afsCode>
+		<afsKey>AFS_FEE_TYPE_ORIGINATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other Chg 1</afsValue>
+		<afsCode>524</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_CHG_1</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other Chg 2</afsValue>
+		<afsCode>525</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_CHG_2</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other FASB Fee-Loans year 1</afsValue>
+		<afsCode>565</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_FASB_FEE_LOANS_YEAR_1</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other FASB Fee-Loans year 2</afsValue>
+		<afsCode>566</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_FASB_FEE_LOANS_YEAR_2</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other FASB Fee-Loans year 3</afsValue>
+		<afsCode>567</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_FASB_FEE_LOANS_YEAR_3</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other FASB Fee-Loans year 4</afsValue>
+		<afsCode>568</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_FASB_FEE_LOANS_YEAR_4</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other FASB Fee-Loans year 5</afsValue>
+		<afsCode>569</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_FASB_FEE_LOANS_YEAR_5</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Other Fee (periodic fee assessment)</afsValue>
+		<afsCode>523</afsCode>
+		<afsKey>AFS_FEE_TYPE_OTHER_FEE_PERIODIC_FEE_ASSESSMENT</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Over Limit Fee</afsValue>
+		<afsCode>533</afsCode>
+		<afsKey>AFS_FEE_TYPE_OVER_LIMIT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Participation Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_PARTICIPATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Pass Thru Fee 1</afsValue>
+		<afsCode>588</afsCode>
+		<afsKey>AFS_FEE_TYPE_PASS_THROUGH_FEE_1</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Pass Thru Fee 2</afsValue>
+		<afsCode>589</afsCode>
+		<afsKey>AFS_FEE_TYPE_PASS_THROUGH_FEE_2</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Pre- Underwriting Fee</afsValue>
+		<afsCode>503</afsCode>
+		<afsKey>AFS_FEE_TYPE_PRE_UNDERWRITING_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Rate Lock deposit/fee</afsValue>
+		<afsCode>502</afsCode>
+		<afsKey>AFS_FEE_TYPE_RATE_LOCK_DEPOSIT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Re-Documentation Fee</afsValue>
+		<afsCode>532</afsCode>
+		<afsKey>AFS_FEE_TYPE_RE_DOCUMENTATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Reconveyance</afsValue>
+		<afsCode>529</afsCode>
+		<afsKey>AFS_FEE_TYPE_RECONVEYANCE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Reinstatement Fee</afsValue>
+		<afsCode>534</afsCode>
+		<afsKey>AFS_FEE_TYPE_REINSTATEMENT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Renewal Fee</afsValue>
+		<afsCode>520</afsCode>
+		<afsKey>AFS_FEE_TYPE_RENEWAL_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Return Payment FEE</afsValue>
+		<afsCode>543</afsCode>
+		<afsKey>AFS_FEE_TYPE_RETURN_PAYMENT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>SBA Fee</afsValue>
+		<afsCode>510</afsCode>
+		<afsKey>AFS_FEE_TYPE_SBA_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Stdby LC Fee on Particip Bought</afsValue>
+		<afsCode>538</afsCode>
+		<afsKey>AFS_FEE_TYPE_STDBY_LC_FEE_ON_PARTICIP_BOUGHT</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Stop Payment Fee</afsValue>
+		<afsCode>545</afsCode>
+		<afsKey>AFS_FEE_TYPE_STOP_PAYMENT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Tender Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_TENDER_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Term Sheet Fee</afsValue>
+		<afsCode>500</afsCode>
+		<afsKey>AFS_FEE_TYPE_TERM_SHEET_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Treasury Fees</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_TREASURY_FEES</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>UCC Fee</afsValue>
+		<afsCode>512</afsCode>
+		<afsKey>AFS_FEE_TYPE_UCC_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Underwriting Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_UNDERWRITING_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Unspecified</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_UNSPECIFIED</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Unused Commitment Fee 1</afsValue>
+		<afsCode>400</afsCode>
+		<afsKey>AFS_FEE_TYPE_UNUSED_COMMITMENT_FEE_1</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Unused Commitment Fee 2</afsValue>
+		<afsCode>401</afsCode>
+		<afsKey>AFS_FEE_TYPE_UNUSED_COMMITMENT_FEE_2</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Unused Commitment Fee 3</afsValue>
+		<afsCode>402</afsCode>
+		<afsKey>AFS_FEE_TYPE_UNUSED_COMMITMENT_FEE_3</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Unused Commitment Fee 4</afsValue>
+		<afsCode>403</afsCode>
+		<afsKey>AFS_FEE_TYPE_UNUSED_COMMITMENT_FEE_4</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Unused Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_UNUSED_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Up-Front Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_UPFRONT_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Utilization Fee</afsValue>
+		<afsCode>NA</afsCode>
+		<afsKey>AFS_FEE_TYPE_UTILIZATION_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Verification of Loan Fee</afsValue>
+		<afsCode>526</afsCode>
+		<afsKey>AFS_FEE_TYPE_VERIFICATION_OF_LOAN_FEE</afsKey>
+	</AfsFee>
+	<AfsFee>
+		<afsValue>Returned Citibank Check Fee</afsValue>
+		<afsCode>544</afsCode>
+		<afsKey>AFS_FEE_TYPE_RETURNED_CITIBANK_CHECK_FEE</afsKey>
+	</AfsFee>
+</list>

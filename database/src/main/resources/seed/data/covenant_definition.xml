@@ -1,0 +1,138 @@
+<list>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_REPORTING_REQUIREMENT</key>
+    </covenantCategory>
+    <covenantName>Accounts Payable Aging (Borrower)</covenantName>
+    <covenantKey>REPORT_TYPE_ACCOUNTS_PAYABLE_AGING_BORROWER_MONTHLY</covenantKey>
+    <covenantDescription>Customer to provide Accounts Payable Aging.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_REPORTING_REQUIREMENT</key>
+    </covenantCategory>
+    <covenantName>Annual Budget</covenantName>
+    <covenantKey>REPORT_TYPE_ANNUAL_BUDGET</covenantKey>
+    <covenantDescription>Customer to provide Annual Budget.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_REPORTING_REQUIREMENT</key>
+    </covenantCategory>
+    <covenantName>Borrowing Base Certificate</covenantName>
+    <covenantKey>REPORT_TYPE_BORROWING_BASE_CERTIFICATE</covenantKey>
+    <covenantDescription>Customer to provide Borrowing Base Certificate.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_REPORTING_REQUIREMENT</key>
+    </covenantCategory>
+    <covenantName>Federal Tax Returns (Borrower Only)</covenantName>
+    <covenantKey>REPORT_TYPE_FEDERAL_TAX_RETURNS_BORROWER_ONLY</covenantKey>
+    <covenantDescription>Customer to provide Federal Tax Returns.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_REPORTING_REQUIREMENT</key>
+    </covenantCategory>
+    <covenantName>Financial Statements Audited - CPA</covenantName>
+    <covenantKey>REPORT_TYPE_FINANCIAL_STATEMENTS_AUDITED_CPA</covenantKey>
+    <covenantDescription>Customer to provide Financial Statements audited by a CPA.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_REPORTING_REQUIREMENT</key>
+    </covenantCategory>
+    <covenantName>Inventory Aging (Borrower and Guarantors)</covenantName>
+    <covenantKey>REPORT_TYPE_INVENTORY_AGING_BORROWER_AND_GUARANTORS_MONTHLY</covenantKey>
+    <covenantDescription>Customer to provide inventory aging.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_FINANCIAL_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Borrowing Base</covenantName>
+    <covenantKey>COVENANT_TYPE_BORROWING_BASE</covenantKey>
+    <covenantDescription>The amount of money a lender will loan to a company based on the value of the collateral a company pledges.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_FINANCIAL_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Cash Flow Ratio</covenantName>
+    <covenantKey>COVENANT_TYPE_CASH_FLOW_RATIO</covenantKey>
+    <covenantDescription>Cash flow from operations/current liabilities.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_FINANCIAL_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Collateral Coverage Ratio</covenantName>
+    <covenantKey>COVENANT_TYPE_COLLATERAL_COVERAGE_RATIO</covenantKey>
+    <covenantDescription>The collateral coverage ratio is equal to the total discounted collateral value divided by the total loan request.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_OPERATING_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Cross Default</covenantName>
+    <covenantKey>COVENANT_TYPE_CROSS_DEFAULT</covenantKey>
+    <covenantDescription>A provision in a loan agreement that puts the borrower in default if the borrower defaults on another obligation. Also known as Cross Acceleration.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_OPERATING_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Field Audits</covenantName>
+    <covenantKey>COVENANT_TYPE_FIELD_AUDITS</covenantKey>
+    <covenantDescription>Field audits to be conducted by Lender or nominee at specified schedule.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_OPERATING_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Min Current Ratio</covenantName>
+    <covenantKey>COVENANT_TYPE_MIN_CURRENT_RATIO</covenantKey>
+    <covenantDescription>Ratio of current assets to current liabilities</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_FINANCIAL_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Min Debt Service Coverage</covenantName>
+    <covenantKey>COVENANT_TYPE_MIN_DEBT_SERVICE_CVG</covenantKey>
+    <covenantDescription>This is a cash flow measure that reflects a company's ability to service its debt obligations (generally calculated as a company's net cash flow during a specific period divided by its required debt service during that period).</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_FINANCIAL_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Min Interest Cvg.</covenantName>
+    <covenantKey>COVENANT_TYPE_MIN_INTEREST_CVG</covenantKey>
+    <covenantDescription>The interest coverage ratio measures a company's ability to meet its interest obligations with income earned from the firm's primary source of business.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_FINANCIAL_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Min Liquidity</covenantName>
+    <covenantKey>COVENANT_TYPE_MIN_LIQUIDITY</covenantKey>
+    <covenantDescription>Mandate minimum liquidity, such as a current or quick ratio that exceeds a certain threshold, such as 1.25.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_OPERATING_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Minimum Ownership Percentage</covenantName>
+    <covenantKey>COVENANT_TYPE_MINIMUM_OWNERSHIP_PERCENTAGE</covenantKey>
+    <covenantDescription>Ownership percentage of current owners (specify) not to go below minimum during life of loan.</covenantDescription>
+  </covenantDefinition>
+  <covenantDefinition>
+    <covenantCategory>
+      <key>COVENANT_CATEGORY_OPERATING_COVENANT</key>
+    </covenantCategory>
+    <covenantName>Primary Banking Relationship</covenantName>
+    <covenantKey>COVENANT_TYPE_PRIMARY_BANKING_RELATIONSHIP</covenantKey>
+    <covenantDescription>Borrower agrees that Lender will serve as primary bank for various types of facilities.</covenantDescription>
+  </covenantDefinition>
+</list>

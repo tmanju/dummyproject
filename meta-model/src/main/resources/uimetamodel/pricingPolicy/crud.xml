@@ -1,0 +1,83 @@
+<canvas id="pricingPolicy" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+
+	<panel id="pricingPolicy.header" label="Pricing Set Up">
+		<field name="pricingPolicy.nameDer" label="Policy Name" />
+		<field name="pricingPolicy.statusDer" label="Status" />
+		<field name="pricingPolicy.descriptionDer" label="Description" />
+	</panel>
+	
+	<tabs>
+		<tab id="tab.policyMain" label="Policy Main">
+			<panel id="pricingPolicy.info" label="Policy Information">
+				<field id="pricingProfileName" name="pricingPolicy.name" label ="Policy Name*" />
+				<field name="pricingPolicy.description" label="Description"/>
+				<field name="pricingPolicy.active" label="Policy Status"/>
+				<field name="pricingPolicy.metaInfo.lastModifiedAt" label="Last Modified"/>
+				<field name="pricingPolicy.metaInfo.lastModifiedByUser" label="Last Modified By"/>
+				<field name="pricingPolicy.metaInfo.createdAt" label="Created"/>
+				<field name="pricingPolicy.metaInfo.createdByUser" label="Created By" />
+			</panel>
+			
+			<panel id="pricingPolicy.terms" label="Values &amp; Other Data">
+				<field name="pricingPolicy.term.termIncrement" label="Term Increment" />
+				<field name="pricingPolicy.term.termStart" label="Term Start"/>
+				<field name="pricingPolicy.term.missingTerms" label="Missing Terms"/>
+				<field name="pricingPolicy.term.termMax" label="Term Max" />
+			</panel>
+			
+			
+			<panel id="pricingPolicy.policyMatching" label="Policy Matching">
+				<field name="pricingPolicy.currency" label="Currency" />
+				<field name="pricingPolicy.effectiveFromDate" label="Effective Date"/>
+				<field name="pricingPolicy.effectiveToDate" label="Expiration Date"/>
+				<field name="pricingPolicy.ou" label="OU" />
+				<field name="pricingPolicy.sbu" label="SBU" />
+			</panel>
+			<data-table name="pricingPolicy.associatedPrograms"  row="programObj" label="Associated Programs">
+				<columns>
+					<column name="programObj.refNumber" label="Program Number"/>
+					<column name="programObj.programNameDer" label="Program Name"/>
+					<column name="programObj.descriptionDer" label="Program Description"/>
+					 <column name="programObj.startDttmDer" label="Program Start Date"/>
+					<column name="programObj.endDttmDer" label="Program End Date"/>
+					<column name="programObj.derivedVersionNumber" label="Version"/>
+					<column name="programObj.operatingUnit" label="Operating Unit"/>
+					<column name="programObj.sbu" label="Strategic Business Unit"/> 
+				</columns>
+			</data-table> 
+		</tab>
+		<tab id="tab.exception" label="Exceptions">
+      <section id="pricingPolicy.exceptions" cols="1" label-alignment="top">
+				<field name="pricingPolicy.exceptionFormula" label="Exceptions" />
+			</section>
+		</tab>
+		<tab id="tab.calculations" label="Formulas">
+      <section id="pricingPolicy.calculations" cols="1" label-alignment="top">
+				<field name="pricingPolicy.formula" label="Formula" />
+			</section>
+		</tab>
+		<tab id="tab.promotions" label="Promotions">
+			<data-table name="pricingPolicy.promotionPolicies"  row="associatedPromotion" label="Current Promotions">
+				<columns>
+					<column name="associatedPromotion.name" label="Promotion Name"/>
+					<column name="associatedPromotion.promotionType" label="Type"/>
+					<column name="associatedPromotion.effectiveFromDate" label="Effective Date"/>
+					<column name="associatedPromotion.effectiveToDate" label="Expiration Date"/>
+				</columns>
+			</data-table>
+		</tab>
+		
+		<tab id="tab.verification" label="Verification">
+      <section id="pricingPolicy.verification" cols="1" label-alignment="top">
+				<field name="pricingPolicy.validationFormula" label="Formula" />
+			</section>
+		</tab>
+	</tabs>
+	<beans>
+		<bean name="pricingPolicy" type="com.thirdpillar.codify.loanpath.model.PricingPolicy" />
+	</beans>
+</canvas>

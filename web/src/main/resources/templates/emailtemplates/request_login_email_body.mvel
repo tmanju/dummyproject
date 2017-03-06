@@ -1,0 +1,16 @@
+
+Dear @{firstName}:<br><br>
+
+Congratulations on completing your first step in the loan application process. We look forward to working with you.<br><br>
+
+We have created a new user account for you on our secure website. You may visit this site by clicking on the link below. You can then securely input your personal information to complete your application.<br><br>
+
+<a href="@{CONFIG.getString("webapp.server.portalurl")}/application?portalAccessKey=@{entity.portalAccessKey}">@{CONFIG.getString("webapp.server.portalurl")}</a><br><br>
+
+Once you have submitted your personal information, the link will be deactivated and you will be sent a login and password that will allow you to access your account.<br><br>
+
+Again, congratulations and thank you.<br><br>
+
+Sincerely,<br><br>
+
+Lender Name<br>

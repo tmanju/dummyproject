@@ -1,0 +1,113 @@
+<map:constraint-mappings
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd"
+	xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	
+	<!-- Validation for Fraud Check Party -->
+	<map:bean class="FcParty" ignore-annotations="false">
+	<map:class>
+
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{fcParty.lastName.required}</map:message>
+		<map:element name="triggerExpr"><![CDATA[o.partyType!=null && o.partyType.key == 'CUSTOMER_TYPE_INDIVIDUAL']]></map:element>
+		<map:element name="matchedExpr"><![CDATA[o.lastName!=null]]></map:element>
+	</map:constraint>
+	
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{fcParty.ssn.required}</map:message>
+		<map:element name="triggerExpr"><![CDATA[o.partyType!=null && o.partyType.key == 'CUSTOMER_TYPE_INDIVIDUAL']]></map:element>
+		<map:element name="matchedExpr"><![CDATA[o.ssn!=null]]></map:element>
+	</map:constraint>
+	
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{fcParty.federalTax.required}</map:message>
+		<map:element name="triggerExpr"><![CDATA[return (o.partyType!=null && o.partyType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL');]]></map:element>
+		<map:element name="matchedExpr"><![CDATA[return o.federalTax != null;]]></map:element>
+	</map:constraint>
+	
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{fcParty.partyType.required}</map:message>
+		<map:element name="matchedExpr"><![CDATA[o.partyType!=null]]></map:element>
+	</map:constraint>
+	
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{fcParty.active.required}</map:message>
+		<map:element name="matchedExpr"><![CDATA[o.active!=null]]></map:element>
+	</map:constraint>
+	
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{fcParty.firstName.required}</map:message>
+		<map:element name="matchedExpr"><![CDATA[o.firstName!=null]]></map:element>
+	</map:constraint>
+	
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{fcParty.caseId.required}</map:message>
+		<map:element name="matchedExpr"><![CDATA[o.caseId!=null]]></map:element>
+	</map:constraint>
+	
+	<map:constraint
+		annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{fcParty.birthDate.greater.validation}</map:message>
+				<map:element name="matchedExpr">
+					<![CDATA[
+              		if(o.birthDate != null)	{
+						return o.validBirthDate();
+					}return true;
+					]]></map:element>
+	</map:constraint>
+	
+	</map:class>
+	
+    </map:bean>
+	
+	<!-- Validation for fraud Check Address -->
+	<map:bean class="FcAddress" ignore-annotations="false">
+        
+        <map:class> </map:class>
+      
+      <map:field name="address1">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{fcParty.address1.required}</map:message>
+	      </map:constraint>          
+      </map:field> 
+      
+       <map:field name="city">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{fcParty.fcAddress.required}</map:message>
+	      </map:constraint>          
+      </map:field>
+      
+      <map:field name="stateProvince">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{fcParty.fcAddress.required}</map:message>
+	      </map:constraint>          
+      </map:field>
+      
+      <map:field name="zip">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{fcParty.fcAddress.required}</map:message>
+	      </map:constraint>          
+      </map:field>
+      
+      <map:field name="phoneNumber">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{fcParty.fcAddress.required}</map:message>
+	      </map:constraint>          
+      </map:field>
+      
+      <map:field name="addressType">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{fcParty.fcAddress.required}</map:message>
+	      </map:constraint>          
+      </map:field>
+      
+      
+      </map:bean>
+</map:constraint-mappings>

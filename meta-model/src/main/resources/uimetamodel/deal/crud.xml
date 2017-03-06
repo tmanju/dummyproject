@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="deal" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<panel id="deal.information" label="Funding Request Information">
+		<field name="deal.refNumber"  label="Funding Request Number"/>
+		<field name="deal.servicingIdentifier"  label="Servicing Identifier"/>
+	</panel>
+	<data-table name="deal.selectedDeal" row="deal" label="">
+		<columns>
+			<column name="deal.facilityBE.customer.refNumber" label="Account Number" /> <!--not sure refNumber should be here -->
+			<column name="deal.facilityBE.customer.legalName" label="Client Name" />
+			<column name="deal.initialFundingReq" label="Draw Request Amount"/>
+			<column name="deal.productType" />
+			<column name="deal.maturityDt" />
+			<column name="deal.creditFacAmt" />
+			<column name="deal.stateCountry" label="State"/>
+			<column name="deal.metaInfo.createdAt" label="Time of Draw Request"/>
+			<column name="deal.wfStatus"  label="Status"/>
+			<column name="deal.statusChngDt" />
+			<column name="deal.fundedDate" />
+			<column name="deal.noOfCps" />
+		</columns>
+	</data-table>
+	<panel id="deal.funding.breakup" label="">
+		<field name="deal.initialFundingReq" label="Draw Request Amount" />
+		<field name="deal.availableCashDer" />
+		<data-table name="deal.fundAllocators" row="fundAllocator"	label="Funding Placement">
+			<columns>
+				<column name="fundAllocator.dbid" />
+				<column name="fundAllocator.capitalProvider" label="Capital Provider" />
+				<column name="fundAllocator.capitalProvider.availableCashDer" label="Availability To Lend" />
+				<column name="fundAllocator.fundPer" footer-name="deal.sumAllocatedPer"  targetFields="deal.funding.breakup"/>
+				<column name="fundAllocator.lastUpdate"  />
+				<column name="fundAllocator.drawRequestedDate"/>
+				<column name="fundAllocator.wfStatus"/>
+				<column name="fundAllocator.fundAmt"  footer-name="deal.sumAllocatedAmt"  targetFields="deal.funding.breakup" />
+				<column name="fundAllocator.temp"/>
+			</columns>
+	
+			<edit-canvas>
+				<panel id="deal.funding.panel"  label="Select Facility" >
+					<field name="fundAllocator.deal.availableCashDer" label="Remaining To Fund"  />	
+					<field name="fundAllocator.newCapitalProvider" label="Capital Provider" targetFields="deal.funding.panel"/>									
+					<field name="fundAllocator.capitalProvider" label="Capital Provider" targetFields="deal.funding.panel"/>
+					<field name="fundAllocator.capitalProvider.availableCashDer" label="Available Cash" />
+					<field name="fundAllocator.fundPer" targetFields="deal.funding.panel"/>
+					<field name="fundAllocator.lastUpdate"  />
+					<field name="fundAllocator.drawRequestedDate"/>
+					<field name="fundAllocator.wfStatus" />
+					<field name="fundAllocator.fundAmt"  targetFields="deal.funding.panel"/>
+					<field name="fundAllocator.temp" />
+					<field name="fundAllocator.fundedDate" />
+					<field name="fundAllocator.inxTempCp" label="INX Temp Funding for CP"/>
+					<field name="fundAllocator.inxTempFundAmt" label="INX Temp Funding Amount"/>
+					<field name="fundAllocator.rejReason" />
+				</panel>
+				<commands>
+					<command id="fundedFundAllobvcation" name="Funded" action="fundedFundAllocation" type="businessOp"/>
+					<command id="failedFundAllobvcation" name="Failed" action="failedFundAllocation" type="businessOp">
+						<dialog-canvas>
+				            <section id="rejectedReasonPanel" label="Reason for Decline" cols="1" orientation="horizontal" label-alignment="top">
+				                <field name="fundAllocator.rejReason"  />
+				            </section>
+			        	</dialog-canvas> 
+			        </command>
+			        <command id="submitFundAllocation" name="Submit" action="submitFundAllocation" type="businessOp" />
+   			        <command id="replacedFundAllobvcation" name="Replaced" action="replacedFundAllocation" type="businessOp">
+   			        	<dialog-canvas>
+				            <section id="SellToDiffCP" label="Select new Capital Provider" cols="1" orientation="horizontal" label-alignment="top">
+				                <field name="fundAllocator.newCP"  />
+				            </section>
+			        	</dialog-canvas>
+   			        </command>
+				</commands>
+				<panel id ="deal.fp.list"  label="">
+					<data-table name="fundAllocator.deal.facilityCapitalProviders" row="capitalProvider" label="Funding Provider">
+						<columns>
+							<column name="capitalProvider.customerAssociated" />
+							<column name="capitalProvider.availableCashDer" />
+							<column name="capitalProvider.pending" />
+							<column name="capitalProvider.outstandingPrincipal" />
+							<column name="capitalProvider.customerAssociated.pledgedAmt" />
+							<column name="capitalProvider.participatingInMPsince" />
+							<column name="capitalProvider.noOfFundedDeal" />
+							<column name="capitalProvider.lastDealDt" />
+							<column name="capitalProvider.customerAssociated.maxConcentrationPercent" />
+							<column name="capitalProvider.hasExIndustry" /> 
+						</columns>
+						<data-table name="capitalProvider.customerAssociated.allocations" row="allocation"
+							label="Allocations">
+							<columns>
+								<column name="allocation.clientRating" />
+								<column name="allocation.allocPercentage" />
+								<column name="allocation.allAmt" />
+							</columns>
+						</data-table>
+					</data-table>
+				</panel>
+			</edit-canvas>
+			<data-table name="fundAllocator.oldCPs" row="oldCP"	label="Funding Placement History">
+				<columns>
+					<column name="oldCP.dbid" />
+					<column name="oldCP.capitalProvider" label="Capital Provider"/>
+					<column name="oldCP.newCP" />
+					<column name="oldCP.availableCash" label="Availability To Lend" />
+					<column name="oldCP.fundPer"/>
+					<column name="oldCP.lastUpdate"  />
+					<column name="oldCP.drawRequestedDate"/>
+					<column name="oldCP.wfStatus"/>
+					<column name="oldCP.fundAmt"/>
+					<column name="oldCP.temp"/>
+				</columns>
+			</data-table>
+		</data-table>
+	</panel>
+     	       
+	<data-table name="deal.facilityCapitalProviders" row="capitalProvider" label="Capital Provider">
+		<columns>
+			<column name="capitalProvider.customerAssociated" />
+			<column name="capitalProvider.availableCashDer" />
+			<column name="capitalProvider.pending" />
+			<column name="capitalProvider.outstandingPrincipal" />
+			<column name="capitalProvider.customerAssociated.pledgedAmt" />
+			<column name="capitalProvider.participatingInMPsince" />
+			<column name="capitalProvider.noOfFundedDeal" />
+			<column name="capitalProvider.lastDealDt" />
+			<column name="capitalProvider.customerAssociated.maxConcentrationPercent" />
+			<column name="capitalProvider.customerAssociated.exIndustry" /> 
+			<column name="capitalProvider.customerAssociated.isInxCp" label="INX CP"/>
+		</columns>
+		<quickedit-canvas>
+			<panel id="quick.capitalProvider" label="Exclude Industry">
+ 				<field name="capitalProvider.customerAssociated.exIndustry" /> 
+			</panel>
+		</quickedit-canvas>
+		<data-table name="capitalProvider.customerAssociated.allocations" row="allocation"
+			label="Allocations">
+			<columns>
+				<column name="allocation.clientRating" />
+				<column name="allocation.allocPercentage" />
+				<column name="allocation.allAmt" />
+			</columns>
+		</data-table>
+	</data-table>
+	
+	<commands>
+		<command id="DrawRequest" name="Submit Funding Request" action="DrawRequest" type="businessOp"/>
+	</commands>
+	<beans>
+		<bean name="deal" type="com.thirdpillar.codify.loanpath.model.Deal" />
+	</beans>
+</canvas>

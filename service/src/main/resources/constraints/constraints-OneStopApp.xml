@@ -1,0 +1,104 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="OneStopApp" ignore-annotations="false">
+      <map:class> 
+      	<!-- One Stop App Validation -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.productType.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.productType != empty);]]></map:element>
+			</map:constraint> 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.legalEntityType.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.legalEntityType != empty);]]></map:element>
+			</map:constraint>  
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.requestedAmt.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.requestedAmt != null);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.entityName.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.entityName != empty);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.federalTaxId.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.federalTaxId != empty);]]></map:element>
+			</map:constraint> 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.contact.firstName.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.contact.firstName != empty);]]></map:element>
+			</map:constraint>   
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.contact.lastName.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.contact.lastName != empty);]]></map:element>
+			</map:constraint>  
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.contact.email.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[return (o.contact.email != empty);]]></map:element>
+			</map:constraint>  
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.propertyAddress.address1.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return (o.productType.key == "CREDIT_FACILITY_TYPE_LEASE" );]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.propertyAddress.address1 != empty);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.propertyAddress.city.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return (o.productType.key == "CREDIT_FACILITY_TYPE_LEASE" );]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.propertyAddress.city != empty);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.propertyAddress.stateProvince.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return (o.productType.key == "CREDIT_FACILITY_TYPE_LEASE" );]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.propertyAddress.stateProvince != empty);]]></map:element>
+			</map:constraint> 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.propertyAddress.country.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return (o.productType.key == "CREDIT_FACILITY_TYPE_LEASE" );]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.propertyAddress.country != empty);]]></map:element>
+			</map:constraint> 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{oneStopApp.propertyAddress.postalCode.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return (o.productType.key == "CREDIT_FACILITY_TYPE_LEASE" );]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.propertyAddress.postalCode != empty);]]></map:element>
+			</map:constraint>    
+      </map:class>
+    </map:bean>
+</map:constraint-mappings>

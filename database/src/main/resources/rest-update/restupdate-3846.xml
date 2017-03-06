@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+    <list>
+   <attribute>
+      <key>FEE_PCT_BASIS</key>
+      <name>FEE_PCT_BASIS</name>
+      <description/>
+      <attributeChoices>
+         <attributeChoice>
+            <value>Commited Amount</value>
+            <key>FEE_PCT_BASIS_COMMITED_AMOUNT</key>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Drawndown Amount</value>
+            <key>FEE_PCT_BASIS_DRAWDOWN_AMOUNT</key>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Unused Amount</value>
+            <key>FEE_PCT_BASIS_UNUSED_AMOUNT</key>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+      </attributeChoices>
+   </attribute> 
+   </list>
+</mod:sr.upsertEntityRequest>

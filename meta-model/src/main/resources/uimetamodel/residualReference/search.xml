@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="residualReference" type="search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+		
+		<section id="residualReference.residualReferenceSearch">
+			<field name="residualReference.operatingUnit" label="Operating Unit" />
+			<field name="residualReference.sbu" label="Strategic Business Unit" />
+			<field name="residualReference.assetClass" label="Asset Type" />
+			<field name="residualReference.assetSubclass" label="Asset Sub-Type" />
+			<field name="residualReference.assetsCondition" label="Assets Condition" />
+			<field name="residualReference.currency" label="Currency" />
+			<field name="residualReference.residualType" label="Residual Type" />
+			<field name="residualReference.residualValue" label="Residual Value" />
+			<field name="residualReference.depreciationLife" label="Depreciation Life" />
+			<field name="residualReference.depreciationMethod" label="Depreciation Method" />
+		</section>
+	<beans>
+		<bean name="residualReference" type="com.thirdpillar.codify.loanpath.model.ResidualReference" />
+	</beans> 
+
+</canvas>

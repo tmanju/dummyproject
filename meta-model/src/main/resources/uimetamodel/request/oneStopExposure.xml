@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="oneStopExposure" type="crud" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd" xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<panel id="oneStopExposure.loanDetails" label="Limit Information">
+		<field name="request.refNumber" label="Transaction Number"/>
+		<field name="request.oneStopExposure.productType" label="Exposure Product Type *" />
+		<field name="request.oneStopExposure.requestedAmt" label="Requested Limit *"/>
+	</panel>
+	<panel id="oneStopExposure.entityInformation" label="CounterParty Information">
+		<field name="request.oneStopExposure.counterParty" label="Counter Party " allow="create" targetFields="oneStopExposure.entityInformation"/>
+<!-- 		<field name="request.oneStopExposure.legalEntityType" label="Legal Entity Type *"/> -->
+		<field name="request.oneStopExposure.entityName" label="Legal Name *"/>
+		<field name="request.oneStopExposure.federalTaxId" label="Tax ID *"/>
+		<field />
+		<field />
+		<field />
+		<field name="request.oneStopExposure.contactCustomer" label="Contact " allow="create" targetFields="oneStopExposure.entityInformation"/>		
+		<field name="request.oneStopExposure.contact.firstName" label="Contact First Name *"/>
+		<field name="request.oneStopExposure.contact.lastName" label="Contact Last Name *"/>
+		<field name="request.oneStopExposure.contact.otherPhone"/>
+		<field name="request.oneStopExposure.contact.email" label="Email *"/>
+		<data-table name="request.oneStopExposure.contact.addresses" row="address" label="Address">
+			<columns>
+				<column name="address.address1" label="Address 1" />
+				<column name="address.address2" label="Address 2" />
+				<column name="address.city" label="City" />
+				<column name="address.stateProvince" label="State" />
+				<column name="address.country" label="Country" />						
+				<column name="address.use" label="Usage" />
+			</columns>
+			<quickedit-canvas>
+				<panel id="request.oneStopExposure.contactDetailsInformation" label="Address Details">
+					<field name="address.address1" label="Address 1" />
+					<field name="address.address2" label="Address 2" />
+					<field name="address.city" label="City" />
+					<field name="address.country" label="Country" />
+					<field name="address.stateProvince" label="State" />
+					<field name="address.postalCode" label="Postal Code" />
+					<field name="address.use" label="Usage" />
+				</panel>
+			</quickedit-canvas>
+		</data-table>
+	</panel>	
+	<beans>
+		<bean name="request" type="com.thirdpillar.codify.loanpath.model.Request"/>
+	</beans>
+</canvas>

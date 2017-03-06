@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.UCC" />
+  <itemDefinition id="_requestItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_uccItem" structureRef="com.thirdpillar.codify.loanpath.model.UCC" />
+
+  <itemDefinition id="_8-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.UCC" />
+  <itemDefinition id="_8-requestItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_8-uccItem" structureRef="com.thirdpillar.codify.loanpath.model.UCC" />
+
+  <itemDefinition id="_11-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.UCC" />
+  <itemDefinition id="_11-requestItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_11-uccItem" structureRef="com.thirdpillar.codify.loanpath.model.UCC" />
+
+  <process processType="Private" isExecutable="true" id="UCCSubmitForFiling" name="UCC Submit For Filing" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.UCC" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.foundation.service.ContextHolder" />
+     <tns:import name="com.thirdpillar.foundation.service.Context" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="java.util.List" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="request" itemSubjectRef="_requestItem"/>
+    <property id="ucc" itemSubjectRef="_uccItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_3" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <exclusiveGateway id="_5" name="Gateway" gatewayDirection="Diverging" />
+    <endEvent id="_6" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_7" name="addUccToRequest" scriptFormat="http://www.java.com/java" >
+      <script>UCC uccObj = (UCC)context.getVariable("contextEntity");
+System.out.println("Inside addUCCToRequest script");
+Request requestObj = null;
+if (uccObj.getId() == null) {
+	// add ucc to the parent request object and save
+    if (uccObj.getRequest() != null) {
+    	requestObj = uccObj.getRequest();
+    	List&lt;UCC&gt; uccObjList = requestObj.getUccs();
+    	if(uccObjList != null &amp;&amp; uccObjList.contains(uccObj)){
+    		// ucc is already added to the request obj. 
+    		// this might be due to the fact that user clicked on done and used action buttons to submit or navigate back to ucc and submit
+    	}else{
+        	requestObj.addToUccs(uccObj);
+		}
+	}
+}
+context.setVariable("ucc", uccObj);
+context.setVariable("request", requestObj);
+</script>
+    </scriptTask>
+    <task id="_8" name="Save Request Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_8_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_8_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_8_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <exclusiveGateway id="_9" name="Gateway" gatewayDirection="Converging" />
+    <task id="_11" name="UCCFiling Operation" tns:taskName="BusinessOperationTask" >
+      <ioSpecification>
+        <dataInput id="_11_entityInput" name="entity" />
+        <dataInput id="_11_businessOperationNameInput" name="businessOperationName" />
+        <inputSet>
+          <dataInputRefs>_11_entityInput</dataInputRefs>
+          <dataInputRefs>_11_businessOperationNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_businessOperationNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">UCCFiling</from>
+          <to xsi:type="tFormalExpression">_11_businessOperationNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_11-_3" sourceRef="_11" targetRef="_3" />
+    <sequenceFlow id="_1-_5" sourceRef="_1" targetRef="_5" />
+    <sequenceFlow id="_5-_6" sourceRef="_5" targetRef="_6" name="AlreadyFiled" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >UCC uccObj = (UCC)context.getVariable("contextEntity");
+System.out.println("Inside AlreadyFiled Constraint");
+if(uccObj != null &amp;&amp; !("UCC_STATUS_NEW".equals(uccObj.getWfStatus().getStatusKey())  || "UCC_STATUS_SAVED".equals(uccObj.getWfStatus().getStatusKey()) || "UCC_STATUS_SUBMIT_FAILED".equals(uccObj.getWfStatus().getStatusKey()) )){
+System.out.println("Inside AlreadyFiled Constraint, true");
+	return true;
+}else{
+System.out.println("Inside AlreadyFiled Constraint, false");
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_5-_7" sourceRef="_5" targetRef="_7" name="saveUCCAndSubmitForFiling" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >UCC uccObj = (UCC)context.getVariable("contextEntity");
+System.out.println("Inside saveUCCAndSubmitForFiling Constraint");
+if(uccObj != null &amp;&amp; "UCC_STATUS_NEW".equals(uccObj.getWfStatus().getStatusKey())){
+System.out.println("Inside saveUCCAndSubmitForFiling Constraint, true");
+	return true;
+}else{
+System.out.println("Inside saveUCCAndSubmitForFiling Constraint,false");
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_7-_8" sourceRef="_7" targetRef="_8" />
+    <sequenceFlow id="_8-_9" sourceRef="_8" targetRef="_9" />
+    <sequenceFlow id="_5-_9" sourceRef="_5" targetRef="_9" name="SubmitForFiling" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >UCC uccObj = (UCC)context.getVariable("contextEntity");
+System.out.println("Inside SubmitForFiling Constraint");
+if(uccObj != null &amp;&amp; ("UCC_STATUS_SAVED".equals(uccObj.getWfStatus().getStatusKey()) || "UCC_STATUS_SUBMIT_FAILED".equals(uccObj.getWfStatus().getStatusKey()) )){
+System.out.println("Inside SubmitForFiling Constraint, true");
+	return true;
+}else{
+System.out.println("Inside SubmitForFiling Constraint, false");
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_9-_11" sourceRef="_9" targetRef="_11" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="UCCSubmitForFiling" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="119" y="53" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="123" y="495" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="120" y="157" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="301" y="53" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="327" y="158" width="283" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="376" y="289" width="194" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="120" y="293" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="42" y="388" width="204" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_11-_3" >
+        <di:waypoint x="144" y="412" />
+        <di:waypoint x="147" y="519" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_5" >
+        <di:waypoint x="143" y="77" />
+        <di:waypoint x="144" y="181" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_6" >
+        <di:waypoint x="144" y="181" />
+        <di:waypoint x="325" y="77" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_7" >
+        <di:waypoint x="144" y="181" />
+        <di:waypoint x="468" y="182" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_8" >
+        <di:waypoint x="468" y="182" />
+        <di:waypoint x="473" y="313" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_9" >
+        <di:waypoint x="473" y="313" />
+        <di:waypoint x="144" y="317" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_9" >
+        <di:waypoint x="144" y="181" />
+        <di:waypoint x="144" y="317" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_11" >
+        <di:waypoint x="144" y="317" />
+        <di:waypoint x="144" y="412" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

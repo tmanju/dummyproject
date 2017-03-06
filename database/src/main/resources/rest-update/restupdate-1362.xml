@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<permissionSet>
+		<active>true</active>
+		<description>Credit Officer       ; Changed on Thu Aug 27 05:16:06 PDT 2015</description>
+		<name>Credit Officer</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Credit Analyst     ; Changed on Thu Aug 27 05:08:52 PDT 2015</description>
+		<name>Credit Analyst</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Operations     ; Changed on Thu Aug 27 05:24:40 PDT 2015</description>
+		<name>Operations</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Documentation Specialist     ; Changed on Thu Aug 27 05:33:18 PDT 2015</description>
+		<name>Documentation Specialist</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Vendor                      ; Changed on Thu Aug 27 08:19:23 PDT 2015</description>
+		<name>Vendor</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Relationship Manager     ; Changed on Thu Aug 27 03:52:42 PDT 2015</description>
+		<name>Relationship Manager</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Auditor ; Changed on Thu Aug 27 00:46:40 PDT 2015</description>
+		<name>Auditor</name>
+		<permissions/>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Legal ; Changed on Thu Aug 27 00:46:40 PDT 2015</description>
+		<name>Legal</name>
+		<permissions/>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Super Administrator ; Changed on Thu Aug 27 00:46:40 PDT 2015</description>
+		<name>Super Administrator</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>Sourcing     ; Changed on Thu Aug 27 02:54:32 PDT 2015</description>
+		<name>Sourcing</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>INX Ops Admin role</description>
+		<name>InxOpsAdminRole</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+	<permissionSet>
+		<active>true</active>
+		<description>INX Capital Markets Analyst</description>
+		<name>InxCManalyst</name>
+		<permissions>
+			<permission>
+				<name>Main.Configuration.FeePolicy</name>
+				<permissionSet reference="../../.."/>
+				<read>false</read>
+				<type>Web</type>
+			</permission>
+		</permissions>
+	</permissionSet>
+</list>
+</mod:sr.upsertEntityRequest>

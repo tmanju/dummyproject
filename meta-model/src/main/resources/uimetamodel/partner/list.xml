@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="partner" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="results" row="partner">
+		<columns>
+			<column name="partner.refNumber" />
+			<column name="partner.legalName" />
+			<column name="partner.wfStatus" label="Status"/>
+			<column name="partner.companyInformation.contactName" />
+		</columns>
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.Partner" />
+	</beans>	
+</canvas>

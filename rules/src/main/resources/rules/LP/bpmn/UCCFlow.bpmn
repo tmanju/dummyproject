@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.UCC" />
+  <itemDefinition id="_integrationStatusItem" structureRef="java.lang.String" />
+  <itemDefinition id="_nextUccTimeItem" structureRef="java.lang.String" />
+  <itemDefinition id="_nextUccWfStatusItem" structureRef="String" />
+  <itemDefinition id="_uccFilingInputMapItem" structureRef="java.util.Map" />
+
+  <process processType="Private" isExecutable="true" id="UCCFlow" name="UCCFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.UCC" />
+     <tns:import name="java.text.SimpleDateFormat" />
+     <tns:import name="java.util.Calendar" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.foundation.util.StringUtils" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="integrationStatus" itemSubjectRef="_integrationStatusItem"/>
+    <property id="nextUccTime" itemSubjectRef="_nextUccTimeItem"/>
+    <property id="nextUccWfStatus" itemSubjectRef="_nextUccWfStatusItem"/>
+    <property id="uccFilingInputMap" itemSubjectRef="_uccFilingInputMapItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <task id="_5" name="UccFilingIntegrationTask" tns:taskName="IntegrationTask" >
+      <ioSpecification>
+        <dataInput id="_5_inputInput" name="input" />
+        <dataInput id="_5_entityInput" name="entity" />
+        <dataInput id="_5_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_5_entityOutput" name="entity" />
+        <dataOutput id="_5_ResultStatusOutput" name="ResultStatus" />
+        <inputSet>
+          <dataInputRefs>_5_inputInput</dataInputRefs>
+          <dataInputRefs>_5_entityInput</dataInputRefs>
+          <dataInputRefs>_5_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_5_entityOutput</dataOutputRefs>
+          <dataOutputRefs>_5_ResultStatusOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>uccFilingInputMap</sourceRef>
+        <targetRef>_5_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_5_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">submitFilingService</from>
+          <to xsi:type="tFormalExpression">_5_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_ResultStatusOutput</sourceRef>
+        <targetRef>integrationStatus</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_11" name="Gateway" gatewayDirection="Diverging" />
+    <task id="_12" name="StatusUpdateToSubmitted" tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextUccTime","0d");</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_12_entityInput" name="entity" />
+        <dataInput id="_12_saveInput" name="save" />
+        <dataInput id="_12_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_12_entityInput</dataInputRefs>
+          <dataInputRefs>_12_saveInput</dataInputRefs>
+          <dataInputRefs>_12_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_12_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_12_saveInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_12_saveInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_12_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">UCC_STATUS_SUBMITTED</from>
+          <to xsi:type="tFormalExpression">_12_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_13" name="StatusUpdateSubmitFailed" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_13_entityInput" name="entity" />
+        <dataInput id="_13_saveInput" name="save" />
+        <dataInput id="_13_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_13_entityInput</dataInputRefs>
+          <dataInputRefs>_13_saveInput</dataInputRefs>
+          <dataInputRefs>_13_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_13_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_13_saveInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_13_saveInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_13_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">UCC_STATUS_SUBMIT_FAILED</from>
+          <to xsi:type="tFormalExpression">_13_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_14" name="End" />
+    <endEvent id="_15" name="End" />
+    <task id="_17" name="UpdateFilingStatusIntegrationTask" tns:taskName="IntegrationTask" >
+      <ioSpecification>
+        <dataInput id="_17_entityInput" name="entity" />
+        <dataInput id="_17_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_17_entityOutput" name="entity" />
+        <dataOutput id="_17_ResultStatusOutput" name="ResultStatus" />
+        <inputSet>
+          <dataInputRefs>_17_entityInput</dataInputRefs>
+          <dataInputRefs>_17_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_17_entityOutput</dataOutputRefs>
+          <dataOutputRefs>_17_ResultStatusOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_17_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">getUCCFilingStatusService</from>
+          <to xsi:type="tFormalExpression">_17_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_17_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_17_ResultStatusOutput</sourceRef>
+        <targetRef>integrationStatus</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_16" name="TimerTask" tns:taskName="TimerTask" >
+      <ioSpecification>
+        <dataInput id="_16_delayInput" name="delay" />
+        <dataInput id="_16_timeOfDayInput" name="timeOfDay" />
+        <inputSet>
+          <dataInputRefs>_16_delayInput</dataInputRefs>
+          <dataInputRefs>_16_timeOfDayInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_16_delayInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{nextUccTime}</from>
+          <to xsi:type="tFormalExpression">_16_delayInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_16_timeOfDayInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">16:00</from>
+          <to xsi:type="tFormalExpression">_16_timeOfDayInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <exclusiveGateway id="_19" name="Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_21" name="TimerTaskGatewayForUCCStatusUpdate" gatewayDirection="Converging" />
+    <intermediateCatchEvent id="_23" name="uccFilingEvent" >
+      <signalEventDefinition signalRef="uccFilingEvent"/>
+    </intermediateCatchEvent>
+    <scriptTask id="_22" name="SetPacketNumScript" scriptFormat="http://www.java.com/java" >
+      <script>UCC uccObj = (UCC) context.getVariable("contextEntity");
+
+Calendar currentTime = Calendar.getInstance();
+Date date = currentTime.getTime();
+SimpleDateFormat format = new SimpleDateFormat("yyMMDDHHMMss");
+        
+String value = format.format(date);
+value = uccObj.getRefNumber().toString()+value;
+uccObj.setUccPacketNum(value);
+uccObj.setUccSentDate(date);
+
+// check if ucc filing need to upload attachments
+boolean uploadAttachment = false;
+if(uccObj.getUccAttachment() != null &amp;&amp; 
+	uccObj.getUccAttachment().getAttachment() != null &amp;&amp; 
+	uccObj.getUccAttachment().getAttachment().getValue() != null ){
+		uploadAttachment = true;
+}
+
+Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+inputMap.put("uploadAttachment",uploadAttachment);
+	
+context.setVariable("uccFilingInputMap",inputMap);
+
+	</script>
+    </scriptTask>
+    <task id="_25" name="UCC Master Flow Wait State" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <endEvent id="_24" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_29" name="Filing Status Post Processing Script" scriptFormat="http://www.java.com/java" >
+      <script>UCC uccObj = (UCC) context.getVariable("contextEntity");
+String integrationServiceStatus = (String) context.getVariable("integrationStatus");
+
+
+String uccRecordStatus = uccObj.getUccRecordStatus();
+String uccFilingStatus = uccObj.getFilingStatus();
+String nextUccWorkflowStatusKey = "";
+String uccStatusKeyCancelled = "UCC_STATUS_CANCELED";
+String uccStatusKeyFiled = "UCC_STATUS_FILED";
+String uccStatusKeyRejected = "UCC_STATUS_REJECTED";
+//TODO: if the service fails for any error, where do we display that message. comments? seperate error field?
+
+// when the call is successful, 
+// if record status is completed, then 
+//		if filing status is Accepted, update wfStatus to Filed, 
+//	    if filing status is Expired, update wfStatus to Canceled, 
+//		if filing status is Rejected, update wfStatus to Rejected
+// if record status is cancelled, then update wfStatus to Canceled 
+// if record status is InProcess, then schedule another call for next day to check the status
+
+if( StringUtils.isNotEmpty(uccRecordStatus) ) {
+	if(StringUtils.equals(uccRecordStatus,"Completed")){
+		 if( StringUtils.isNotEmpty(uccFilingStatus) ){
+		 		if(StringUtils.equals(uccFilingStatus,"Accepted")){
+		 		// set ucc wfstatus to filed
+		 			 nextUccWorkflowStatusKey = uccStatusKeyFiled;
+		 		}else if(StringUtils.equals(uccFilingStatus,"Expired")){
+		 		 // set ucc wfstatus to cancelled
+		 			 nextUccWorkflowStatusKey = uccStatusKeyCancelled;
+		 		}else if(StringUtils.equals(uccFilingStatus,"Rejected")){
+		 		 // set ucc wfstatus to cancelled
+		 			 nextUccWorkflowStatusKey = uccStatusKeyRejected;
+		 		}
+		 }
+	}else if(StringUtils.equals(uccRecordStatus,"Cancelled")){
+	 		// set ucc wfstatus to cancelled
+		 	nextUccWorkflowStatusKey = uccStatusKeyCancelled;
+	}else{
+    		// set the timer to try again next day
+    		context.setVariable("nextUccTime","1d");
+    }
+}
+        
+context.setVariable("nextUccWfStatus",nextUccWorkflowStatusKey);</script>
+    </scriptTask>
+    <task id="_28" name="StatusUpdateToCancelledOrFiled" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_28_entityInput" name="entity" />
+        <dataInput id="_28_saveInput" name="save" />
+        <dataInput id="_28_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_28_entityInput</dataInputRefs>
+          <dataInputRefs>_28_saveInput</dataInputRefs>
+          <dataInputRefs>_28_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_28_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_28_saveInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_28_saveInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_28_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{nextUccWfStatus}</from>
+          <to xsi:type="tFormalExpression">_28_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_30" name="Save UCC" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_30_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_30_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_30_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_22-_5" sourceRef="_22" targetRef="_5" />
+    <sequenceFlow id="_5-_11" sourceRef="_5" targetRef="_11" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" name="changeStatusToSubmitted" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >UCC uccObj = (UCC) context.getVariable("contextEntity");
+String integrationServiceStatus = (String) context.getVariable("integrationStatus");
+
+if("ERROR".equals(integrationServiceStatus)){
+  return false;
+}else if(uccObj.getIlienStatus() != null  &amp;&amp; ("OK".equals(uccObj.getIlienStatus()) || "OKSubmitted".equals(uccObj.getIlienStatus())  || "OKError".equals(uccObj.getIlienStatus()) ) ){
+	return true;
+}else{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_11-_13" sourceRef="_11" targetRef="_13" name="changeStatusToSubmitFailed" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >UCC uccObj = (UCC) context.getVariable("contextEntity");
+String integrationServiceStatus = (String) context.getVariable("integrationStatus");
+
+if("ERROR".equals(integrationServiceStatus)){
+  return true;
+}else if(uccObj.getIlienStatus() != null  &amp;&amp; ("OK".equals(uccObj.getIlienStatus()) || "OKSubmitted".equals(uccObj.getIlienStatus())  || "OKError".equals(uccObj.getIlienStatus()) ) ){
+	return false;
+}else{
+    return true;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_13-_14" sourceRef="_13" targetRef="_14" />
+    <sequenceFlow id="_28-_15" sourceRef="_28" targetRef="_15" />
+    <sequenceFlow id="_16-_17" sourceRef="_16" targetRef="_17" />
+    <sequenceFlow id="_21-_16" sourceRef="_21" targetRef="_16" />
+    <sequenceFlow id="_30-_19" sourceRef="_30" targetRef="_19" />
+    <sequenceFlow id="_12-_21" sourceRef="_12" targetRef="_21" />
+    <sequenceFlow id="_19-_21" sourceRef="_19" targetRef="_21" name="tryAgainConstraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String nextUccStatusKey = (String) context.getVariable("nextUccWfStatus");
+if(StringUtils.isNotEmpty(nextUccStatusKey)){
+	return false;
+}else{
+	return true;
+}
+</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_23-_22" sourceRef="_23" targetRef="_22" />
+    <sequenceFlow id="_1-_25" sourceRef="_1" targetRef="_25" />
+    <sequenceFlow id="_25-_24" sourceRef="_25" targetRef="_24" />
+    <sequenceFlow id="_17-_29" sourceRef="_17" targetRef="_29" />
+    <sequenceFlow id="_19-_28" sourceRef="_19" targetRef="_28" name="updateStatusConstraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String nextUccStatusKey = (String) context.getVariable("nextUccWfStatus");
+if(StringUtils.isNotEmpty(nextUccStatusKey)){
+	return true;
+}else{
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_29-_30" sourceRef="_29" targetRef="_30" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="UCCFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="98" y="10" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="289" y="188" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="221" y="273" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="464" y="221" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="84" y="408" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="100" y="504" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="245" y="501" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="654" y="312" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="496" y="320" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="389" y="411" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="389" y="325" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="314" y="8" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_22" >
+        <dc:Bounds x="258" y="100" width="158" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" >
+        <dc:Bounds x="20" y="125" width="162" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_24" >
+        <dc:Bounds x="63" y="230" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="667" y="388" width="102" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="362" y="499" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_30" >
+        <dc:Bounds x="510" y="396" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_22-_5" >
+        <di:waypoint x="337" y="124" />
+        <di:waypoint x="339" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_11" >
+        <di:waypoint x="339" y="212" />
+        <di:waypoint x="245" y="297" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="245" y="297" />
+        <di:waypoint x="514" y="245" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_13" >
+        <di:waypoint x="245" y="297" />
+        <di:waypoint x="134" y="432" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_14" >
+        <di:waypoint x="134" y="432" />
+        <di:waypoint x="124" y="528" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_15" >
+        <di:waypoint x="412" y="523" />
+        <di:waypoint x="269" y="525" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_17" >
+        <di:waypoint x="546" y="344" />
+        <di:waypoint x="704" y="336" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_16" >
+        <di:waypoint x="413" y="349" />
+        <di:waypoint x="546" y="344" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_30-_19" >
+        <di:waypoint x="560" y="420" />
+        <di:waypoint x="413" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_21" >
+        <di:waypoint x="514" y="245" />
+        <di:waypoint x="413" y="349" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_21" >
+        <di:waypoint x="413" y="435" />
+        <di:waypoint x="413" y="349" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_22" >
+        <di:waypoint x="338" y="32" />
+        <di:waypoint x="337" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_25" >
+        <di:waypoint x="122" y="34" />
+        <di:waypoint x="101" y="149" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_24" >
+        <di:waypoint x="101" y="149" />
+        <di:waypoint x="87" y="254" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_29" >
+        <di:waypoint x="704" y="336" />
+        <di:waypoint x="718" y="412" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_28" >
+        <di:waypoint x="413" y="435" />
+        <di:waypoint x="412" y="523" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_30" >
+        <di:waypoint x="718" y="412" />
+        <di:waypoint x="560" y="420" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

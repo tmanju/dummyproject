@@ -1,0 +1,283 @@
+<list>
+	<promotionPolicy>
+		<name>CitiBus Pref Banking - fixed</name>
+		<description>Rate Reduction Promotion Policy with Fixed Rate</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_RATE_REDUCTION</key></promotionType>
+		<effectiveFromDate>2009-03-20</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<formula><![CDATA[RateReduction = 0.25]]></formula>
+		<active>true</active>
+		<refNumber>100008</refNumber>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FIXED</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+		<facilityCategoryTypes>
+			<facilityCategoryType>
+				<facilityCategory>
+					<key>LINE_OF_CREDIT</key>
+				</facilityCategory>
+				<facilityType>
+					<key>BUSINESS_INSTALLMENT_LOAN</key>
+				</facilityType>
+			</facilityCategoryType>
+			<facilityCategoryType>
+				<facilityCategory>
+					<key>LINE_OF_CREDIT</key>
+				</facilityCategory>
+				<facilityType>
+					<key>BUSINESS_INSTALLMENT_LOAN_6MONTH</key>
+				</facilityType>
+			</facilityCategoryType>
+			<facilityCategoryType>
+				<facilityCategory>
+					<key>TERM_LOAN</key>
+				</facilityCategory>
+				<facilityType>
+					<key>BUSINESS_INSTALLMENT_LOAN</key>
+				</facilityType>
+			</facilityCategoryType>
+			<facilityCategoryType>
+				<facilityCategory>
+					<key>TERM_LOAN</key>
+				</facilityCategory>
+				<facilityType>
+					<key>BUSINESS_BANKING_BIL</key>
+				</facilityType>
+			</facilityCategoryType>
+		</facilityCategoryTypes>
+		<pricingPolicies>
+			<pricingPolicy>
+				<promotionPolicies reference="../../.." />
+				<name>BB Parent Policy</name>
+			</pricingPolicy>
+			<pricingPolicy>
+				<promotionPolicies reference="../../.." />
+				<name>BIL with Draw Policy</name>
+			</pricingPolicy>
+			<pricingPolicy>
+				<promotionPolicies reference="../../.." />
+				<name>BIL without Draw Policy</name>
+			</pricingPolicy>
+		</pricingPolicies>
+	</promotionPolicy>
+	<promotionPolicy>
+		<name>CitiBus Pref Banking - float</name>
+		<description>Rate Reduction Promotion Policy with Floating Rate</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_RATE_REDUCTION</key></promotionType>
+		<effectiveFromDate>2009-03-20</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<formula><![CDATA[RateReduction = 0.25]]></formula>
+		<active>true</active>
+		<refNumber>100007</refNumber>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FLOATING</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+		
+	</promotionPolicy>
+	<promotionPolicy>
+		<name>Denovo-1% off</name>
+		<description>Rate Reduction Promotion Policy with Fixed Rate</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_RATE_REDUCTION</key></promotionType>
+		<effectiveFromDate>2009-03-20</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<formula><![CDATA[RateReduction = 1]]></formula>
+		<active>true</active>
+		<refNumber>100002</refNumber>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FLOATING</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+		<afsPromotion>
+			<key>AFS_PROMOTION_268</key>
+		</afsPromotion>
+		
+	</promotionPolicy>
+	<promotionPolicy>
+		<name>Denovo-app fee waiver-fixed</name>
+		<description>Fee Waiver Promotion</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_FEE_WAIVER</key></promotionType>
+		<effectiveFromDate>2009-03-06</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<active>true</active>
+		<refNumber>100005</refNumber>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FIXED</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+	</promotionPolicy>
+	<promotionPolicy>
+		<name>Denovo-app fee waiver-float</name>
+		<description>Fee Waiver Promotion</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_FEE_WAIVER</key></promotionType>
+		<effectiveFromDate>2009-03-06</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<active>true</active>
+		<refNumber>100006</refNumber>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FLOATING</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+	</promotionPolicy>
+	<promotionPolicy>
+		<name>HC-1% off</name>
+		<description>Rate Reduction Promotion Policy with Fixed Rate</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_RATE_REDUCTION</key></promotionType>
+		<effectiveFromDate>2009-03-06</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<formula><![CDATA[RateReduction = 1]]></formula>
+		<active>true</active>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FLOATING</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+		<afsPromotion>
+			<key>AFS_PROMOTION_HCO</key>
+		</afsPromotion>
+	</promotionPolicy>
+	<promotionPolicy>
+		<name>HC-app fee waiver-fixed</name>
+		<description>Fee Waiver Promotion</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_FEE_WAIVER</key></promotionType>
+		<effectiveFromDate>2009-03-06</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<active>true</active>
+		<refNumber>100003</refNumber>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FIXED</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+		<afsPromotion>
+			<key>AFS_PROMOTION_HCO</key>
+		</afsPromotion>
+	</promotionPolicy>
+	<promotionPolicy>
+		<name>HC-app fee waiver-float</name>
+		<description>Fee Waiver Promotion</description>
+		<promotionType><key>PROMOTION_POLICY_TYPE_FEE_WAIVER</key></promotionType>
+		<effectiveFromDate>2009-03-06</effectiveFromDate>
+		<effectiveToDate>2025-12-28</effectiveToDate>
+		<active>true</active>
+		<refNumber>100004</refNumber>
+		<isExclusive>false</isExclusive>
+		<useWhenExclusive>false</useWhenExclusive>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<isForAttachments>false</isForAttachments>
+		<residualIncluded>false</residualIncluded>
+		<rateType>
+			<key>RATE_TYPE_FLOATING</key>
+		</rateType>
+		<maxFinanceAmt>250000.00</maxFinanceAmt>
+		<afsPromotion>
+			<key>AFS_PROMOTION_HCO</key>
+		</afsPromotion>
+	</promotionPolicy>
+</list>

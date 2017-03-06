@@ -1,0 +1,84 @@
+<list>
+	<pricingPolicy>
+		<name>CRE General Policy</name>
+		<description>CRE General Policy</description>
+		<active>true</active>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<term>
+			<termMax>36</termMax>
+			<termStart>12</termStart>
+			<termIncrement>
+				<key>TERM_INCREMENT_12</key>
+			</termIncrement>
+			<missingTerms>
+				<key>MISSING_TERMS_EXCEPTION</key>
+			</missingTerms>
+		</term>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<formula><![CDATA[
+			IndexValue = IsFloatingRate ? Grid.lookup("IndexMatrix") : 3.25;
+			TableRate = Grid.lookup("RateTable");
+			CeilingRate = (ProductSubtype != null) ? Grid.lookup("RateCap"): null;
+			FloorRate = (ProductSubtype != null) ? Grid.lookup("RateFloor"): null;
+						
+			CustomerRate = TableRate;
+						
+			if (CeilingRate != null && FloorRate != null) {
+				if (TableRate < FloorRate) {
+					CustomerRate = FloorRate;
+				} else if (TableRate > CeilingRate) {
+					CustomerRate = CeilingRate;
+				}
+			}
+		]]></formula>
+	</pricingPolicy>
+
+	<pricingPolicy>
+		<name>General Policy</name>
+		<description>General Policy</description>
+		<active>true</active>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<term>
+			<termMax>36</termMax>
+			<termStart>12</termStart>
+			<termIncrement>
+				<key>TERM_INCREMENT_12</key>
+			</termIncrement>
+			<missingTerms>
+				<key>MISSING_TERMS_EXCEPTION</key>
+			</missingTerms>
+		</term>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<exceptionFormula><![CDATA[
+			ValidIndex = Grid.lookup("IndexException");
+			(ValidIndex != null && !ValidIndex) ? Exceptions.add("Index Not Supported");	
+		]]></exceptionFormula>
+		<formula><![CDATA[
+			IndexValue = IsFloatingRate ? Grid.lookup("IndexMatrix") : 3.25;
+			
+			FixedCOF = Grid.lookup("IndexValue");
+			
+			FixedSpread = 0;
+			
+			FixedRate = Grid.lookup("FixedCOF") + Grid.lookup("FixedSpread");
+			
+			FloatSpread = 0;
+		]]></formula>
+	</pricingPolicy>
+</list>

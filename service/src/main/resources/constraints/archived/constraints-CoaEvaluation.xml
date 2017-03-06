@@ -1,0 +1,40 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="CoaEvaluation" ignore-annotations="false">
+		<map:class>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{coaEvaluation.variableText.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmittedToCredit</map:value>
+				</map:groups>
+			<map:element name="triggerExpr"><![CDATA[o.coaDefinition !=null && o.coaDefinition.variableTextReq !=null && o.coaDefinition.variableTextReq.key == "YES_OR_NO_YES"]]></map:element>
+			<map:element name="matchedExpr"><![CDATA[o.variableText !=null && o.variableText.length >0]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{coaEval.coaDefinition.coaCategory.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.coaDefinition !=null && o.coaDefinition.coaCategory != null]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{coaEvaluation.coaEvaluationExceptionMsg.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.coaDefinition !=null && o.coaEvaluation !=null &&  ( o.coaEvaluation.key == "COA_EVALUATION_WAIVED"  || o.coaEvaluation.key == "COA_EVALUATION_EXCEPTION_SALES" || o.coaEvaluation.key == "COA_EVALUATION_EXCEPTION_OPERATIONS"  )]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.coaEvaluationExceptionMsg !=null && o.coaEvaluationExceptionMsg.length > 0]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{coaEvaluation.priorToOverrideMsg.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.priorToValueOriginal != null && o.priorToValue == null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.priorToOverrideMsg != null && o.priorToOverrideMsg.length > 0]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{coaEvaluation.priorToOverrideMsg.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.priorToValueOriginal == null && o.priorToValue != null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.priorToOverrideMsg != null && o.priorToOverrideMsg.length > 0]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{coaEvaluation.priorToOverrideMsg.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.priorToValueOriginal != null && o.priorToValue != null && o.priorToValueOriginal != o.priorToValue]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.priorToOverrideMsg != null && o.priorToOverrideMsg.length > 0]]></map:element>
+			</map:constraint>
+		</map:class>
+	</map:bean>
+</map:constraint-mappings>

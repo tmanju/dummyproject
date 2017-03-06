@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jee="http://www.springframework.org/schema/jee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd ">
+
+  <!--
+    Turn on AspectJ @Configurable support. Spring will attempt to perform 
+    dependency injection via the "new" keyword, as well as via reflection. 
+    Without @Configurable you'd only be able to dependency inject objects
+    acquired from Spring. 
+  -->
+  <context:spring-configured />
+  
+  <!--
+    This declaration will cause Spring to automatically locate every 
+    @Component, @Repository and @Service in your application at startup time.
+    Furthermore, this turns on @Autowired, @PostConstruct etc support. 
+  -->
+  <context:component-scan base-package="com.thirdpillar.codify.loanpath"/>
+  
+  <import resource="classpath:spring.xml"/>
+  <import resource="classpath:bc-spring.xml"/>
+  <import resource="classpath:businessOperations/applicationContext-businessOperations.xml" />
+  <import resource="classpath:pdf-templates/applicationContext-pdf.xml" />
+  <import resource="classpath:applicationContext-csv.xml" />
+  <import resource="classpath:excel-templates/onerac.xml"/>
+
+  <import resource="classpath:formula-engine.xml"/>
+    <!-- Task -->
+    <import resource="classpath:spring-taskservice.xml" />    
+  
+  <bean id="sessionFactory" parent="abstractSessionFactory">
+    <property name="packagesToScan">
+        <list merge="true">
+            <value>com.thirdpillar.codify.loanpath.model</value>
+        </list>
+    </property>
+  </bean>
+  
+  <bean id="processEMF" parent="abstractProcessEMF">
+    <property name="jpaProperties">
+        <props merge="true">
+            <prop key="hibernate.show_sql">false</prop>
+        </props>
+    </property>  
+  </bean>    
+
+  <bean id="taskEMF" parent="abstractTaskEMF">
+    <property name="jpaProperties">
+        <props merge="true">
+            <prop key="hibernate.show_sql">false</prop>
+        </props>
+    </property>  
+  </bean>
+
+  <bean id="profileBindingFactory" parent="abstractProfileBindingFactory" lazy-init="false" >
+    <property name="mappingResources">
+      <list merge="true">
+        <value>profile-full.xml</value>
+		<value>profile-header.xml</value>
+        <value>profile-export-full.xml</value>
+        <value>profile-export-header.xml</value>
+        <value>profile-import-run1-full.xml</value>
+        <value>profile-import-run2-full.xml</value>
+        <value>profile-app-ext-full.xml</value>
+        <value>profile-genie-full.xml</value>
+        <value>profile-ext-copy.xml</value>
+        <value>profile-full-no-binary.xml</value>
+		<value>profile-copy.xml</value>
+		<value>profile-changeLog-full.xml</value>
+      </list>
+    </property>
+  </bean>
+    
+  <bean id="xStreamExt" parent="abstractXstreamExt">
+    <property name="packageAliases">
+      <map merge="true">
+        <entry key="com.thirdpillar.codify.loanpath.model" value=""/>
+      </map>
+    </property>
+  </bean>
+  
+<bean id="ruleService" parent="abstractRuleService" lazy-init="true">
+    <property name="changeSets">
+    	<list>
+    		<value>rules/bc-rule-set.xml</value>
+    		<value>rules/rule-set.xml</value>
+    	</list>
+    </property>
+    <!-- <property name="workItemHandler" ref="workItemHandlerImplementation"/> -->
+</bean>
+
+<bean id="defaultService" parent="abstractRuleService" lazy-init="true">
+    <property name="changeSets">
+    	<list>
+    		<value>rules/bc-default-rule-set.xml</value>
+    		<value>rules/default-rule-set.xml</value>
+    	</list>
+    </property>
+</bean>
+
+<bean id="authRuleService" parent="abstractRuleService" lazy-init="true">
+    <property name="changeSets">
+    	<list>
+    		<value>rules/bc-auth-rule-set.xml</value>
+    		<value>rules/auth-rule-set.xml</value>
+    	</list>
+    </property>
+     
+</bean>
+<!-- <bean id="workItemHandlerImplementation" class="com.thirdpillar.foundation.service.workitems.WorkItemHandlerImpl" scope="prototype">
+    <property name="workItemHandlers">
+        <map merge="true">
+            <entry key="Email" value-ref="notificationWorkItemHandler"/>
+            <entry key="NotificationTask" value-ref="notificationWorkItemHandler"/>
+            <entry key="DocGen" value-ref="docGenWorkItemHandler"/>
+            <entry key="SaveEntity" value-ref="saveEntityWorkItemHandler" />
+            <entry key="RuleServiceTask" value-ref="ruleServiceWorkItemHandler" />
+            <entry key="IntegrationTask" value-ref="integrationTaskWorkItemHandler" />
+            <entry key="LoadEntity" value-ref="loadEntityWorkItemHandler" />
+            <entry key="ValidateEntity" value-ref="validateEntityWorkItemHandler" />
+            <entry key="BusinessOperationTask" value-ref="businessOperationWorkItemHandler" />
+            <entry key="PdfMerge" value-ref="pdfMergeWorkItemHandler" />   
+            <entry key="AbortTasks" value-ref="abortTasksWorkItemHandler" />            
+        </map>
+    </property>
+</bean>-->
+<!-- work item handler defined in codify-service are declared in spring.xml -->
+<!--  <bean id="loanpathUserTaskHandler" class="com.thirdpillar.codify.loanpath.service.LPUserTaskHandler" scope="prototype"/> -->
+<!--   <bean id="customUserTaskHandler" class="com.thirdpillar.codify.loanpath.service.CustomUserTaskHandler" scope="prototype"/> -->
+ 
+ <bean id="approverWorkItemHandler" class="com.thirdpillar.codify.loanpath.service.ApproverWorkItemHandler" scope="prototype"/>
+<!--  <bean id="pdfMergeWorkItemHandler" class="com.thirdpillar.codify.loanpath.service.PdfMergeWorkItemHandler" scope="prototype"/> -->
+
+
+    <bean id="DefaultInterceptor" class="com.thirdpillar.foundation.service.interceptors.DefaultInterceptor" >
+        <qualifier type="com.thirdpillar.foundation.service.interceptors.Event">
+            <attribute key="type" value="SAVE"/>
+        </qualifier>
+        <property name="agendaGroupNames" value="SAVE"/>
+        <property name="defaultService" ref="defaultService"/>
+    </bean>
+
+    
+    <bean id="webXmlPermissionFactory" parent="abstractWebXmlPermissionFactory">
+        <property name="files">
+			<list merge="true">
+				<value>/permissions/request-uiPermissions.xml</value>
+				<value>/permissions/facility-uiPermissions.xml</value>
+				<value>/permissions/program-uiPermissions.xml</value> 
+				<value>/permissions/partner-uiPermissions.xml</value>
+				<value>/permissions/customer-uiPermissions.xml</value>
+				<value>/permissions/relationship-uiPermissions.xml</value>
+				<value>/permissions/collateral-uiPermissions.xml</value>
+				<value>/permissions/attribute-uiPermissions.xml</value>
+				<value>/permissions/user-uiPermissions.xml</value>
+				<value>/permissions/role-uiPermissions.xml</value>
+				<value>/permissions/team-uiPermissions.xml</value>
+				<value>/permissions/feePolicy-uiPermissions.xml</value>
+				<value>/permissions/pricingPolicy-uiPermissions.xml</value>
+				<value>/permissions/promotionPolicy-uiPermissions.xml</value>
+				<value>/permissions/valueGrid-uiPermissions.xml</value>
+				<value>/permissions/task-uiPermissions.xml</value>
+				<value>/permissions/scrFactorSeed-uiPermissions.xml</value>
+				<value>/permissions/scrRcmRuleSeed-uiPermissions.xml</value>
+				<value>/permissions/scrAttributeSeed-uiPermissions.xml</value>
+				<value>/permissions/capitalprovider-uiPermissions.xml</value>
+				<value>/permissions/deal-uiPermissions.xml</value>
+				<value>/permissions/facilityBE-uiPermissions.xml</value>	
+				<value>/permissions/facilityPayment-uiPermissions.xml</value>			
+			</list>
+         </property>
+    </bean>
+    
+    <bean id="entityXmlPermissionFactory" parent="abstractEntityXmlPermissionFactory">
+      <property name="files">
+            <list merge="true">
+                  <value>permissions/BusinessPermissions.xml</value>
+		  <value>permissions/RoleCategoryAuditor.xml</value>
+          	  <value>permissions/RoleCategoryLegal.xml</value>
+		  <value>permissions/RoleCategorySuperAdministrator.xml</value>
+            </list>
+      </property>
+    </bean>
+ 
+    <bean id="templateRegistry" class="com.thirdpillar.foundation.rules.template.TemplateRegistryWrapper" init-method="initRegistry">
+        <property name="templateFiles">             
+            <map key-type="java.lang.String" value-type="java.lang.String">            
+                <entry key="request_login_email_body" 
+                    value="/templates/emailtemplates/request_login_email_body.mvel"/>
+                <entry key="request_disclosurehelp_task_email_body" 
+                    value="/templates/emailtemplates/request_disclosurehelp_task_email_body.mvel"/>
+                <entry key="request_salesupport_task_email_body" 
+                    value="/templates/emailtemplates/request_salesupport_task_email_body.mvel"/>
+                <entry key="request_spreading_task_email_body" 
+                    value="/templates/emailtemplates/request_spreading_task_email_body.mvel"/>
+                <entry key="request_pricing_task_email_body" 
+                    value="/templates/emailtemplates/request_pricing_task_email_body.mvel"/>
+                <entry key="request_appraisal_task_email_body" 
+                    value="/templates/emailtemplates/request_appraisal_task_email_body.mvel"/>
+                <entry key="request_status_approved_email_body" 
+                    value="/templates/emailtemplates/request_status_approved_email_body.mvel"/>
+                <entry key="request_status_declined_no_score_email_body" 
+                    value="/templates/emailtemplates/request_status_declined_no_score_email_body.mvel"/>
+                <entry key="request_status_declined_score_email_body" 
+                    value="/templates/emailtemplates/request_status_declined_score_email_body.mvel"/>
+                <entry key="request_status_declined_borrower_criteria_email_body" 
+                    value="/templates/emailtemplates/request_status_declined_borrower_criteria_email_body.mvel"/>
+                <entry key="request_creditreview_task_email_body" 
+                    value="/templates/emailtemplates/request_creditreview_task_email_body.mvel"/>                    
+                <entry key="covenantEvaluation_email_body" 
+                    value="/templates/emailtemplates/covenantEvaluation_email_body.mvel"/>                    
+                                       
+                <entry key="coaReview_task_email_body" 
+                    value="/templates/emailtemplates/coaReview_task_email_body.mvel"/>
+                <entry key="request_assigncreditanalyst_task_email_body" 
+                    value="/templates/emailtemplates/request_assigncreditanalyst_task_email_body.mvel"/>
+                <entry key="request_creditanalysis_task_email_body" 
+                    value="/templates/emailtemplates/request_creditanalysis_task_email_body.mvel"/>
+                <entry key="SubmitApplication_pendingSpreads_task_email_body" 
+                    value="/templates/emailtemplates/SubmitApplication_pendingSpreads_task_email_body.mvel"/>
+                <entry key="SubmitApplicationForDeciaion_pendingCreditDecision_task_email_body" 
+                    value="/templates/emailtemplates/SubmitApplicationForDeciaion_pendingCreditDecision_task_email_body.mvel"/>
+                <entry key="facility_finalFundingRequested_task_email_body" 
+                    value="/templates/emailtemplates/facility_finalFundingRequested_task_email_body.mvel"/>
+                <entry key="facility_assigned_task_email_body" 
+                    value="/templates/emailtemplates/facility_assigned_task_email_body.mvel"/>
+                <entry key="request_docreview_task_email_body" 
+                    value="/templates/emailtemplates/request_docreview_task_email_body.mvel"/>
+                <entry key="document_signingCompleted_task_email_body" 
+                    value="/templates/emailtemplates/document_signingCompleted_task_email_body.mvel"/>
+                <entry key="document_pendingReview_task_email_body" 
+                    value="/templates/emailtemplates/document_pendingReview_task_email_body.mvel"/>
+                <entry key="document_generationFailed_task_email_body" 
+                    value="/templates/emailtemplates/document_generationFailed_task_email_body.mvel"/>
+                <entry key="request_noia_warning_task_email_body" 
+                    value="/templates/emailtemplates/request_noia_warning_task_email_body.mvel"/>
+                     <entry key="Reg_B_DocumentArchived_Task_email_body" 
+                    value="/templates/emailtemplates/Reg_B_DocumentArchived_Task_email_body.mvel"/>
+                <entry key="user_activation_email_body" 
+                    value="/templates/emailtemplates/user_activation_email_body.mvel"/>
+                <entry key="prepare_renewal_salesupport_task_email_body" 
+                    value="/templates/emailtemplates/prepare_renewal_salesupport_task_email_body.mvel"/>
+                <entry key="request_renewal_creditanalysis_task_email_body" 
+                    value="/templates/emailtemplates/request_renewal_creditanalysis_task_email_body.mvel"/>
+                <entry key="prepare_renewal_backoffice_task_email_body" 
+                    value="/templates/emailtemplates/prepare_renewal_backoffice_task_email_body.mvel"/>
+                <entry key="exposure_limit_breached_task_email_body" 
+                    value="/templates/emailtemplates/exposure_limit_breached_task_email_body.mvel"/>
+                <entry key="exposure_limit_expire_task_email_body" 
+                    value="/templates/emailtemplates/exposure_limit_expire_task_email_body.mvel"/>  
+                <entry key="fund_allocator_status_email_body" 
+                    value="/templates/emailtemplates/fund_allocator_status_email_body.mvel"/> 
+                <entry key="deal_status_email_body" 
+                    value="/templates/emailtemplates/deal_status_email_body.mvel"/> 
+                 <entry key="fac_allocator_status_email_body" 
+                    value="/templates/emailtemplates/fac_allocator_status_email_body.mvel"/> 
+				<entry key="request_assigndebtorcreditanalyst_task_email_body" 
+                    value="/templates/emailtemplates/request_assigndebtorcreditanalyst_task_email_body.mvel"/> 
+            </map>
+        </property>
+        <property name="shortTemplateFiles">
+            <array value-type="java.lang.String">
+                <value>/templates/tasksubjects.mvel</value>
+            </array>
+        </property>
+    </bean>
+    
+  	<bean id="quartzScheduler" parent="abstractQuartzScheduler">
+	  	<property name="triggers">
+	          <list>
+	              <ref bean="noiaTrigger"/>
+	              <ref bean="uccOrderStatusTrigger"/>
+	              <ref bean="exposureLimitMonitoringTrigger"/>
+	              <ref bean="exposureExpireMonitoringTrigger"/>
+	              <ref bean="interestCalcTrigger"/>
+	              <ref bean="facilityRenewalUpdatorTrigger"/>
+	              <ref bean="feeUpdatorTrigger"/>
+	          </list>          
+	     </property>
+     </bean>
+    <bean id="fileImportFactory" class="com.thirdpillar.foundation.component.FileImportFactory">
+		<property name="fileImportImplName" value="com.thirdpillar.codify.loanpath.model.FileImport" />
+	</bean>
+</beans>
+

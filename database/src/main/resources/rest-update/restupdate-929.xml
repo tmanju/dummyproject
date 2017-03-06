@@ -1,0 +1,493 @@
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+
+			<state>
+				<active>true</active>
+				<isoCode>AL</isoCode>
+				<name>Alabama</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>AK</isoCode>
+				<name>Alaska</name>
+			</state>
+			<state>
+				<active>false</active>
+				<isoCode>AS</isoCode>
+				<name>American Samoa</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>AZ</isoCode>
+				<name>Arizona</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>AR</isoCode>
+				<name>Arkansas</name>
+			</state>
+			<state>
+				<active>false</active>
+				<isoCode>AA</isoCode>
+				<name>Armed Forces Americas</name>
+			</state>
+			<state>
+				<active>false</active>
+				<isoCode>AP</isoCode>
+				<name>Armed Forces Pacific</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>CA</isoCode>
+				<name>California</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>CO</isoCode>
+				<name>Colorado</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>CT</isoCode>
+				<name>Connecticut</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>DE</isoCode>
+				<name>Delaware</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>DC</isoCode>
+				<name>District of Columbia</name>
+			</state>
+			<state>
+				<active>false</active>
+				<isoCode>FM</isoCode>
+				<name>Federated States of Micronesia</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>FL</isoCode>
+				<name>Florida</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>GA</isoCode>
+				<name>Georgia</name>
+			</state>
+			<state>
+				<active>false</active>
+				<isoCode>GU</isoCode>
+				<name>Guam</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>HI</isoCode>
+				<name>Hawaii</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>ID</isoCode>
+				<name>Idaho</name>
+			</state>
+			<state>
+				<active>true</active>
+				<isoCode>IL</isoCode>
+				<name>Illinois</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>IN</isoCode>
+				<name>Indiana</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>IA</isoCode>
+				<name>Iowa</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>KS</isoCode>
+				<name>Kansas</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>KY</isoCode>
+				<name>Kentucky</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>LA</isoCode>
+				<name>Louisiana</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>ME</isoCode>
+				<name>Maine</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>MH</isoCode>
+				<name>Marshall Islands</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>MD</isoCode>
+				<name>Maryland</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>MA</isoCode>
+				<name>Massachusetts</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>MI</isoCode>
+				<name>Michigan</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>MN</isoCode>
+				<name>Minnesota</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>MS</isoCode>
+				<name>Mississippi</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>MO</isoCode>
+				<name>Missouri</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>MT</isoCode>
+				<name>Montana</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>NE</isoCode>
+				<name>Nebraska</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>NV</isoCode>
+				<name>Nevada</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>NH</isoCode>
+				<name>New Hampshire</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>NJ</isoCode>
+				<name>New Jersey</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>NM</isoCode>
+				<name>New Mexico</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>NY</isoCode>
+				<name>New York</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>NC</isoCode>
+				<name>North Carolina</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>ND</isoCode>
+				<name>North Dakota</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>MP</isoCode>
+				<name>Northern Mariana Islands</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>OH</isoCode>
+				<name>Ohio</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>OK</isoCode>
+				<name>Oklahoma</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>OR</isoCode>
+				<name>Oregon</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>PW</isoCode>
+				<name>Palau</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>PA</isoCode>
+				<name>Pennsylvania</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>PR</isoCode>
+				<name>Puerto Rico</name>
+			</state>
+
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>RI</isoCode>
+				<name>Rhode Island</name>
+			</state>
+
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>SC</isoCode>
+				<name>South Carolina</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>SD</isoCode>
+				<name>South Dakota</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>TN</isoCode>
+				<name>Tennessee</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>TX</isoCode>
+				<name>Texas</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>UT</isoCode>
+				<name>Utah</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>VT</isoCode>
+				<name>Vermont</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>VI</isoCode>
+				<name>Virgin Islands</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>VA</isoCode>
+				<name>Virginia</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>WA</isoCode>
+				<name>Washington</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>DC</isoCode>
+				<name>Washington DC</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>WV</isoCode>
+				<name>West Virginia</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>WI</isoCode>
+				<name>Wisconsin</name>
+			</state>
+			<state>
+				<active>true</active>
+				
+				
+				<isoCode>WY</isoCode>
+				<name>Wyoming</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>AB</isoCode>
+				<name>Alberta</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>BC</isoCode>
+				<name>British Columbia</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>MB</isoCode>
+				<name>Manitoba</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>NB</isoCode>
+				<name>New Brunswick</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>NL</isoCode>
+				<name>Newfoundland</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>NT</isoCode>
+				<name>Northwest Territories</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>NS</isoCode>
+				<name>Nova Scotia</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>NU</isoCode>
+				<name>Nunavut</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>ON</isoCode>
+				<name>Ontario</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>PE</isoCode>
+				<name>Prince Edward Island</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				
+				<isoCode>QC</isoCode>
+				<name>Quebec</name>
+			</state>
+			<state>
+				<active>false</active>
+				
+				<isoCode>SK</isoCode>
+				<name>Saskatchewan</name>
+			</state>
+			<state>
+				<active>false</active>
+			
+				<isoCode>YT</isoCode>
+				<name>Yukon Territory</name>
+			</state>
+		
+</list>
+</mod:sr.upsertEntityRequest>		

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<!-- tns:components>
+		<tns:component id="partner">
+			<tns:read>true</tns:read>
+		</tns:component>
+		<tns:component id="relationship">
+			<tns:read>true</tns:read>
+		</tns:component>
+		<tns:component id="crud">
+			<tns:component id="partyDetail_customerInformation_panel" >
+			<tns:read>true</tns:read>
+			</tns:component>
+			<tns:component id="firstName" >
+				<tns:default>true</tns:default>
+				<tns:edit>true</tns:edit>
+			</tns:component>
+		</tns:component>
+	</tns:components-->
+</tns:ui-permissions>
+<!-- ref="partner.maintenance.general" name="name" -->

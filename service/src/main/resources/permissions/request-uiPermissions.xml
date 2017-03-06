@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+
+    <tns:component id="request">                      
+            <tns:read>true</tns:read>
+    </tns:component>
+
+    <tns:canvas id="request_list">
+        <tns:component id="results_importFromXML">
+            <tns:default>false</tns:default>
+        </tns:component>
+        <tns:component id="results_importFromCSV">
+            <tns:default>false</tns:default>
+        </tns:component>
+        <tns:component id="results_edit">
+            <tns:default>
+           		boolean isVisible=true;
+           	 	if (root.isFacilityTypeCRE &amp;&amp; root.inWfStatus("REQUEST_STATUS_DECLINED","REQUEST_STATUS_WITHDRAWN")) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    }
+            </tns:default>
+        </tns:component>
+    </tns:canvas>
+
+            <tns:canvas id="oneStopApp_crud">
+            	<tns:component id="request_oneStopApp_facilitySubType">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="oneStopApp_propertyAddress">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_LEASE');</tns:default>
+                </tns:component>
+                 <tns:component id="oneStopApp_collateralInformation">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_dayCountConvention">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_amortizationTerm">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_interestRate">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_capRate">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_productPurpose">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_purposeCode">
+                    <tns:default>return (root.oneStopApp.?productType.key != 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_contactCustomer_searchBox">
+                    <tns:default>
+                     boolean isVisible=false;
+                     if (root.oneStopApp.?productType.key != "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE") {
+                        isVisible=true;
+                     }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                <!-- <tns:component id="request_oneStopApp_contactCustomer">
+                    <tns:default>return (root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE');</tns:default>
+                </tns:component> -->
+                <tns:component id="oneStopApp_guarantorInformation">
+                    <tns:default>return (root.oneStopApp.?productType.key != 'CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE' || root.oneStopApp.?productType.key == 'CREDIT_FACILITY_TYPE_LEASE');</tns:default>
+                </tns:component>
+                <tns:component id="request_oneStopApp_collaterals_QuickEditCanvas.collateral_collateralDers">
+                    <tns:default>return (root_oneStopApp_collaterals.useExistingCollateral);</tns:default>
+                </tns:component>                
+            </tns:canvas>
+            <tns:canvas id="request_crud">
+            <tns:component id="DeclineInit">
+            	<tns:default>
+            		boolean isVisible = false;
+            		if(root != null &amp;&amp; root.inWfStatus("REQUEST_STATUS_PENDING_APPLICATION_SENT","REQUEST_STATUS_PENDING_ANALYSIS","REQUEST_STATUS_DECLINED", "REQUEST_STATUS_SAVED") &amp;&amp; !root.inWfStatus("REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_NEW")){
+	                			isVisible = true;
+	                		}
+	                	return isVisible;
+            	</tns:default>
+            </tns:component>
+            
+            <tns:component id="Decline">
+            	<tns:default>
+            		boolean isVisible = false;
+            		if(root != null &amp;&amp; !root.inWfStatus("REQUEST_STATUS_PENDING_APPLICATION_SENT","REQUEST_STATUS_PENDING_ANALYSIS","REQUEST_STATUS_DECLINED", "REQUEST_STATUS_SAVED","REQUEST_STATUS_NEW","REQUEST_STATUS_PORTFOLIO_MANAGMENT")){
+	                			isVisible = true;
+	                		}
+	                	return isVisible;
+            	</tns:default>
+            </tns:component>
+            <tns:component id="Request_coaEvalFacilitiesDer_edit">
+            	<tns:default>
+            		return false;
+            	</tns:default>
+            </tns:component>
+            <tns:component id="Request_coaEvalFacilitiesDer_quick_menu_command">
+            	<tns:default>
+            	boolean isVisible = false;
+            		if(root != null &amp;&amp; root.inWfStatus("REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_APPROVED_DOCUMENTATION")){
+	                			isVisible = root.getCoaAction();
+	                		}
+	                	return isVisible; 	
+            	</tns:default>
+            </tns:component>
+            <tns:component id="facilityEditCanvas.facility_debtors_add">
+					<tns:default>
+						if(root != null &amp;&amp; root_allFacilities != null){
+	                			if(!root_allFacilities.addUpdateDebtorsAllowed()){
+	                				return false;
+	                			}
+	                		}
+	                		return true;
+	                </tns:default>
+			</tns:component>
+					
+	         <tns:component id="Request.allDebtorsDer.quick_menu_command">
+	         	<tns:default>
+					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.modifyDebtorsAllowed()){
+						return true;
+					}
+					return false;
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="Request_allDebtorsDer_edit">
+				<tns:default>
+					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.modifyDebtorsAllowed()){
+						return true;
+					}
+					return false;
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="facilityEditCanvas.facility_additionalOptions_actionsCol">
+				<tns:default>
+					if(root!= null &amp;&amp; root_allFacilities != null &amp;&amp; root_allFacilities.updateApprovedAmtAllowed()){
+						return true;
+					}
+					return false;
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="facilityEditCanvas.facility_pricingOption_structure_normal_fees_edit">
+				<tns:default>
+					if(root!= null &amp;&amp; root_allFacilities != null &amp;&amp; root_allFacilities.updateFeeAllowed()){
+						return true;
+					}
+					return false;
+				</tns:default>
+			</tns:component>
+			
+			<tns:component id="facilityEditCanvas.facility_pricingOption_structure_normal_fees_delete">
+				<tns:default>
+					if(root!= null &amp;&amp; root_allFacilities != null &amp;&amp; root_allFacilities.updateFeeAllowed()){
+						return true;
+					}
+					return false;
+				</tns:default>
+			</tns:component>
+			
+            <tns:component id="Resend">
+            	<tns:default>
+            		boolean isVisible = false;
+            			if(root.inWfStatus("REQUEST_STATUS_PORTFOLIO_MANAGMENT")) {
+            				isVisible = true;
+            			}
+            			return isVisible;
+            	</tns:default>
+            </tns:component>
+            
+            <tns:component id="Send_to_CRM">
+            	<tns:default>
+            		boolean isVisible = false;
+            			if(!root.inWfStatus("REQUEST_STATUS_SAVED") &amp;&amp; root.externalIdentifier != null) {
+            				isVisible = true;
+            			}
+            			return isVisible;
+            	</tns:default>
+            </tns:component>
+            
+            
+            <tns:component id="Request_allDebtorsDer_quick_menu_command">
+            	<tns:default>if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
+            		return false;
+            	}
+            	return true;
+            	</tns:default>
+            </tns:component>
+            <tns:component id="Request.DebtorDecision.decline">
+            	<tns:default>if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
+            		return false;
+            	}
+            	return true;
+            	</tns:default>
+            </tns:component>
+            <tns:component id="Request.DebtorDecision.approve">
+            	<tns:default>if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
+            		return false;
+            	}
+            	return true;
+            	</tns:default>
+            </tns:component>
+            
+            	<tns:component id="tab_Request_creditDecision_tab">
+            		<tns:default>
+            			boolean isVisible = true;
+            			if(root.inWfStatus("REQUEST_STATUS_NEW","REQUEST_STATUS_SAVED","REQUEST_STATUS_PENDING_APPLICATION_SENT")) {
+            				isVisible = false;
+            			}
+            			return isVisible;
+            		</tns:default>
+            	</tns:component>
+            	
+            	<!-- <tns:component id="tab_Request_creditWriteup_tab">
+            		<tns:default>
+            			boolean isVisible = true;
+            			if(!root.inWfStatus("REQUEST_STATUS_NEW","REQUEST_STATUS_SAVED")) {
+            				isVisible = false;
+            			}
+            			return isVisible;
+            		</tns:default>
+            	</tns:component> -->
+            	
+            	
+            
+            	<tns:component id="Withdraw">
+                    <tns:default>
+	                    boolean isVisible=true;
+	                    if (root.inWfStatus("REQUEST_STATUS_NEW","REQUEST_STATUS_DECLINED","REQUEST_STATUS_APPROVED","REQUEST_STATUS_WITHDRAWN","REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_APPROVED_TO_BE_NOTIFIED","REQUEST_STATUS_APPROVED_NOT_ACCEPTED","REQUEST_STATUS_APPROVED_DOCUMENTATION","REQUEST_STATUS_APPROVED_PRE_QUAL")) {
+	                        isVisible = false;
+	                    }
+	                    return isVisible;
+                    </tns:default>
+                </tns:component>
+            
+                <tns:component id="Request_noiaLogs">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                <tns:component id="Request_moodyCustomers_edit">
+                    <tns:default>false</tns:default>
+                </tns:component>
+            
+                 <tns:component id="request_regbDttm">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="request_expectedCloseDate">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component> 
+                
+                
+                <tns:component id="Submit_To_Credit">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.inWfStatus("REQUEST_STATUS_SAVED","REQUEST_STATUS_PENDING_APPLICATION_SENT","REQUEST_STATUS_PENDING_APPLICATION_OPENED","REQUEST_STATUS_PENDING_RETURN_TO_SALES","REQUEST_STATUS_PENDING_NOIA","REQUEST_STATUS_PENDING_APPLICATION_REVIEW")) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>    
+                <tns:component id="Begin_Renewal">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isAnyFacilityRenewalExpected()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                <tns:component id="Send_To_Booking">
+                    <tns:default>
+                    boolean isVisible=false;
+          			if (root.inWfStatus("REQUEST_STATUS_APPROVED", "REQUEST_STATUS_APPROVED_DOCUMENTATION", "REQUEST_STATUS_APPROVED_NOT_ACCEPTED") &amp;&amp; (!root.isFacilityTypeLease)) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                 <tns:component id="Portfolio_Mgmt">
+                    <tns:default>
+                    boolean isVisible=false;
+          			<!-- if (root.inWfStatus("REQUEST_STATUS_APPROVED", "REQUEST_STATUS_APPROVED_DOCUMENTATION", "REQUEST_STATUS_APPROVED_NOT_ACCEPTED") &amp;&amp; (root.isFacilityTypeLease)) {
+                        isVisible=true;
+                    } -->
+                    if(root.coaCleared()){
+                    	isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                 <tns:component id="tab_Request_UCC_tab">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.isFacilityTypeCRE || root.inWfStatus("REQUEST_STATUS_NEW","REQUEST_STATUS_SAVED")) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                        
+                <tns:canvas id="facilityEditCanvas">
+                
+                <tns:component id="facility_request_keyPricingInformation">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isFacilityTypeLease) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="tab_creditRequest_Application_ContractSetup_tab">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+        
+                <tns:component id="facility_collaterals">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facility_limitInformation">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                 <tns:component id="facility_facilityGuaranty">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component> 
+                
+                <tns:component id="facility_modicationPanel">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="facility_pricing">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facility_structure">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facility_additionalOptions">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facility_rewriteInfo">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>                
+                <tns:component id="facility_productLimits">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facility_factoring">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="facility_exposureAtDefault">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="facility_assetQualityMetrics">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="facility_syndicationInformation">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facility_productSetup">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facility_limitInformation">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_CREDIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+
+                <tns:component id="facility_information">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="tab_creditRequest_Application_Syndication_tab">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.?requestType.key == "REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                </tns:canvas>
+
+                <tns:component id="Generate_Document">
+                    <tns:default>return ( (isdef root_documentGroup_generatedDocuments) &amp;&amp; (root_documentGroup_generatedDocuments.id != null));</tns:default>
+                </tns:component>
+
+                <tns:component id="Archive_Document">
+                    <tns:default>return ( (isdef root_documentGroup_generatedDocuments) &amp;&amp; (root_documentGroup_generatedDocuments.id != null));</tns:default>
+                </tns:component>
+                
+                <tns:component id="Checkout_Document">
+                    <tns:default>return ( (isdef root_documentGroup_uploadedDocuments) &amp;&amp; (root_documentGroup_uploadedDocuments.checkout == null || root_documentGroup_uploadedDocuments.checkout.checkedOutByUser == null ))</tns:default>
+                </tns:component>
+                
+                <tns:component id="Checkin_Document">
+                    <tns:default>return ( (isdef root_documentGroup_uploadedDocuments) &amp;&amp; (root_documentGroup_uploadedDocuments.checkout != null &amp;&amp; root_documentGroup_uploadedDocuments.checkout.checkedOutByUser != null &amp;&amp; root_documentGroup_uploadedDocuments.checkout.checkedOutByUser.id == ctxUser.id))</tns:default>
+                </tns:component>                
+                <tns:canvas id="uploadedDocEdit">
+                    <tns:component id="Checkout_Document">
+                        <tns:default>return ( (isdef root_documentGroup_uploadedDocuments) &amp;&amp; (root_documentGroup_uploadedDocuments.checkout == null || root_documentGroup_uploadedDocuments.checkout.checkedOutByUser == null ))</tns:default>
+                    </tns:component>
+                    
+                    <tns:component id="Checkin_Document">
+                        <tns:default>return ( (isdef root_documentGroup_uploadedDocuments) &amp;&amp; (root_documentGroup_uploadedDocuments.checkout != null &amp;&amp; root_documentGroup_uploadedDocuments.checkout.checkedOutByUser != null &amp;&amp; root_documentGroup_uploadedDocuments.checkout.checkedOutByUser.id == ctxUser.id))</tns:default>
+                    </tns:component>                
+                </tns:canvas>
+                
+                <tns:canvas id="Request_allRACSetEvaluations_EditCanvas">
+                    <tns:component id="rac_racEvaluations_add">
+                        <tns:default>false</tns:default>
+                    </tns:component>
+                    
+                    <tns:component id="rac_racEvaluations_delete">
+                        <tns:default>false</tns:default>
+                    </tns:component>
+                </tns:canvas>
+                
+                <tns:component id="Request_bureauReports_add">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                <tns:component id="Request_bureauReports_edit">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                <tns:component id="Request_bureauReports_delete">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="Request_compliances_delete">
+                    <tns:default>false</tns:default>
+                </tns:component>                
+                
+                <tns:component id="Request_compliances_add">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                <tns:component id="Request_compliances_delete">
+                    <tns:default>false</tns:default>
+                </tns:component>                
+                
+                
+                
+                <tns:canvas id="Request_compliances_EditCanvas">
+                
+                    <tns:component id="compliance_fraudAlerts_add">
+                        <tns:default>false</tns:default>
+                    </tns:component>                    
+                    <tns:component id="compliance_fraudAlerts_edit">
+                        <tns:default>false</tns:default>
+                    </tns:component>
+                    <tns:component id="compliance_fraudAlerts_delete">
+                        <tns:default>false</tns:default>
+                    </tns:component>
+                    <tns:component id="compliance_fraudAlerts">
+                        <tns:default>
+                                if(isdef root_compliances 
+                                        &amp;&amp; root_compliances.category != null
+                                        &amp;&amp; root_compliances.category.key == 'COMPLIANCE_CATEGORY_FRAUD_CHECK'){
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                        </tns:default>
+                    </tns:component>
+                    <tns:component id="compliance_kycAlerts_add">
+                        <tns:default>false</tns:default>
+                    </tns:component>                    
+                    <tns:component id="compliance_kycAlerts_edit">
+                        <tns:default>false</tns:default>
+                    </tns:component>
+                    <tns:component id="compliance_kycAlerts_delete">
+                        <tns:default>false</tns:default>
+                    </tns:component>
+                    <tns:component id="compliance_kycAlerts">
+                        <tns:default>
+                                if(isdef root_compliances 
+                                        &amp;&amp; root_compliances.category != null
+                                        &amp;&amp; root_compliances.category.key == 'COMPLIANCE_CATEGORY_KYC'){
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                        </tns:default>
+                    </tns:component>                    
+                    <tns:component id="complianceDetails_customerInformation">
+                        <tns:default>
+                                if(isdef root_compliances 
+                                        &amp;&amp; root_compliances.category != null
+                                        &amp;&amp; (root_compliances.category.key == 'COMPLIANCE_CATEGORY_OFAC'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_WORLD_CHECK'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_REGO'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_SPF')){
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                        </tns:default>
+                    </tns:component>
+                    <tns:component id="compliance_matches">
+                        <tns:default>
+                                if(isdef root_compliances 
+                                        &amp;&amp; root_compliances.category != null
+                                        &amp;&amp; (root_compliances.category.key == 'COMPLIANCE_CATEGORY_OFAC'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_WORLD_CHECK'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_REGO'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_SPF')){
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                        </tns:default>
+                    </tns:component>
+                    <tns:component id="complianceDetails_verification">
+                        <tns:default>
+                                if(isdef root_compliances 
+                                        &amp;&amp; root_compliances.category != null
+                                        &amp;&amp; (root_compliances.category.key == 'COMPLIANCE_CATEGORY_OFAC'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_WORLD_CHECK'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_REGO'
+                                                    || root_compliances.category.key == 'COMPLIANCE_CATEGORY_SPF')){
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                        </tns:default>
+                    </tns:component>
+                </tns:canvas>   
+                <!-- <tns:component id="packageDocEdit.packageDocument_genAndUploadedDoc_add">
+                    <tns:default>false</tns:default>
+                </tns:component> -->
+                <tns:component id="packageDocEdit.packageDocument_genAndUploadedDoc_edit">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                <tns:component id="exportEntityBtn">
+                    <tns:default>true</tns:default>
+                </tns:component>
+                <!-- Request.appScorings -->
+				<tns:component id="Request_appScorings_delete">
+					<tns:default>false</tns:default>
+				</tns:component>
+				<tns:component id="Request_appScorings_add">
+					<tns:default>false</tns:default>
+				</tns:component>
+		
+				<tns:canvas id="Request_appScorings_EditCanvas">
+					<tns:component id="appScore_facScorings_delete">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="appScore_facScorings_add">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="riskModel_bureauDer_actionsCol">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="appScore_scoringRecommRules_actionsCol">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="appScore_scoringRecommRules_add">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="appScore_scoringAttributes_actionsCol">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="appScore_scoringAttributes_add">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="appScore_partyScorings_delete">
+						<tns:default>false</tns:default>
+					</tns:component>
+					<tns:component id="appScore_partyScorings_add">
+						<tns:default>false</tns:default>
+					</tns:component>
+				</tns:canvas>
+		<!-- app Scorings ends here-->            
+            </tns:canvas>
+    </tns:ui-permissions>

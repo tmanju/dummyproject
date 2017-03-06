@@ -1,0 +1,96 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.foundation.service.LookupService;
+global com.thirdpillar.foundation.service.Context appContext;
+
+import java.math.BigDecimal;
+
+rule "SetPricingOptionStatus_New"
+    agenda-group "NEW" 
+    when
+		pricingOption:PricingOption()
+	then
+		pricingOption.setPricingOptionStatus((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "PRICING_OPTION_STATUS_NEW"));
+end
+
+rule "SetPricingOptionRenewalFee"
+    agenda-group "NEW" 
+    when
+		pricingOption:PricingOption()
+	then
+		if(pricingOption.getStructure()!=null){
+			FeePolicy feePolicy = (FeePolicy)LookupService.getResult("FeePolicy.byName", "name", "Renewal Fee");
+			if(feePolicy != null){
+		   		pricingOption.getStructure().setRenewalFee(feePolicy.getDefaultPct());
+		   	}
+		}
+end
+
+rule "SetInServiceDate_New" 
+    agenda-group "NEW" 
+    when
+    	#conditions
+        assets:Asset()
+	then
+		#actions
+		assets.setInServiceDate(new Date());
+end
+
+rule "SetStartDttmInterimRentEndDateChargeInterimRentChange"
+	when
+		changeModelEvent:InterimRent.ChangeModelEvent(property == "chargeInterimRent",newValue != null)
+	then
+		InterimRent interimRent = (InterimRent) changeModelEvent.getEntity();
+		boolean changeInterimRent = (Boolean) changeModelEvent.getNewValue();
+		if(changeInterimRent){
+			Asset asset = (Asset)appContext.getNamedContext().get("root_pricingOptions_assets");
+			PricingOption pricingOptions = (PricingOption)appContext.getNamedContext().get("root_pricingOptions");
+			if(asset != null && asset.getInServiceDate() != null){
+				interimRent.setStartDttm(asset.getInServiceDate());
+			}
+			if(pricingOptions !=null && pricingOptions.getStructure() != null && pricingOptions.getStructure().getPaymentStartDate() != null){
+			interimRent.setInterimRentEndDate(pricingOptions.getStructure().getPaymentStartDate());
+			}
+		}
+end
+
+
+rule "Set Seasonal Schedule"
+agenda-group "NEW"
+when 
+ 	paymentSchedule:PaymentSchedule()
+then
+	 Attribute months = (Attribute)LookupService.getResult("Attribute.byKey", "key","MONTH");
+	 List<SeasonalSchedule> seasonalScheduleList = new ArrayList<SeasonalSchedule>();
+	 EntityService es = new EntityService();
+	 for(AttributeChoice attributechoices : months.getAttributeChoices()){
+	 	SeasonalSchedule seasonalSchedule = (SeasonalSchedule) es.createNew(SeasonalSchedule.class);
+ 		seasonalSchedule.setMonth(attributechoices);
+ 		seasonalSchedule.setPaymentSchedule(paymentSchedule);
+ 		seasonalScheduleList.add(seasonalSchedule);
+	 }
+	 paymentSchedule.setSeasonalSchedules(seasonalScheduleList);
+end
+
+
+rule "SetNoOfPaymentOnFeePolicyChange"
+                when
+                        #conditions
+        				changeModelEvent:Fee.ChangeModelEvent(property == "feePolicy", newValue != null)
+        	    then 
+                        #actions 
+                        Fee fee = (Fee) changeModelEvent.getEntity();
+						FeePolicy feePolicy = (FeePolicy)changeModelEvent.getNewValue();
+                        if(feePolicy.getFeeType() != null && feePolicy.getFeeType().getKey().equals("FEE_POLICY_TYPE_PERIODIC") && fee.getStructure() != null && fee.getStructure().getTerm() != null){
+							fee.setNoOfPayment(fee.getStructure().getTerm());
+						}
+end
+
+
+

@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="program" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<tabs>
+		<tab id="tab.program.management">
+			<panel id="program.businessSegments">
+				<field name="program.businessSegment.class1" />
+				<field name="program.businessSegment.class2" />
+				<field name="program.businessSegment.class3" />
+				<!-- <field name="program.businessSegment.class4" /> -->
+				<field name="program.businessSegment.class5" label="Class 4"/>
+				<!-- <field name="program.businessSegment.class6" /> -->
+				<!-- <field name="program.businessSegment.legacyBusinessSegiment" /> -->
+				<!-- <field name="program.businessSegment.legacyBusinessSubSegiment" /> -->
+				<!--<field name="program.businessSegment.class7" />-->
+			</panel>
+			<panel id="program.generalInformation">
+				<field name="program.refNumber" label="Program Number"/>
+				<field name="program.programCategory" />
+				<field name="program.programType" />
+				<field name="program.programName" />
+			<!-- 	<field name="program.programGroup" /> -->
+				<field name="program.description" />
+				<field name="program.owner" />
+				<field name="program.wfStatus.value" label="Program Status" />
+				<field name="program.metaInfo.createdByUser" label="Requestor" />
+				<field name="program.startDttm" label="Start Date" />
+				<field name="program.endDttm" label="End Date" />
+				<!-- <field name="program.validityOpinionRqrdFlg" label="Validity Opinion Required" /> -->
+				<field name="program.operatingUnit" />
+				<field name="program.sbu" />
+			</panel>
+			<panel id="program.programSpecification">
+				<field name="program.facilityTypeRef" targetFields="program.programSpecification"/>
+				<field name="program.financialProductType"/>
+				<field name="program.assetClass" targetFields="program.programSpecification"/>
+				<field name="program.assetSubclass"/>
+				<field name="program.manufacturers" label="Manufacturers Allowed"/>
+			</panel>
+			<panel id="program.thirdpartyServicingInformation">
+				<field name="program.thirdPartyBilling" />
+				<field name="program.thirdPartyBillingContact" />
+				<field name="program.thirdPartyCollecting" />						
+				<field name="program.thirdPartyCollectingContact" />
+			</panel>
+			<panel id="program.dealSizeLimits">
+				<field name="program.prgAcqFee.minDealSizeAmt" label="Minimum Deal Size" />
+				<field name="program.prgAcqFee.maxDealSizeAmt" label="Maximum Deal Size" />
+			</panel>
+			<panel id="program.paymentTiming">
+				<field name="program.paymentFrequency" label="Payment Frequency" targetFields="program.paymentTiming" />
+				<field name="program.pmtDueDay" />
+				<!-- <field name="program.pmtDueDayDer" /> -->
+				<field name="program.maximumTerm" />
+				<field name="program.minimumTerm" />						
+			</panel>
+			<panel id="program.faxFunding">
+				<field name="program.prgFaxFunding.faxFundingAllowed" label="Fax Funding" />
+				<field name="program.prgFaxFunding.followupOriginalsFlag" label="Follow-up For Originals Required?" />
+				<field name="program.prgFaxFunding.faxFundingLimitAmt" label="Fax Funding Dollar Limit" />
+				<field name="program.prgFaxFunding.numOfDaysOrigDue" label="Number Days Until Originals Due" />
+			</panel>
+			<data-table name="program.documentGroup.uploadedDocuments" row="prgDocument" label="Attach Documents">
+				<columns>
+					<column name="prgDocument.uploadedStream" label="Document Name" />
+					<column name="prgDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+					<column name="prgDocument.metaInfo.lastModifiedByUser" label="Uploaded By" />
+					<column name="prgDocument.documentStatus.value" label="Status" />
+					<column name="prgDocument.metaInfo.lastModifiedAt" label="Uploaded Date" />
+				</columns>
+				<edit-canvas>
+					<panel id="program.documentGroup.document">
+						<field name="prgDocument.uploadedStream" label="Document Name" />
+						<field name="prgDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+						<field name="prgDocument.metaInfo.lastModifiedByUser" label="Uploaded By" />
+						<field name="prgDocument.documentStatus" />
+						<field name="prgDocument.metaInfo.lastModifiedAt" label="Uploaded Date" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+		</tab>
+		<tab id="tab.program.pricing">
+			<data-table name="program.prgPricingProfiles" row="prgPricingProfile" label="Pricing Profiles">
+				<columns>
+					<column name="prgPricingProfile.pricingPolicy" label="Source Pricing Policy"/>
+					<column name="prgPricingProfile.facilityTypeCategory.facilityType.name" label="Product Type" />
+					<column name="prgPricingProfile.pricingProfileNumber" />
+					<column name="prgPricingProfile.name" />
+					<column name="prgPricingProfile.discription" label="Description" />
+					<column name="prgPricingProfile.effectiveDttm" />
+					<column name="prgPricingProfile.endDttm" />
+				</columns>
+				<edit-canvas>
+					<panel id="prgPricingProfile.edit">
+						<field name="prgPricingProfile.pricingPolicy" label="Source Pricing Policy" targetFields="prgPricingProfile.edit"/>
+						<field name="prgPricingProfile.facilityTypeCategory.facilityType.name" label="Product Type" />
+						<field name="prgPricingProfile.name" />
+						<field name="prgPricingProfile.effectiveDttm" />
+						<field name="prgPricingProfile.pricingProfileNumber" />								
+						<field name="prgPricingProfile.discription" label="Description" />								
+						<field name="prgPricingProfile.endDttm" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+			<data-table name="program.excludedPrgPromotions" row="PrgPromotion" label="Promotions">
+				<columns>
+					<column name="PrgPromotion.promotionPolicy" label="Source Promotion Policy"/>
+					<column name="PrgPromotion.promotionRefId" />
+					<column name="PrgPromotion.promotionName" />
+					<column name="PrgPromotion.promotionDescription" />
+					<column name="PrgPromotion.effectiveDttm" />
+					<column name="PrgPromotion.expirationDttm" />
+					<column name="PrgPromotion.exclude" />
+				</columns>
+				<edit-canvas>
+					<panel id="PrgPromotion.edit">
+						<field name="PrgPromotion.promotionPolicy" label="Source Promotion Policy" targetFields="PrgPromotion.edit"/>
+						<field name="PrgPromotion.promotionRefId" />
+						<field name="PrgPromotion.promotionDescription" />
+						<field name="PrgPromotion.expirationDttm" label="Expiration Date" />
+						<field name="PrgPromotion.promotionName" />								
+						<field name="PrgPromotion.effectiveDttm" />								
+						<field name="PrgPromotion.exclude" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+			<data-table name="program.prgSubsidies" row="prgSubsidy" label="Subsidies">
+				<columns>
+					<column name="prgSubsidy.refNumber" />
+					<column name="prgSubsidy.name" />
+					<column name="prgSubsidy.description" />
+					<column name="prgSubsidy.effectiveDttm" />
+					<column name="prgSubsidy.expirationDttm" label="Expiration Date" />
+					<column name="prgSubsidy.partnerName" />
+					<column name="prgSubsidy.partnerNumber" />
+				</columns>
+				<edit-canvas>
+					<panel id="prgSubsidy.edit">
+						<field name="prgSubsidy.name" />
+						<field name="prgSubsidy.effectiveDttm" />
+						<field name="prgSubsidy.partnerName" />
+						<field name="prgSubsidy.description" />								
+						<field name="prgSubsidy.expirationDttm" label="Expiration Date" />								
+						<field name="prgSubsidy.partnerNumber" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+			<data-table name="program.residualPolicies" row="residualPolicy" label="Residual">
+				<columns>
+					<column name="residualPolicy.name" />
+					<column name="residualPolicy.description" />
+					<column name="residualPolicy.asset.internalAssetCategoryRefId" label="Asset Class" />
+					<column name="residualPolicy.asset.manufacturerRefId" label="Manufacturer" />
+					<column name="residualPolicy.asset.modelRefId" label="Model" />
+				</columns>
+				<edit-canvas>
+					<panel id="residualPolicy.edit">
+						<field name="residualPolicy.name" />
+						<field name="residualPolicy.asset.internalAssetCategoryRefId" label="Asset Class" />
+							<field name="residualPolicy.asset.modelRefId" label="Model" />
+						<field name="residualPolicy.description" />								
+						<field name="residualPolicy.asset.manufacturerRefId" label="Manufacturer" />								
+					</panel>
+				</edit-canvas>
+			</data-table>
+			<panel id="program.endofTermandRenewalOpts" label="End of Term and Renewals Options">
+				<field name="program.structure.purchaseOptionMulSel" label="Buy-Out Option"/>
+				<field name="program.renewalAllowed" />
+				<field name="program.eligforEvergreen" />
+				<field name="program.renewalOption" />
+				<field name="program.noticeReqtoPreRenewal" />
+				<field name="program.noticeMethods" />
+				
+			</panel>
+			<data-table name="program.advanceMonies" row="advanceMoney">
+				<columns>
+					<column name="advanceMoney.advanceMoneyType.value" label="Advance Money Type" />
+					<column name="advanceMoney.paymentType.value" label="Payment Type" />
+					<column name="advanceMoney.minAcceptablePercent" label="Minimum % Acceptable" />
+					<column name="advanceMoney.numFirstPayments.value" label="Number Of Payments" />
+					<column name="advanceMoney.numLastPayments.value" label="Number Of Last Payments" />
+					<column name="advanceMoney.advancePmtAmt" />
+					<column name="advanceMoney.advancePmtPct" label="Percent" />
+					<column name="advanceMoney.basisPct.value" label="Basis" />
+					<column name="advanceMoney.taxable" />
+				</columns>
+				<edit-canvas id="prgAdvanceMoneyEdit">
+					<panel id="advanceMoney.edit">
+						<field name="advanceMoney.advanceMoneyType" />
+						<field name="advanceMoney.paymentType" targetFields="advanceMoney.edit"/>
+						<field name="advanceMoney.numFirstPayments" />
+						<field name="advanceMoney.advancePmtAmt" />
+						<field name="advanceMoney.minAcceptablePercent" />
+						<!--targetFields="advanceMoney.advancePmtAmt advanceMoney.advancePmtPct"  -->								
+						<field name="advanceMoney.numLastPayments" />								
+						<field name="advanceMoney.advancePmtPct" label="Percent" />	
+						<field name="advanceMoney.basisPct" />							
+						<field name="advanceMoney.taxable" />								
+					</panel>
+				</edit-canvas>
+			</data-table>
+			<panel id="program.delayedFunding">
+				<field name="program.prgDelayedFunding.delayedFundingReqFlag" />
+				<field name="program.prgDelayedFunding.bumpPercent" />
+				<field name="program.prgDelayedFunding.fundingWithholdPercent" />
+				<field name="program.prgDelayedFunding.dayToPay" />
+				<field name="program.prgDelayedFunding.periodToWithholdFunds" label="Or Period to Withhold funds (Days)" />	
+				<field name="program.prgDelayedFunding.interestPayableWithhold" />
+				<!-- <field name="program.prgDelayedFunding.includeDelayInPricingFlag" /> -->
+			
+									
+			</panel>
+			<panel id="program.interimRent">
+				<field name="program.prgInterimRent.interimRentRequired" />
+				<field name="program.prgInterimRent.calculationMethod" targetFields="program.interimRent"/>
+				<field name="program.prgInterimRent.passthroughRentPcnt" />
+				<field name="program.prgInterimRent.passthroughServicePcnt" />
+				<field name="program.prgInterimRent.interimRentInterestRate" />
+				<field name="program.prgInterimRent.interimRentBasis" />
+				<field name="program.prgInterimRent.interimRentPlus" />		
+			</panel>
+			<data-table name="program.prgFees" row="prgFee" label="Fees">
+				<columns>
+					<column name="prgFee.feePolicy" label="Fee Name" />
+					<column name="prgFee.name" label="Fee Description"/>
+					<column name="prgFee.feeType" label="Fee Type"/>
+					<column name="prgFee.ou" label="OU" />
+					<column name="prgFee.sbu" label="SBU" />
+					<column name="prgFee.currency" label="Currency"/>
+					<column name="prgFee.mayBeDisclosed" label="Disclose Fee?" />
+					<column name="prgFee.minimumPct" label="Minimum %" />
+					<column name="prgFee.maximumPct" label="Maximum %" />
+					<column name="prgFee.noOfPayment" label="Number of Payments" />
+					<column name="prgFee.maxFeeAmt" />
+					<column name="prgFee.minFeeAmt" />
+					<column name="prgFee.defaultPct" label="Default %" />
+					<column name="prgFee.calculationMethod" label="Calculation Method" />
+					<column name="prgFee.defaultAmt" label="Default Amount" />
+				</columns>
+				<edit-canvas>
+					<panel id="prgFee.edit">
+						<field name="prgFee.feePolicy" label="Source Fee" targetFields="prgFee.edit"/>
+						<field name="prgFee.name" label="Fee Description" />
+						<field name="prgFee.feeType" label="Fee Type" targetFields="prgFee.edit"/>
+						<field name="prgFee.ou" label="OU" />
+						<field name="prgFee.sbu" label="SBU" />
+						<field name="prgFee.currency" label="Currency"/>
+						<field name="prgFee.mayBeDisclosed" label="Disclose Fee?" />
+						<field name="prgFee.minimumPct" label="Minimum %" />
+						<field name="prgFee.maximumPct" label="Maximum %" />
+						<field name="prgFee.maxFeeAmt" />
+						<field name="prgFee.minFeeAmt" />
+						<!-- <field name="prgFee.feePolicyRefId" /> -->
+						<field name="prgFee.noOfPayment" label="Number of Payments" />
+						<field name="prgFee.waiverOvrrdAllowedFlag" />
+						<field name="prgFee.assetOrContract" />								
+						<field name="prgFee.effectiveFrom" />	
+						<field name="prgFee.effectiveTo" />
+						<field name="prgFee.respForPayment" />	
+						<field name="prgFee.streamType" />	
+						<field name="prgFee.defaultPct" label="Default %" />
+						<field name="prgFee.calculationMethod" label="Calculation Method" />
+						<field name="prgFee.defaultAmt" label="Default Amount" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+		<!-- 	<panel id="program.taxes">
+				<field name="program.taxOpnLtrReq" />
+				<field name="program.taxOpnLtrThreshold" />
+			</panel> -->
+		</tab>
+		<tab id="tab.program.leaseManagement">
+			<panel id="program.lateChargesAndLateInterest">
+				<field name="program.lateChargePolicy" />
+				<field name="program.lateInterestPolicy" />
+				<field name="program.lateChargeExempt" />
+				<field name="program.lateChargeGracePeriod" />
+				<field name="program.lateChargeMaxAmount" />
+				<field name="program.lateChargeType" />
+				<field name="program.lateChargePercent" />
+				<field name="program.lateChargeFlatFee" />						
+				<field name="program.lateChargeMinAmount" />						
+			</panel>
+			<panel id="program.termsAndConditions">
+				<field name="program.stipLossTable" />
+				<field name="program.countryOfFedJurd" />
+				<field name="program.stateOfLegaljurd" />
+				<field name="program.assetLocNotificationDays" />
+				<field name="program.acceptanceType" />
+				<field name="program.deemedAcceptanceDays" />
+				<!-- <field name="program.scheduleReturn" /> -->
+				<field name="program.invoicingLeadDays" />
+				<!-- <field name="program.negotiatedRenewals" /> -->
+				<!-- <field name="program.mwdForgiveness" /> -->
+				<field name="program.eolGracePeriod" label="EOL Grace Period" />
+				<field name="program.typeOfEolNotification" />
+				<field name="program.eolNotificationDays" />
+				<!-- <field name="program.likeForLike" /> -->
+				<!-- <field name="program.fmvCaps" /> -->
+				<!-- <field name="program.renewalCaps" /> -->
+				<!-- <field name="program.earlyTerminations" /> -->
+				<!-- <field name="program.fixedExtension" />	 -->					
+				<!-- <field name="program.bestEffortLanguage" />	 -->					
+			</panel>
+			<panel id="program.programPreferences">
+				<field name="program.poReqForOrdRel" />
+			   <!--  <field name="program.payCodesForAutoAssgn" />  -->
+				<!-- <field name="program.allowForPermtLeases" /> -->
+				<field name="program.uccTypes" />
+				<field name="program.remitToCode" />
+				
+				<!-- <field name="program.maxContractInc">
+					<field name="program.maxContractIncPerc" label="" />
+				</field>
+				<field name="program.maxContractDec">
+					<field name="program.maxContractDecPerc" label="" />
+				</field> -->
+				<!-- <field name="program.incompatibleBlockCodes" />  -->
+				<!-- <field name="program.branchCode" /> -->
+			</panel>
+		</tab>
+		<tab id="tab.program.credit">
+			<!-- <data-table name="program.prgCreditRecourses" row="PrgCreditRecourse" label="Recourse">
+				<columns>
+					<column name="PrgCreditRecourse.poolId" />
+					<column name="PrgCreditRecourse.poolName" />
+					<column name="PrgCreditRecourse.startDttm" />
+					<column name="PrgCreditRecourse.endDttm" />
+				</columns>
+				<edit-canvas>
+					<panel id="PrgCreditRecourse.edit">
+						<field name="PrgCreditRecourse.poolId" />
+						<field name="PrgCreditRecourse.startDttm" />
+						<field name="PrgCreditRecourse.poolName" />								
+						<field name="PrgCreditRecourse.endDttm" />
+					</panel>
+				</edit-canvas>
+			</data-table> -->
+			<data-table name="program.guarantees" row="Guarantee" label="Default Guarantees">
+				<columns>
+					<column name="Guarantee.guaranteeType.value" label="Guarantee Type" />
+					<column name="Guarantee.guarantor.legalName" label="Guarantor Name" />
+					<column name="Guarantee.guarantor.refNumber" label="Guarantor ID" />
+					<column name="Guarantee.guarantor.primarySite.siteDetails.businessPhone" label="Guarantor Phone" />
+					<column name="Guarantee.guarantor.guarantrAddress" label="Guarantor Address" />
+					<column name="Guarantee.guaranteeAmount" />
+					<column name="Guarantee.guaranteePercent" />
+					<column name="Guarantee.guaranteeBasis.value" label="Guarantee Basis" />
+					<column name="Guarantee.numberOfPayments" />
+					<column name="Guarantee.expirationDttm" />
+					<column name="Guarantee.comments" />
+				</columns>
+				<edit-canvas>
+					<panel id="Guarantee.edit">
+						<field name="Guarantee.guaranteeType" label="Guarantee Type" />
+						<field name="Guarantee.guarantor" label="Guarantor Name"  targetFields="Guarantee.edit"/>
+						<!-- <field name="Guarantee.guarantor.partyDetail.refNumber" label="Guarantor ID" />	
+						<field name="Guarantee.guarantor.partyDetail.guarantorPhoneNum" label="Guarantor Phone" /> -->
+						<field name="Guarantee.guarantor.refNumber" label="Guarantor ID" />
+						<field name="Guarantee.guarantor.primarySite.siteDetails.businessPhone" label="Guarantor Phone" />
+						<field name="Guarantee.guarantor.guarantrAddress" label="Guarantor Address" />	
+						<field name="Guarantee.comments" />
+						<field name="Guarantee.expirationDttm" />	
+						<field name="Guarantee.guaranteeAmount" targetFields="Guarantee.edit"/>	
+						<field name="Guarantee.guaranteePercent" targetFields="Guarantee.edit" />							
+						<field name="Guarantee.guaranteeBasis" label="Guarantee Basis" targetFields="Guarantee.edit"/>								
+						<field name="Guarantee.numberOfPayments" />
+						<!-- <field name="Guarantee.numberOfPaymentsDer" />	 -->						
+					</panel>
+				</edit-canvas>
+			</data-table>
+
+			<panel id="program.syndication">
+				<field name="program.syndicationEligibleFlag" label="Default Syndication Eligible" />
+			</panel>
+			<panel id="program.scoreCard" label="Scorecard">
+			    <field name="program.autoApproveFlag" label="Auto-Decision Eligibility" />
+			  <!--   <field name="program.autoDeclineFlag" label="Auto-Decline Eligibility" /> -->
+			    <field name="program.autoApprovalMaxAmount" label="Auto-Decision Max Amount" />
+			   <!--  <field name="program.autoDeclineMaxAmount" label="Auto-Decline Max Amount" /> -->
+			    <field name="program.autoApprovalMinYears" label="Auto-Decision Min Years in Business" />
+			    <field name="program.autoApprovalFICOScore" label="Auto-Decision Min FICO Score" />
+			</panel>
+		</tab>
+		<!-- <tab id="tab.program.marketingOptions">
+			<panel id="program.rental">
+				<field name="program.prgRentalOption.rentalAllowed" />
+				<field name="program.prgRentalOption.renewalAllowedFlag" />
+				<field name="program.prgRentalOption.purchaseOptionToLesseeFlag" />
+				<data-table name="program.prgRentalOption.purchaseOptionType" row="purchaseOptionType" label="Allowable Purchase Option To Partner">
+					<columns>
+						<column name="purchaseOptionType.value" label="Purchase Option Type" />
+					</columns>
+				</data-table> 
+				<field name="program.prgPurchaseOption.fmvOptionAllowed" label="Fair Market Value" />
+				<field name="program.prgPurchaseOption.fppoAllowed" label="Fixed Purchase Option" />
+				<field name="program.prgPurchaseOption.buyOutOptionAllowed" label="$1 Buyout" />
+				<field name="program.prgPurchaseOption.noOption" label="None" />
+			</panel>
+			<panel id="program.rentalFleet">
+				<field name="program.rentalFleet.rentalFleetAllowed" label="Rental Fleet Allowed?" />
+				<field name="program.rentalFleet.holdsChattelPaperFlag" label="Lessor Hold Chattel Paper?" />
+				<field name="program.rentalFleet.auditFreq" label="Audit Frequency" />
+				<field name="program.rentalFleet.payoffOnDeclBalFlag" label="Payoff on Declining Balance" />
+				<field name="program.rentalFleet.assnChattelPaperFlag" label="Assignment of Chattel Paper" />
+				<field name="program.rentalFleet.billing" label="Billing" />
+				<field name="program.rentalFleet.notifyCustomer" label="Notification To Customer" />
+			</panel>
+			<panel id="program.otherProducts">
+				<field name="program.prgOtherProduct.eligibleForTracLease" label="Eligible For TRAC Lease"></field>
+				<field name="program.prgOtherProduct.addendumReqdFlag" label="Addendum Required"></field>
+				<field name="program.prgOtherProduct.copyblockApprovedFlag" label="Copyblock Approved"></field>
+				<field name="program.prgOtherProduct.municipalLease" label="Municipal Lease"></field>
+				<field name="program.prgOtherProduct.governmentLease" label="Government Lease"></field>
+				<field name="program.prgOtherProduct.startDttm" label="Start Date"></field>
+				<field name="program.prgOtherProduct.endDttm" label="End Date"></field>
+				<field name="program.prgOtherProduct.copyblockOverageWithheld" label="Copyblock Overage Withheld"></field>						
+				<field name="program.prgOtherProduct.nonProfitLease" label="Non Profit Lease"></field>						
+			</panel>
+			<panel id="program.facilitiesManagement">
+				<field name="program.prgFacilitiesMgmt.facMgmtAllowed"></field>
+				<field name="program.prgFacilitiesMgmt.startDttm" label="Start"></field>
+				<field name="program.prgFacilitiesMgmt.comment" label="Comments"></field>
+				<field name="program.prgFacilitiesMgmt.billCollectAllowedFlag"></field>
+				<field name="program.prgFacilitiesMgmt.endDttm" label="End"></field>
+				
+				
+					<data-table name="program.commentGroup.comments" row="comment">
+					<columns> <column name="comment.commentType"/> <column
+					name="comment.createdBy"/> <column name="comment.createdDttm"/>
+					<column name="comment.commentText"/> </columns> <edit-canvas>
+					<panel id="program.commentGroup.comments.edit"> <field
+					name="comment.commentType"/> <field name="comment.commentText"/>
+					</panel> </edit-canvas> </data-table>
+				
+			</panel>
+		</tab>
+		 --><!-- 
+		<tab id="tab.program.obligations">
+		</tab>
+		 -->
+		<tab id="tab.program.associations">
+			<data-table name="program.prgPartners" label="Partners Associated With This Program" row="prgPartner">
+				<columns>
+					<column name="prgPartner.refNumber" label="Partner Number" />
+					<!-- <column name="prgPartner.partyDetail.legalName" label="Partner Name" /> -->
+					<column name="prgPartner.legalName" label="Partner Name" />
+					<column name="prgPartner.infoleaseVendorCode" />
+					<column name="prgPartner.operatingUnit" label="OU" />
+					<column name="prgPartner.sbu" label="SBU" />
+					<!-- <column name="prgPartner.financialinstitutionAddressInfo.address1" label="Address" />
+					<column name="prgPartner.financialinstitutionAddressInfo.city" label="City" />
+					<column name="prgPartner.financialinstitutionAddressInfo.state" label="State" /> -->
+					<column name="prgPartner.companyInformation.address" label="Address" />
+					<column name="prgPartner.companyInformation.city" label="City" />
+					<column name="prgPartner.companyInformation.state" label="State" /> 
+				</columns>
+			</data-table>
+		</tab>
+		<tab id="tab.program.decision">
+			<panel id="program.programInformation">
+				<field name="program.refNumber"></field>
+				<field name="program.programName"></field>
+				<field name="program.description" label="Description"></field>
+				<field name="program.operatingUnit.value" label="Operating Unit"></field>
+				<field name="program.sbu.value" label="SBU"></field>
+				<!-- <field name="program.createdDttm"></field> -->
+			</panel>
+
+			<data-table name="program.approval.approvalLevels" row="approvalLevel" label="Decision Information">
+				<columns>
+					<column name="approvalLevel.name" label="Approval Level" />
+					<column name="approvalLevel.approverList" label="Approver Details" />
+					<column name="approvalLevel.decision" label="Level Decision" />
+					<!--
+						<column name="approvalLevel.lastModifiedDttm" label="Last
+						Update"/>
+					-->
+				</columns>
+				<edit-canvas>
+					<panel id="program.addeditApprovalLevel" label="Add/Edit Approval Level">
+						<field name="approvalLevel.name" label="Approval Level" />
+						<field name="approvalLevel.minRespReqPct" label="Minimum Approval Required (%)" />
+						 <data-table name="approvalLevel.approverList" row="approver" label="Approvers">
+							<columns>
+								<column name="approver.user" />
+								<column name="approver.user.creditAuthorityLevel.value" label="Credit Authority Level" />
+								<column name="approver.decisionDer" label="Approver Decision" /> 
+							</columns>
+							<edit-canvas>
+								<panel id="partner.approvers" label="Add Approver">
+									<field name="approver.user" label="Approver" />
+									<field name="approver.decisionDer" label="Approver Decision"/>
+								</panel>
+							</edit-canvas>
+						</data-table>
+						<data-table name="approvalLevel.commentGroup.comments" row="comment">
+							<columns>
+								<column name="comment.metaInfo.createdByUser" label="Author" />
+								<column name="comment.metaInfo.createdAt" label="Date" />
+								<column name="comment.commentText" />
+							</columns>
+							<edit-canvas>
+								<panel id="comment.enterComment">
+									<field name="comment.commentType" />
+									<field name="comment.commentText" />
+								</panel>
+							</edit-canvas>
+						</data-table>
+					</panel>
+				</edit-canvas>
+			</data-table>
+
+			<panel id="program.programApprovalInformation">
+				<field name="program.programCreatedDate" label="Program Created On" />
+
+				<!-- <field name="program.createdBy"/> -->
+				<!--
+					<field name="program.lastModifiedDttm" label="Program Last
+					Updated On"/>
+				-->
+				<!-- <field name="program.lastModifiedBy" /> -->
+				<field name="program.earliestAppDttm" />
+				<field name="program.inactivatedDttm" label="Program Inactivated On" />
+				<field name="program.effectiveFromDttm" />
+				<field name="program.effectiveToDttm" />
+			</panel>
+			<data-table name="program.commentGroup.comments" row="comment">
+				<columns>
+					<column name="comment.commentType" />
+					<column name="comment.metaInfo.createdByUser" label="Author" />
+					<column name="comment.metaInfo.createdAt" label="Date" />
+					<column name="comment.commentText" label="Text" />
+				</columns>
+				<edit-canvas>
+					<panel id="program.commentGroup.comments.edit">
+						<field name="comment.commentType" />
+						<field name="comment.commentText" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+		</tab>
+	</tabs>
+	
+	<commands>
+ 		<command id="ProgramSubmit" name="Submit" action="ProgramSubmit" type="businessOp" /> 
+	</commands>
+	
+	<beans>
+		<bean name="program" type="com.thirdpillar.codify.loanpath.model.Program" />
+	</beans>
+</canvas>

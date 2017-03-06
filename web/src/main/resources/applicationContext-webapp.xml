@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+		
+		
+	<!-- Webservice urls -->
+	<beans:import resource="classpath:security-webservice.xml" />
+	
+	<!-- webapp urls: Choose only one of the authentication mechanisms -->
+	  <!--  ideally would like to set this through ${security.webapp}, however that doesn't work through for imports -->
+  	<beans:import resource="classpath:security-webapp-formlogin.xml" />
+	<!-- <beans:import resource="classpath:security-webapp-saml.xml" /> -->
+	<!-- <beans:import resource="classpath:security-webapp-siteminder.xml" /> -->
+	
+	<!-- Latest version of spring-oauth (1.0.0.M3) is not currently compatible with the latest version of spring (3.0.5.RELEASE) -->
+	<!--<beans:import resource="classpath:security-oauth.xml" />-->
+	
+	<beans:bean id="codifyUserDetailsService" class="com.thirdpillar.codify.foundation.web.security.CodifyUserDetailsService">
+		<beans:property name="queryName" value="com.thirdpillar.codify.loanpath.model.User.byUsernameAndInternalSource"/>
+	</beans:bean>
+
+	<beans:bean id="codifySiteminderUserDetailsService" class="com.thirdpillar.codify.foundation.web.security.CodifyUserDetailsService">
+		<beans:property name="queryName" value="com.thirdpillar.codify.loanpath.model.User.byUsernameAndInternalSource"/>
+	</beans:bean>
+
+	<beans:bean id="codifyExteranlIdUserDetailsService" class="com.thirdpillar.codify.foundation.web.security.CodifyUserDetailsService">
+		<beans:property name="queryName" value="com.thirdpillar.codify.loanpath.model.User.byExternalIdentifier"/>
+	</beans:bean>
+	
+	<beans:bean id="applicationPasswordValidator" class="org.passay.PasswordValidator"> 
+	  <beans:constructor-arg name="rules">
+	   <beans:list>
+	    <beans:bean id="lengthRule" class="org.passay.LengthRule">
+	     <beans:property name="minimumLength" value="8" />
+	    </beans:bean>    
+	    <beans:bean id="characterCharacteristicsrule" class="org.passay.CharacterCharacteristicsRule">
+	     <beans:property name="numberOfCharacteristics" value="4" />
+	     <beans:property name="rules">
+	      <beans:list>
+	       <beans:bean name="upperCase" class="org.passay.CharacterRule">
+	        <beans:constructor-arg><beans:value type="org.passay.EnglishCharacterData">UpperCase</beans:value></beans:constructor-arg>
+	        <beans:constructor-arg type="int" value="1"/>
+	       </beans:bean>
+	       <beans:bean name="lowerCase" class="org.passay.CharacterRule">
+	        <beans:constructor-arg><beans:value type="org.passay.EnglishCharacterData">LowerCase</beans:value></beans:constructor-arg>
+	        <beans:constructor-arg type="int" value="1"/>
+	       </beans:bean>
+	       <beans:bean name="digitCharacter" class="org.passay.CharacterRule">
+	        <beans:constructor-arg><beans:value type="org.passay.EnglishCharacterData">Digit</beans:value></beans:constructor-arg>
+	        <beans:constructor-arg type="int" value="1"/>
+	       </beans:bean>
+	       <beans:bean name="specialCharacter" class="org.passay.CharacterRule">
+	        <beans:constructor-arg><beans:value type="org.passay.EnglishCharacterData">Special</beans:value></beans:constructor-arg>
+	        <beans:constructor-arg type="int" value="1"/>
+	       </beans:bean>
+	      </beans:list>
+	     </beans:property>
+		 </beans:bean>
+			 <beans:bean id="usernameRule" class="org.passay.UsernameRule" >
+				<beans:property name="matchBackwards" value="true" />
+				<beans:property name="ignoreCase" value="true" />
+			</beans:bean>
+			<beans:bean id="whitespaceRule" class="org.passay.WhitespaceRule" />
+		</beans:list>
+		</beans:constructor-arg>
+	</beans:bean>
+</beans:beans>

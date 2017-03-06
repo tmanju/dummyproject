@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="facilityBE" type="search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<section id="facilityBE.dealSearch">
+		<field name="facilityBE.customer.refNumber" label="Account Number" /> <!--not sure refNumber should be here -->
+		<field name="facilityBE.customer.legalName" label="Client Name" />
+<!-- 		<field name="facilityBE.initialFundingReq" /> -->
+		<field name="facilityBE.estimatedYield" />
+		<field name="facilityBE.term" />
+		<field name="facilityBE.productType" />
+		<field name="facilityBE.maturityDt" />
+<!-- 		<field name="facilityBE.creditFacAmt" /> -->
+<!-- 		<field name="facilityBE.largestDebtorConcenPer" /> -->
+		<field name="facilityBE.yearsInBusiness" />
+		<field name="facilityBE.wfStatus" />
+	</section>
+
+	<beans>
+		<bean name="facilityBE" type="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+	</beans>
+</canvas>

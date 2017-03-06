@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles xmlns="http://www.thirdpillar.com/binding-profile">
+  <profile name="Import-Run2-Full" extends="Export-Full">
+  </profile>
+</profiles>
+

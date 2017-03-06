@@ -1,0 +1,19 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.EntityService;
+
+import java.math.BigDecimal;
+
+rule "SetPartnerStatus"
+    agenda-group "NEW" 
+    when
+		partner:Partner()
+	then
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "PARTNER_STATUS_NEW");
+		partner.setWfStatus(status);
+                                
+end

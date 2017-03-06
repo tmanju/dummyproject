@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	
+	<permission  name="ROLE_CATEGORY_AUDITOR" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+		<entity name="Request">
+			<default>true</default>
+			<create>false</create>
+			<read>true</read>
+			<update>false</update>
+		</entity>
+
+		<entity name="Customer">
+			<default>true</default>
+			<create>false</create>
+			<read>true</read>
+			<update>false</update>
+		</entity>		
+
+		<entity name="Relationship">
+			<default>true</default>
+			<create>false</create>
+			<read>true</read>
+			<update>false</update>
+		</entity>		
+		
+		
+		<entity name="User">
+			<default>true</default>
+			<create>false</create>
+			<read>true</read>
+			<update>false</update>
+		</entity>
+		
+		<entity name="Team">
+			<default>true</default>
+			<create>false</create>
+			<read>true</read>
+			<update>false</update>
+		</entity>
+		
+		
+		<entity name="Role">
+			<default>true</default>
+			<create>false</create>
+			<read>true</read>
+			<update>false</update>
+		</entity>
+		
+		<entity name="DocumentCatalogItem">
+			<default>true</default>
+			<create>false</create>
+			<read>false</read>
+			<update>false</update>
+		</entity>
+	</permission>
+	
+</permissions>

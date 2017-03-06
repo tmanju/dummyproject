@@ -1,0 +1,172 @@
+#created on: November 20, 2015
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.Request;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.DebtorCustomer;
+import com.thirdpillar.codify.loanpath.model.FacilityCustomerRole;
+import com.thirdpillar.codify.loanpath.model.CoasetDefinition;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.PricingOption;
+import com.thirdpillar.codify.loanpath.model.Structure;
+import com.thirdpillar.codify.loanpath.model.UCC;
+import com.thirdpillar.codify.loanpath.constants.ConstantsRules;
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+import com.thirdpillar.foundation.service.EntityService;
+global com.thirdpillar.foundation.service.Context appContext;
+
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.math.BigDecimal;
+import java.lang.Integer;
+
+rule "SetDebtorCustomerValues"
+  agenda-group "NEW" 
+  when
+    #conditions
+        debtorCustomer:DebtorCustomer()
+        //fcr:FacilityCustomerRole() from  debtorCustomer.facilityCustomerRole
+  then 
+    #actions
+    Facility f = (Facility) appContext.getNamedContext().get("root_allFacilities");
+	FacilityCustomerRole pb = null;
+	EntityService es = new EntityService();
+	  if(f != null && f.getFacilityCustomerRoles() != null){
+		  for(FacilityCustomerRole facilityCustomerRole : f.getFacilityCustomerRoles()){
+		    		if(facilityCustomerRole.getPartyRole() != null 
+		    				&& (ConstantsRules.PARTY_ROLE_TYPE_CLIENT_KEY.equals(facilityCustomerRole.getPartyRole().getKey()))
+		    				&& facilityCustomerRole.getPrimaryBorrower()){
+		    			pb = facilityCustomerRole;
+		    			break;
+		    		}
+		    }
+		    if(pb != null){
+		    	FacilityCustomerRole fcr = (FacilityCustomerRole)es.createNew(FacilityCustomerRole.class);
+		    	AttributeChoice partyRole =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.PARTY_ROLE_TYPE_DEBTOR_KEY);
+		    	fcr.setPartyRole(partyRole);
+		    	fcr.setParentRole(pb);
+		    	debtorCustomer.setFacilityCustomerRole(fcr);
+		    }
+	    }
+end
+
+rule "SetDebtorStatus"
+  agenda-group "NEW" 
+  when
+    #conditions
+        debtorCustomer:DebtorCustomer()
+        //fcr:FacilityCustomerRole() from  debtorCustomer.facilityCustomerRole
+  then 
+    #actions
+    if(debtorCustomer != null){
+	    WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "DEBTOR_STATUS_PENDING");
+		debtorCustomer.setWfStatus(status);
+	}
+end
+
+rule "SetBorrowingBaseRes"
+  agenda-group "NEW" 
+  when
+    #conditions
+        debtorCustomer:DebtorCustomer()
+        //fcr:FacilityCustomerRole() from  debtorCustomer.facilityCustomerRole
+  then 
+    #actions
+    if(debtorCustomer != null){
+    	if(debtorCustomer.getBorrowingBaseRes() == null){
+			debtorCustomer.setBorrowingBaseRes(new BigDecimal("0"));
+		}
+	}
+end
+
+rule "SetAdvanceRateFundingLimitOnRetentionChange"
+	when
+		changeModelEvent:DebtorCustomer.ChangeModelEvent(property == "retention", newValue != null)
+	then
+		DebtorCustomer debtor = (DebtorCustomer) changeModelEvent.getEntity();
+		BigDecimal retention = (BigDecimal) changeModelEvent.getNewValue();
+		
+		BigDecimal advanceRate=com.thirdpillar.codify.loanpath.util.Utility.getMax(new BigDecimal(0),(new BigDecimal(100.00)).subtract(((new BigDecimal(2.00)).multiply(retention).add(new BigDecimal(5.00)))));
+		debtor.setAdvanceRate(advanceRate);
+		if(debtor.getEligibleARLimit() != null){
+			BigDecimal fundingLimit=(((debtor.getEligibleARLimit()).multiply(debtor.getAdvanceRate())).divide(new BigDecimal(100.00)));
+			debtor.setFundingLimit(fundingLimit);
+		}else if(debtor.getEligibleARLimit() == null){
+			debtor.setFundingLimit(null);
+		}
+		
+end
+
+rule "SetFundingLimitOnEligibleLimitChange"
+	when
+		changeModelEvent:DebtorCustomer.ChangeModelEvent(property == "eligibleARLimit", newValue != null)
+	then
+		DebtorCustomer debtor = (DebtorCustomer) changeModelEvent.getEntity();
+		BigDecimal EligibleARLimit = (BigDecimal) changeModelEvent.getNewValue();
+		if(debtor.getRetention() != null){
+			BigDecimal fundingLimit=(((EligibleARLimit).multiply(debtor.getAdvanceRate())).divide(new BigDecimal(100.00)));
+			debtor.setFundingLimit(fundingLimit);
+		}else if(debtor.getRetention() == null){
+			debtor.setFundingLimit(null);
+		}
+end
+
+rule "SetDbaNameOnCounterParty"
+	when
+		addModelEvent:DebtorCustomer.AddModelEvent(property == "dbas")
+	then
+		EntityService es = new EntityService();
+		DebtorCustomer debtor = (DebtorCustomer) addModelEvent.getEntity();
+		if(debtor != null && debtor.getFacilityCustomerRole() != null && debtor.getFacility() != null){
+			PartyDba partyDba = (PartyDba) addModelEvent.getAddedOrRemoved();
+			partyDba.setDebtorCustomer(debtor);
+			partyDba.setCustomer(debtor.getFacilityCustomerRole().getCustomer());
+			if(appContext == null || appContext.getNamedContext() == null || appContext.getNamedContext().get("root_allFacilities_debtors") == null && debtor.isDuplicateDebtor()){
+				es.saveOrUpdate(debtor);
+			}
+			if(debtor.getFacilityCustomerRole().getCustomer() != null){
+				debtor.getFacilityCustomerRole().getCustomer().addToDbas(partyDba);
+			}
+		}
+end
+
+rule "CreateNewDbaOnCounterParty"
+	agenda-group "SAVE" 
+ 	when
+ 		req:Request()
+    	facility:Facility() from req.allFacilities
+    	debtorCustomer:DebtorCustomer() from facility.debtors
+ 		partyDba:PartyDba() from debtorCustomer.dbas
+ 	then
+ 	if(partyDba.getId() == null && partyDba.getDebtorCustomer() != null && partyDba.getCustomer() == null){
+ 		Customer c = partyDba.getDebtorCustomer().getFacilityCustomerRole().getCustomer();
+ 		partyDba.setCustomer(c);
+ 		EntityService es = new EntityService();
+ 		es.saveOrUpdate(partyDba);
+ 		c.addToDbas(partyDba);
+ 		es.saveOrUpdate(c);
+ 	}
+end
+
+rule "DeleteDbaNameOnCounterParty"
+	when
+		removeModelEvent:DebtorCustomer.RemoveModelEvent(property == "dbas")
+	then
+		PartyDba partyDba = (PartyDba) removeModelEvent.getAddedOrRemoved();
+		DebtorCustomer debtor = (DebtorCustomer) removeModelEvent.getEntity();
+		if(debtor != null && debtor.getFacilityCustomerRole() != null && debtor.getFacilityCustomerRole().getCustomer() != null){
+			partyDba.setCustomer(debtor.getFacilityCustomerRole().getCustomer());
+			if(debtor.getFacilityCustomerRole().getCustomer().getDbas() != null && !debtor.getFacilityCustomerRole().getCustomer().getDbas().isEmpty()){
+				debtor.getFacilityCustomerRole().getCustomer().getDbas().remove(partyDba);
+			}
+		}
+end

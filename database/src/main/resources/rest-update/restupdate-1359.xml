@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<feePolicy>
+		<name>WS Prime</name>
+		<feeType>
+			<key>FEE_POLICY_TYPE_AD_HOC</key>
+		</feeType>
+		<defaultPct>3.25</defaultPct>
+		<effectiveFromDate>2008-12-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<active>true</active>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<pricingIndex>
+			<key>PRICING_INDICES_WS_PRIME</key>
+		</pricingIndex>
+	</feePolicy>
+	
+	<feePolicy>
+		<name>Renewal Fee</name>
+		<feeType>
+			<key>FEE_POLICY_TYPE_AD_HOC</key>
+		</feeType>
+		<defaultPct>3.25</defaultPct>
+		<effectiveFromDate>2008-12-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<active>true</active>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<pricingIndex>
+			<key>PRICING_INDICES_NONE</key>
+		</pricingIndex>
+	</feePolicy>
+</list>
+</mod:sr.upsertEntityRequest>

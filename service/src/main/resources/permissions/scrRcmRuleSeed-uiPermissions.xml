@@ -1,0 +1,71 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="scrRcmRuleSeed">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="scrRcmRuleSeed_list">
+		<tns:component id="scrRcmRuleSeed_add">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="scrRcmRuleSeed_copy">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>
+
+	<tns:canvas id="scrRcmRuleSeed_crud">
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="scrRcmRuleSeed_scrRuleParams_add">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="scrRcmRuleSeed_scrRuleParams_delete">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="scrRcmRuleSeed_firstScrRuleParam_paramKey">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getScrRuleParams() != null  && root.getScrRuleParams().size() == 1) {
+								isVisible=true;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="scrRcmRuleSeed_firstScrRuleParam_paramName">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getScrRuleParams() != null  && root.getScrRuleParams().size() == 1) {
+								isVisible=true;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="scrRcmRuleSeed_firstScrRuleParam_paramValue">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getScrRuleParams() != null  && root.getScrRuleParams().size() == 1) {
+								isVisible=true;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="scrRcmRuleSeed_scrRuleParams">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root.getScrRuleParams() != null  && root.getScrRuleParams().size() <= 1) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+	</tns:canvas>
+</tns:ui-permissions>

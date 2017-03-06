@@ -1,0 +1,134 @@
+<map:constraint-mappings
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd"
+	xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="PricingPolicy" ignore-annotations="false">
+
+		<map:class>
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{pricingPolicy.name.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.name!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{pricingPolicy.termIncrement.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.term != null && o.term.termIncrement != null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{pricingPolicy.OuSbu.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.ou!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{pricingPolicy.OuSbu.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.sbu!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{pricingPolicy.currency.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.currency!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{pricingPolicy.termStart.validation.message}</map:message>
+              <map:element name="matchedExpr"><![CDATA[
+               boolean match=true;
+               if(o.term != null && o.term.termMax!=null && o.term.termStart != null)
+               {
+              	  if( o.term.termStart > o.term.termMax )
+				       {
+					       match=false;
+					   }
+			   }
+				return match;
+               ]]></map:element>
+            </map:constraint>
+            
+            <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{pricingPolicy.termMax.greater.validation.message}</map:message>
+              <map:element name="matchedExpr"><![CDATA[
+               boolean match=true;
+               if(o.term != null && o.term.termMax!=null && o.term.termStart != null)
+               {
+              	  if( o.term.termStart > o.term.termMax )
+				       {
+					       match=false;
+					   }
+			   }
+				return match;
+               ]]></map:element>
+            </map:constraint>
+            
+            <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{pricingPolicy.termMax.validation.message}</map:message>
+              <map:element name="matchedExpr"><![CDATA[
+               boolean match=true;
+               if(o.term != null && o.term.termMax!=null && o.term.termIncrement!=null)
+               {
+              	  if( o.term.termMax > (o.term.termIncrement.getValue()*20) )
+				       {
+					       match=false;
+					   }
+			   }
+				return match;
+               ]]></map:element>
+            </map:constraint>
+            
+            <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{pricingPolicy.effectiveToDate.validation.message}</map:message>
+              <map:element name="matchedExpr"><![CDATA[
+               boolean match=true;
+               if(o.effectiveToDate != null && o.effectiveFromDate!=null)
+               {
+              	  if( o.effectiveFromDate > o.effectiveToDate)
+				       {
+					       match=false;
+					   }
+			   }
+				return match;
+               ]]></map:element>
+            </map:constraint>
+            
+            <map:constraint	annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			  <map:message>{pricingPolicy.name.validation.message}</map:message>
+			  <map:element name="matchedExpr"><![CDATA[return (o.validatePolicyName());]]></map:element>
+	        </map:constraint> 
+	        
+		 	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{pricingPolicy.termMax.multiple.validation.message}</map:message>
+              <map:element name="matchedExpr"><![CDATA[
+               boolean match=false;
+               if(o.term != null && o.term.termMax!=null && o.term.termIncrement!=null)
+               {
+              	  if( o.term.termMax % o.term.termIncrement.getValue() ==0 )
+				       {
+					       match=true;
+					   }
+			   }
+				return match;
+               ]]></map:element>
+            </map:constraint>
+            
+            <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{pricingPolicy.termStart.multiple.validation.message}</map:message>
+              <map:element name="matchedExpr"><![CDATA[
+               boolean match=false;
+               if(o.term != null && o.term.termStart!=null && o.term.termIncrement!=null)
+               {
+              	  if( o.term.termStart % o.term.termIncrement.getValue() ==0 )
+				       {
+					       match=true;
+					   }
+			   }
+				return match;
+               ]]></map:element>
+            </map:constraint>
+			
+				
+		</map:class>
+		
+		
+	</map:bean>
+</map:constraint-mappings>

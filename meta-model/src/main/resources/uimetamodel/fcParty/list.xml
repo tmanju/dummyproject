@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="fcParty" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	
+	<data-table name="fcParty" row="fcParty" label="Party Search Results">
+		<columns>
+			<column name="fcParty.recordNumber" label="Record Number"/>
+			<column name="fcParty.firstName" label="Company Name / First Name"/>
+			<column name="fcParty.lastName" label="Last Name"/>
+			<column name="fcParty.ssn" label="SSN"/>
+			<column name="fcParty.employerName" label="Employer Name"/>
+			<column name="fcParty.alias" label="Alias"/>
+			<column name="fcParty.federalTax" label="Federal Tax ID"/>
+			<column name="fcParty.displayAddress.address1" label="Address Line 1"/>
+			<column name="fcParty.displayAddress.city" label="City"/>
+			<column name="fcParty.displayAddress.stateProvince" label="State / Province"/>
+			<column name="fcParty.displayAddress.zip" label="Zip"/>
+			<column name="fcParty.active" label="Active"/>
+		</columns>
+	</data-table>
+	
+
+	<beans>
+		<bean name="fcParty" type="com.thirdpillar.codify.loanpath.model.FcParty" />
+	</beans>
+</canvas>

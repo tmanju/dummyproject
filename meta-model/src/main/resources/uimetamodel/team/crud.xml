@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="team" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="role.maintainTeam">
+		<field name="team.name" />
+		<field name="team.description" />
+		<field name="team.teamManager" type="SearchNSelect"/>
+		<field name="team.teamCategory" />
+		<field name="team.email" />
+		<field name="team.status" />
+	</panel>
+	
+	<data-table name="team.usersDer" row="assignedUser" label="User Assignment">
+	<columns>
+	<column name="assignedUser.username" label="Assigned Users"></column>
+	</columns>
+	</data-table>
+	
+	<beans>
+		<bean name="team" type="com.thirdpillar.codify.loanpath.model.Team" />
+	</beans>	
+</canvas>

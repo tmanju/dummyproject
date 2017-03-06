@@ -1,0 +1,362 @@
+<list>
+<facilityRange>
+	<stateProvince>
+		<isoCode>AL</isoCode>>
+	</stateProvince>
+	<reqLoanAmtMin>2001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>AK</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>25001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>AZ</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>AR</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>CA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>5000</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>CO</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>CT</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>15001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+	<isoCode>DE</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>100001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>FL</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>25001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		 <isoCode>GA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>3001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>HI</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>ID</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+	<isoCode>IL</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>IN</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+	<isoCode>IA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>KS</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>KY</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>15001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>LA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>ME</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>MD</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>15001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>MA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>MI</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>MS</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>MO</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+	<isoCode>MT</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>NE</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>NV</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>NH</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>10001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>NJ</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>NM</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>10000</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>NY</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>100000</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+	<isoCode>NC</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>15001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>ND</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>OH</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>5001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>OK</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>OR</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>50001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>PA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMin>10001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>RI</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>SC</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>SD</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+	<isoCode>TN</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>UT</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>VT</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>VA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>WA</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>WV</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+	<isoCode>WI</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>WY</isoCode>
+	</stateProvince>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+<facilityRange>
+	<stateProvince>
+		<isoCode>DC</isoCode>
+	</stateProvince>
+		<reqLoanAmtMin>25001</reqLoanAmtMin>
+	<reqLoanAmtMax>1000000</reqLoanAmtMax>
+	<locReqMaxAmt>5000000</locReqMaxAmt>
+</facilityRange>
+</list>

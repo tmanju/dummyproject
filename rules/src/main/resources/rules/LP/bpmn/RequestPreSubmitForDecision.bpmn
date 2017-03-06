@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_validationExceptionItem" structureRef="com.thirdpillar.foundation.codify.exception.ValidationException" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_3-validationExceptionItem" structureRef="com.thirdpillar.foundation.codify.exception.ValidationException" />
+
+  <itemDefinition id="_4-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_4-validationExceptionItem" structureRef="com.thirdpillar.foundation.codify.exception.ValidationException" />
+
+  <itemDefinition id="_10-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_10-validationExceptionItem" structureRef="com.thirdpillar.foundation.codify.exception.ValidationException" />
+
+  <process processType="Private" isExecutable="true" id="RequestPreSubmitForDecision" name="RequestPreSubmitForDecision" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.foundation.rules.RuleFunctions" />
+     <tns:global identifier="logger" type="com.thirdpillar.foundation.rules.RuleLogger" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="validationException" itemSubjectRef="_validationExceptionItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <callActivity id="_2" name="Update Exposure" calledElement="UpdateExposureFlow" >
+      <ioSpecification>
+        <dataInput id="_2_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_2_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_2_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <task id="_3" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_3_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_3_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_4" name="Validate Request w SubmitForDecision" tns:taskName="ValidateEntity" >
+      <ioSpecification>
+        <dataInput id="_4_entityInput" name="entity" />
+        <dataInput id="_4_validationGroupsInput" name="validationGroups" />
+        <dataOutput id="_4_errorOutput" name="error" />
+        <inputSet>
+          <dataInputRefs>_4_entityInput</dataInputRefs>
+          <dataInputRefs>_4_validationGroupsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_4_errorOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_4_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4_validationGroupsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit,com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales,com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit,com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis,com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</from>
+          <to xsi:type="tFormalExpression">_4_validationGroupsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_errorOutput</sourceRef>
+        <targetRef>validationException</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_6" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_7" name="Set ValidationException" >
+      <script>com.thirdpillar.foundation.codify.exception.ValidationException exception = (com.thirdpillar.foundation.codify.exception.ValidationException) context.getVariable("validationException");
+logger.addToException(exception);</script>
+    </scriptTask>
+    <exclusiveGateway id="_8" name="Gateway" gatewayDirection="Diverging" />
+    <endEvent id="_9" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_10" name="ApprovalChainSetup" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_10_entityInput" name="entity" />
+        <dataInput id="_10_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_10_entityInput</dataInputRefs>
+          <dataInputRefs>_10_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_10_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_10_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ApprovalChainSetup</from>
+          <to xsi:type="tFormalExpression">_10_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_10-_3" sourceRef="_10" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_8-_6" sourceRef="_8" targetRef="_6" name="Validation Passed" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >com.thirdpillar.foundation.codify.exception.ValidationException exception = (com.thirdpillar.foundation.codify.exception.ValidationException) context.getVariable("validationException");
+if (exception == null) {
+    return true;
+} else {
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_8-_7" sourceRef="_8" targetRef="_7" name="Validation Failed" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >com.thirdpillar.foundation.codify.exception.ValidationException exception = (com.thirdpillar.foundation.codify.exception.ValidationException) context.getVariable("validationException");
+if (exception != null) {
+    return true;
+} else {
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_4-_8" sourceRef="_4" targetRef="_8" />
+    <sequenceFlow id="_7-_9" sourceRef="_7" targetRef="_9" />
+    <sequenceFlow id="_2-_10" sourceRef="_2" targetRef="_10" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="RequestPreSubmitForDecision" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="129" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="98" y="92" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="103" y="312" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="15" y="399" width="275" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="19" y="573" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="284" y="558" width="239" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="125" y="478" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="383" y="664" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="43" y="187" width="221" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="153" y="40" />
+        <di:waypoint x="153" y="116" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_3" >
+        <di:waypoint x="153" y="211" />
+        <di:waypoint x="153" y="336" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="153" y="336" />
+        <di:waypoint x="152" y="423" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_6" >
+        <di:waypoint x="149" y="502" />
+        <di:waypoint x="43" y="597" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_7" >
+        <di:waypoint x="149" y="502" />
+        <di:waypoint x="403" y="582" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_8" >
+        <di:waypoint x="152" y="423" />
+        <di:waypoint x="149" y="502" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_9" >
+        <di:waypoint x="403" y="582" />
+        <di:waypoint x="407" y="688" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_10" >
+        <di:waypoint x="153" y="116" />
+        <di:waypoint x="153" y="211" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<workflowStatus>
+		<__transient>false</__transient>
+		<childStatuses/>
+		<sequence>1</sequence>
+		<statusKey>TXN_STATUS_NEW</statusKey>
+		<value>New</value>
+		<workflowEntity>TXN_STATUS</workflowEntity>
+	</workflowStatus>
+	<workflowStatus>
+		<__transient>false</__transient>
+		<childStatuses/>
+		<sequence>2</sequence>
+		<statusKey>TXN_STATUS_SUBMITTED</statusKey>
+		<value>Submitted</value>
+		<workflowEntity>TXN_STATUS</workflowEntity>
+	</workflowStatus>
+</list>
+</mod:sr.upsertEntityRequest>

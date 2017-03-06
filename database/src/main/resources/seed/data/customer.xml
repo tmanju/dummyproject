@@ -1,0 +1,1861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+        <customer>
+            <birthDate>1979-08-25T00:00:00.000-07:00</birthDate>
+            <customerType>
+                <key>CUSTOMER_TYPE_INDIVIDUAL</key>
+            </customerType>
+            <firstName>TYESON</firstName>
+            <lastName>BARNETT</lastName>
+            <middleName>R</middleName>
+            <primarySite>
+                <siteDetails>
+                	<email>barnett.mock@yopmail.com</email>
+                    <addresses>
+                        <address>
+                            <address1>404 SHATTO PL</address1>
+                            <city>LOS ANGELES</city>
+                            <country>
+                                <isoCode>US</isoCode>
+                            </country>
+                            <postalCode>90020</postalCode>
+                            <stateProvince>
+                                <isoCode>CA</isoCode>
+                            </stateProvince>
+                            <usage>
+                            	<attributeChoice>
+                            		<key>ADDRESS_USE_TYPE_BUSINESS</key>
+                            	</attributeChoice>
+                            </usage>
+                            <use>
+                            	<attributeChoice>
+                                	<key>ADDRESS_USE_TYPE_BUSINESS</key>
+                                </attributeChoice>
+                            </use>
+                        </address>
+                    </addresses>
+                </siteDetails>
+            </primarySite>
+            <ssn>666528571</ssn>
+        </customer>	
+        <customer>
+            <bankruptcyDeclared>false</bankruptcyDeclared>
+            <birthDate>1979-08-25T00:00:00.000-07:00</birthDate>
+            <customerType>
+                <key>CUSTOMER_TYPE_INDIVIDUAL</key>
+            </customerType>
+            <disclosureMethod>
+                <key>DISCLOSURE_METHOD_WEBSITE_ONLINE_APPLICATION</key>
+            </disclosureMethod>
+            <disclosuresAccepted>true</disclosuresAccepted>
+            <disclosuresDate>2015-03-13T00:00:00.000-07:00</disclosuresDate>
+            <firstName>NORMAN</firstName>
+            <lastName>NELSON</lastName>
+            <partyPermissionPullBureau>true</partyPermissionPullBureau>
+            <primarySite>
+                <siteDetails>
+                	<email>nelson.mock@yopmail.com</email>
+                    <addresses>
+                        <address>
+                            <address1>10434 TRISTAN DR</address1>
+                            <city>DOWNEY</city>
+                            <country>
+                                <isoCode>US</isoCode>
+                            </country>
+                            <postalCode>90241</postalCode>
+                            <stateProvince>
+                                <isoCode>CA</isoCode>
+                            </stateProvince>
+                        </address>
+                    </addresses>
+                    <businessPhone>3126190314</businessPhone>
+                    <email>swatinayak22@rediffmail.com</email>
+                    <homePhone>3126190314</homePhone>
+                </siteDetails>
+            </primarySite>
+            <privacyIndicator>false</privacyIndicator>
+            <provisioned>
+                <key>YES_OR_NO_YES</key>
+            </provisioned>
+            <ssn>666400479</ssn>
+            <verifiedForDeDup>true</verifiedForDeDup>
+        </customer>
+        <customer>
+            <customerType>
+                <key>CUSTOMER_TYPE_NON_INDIVIDUAL</key>
+            </customerType>
+            <legalEntityType>
+                <key>LEGAL_ENTITY_TYPE_CORPORATION</key>
+            </legalEntityType>
+            <federalTaxId>123456789</federalTaxId>
+            <legalName>Genpact</legalName>
+            <primarySite>
+                <siteDetails>
+                	<email>genpact.mock@gmail.com</email>
+                    <addresses>
+                        <address>
+                            <address1>10434 TRISTAN DR</address1>
+                            <city>DOWNEY</city>
+                            <country>
+                                <isoCode>US</isoCode>
+                            </country>
+                            <postalCode>90241</postalCode>
+                            <stateProvince>
+                                <isoCode>CA</isoCode>
+                            </stateProvince>
+                        </address>
+                    </addresses>
+                    <businessPhone>3126190314</businessPhone>
+                </siteDetails>
+            </primarySite>
+        </customer>  
+        <customer>
+			<annualRevenue>4000000</annualRevenue>
+			<assetLiability>
+				<assetMotorVechiles />
+				<assetPersonalProperties />
+				<assetRealEstates />
+				<assetSecurities />
+				<liabilityLoans />
+				<liabilityMortgages />
+			</assetLiability>
+			<bankTrades />
+			<bankruptcyDeclared>false</bankruptcyDeclared>
+			<bankruptcyInfo>
+				<bankruptcy>false</bankruptcy>
+			</bankruptcyInfo>
+			<branchInformation>
+				<assignmentUnit>
+					<key>ASSIGNMENT_UNIT_CB_SBA_NY</key>
+					<value>CB - SBA - NY</value>
+				</assignmentUnit>
+			</branchInformation>
+			<businessStartDttm>2013-06-14T00:00:00.000-07:00</businessStartDttm>
+			<collaterals>
+				<collateral>
+					<assessmentCollateral>
+						<acreage>1.4945</acreage>
+						<appraisalRequired>
+							<key>YES_OR_NO_YES</key>
+							<value>Yes</value>
+						</appraisalRequired>
+						<commentGroup>
+							<comments />
+						</commentGroup>
+						<documentGroup>
+							<allDocuments />
+							<documentPackages />
+							<generatedDocuments />
+							<uploadedDocuments />
+						</documentGroup>
+						<envReportRequired>
+							<key>YES_OR_NO_YES</key>
+							<value>Yes</value>
+						</envReportRequired>
+						<isCompliance>
+							<key>COMPLAINCE_TYPE_YES</key>
+							<value>Yes</value>
+						</isCompliance>
+						<noOfParking>38</noOfParking>
+						<parkingType>Covered</parkingType>
+						<rentRollDate>2015-07-31T00:00:00.000-07:00</rentRollDate>
+						<thrdPtyReqts>
+							<thirdPartyRequest>
+								<processInstanceId>27311</processInstanceId>
+								<refNumber>100002</refNumber>
+								<sessionId>490</sessionId>
+							</thirdPartyRequest>
+						</thrdPtyReqts>
+						<unitArea>36</unitArea>
+						<yearBuilt>2013-06-14T00:00:00.000-07:00</yearBuilt>
+					</assessmentCollateral>
+					<cashFlows>
+						<financial>
+							<commentGroup>
+								<comments />
+							</commentGroup>
+							<documentGroup>
+								<allDocuments />
+								<documentPackages />
+								<generatedDocuments />
+								<uploadedDocuments />
+							</documentGroup>
+							<downloadFinancial>
+								<associatedPartners />
+								<blankDocument>false</blankDocument>
+								<checkout />
+								<coverSheetFlag>false</coverSheetFlag>
+								<documentName>Financial_Detail.xlsx</documentName>
+								<documentPagesAsImages />
+								<documentPublishHistories />
+								<documentSigners />
+								<documentStatus>
+									<key>DOCUMENT_STATUS_SIGNING_IN_COMPLETE</key>
+									<value>Incomplete</value>
+								</documentStatus>
+								<emailForGenerateDoc />
+								<emailForSendDoc />
+								<esignatureRqd>false</esignatureRqd>
+								<faxForGenerateDoc />
+								<faxForSendDoc />
+								<generatedFlag>false</generatedFlag>
+								<processInstanceId>24809</processInstanceId>
+								<publishedTo />
+								<readOnly>false</readOnly>
+								<refNumber>100267</refNumber>
+								<requestLevel>true</requestLevel>
+								<requiredFlag>false</requiredFlag>
+								<sessionId>329</sessionId>
+								<shared>false</shared>
+								<uploadDttm>2015-08-31T12:42:52.051-07:00</uploadDttm>
+								<uploadedFlag>false</uploadedFlag>
+								<uploadedStreamBy>
+									<externalIdentifier>demouser1@thirdpillar.com
+									</externalIdentifier>
+									<username>demouser1</username>
+								</uploadedStreamBy>
+								<uploadedStreamSize>4130</uploadedStreamSize>
+								<versionNumber>2</versionNumber>
+								<wetSignature>false</wetSignature>
+							</downloadFinancial>
+							<financialAssessmentExpenses>
+								<financialAssessmentExpense>
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_UTILITIES</key>
+										<value>Utilities</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_REPAIRS_AND_MAINTENANCE</key>
+										<value>Repairs and Maintenance</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_GENERAL_AND_ADMINISTRATIVE</key>
+										<value>General and Administrative</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_MANAGEMENT_FEES</key>
+										<value>Management Fees</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_REAL_ESTATE_TAXES</key>
+										<value>Real Estate Taxes</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_PROPERTY_INSURANCE</key>
+										<value>Property Insurance</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_PAYROLL_AND_BENEFITS</key>
+										<value>Payroll &amp; Benefits</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_CAPITAL_EXPENDITURES</key>
+										<value>Capital Expenditures</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+							</financialAssessmentExpenses>
+							<financialAssessmentRevenues>
+								<financialAssessmentRevenue>
+									<comment>More details needed</comment>
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_GROSS_POTENTIAL_RENT</key>
+										<value>Gross Potential Rent</value>
+									</revenueLegend>
+									<underWriting>250000</underWriting>
+								</financialAssessmentRevenue>
+								<financialAssessmentRevenue>
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_VACANCY_LOSS</key>
+										<value>Vacancy Loss</value>
+									</revenueLegend>
+								</financialAssessmentRevenue>
+								<financialAssessmentRevenue>
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_OTHER_INCOME</key>
+										<value>Other Income</value>
+									</revenueLegend>
+								</financialAssessmentRevenue>
+								<financialAssessmentRevenue>
+									<assessmentCollateral />
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_BASE_RENT</key>
+										<value>Base Rent</value>
+									</revenueLegend>
+								</financialAssessmentRevenue>
+							</financialAssessmentRevenues>
+							<incomeExpenses>
+								<incomeExpense>
+									<commentGroup>
+										<comments />
+									</commentGroup>
+									<details>
+										<key>DETAILS_TYPE_YEAR_ONE</key>
+										<value>Year 1</value>
+									</details>
+									<documentGroup>
+										<allDocuments />
+										<documentPackages />
+										<generatedDocuments />
+										<uploadedDocuments />
+									</documentGroup>
+									<expenseLines>
+										<expenseLine>
+											<amount>8704</amount>
+											<assessmentCollateral />
+											<description>Payroll</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_PAYROLL_AND_BENEFITS</key>
+												<value>Payroll &amp; Benefits</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100020</refNumber>
+											<totalAmount>8704</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>8200</amount>
+											<assessmentCollateral />
+											<description>Utilities</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_UTILITIES</key>
+												<value>Utilities</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100021</refNumber>
+											<totalAmount>8200</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>18000</amount>
+											<assessmentCollateral />
+											<description>Real Estate Taxes</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REAL_ESTATE_TAXES</key>
+												<value>Real Estate Taxes</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100022</refNumber>
+											<totalAmount>18000</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>4348</amount>
+											<assessmentCollateral />
+											<description>Insurance</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_PROPERTY_INSURANCE</key>
+												<value>Property Insurance</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100023</refNumber>
+											<totalAmount>4348</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>12765</amount>
+											<assessmentCollateral />
+											<description>R &amp; M</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REPAIRS_AND_MAINTENANCE</key>
+												<value>Repairs and Maintenance</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100024</refNumber>
+											<totalAmount>12765</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>19871</amount>
+											<assessmentCollateral />
+											<description>G &amp; A</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_GENERAL_AND_ADMINISTRATIVE</key>
+												<value>General and Administrative</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100025</refNumber>
+											<totalAmount>19871</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>9247</amount>
+											<assessmentCollateral />
+											<description>Property Management</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_MANAGEMENT_FEES</key>
+												<value>Management Fees</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100026</refNumber>
+											<totalAmount>9247</totalAmount>
+										</expenseLine>
+									</expenseLines>
+									<months>
+										<key>MONTHS_CRE_6</key>
+										<value>6</value>
+									</months>
+									<proRata>true</proRata>
+									<refNumber>100006</refNumber>
+									<revenueLines>
+										<revenueLine>
+											<amount>182000</amount>
+											<assessmentCollateral />
+											<description>Gross Rent</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100019</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_GROSS_POTENTIAL_RENT</key>
+												<value>Gross Potential Rent</value>
+											</revenueLegend>
+											<totalAmount>182000</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>4000</amount>
+											<assessmentCollateral />
+											<description>Other Income</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100020</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_OTHER_INCOME</key>
+												<value>Other Income</value>
+											</revenueLegend>
+											<totalAmount>4000</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>-12000</amount>
+											<assessmentCollateral />
+											<description>Vacancy + Concessions</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100021</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_VACANCY_LOSS</key>
+												<value>Vacancy Loss</value>
+											</revenueLegend>
+											<totalAmount>-12000</totalAmount>
+										</revenueLine>
+									</revenueLines>
+									<year>2015 (YTD)</year>
+								</incomeExpense>
+								<incomeExpense>
+									<commentGroup>
+										<comments />
+									</commentGroup>
+									<details>
+										<key>DETAILS_TYPE_YEAR_TWO</key>
+										<value>Year 2</value>
+									</details>
+									<documentGroup>
+										<allDocuments />
+										<documentPackages />
+										<generatedDocuments />
+										<uploadedDocuments />
+									</documentGroup>
+									<expenseLines>
+										<expenseLine>
+											<amount>15530</amount>
+											<description>Payroll</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_PAYROLL_AND_BENEFITS</key>
+												<value>Payroll &amp; Benefits</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100005</refNumber>
+											<totalAmount>15530</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>18598</amount>
+											<description>Utilities</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_UTILITIES</key>
+												<value>Utilities</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100006</refNumber>
+											<totalAmount>18598</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>26874</amount>
+											<description>Real Estate Taxes</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REAL_ESTATE_TAXES</key>
+												<value>Real Estate Taxes</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100007</refNumber>
+											<totalAmount>26874</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>3911</amount>
+											<description>Insurance</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_PROPERTY_INSURANCE</key>
+												<value>Property Insurance</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100008</refNumber>
+											<totalAmount>3911</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>19204</amount>
+											<description>R &amp; M</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REPAIRS_AND_MAINTENANCE</key>
+												<value>Repairs and Maintenance</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100009</refNumber>
+											<totalAmount>19204</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>34291</amount>
+											<description>G &amp; A</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_GENERAL_AND_ADMINISTRATIVE</key>
+												<value>General and Administrative</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100010</refNumber>
+											<totalAmount>34291</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>5926</amount>
+											<description>Property Management</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_MANAGEMENT_FEES</key>
+												<value>Management Fees</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100011</refNumber>
+											<totalAmount>5926</totalAmount>
+										</expenseLine>
+									</expenseLines>
+									<months>
+										<key>MONTHS_CRE_12</key>
+										<value>12</value>
+									</months>
+									<proRata>false</proRata>
+									<refNumber>100002</refNumber>
+									<revenueLines>
+										<revenueLine>
+											<amount>365800</amount>
+											<description>Gross Rent</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100005</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_GROSS_POTENTIAL_RENT</key>
+												<value>Gross Potential Rent</value>
+											</revenueLegend>
+											<totalAmount>365800</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>-25800</amount>
+											<description>Vacancy</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100006</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_VACANCY_LOSS</key>
+												<value>Vacancy Loss</value>
+											</revenueLegend>
+											<totalAmount>-25800</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>10000</amount>
+											<description>Other Income</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100007</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_OTHER_INCOME</key>
+												<value>Other Income</value>
+											</revenueLegend>
+											<totalAmount>10000</totalAmount>
+										</revenueLine>
+									</revenueLines>
+									<year>2014</year>
+								</incomeExpense>
+								<incomeExpense>
+									<commentGroup>
+										<comments />
+									</commentGroup>
+									<details>
+										<key>DETAILS_TYPE_YEAR_THREE</key>
+										<value>Year 3</value>
+									</details>
+									<documentGroup>
+										<allDocuments />
+										<documentPackages />
+										<generatedDocuments />
+										<uploadedDocuments />
+									</documentGroup>
+									<expenseLines>
+										<expenseLine>
+											<amount>3200</amount>
+											<assessmentCollateral />
+											<description>CE</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_GENERAL_AND_ADMINISTRATIVE</key>
+												<value>General and Administrative</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100060</refNumber>
+											<totalAmount>3200</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>1000</amount>
+											<assessmentCollateral />
+											<description>CE</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REPAIRS_AND_MAINTENANCE</key>
+												<value>Repairs and Maintenance</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100061</refNumber>
+											<totalAmount>1000</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>27974</amount>
+											<assessmentCollateral />
+											<description>CE</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REAL_ESTATE_TAXES</key>
+												<value>Real Estate Taxes</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100062</refNumber>
+											<totalAmount>27974</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>900</amount>
+											<assessmentCollateral />
+											<description>CE</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_CAPITAL_EXPENDITURES</key>
+												<value>Capital Expenditures</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100040</refNumber>
+											<totalAmount>900</totalAmount>
+										</expenseLine>
+									</expenseLines>
+									<months>
+										<key>MONTHS_CRE_12</key>
+										<value>12</value>
+									</months>
+									<proRata>false</proRata>
+									<refNumber>100020</refNumber>
+									<revenueLines>
+										<revenueLine>
+											<amount>20000</amount>
+											<assessmentCollateral />
+											<description>Rent</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100060</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_VACANCY_LOSS</key>
+												<value>Vacancy Loss</value>
+											</revenueLegend>
+											<totalAmount>20000</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>12500</amount>
+											<assessmentCollateral />
+											<description>Other income</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100061</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_OTHER_INCOME</key>
+												<value>Other Income</value>
+											</revenueLegend>
+											<totalAmount>12500</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>1200</amount>
+											<assessmentCollateral />
+											<description>Rent</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100040</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_BASE_RENT</key>
+												<value>Base Rent</value>
+											</revenueLegend>
+											<totalAmount>1200</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>370000</amount>
+											<assessmentCollateral />
+											<description>Rent</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100041</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_GROSS_POTENTIAL_RENT</key>
+												<value>Gross Potential Rent</value>
+											</revenueLegend>
+											<totalAmount>370000</totalAmount>
+										</revenueLine>
+									</revenueLines>
+									<year>2013</year>
+								</incomeExpense>
+							</incomeExpenses>
+						</financial>
+						<rentRoll>
+							<commentGroup>
+								<comments>
+									<comment>
+										<commentGroup reference="../../.." />
+										<commentText>The property has a total of 36 units, comprising of one and two bedroom units. Average SF for 1BR units is 850 SF and for 2BR units is 1,000SF to 1,150 SF.
+										</commentText>
+										<commentType>
+											<key>COMMENT_TYPE_OPERATIONS</key>
+											<value>Operations</value>
+										</commentType>
+										<numIndex>100021</numIndex>
+									</comment>
+								</comments>
+							</commentGroup>
+							<documentGroup>
+								<allDocuments />
+								<documentPackages />
+								<generatedDocuments />
+								<uploadedDocuments />
+							</documentGroup>
+							<multiFamilies>
+								<multiFamily>
+									<avgRent>650</avgRent>
+									<multiFamilySize>850</multiFamilySize>
+									<noOfBath>1</noOfBath>
+									<noOfBed>1</noOfBed>
+									<totalUnits>6</totalUnits>
+									<unitType>1BR</unitType>
+								</multiFamily>
+								<multiFamily>
+									<avgRent>850</avgRent>
+									<multiFamilySize>1000</multiFamilySize>
+									<noOfBath>1</noOfBath>
+									<noOfBed>2</noOfBed>
+									<totalUnits>14</totalUnits>
+									<unitType>2BR</unitType>
+								</multiFamily>
+								<multiFamily>
+									<avgRent>900</avgRent>
+									<multiFamilySize>1050</multiFamilySize>
+									<noOfBath>1.5</noOfBath>
+									<noOfBed>2</noOfBed>
+									<totalUnits>12</totalUnits>
+									<unitType>2BR</unitType>
+								</multiFamily>
+								<multiFamily>
+									<avgRent>1000</avgRent>
+									<multiFamilySize>1150</multiFamilySize>
+									<noOfBath>2</noOfBath>
+									<noOfBed>2</noOfBed>
+									<totalUnits>4</totalUnits>
+									<unitType>2BR</unitType>
+								</multiFamily>
+							</multiFamilies>
+							<nonMtiFmlies />
+							<propertyType>
+								<key>PROPERTY_TYPE_CRE_MIX</key>
+								<value>Mix</value>
+							</propertyType>
+						</rentRoll>
+					</cashFlows>
+					<collateralCategory>
+						<key>COLLATE_CATEGORY_MULTIFAMILY_APARTMENTS</key>
+						<value>Multifamily (Apartments)</value>
+					</collateralCategory>
+					<collateralDescription>
+						Created as a multifamily property for the Customer. This will be used later
+						to create the application
+					</collateralDescription>
+					<collateralName>Emerald Heights</collateralName>
+					<collateralType>
+						<key>COLLATE_CATEGORY_MID_RISE</key>
+						<value>Mid Rise</value>
+					</collateralType>
+					<customer reference="../../.." />
+					<location>
+						<address1>154 Grant Street</address1>
+						<city>Princeton</city>
+						<country>
+							<isoCode>US</isoCode>
+							<name>USA</name>
+						</country>
+						<postalCode>08540</postalCode>
+						<stateProvince>
+							<isoCode>NJ</isoCode>
+							<name>New Jersey</name>
+						</stateProvince>
+					</location>
+					<locationHeld>
+						<key>LOCATION_HELD_BRANCH</key>
+						<value>Branch</value>
+					</locationHeld>
+					<marketAnalysis>
+						<commentGroup>
+							<comments>
+								<comment>
+									<commentGroup reference="../../.." />
+									<commentText>Strategic Customer - long term relationship.
+									</commentText>
+									<commentType>
+										<key>COMMENT_TYPE_SALES</key>
+										<value>Sales</value>
+									</commentType>
+									<numIndex>100060</numIndex>
+								</comment>
+							</comments>
+						</commentGroup>
+						<comparable>
+							<commentGroup>
+								<comments />
+							</commentGroup>
+							<rentCmpbls />
+							<salesCmpbls>
+								<salesComparable>
+									<address>Princeton</address>
+									<adjustedSalesPrices>165000</adjustedSalesPrices>
+									<propertyName>Harbor House Apartments</propertyName>
+									<salesPrice>3000000</salesPrice>
+									<salesPricePerUnit>150000</salesPricePerUnit>
+									<sourceType>
+										<key>SOURCE_TYPE_CRE_INTERNAL_RESEARCH</key>
+										<value>Internal Research</value>
+									</sourceType>
+									<yearBuilt>2012</yearBuilt>
+								</salesComparable>
+								<salesComparable>
+									<address>Ridge</address>
+									<adjustedSalesPrices>52000</adjustedSalesPrices>
+									<propertyName>Lincoln House</propertyName>
+									<salesPrice>13192700</salesPrice>
+									<salesPricePerUnit>53196</salesPricePerUnit>
+									<sourceType>
+										<key>SOURCE_TYPE_CRE_INTERNAL_RESEARCH</key>
+										<value>Internal Research</value>
+									</sourceType>
+									<yearBuilt>2010</yearBuilt>
+								</salesComparable>
+								<salesComparable>
+									<address>Princeton</address>
+									<adjustedSalesPrices>65000</adjustedSalesPrices>
+									<propertyName>Pine Meadows</propertyName>
+									<salesPrice>4389000</salesPrice>
+									<salesPricePerUnit>57000</salesPricePerUnit>
+									<sourceType>
+										<key>SOURCE_TYPE_CRE_INTERNAL_RESEARCH</key>
+										<value>Internal Research</value>
+									</sourceType>
+									<yearBuilt>2008</yearBuilt>
+								</salesComparable>
+								<salesComparable>
+									<address>Princeton</address>
+									<adjustedSalesPrices>70000</adjustedSalesPrices>
+									<propertyName>Jameson at Newberry Bay</propertyName>
+									<salesPrice>4513500</salesPrice>
+									<salesPricePerUnit>56419</salesPricePerUnit>
+									<sourceType>
+										<key>SOURCE_TYPE_CRE_INTERNAL_RESEARCH</key>
+										<value>Internal Research</value>
+									</sourceType>
+									<yearBuilt>2007</yearBuilt>
+								</salesComparable>
+							</salesCmpbls>
+						</comparable>
+						<currentQtrOcc>25000</currentQtrOcc>
+						<currentQtrRent>30000</currentQtrRent>
+						<documentGroup>
+							<allDocuments />
+							<documentPackages />
+							<generatedDocuments />
+							<uploadedDocuments />
+						</documentGroup>
+						<householdIncome>80000</householdIncome>
+						<mktEmplyrs />
+						<msaName>New Jersey</msaName>
+						<periodUnemployment>1 year</periodUnemployment>
+						<population>400000</population>
+						<previousQtrOcc>25000</previousQtrOcc>
+						<previousQtrRent>27000</previousQtrRent>
+						<subMktDetail>
+							<commentGroup>
+								<comments />
+							</commentGroup>
+						</subMktDetail>
+						<unemploymentRate>4</unemploymentRate>
+					</marketAnalysis>
+					<noi>225666</noi>
+					<realEstateCollateral>
+						<buildingCondition>Average</buildingCondition>
+						<dateConstructed>2013-06-14T00:00:00.000-07:00</dateConstructed>
+						<envAssessType>
+							<key>ENV_ASSESSMENT_TYPE_PHASE_I</key>
+							<value>Phase I</value>
+						</envAssessType>
+						<floodZone>
+							<key>YES_OR_NO_NO</key>
+							<value>No</value>
+						</floodZone>
+						<isAConvertedHome>false</isAConvertedHome>
+						<isOnsiteParking>false</isOnsiteParking>
+						<newConstructionProject />
+						<occupancy>93%</occupancy>
+						<pctOwnerOccupied>0</pctOwnerOccupied>
+						<projDetails />
+						<propertyDescription>Multifamily property</propertyDescription>
+						<propertyType>
+							<key>PROPERTY_TYPE_OTHER</key>
+							<value>Other</value>
+						</propertyType>
+						<tenants />
+					</realEstateCollateral>
+					<refNumber>100006</refNumber>
+					<useExistingCollateral>false</useExistingCollateral>
+				</collateral>
+				<collateral>
+					<collateralCategory>
+						<key>COLLATE_CATEGORY_MIXED_USE</key>
+						<value>Mixed Use</value>
+					</collateralCategory>
+					<collateralDescription>
+						Created as a mixed use property to verify rent roll structure an other
+						things. This will be used later to create the application
+					</collateralDescription>
+					<collateralName>Canton Plaza</collateralName>
+					<collateralType>
+						<key>COLLATE_CATEGORY_MIXED_USE</key>
+						<value>Mixed Use</value>
+					</collateralType>
+					<customer reference="../../.." />
+					<location>
+						<address1>265 Maine Street</address1>
+						<city>Wilton</city>
+						<country>
+							<isoCode>US</isoCode>
+							<name>USA</name>
+						</country>
+						<county>Fairfield County</county>
+						<postalCode>06987</postalCode>
+						<stateProvince>
+							<isoCode>CT</isoCode>
+							<name>Connecticut</name>
+						</stateProvince>
+					</location>
+					<locationHeld>
+						<key>LOCATION_HELD_BRANCH</key>
+						<value>Branch</value>
+					</locationHeld>
+					<noi>1545000</noi>
+					<realEstateCollateral>
+						<buildingCondition>Average</buildingCondition>
+						<isAConvertedHome>false</isAConvertedHome>
+						<isOnsiteParking>false</isOnsiteParking>
+						<projDetails />
+						<propertyDescription>Mixed Use with primary use as Office
+						</propertyDescription>
+						<propertyType>
+							<key>PROPERTY_TYPE_OFFICE</key>
+							<value>Office</value>
+						</propertyType>
+						<tenants />
+					</realEstateCollateral>
+					<refNumber>100007</refNumber>
+					<useExistingCollateral>false</useExistingCollateral>
+				</collateral>
+			</collaterals>
+			<commentGroup>
+				<comments />
+			</commentGroup>
+			<currCitiEmployee>false</currCitiEmployee>
+			<customerExposureLimits />
+			<customerRelations />
+			<customerType>
+				<key>CUSTOMER_TYPE_NON_INDIVIDUAL</key>
+				<value>Non-Individual</value>
+			</customerType>
+			<dbas />
+			<defaultEvents />
+			<description>
+				Created as a sample entity for any future application
+			</description>
+			<disclosePersonalInfo>false</disclosePersonalInfo>
+			<disclosureStmtCommunicated>false</disclosureStmtCommunicated>
+			<disclosuresAccepted>false</disclosuresAccepted>
+			<doNotCall>false</doNotCall>
+			<electronicComAgrAccepted>false</electronicComAgrAccepted>
+			<emailOptOut>false</emailOptOut>
+			<externalIdentifiers />
+			<federalTaxId>123456781</federalTaxId>
+			<holds />
+			<legalName>Galaxy LLC</legalName>
+			<licenseInformation />
+			<medicalOrDentalProvider>false</medicalOrDentalProvider>
+			<naicsCode>
+				<key>NAICS_CODE_522292</key>
+				<value>Real Estate Credit</value>
+			</naicsCode>
+			<negotiableSecurities />
+			<numOfEmployees>14</numOfEmployees>
+			<partyLiabilities />
+			<partyOwnedAssets />
+			<partyPermissionPullBureau>false</partyPermissionPullBureau>
+			<pdLgdRating />
+			<primarySite>
+				<contacts>
+					<contact>
+						<addresses />
+						<email>amy.carter@galaxy.com</email>
+						<firstName>Amy</firstName>
+						<lastName>Carter</lastName>
+						<mobilePhone>2353468769</mobilePhone>
+						<role>
+							<key>ROLE_TYPE_PRINCIPALS</key>
+							<value>Principals</value>
+						</role>
+					</contact>
+				</contacts>
+				<refNumber>100006</refNumber>
+				<siteDetails>
+					<addresses>
+						<address>
+							<address1>255 North Avenue</address1>
+							<city>Brooklyn</city>
+							<country>
+								<isoCode>US</isoCode>
+								<name>USA</name>
+							</country>
+							<postalCode>56721</postalCode>
+							<stateProvince>
+								<isoCode>NY</isoCode>
+								<name>New York</name>
+							</stateProvince>
+							<usage>
+                            	<attributeChoice>
+                            		<key>ADDRESS_USE_TYPE_BUSINESS</key>
+                            	</attributeChoice>
+                            	<attributeChoice>
+                            		<key>ADDRESS_USE_TYPE_BILLING</key>
+                            	</attributeChoice>
+                            	<attributeChoice>
+                            		<key>ADDRESS_USE_TYPE_LEGAL</key>
+                            	</attributeChoice>
+                            	<attributeChoice>
+                            		<key>ADDRESS_USE_TYPE_MAILING</key>
+                            	</attributeChoice>
+                            	<attributeChoice>
+                            		<key>ADDRESS_USE_TYPE_HOME</key>
+                            	</attributeChoice>
+                            </usage>
+                            <use>
+                            	<attributeChoice>
+                                	<key>ADDRESS_USE_TYPE_BUSINESS</key>
+                                </attributeChoice>
+                            </use>
+						</address>
+					</addresses>
+					<businessPhone>2353429087</businessPhone>
+					<email>james.carter@galaxy.com</email>
+					<firstName>James</firstName>
+					<lastName>Carter</lastName>
+					<role>
+						<key>ROLE_TYPE_PRINCIPALS</key>
+						<value>Principals</value>
+					</role>
+				</siteDetails>
+			</primarySite>
+			<privacyIndicator>false</privacyIndicator>
+			<processInstanceId>21787</processInstanceId>
+			<refNumber>100010</refNumber>
+			<riskRatings />
+			<sessionId>143</sessionId>
+			<sites />
+			<soleProprietor>false</soleProprietor>
+			<usCitizen>false</usCitizen>
+			<verifiedForDeDup>false</verifiedForDeDup>
+		</customer>
+		<customer>
+			<annualRevenue>25000</annualRevenue>
+			<bankTrades />
+			<bankruptcyDeclared>false</bankruptcyDeclared>
+			<bankruptcyInfo>
+				<bankruptcy>false</bankruptcy>
+			</bankruptcyInfo>
+			<branchInformation />
+			<businessStartDttm>2011-02-01T00:00:00.000-08:00</businessStartDttm>
+			<collaterals>
+				<collateral>
+					<assessmentCollateral>
+						<acreage>1365801</acreage>
+						<appraisalRequired>
+							<key>YES_OR_NO_YES</key>
+							<value>Yes</value>
+						</appraisalRequired>
+						<commentGroup>
+							<comments />
+						</commentGroup>
+						<documentGroup>
+							<allDocuments />
+							<documentPackages />
+							<generatedDocuments />
+							<uploadedDocuments />
+						</documentGroup>
+						<envReportRequired>
+							<key>YES_OR_NO_YES</key>
+							<value>Yes</value>
+						</envReportRequired>
+						<isCompliance>
+							<key>COMPLAINCE_TYPE_YES</key>
+							<value>Yes</value>
+						</isCompliance>
+						<msa>Houston</msa>
+						<noOfParking>2099</noOfParking>
+						<occupancy>90.3</occupancy>
+						<parkingRatio>0.015/SF</parkingRatio>
+						<parkingType>Garage</parkingType>
+						<rentRollDate>2015-06-30T00:00:00.000-07:00</rentRollDate>
+						<thrdPtyReqts />
+						<unitArea>1333312</unitArea>
+						<yearBuilt>1981-03-17T00:00:00.000-08:00</yearBuilt>
+						<yearRenovated>2005-07-01T00:00:00.000-07:00</yearRenovated>
+					</assessmentCollateral>
+					<cashFlows>
+						<financial>
+							<commentGroup>
+								<comments />
+							</commentGroup>
+							<documentGroup>
+								<allDocuments />
+								<documentPackages />
+								<generatedDocuments />
+								<uploadedDocuments />
+							</documentGroup>
+							<downloadFinancial>
+								<associatedPartners />
+								<blankDocument>false</blankDocument>
+								<checkout />
+								<coverSheetFlag>false</coverSheetFlag>
+								<documentPagesAsImages />
+								<documentPublishHistories />
+								<documentSigners />
+								<documentStatus>
+									<key>DOCUMENT_STATUS_SIGNING_IN_COMPLETE</key>
+									<value>Incomplete</value>
+								</documentStatus>
+								<emailForGenerateDoc />
+								<emailForSendDoc />
+								<esignatureRqd>false</esignatureRqd>
+								<faxForGenerateDoc />
+								<faxForSendDoc />
+								<generatedFlag>false</generatedFlag>
+								<processInstanceId>29028</processInstanceId>
+								<publishedTo />
+								<readOnly>false</readOnly>
+								<refNumber>100538</refNumber>
+								<requestLevel>true</requestLevel>
+								<requiredFlag>false</requiredFlag>
+								<sessionId>605</sessionId>
+								<shared>false</shared>
+								<uploadedFlag>false</uploadedFlag>
+								<wetSignature>false</wetSignature>
+							</downloadFinancial>
+							<financialAssessmentExpenses>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_PROPERTY_INSURANCE</key>
+										<value>Property Insurance</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_REAL_ESTATE_TAXES</key>
+										<value>Real Estate Taxes</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_REPAIRS_AND_MAINTENANCE</key>
+										<value>Repairs and Maintenance</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_PROFESSIONAL_FEES</key>
+										<value>Professional Fees</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_GROUND_RENT</key>
+										<value>Ground Rent</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_GENERAL_AND_ADMINISTRATIVE</key>
+										<value>General and Administrative</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_MANAGEMENT_FEES</key>
+										<value>Management Fees</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_JANITORIAL</key>
+										<value>Janitorial</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_OTHER_EXPENSES</key>
+										<value>Other Expenses</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+								<financialAssessmentExpense>
+									<assessmentCollateral />
+									<expenseLegend>
+										<key>EXPENSE_LEGEND_TYPE_UTILITIES</key>
+										<value>Utilities</value>
+									</expenseLegend>
+									<financialCRE reference="../../.." />
+								</financialAssessmentExpense>
+							</financialAssessmentExpenses>
+							<financialAssessmentRevenues>
+								<financialAssessmentRevenue>
+									<assessmentCollateral />
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_OTHER_INCOME</key>
+										<value>Other Income</value>
+									</revenueLegend>
+								</financialAssessmentRevenue>
+								<financialAssessmentRevenue>
+									<assessmentCollateral />
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_EXPENSE_REIMBURSEMENTS</key>
+										<value>Expense Reimbursements</value>
+									</revenueLegend>
+								</financialAssessmentRevenue>
+								<financialAssessmentRevenue>
+									<assessmentCollateral />
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_PARKING_INCOME</key>
+										<value>Parking Income</value>
+									</revenueLegend>
+								</financialAssessmentRevenue>
+								<financialAssessmentRevenue>
+									<assessmentCollateral />
+									<financialCRE reference="../../.." />
+									<revenueLegend>
+										<key>REVENUE_LEGEND_TYPE_BASE_RENT</key>
+										<value>Base Rent</value>
+									</revenueLegend>
+								</financialAssessmentRevenue>
+							</financialAssessmentRevenues>
+							<incomeExpenses>
+								<incomeExpense>
+									<commentGroup>
+										<comments />
+									</commentGroup>
+									<details>
+										<key>DETAILS_TYPE_YEAR_ONE</key>
+										<value>Year 1</value>
+									</details>
+									<documentGroup>
+										<allDocuments />
+										<documentPackages />
+										<generatedDocuments />
+										<uploadedDocuments />
+									</documentGroup>
+									<expenseLines>
+										<expenseLine>
+											<amount>2517975</amount>
+											<assessmentCollateral />
+											<description>Cleaning</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_JANITORIAL</key>
+												<value>Janitorial</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100041</refNumber>
+											<totalAmount>2517975</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>3458042</amount>
+											<assessmentCollateral />
+											<description>R &amp; M</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REPAIRS_AND_MAINTENANCE</key>
+												<value>Repairs and Maintenance</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100042</refNumber>
+											<totalAmount>3458042</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>1746883</amount>
+											<assessmentCollateral />
+											<description>Utilities</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_UTILITIES</key>
+												<value>Utilities</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100043</refNumber>
+											<totalAmount>1746883</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>1063026</amount>
+											<assessmentCollateral />
+											<description>Security Services</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_GENERAL_AND_ADMINISTRATIVE</key>
+												<value>General and Administrative</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100044</refNumber>
+											<totalAmount>1063026</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>908780</amount>
+											<assessmentCollateral />
+											<description>Administrative Services</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_GENERAL_AND_ADMINISTRATIVE</key>
+												<value>General and Administrative</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100045</refNumber>
+											<totalAmount>1971806</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>7549315</amount>
+											<assessmentCollateral />
+											<description>RET</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_REAL_ESTATE_TAXES</key>
+												<value>Real Estate Taxes</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100046</refNumber>
+											<totalAmount>7549315</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>857186</amount>
+											<assessmentCollateral />
+											<description>Insurance</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_PROPERTY_INSURANCE</key>
+												<value>Property Insurance</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100047</refNumber>
+											<totalAmount>857186</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>5000</amount>
+											<assessmentCollateral />
+											<description>Professional Fees</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_PROFESSIONAL_FEES</key>
+												<value>Professional Fees</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100048</refNumber>
+											<totalAmount>5000</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>1295411</amount>
+											<assessmentCollateral />
+											<description>Property Management Fees</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_MANAGEMENT_FEES</key>
+												<value>Management Fees</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100049</refNumber>
+											<totalAmount>1295411</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>161356</amount>
+											<assessmentCollateral />
+											<description>Non Reimb - Ground Rent</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_GROUND_RENT</key>
+												<value>Ground Rent</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100050</refNumber>
+											<totalAmount>161356</totalAmount>
+										</expenseLine>
+										<expenseLine>
+											<amount>1069251</amount>
+											<assessmentCollateral />
+											<description>Non-Reimb Garage Expenses</description>
+											<expenseLegend>
+												<key>EXPENSE_LEGEND_TYPE_OTHER_EXPENSES</key>
+												<value>Other Expenses</value>
+											</expenseLegend>
+											<incomeExpense reference="../../.." />
+											<refNumber>100051</refNumber>
+											<totalAmount>1069251</totalAmount>
+										</expenseLine>
+									</expenseLines>
+									<months>
+										<key>MONTHS_CRE_12</key>
+										<value>12</value>
+									</months>
+									<proRata>false</proRata>
+									<refNumber>100021</refNumber>
+									<revenueLines>
+										<revenueLine>
+											<amount>24948775</amount>
+											<assessmentCollateral />
+											<description>Base Rent</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100042</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_BASE_RENT</key>
+												<value>Base Rent</value>
+											</revenueLegend>
+											<totalAmount>24948775</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>18004038</amount>
+											<assessmentCollateral />
+											<description>Recoveries</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100043</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_EXPENSE_REIMBURSEMENTS</key>
+												<value>Expense Reimbursements</value>
+											</revenueLegend>
+											<totalAmount>18004038</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>4017462</amount>
+											<assessmentCollateral />
+											<description>Parking Income</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100044</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_PARKING_INCOME</key>
+												<value>Parking Income</value>
+											</revenueLegend>
+											<totalAmount>4017462</totalAmount>
+										</revenueLine>
+										<revenueLine>
+											<amount>1407866</amount>
+											<assessmentCollateral />
+											<description>Miscellaneous Other Income</description>
+											<incomeExpense reference="../../.." />
+											<refNumber>100045</refNumber>
+											<revenueLegend>
+												<key>REVENUE_LEGEND_TYPE_OTHER_INCOME</key>
+												<value>Other Income</value>
+											</revenueLegend>
+											<totalAmount>1407866</totalAmount>
+										</revenueLine>
+									</revenueLines>
+									<year>2014</year>
+								</incomeExpense>
+							</incomeExpenses>
+						</financial>
+						<rentRoll>
+							<commentGroup>
+								<comments />
+							</commentGroup>
+							<documentGroup>
+								<allDocuments />
+								<documentPackages />
+								<generatedDocuments />
+								<uploadedDocuments />
+							</documentGroup>
+							<multiFamilies />
+							<nonMtiFmlies />
+							<propertyType>
+								<key>PROPERTY_TYPE_CRE_NON_MULTIFAMILY</key>
+								<value>Non - MultiFamily</value>
+							</propertyType>
+						</rentRoll>
+					</cashFlows>
+					<collateralCategory>
+						<key>COLLATE_CATEGORY_OFFICE</key>
+						<value>Office</value>
+					</collateralCategory>
+					<collateralDescription>Class A Office building located in Houston
+					</collateralDescription>
+					<collateralName>First City Tower</collateralName>
+					<collateralType>
+						<key>COLLATE_CATEGORY_OFFICE_BUILDINGS</key>
+						<value>Office Buildings</value>
+					</collateralType>
+					<customer reference="../../.." />
+					<location>
+						<address1>1001 Fanni Street</address1>
+						<city>Houston</city>
+						<country>
+							<isoCode>US</isoCode>
+							<name>USA</name>
+						</country>
+						<county>Harris</county>
+						<postalCode>77002</postalCode>
+						<stateProvince>
+							<isoCode>TX</isoCode>
+							<name>Texas</name>
+						</stateProvince>
+					</location>
+					<locationHeld>
+						<key>LOCATION_HELD_BRANCH</key>
+						<value>Branch</value>
+					</locationHeld>
+					<marketAnalysis>
+						<commentGroup>
+							<comments />
+						</commentGroup>
+						<currentQtrOcc>14.1%</currentQtrOcc>
+						<currentQtrRent>27.38</currentQtrRent>
+						<documentGroup>
+							<allDocuments />
+							<documentPackages />
+							<generatedDocuments />
+							<uploadedDocuments />
+						</documentGroup>
+						<mktEmps>
+							<mktEmp>
+								<empName>Memorial Hermann Health System</empName>
+								<empNumber>19500</empNumber>
+							</mktEmp>
+							<mktEmp>
+								<empName>The University of Texas MD Anderson Cancer Center</empName>
+								<empNumber>19290</empNumber>
+							</mktEmp>
+							<mktEmp>
+								<empName>United Airlines</empName>
+								<empNumber>17000</empNumber>
+							</mktEmp>
+							<mktEmp>
+								<empName>Exxon Mobil Corporation</empName>
+								<empNumber>13191</empNumber>
+							</mktEmp>
+							<mktEmp>
+								<empName>Houston Methodist</empName>
+								<empNumber>13000</empNumber>
+							</mktEmp>
+						</mktEmps>
+						<msaName>Houston</msaName>
+						<periodUnemployment>May-2015</periodUnemployment>
+						<previousQtrOcc>13.0%</previousQtrOcc>
+						<previousQtrRent>27.39</previousQtrRent>
+						<subMktDetail>
+							<commentGroup>
+								<comments />
+							</commentGroup>
+							<subMarketName>Downtown</subMarketName>
+						</subMktDetail>
+						<unemploymentRate>4.2%</unemploymentRate>
+					</marketAnalysis>
+					<noi>24281011</noi>
+					<realEstateCollateral>
+						<buildingCondition>Class-A</buildingCondition>
+						<commercialSqFt>1333312</commercialSqFt>
+						<dateConstructed>1981-03-17T00:00:00.000-08:00</dateConstructed>
+						<floodZone>
+							<key>YES_OR_NO_NO</key>
+							<value>No</value>
+						</floodZone>
+						<historicalUse>N/A</historicalUse>
+						<isAConvertedHome>false</isAConvertedHome>
+						<isOnsiteParking>false</isOnsiteParking>
+						<newConstructionProject />
+						<projDetails />
+						<propertyDescription>49-Story Office Building</propertyDescription>
+						<propertyType>
+							<key>PROPERTY_TYPE_OFFICE</key>
+							<value>Office</value>
+						</propertyType>
+						<rentalSqFt>1333312</rentalSqFt>
+						<stories>49</stories>
+						<tenants />
+						<totalSqFt>1365801</totalSqFt>
+					</realEstateCollateral>
+					<refNumber>100043</refNumber>
+					<useExistingCollateral>false</useExistingCollateral>
+				</collateral>
+			</collaterals>
+			<commentGroup>
+				<comments />
+			</commentGroup>
+			<currCitiEmployee>false</currCitiEmployee>
+			<customerExposureLimits />
+			<customerRelations />
+			<customerType>
+				<key>CUSTOMER_TYPE_NON_INDIVIDUAL</key>
+				<value>Non-Individual</value>
+			</customerType>
+			<dbas />
+			<defaultEvents />
+			<description>
+				Created as a sample entity to create different
+				applications
+			</description>
+			<disclosePersonalInfo>false</disclosePersonalInfo>
+			<disclosureStmtCommunicated>false</disclosureStmtCommunicated>
+			<disclosuresAccepted>false</disclosuresAccepted>
+			<doNotCall>false</doNotCall>
+			<electronicComAgrAccepted>false</electronicComAgrAccepted>
+			<emailOptOut>false</emailOptOut>
+			<externalIdentifiers />
+			<federalTaxId>234675910</federalTaxId>
+			<holds />
+			<legalName>Wildcard LP</legalName>
+			<licenseInformation />
+			<medicalOrDentalProvider>false</medicalOrDentalProvider>
+			<negotiableSecurities />
+			<numOfEmployees>50</numOfEmployees>
+			<partyLiabilities />
+			<partyOwnedAssets />
+			<partyPermissionPullBureau>false</partyPermissionPullBureau>
+			<pdLgdRating />
+			<primarySite>
+				<contacts>
+					<contact>
+						<addresses />
+						<email>shirleen.baxter@wildcard.com</email>
+						<firstName>Shirleen</firstName>
+						<lastName>Baxter</lastName>
+						<mobilePhone>2358976342</mobilePhone>
+						<role>
+							<key>ROLE_TYPE_PRINCIPALS</key>
+							<value>Principals</value>
+						</role>
+					</contact>
+				</contacts>
+				<refNumber>100040</refNumber>
+				<siteDetails>
+					<addresses>
+                        <address>
+                            <address1>404 SHATTO PL</address1>
+                            <city>LOS ANGELES</city>
+                            <country>
+                                <isoCode>US</isoCode>
+                            </country>
+                            <postalCode>90020</postalCode>
+                            <stateProvince>
+                                <isoCode>CA</isoCode>
+                            </stateProvince>
+                            <usage>
+                            	<attributeChoice>
+                            		<key>ADDRESS_USE_TYPE_BUSINESS</key>
+                            	</attributeChoice>
+                            </usage>
+                            <use>
+                            	<attributeChoice>
+                                	<key>ADDRESS_USE_TYPE_BUSINESS</key>
+                                </attributeChoice>
+                            </use>
+                        </address>
+                    </addresses>
+					<businessPhone>2359871234</businessPhone>
+					<email>even.baxter@wildcard.com</email>
+					<firstName>Evan</firstName>
+					<lastName>Baxter</lastName>
+					<role>
+						<key>ROLE_TYPE_PRINCIPALS</key>
+						<value>Principals</value>
+					</role>
+				</siteDetails>
+			</primarySite>
+			<privacyIndicator>false</privacyIndicator>
+			<processInstanceId>28364</processInstanceId>
+			<refNumber>100083</refNumber>
+			<riskRatings />
+			<sessionId>570</sessionId>
+			<sites />
+			<soleProprietor>false</soleProprietor>
+			<usCitizen>false</usCitizen>
+			<verifiedForDeDup>false</verifiedForDeDup>
+		</customer>
+        <customer>
+			<bankTrades/>
+			<bankruptcyDeclared>false</bankruptcyDeclared>
+			<bankruptcyInfo>
+				<bankruptcy>false</bankruptcy>
+			</bankruptcyInfo>
+			<branchInformation/>
+			<collaterals/>
+			<commentGroup>
+				<comments/>
+			</commentGroup>
+			<currCitiEmployee>false</currCitiEmployee>
+			<customerExposureLimits/>
+			<customerRelations/>
+			<customerType>
+				<key>CUSTOMER_TYPE_INDIVIDUAL</key>
+				<value>Individual</value>
+			</customerType>
+			<dbas/>
+			<defaultEvents/>
+			<disclosePersonalInfo>false</disclosePersonalInfo>
+			<disclosureStmtCommunicated>false</disclosureStmtCommunicated>
+			<disclosuresAccepted>false</disclosuresAccepted>
+			<doNotCall>false</doNotCall>
+			<electronicComAgrAccepted>false</electronicComAgrAccepted>
+			<emailOptOut>false</emailOptOut>
+			<externalIdentifiers/>
+			<firstName>CAROL</firstName>
+			<holds/>
+			<lastName>HALTERWAIDER</lastName>
+			<licenseInformation/>
+			<medicalOrDentalProvider>false</medicalOrDentalProvider>
+			<negotiableSecurities/>
+			<partyLiabilities/>
+			<partyOwnedAssets/>
+			<partyPermissionPullBureau>false</partyPermissionPullBureau>
+			<pdLgdRating/>
+			<primarySite>
+				<contacts/>
+				<refNumber>100041</refNumber>
+				<siteDetails>
+				<email>carol.mock@yopmail.com</email>
+					<addresses>
+						<address>
+							<address1>52 PORTLAND</address1>
+							<address2>ST</address2>
+							<city>BARNEGAT</city>
+							<country>
+								<isoCode>US</isoCode>
+								<name>USA</name>
+							</country>
+							<postalCode>08005</postalCode>
+							<stateProvince>
+								<isoCode>NJ</isoCode>
+								<name>New Jersey</name>
+							</stateProvince>
+						</address>
+					</addresses>
+				</siteDetails>
+			</primarySite>
+			<privacyIndicator>false</privacyIndicator>
+			<processInstanceId>28425</processInstanceId>
+			<refNumber>100084</refNumber>
+			<riskRatings/>
+			<sessionId>571</sessionId>
+			<sites/>
+			<soleProprietor>false</soleProprietor>
+			<ssn>666880065</ssn>
+			<usCitizen>false</usCitizen>
+			<verifiedForDeDup>false</verifiedForDeDup>
+		</customer>
+		<customer>
+			<bankTrades />
+			<bankruptcyDeclared>false</bankruptcyDeclared>
+			<bankruptcyInfo>
+				<bankruptcy>false</bankruptcy>
+			</bankruptcyInfo>
+			<branchInformation />
+			<collaterals />
+			<commentGroup>
+				<comments />
+			</commentGroup>
+			<currCitiEmployee>false</currCitiEmployee>
+			<customerExposureLimits />
+			<customerRelations />
+			<customerType>
+				<key>CUSTOMER_TYPE_NON_INDIVIDUAL</key>
+				<value>Non-Individual</value>
+			</customerType>
+			<dbas />
+			<defaultEvents />
+			<disclosePersonalInfo>false</disclosePersonalInfo>
+			<disclosureStmtCommunicated>false</disclosureStmtCommunicated>
+			<disclosuresAccepted>false</disclosuresAccepted>
+			<doNotCall>false</doNotCall>
+			<electronicComAgrAccepted>false</electronicComAgrAccepted>
+			<emailOptOut>false</emailOptOut>
+			<externalIdentifiers />
+			<federalTaxId>666024698</federalTaxId>
+			<holds />
+			<legalName>WILLIAM LAPITSKY</legalName>
+			<licenseInformation />
+			<medicalOrDentalProvider>false</medicalOrDentalProvider>
+			<negotiableSecurities />
+			<partyLiabilities />
+			<partyOwnedAssets />
+			<partyPermissionPullBureau>false</partyPermissionPullBureau>
+			<pdLgdRating />
+			<primarySite>
+				<contacts />
+				<refNumber>100042</refNumber>
+				<siteDetails>
+				<email>william.mock@yopmail.com</email>
+					<addresses>
+						<address>
+							<address1>78 LINCOLN</address1>
+							<address2>PL</address2>
+							<city>EAST RUTHERFORD</city>
+							<country>
+								<isoCode>US</isoCode>
+								<name>USA</name>
+							</country>
+							<postalCode>07073</postalCode>
+							<stateProvince>
+								<isoCode>NJ</isoCode>
+								<name>New Jersey</name>
+							</stateProvince>
+						</address>
+					</addresses>
+				</siteDetails>
+			</primarySite>
+			<privacyIndicator>false</privacyIndicator>
+			<processInstanceId>28444</processInstanceId>
+			<refNumber>100085</refNumber>
+			<riskRatings />
+			<sessionId>572</sessionId>
+			<sites />
+			<soleProprietor>false</soleProprietor>
+			<usCitizen>false</usCitizen>
+			<verifiedForDeDup>false</verifiedForDeDup>
+		</customer>
+</list>

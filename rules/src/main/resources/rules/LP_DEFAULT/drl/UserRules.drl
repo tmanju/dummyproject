@@ -1,0 +1,71 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.model.*;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.StringUtils;
+import com.thirdpillar.foundation.codify.constants.CodifyConstants;
+
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.logDebug;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.util.Calendar;
+
+
+rule "Default User profile"
+    agenda-group "NEW"
+      when
+        #condition
+        user:User() 
+      then
+      
+      	#Status
+      	WorkflowStatus status = (WorkflowStatus) LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "USER_STATUS_INACTIVE");
+        user.setWfStatus(status);
+
+      	#User Type
+        AttributeChoice userType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","USER_TYPE_INTERNAL");
+        user.setUserType(userType);
+      	
+        #User Source
+        String security =  CodifyConstants.CONFIG.getString("security.webapp", "formlogin");
+        String userSourceKey = null;
+        if(security.equalsIgnoreCase("formlogin")) {
+       		userSourceKey = "USER_SOURCE_INTERNAL";
+       	    // When lastPasswordResetDate=null, forces password change on first login. 
+            user.setLastPasswordResetDate(null);
+        }
+       	else {
+        	userSourceKey = "USER_SOURCE_SAML";
+        	user.setLastPasswordResetDate(new Date(200, 0, 1));       		
+       	}
+        	                
+        AttributeChoice userSource = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key", userSourceKey);
+        user.setUserSource(userSource);
+                
+        #Temporary password
+        if(StringUtils.isEmpty(user.getPassword())) {
+          user.setPassword(RandomStringUtils.randomAlphanumeric(12));
+        }
+
+        #System user
+        user.setSystemUser(false);
+		
+        #Profile
+        TimeZone tz = (TimeZone)LookupService.getResult("TimeZone.byIsoCode", "isoCode","America/Los_Angeles");
+        user.setTimeZone(tz);
+        
+        Language l = (Language)LookupService.getResult("Language.byIsoCode", "isoCode","en");
+        user.setLanguage(l);
+
+        Currency c = (Currency)LookupService.getResult("Currency.byIsoCode", "isoCode","USD");
+        user.setCurrency(c);
+
+        user.setEmailEnabled(true);
+		
+
+end

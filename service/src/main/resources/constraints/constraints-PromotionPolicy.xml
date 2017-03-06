@@ -1,0 +1,53 @@
+<map:constraint-mappings
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd"
+	xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="PromotionPolicy" ignore-annotations="false">
+
+		<map:class>
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.name.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.name!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.promotionType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.promotionType!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.OuSbu.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.ou!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.OuSbu.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.sbu!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.currency.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.currency!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.rateType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.rateType!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.effectiveFromDate.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.effectiveFromDate!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{promotionPolicy.effectiveToDate.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.effectiveToDate!=null]]></map:element>
+			</map:constraint>
+			
+		
+		</map:class>
+		
+	</map:bean>
+</map:constraint-mappings>

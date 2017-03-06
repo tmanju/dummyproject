@@ -1,0 +1,424 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="Customer" ignore-annotations="false">
+        <map:class>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.legalName.required}</map:message>
+		                <map:element name="triggerExpr"><![CDATA[return o.isNonIndividual();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.legalName != empty);]]></map:element>
+			</map:constraint>        
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.customerType.required}</map:message>
+		                <map:element name="matchedExpr"><![CDATA[return (o.customerType != empty);]]></map:element>
+			</map:constraint>  
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.daysBeyondTerms.value}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+			   				 if(o.daysBeyondTerms < 0){
+			   				match=false;
+			   				}
+			   				
+			   				return match;
+			    ]]></map:element>
+			 </map:constraint>			 
+			 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.lengthOfEmployment.value}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+			   				 if(o.lengthOfEmployment < 0){
+			   				match=false;
+			   				}
+			   				
+			   				return match;
+			    ]]></map:element>
+			 </map:constraint> 
+			 
+			 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.industryDBT.value}</map:message>
+			    <map:element name="matchedExpr">
+					<![CDATA[
+						return o.checkIndustryDBT();
+					]]></map:element>
+			 </map:constraint>			      
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.firstName.required}</map:message>
+		                <map:element name="triggerExpr"><![CDATA[return o.isIndividual();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.firstName != empty);]]></map:element>
+			</map:constraint>        
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.lastName.required}</map:message>
+		                <map:element name="triggerExpr"><![CDATA[return o.isIndividual();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.lastName != empty);]]></map:element>
+			</map:constraint>        
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.federalTaxId.length}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.isNonIndividual() && o.federalTaxId != empty;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.federalTaxId ~= '[0-9]{9}');]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.ssn.required}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.isIndividual();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.ssn != empty);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.ssn.length}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o.isIndividual();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.ssn ~= '[0-9]{9}');]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.primarySite.siteDetails.addresses.oneRequired}</map:message>
+		                <map:element name="matchedExpr"><![CDATA[return (o.?primarySite.?siteDetails.addresses != empty);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.primarySite.siteDetails.addresses.stateRequired}</map:message>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+		                if(o.primarySite.siteDetails.addresses != empty)
+		                {
+		                 	foreach(address:o.primarySite.siteDetails.addresses)
+		                 	{
+			                 	if(address.stateProvince == null)
+			                	{
+			                		match=false;
+			                	}
+		                 	}
+		                }
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.exposure.limit.above.threshold}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerExposureLimit</map:value>
+		                </map:groups>
+		                <map:element name="triggerExpr"><![CDATA[return o != null;]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[
+		                							boolean match = true;
+		                							if(o.customerExposureLimits != empty){
+		                								foreach(customerExposureLimit : o.customerExposureLimits){
+		                									if(customerExposureLimit.exposureAmt > (0.9 * customerExposureLimit.exposureLimitAmt)){
+		                										match = false;
+		                									}
+		                								}
+		                							}
+		                							return match;
+		                					]]>
+		                </map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.extIdentifier.identifierValue.pattern}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+								if(o.externalIdentifiers != null && o.externalIdentifiers.size > 0){
+								  foreach(extIndentifier : o.externalIdentifiers){
+								  		if(extIndentifier.extIdentifierType.key == 'EXT_IDENTIFIER_TYPE_DRIVER_LICENSE_NUMBER'){	
+								  		if(!org.apache.commons.lang.StringUtils.isNumeric(extIndentifier.identifierValue)){
+								  		return org.apache.commons.lang.StringUtils.isNumeric(extIndentifier.identifierValue);
+								  		}
+								  	  }
+								  	}
+								}
+								return match;
+			    ]]></map:element>
+			 </map:constraint>  
+		 
+			 		 	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.creditLimit.value}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+			   				 if(o.creditLimit < 0){
+			   				match=false;
+			   				}
+			   				
+			   				return match;
+			    ]]></map:element>
+			 </map:constraint>  
+		
+		  <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.maxCreditPeriod.value}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+			   				 if(o.getCustomerType().getKey().equals("CUSTOMER_TYPE_NON_INDIVIDUAL")){
+				   				 if(o.maxCreditPeriod < 0){
+				   				match=false;
+				   				}
+			   				}
+			   				return match;
+			    ]]></map:element>
+			 </map:constraint>   
+			
+				   <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.numOfEmployees.value}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+			   				 if(o.numOfEmployees < 0){
+			   				match=false;
+			   				}
+			   			
+			   				return match;
+			    ]]></map:element>
+			 </map:constraint> 
+			    <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.numOfEmployees.value}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+			   				 if(o.yearsWithCompany < 0){
+			   				match=false;
+			   				}
+			   			
+			   				return match;
+			    ]]></map:element>
+			 </map:constraint> 
+			 
+		    <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.yearsInOwnership.yearsInBusiness.check}</map:message>
+			    		   <map:element name="matchedExpr">
+					<![CDATA[
+						return o.compareYearsOfOwnership();
+					]]></map:element>
+			 </map:constraint> 
+			 
+			 <!--  <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			    <map:message>{customer.yearsWithCompany.value}</map:message>
+			    <map:element name="matchedExpr"><![CDATA[
+			   				 boolean match=true;
+			   				if(o.yearsWithCompany<=0){
+			   				return false;
+			   				}
+			    ]]></map:element>
+			 </map:constraint> -->
+			 
+			 
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.SSN.DOB.NotMatched}</map:message>
+		                <map:element name="triggerExpr"><![CDATA[return o.isIndividual();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return o.getSsnVerified();]]></map:element>
+			</map:constraint>  -->
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.counterParty.legalName.required}</map:message>
+		                <map:element name="triggerExpr"><![CDATA[return o.isCounterParty();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.legalName != empty);]]></map:element>
+			</map:constraint>
+			
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.federalTaxId.required}</map:message>
+						<map:element name="triggerExpr"><![CDATA[return !o.isNonIndividual();]]></map:element>
+						<map:element name="matchedExpr"><![CDATA[return (o.federalTaxId != empty || o.duns != empty);]]></map:element>
+			</map:constraint> -->
+			
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.federalTaxId.required}</map:message>
+						<map:element name="triggerExpr"><![CDATA[return o.isNonIndividual();]]></map:element>
+						<map:element name="matchedExpr"><![CDATA[return (o.federalTaxId != empty);]]></map:element>
+			</map:constraint> -->
+			
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.federalTaxId.unique}</map:message>
+						<map:element name="triggerExpr"><![CDATA[return (o.isNonIndividual() && o.federalTaxId != empty);]]></map:element>
+						<map:element name="matchedExpr"><![CDATA[
+							boolean match = true;
+               	 			match = o.validateSSNDup("CUSTOMER_TYPE_NON_INDIVIDUAL");
+                   	 		return match;
+						]]></map:element>
+			</map:constraint> -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.duns.required}</map:message>
+						<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value>
+							<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value>
+						</map:groups>
+						<map:element name="triggerExpr"><![CDATA[return o.isNonIndividual();]]></map:element>
+						<map:element name="matchedExpr"><![CDATA[return (o.duns != empty);]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.duns.unique}</map:message>
+						<map:element name="triggerExpr"><![CDATA[return (o.isNonIndividual() && o.duns != empty);]]></map:element>
+						<map:element name="matchedExpr"><![CDATA[
+							boolean match = true;
+               	 			match = o.validateDUNSDedupe("CUSTOMER_TYPE_NON_INDIVIDUAL");
+                   	 		return match;
+						]]></map:element>
+			</map:constraint>
+			
+<!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
+<!-- 	                <map:message>{customer.borrowerratings.borrowerratingsfields.required}</map:message> -->
+<!-- 	                <map:groups> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value> -->
+<!-- 			  			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	  -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value> -->
+<!-- 	                </map:groups> -->
+<!-- 	                	 <map:element name="matchedExpr"><![CDATA[ -->
+<!-- 			                return o.borrowerRatingsCheck(); -->
+<!-- 	                	 ]]></map:element> -->
+<!-- 			</map:constraint> -->
+			
+<!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
+<!-- 	                <map:message>{customer.riskScoreDttm.required}</map:message> -->
+<!-- 	                <map:groups> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value> -->
+<!-- 			  			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	  -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value> -->
+<!-- 	                </map:groups> -->
+<!-- 	                	 <map:element name="matchedExpr"><![CDATA[ -->
+<!--  			                return o.riskScoreDttmCheck(); -->
+<!--  	                	 ]]></map:element> -->
+<!-- 			</map:constraint> -->
+			
+<!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
+<!-- 	                <map:message>{customer.riskScore.required}</map:message> -->
+<!-- 	                <map:groups> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value> -->
+<!-- 			  			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	  -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value> -->
+<!-- 	                </map:groups> -->
+<!-- 	                	 <map:element name="matchedExpr"><![CDATA[ -->
+<!--  			                return o.riskScoreCheck(); -->
+<!-- 	                	 ]]></map:element> -->
+<!-- 			</map:constraint> -->
+			
+<!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
+<!-- 	                <map:message>{customer.adjRiskScore.required}</map:message> -->
+<!-- 	                <map:groups> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value> -->
+<!-- 			  			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	  -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value> -->
+<!-- 	                </map:groups> -->
+<!-- 	                	 <map:element name="matchedExpr"><![CDATA[ -->
+<!--  			                return o.adjRiskScoreCheck(); -->
+<!-- 	                	 ]]></map:element> -->
+<!-- 			</map:constraint> -->
+<!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
+<!-- 		                <map:message>{customer.duns.length}</map:message> -->
+<!-- 		                <map:element name="triggerExpr"><![CDATA[return o.isNonIndividual() && o.duns != empty;]]></map:element> -->
+<!-- 		                <map:element name="matchedExpr"><![CDATA[return (o.duns ~= '[a-zA-Z0-9]{9}');]]></map:element> -->
+<!-- 			</map:constraint> -->
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+						<map:message>{customer.primarySite.siteDetails.email.required}</map:message>
+						<map:element name="matchedExpr"><![CDATA[return (o.?primarySite.?siteDetails.email != empty);]]></map:element>
+			</map:constraint>
+			
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{customer.maxCreditPeriod.required}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+                </map:groups>
+                	 <map:element name="matchedExpr"><![CDATA[
+                	 if(o.getCustomerType() != null && o.getCustomerType().getKey().equals("CUSTOMER_TYPE_NON_INDIVIDUAL")){
+						if(o.getMaxCreditPeriod() == null){
+							return false;
+						}
+					}
+					return true;
+                	 ]]></map:element>
+		</map:constraint>
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{customer.email.unique}</map:message>
+                   	 <map:element name="matchedExpr"><![CDATA[
+                   	 	boolean match = true;
+                   	 	if(o.getCustomerType().getKey().equals("CUSTOMER_TYPE_NON_INDIVIDUAL")){
+                   	 		match = o.validatePrimaryEmailDup("CUSTOMER_TYPE_NON_INDIVIDUAL");
+                   	 	}else{
+                   	 		match = o.validatePrimaryEmailDup("CUSTOMER_TYPE_INDIVIDUAL");
+                   	 	}
+                   	 	return match;
+                   	 ]]></map:element>
+		</map:constraint>
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{customer.ssn.unique}</map:message>
+                   	 <map:element name="matchedExpr"><![CDATA[
+                   	 	boolean match = true;
+               	 		match = o.validateSSNDup("CUSTOMER_TYPE_INDIVIDUAL");
+                   	 	return match;
+                   	 ]]></map:element>
+		</map:constraint>	
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{customer.ssn.unique}</map:message>
+                <map:groups>
+		             <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</map:value>
+		        </map:groups>
+                   	 <map:element name="matchedExpr"><![CDATA[
+                   	 	boolean match = true;
+               	 		match = o.validateSSNDup("CUSTOMER_TYPE_INDIVIDUAL");
+                   	 	return match;
+                   	 ]]></map:element>
+		</map:constraint>	
+<!-- 		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
+<!--                 <map:message>{customer.naicsCode.invalid}</map:message> -->
+<!--                    	 <map:element name="matchedExpr"><![CDATA[ -->
+<!--                    	 	boolean match = true; -->
+<!--                	 		match = o.isValidNaicsCode(); -->
+<!--                    	 	return match; -->
+<!--                    	 ]]></map:element> -->
+<!-- 		</map:constraint>	 -->
+        </map:class>
+        <map:field name="firstName">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.firstName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="middleName">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.middleName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="lastName">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.lastName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="nationality">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.nationality.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="birthCity">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.birthCity.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="birthDate">
+		   <map:constraint annotation="javax.validation.constraints.Past">
+		     <map:message>{customer.birthDate.pattern}</map:message>
+		   </map:constraint>
+	  </map:field>   
+	  <map:field name="yearsInOwnership">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.yearsInOwnership.pattern}</map:message>
+		     <map:element name="regexp">[0-9]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="duns">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.duns.length}</map:message>
+		     <map:element name="regexp">[a-zA-Z0-9]{9}</map:element>
+		   </map:constraint>
+	  </map:field>
+    </map:bean>
+</map:constraint-mappings>

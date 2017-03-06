@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="list" type="list" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="programSearchResults" row="program">
+		<columns>
+			<column name="program.refNumber" label="Program Number"/>
+			<column name="program.programName"/>
+			<column name="program.startDttm"/>
+			<column name="program.endDttm"/>
+			<column name="program.metaInfo.createdAt" label="Date Created"/>
+			<column name="program.wfStatus" label="Status"/>
+			<column name="program.programType"/>
+			<column name="program.financialinstitutionName" label="Lessor Name"/>
+		</columns>
+		<commands>
+			<command id="createAction" name="Create" action="CreateProgram" type="pageflow"/>
+		</commands>
+	</data-table>
+	<beans>
+		<bean name="programSearchResults" type="com.thirdpillar.codify.loanpath.model.Program"/>
+	</beans>
+</canvas>

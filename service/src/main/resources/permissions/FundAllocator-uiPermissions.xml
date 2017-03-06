@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="fundAllocator">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="deal_crud">
+		<tns:component id="exportEntityBtn">
+			<tns:default>true</tns:default>
+		</tns:component>
+		<tns:component id="deal_selectedDeal_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<!--  <tns:component id="deal_fundAllocators_add">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root.getSumAllocatedPercentage() != null && root.getSumAllocatedPercentage() >= 100) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>-->
+		 <tns:component id="deal_fundAllocators_add">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getSumAllocatedPercentage() != null && root.getSumAllocatedPercentage() >= 100) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="deal_capitalProviders_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>	
+</tns:ui-permissions>

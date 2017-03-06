@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="permissionSet" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<data-table name="results" row="permissionSet" sortBy="permissionSet.name"
+		sortOrder="ascending" label="Permission Set Search Results">
+		<columns>
+			<column name="permissionSet.name" label="Name" />
+			<column name="permissionSet.description" label="Description" />
+			<column name="permissionSet.active" label="Active?" />
+			<column name="permissionSet.metaInfo.createdByUser" />
+			<column name="permissionSet.metaInfo.createdAt" />
+			<column name="permissionSet.metaInfo.lastModifiedByUser" />
+			<column name="permissionSet.metaInfo.lastModifiedAt" />
+		</columns>
+	</data-table>
+	
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.PermissionSet" />
+	</beans>
+</canvas>

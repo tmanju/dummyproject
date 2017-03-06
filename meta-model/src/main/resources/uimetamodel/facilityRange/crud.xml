@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="facilityRange" type="crud"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+        xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+    <panel id="facilityRange.facilityRangeInformation">
+        <field name="facilityRange.stateProvince" label="State" />
+        <field name="facilityRange.reqLoanAmtMin" label="Loan-LoC Minimum" />
+        <field name="facilityRange.reqLoanAmtMax" label="Term Loan Maximum" />
+        <field name="facilityRange.locReqMaxAmt" label="Line of Credit Maximum"/>
+    </panel>            
+    <beans>
+        <bean name="facilityRange" type="com.thirdpillar.codify.loanpath.model.FacilityRange" />
+    </beans>    
+</canvas>

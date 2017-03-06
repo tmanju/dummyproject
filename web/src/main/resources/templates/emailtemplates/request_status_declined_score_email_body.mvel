@@ -1,0 +1,25 @@
+Dear @{firstName}:Thank you for your recent application.<br><br>
+
+Regretfully, we are unable to approve your application at this time. <br><br>
+
+The denial of your application was based upon information contained in a consumer credit report obtained from: <br><br> 
+    
+TransUnion PO Box 1000 Chester PA 19016   800-888-4213 www.transunion.com <br><br>
+
+In evaluating your application, TransUnion consumer reporting agency provided us with information in regard to your calculated FICO score that in whole or part influenced our decision.<br>   
+
+@if{bureau.scoringFactor1 !=null } <br>Scoring Factor1 =  @{bureau.scoringFactor1.value} <br> @end{}
+@if{bureau.scoringFactor2 !=null } Scoring Factor2 =  @{bureau.scoringFactor2.value} <br> @end{}
+@if{bureau.scoringFactor3 !=null } Scoring Factor3 =  @{bureau.scoringFactor3.value} <br> @end{}
+@if{bureau.scoringFactor4 !=null } Scoring Factor4 =  @{bureau.scoringFactor4.value} <br> @end{}
+
+<br>Your FICO 2004 Classic Score was @{bureau.ficoScore}.<br>
+
+<br>If you have a dispute regarding your credit outcome, please contact TransUnion (www.TransUnion.com; Phone: 877-322-8228 ) to receive a free copy of your credit report. This report contains the data that was used to generate your FICO score, which this credit decision is based on. If there are any inaccuracies on your credit report please dispute with TransUnion.<br><br>
+
+YOU HAVE CERTAIN RIGHTS UNDER FEDERAL AND STATE LAW WITH RESPECT TO YOUR CREDIT REPORT. IF YOU REQUEST A COPY OF THE INFORMATION IN YOUR CREDIT FILE FROM TRANS UNION WITHIN 60 DAYS OF RECEIVING THIS DENIAL, YOU ARE ENTITLED TO A FREE COPY OF YOUR REPORT. YOU HAVE THE RIGHT TO DIRECTLY DISPUTE WITH THE CONSUMER REPORTING AGENCY THE ACCURACY AND COMPLETENESS OF ANY INFORMATION FURNISHED BY THAT AGENCY.<br><br>
+
+Best Regards,<br>
+Lender Name Here
+
+

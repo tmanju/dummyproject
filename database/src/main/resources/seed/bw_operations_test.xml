@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<operation action="select" profileName="Full" type="com.thirdpillar.codify.loanpath.model.State" id="8097" destination="src/main/resources/seed/data/bw_get_by_id_state.xml"/>   
+	<operation action="select" profileName="Full" type="com.thirdpillar.codify.loanpath.model.AttributeType" destination="src/main/resources/seed/data/bw_get_all_attribute_type.xml"/>
+	<operation action="select" profileName="Full" searchCriteriaSource="src/main/resources/seed/searchCriteria.xml" destination="src/main/resources/seed/data/bw_get_by_search.xml"/>	
+	<operation action="upsert" profileName="Full" type="com.thirdpillar.codify.loanpath.model.State" source="src/main/resources/seed/data/bw_upsert_state.xml"/>
+</operations>

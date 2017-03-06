@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles xmlns="http://www.thirdpillar.com/binding-profile">
+	<profile name="Genie-Full" extends="Full-No-Binary" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
+			<includes>
+				<field name="relationship"/>
+        		<field name="account"/>
+        		<field name="receivedDateAddedSixtyDateDer" type="derived:date-time"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Relationship" inherit="true">
+			<includes>
+				<field name="allRelationshipParties"/>
+        		<field name="externalIdentifier"/>
+			</includes>
+			<excludes>
+				<field name="customers"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.RelationshipParty" inherit="true">
+			<includes>
+				<field name="customer"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.MetaInfo" inherit="true">
+			<includes>
+				<field name="createdByUser"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.User" inherit="true">
+			<includes>
+				<field name="contact"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Facility" inherit="true">
+			<includes>
+				<field name="facilityCategory"/>
+       			<field name="facilityCustomerRoles"/>
+			</includes>
+		</class>
+		
+		<class name="com.thirdpillar.codify.loanpath.model.CoasetDefinition" inherit="true">
+			<includes>
+	            <field name="coaNumber" type="derived:integer"/>
+	            <field name="coaCleared" type="derived:integer"/>
+	            <field name="coaIncomplete" type="derived:integer"/>
+				<field name="coaResubmit" type="derived:integer"/>
+	            <field name="coaWaived" type="derived:integer"/>
+	            <field name="coaExceptionSales" type="derived:integer"/>
+	            <field name="coaExceptionOperations" type="derived:integer"/>
+			</includes>
+		</class>
+		
+		<class name="com.thirdpillar.codify.loanpath.model.CoaEvaluation" inherit="true">
+			<includes>
+				<field name="coaDefinition"/>
+				<field name="coaConditonWithNotes"/>
+				<field name="variableTextExist"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.RacsetEvaluation" inherit="true">
+			<includes>
+				<field name="racsetDefinition"/>
+	            <field name="pass"/>
+	            <field name="fail"/>
+	            <field name="na" />
+	            <field name="racNumber" />
+	            <field name="statusValue" />
+	            <field name="exceptionAuthorityValue" />
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.RacEvaluation" inherit="true">
+			<includes>
+				<field name="racDefinition"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Covenant" inherit="true">
+			<includes>
+				<field name="covenantDefinition"/>
+				<field name="eventType"/>
+			</includes>
+		</class>
+    <class name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" inherit="true">
+      <includes>
+        <field name="customer"/>
+      </includes>
+    </class>
+    <class name="com.thirdpillar.codify.loanpath.model.Document" inherit="true">
+			<includes>
+				<field name="autoDocId"/>
+			</includes>
+			<excludes>
+				<field name="uploadedStream"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BureauReport" inherit="true">
+			<includes>
+				<field name="pulledBy"/>
+			</includes>
+			<excludes>
+				<field name="responseXml"/>
+				<field name="responsePdf"/>
+				<field name="requestXml"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
+			<includes>
+				<field name="timeInbusiness" type="derived:integer"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Asset" inherit="true">
+			<includes>
+				<field name="softCost" type="derived:amount"/>
+				<field name="assetAmt" type="derived:amount"/>
+			</includes>
+		</class>
+	</profile>
+	<profile name="docPackage-Full" extends="Full" cascade="update">
+	    <class name="com.thirdpillar.codify.loanpath.model.DocumentPackageDetail" inherit="true">
+			<includes>
+				<field name="document"/>
+			</includes>
+	    </class>
+	</profile>
+</profiles>

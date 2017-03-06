@@ -1,0 +1,790 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+			<tns:component id="customer">                      
+			  <tns:read>true</tns:read>
+			</tns:component>
+
+			
+			<tns:canvas id="customer_list">
+				<tns:component id="results_add" >
+					<tns:default>false</tns:default>
+				</tns:component>
+				
+				<tns:component id="results_importFromXML" >
+					<tns:default>false</tns:default>
+				</tns:component>
+				
+				<tns:component id="results_importFromCSV" >
+					<tns:default>false</tns:default>
+				</tns:component>
+			</tns:canvas>
+				
+				
+			<tns:canvas id="customer_crud">
+				
+		            <tns:component id="customer_uccs_add">
+			            <tns:default>false</tns:default>
+			        </tns:component>
+		        <tns:component id="exportEntityBtn" >
+				<tns:default>false</tns:default>
+				</tns:component>
+				
+				<tns:component id="AMLInfoVerify">
+					<tns:default>boolean isVisible=true;
+						
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')
+								{
+									isVisible=false;
+								}
+								
+							}
+						return isVisible;</tns:default>
+				</tns:component>
+				<tns:component id="AMLInfoUnlock">
+					<tns:default>boolean isVisible=true;
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_NO')
+								{
+									isVisible=false;
+								}
+								
+							}
+						return isVisible;</tns:default>
+				</tns:component>
+				
+				<tns:component id="AMLInfoVerify1">
+					<tns:default>boolean isVisible=true;
+
+
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')
+								{
+									isVisible=false;
+								}
+								
+							}
+
+						return isVisible;</tns:default>
+				</tns:component>
+				<tns:component id="AMLInfoUnlock1">
+					<tns:default>boolean isVisible=true;
+					
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.legalVerified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_NO')
+								{
+									isVisible=false;
+								}
+								
+							}
+
+						return isVisible;</tns:default>
+				</tns:component>
+				
+				<tns:component id="AddressVerifyForLegal">
+					<tns:default>boolean isVisible=true;
+
+
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')
+								{
+									isVisible=false;
+								}
+								
+							}
+	
+						return  isVisible;</tns:default>
+				</tns:component>
+				<tns:component id="AddressUnlockForLegal">
+					<tns:default>boolean isVisible=true;
+
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_NO')
+								{
+									isVisible=false;
+								}
+								
+							}
+
+						return isVisible;</tns:default>
+				</tns:component>
+				
+				<tns:component id="DOBVerify">
+					<tns:default>boolean isVisible=true;
+	
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.dobVerified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.dobVerified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.dobVerified.key == 'YES_OR_NO_YES')
+								{
+									isVisible=false;
+								}
+								
+							}
+
+						return isVisible;</tns:default>
+				</tns:component>
+				<tns:component id="DOBUnlock">
+					<tns:default>boolean isVisible=true;
+
+	
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.dobVerified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.dobVerified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.dobVerified.key == 'YES_OR_NO_NO')
+								{
+									isVisible=false;
+								}
+								
+							}
+
+						return isVisible;</tns:default>
+				</tns:component>
+				<tns:component id="AddressVerify">
+					<tns:default>boolean isVisible=true;
+
+
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')
+								{
+									isVisible=false;
+								}
+								
+							}
+
+						return isVisible;</tns:default>
+				</tns:component>
+				<tns:component id="AddressUnlock">
+					<tns:default>boolean isVisible=true;
+				  		
+							if ( root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key !=null)
+							{
+								if(root.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_NO')
+								{
+									isVisible=false;
+								}
+								
+							}
+
+						return  isVisible;</tns:default>
+				</tns:component>
+					
+				  <tns:component id="customer_partyDetail_pdContacts_add">
+		            <tns:read>
+		            root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_NO'</tns:read>
+		        </tns:component>
+		         <tns:component id="customer_partyDetail_pdContacts_edit">
+		            <tns:read>
+		            root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_NO'</tns:read>
+		        </tns:component>
+		         <tns:component id="customer_partyDetail_pdContacts_delete">
+		            <tns:read>
+		            root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo != null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key !=null &amp;&amp; root.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_NO'</tns:read>
+		        </tns:component>
+				<tns:component id="customer_customerInformation_innerPanel4">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+					<tns:component id="customer_customerInformation_innerPanelPca21">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+				
+				<tns:component id="customer_partyDetail_altPhone">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+				
+				<!--  <tns:component id="customer_partyDetail_businessPhone">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component> 
+				
+				<tns:component id="customer_partyDetail_faxnum">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component> -->
+				
+				
+					
+				<tns:component id="customer_customerInformation_innerPanelAi1">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_creditInformation">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_customerInformation_guarantorInformation">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_customerInformation_dental">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_customerInformation_medical">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_customerInformation_veterinary">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_customerInformation_bankruptcyInformation">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_customerInformation_factActInformation">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_customerInformation_ofacInformation">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+						
+				
+				<tns:component id="customer_businessDetails">
+					<tns:default>root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null &amp;&amp; root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</tns:default>
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_doctorprocedure">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+					<tns:component id="customer_customerInformation_buildingloan">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				<tns:component id="customer_partyDetail_locationStaffs">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_commercialTp">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_officeLease">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_innerPanel6">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+	
+				</tns:component>
+				
+				<!--<tns:component id="partyDetail_businessDetails">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>-->
+				
+				<tns:component id="customer_customerInformation_AMLInformationInner1">
+					<tns:default>
+					boolean isVisible=true;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=false;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_AMLInformationInner2">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_addressVerification">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_addressVerificationWithLegalName">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_dobVerification">
+					<tns:default>
+					boolean isVisible=true;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=false;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+								
+				<tns:component id="customer_customerInformation_disclosureInformation">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<tns:component id="customer_customerInformation_licenseInformation">
+					<tns:default>
+					boolean isVisible=true;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=false;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<tns:component id="customer_partyDetail_riskRatings">
+					<tns:default>
+					boolean isVisible=true;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=false;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<tns:component id="customer_esignature_provisionStatus">
+					<tns:default>
+					boolean isVisible=true;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL')
+						{
+							isVisible=false;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>
+				
+				<!--<tns:component id="customer_customerInformation_innerPanel3">
+					<tns:default>
+					boolean isVisible=false;
+					if (root.partyDetail !=null &amp;&amp; root.partyDetail.partyDetailType != null)
+					{
+						if(root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL')
+						{
+							isVisible=true;
+						}
+						
+					}
+					return isVisible;
+					
+					</tns:default>
+
+				</tns:component>-->
+				
+				<!-- Assets -->
+				<tns:canvas id="editCollateral">
+					<tns:component id="customer_innerAssetsDetails4">
+						<tns:default>true</tns:default>
+							<tns:read>root_partyDetail_partyOwnedAssets.ownedAsset.assetType!= null &amp;&amp;
+					root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key ==
+		'ASSET_TYPE_MARKETABLE_SECURITY'</tns:read>
+
+</tns:component>
+					
+					<tns:component id="customer_innerAssetsDetails5">
+						<tns:default>true</tns:default>
+						<tns:read>root_partyDetail_partyOwnedAssets.ownedAsset.assetType!= null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</tns:read>
+						
+					</tns:component>
+					
+					<!--<tns:component id="customer_innerAssetsDetails6">
+						<tns:default>true</tns:default>
+						<tns:read>root_partyDetail_partyOwnedAssets.ownedAsset.assetType!= null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING' &amp;&amp; root_partyOwnedAssets.ownedAsset.realEstates.propertyType != null &amp;&amp; root_partyOwnedAssets.ownedAsset.realEstates.propertyType.key == 'PROPERTY_TYPE_CO_OP_CONDO'</tns:read>
+						
+					</tns:component>
+					
+					--><tns:component id="customer_innerAssetsDetails7">
+						<tns:default>true</tns:default>
+						<tns:read>root_partyDetail_partyOwnedAssets.ownedAsset.assetType!= null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</tns:read>
+					</tns:component>
+					
+				</tns:canvas>
+				
+				
+				<!-- Liability -->
+				
+				<!--<tns:canvas id="editLiability">
+					<tns:component id="partyDetail_innerLiabilityDetails4">
+						<tns:default>true</tns:default>
+						<tns:read></tns:read>
+						boolean isVisible=false;
+						if (root_partyLiabilities != null &amp;&amp; root.partyLiabilities.size()> 0 )
+						{
+							if(root_partyLiabilities.liability !=null &amp;&amp; root_partyLiabilities.liability.liabilityType!= null)
+							{
+								if(root_partyLiabilities.liability.liabilityType.key == 'LIABILITY_TYPE_LIEN')
+								{
+									isVisible=true;
+								}
+							}
+							
+						}
+						return isVisible;
+						
+						
+
+					</tns:component>
+				
+				</tns:canvas>
+				
+			-->
+		 		<tns:component id="customer_partyDetail_pdContacts_delete">
+		            <tns:default>false</tns:default>
+		        </tns:component>
+		        <tns:component id="customer_partyDetail_pdContacts_add">
+		            <tns:default>false</tns:default>
+		        </tns:component>
+		        
+		        <tns:component id="customer_partyDetail_contactTypeDetails_add">
+		            <tns:default>false</tns:default>
+		        </tns:component>
+		        <tns:component id="customer_partyDetail_contactTypeDetails_delete">
+		            <tns:default>false</tns:default>
+		        </tns:component>
+
+				<tns:component id="provisionCustomer">
+						<tns:default>								
+							boolean isVisible=false;
+								if(root.partyDetail != null){
+									if(root.partyDetail.partyDetailType != null  &amp;&amp; root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'){
+										isVisible=false;
+									}
+									else if(root.salesForcecomId != null &amp;&amp; root.partyDetail.partyDetailType != null  &amp;&amp; root.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'){
+										isVisible=true;
+										if(root.partyDetail.createdInOpenAM != null &amp;&amp; (root.partyDetail.createdInOpenAM.Key == 'YES_OR_NO_YES')){
+											isVisible=false;
+										}
+									}
+								}
+								return isVisible;
+						</tns:default>
+				</tns:component>
+			
+			</tns:canvas>
+		
+		 
+	</tns:ui-permissions>

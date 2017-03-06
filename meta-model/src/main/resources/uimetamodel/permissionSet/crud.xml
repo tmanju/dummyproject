@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="permissionSet" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="permissionSet.information" label="Permission Set Information">
+		<field name="permissionSet.name" />
+		<field name="permissionSet.description" label="Description" />
+		<field name="permissionSet.active" label="Active?" />
+		<field name="permissionSet.metaInfo.createdByUser" />
+		<field name="permissionSet.metaInfo.createdAt" />
+		<field name="permissionSet.metaInfo.lastModifiedByUser" />
+		<field name="permissionSet.metaInfo.lastModifiedAt" />
+	</panel>
+	<panel id="permissionSet.permissions" label="Permissions" src-file="/pages/other/permission.xhtml">
+	</panel>
+
+	<beans>
+		<bean name="permissionSet" type="com.thirdpillar.codify.loanpath.model.PermissionSet" />
+	</beans>
+</canvas>

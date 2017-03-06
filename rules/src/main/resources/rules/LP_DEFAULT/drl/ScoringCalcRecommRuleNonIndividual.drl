@@ -1,0 +1,47 @@
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.MetaInfo;
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.NumberUtils;
+import com.thirdpillar.foundation.model.BaseDataObject;
+import com.thirdpillar.codify.loanpath.model.Request;
+import com.thirdpillar.codify.loanpath.model.Scoring;
+import com.thirdpillar.codify.loanpath.model.Relationship;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.Customer;
+import com.thirdpillar.codify.loanpath.util.Utility;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.FacScoring;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.constants.Constants;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.util.Calendar;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+rule "NON_INDIVIDUAL_RULE_BUSINESS_YEARS"
+	agenda-group "CalcScoringRecommRuleIndividual" 
+	when
+		request : Request()
+	then
+		boolean flag = true;
+		Scoring scoring = request.getLatestAppScoring();
+		for(PartyScoring partyScoring : scoring.getPartyScorings())
+		{
+			if(partyScoring.getParty().isNonIndividual())
+			{
+				ScoringRecommRule recommRule = partyScoring.findRecommRuleByKey("NON_INDIVIDUAL_RULE_BUSINESS_YEARS");
+				if(partyScoring.getParty().getYearsInBusiness() !=null && partyScoring.getParty().getYearsInBusiness() < 1){
+					flag = false;
+				}
+			 	scoring.setRuleResult(recommRule, flag);
+			}		
+		}
+end

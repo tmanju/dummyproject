@@ -1,0 +1,53 @@
+<canvas id="feePolicy" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<tabs>
+		<tab id="tab.feeMain" label="Summary">
+			<panel id="feePolicy.info" label="Summary">
+				<field name="feePolicy.refNumber" label="Fee Number"/>
+				<field name="feePolicy.name" label="Fee Name*" />
+				<field name="feePolicy.feeDesc" label="Fee Description" />
+				<!-- <field id="feePolicy.backOfficeFeeName" name="feePolicy.afsFeeType.afsValue" label="Backoffice Fee Name"/> -->
+				<field name="feePolicy.feeType" label="Fee Type*"/>
+				<field name="feePolicy.ou" label="OU*" />
+				<field name="feePolicy.sbu" label="SBU*" />
+				<field name="feePolicy.currency" label="Currency*"/>
+			<!-- 	<field name="feePolicy.adhocFee" label="Ad hoc Fee"/> -->
+				<field name="feePolicy.mayBeDisclosed" label="Disclose Fee?" />
+				<field name="feePolicy.minimumPct" label="Minimum %" />
+				<field name="feePolicy.maximumPct" label="Maximum %" />
+				<field name="feePolicy.minimumAmt" label="Min Fee Amount" />
+				<field name="feePolicy.maximumAmt" label="Max Fee Amount" />
+				<field name="feePolicy.defaultPct" label="Default %" />
+<!-- 				<field name="feePolicy.effectiveDefaultFeePct" label="Effective Default %" /> -->
+<!-- 				<field name="feePolicy.effectiveFromDate" label="Effective From" /> -->
+				<field name="feePolicy.calculationMethod" label="Calculation Method" />
+				<field name="feePolicy.defaultAmt" label="Default Amount" />
+<!-- 				<field name="feePolicy.defaultAmt" label="Default Amount" /> -->
+				<field name="feePolicy.pricingIndex" label="Pricing Index" />
+			</panel>
+     <!--  <panel id="feePolicy.calculation" label="Calculation" cols="1" label-alignment="top">
+				<field name="feePolicy.formula" label="Formula*"/>
+			</panel> -->
+			
+		</tab>
+		<tab id="tab.backofficeFee" label="Backoffice Fee">
+			<panel id="feePolicy.backofficeFee" label="AFS Details">
+				<field name="feePolicy.afsFeeType.afsCode" label="AFS Charge Code"/>
+				<field name="feePolicy.afsFeeType.afsValue" label="AFS Fee Name"/>
+				<field name="feePolicy.excludeFromAPR" label="Exclude From APR"/>
+				<field name="feePolicy.effectiveFromDate" label="Effective From*" />
+				<field name="feePolicy.effectiveToDate" label="Effective Thru*" />
+				<field name="feePolicy.methodOfCollection" label="Method Of Collection"/>
+			</panel>
+			<panel id="feePolicy.backofficeFeeSelection" label="AFS Fee Search">
+				<field name="feePolicy.afsFeeType" label="AFS Fee" targetFields="feePolicy.backofficeFee" /><!-- type="SearchNSelect" -->
+			</panel>
+		</tab>
+	</tabs>
+	<beans>
+		<bean name="feePolicy" type="com.thirdpillar.codify.loanpath.model.FeePolicy" />
+	</beans>
+</canvas>

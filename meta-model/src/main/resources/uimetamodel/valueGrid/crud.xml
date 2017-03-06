@@ -1,0 +1,20 @@
+<canvas id="valueGrid" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="valueGrid.info" label="Details">
+		<section id="valueGrid.header">
+			<field name="valueGrid.name" label="Name"/>
+			<field name="valueGrid.effectiveFromDate" label="Start Date" />
+			<field name="valueGrid.effectiveToDate" label="End Date" />
+		</section>
+		<section id="valueGrid.grid" label-alignment="top">
+			<field name="valueGrid.grid" label="Grid" />
+		</section>		
+	</panel>
+
+	<beans>
+		<bean name="valueGrid" type="com.thirdpillar.codify.loanpath.model.ValueGrid" />
+	</beans>
+</canvas>

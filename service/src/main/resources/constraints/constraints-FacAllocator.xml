@@ -1,0 +1,153 @@
+<map:constraint-mappings
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd"
+	xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="FacAllocator" ignore-annotations="false">        
+       <map:class>
+       			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+					<map:message>{facAllocator.inxMiscFee.between.zeroToTen}</map:message>
+			        <map:groups>
+						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityPortionSumbit</map:value>
+						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityAcceptPortionSumbit</map:value>
+					</map:groups>
+					<map:element name="matchedExpr"><![CDATA[
+							boolean match = false;
+								if( o.inxMiscFee !=null && o.inxMiscFee >= 0 && o.inxMiscFee <= 10 )
+								{
+										match=true;
+								}
+							 return match;
+					]]>
+				</map:element>
+		      </map:constraint>
+			   <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+					<map:message>{facAllocator.cp.interestRate.between.zeroToThirty}</map:message>
+			        <map:groups>
+						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityPortionSumbit</map:value>
+						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityAcceptPortionSumbit</map:value>
+					</map:groups>
+					<map:element name="matchedExpr"><![CDATA[
+							boolean match = false;
+								if( o.placementRate > 0 && o.placementRate <= 30 )
+								{
+										match=true;
+								}
+							 return match;
+					]]>
+				</map:element>
+		      </map:constraint>
+		      <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facAllocator.fundPer.between}</map:message>
+				 <map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityPortionSumbit</map:value>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityAcceptPortionSumbit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[
+					boolean match = false;
+					if(o.fundPer == null){
+						return ture;
+					}
+					if( o.fundPer > 0 && o.fundPer <= 100 ){
+						match=true;
+					}
+					 return match;
+				]]>
+				</map:element>
+		    </map:constraint>
+		    <!-- Unused line rate be between 1 to 100 -->
+		    <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facAllocator.unusedLineRate.between}</map:message>
+				 <map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityPortionSumbit</map:value>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityAcceptPortionSumbit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[
+					boolean match = false;
+					if(o.unusedLineRate == null){
+						return ture;
+					}
+					if( o.unusedLineRate > 0 && o.unusedLineRate <= 100 ){
+						match=true;
+					}
+					 return match;
+				]]>
+				</map:element>
+		    </map:constraint>
+		    
+		    
+			<map:constraint	annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{deal.fundAllocator.allocated.percentage}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityPortionSumbit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[
+					boolean match=true;
+	 				if(o.getFacilityBE() !=null){
+	 					java.math.BigDecimal fullPer = new java.math.BigDecimal("100");
+	 					if(o.getFacilityBE() !=null && o.getFacilityBE().getSumAllocatedPer() !=null && o.fundPer !=null){
+	 						if(fullPer.subtract(o.getFacilityBE().getSumAllocatedPer()) < o.fundPer){
+	 							match=false;
+	 						} 
+	 					}
+	 				}
+	 				
+	 				return match;
+				]]></map:element>
+			</map:constraint>
+        	<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{deal.amtOrPer.gtZero}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.fundAmt <= 0 || o.fundPer <= 0){
+					return false;
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+	                <map:message>{deal.fundAllocator.require}</map:message>
+	                <map:groups>
+						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$AssignNewCapitalProviderValidationGroup</map:value>
+					</map:groups>
+	                <map:element name="matchedExpr"><![CDATA[
+	                   if(o.getNewCP() == null){
+	                   	return false;
+	                   }else{
+	                   	return true;
+	                   }
+	                ]]></map:element>
+	        </map:constraint>
+		</map:class> 
+		<map:field name="capitalProvider">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{deal.totFundingReq.required}</map:message>
+	      </map:constraint>          
+      	</map:field>
+        <map:field name="fundAmt">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{deal.totFundingReq.required}</map:message>
+	      </map:constraint>          
+      	</map:field>
+      	<map:field name="fundPer">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{deal.totFundingReq.required}</map:message>
+	      </map:constraint>          
+      	</map:field>
+      	<map:field name="percentOrAmt">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{deal.totFundingReq.required}</map:message>
+	      </map:constraint>          
+      	</map:field>
+      	<map:field name="placementRate">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{deal.totFundingReq.required}</map:message>
+	      </map:constraint>          
+      	</map:field> 
+      	<map:field name="unusedLineRate">                     
+	      <map:constraint annotation="javax.validation.constraints.NotNull">
+	       <map:message>{deal.totFundingReq.required}</map:message>
+	      </map:constraint>          
+      	</map:field> 
+      </map:bean>
+</map:constraint-mappings>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="navigation" type="navigation"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<tabs>
+		
+		<!-- <tab id="Quote" label="Quote" />  -->
+		<tab id="Partner" label="Partners" />
+		<tab id="Program" label="Programs" />
+		<tab id="Request" label="Applications" />
+		<tab id="Customer" label="Counterparty" />
+		<tab id="Relationship" label="Relationships" />
+		
+		<tab id="FacilityBE" label="Facilities" />
+		<tab id="Deal" label="Funding Requests" />
+		<tab id="FacilityPayment" label="Payments" />
+		<tab id="CapitalProvider" label="Capital Provider" />
+		<tab id="CustomerBackend" label="Capital Provider Profile " />
+		<tab id="HumanTask" label="Tasks"/> 
+
+		<tab id="Configuration" label="Configuration">
+			<tabs>
+				<tab id="User" label="Users" />
+				<tab id="Team" label="Teams" />
+				<tab id="Role" label="Roles" />
+				<tab id="Attribute" label="Attributes" />
+				<tab id="PermissionSet" label="Permissions" />
+				<tab id="ResidualReference" label="Residuals" />
+				<tab id="ValueGrid" label="Value Grids" />
+				<tab id="PricingPolicy" label="Pricing Profiles" />
+				<tab id="PromotionPolicy" label="Promotions" />
+				<tab id="FeePolicy" label="Fees" />
+				<tab id="scrAttributeSeed" label="Scoring Attributes" />
+				<tab id="scrRcmRuleSeed" label="Scoring Rules" />
+				<tab id="ScrFactorSeed" label="Score Factors" />
+				<tab id="FcParty" label="Fraud List" /> 
+				<tab id="TaskConfiguration" label="Task Admin" />
+				<tab id="NotificationConfiguration" label="Notification Admin" />
+				<tab id="FacilityRange" label="Facility Range" />
+				
+			</tabs>
+		</tab>
+<!-- 		<tab id="Tasks" label="Tasks" view="/task-search/tasks/main/results"/> -->
+
+	</tabs>	
+	
+	<beans>
+		<bean name="creditRequest" type="com.thirdpillar.codify.loanpath.model.Request"/>
+	</beans>
+</canvas>

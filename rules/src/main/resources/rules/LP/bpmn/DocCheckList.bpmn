@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_ResultItem" structureRef="String" />
+  <itemDefinition id="_docInputMapItem" structureRef="java.util.Map&lt;String,Object&gt;" />
+  <itemDefinition id="_docChecklistItem" structureRef="Boolean" />
+
+  <itemDefinition id="_17-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_17-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_17-ResultItem" structureRef="String" />
+  <itemDefinition id="_17-docInputMapItem" structureRef="java.util.Map&lt;String,Object&gt;" />
+  <itemDefinition id="_17-docChecklistItem" structureRef="Boolean" />
+
+  <itemDefinition id="_6-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_6-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_6-ResultItem" structureRef="String" />
+  <itemDefinition id="_6-docInputMapItem" structureRef="java.util.Map&lt;String,Object&gt;" />
+  <itemDefinition id="_6-docChecklistItem" structureRef="Boolean" />
+
+  <itemDefinition id="_14-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_14-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_14-ResultItem" structureRef="String" />
+  <itemDefinition id="_14-docInputMapItem" structureRef="java.util.Map&lt;String,Object&gt;" />
+  <itemDefinition id="_14-docChecklistItem" structureRef="Boolean" />
+
+  <process processType="Private" isExecutable="true" id="DocChecklist" name="DocChecklist" tns:packageName="LP" tns:version="1" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="integrationInputMap" itemSubjectRef="_integrationInputMapItem"/>
+    <property id="Result" itemSubjectRef="_ResultItem"/>
+    <property id="docInputMap" itemSubjectRef="_docInputMapItem"/>
+    <property id="docChecklist" itemSubjectRef="_docChecklistItem"/>
+
+    <!-- nodes -->
+    <task id="_17" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_17_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_17_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_17_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <startEvent id="_16" name="Start" />
+    <scriptTask id="_21" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>Request request = (Request) context.getVariable("contextEntity");
+String runDocsChecklist = "true";
+if(request.getDocumentGroup() != null ){
+ 	DocumentGroup group = (DocumentGroup)request.getDocumentGroup();
+ 	if(group.getGeneratedDocuments().size() &gt; 0){
+		runDocsChecklist = "false";
+ 	}
+}
+context.setVariable("docChecklist",runDocsChecklist);</script>
+    </scriptTask>
+    <callActivity id="_20" name="Generate Documents" calledElement="GeneratedDocuments" >
+      <ioSpecification>
+        <dataInput id="_20_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_20_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_20_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <endEvent id="_5" name="End" />
+    <task id="_6" name="Upload Document Check List-  Rules" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_6_entityInput" name="entity" />
+        <dataInput id="_6_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_6_entityInput</dataInputRefs>
+          <dataInputRefs>_6_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_6_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">UploadedDocumentChecklistRules</from>
+          <to xsi:type="tFormalExpression">_6_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <exclusiveGateway id="_23" name="Gateway" gatewayDirection="Converging" />
+    <exclusiveGateway id="_22" name="Gateway" gatewayDirection="Diverging" />
+    <task id="_14" name="Generate Documents Checklist - Rules" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_14_entityInput" name="entity" />
+        <dataInput id="_14_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_14_entityInput</dataInputRefs>
+          <dataInputRefs>_14_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_14_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GeneratedDocumentsChecklist</from>
+          <to xsi:type="tFormalExpression">_14_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_14-_17" sourceRef="_14" targetRef="_17" />
+    <sequenceFlow id="_16-_21" sourceRef="_16" targetRef="_21" />
+    <sequenceFlow id="_23-_20" sourceRef="_23" targetRef="_20" />
+    <sequenceFlow id="_20-_5" sourceRef="_20" targetRef="_5" />
+    <sequenceFlow id="_22-_6" sourceRef="_22" targetRef="_6" name="DocsChecklist" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String runDocChecklist = (String)context.getVariable("docChecklist");
+if(runDocChecklist.equals("true")){
+	return true;
+}
+return false;
+</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_17-_23" sourceRef="_17" targetRef="_23" />
+    <sequenceFlow id="_22-_23" sourceRef="_22" targetRef="_23" name="Skip Docs Checklist" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String skipDocChecklist = (String)context.getVariable("docChecklist");
+if(skipDocChecklist.equals("false")){
+	return true;
+}
+return false;
+</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
+    <sequenceFlow id="_6-_14" sourceRef="_6" targetRef="_14" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="DocChecklist" >
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="83" y="338" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="124" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="278" y="17" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="335" y="356" width="156" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="126" y="449" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="22" y="164" width="242" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="335" y="293" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_22" >
+        <dc:Bounds x="296" y="97" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="16" y="225" width="264" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_14-_17" >
+        <di:waypoint x="148" y="250" />
+        <di:waypoint x="133" y="362" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_21" >
+        <di:waypoint x="148" y="40" />
+        <di:waypoint x="318" y="41" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_20" >
+        <di:waypoint x="359" y="317" />
+        <di:waypoint x="413" y="380" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_5" >
+        <di:waypoint x="413" y="380" />
+        <di:waypoint x="150" y="473" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_22-_6" >
+        <di:waypoint x="320" y="121" />
+        <di:waypoint x="143" y="188" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_23" >
+        <di:waypoint x="133" y="362" />
+        <di:waypoint x="359" y="317" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_22-_23" >
+        <di:waypoint x="320" y="121" />
+        <di:waypoint x="359" y="317" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_22" >
+        <di:waypoint x="318" y="41" />
+        <di:waypoint x="320" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_14" >
+        <di:waypoint x="143" y="188" />
+        <di:waypoint x="148" y="250" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

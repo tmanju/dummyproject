@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://localhost:8080/loanpath-piedmont-web">
+   <md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+      <md:KeyDescriptor use="signing">
+         <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+               <ds:X509Certificate>MIIDYDCCAkigAwIBAgIET2EWDjANBgkqhkiG9w0BAQUFADByMQswCQYDVQQGEwJVUzELMAkGA1UE
+CBMCQ0ExFjAUBgNVBAcTDVNhbiBGcmFuc2Npc28xFDASBgNVBAoTC1RoaXJkcGlsbGFyMRMwEQYD
+VQQLEwpPcGVyYXRpb25zMRMwEQYDVQQDEwpKb2huIFNtaXRoMB4XDTEyMDMxNDIyMDUwMloXDTEz
+MDMwOTIyMDUwMlowcjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1TYW4gRnJh
+bnNjaXNvMRQwEgYDVQQKEwtUaGlyZHBpbGxhcjETMBEGA1UECxMKT3BlcmF0aW9uczETMBEGA1UE
+AxMKSm9obiBTbWl0aDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKImRFmghmZZngGL
+HCL/GtabKkc72jQNkrImYMcaXiE7f4Fmbm0CeWhpSxv+9JSn+U4EoOlDKoGzU7ILWq1ZNb7txDdk
+cr9bfI+ICwh/XAF2KvrOuQMQLZNfkSin5uvuVmSOICrOP/2ZJHPDQkTIwpLdtyF/g50szlMV7e1T
+6MUAkLExn5uxZsuNt9pobDCKe0UAD8SH41eVc77SztkDvog99NSm8/Ia/WlrHulNn31v6NZNZzmA
+3/fmYBm2/KWX2C995KPzZEbKRtNpvusEZqgPwaWzegNaugSyzLSlTmR2h4dTdIaRQqp8KDmaTHPm
+Yn6k1JZ1lWtLcMdkSh6wX+cCAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAiVf1LgHte3Y3a4L6yda5
++1kE67bMKQMtQKISiqG+tMihzrGP/i5CiaX0jWn6R/yEkb4se3XanAY24BzQ0FZWUYvNWJjyLcI3
+TVzHrkuCkSP3XBCnS+/AjqEGowm6vHx3T2cw5xsvbqOBdnvPKs8iixT38yucpIRD1vdu6E6E+CQE
+y3NaKkluX3P05XgZ6evidCrqMPi+YmHZAiuIfhHT7it+Z/HLC7veRTB076g/vqpcITJJYvdT1VvG
+IPps8tWGGjLrEeWYaiWrDY1QucKl8JyU26B+Te5Y63k65L8rSlO3NsaO0hPM1IfEwvq2+3xynC+Q
+YUK15RF0y77X5p33Gw==</ds:X509Certificate>
+            </ds:X509Data>
+         </ds:KeyInfo>
+      </md:KeyDescriptor>
+      <md:KeyDescriptor use="encryption">
+         <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:X509Data>
+               <ds:X509Certificate>MIIDYDCCAkigAwIBAgIET2EWDjANBgkqhkiG9w0BAQUFADByMQswCQYDVQQGEwJVUzELMAkGA1UE
+CBMCQ0ExFjAUBgNVBAcTDVNhbiBGcmFuc2Npc28xFDASBgNVBAoTC1RoaXJkcGlsbGFyMRMwEQYD
+VQQLEwpPcGVyYXRpb25zMRMwEQYDVQQDEwpKb2huIFNtaXRoMB4XDTEyMDMxNDIyMDUwMloXDTEz
+MDMwOTIyMDUwMlowcjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1TYW4gRnJh
+bnNjaXNvMRQwEgYDVQQKEwtUaGlyZHBpbGxhcjETMBEGA1UECxMKT3BlcmF0aW9uczETMBEGA1UE
+AxMKSm9obiBTbWl0aDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKImRFmghmZZngGL
+HCL/GtabKkc72jQNkrImYMcaXiE7f4Fmbm0CeWhpSxv+9JSn+U4EoOlDKoGzU7ILWq1ZNb7txDdk
+cr9bfI+ICwh/XAF2KvrOuQMQLZNfkSin5uvuVmSOICrOP/2ZJHPDQkTIwpLdtyF/g50szlMV7e1T
+6MUAkLExn5uxZsuNt9pobDCKe0UAD8SH41eVc77SztkDvog99NSm8/Ia/WlrHulNn31v6NZNZzmA
+3/fmYBm2/KWX2C995KPzZEbKRtNpvusEZqgPwaWzegNaugSyzLSlTmR2h4dTdIaRQqp8KDmaTHPm
+Yn6k1JZ1lWtLcMdkSh6wX+cCAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAiVf1LgHte3Y3a4L6yda5
++1kE67bMKQMtQKISiqG+tMihzrGP/i5CiaX0jWn6R/yEkb4se3XanAY24BzQ0FZWUYvNWJjyLcI3
+TVzHrkuCkSP3XBCnS+/AjqEGowm6vHx3T2cw5xsvbqOBdnvPKs8iixT38yucpIRD1vdu6E6E+CQE
+y3NaKkluX3P05XgZ6evidCrqMPi+YmHZAiuIfhHT7it+Z/HLC7veRTB076g/vqpcITJJYvdT1VvG
+IPps8tWGGjLrEeWYaiWrDY1QucKl8JyU26B+Te5Y63k65L8rSlO3NsaO0hPM1IfEwvq2+3xynC+Q
+YUK15RF0y77X5p33Gw==</ds:X509Certificate>
+            </ds:X509Data>
+         </ds:KeyInfo>
+      </md:KeyDescriptor>
+      <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:8080/loanpath-piedmont-web/saml/SingleLogout"/>
+      <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+      <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
+      <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
+      <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+      <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:X509SubjectName</md:NameIDFormat>
+      <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:8080/loanpath-piedmont-web/saml/SSO" index="0" isDefault="true"/>
+   </md:SPSSODescriptor>
+</md:EntityDescriptor>

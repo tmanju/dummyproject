@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	<permission  name="ROLE_CATEGORY_VIEW_ONLY_ROLE" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+		<entity name="Relationship">
+			<default>true</default>
+			<update>false</update>
+			<fields>
+			</fields>
+		</entity>
+	</permission>
+</permissions>

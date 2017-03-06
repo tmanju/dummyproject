@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="deal" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="deal" row="deal" label="Funding Requests">
+		<columns>
+			<column name="deal.refNumber"  label="Funding Request Number"/>
+			<column name="deal.facilityBE.customer.refNumber" label="Account Number" /> <!--not sure refNumber should be here -->
+			<column name="deal.facilityBE.customer.legalName" label="Client Name" />
+<!-- 			<column name="deal.initialFundingReq" /> -->
+			<!-- <column name="deal.estimatedYield" /> -->
+			<!-- <column name="deal.term" /> -->
+			<column name="deal.productType" />
+			<column name="deal.maturityDt" />
+<!-- 			<column name="deal.creditFacAmt" /> -->
+			<column name="deal.initialFundingReq" label="Draw Request Amount"/>
+			<column name="deal.metaInfo.createdAt" label="Time of Draw Request"/>
+			<!-- <column name="deal.largestDebtorConcenPer" /> -->
+			<!-- <column name="deal.yearsUnderOwnership" /> -->
+			<column name="deal.wfStatus" label="Status"/>
+		</columns>
+	</data-table>
+	<beans>
+		<bean name="deal" type="com.thirdpillar.codify.loanpath.model.Deal" />
+	</beans>
+</canvas>
+

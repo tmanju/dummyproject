@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="customerBackend" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<tabs>
+		<tab id="tab.infoCustomerBackend" label="Info">
+			<panel id="customerBackend.info" label="Capital Provider Profile Information">
+				<field name="customerBackend.refNumber" label="Funding Provider Number"/>
+				<field name="customerBackend.firstName" label="First Name" />
+				<field name="customerBackend.middleName" label="Middle Name" />
+				<field name="customerBackend.lastName" label="Last Name" />
+				<field name="customerBackend.tradingName" />
+				<field name="customerBackend.fpType" targetFields="customerBackend.info" />
+				<field name="customerBackend.fundType"  />            
+		    	<field name="customerBackend.domicile"  />
+		    	<field name="customerBackend.bankCharter" targetFields="customerBackend.info" />
+		    	<field name="customerBackend.stateBnkChrtr" />
+			</panel>
+			<panel id="customerBackend.businessDetail" label="Business Details">
+				<section id="customerBackend.counterparty" label="Funding Provider Details">
+				</section>
+				<section id="customerBackend.business" label="Business Details">
+					<field name="customerBackend.legalName" label="Legal Name"/>
+					<field name="customerBackend.federalTaxId" label="Tax ID" />
+					<field name="customerBackend.businessStartDttm" label="Business Start Date" />
+					<field name="customerBackend.sicCode" label="SIC Code" />
+					<field name="customerBackend.naicsCode" label="NAICS Industry" />
+					<field name="customerBackend.accountingFirm" label="Accounting Firm" />
+					<field name="customerBackend.fundAdministrator" label="Fund Administrator" />
+					<field name="customerBackend.isInxCp" label="INX Internal CP" />
+				</section>	
+				<data-table name="customerBackend.primarySite.siteDetails.addresses" id="customer_business_primarySite_siteDetails_addresses" row="address" label="Address">
+					<columns>
+						<column name="address.address1" label="Address" />
+						<!-- <column name="address.address2" label="Address 2" /> -->
+						<column name="address.city" label="City" />
+						<column name="address.stateProvince" label="State" />
+						<column name="address.country" label="Country" />		
+						<column name="address.postalCode" label="Postal Code" />
+						<column name="address.usage" label="Usage" />
+					</columns>
+					<quickedit-canvas id="address">
+						<panel id="customerBackend.contactDetailsInformation" label="Address Details">
+							<field name="address.address1" label="Address" />
+							<field name="address.city" label="City" />
+							<field name="address.country" label="Country" />
+							<field name="address.stateProvince" label="State" />
+							<field name="address.postalCode" label="Postal Code" />
+							<field name="address.usage" label="Usage" />
+						</panel>
+					</quickedit-canvas>
+				</data-table>	
+			</panel>
+
+			<panel id="customerBackend.contactInformation" label="Primary Contact Information">
+				<field name="customerBackend.primarySite.siteDetails.firstName" label="First Name" />
+				<field name="customerBackend.primarySite.siteDetails.lastName" label="Last Name" />
+<!-- 				<field name="customerBackend.primarySite.siteDetails.role" label="Role" /> -->
+				<field name="customerBackend.primarySite.siteDetails.businessPhone" label="Business Phone" />
+				<field name="customerBackend.primarySite.siteDetails.otherPhone" label="Other Phone" />
+				<field name="customerBackend.primarySite.siteDetails.homePhone" label="Home Phone" />
+				<field name="customerBackend.primarySite.siteDetails.mobilePhone" label="Mobile Phone" />
+				<field name="customerBackend.primarySite.siteDetails.email" label="Primary Email" />
+				<field name="customerBackend.primarySite.siteDetails.businessFax" label="Fax" />
+
+			<!--  	<data-table name="customerBackend.primarySite.siteDetails.addresses" id="customer_primarySite_siteDetails_addresses" row="address" label="Address">
+					<columns>
+						<column name="address.address1" label="Address" />
+						<column name="address.city" label="City" />
+						<column name="address.stateProvince" label="State" />
+						<column name="address.country" label="Country" />						
+						<column name="address.use" label="Usage" />
+					</columns>
+					<quickedit-canvas>
+						<panel id="customerBackend.contactDetailsInformation" label="Address Details">
+							<field name="address.address1" label="Address" />
+							<field name="address.city" label="City" />
+							<field name="address.country" label="Country" />
+							<field name="address.stateProvince" label="State" />
+							<field name="address.postalCode" label="Postal Code" />
+							<field name="address.use" label="Usage" />
+						</panel>
+					</quickedit-canvas>
+				</data-table>-->
+				<data-table name="customerBackend.primarySite.contacts" row="custContact" label="Contact">
+					<columns>
+<!-- 						<column name="custContact.role" /> -->
+						<column name="custContact.firstName" />
+						<column name="custContact.lastName" />
+						<column name="custContact.homePhone" />
+						<column name="custContact.mobilePhone" />
+						<column name="custContact.businessPhone" />
+						<column name="custContact.email" />
+	
+					</columns>
+				</data-table>
+			</panel>
+			<data-table name="customerBackend.bankTrades" row="bankInformation" label="Bank Information">
+				<columns>
+					<column name="bankInformation.name" label="Bank Name"/>
+					<column name="bankInformation.branchAddress.city" label="City"/>
+					<column name="bankInformation.branchAddress.stateProvince" label="State"/>
+					<column name="bankInformation.primary" label="Primary"/>
+				</columns>
+				<edit-canvas id="bankInformationEditCanvas">
+					<tabs>
+						<tab id="tab.customerBackend.BankInformation" label="Bank Information">
+							<panel id="customerBackend.bankInformation" label="Bank Information">
+								<field name="bankTrades.name" label="Bank Name" />
+								<field name="bankTrades.phoneNumber" label="Phone Number"/>
+								<field name="bankTrades.faxNumber" label="Fax Number" />
+								<field name="bankTrades.primary" label="Primary Flag" />
+								<field name="bankTrades.routingNumber" label="Routing Number" />
+								<field name="bankTrades.branchName" label="Branch" />
+								<field name="bankTrades.branchAddress.address1" label="Street Address" />
+								<field name="bankTrades.branchAddress.city" label="City" />
+								<field name="bankTrades.branchAddress.stateProvince" label="State" />
+								<field name="bankTrades.branchAddress.postalCode" label="Postal Code" />
+								<field name="bankTrades.branchAddress.country" label="Country" />
+							</panel>
+							<panel id="customerBackend.accountInformation" label="Account Information">
+								<field name="bankTrades.accountType" label="Account Type" />
+								<field name="bankTrades.bankAccountNumber" label="Account Number" />
+								<field name="bankTrades.bankTradeType" label="Personal/Business" />
+								<field name="bankTrades.month1DepositAmount" label="Recent Deposits - Month 1" />
+								<field name="bankTrades.month2DepositAmount" label="Recent Deposits - Month 2" />
+								<field name="bankTrades.month3DepositAmount" label="Recent Deposits - Month 3" />
+								<field name="bankTrades.lineOfCreditAmount" label="Line of Credit Amount" />
+								<field name="bankTrades.presentBalance" label="Current Balance" />
+								<field name="bankTrades.accountOpenedDttm" label="Account Opened Date" />
+								<field name="bankTrades.accountExpOrRenewalDttm" label="Expiration Date"/>
+							</panel>
+						</tab>
+					</tabs>
+				</edit-canvas>
+			</data-table>
+			<panel id="customerBackend.settlementTerms" label="Settlement Terms">
+				<field name="customerBackend.settlementTerms" label="Settlement Terms" />
+				<field name="customerBackend.servicingFee" label="Servicing Fee" />
+			</panel>
+			<panel id="customerBackend.accountDesignees" label="Account Designees">
+				<field name="customerBackend.reportAccess" label="Report Access" />
+			</panel>
+			<panel id="customerBackend.customerInformation" label="Funding Provider Information">
+					<field name="customerBackend.metaInfo.createdAt" />
+					<field name="customerBackend.metaInfo.createdByUser" />
+					<field name="customerBackend.metaInfo.lastModifiedAt" />
+					<field name="customerBackend.metaInfo.lastModifiedByUser" />
+					<field name="customerBackend.date" />
+			</panel>
+		</tab>
+
+		<tab id="tab.balanceCustomerBackend" label="Balance">
+
+			<panel id="balanceInformation" label="Balance Information" >
+				<field name="customerBackend.pledgedAmt"  />
+				<field name="customerBackend.committedFacAmt"  />
+				<field name="customerBackend.offeredFacAmt"  /> 
+				<field name="customerBackend.capacityToLendAmt"  />
+				<field name="customerBackend.fundsINX"  label="Funds with INX"/>
+				<field name="customerBackend.fundsClient"  label="Funds with Client"/>
+	          <!--  <field name="customerBackend.pendingAmt" label="Pending Funding Amount" />
+	            <field name="customerBackend.fundedAmt" label="Funded Amount" />-->
+	            <field name="customerBackend.interestBalance"  label="Interest Balance"/>
+	            <field name="customerBackend.servicingFeeBalance"  label="Servicing Fee Balance"/>
+	            <field name="customerBackend.unusedFeeBalance"  label="Unused Line Fee Balance"/>
+			</panel>
+			<panel id="balanceInformationCummulative" label ="Cumulative Amounts" >
+				<panel id="fndAmt" label="">
+					<field name="customerBackend.fundedAmtMTD" />
+					<field name="customerBackend.fundedAmtYTD" />
+					<field name="customerBackend.fundedAmtLTD" />
+				</panel>
+				<panel id="intAmt" label="">
+					<field name="customerBackend.interestEarnedMTD" />
+					<field name="customerBackend.interestEarnedYTD" />
+					<field name="customerBackend.interestEarnedLTD" />
+				</panel>
+				<panel id="svcAmt" label="">
+					<field name="customerBackend.servicingFeeCaMTD" label="Servicing Fee on Collateral Accrued MTD"/>
+					<field name="customerBackend.servicingFeeCaYTD" label="Servicing Fee on Collateral Accrued YTD"/>
+					<field name="customerBackend.servicingFeeCaLTD" label="Servicing Fee on Collateral Accrued LTD"/>
+				</panel>
+				<panel id="unUsedLnFee" label="">
+					<field name="customerBackend.unusedLineFeeMTD" label="Unused Line Fee MTD"/>
+					<field name="customerBackend.unusedLineFeeYTD" label="Unused Line Fee YTD"/>
+					<field name="customerBackend.unusedLineFeeLTD" label="Unused Line Fee LTD"/>
+				</panel>
+				
+				<panel id="intPaid" label="">
+					<field name="customerBackend.interestPaidMTD" label="Interest Paid MTD"/>
+					<field name="customerBackend.interestPaidYTD" label="Interest Paid YTD"/>
+					<field name="customerBackend.interestPaidLTD" label="Interest Paid LTD"/>
+				</panel>
+				
+				<panel id="svcCpAmt" label="">
+					<field name="customerBackend.servicingFeeCpMTD" label="Servicing Fee on Collateral Paid MTD"/>
+					<field name="customerBackend.servicingFeeCpYTD" label="Servicing Fee on Collateral Paid YTD"/>
+					<field name="customerBackend.servicingFeeCpLTD" label="Servicing Fee on Collateral Paid LTD"/>
+				</panel>
+				
+				<panel id="unUsedLnFeePaid" label="">
+					<field name="customerBackend.unusedFeePaidMTD" label="Unused Line Fee Paid MTD"/>
+					<field name="customerBackend.unusedFeePaidYTD" label="Unused Line Fee Paid YTD"/>
+					<field name="customerBackend.unusedFeePaidLTD" label="Unused Line Fee Paid LTD"/>
+				</panel>
+	        </panel>
+		</tab>
+		<tab id="tab.allocationCustomerBackend" label="Allocation">
+			<data-table name="customerBackend.allocations" row="allocation" label="Allocations">
+				<columns>
+					<column name="allocation.clientRating" />
+					<column name="allocation.allocPercentage" />
+					<column name="allocation.allAmt" />
+				</columns>
+			</data-table>
+		</tab>
+		<tab id="tab.creditCustomerBackend" label="Credit">
+			<panel id="concentration" label ="Concentration" >
+				<field name="customerBackend.maxConcentrationPercent" />
+			</panel>
+			<panel id="preference" label ="Preference" >
+				<field name="customerBackend.exIndustry" />
+				<field name="customerBackend.region" />
+			</panel>
+		</tab>
+		<!--<tab id="tab.notesCustomerBackend" label="Notes">
+		 	<panel id="fundingInformation" label ="Funding Info" >
+				<field name="customerBackend.fundsIn" /> 
+				<field name="customerBackend.fundsOut"/> 
+				<field name="customerBackend.availableCash"/>
+			</panel>
+			<panel id="facilityInformation" label ="Facility Info" >
+				<field name="customerBackend.platformCommitmentAmt"  label="Platform Commitment Amount" />
+	            <field name="customerBackend.facilityCommitmentAmt"  label="Facility Commitment Amount" />
+	            <field name="customerBackend.offeredFacilityAmt"  label="Offered Facility Amount" />
+	            <field name="customerBackend.capacitytolendAmt"  label="Capacity to Lend" />
+			</panel>
+		</tab>-->
+	</tabs>
+	<beans>
+		<bean name="customerBackend" type="com.thirdpillar.codify.loanpath.model.CustomerBackend" />
+	</beans>
+</canvas>

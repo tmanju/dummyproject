@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_3-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_3-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_3-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_3-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_6-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_6-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_6-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_6-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_6-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_24-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_24-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_24-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_24-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_24-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_28-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_28-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_28-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_28-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_28-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_31-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_31-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_31-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_31-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_31-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_30-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_30-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_30-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_30-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_30-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_35-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_35-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_35-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_35-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_35-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_32-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_32-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_32-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_32-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_32-signalNameItem" structureRef="String" />
+
+  <itemDefinition id="_33-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacAllocator" />
+  <itemDefinition id="_33-facAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_33-facilityBEEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FacilityBE" />
+  <itemDefinition id="_33-facPlacementAuditItem" structureRef="com.thirdpillar.codify.loanpath.model.FacPlacementAudit" />
+  <itemDefinition id="_33-signalNameItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="FacAllocatorFlow" name="FacAllocatorFlow" tns:packageName="LP" tns:version="1" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="java.util.Date" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="facAllocatorsEmailList" itemSubjectRef="_facAllocatorsEmailListItem"/>
+    <property id="facilityBEEntity" itemSubjectRef="_facilityBEEntityItem"/>
+    <property id="facPlacementAudit" itemSubjectRef="_facPlacementAuditItem"/>
+    <property id="signalName" itemSubjectRef="_signalNameItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_3" name="Wait State" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <intermediateCatchEvent id="_4" name="Signal" >
+      <signalEventDefinition signalRef="acceptFacAllocation"/>
+    </intermediateCatchEvent>
+    <endEvent id="_5" name="End" />
+    <task id="_6" name="Fund Allocator Email Notification" tns:taskName="NotificationTask" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <tns:script>context.setVariable("facAllocatorsEmailList",null);</tns:script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_6_validateEntityInput" name="validateEntity" />
+        <dataInput id="_6_entityInput" name="entity" />
+        <dataInput id="_6_BodyInput" name="Body" />
+        <dataInput id="_6_SubjectInput" name="Subject" />
+        <dataInput id="_6_ToInput" name="To" />
+        <dataInput id="_6_Reply-ToInput" name="Reply-To" />
+        <dataInput id="_6_FromInput" name="From" />
+        <inputSet>
+          <dataInputRefs>_6_validateEntityInput</dataInputRefs>
+          <dataInputRefs>_6_entityInput</dataInputRefs>
+          <dataInputRefs>_6_BodyInput</dataInputRefs>
+          <dataInputRefs>_6_SubjectInput</dataInputRefs>
+          <dataInputRefs>_6_ToInput</dataInputRefs>
+          <dataInputRefs>_6_Reply-ToInput</dataInputRefs>
+          <dataInputRefs>_6_FromInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_6_validateEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>facilityBEEntity</sourceRef>
+        <targetRef>_6_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">fac_allocator_status_email_body</from>
+          <to xsi:type="tFormalExpression">_6_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Fund Assignment Status #{contextEntity.wfStatus}</from>
+          <to xsi:type="tFormalExpression">_6_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{facAllocatorsEmailList}</from>
+          <to xsi:type="tFormalExpression">_6_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_6_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_6_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_7" name="Set Email Address" scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+
+StringBuffer buffer = new StringBuffer();
+
+if(facAllocator.getCapitalProvider() != null &amp;&amp; facAllocator.getCapitalProvider().getCustomerAssociated() !=null  &amp;&amp; facAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite() !=null &amp;&amp; facAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails() !=null &amp;&amp; (facAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails().getEmail() !=null || facAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails().getEmail() !="")){
+	String email = facAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails().getEmail();
+	buffer = buffer.append(email).append(";");
+}
+
+context.setVariable("facilityBEEntity",facAllocator.getFacilityBE());
+//System.out.println("Email Addresses TO:"+buffer);
+context.setVariable("facAllocatorsEmailList",buffer.toString());</script>
+    </scriptTask>
+    <scriptTask id="_8" name="Fac Allocator set last Update" scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+//facAllocator.changeStatus(facAllocator, "DEALS_STATUS_ACCEPTED");
+facAllocator.setLastUpdate(new Date());
+
+//Setting flag true to show CP Commitment button when Facility Status ACCEPTED.
+facAllocator.getFacilityBE().setCpCommittedFlag(true);
+context.setVariable("signalName",facAllocator.getWfStatus().getStatusKey());
+</script>
+    </scriptTask>
+    <intermediateCatchEvent id="_9" name="Signal" >
+      <signalEventDefinition signalRef="rejectFacAllocation"/>
+    </intermediateCatchEvent>
+    <scriptTask id="_10" name="Fac Allocator set last Update" scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+facAllocator.changeStatus(facAllocator, "DEALS_STATUS_REJECTED");
+facAllocator.setLastUpdate(new Date());
+context.setVariable("signalName",facAllocator.getWfStatus().getStatusKey());
+
+
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_11" name="Gateway" gatewayDirection="Converging" />
+    <scriptTask id="_19" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+
+// fac portion(s) can only be rejected after acceptance and after rejction no operatoin can be done on that
+BigDecimal newAmtAccepted= facAllocator.getFundAmt();
+if(newAmtAccepted==null )
+		newAmtAccepted=BigDecimal.ZERO; 
+CapitalProvider cp= facAllocator.getCapitalProvider();
+CustomerBackend cd=cp.getCustomerAssociated();
+
+BigDecimal committedFund= cd.getCommittedFacAmt();
+if(committedFund==null )
+		committedFund=BigDecimal.ZERO; 
+cd.setCommittedFacAmt(committedFund.subtract(newAmtAccepted));</script>
+    </scriptTask>
+    <scriptTask id="_18" name="update Facility Commitment Amount" scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+BigDecimal newAmtAccepted= facAllocator.getFundAmt();
+if(newAmtAccepted==null )
+	newAmtAccepted=BigDecimal.ZERO; 
+	
+CapitalProvider cp= facAllocator.getCapitalProvider();
+CustomerBackend cd=cp.getCustomerAssociated();
+BigDecimal committedFund= cd.getCommittedFacAmt();
+if(committedFund==null )
+	committedFund=BigDecimal.ZERO; 
+cd.setCommittedFacAmt(committedFund.add(newAmtAccepted));
+
+
+BigDecimal offeredFacAmt= cd.getOfferedFacAmt();
+cd.setOfferedFacAmt(offeredFacAmt.subtract(newAmtAccepted));</script>
+    </scriptTask>
+    <intermediateCatchEvent id="_21" name="Signal" >
+      <signalEventDefinition signalRef="fundedFacAllocation"/>
+    </intermediateCatchEvent>
+    <scriptTask id="_20" name="update Min Utilization " scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+BigDecimal newAmtAccepted= facAllocator.getFundAmt();
+if(newAmtAccepted==null )
+	newAmtAccepted=BigDecimal.ZERO; 
+
+System.out.println("facAllocator.getMinUtilizationPer()()    "+facAllocator.getMinUtilizationPerForFacility());
+facAllocator.setMinUtilizationAmt(facAllocator.percentage(newAmtAccepted,facAllocator.getMinUtilizationPerForFacility()));
+</script>
+    </scriptTask>
+    <endEvent id="_23" name="End" />
+    <scriptTask id="_25" name="free old  commitments " scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+BigDecimal newAmtAccepted= facAllocator.getFundAmt();
+if(newAmtAccepted==null )
+	newAmtAccepted=BigDecimal.ZERO; 
+	
+if(facAllocator.getNewCP()!= null){	
+CapitalProvider oldCP= facAllocator.getCapitalProvider();
+CustomerBackend cd=oldCP.getCustomerAssociated();
+BigDecimal committedFund= cd.getCommittedFacAmt();
+if(committedFund==null )
+	committedFund=BigDecimal.ZERO; 
+cd.setCommittedFacAmt(committedFund.subtract(newAmtAccepted));
+
+}
+facAllocator.setLastUpdate(new Date());</script>
+    </scriptTask>
+    <task id="_24" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_24_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_24_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_24_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <intermediateCatchEvent id="_27" name="Signal" >
+      <signalEventDefinition signalRef="cpSettlement"/>
+    </intermediateCatchEvent>
+    <scriptTask id="_26" name="make new commitment" scriptFormat="http://www.java.com/java" >
+      <script>FacAllocator facAllocator=(FacAllocator)context.getVariable("contextEntity");
+BigDecimal newAmtAccepted= facAllocator.getFundAmt();
+if(newAmtAccepted==null )
+	newAmtAccepted=BigDecimal.ZERO; 
+	
+if(facAllocator.getNewCP()!= null){	
+CapitalProvider newCP= facAllocator.getNewCP();
+CustomerBackend cd=newCP.getCustomerAssociated();
+BigDecimal committedFund= cd.getCommittedFacAmt();
+if(committedFund==null )
+	committedFund=BigDecimal.ZERO; 
+cd.setCommittedFacAmt(committedFund.add(newAmtAccepted));
+
+
+}</script>
+    </scriptTask>
+    <endEvent id="_29" name="End" />
+    <task id="_28" name="Process Facility Settlement" tns:taskName="BusinessOperationTask" >
+      <ioSpecification>
+        <dataInput id="_28_entityInput" name="entity" />
+        <dataInput id="_28_businessOperationNameInput" name="businessOperationName" />
+        <inputSet>
+          <dataInputRefs>_28_entityInput</dataInputRefs>
+          <dataInputRefs>_28_businessOperationNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_28_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_28_businessOperationNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">processFacAllocatorSettlement</from>
+          <to xsi:type="tFormalExpression">_28_businessOperationNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_31" name="Fac Allocator ACCEPTED Status" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_31_entityInput" name="entity" />
+        <dataInput id="_31_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_31_entityInput</dataInputRefs>
+          <dataInputRefs>_31_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_31_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_31_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">DEALS_STATUS_ACCEPTED</from>
+          <to xsi:type="tFormalExpression">_31_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_30" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_30_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_30_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_30_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <callActivity id="_34" name="Fac Allocator Sold" calledElement="FacPlacementAuditFlow" >
+      <ioSpecification>
+        <dataInput id="_34_facAllocContextEntityInput" name="facAllocContextEntity" />
+        <inputSet>
+          <dataInputRefs>_34_facAllocContextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_34_facAllocContextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <task id="_35" name="Process total CP Balace" tns:taskName="BusinessOperationTask" >
+      <ioSpecification>
+        <dataInput id="_35_entityInput" name="entity" />
+        <dataInput id="_35_businessOperationNameInput" name="businessOperationName" />
+        <inputSet>
+          <dataInputRefs>_35_entityInput</dataInputRefs>
+          <dataInputRefs>_35_businessOperationNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_35_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_35_businessOperationNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">updateFacilityTotalCPBal</from>
+          <to xsi:type="tFormalExpression">_35_businessOperationNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_32" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_32_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_32_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_32_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_33" name="Fac Allocator DECLINED Status" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_33_entityInput" name="entity" />
+        <dataInput id="_33_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_33_entityInput</dataInputRefs>
+          <dataInputRefs>_33_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_33_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_33_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">DEALS_STATUS_REJECTED</from>
+          <to xsi:type="tFormalExpression">_33_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <callActivity id="_36" name="Sub-Process" calledElement="FacPlacementAuditFlowAccept" >
+      <ioSpecification>
+        <dataInput id="_36_signalInput" name="signal" />
+        <dataInput id="_36_facAllocContextEntityInput" name="facAllocContextEntity" />
+        <inputSet>
+          <dataInputRefs>_36_signalInput</dataInputRefs>
+          <dataInputRefs>_36_facAllocContextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>signalName</sourceRef>
+        <targetRef>_36_signalInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_36_facAllocContextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+
+    <!-- connections -->
+    <sequenceFlow id="_3-_2" sourceRef="_3" targetRef="_2" />
+    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_6-_5" sourceRef="_6" targetRef="_5" />
+    <sequenceFlow id="_7-_6" sourceRef="_7" targetRef="_6" />
+    <sequenceFlow id="_32-_7" sourceRef="_32" targetRef="_7" />
+    <sequenceFlow id="_4-_8" sourceRef="_4" targetRef="_8" />
+    <sequenceFlow id="_9-_10" sourceRef="_9" targetRef="_10" />
+    <sequenceFlow id="_19-_11" sourceRef="_19" targetRef="_11" />
+    <sequenceFlow id="_35-_11" sourceRef="_35" targetRef="_11" />
+    <sequenceFlow id="_33-_19" sourceRef="_33" targetRef="_19" />
+    <sequenceFlow id="_20-_18" sourceRef="_20" targetRef="_18" />
+    <sequenceFlow id="_31-_20" sourceRef="_31" targetRef="_20" />
+    <sequenceFlow id="_24-_23" sourceRef="_24" targetRef="_23" />
+    <sequenceFlow id="_21-_25" sourceRef="_21" targetRef="_25" />
+    <sequenceFlow id="_34-_24" sourceRef="_34" targetRef="_24" />
+    <sequenceFlow id="_25-_26" sourceRef="_25" targetRef="_26" />
+    <sequenceFlow id="_30-_29" sourceRef="_30" targetRef="_29" />
+    <sequenceFlow id="_27-_28" sourceRef="_27" targetRef="_28" />
+    <sequenceFlow id="_8-_31" sourceRef="_8" targetRef="_31" />
+    <sequenceFlow id="_28-_30" sourceRef="_28" targetRef="_30" />
+    <sequenceFlow id="_26-_34" sourceRef="_26" targetRef="_34" />
+    <sequenceFlow id="_18-_35" sourceRef="_18" targetRef="_35" />
+    <sequenceFlow id="_36-_32" sourceRef="_36" targetRef="_32" />
+    <sequenceFlow id="_10-_33" sourceRef="_10" targetRef="_33" />
+    <sequenceFlow id="_11-_36" sourceRef="_11" targetRef="_36" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="FacAllocatorFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="67" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="67" y="203" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="16" y="96" width="150" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="432" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="288" y="1007" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="181" y="927" width="262" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="172" y="846" width="281" height="49" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="340" y="96" width="233" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="147" y="203" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="68" y="292" width="207" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="288" y="586" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="84" y="488" width="199" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="317" y="390" width="264" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="709" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="307" y="292" width="298" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="709" y="497" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" >
+        <dc:Bounds x="627" y="96" width="212" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_24" >
+        <dc:Bounds x="647" y="390" width="172" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="898" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" >
+        <dc:Bounds x="643" y="194" width="181" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="898" y="301" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="872" y="96" width="100" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="346" y="194" width="220" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_30" >
+        <dc:Bounds x="872" y="194" width="100" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="643" y="292" width="180" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="315" y="488" width="253" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="208" y="752" width="209" height="62" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="82" y="390" width="190" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_36" >
+        <dc:Bounds x="246" y="667" width="133" height="53" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_3-_2" >
+        <di:waypoint x="91" y="129" />
+        <di:waypoint x="91" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
+        <di:waypoint x="91" y="40" />
+        <di:waypoint x="91" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_5" >
+        <di:waypoint x="312" y="951" />
+        <di:waypoint x="312" y="1031" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_6" >
+        <di:waypoint x="312" y="870" />
+        <di:waypoint x="312" y="951" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_7" >
+        <di:waypoint x="312" y="783" />
+        <di:waypoint x="312" y="870" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_8" >
+        <di:waypoint x="456" y="40" />
+        <di:waypoint x="456" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_10" >
+        <di:waypoint x="171" y="227" />
+        <di:waypoint x="171" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_11" >
+        <di:waypoint x="183" y="521" />
+        <di:waypoint x="312" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_11" >
+        <di:waypoint x="441" y="521" />
+        <di:waypoint x="312" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_33-_19" >
+        <di:waypoint x="177" y="423" />
+        <di:waypoint x="183" y="521" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_18" >
+        <di:waypoint x="456" y="325" />
+        <di:waypoint x="449" y="423" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_20" >
+        <di:waypoint x="456" y="227" />
+        <di:waypoint x="456" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_24-_23" >
+        <di:waypoint x="733" y="423" />
+        <di:waypoint x="733" y="521" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_25" >
+        <di:waypoint x="733" y="40" />
+        <di:waypoint x="733" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_24" >
+        <di:waypoint x="733" y="325" />
+        <di:waypoint x="733" y="423" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_26" >
+        <di:waypoint x="733" y="129" />
+        <di:waypoint x="733" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_30-_29" >
+        <di:waypoint x="922" y="227" />
+        <di:waypoint x="922" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_28" >
+        <di:waypoint x="922" y="40" />
+        <di:waypoint x="922" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_31" >
+        <di:waypoint x="456" y="129" />
+        <di:waypoint x="456" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_30" >
+        <di:waypoint x="922" y="129" />
+        <di:waypoint x="922" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_34" >
+        <di:waypoint x="733" y="227" />
+        <di:waypoint x="733" y="325" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_35" >
+        <di:waypoint x="449" y="423" />
+        <di:waypoint x="441" y="521" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_36-_32" >
+        <di:waypoint x="312" y="693" />
+        <di:waypoint x="312" y="783" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_33" >
+        <di:waypoint x="171" y="325" />
+        <di:waypoint x="177" y="423" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_36" >
+        <di:waypoint x="312" y="610" />
+        <di:waypoint x="312" y="693" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

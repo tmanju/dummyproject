@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles xmlns="http://www.thirdpillar.com/binding-profile">
+	<!-- Change Log profile start -->
+	<profile name="changeLog-Deal" extends="Full-No-Binary">
+		<class name="com.thirdpillar.codify.loanpath.model.Deal" inherit="false">
+			<includes>
+				<field name="status"  />
+				<field name="statusChngDt" />
+			</includes>	
+		</class>
+	</profile>
+	<profile name="changeLog-FeePolicy" extends="Full-No-Binary">
+		<class name="com.thirdpillar.codify.loanpath.model.FeePolicy" inherit="false">
+			<includes>
+				<field name="name"  />
+				<field name="description" />
+				<field name="feeType" />
+				<field name="ou" />
+				<field name="sbu" />
+				<field name="currency" />
+				<field name="mayBeDisclosed" />
+				<field name="minimumAmt" />
+				<field name="maximumAmt" />
+				<field name="minimumPct" />
+				<field name="maximumPct" />
+				<field name="defaultPct" />
+				<field name="defaultAmt" />
+				<field name="calculationMethod" />
+				<field name="effectiveDefaultFeePct"/>
+				<field name="effectiveFromDate"/>
+			</includes>	
+		</class>
+	</profile>
+	<profile name="changeLog-Customer" extends="Full-No-Binary">
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="false">
+			<includes>
+				<field name="riskScoreDttm"  />
+				<field name="riskScore"  profile="Header"/>
+				<field name="adjRiskScore"  profile="Header"/>
+				<field name="borrowerRatings"/>
+			</includes>	
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BorrowerRating" inherit="false">
+			<includes>
+				<field name="fraudScoreDttm" />
+				<field name="fraudScore" />
+				<field name="adjFraudScore" />
+				<field name="riskScoreDttm" />
+				<field name="riskScore"  profile="Header"/>
+				<field name="adjRiskScore"  profile="Header"/>
+			</includes>
+			<excludes>
+				<field name="id" />
+			</excludes>
+		</class>
+		 <class name="com.thirdpillar.codify.loanpath.model.AttributeChoice" inherit="false">
+			   <includes>
+			   	 <field name="value" />
+			   </includes>
+		  </class>
+	</profile>
+<!-- 	<profile name="changeLog-ScrRcmRuleSeed" extends="Full-No-Binary"> -->
+<!-- 		<class name="com.thirdpillar.codify.loanpath.model.ScrRcmRuleSeed" inherit="false"> -->
+<!-- 		<includes> -->
+<!-- 			<field name="name"  /> -->
+<!-- 			<field name="description" /> -->
+<!-- 			<field name="applicability"  /> -->
+<!-- 			<field name="recommendationCategory"  /> -->
+<!-- 			<field name="recommendation" /> -->
+<!-- 			<field name="program"  /> -->
+<!-- 			<field name="recommendationLevel"  /> -->
+<!-- 			<field name="recommendationReasonCode" /> -->
+<!-- 			<field name="reasonLevel"  /> -->
+<!-- 			<field name="exceptionAuthority"  /> -->
+<!-- 			<field name="effectiveFrom" /> -->
+<!-- 			<field name="effectiveTo"  /> -->
+<!-- 		</includes>	 -->
+<!-- 		</class> -->
+<!-- 	</profile> -->
+	<!-- Change Log profile End -->
+</profiles>
+

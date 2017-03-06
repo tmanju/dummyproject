@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="createProgram" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+		<panel id="program.programCreate">
+			<field name="program.metaInfo.createdByUser" label="Requestor"/>
+			<field name="program.programName" />
+			<field name="program.description" />
+			<field name="program.programCategory" />
+			<field name="program.programType" />
+			<field name="program.startDttm" />	
+			<field name="program.endDttm" />
+			<field name="program.useStdTmplFlag" />
+			<field name="program.operatingUnit" />
+			<field name="program.sbu" />
+		</panel>
+	<beans>
+		<bean name="program" type="com.thirdpillar.codify.loanpath.model.Program" />
+	</beans>
+</canvas>

@@ -1,0 +1,471 @@
+#created on: September 23, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.model.FacilityCustomerRole;
+import com.thirdpillar.codify.loanpath.constants.ConstantsRules;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.CoasetDefinition;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.PricingOption;
+import com.thirdpillar.codify.loanpath.model.Structure;
+import com.thirdpillar.codify.loanpath.util.*;
+import com.thirdpillar.codify.loanpath.model.UCC;
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+global com.thirdpillar.foundation.service.Context appContext;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.math.BigDecimal;
+import java.lang.Integer;
+
+rule "SetFacilityWFStatusToNew"
+  agenda-group "NEW" 
+  when
+    #conditions
+        f:Facility()
+  then 
+    #actions
+    WorkflowStatus status=( WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FACILITY_STATUS_NEW");
+    f.setWfStatus(status);
+end
+
+rule "SetFacilityApprovedTerm"
+  agenda-group "NEW" 
+  when
+    #conditions
+        f:Facility()
+  then 
+    #actions
+    f.setApprovedTerm(12);
+end
+
+
+rule "SetPrimaryBorrowerInProductRoles"
+	agenda-group "NEW" 
+  when
+  	#conditions
+        f:Facility()
+  then
+  	#actions
+  	if(appContext.getNamedContext().get("root") instanceof Request){
+  		Request request = (Request)appContext.getNamedContext().get("root");
+	  	if(request != null && request.getAccount().getCustomer() != null && f.getFacilityCustomerRoles() != null){
+	  		FacilityCustomerRole fcr = new FacilityCustomerRole();
+	  		fcr.setCustomer(request.getAccount().getCustomer());
+	  		fcr.setFacility(f);
+	  		//fcr.setParentRole(fcr);
+	  		AttributeChoice partyRole =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.PARTY_ROLE_TYPE_CLIENT_KEY);
+	  		fcr.setPartyRole(partyRole);
+	  		fcr.setPrimaryBorrower(true);
+	  		f.getFacilityCustomerRoles().add(fcr);
+	  	}
+  	}
+end
+
+rule "SetFacilityTypeToExposureLimit"
+  agenda-group "NEW" 
+  when
+    #conditions
+        f:Facility()        
+  then 
+    #actions
+    if (appContext != null && appContext.getNamedContext().get("root") != null
+        && appContext.getNamedContext().get("root") instanceof Request) {
+      Request r = (Request) appContext.getNamedContext().get("root");
+      if (r.isRequestType("REQUEST_TYPE_COUNTERPARTY_EXPOSURE_LIMIT")) {
+        f.setFacilityType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "CREDIT_FACILITY_TYPE_EXPOSURE_LIMITS"));
+      } 
+    }
+end
+
+//rule "SetFacilityType"
+ // agenda-group "NEW" 
+  //when
+   //     f:Facility()        
+  //then 
+  //System.out.println("-------------here is facility type--------------"+f.getFacilityType()+"-------------------");
+  //if(f.getFacilityType() == null || (f.getFacilityType() != null && f.getFacilityType().getServicingIdentifier() == null)){
+   //     f.setFacilityType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "CREDIT_FACILITY_TYPE_LOAN"));
+    // }
+//end
+
+rule "SetFacilityCoasetDefinition"
+  agenda-group "NEW" 
+  when
+    #conditions
+        f:Facility()
+  then 
+    #actions
+    EntityService es = new EntityService();
+    CoasetDefinition coaSetDef = (CoasetDefinition)es.createNew(CoasetDefinition.class);
+    f.setCoasetDefinition(coaSetDef);
+end
+
+rule "SetPricingOptionStructure"
+  agenda-group "NEW" 
+  when
+    #conditions
+        f:Facility()
+  then 
+    #actions
+    EntityService es = new EntityService();
+    PricingOption pricingOption = (PricingOption)es.createNew(PricingOption.class);
+    f.setPricingOption(pricingOption);
+    
+    Structure structure = (Structure)es.createNew(Structure.class);
+    pricingOption.setStructure(structure);
+    
+end
+
+rule "FacilityStatus_Save"
+  agenda-group "SAVE" 
+  when
+    req:Request()    
+    f:Facility(wfStatus == null || wfStatus.statusKey == "FACILITY_STATUS_NEW") from req.allFacilities
+  then
+    WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FACILITY_STATUS_PENDING");
+    f.setWfStatus(status);
+end
+
+rule "FacilityPricingOption_Save"
+  agenda-group "SAVE" 
+  when
+    req:Request()
+    f:Facility() from req.allFacilities
+  then
+    List<PricingOption> additionalOptionList = f.getAdditionalOptions();
+    for(PricingOption priceOption : additionalOptionList){
+      if(priceOption.getStructure().getSelected()){
+        f.setPricingOption(priceOption);
+        break;
+      }
+    }
+end
+
+rule "SyndicationDefaults"
+  agenda-group "NEW" 
+  when
+    #conditions
+        syn:Syndication()
+  then 
+    #actions
+    EntityService es = new EntityService();
+
+    AttributeChoice synRole = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","SYNDICATION_ROLE_PARTICIPANT");
+    syn.setSyndicationRole(synRole);
+    
+    
+end
+
+
+rule "FeeDefaults"
+  agenda-group "NEW" 
+  when
+    #conditions
+        fee:Fee()
+  then 
+    #actions
+    EntityService es = new EntityService();
+
+    AttributeChoice feeAlloc = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","FEE_DISTRIBUTION_PERCENT");
+    fee.setFeeDistribution(feeAlloc);
+    
+    
+end
+
+rule "SetupFeeAllocation_OnFeeTypechange"
+  when
+    #conditions
+        changeModelEvent:Fee.ChangeModelEvent(property == "feeType")        
+  then 
+    #actions
+    if (appContext.getNamedContext().get("root_allFacilities") != null && appContext.getNamedContext().get("root_allFacilities") instanceof Facility) {
+      Facility f = (Facility) appContext.getNamedContext().get("root_allFacilities");
+      f.setupFeeAllocation();
+    }
+end
+
+rule "SetupFeeAllocation_OnFeeAmtchange"
+  when
+    #conditions
+        changeModelEvent:Fee.ChangeModelEvent(property == "feeAmt")        
+  then 
+    #actions
+    if (appContext.getNamedContext().get("root_allFacilities") != null && appContext.getNamedContext().get("root_allFacilities") instanceof Facility) {
+      Facility f = (Facility) appContext.getNamedContext().get("root_allFacilities");
+      f.setupFeeAllocation();
+    }
+end
+
+rule "SetupFeeAllocation_OnFeeFrequencychange"
+  when
+    #conditions
+        changeModelEvent:Fee.ChangeModelEvent(property == "feeFrequency")        
+  then 
+    #actions
+    if (appContext.getNamedContext().get("root_allFacilities") != null && appContext.getNamedContext().get("root_allFacilities") instanceof Facility) {
+      Facility f = (Facility) appContext.getNamedContext().get("root_allFacilities");
+      f.setupFeeAllocation();
+    }
+end
+
+rule "SetupFeeAllocation_OnSyndicationAmountChange"
+  when
+    #conditions
+        changeModelEvent:Syndication.ChangeModelEvent(property == "syndicationAmount")        
+  then 
+    Syndication syndication = (Syndication) changeModelEvent.getEntity();
+    Tranche tranche = syndication.getTranche();
+    if (tranche != null) {
+      if (tranche.getSyndications() == null || !tranche.getSyndications().contains(syndication)) {
+        tranche.addToSyndications(syndication);
+        Facility f = tranche.getFacility();
+        
+        if (f.getFacilityTranches() == null || !f.getFacilityTranches().contains(tranche)) {
+          f.addToFacilityTranches(tranche);
+        }
+        
+        f.setupFeeAllocation();
+            
+      }
+      
+    } 
+end
+
+rule "SetFeeDefaultsOnFacilityTypeChange"
+  when
+    #conditions
+        changeModelEvent:Facility.ChangeModelEvent(property == "facilityType" , newValue != null)
+  then 
+    #actions
+    AttributeChoice facilityType = (AttributeChoice) changeModelEvent.getNewValue();
+    Facility f = (Facility) changeModelEvent.getEntity();
+    if(facilityType != null && facilityType.getKey() != null && facilityType.getKey().equals("CREDIT_FACILITY_TYPE_LINE_OF_CREDIT")){
+    	if(f.getPricingOption() != null && f.getPricingOption().getStructure() != null && f.getPricingOption().getStructure().getFees() != null && f.getAdditionalOptions() != null){
+    		f.getPricingOption().getStructure().getFees().clear();
+    		f.getAdditionalOptions().clear();
+    		
+    		PricingOption pricing = new PricingOption(); 
+		    Structure structure = new Structure();
+		    structure.setRateType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.RATE_TYPE_FLOATING_KEY));
+		    structure.setPricingIndex((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.PRICING_INDICES_WS_PRIME_KEY));
+		    structure.setBasis((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.FACILITY_TYPE_BASIS_ACTUAL_360_KEY));
+		    //structure.setIndexValue(new BigDecimal(3.25));
+		    structure.setMargin(new BigDecimal(10.00));
+		    //structure.setCustomerRate(new BigDecimal(13.25));
+		    pricing.setStructure(structure);
+		    pricing.setFacility(f);
+		    f.getAdditionalOptions().add(pricing);
+		    if (f.getExternalIdentifier() != null)
+		    {
+				pricing.setExternalRefId(f.getExternalIdentifier()+"-"+(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.RATE_TYPE_FLOATING_KEY));
+		    }
+		    
+		    //FeePolicy feePolicy1 = (FeePolicy)LookupService.getResult("FeePolicy.byName", "name", "Renewal Fee");
+			//if(feePolicy1 != null && feePolicy1.getEffectiveDefaultFeePct() != null && feePolicy1.getEffectiveFromDate() != null){
+			//	User user = (User)appContext.getUser();
+		   	//	structure.setRenewalFee(Fee.calcEffectiveFee(feePolicy1,user));
+		   	//}else if(feePolicy1 != null){
+		   	//	structure.setRenewalFee(feePolicy1.getDefaultPct());
+		   	//}
+		    
+		    PricingOption fixedPricing = new PricingOption(); 
+			Structure fixedStructure = new Structure();
+			fixedStructure.setRateType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.RATE_TYPE_FIXED_KEY));
+			fixedStructure.setBasis((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.FACILITY_TYPE_BASIS_ACTUAL_360_KEY));
+			FeePolicy ulr = (FeePolicy) LookupService.getResult("FeePolicy.byName", "name","Unused Line Rate");
+			if(ulr != null){
+		   		fixedStructure.setInterestRate(ulr.getDefaultPct());
+		   	}
+			//fixedStructure.setInterestRate(new BigDecimal(3.5));
+			fixedPricing.setStructure(fixedStructure);
+			fixedPricing.setFacility(f);
+			f.getAdditionalOptions().add(fixedPricing);
+		    if (f.getExternalIdentifier() != null)
+		    {
+				fixedPricing.setExternalRefId(f.getExternalIdentifier()+"-"+(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.RATE_TYPE_FIXED_KEY));
+		    }
+		    
+		    //if(feePolicy1 != null && feePolicy1.getEffectiveDefaultFeePct() != null && feePolicy1.getEffectiveFromDate() != null){
+			//	User user = (User)appContext.getUser();
+		   	//	fixedStructure.setRenewalFee(Fee.calcEffectiveFee(feePolicy1,user));
+		   	//}else if(feePolicy1 != null){
+		   	//	fixedStructure.setRenewalFee(feePolicy1.getDefaultPct());
+		   	//}
+		    
+		    Fee fee = new Fee();
+		    FeePolicy feePolicy =( FeePolicy) LookupService.getResult("FeePolicy.byName", "name","Origination Fee");
+		   	
+	   		if(feePolicy !=null && feePolicy.getDefaultPct() !=null){
+	   			fee.setFeePct(feePolicy.getDefaultPct());
+	   		}
+			
+			fee.setFeeFrequency(feePolicy.getFeeFrequency());
+			fee.setCalculationMethod(feePolicy.getCalculationMethod());
+			AttributeChoice feeBasis =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.FEE_PCT_BASIS_APPROVED_AMOUNT_KEY);
+			fee.setFeePctBasis(feeBasis);
+			fee.setFeePolicy(feePolicy);
+			AttributeChoice feeDistribution =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.FEE_DISTRIBUTION_PERCENT_KEY);
+			fee.setFeeDistribution(feeDistribution);
+			fee.setStructure(f.getPricingOption().getStructure());
+		    f.getPricingOption().getStructure().getFees().add(fee);
+		    fee.setEndDttm(feePolicy.getEffectiveToDate());
+		    if (f.getExternalIdentifier() != null)
+		    {
+				fee.setExternalRefId(f.getExternalIdentifier()+"-"+fee.getFeePolicy().getName());
+		    }
+		    
+		    
+		    Fee drawFee = new Fee();
+		    feePolicy =( FeePolicy) LookupService.getResult("FeePolicy.byName", "name","Draw Fee");
+		   	
+	   		if(feePolicy !=null && feePolicy.getDefaultPct() !=null){
+	   			drawFee.setFeePct(feePolicy.getDefaultPct());
+	   		}
+
+			drawFee.setFeeFrequency(feePolicy.getFeeFrequency());
+			drawFee.setCalculationMethod(feePolicy.getCalculationMethod());
+			feeBasis =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.FEE_PCT_BASIS_DRAWDOWN_AMOUNT_KEY);
+			drawFee.setFeePctBasis(feeBasis);
+			drawFee.setFeePolicy(feePolicy);
+			feeDistribution =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.FEE_DISTRIBUTION_PERCENT_KEY);
+			drawFee.setFeeDistribution(feeDistribution);
+			drawFee.setStructure(f.getPricingOption().getStructure());
+		    f.getPricingOption().getStructure().getFees().add(drawFee);
+		    drawFee.setEndDttm(feePolicy.getEffectiveToDate());
+		    if (f.getExternalIdentifier() != null)
+		    {
+				drawFee.setExternalRefId(f.getExternalIdentifier()+"-"+drawFee.getFeePolicy().getName());
+		    }
+		    
+		    
+		    Fee renewalFee = new Fee();
+		    feePolicy =( FeePolicy) LookupService.getResult("FeePolicy.byName", "name","Renewal Fee");
+		   	
+	   		if(feePolicy !=null && feePolicy.getDefaultPct() !=null){
+	   			renewalFee.setFeePct(feePolicy.getDefaultPct());
+	   		}
+	   		
+			renewalFee.setFeeFrequency(feePolicy.getFeeFrequency());
+			renewalFee.setCalculationMethod(feePolicy.getCalculationMethod());
+			
+			feeDistribution =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","FEE_DISTRIBUTION_PERCENT");
+			AttributeChoice feePctBasis = (AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","FEE_PCT_BASIS_APPROVED_AMOUNT");
+			renewalFee.setFeePctBasis(feePctBasis);
+			renewalFee.setFeeDistribution(feeDistribution);
+			renewalFee.setStructure(f.getPricingOption().getStructure());
+		    f.getPricingOption().getStructure().getFees().add(renewalFee);
+		    renewalFee.setEndDttm(feePolicy.getEffectiveToDate());
+		    renewalFee.setFeePolicy(feePolicy);
+		    if (f.getExternalIdentifier() != null)
+		    {
+				renewalFee.setExternalRefId(f.getExternalIdentifier()+"-"+renewalFee.getFeePolicy().getName());
+		    }
+		}
+    }else if(f.getPricingOption() != null && f.getPricingOption().getStructure() != null && f.getPricingOption().getStructure().getFees() != null && f.getAdditionalOptions() != null){
+    	f.getPricingOption().getStructure().getFees().clear();
+    	f.getAdditionalOptions().clear();
+    }
+end
+
+
+rule "SetupDecisionDateOnFacilityRecomChange"
+  when
+    #conditions
+        changeModelEvent:Facility.ChangeModelEvent(property == "facilityDecision", newValue != null)        
+  then 
+    #actions
+    Facility facility = (Facility)changeModelEvent.getEntity();
+    facility.setFacilityDecisionDate(new Date());
+end
+
+rule "ResetRenewalDateOnRenewalApprChange"
+  when
+    #conditions
+        changeModelEvent:FacilityContract.ChangeModelEvent(property == "renewalApprovalDate", newValue == null)        
+  then 
+  	Facility facility = (Facility) appContext.getNamedContext().get("root_allFacilities");
+    if(facility != null){
+    	facility.setRenewalDate(null);
+    	facility.getPricingOption().getStructure().setMaturityDate(facility.getMaturityDtTemp());
+    	facility.setRenewalApprDtUpdated(false);
+    }
+end
+
+rule "SetMaturityDateOnRenewalApprChange"
+  when
+    #conditions
+        changeModelEvent:FacilityContract.ChangeModelEvent(property == "renewalApprovalDate", newValue != null)        
+  then 
+    #actions
+    Facility facility = (Facility) appContext.getNamedContext().get("root_allFacilities");
+    if(facility != null){
+    	Date renewalApprDt = (Date) changeModelEvent.getNewValue();
+    	Date maturityDt = facility.getPricingOption().getStructure().getMaturityDate();
+		if(maturityDt != null && maturityDt.after(renewalApprDt) && !facility.getRenewalApprDtUpdated()){
+			facility.setRenewalDate(Utility.addDaysToDate(maturityDt, 1));
+			facility.setMaturityDtTemp(facility.getPricingOption().getStructure().getMaturityDate());
+			if(facility.getApprovedTerm() != null){
+				facility.getPricingOption().getStructure().setMaturityDate(Utility.addMonthsToDate(maturityDt, facility.getApprovedTerm()));
+			}else{
+				facility.getPricingOption().getStructure().setMaturityDate(Utility.addMonthsToDate(maturityDt, 12));
+			}
+			facility.setRenewalApprDtUpdated(true);
+		}
+    }
+end
+
+rule "SetIUFReserveAmountOnChangeOfApprovedLoanAmt"
+  when
+    #conditions
+        changeModelEvent:Facility.ChangeModelEvent(property == "approvedLoanAmt", newValue != null)        
+  then 
+    #actions
+    Facility facility = (Facility) changeModelEvent.getEntity();
+    if(facility != null){
+    	BigDecimal reserveUtilization = BigDecimal.ZERO;
+    	BigDecimal approvedLoanAmt = facility.getApprovedLoanAmt();
+    	
+    	BigDecimal unusedLineFeeRate = BigDecimal.ZERO;
+    	BigDecimal interestRate = BigDecimal.ZERO;
+    	BigDecimal iufReserveAmount = BigDecimal.ZERO;
+    	
+    	//System.out.println("=====================SetIUFReserveAmountOnChangeOfApprovedLoanAmt=================");
+    	
+    	if(facility.getPricingOption() !=null && facility.getPricingOption().getStructure() !=null && facility.getPricingOption().getStructure().getReserveUtilization() !=null){
+    		reserveUtilization = facility.getPricingOption().getStructure().getReserveUtilization();
+    	}
+    	if(facility.getAdditionalOptions() !=null){
+    		List<PricingOption> pricingOptions = facility.getAdditionalOptions();
+    		for(PricingOption pricingOption : pricingOptions){
+    			if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getCustomerRate() !=null && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FLOATING".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		interestRate = pricingOption.getStructure().getCustomerRate();
+		    	}
+		    	
+		    	if (pricingOption !=null && pricingOption.getStructure() !=null && pricingOption.getStructure().getInterestRate() !=null  && pricingOption.getStructure().getRateType() !=null && "RATE_TYPE_FIXED".equals(pricingOption.getStructure().getRateType().getKey())){
+		    		unusedLineFeeRate = pricingOption.getStructure().getInterestRate();
+		    	}
+    		}
+    	}
+    	
+    	if(approvedLoanAmt !=null && interestRate !=null && unusedLineFeeRate !=null && facility.getPricingOption() !=null && facility.getPricingOption().getStructure() !=null){
+    		
+    		
+    		BigDecimal reserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(reserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal reserveUtilizationMulApprovedLoanAmtMulInterestRate = Utility.multiply(reserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(interestRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			BigDecimal oneSubReserveUtilization = Utility.subtract(new BigDecimal("100"),reserveUtilization,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmt = Utility.multiply(Utility.divide(oneSubReserveUtilization,new BigDecimal("100"),4),approvedLoanAmt,4);
+			BigDecimal oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate = Utility.multiply(oneSubReserveUtilizationMulApprovedLoanAmt,Utility.divide(Utility.divide(unusedLineFeeRate,new BigDecimal("100"),4),new BigDecimal("12"),4),4);
+			iufReserveAmount = Utility.add(reserveUtilizationMulApprovedLoanAmtMulInterestRate,oneSubReserveUtilizationMulApprovedLoanAmtMulUnusedLineFeeRate,4);
+    		facility.getPricingOption().getStructure().setReserveReq(iufReserveAmount);
+ 
+    	}
+    	
+    }
+end

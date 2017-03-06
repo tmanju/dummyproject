@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.thirdpillar.loanpath</groupId>
+    <artifactId>loanpath-internex-web-test</artifactId>
+    <version>5.1-SNAPSHOT</version>
+    <name>Loanpath Automated Webapp Testing</name>
+    <properties>
+        <filterdir>${basedir}/src/main/filters</filterdir>
+        <filter>chrome</filter>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.25.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- 
+        <dependency>
+            <groupId>net.sf.grinder</groupId>
+            <artifactId>grinder</artifactId>
+            <version>3.8</version>
+        </dependency>
+         -->
+        <dependency>
+            <groupId>junitperf</groupId>
+            <artifactId>junitperf</artifactId>
+            <version>1.8</version>
+            <type>jar</type>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+    <build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- best lock down version of the plugin too -->
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+		</plugins>    
+        <filters>
+            <filter>${filterdir}/${filter}.properties</filter>
+        </filters>  
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>test.properties</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>test.properties</exclude>
+                </excludes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+            
+    </build>
+
+</project>

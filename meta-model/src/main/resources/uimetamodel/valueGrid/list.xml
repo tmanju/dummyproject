@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="valueGrid" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<data-table name="valueGridList" row="valueGrid" label="Value Grids">
+		<columns>
+			<column name="valueGrid.name" label="Name" />
+			<column name="valueGrid.effectiveFromDate" label="Effective From" />
+			<column name="valueGrid.effectiveToDate" label="Effective To" />
+			<column name="valueGrid.metaInfo.lastModifiedAt" label="Updated At" />
+			<column name="valueGrid.metaInfo.lastModifiedByUser" label="Updated By" />
+		</columns>
+	</data-table>	
+	<beans>
+		<bean name="valueGridList" type="com.thirdpillar.codify.loanpath.model.ValueGrid" />
+	</beans>
+</canvas>
+

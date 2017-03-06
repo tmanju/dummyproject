@@ -1,0 +1,97 @@
+--
+-- Defines users in the schema.
+--
+
+set feedback on 
+set echo off
+set verify off
+
+declare
+v_tbsname number := 0;
+
+begin
+
+select count(*)  into v_tbsname from dba_tablespaces where tablespace_name = upper('&4');
+
+if v_tbsname = 0 then 
+execute immediate 'create tablespace &4';
+end if;
+
+end;
+/
+
+
+declare
+v_idxname number := 0;
+
+begin
+
+select count(*)  into v_idxname from dba_tablespaces where tablespace_name = upper('&5');
+
+if v_idxname = 0 then 
+execute immediate 'create tablespace &5';
+end if;
+
+end;
+/
+
+declare
+v_user number := 0;
+
+begin
+
+select count(*)  into v_user from all_users where username = upper('&2');
+
+if v_user > 0 then 
+execute immediate 'drop user &2 cascade';
+end if;
+
+end;
+/
+
+
+PROMPT  CREATE USER &2 PROFILE &6  IDENTIFIED BY &3 DEFAULT TABLESPACE &4 TEMPORARY TABLESPACE "TEMP" QUOTA UNLIMITED ON &4  
+
+
+CREATE USER &2 PROFILE  &6 IDENTIFIED BY &3 DEFAULT TABLESPACE &4 TEMPORARY TABLESPACE "TEMP" QUOTA UNLIMITED ON &4  
+ACCOUNT UNLOCK
+/
+
+GRANT CONNECT, CTXAPP, RESOURCE TO &2
+/
+
+GRANT SELECT ANY TABLE TO &2
+/
+
+GRANT UNLIMITED TABLESPACE TO &2
+/
+
+GRANT EXECUTE ANY PROCEDURE TO &2
+/
+
+GRANT UPDATE ANY TABLE TO &2
+/
+
+GRANT INSERT ANY TABLE TO &2
+/
+
+GRANT CREATE PROCEDURE TO &2
+/
+
+GRANT CREATE ANY TRIGGER TO &2
+/
+
+GRANT SELECT ANY DICTIONARY TO &2
+/
+
+GRANT SELECT ON SYS.DBA_PENDING_TRANSACTIONS TO &2
+/
+
+GRANT SELECT ON SYS.PENDING_TRANS$ TO &2
+/
+
+GRANT SELECT ON SYS.DBA_2PC_PENDING TO &2
+/
+
+GRANT EXECUTE ON SYS.DBMS_SYSTEM TO &2
+/

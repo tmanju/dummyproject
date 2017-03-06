@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+		<ScrAttributeSeed>
+		<name>Credit Score</name>
+		<description>Credit Score</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_FACILITY</key>
+		</applicability>
+		<key>FAC_ATTR_CREDIT_SCORE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>creditScore</ognl>
+	</ScrAttributeSeed>
+	<ScrAttributeSeed>
+		<name>Credit Score</name>
+		<description>Credit Score</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<key>APPLICTION_ATTR_CREDIT_SCORE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>
+		<ognl>testOgnlcreditscore</ognl>
+	</ScrAttributeSeed>
+	<ScrAttributeSeed>
+		<name>Requested Amount</name>
+		<description>Requested Amount</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<key>APPLICTION_ATTR_REQUESTED_AMOUNT</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>
+		<ognl>testOgnlrequestedamount</ognl>
+	</ScrAttributeSeed>
+	<!--RUle -->
+	<ScrRcmRuleSeed>
+		<name>Credit Score</name>
+		<description>Credit Score</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_FACILITY</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_JUDGMENTAL_REVIEW</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_REVIEW</key>
+		</recommendation>
+		<key>FAC_RULE_CREDIT_SCORE</key>
+		<ognl>testOgnlRcmRule</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>AVERAGE_FICO_CUTOFF_1</paramKey>
+				<paramName>FICO Score is &lt; x</paramName>
+				<paramValue>700</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+	</ScrRcmRuleSeed>	
+	<ScrRcmRuleSeed>
+		<name>Requested Amount</name>
+		<description>Requested Amount</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_JUDGMENTAL_REVIEW</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_REVIEW</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_4</key>
+		</recommendationLevel>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_CO1</key>
+		</exceptionAuthority>
+		<key>APPLICATION_RULE_REQUESTED_AMOUNT</key>
+		<ognl>testOgnlRcmRule</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>FAC_RULE_REQUESTED_AMOUNT</paramKey>
+				<paramName>Requested Amount is : &gt; x</paramName>
+				<paramValue>250000</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+	</ScrRcmRuleSeed>
+	</list>
+</mod:sr.addEntityRequest>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="feePolicy" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<data-table name="feePolicyList" row="feePolicyRow" sortBy="feePolicyRow.name"
+		sortOrder="ascending" label="Fee Search Results">
+		<columns>
+			<column name="feePolicyRow.name" label="Fee Name" />
+			<column name="feePolicyRow.refNumber" label="Fee Number" />
+		<!-- 	<column name="feePolicyRow.afsFeeType.afsValue" label="Backoffice Fee Name" />	 -->
+			<column name="feePolicyRow.defaultPct" label="Default %" />
+			<column name="feePolicyRow.ou" label="OU" />
+			<column name="feePolicyRow.sbu" label="SBU" />
+			<column name="feePolicyRow.effectiveFromDate" label="Effective Date" />
+			<!-- <column name="feePolicyRow.effectiveToDate" label="Expiration Date" /> -->
+		</columns>
+	</data-table>	
+	<beans>
+		<bean name="feePolicyList" type="com.thirdpillar.codify.loanpath.model.FeePolicy" />
+	</beans>
+</canvas>
+

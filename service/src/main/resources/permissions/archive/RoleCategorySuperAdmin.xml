@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	
+	<permission  name="ROLE_CATEGORY_SUPER_ADMINISTRATOR" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+
+		<entity name="DocumentCatalogItem">
+			<default>true</default>
+			<create>false</create>
+			<read>false</read>
+			<update>false</update>
+		</entity>
+	</permission>
+	
+</permissions>

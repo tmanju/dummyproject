@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	<permission name="BusinessRules" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+		
+		<entity name="Relationship">
+			<default>true</default>
+			<fields>
+				<field name="allRelationshipParties.customer">
+					<default>true</default>
+					<update>root_allRelationshipParties.id == null</update>
+				</field>
+				<field name="allRelationshipParties.partyRole">
+					<default>true</default>
+					<update>root_allRelationshipParties.id == null</update>
+				</field>
+				<field name="allRelationshipParties.parentRelationshipParty">
+					<default>true</default>
+					<update>root_allRelationshipParties.id == null</update>
+				</field>
+			</fields>
+		</entity>
+		
+		<entity name="FacilityRelationshipParty">	
+			<default>true</default>
+			<fields>
+				<field name="relationshipParty">
+					<default>true</default>
+					<update>thiz.id == null</update>
+				</field>			
+				<field name="aditionalGurantor">
+					<default>thiz.relationshipParty != null &amp;&amp; thiz.relationshipParty.partyRole != null &amp;&amp; thiz.relationshipParty.partyRole != null &amp;&amp; (thiz.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_GUARANTOR')</default>
+				</field>
+			</fields>
+		</entity>
+			
+		<entity name="Customer">
+			<default>true</default>
+			<fields>
+				<field name="partyDetail.legalEntityType">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.organizationStartDttm">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.description">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.numOfEmployees">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.yrsPrvExpNonCitizen">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.yrsMoveToUs">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<!--<field name="partyDetail.practiceHeartbeat">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>-->
+				<field name="partyDetail.yrCompletedResidency">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.doctorAssoSpecial">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.doctorAssoSector">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.doctorHospPriv">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.firstName">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.lastName">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.middleName">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.legalName">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.suffix">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.taxIdValue">
+					<default>true</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.taxIDNumber">
+					<default>true</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.dbas">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.countryOfCitizenship">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.countryResidence">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.usCitizen">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.nationality">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<!-- <field name="partyDetail.insStatus">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field> -->
+				<field name="partyDetail.birthDttm">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.dobVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.dobVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.dobVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<!--<field name="partyDetail.emailAddress">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>-->
+				<field name="partyDetail.mobileNumber">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.homePhone">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<!-- <field name="partyDetail.workPhone">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.otherPhone">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field> -->
+				<field name="partyDetail.graduatedFrom">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.licensedSince">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.licenseExpDate">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.licenseNumber">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.licenseRenewalDate">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.licenseStatus">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.title">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.disclosureMethod">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.disclosuresAccepted">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.disclosuresDate">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.disclosuresVerifiedBy">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<!--<field name="partyDetail.unmaskedTaxIDNum">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>-->
+				<field name="partyDetail.partyDetailAmlInfo.taxIdVerificationMethod">
+					<default>true</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.amlVerificationDate">
+					<default>true</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.countryOfCitizenshipDer">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.countryResidenceDer">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.amlCipDate">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.amlCipNumber">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.cipIndicator">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.sourceOfIncome">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.dobVerficationMethod">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.dobVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.dobVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.dobVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.dobVerificationDate">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.dobVerifiedBy">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.contactVerificationMethod">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.contactVerifiedBy">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.occupation">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.occupationDescription">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.countryPrimaryOps">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.evidenceOfLegalStatus">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.legalVerifiedBy">
+					<default>true</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.legalVerified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.partyDetailAmlInfo.addressVerificationMethod">
+					<default>true</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.physicianSpeciality">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.practiceInformation.officeSize">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.yrsRemainingOnLease">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.noOfOperatoriesEqvpd">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.noOfOperatoriesEqvpdPsd">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.noOfOperatoriesPlmd">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.monthlyOprtryRvnu">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.crntMonthlyRent">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.proposedRent">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.noOfActivePatients">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.estAvgFeePerPatient">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.noOfnewPatientsPerMth">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.sellerOwnedCRE">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.conditionOfEquipment">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.ageOfEqupmentYears">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.equipmentUpgradesNeeded">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.lastTaxYearRevenue">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.practiceInformation.totalRevenueConsidered">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.yrGraduatedDentalSchool">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.yrCompletedResidency">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.typeOfSpecialist">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.dateInitiallyLicensed">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL' </default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.borrowerLicenseMoreyears">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.licenseClear">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.borrowerOwnedPractice">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.borrowerAssocPsa">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.ifYesHowLong">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.borrowerPurchasePsa">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.reasonForSelling">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.transitionPrdWithSeller">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.sellerTransitonComp">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.partyBackgroundInfo.nonCompeteTerms">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<!--<field name="partyDetail.partyDetailAmlInfo.evidenceOfLegalStatus">
+					<default>thiz.partyDetail.partyDetailType != null &amp;&amp; thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>	
+				<field name="partyDetail.businessType">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.businessDescription">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.sectorOfOperations">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.legalEntityType">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.otherLegalEntityType">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.specialIndustryType">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>-->
+				<field name="partyDetail.organizationStartDttm">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.currentManagementStartDttm">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.stateIncorporated">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.customerWebsiteAddress">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<!--
+				<field name="partyDetail.numOfEmployees">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field> -->
+				<field name="partyDetail.sicCodeId">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.naicsCodeId">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.speciality">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+					<update>!(thiz.partyDetail.partyDetailAmlInfo !=null &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified!=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key !=null  &amp;&amp; thiz.partyDetail.partyDetailAmlInfo.verified.key == 'YES_OR_NO_YES')</update>
+				</field>
+				<field name="partyDetail.bankruptcy.statusFlag">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.previousAnnualRevenue">
+					<default>thiz.partyDetail.partyDetailType == null || thiz.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				</field>
+				<field name="partyDetail.riskRatings">
+					<default>true</default>
+					<create>thiz.partyDetail.riskRatings.size() == 0</create>
+				</field>
+				<!--<field name="partyDetail.extIdentifiers.expirationDate">
+					<default>root_partyDetail_extIdentifiers != null &amp;&amp; root_partyDetail_extIdentifiers.extIdentifierType != null &amp;&amp; root_partyDetail_extIdentifiers.extIdentifierType.key != 'EXT_IDENTIFIER_TYPE_DUNS_NUMBER'</default>				
+					
+				</field>
+				
+				-->
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.dueAmountUpto90Days">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_ACCOUNTS_RECEIVABLE'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.amountAfter90Days">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_ACCOUNTS_RECEIVABLE'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.marketableSecurities.tickerSymbol">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_MARKETABLE_SECURITY'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.marketableSecurities.numOfUnits">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_MARKETABLE_SECURITY'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.marketableSecurities.exchangeName">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_MARKETABLE_SECURITY'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.propertyType">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.yearBuilt">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.lotSize">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.coveredArea">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.renovationReqdFlag">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.renovationCost">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.environConcernDescr">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.environConcernFlag">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.undergroundStorageTankFlag">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.asbestosPresenceFlag">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.chemicalsStoredOrUsedFlag">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.dateCoopCondoEstablished">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.realEstates.propertyType != null 
+						&amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING' 
+						&amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.realEstates.propertyType.key == 'PROPERTY_TYPE_CO_OP_CONDO'
+					</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.numOfUnits">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.realEstates.propertyType != null 
+						&amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING' 
+						&amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.realEstates.propertyType.key == 'PROPERTY_TYPE_CO_OP_CONDO'
+					</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.realEstates.numOfCoopShares">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.realEstates.propertyType != null
+						&amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'					
+						&amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.realEstates.propertyType.key == 'PROPERTY_TYPE_CO_OP_CONDO'
+					</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.unitNumber">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.leaseEndDate">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.unitArea">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.tenantContactInfo.firstName">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.unitNumber">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.leaseStartDate">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.leaseEndDate">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.unitArea">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyOwnedAssets.ownedAsset.propertyOccupancies.tenantContactInfo.lastName">
+					<default>root_partyDetail_partyOwnedAssets.ownedAsset.assetType != null &amp;&amp; root_partyDetail_partyOwnedAssets.ownedAsset.assetType.key == 'ASSET_TYPE_REAL_ESTATE_HOLDING'</default>
+				</field>
+				<field name="partyDetail.partyLiabilities.liability.lien.lienPosition">
+					<default>root_partyDetail_partyLiabilities.liability.liabilityType != null &amp;&amp; root_partyDetail_partyLiabilities.liability.liabilityType.key == 'LIABILITY_TYPE_LIEN'</default>
+				</field>
+				<field name="partyDetail.partyLiabilities.liability.lien.notes">
+					<default>root_partyDetail_partyLiabilities.liability.liabilityType != null &amp;&amp; root_partyDetail_partyLiabilities.liability.liabilityType.key == 'LIABILITY_TYPE_LIEN'</default>
+				</field>
+				<field name="partyDetail.partyLiabilities.liability.lien.term">
+					<default>root_partyDetail_partyLiabilities.liability.liabilityType != null &amp;&amp; root_partyDetail_partyLiabilities.liability.liabilityType.key == 'LIABILITY_TYPE_LIEN'</default>
+				</field>
+				<field name="partyDetail.partyLiabilities.liability.lien.startDttm">
+					<default>root_partyDetail_partyLiabilities.liability.liabilityType != null &amp;&amp; root_partyDetail_partyLiabilities.liability.liabilityType.key == 'LIABILITY_TYPE_LIEN'</default>
+				</field>
+				<field name="partyDetail.partyLiabilities.liability.lien.balloonPaymentDate">
+					<default>root_partyDetail_partyLiabilities.liability.liabilityType != null &amp;&amp; root_partyDetail_partyLiabilities.liability.liabilityType.key == 'LIABILITY_TYPE_LIEN'</default>
+				</field>
+				<field name="partyDetail.partyLiabilities.liability.lien.balloonPaymentAmt">
+					<default>root_partyDetail_partyLiabilities.liability.liabilityType != null &amp;&amp; root_partyDetail_partyLiabilities.liability.liabilityType.key == 'LIABILITY_TYPE_LIEN'</default>
+				</field>
+				<field name="uccDebtors">
+					<default>true</default>
+					<create>false</create>
+					<update>false</update>
+					<delete>false</delete>
+				</field>
+				<field name="commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				
+				
+			</fields>
+		</entity>
+		<entity name="Facility">
+			<default>true</default>
+			<update>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.wfStatus.statusKey=='FACILITY_STATUS_WITHDRAWN' )</update>
+			<delete>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.wfStatus.statusKey=='FACILITY_STATUS_WITHDRAWN' )</delete>
+			<fields>
+				<field name="useOfFunds.appPurchasepriceDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appPurchasepriceDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appRealEstateDownPmtDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appRealEstateDownPmtDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appTenantImprovementsDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appTenantImprovementsDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appEquipmentDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appEquipmentDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appWorkingCapitalDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appWorkingCapitalDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appConsultingDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appConsultingDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appMarketingDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appMarketingDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appSuppliesMerchandiseDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appSuppliesMerchandiseDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appDebtConsolidationDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appDebtConsolidationDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appBapsPayoffDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appBapsPayoffDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appLoanAmountDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appLoanAmountDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appCapIntProjectPhaseDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appCapIntProjectPhaseDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appCapIntRepPhaseDer">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appCapIntRepPhaseDer &gt; 0 </default>
+				</field>
+				<field name="useOfFunds.appOther1Der">
+					<default>thiz.useOfFunds != null &amp;&amp; thiz.useOfFunds.appOther1Der &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source1TypeDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source1TypeDer != null </default>
+				</field>
+				<field name="sourcesOfFunds.source1AmountDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source1AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source2TypeDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source2TypeDer != null </default>
+				</field>
+				<field name="sourcesOfFunds.source2AmountDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source2AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source3TypeDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source3Type != null </default>
+				</field>
+				<field name="sourcesOfFunds.source3AmountDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source3AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.appTotalLoanRequestDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.appTotalLoanRequestDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source1TypeDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source1AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source1AmountDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source1AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source2TypeDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source2AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source2AmountDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source2AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.source3TypeDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source3AmountDer &gt; 0  </default>
+				</field>
+				<field name="sourcesOfFunds.source3AmountDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.source3AmountDer &gt; 0 </default>
+				</field>
+				<field name="sourcesOfFunds.appTotalLoanRequestDer">
+					<default>thiz.sourcesOfFunds != null &amp;&amp; thiz.sourcesOfFunds.appTotalLoanRequestDer &gt; 0 </default>
+				</field>
+			</fields>
+		</entity>
+		<entity name="Request">
+			<default>true</default>
+			<update>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.wfStatus.statusKey=='REQUEST_STATUS_APPROVED_FULLY_DISBURSED' || thiz.wfStatus.statusKey=='REQUEST_STATUS_NEW'  || thiz.wfStatus.statusKey=='REQUEST_STATUS_PENDING_SALES' || thiz.wfStatus.statusKey=='REQUEST_STATUS_PENDING_APPEAL_SALES' || thiz.wfStatus.statusKey=='REQUEST_STATUS_PENDING_NOIA' || thiz.wfStatus.statusKey=='REQUEST_STATUS_WITHDRAWN' || thiz.wfStatus.statusKey=='REQUEST_STATUS_PENDING_RETURN_TO_SALES'  )</update>
+			<fields>
+
+
+
+				<field name="approval.approvalLevels">
+					<default>true</default>
+					<create>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.inWfStatus('REQUEST_STATUS_PENDING_DECISION','REQUEST_STATUS_PENDING_APPEAL_DECISION','REQUEST_STATUS_APPROVED',
+													'REQUEST_STATUS_APPROVED_FUNDED','REQUEST_STATUS_DECLINED','REQUEST_STATUS_APPROVED_MODIFICATION'
+													)) </create>
+					<update>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.inWfStatus('REQUEST_STATUS_PENDING_DECISION','REQUEST_STATUS_PENDING_APPEAL_DECISION','REQUEST_STATUS_APPROVED',
+													'REQUEST_STATUS_APPROVED_FUNDED','REQUEST_STATUS_DECLINED','REQUEST_STATUS_APPROVED_MODIFICATION'
+													))</update>
+					<delete>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.inWfStatus('REQUEST_STATUS_PENDING_DECISION','REQUEST_STATUS_PENDING_APPEAL_DECISION','REQUEST_STATUS_APPROVED',
+													'REQUEST_STATUS_APPROVED_FUNDED','REQUEST_STATUS_DECLINED','REQUEST_STATUS_APPROVED_MODIFICATION'
+													))</delete>			
+				</field>
+				
+
+				<field name="approval.approvalLevels.approverList.decision">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				
+				<field name="approvalExpirationDate">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				<field name="applicationModType">
+					<default>true</default>
+					<update>false</update>
+				</field>
+
+				<field name="compliances.falseHit">
+					<default>true</default>
+					<update>!(root_compliances.trueHit !=null &amp;&amp; root_compliances.trueHit)</update>
+				</field>
+				<field name="compliances.trueHit">
+					<default>true</default>
+					<update>!(root_compliances.falseHit !=null &amp;&amp; root_compliances.falseHit)</update>
+				</field>
+				<field name="documentGroup.generatedDocuments">
+					<default>true</default>
+					<update>root_documentGroup_generatedDocuments != null &amp;&amp; (root_documentGroup_generatedDocuments.documentStatus.key != 'DOCUMENT_STATUS_ACCEPTED' &amp;&amp;  root_documentGroup_generatedDocuments.documentStatus.key != 'DOCUMENT_STATUS_DECLINED')</update>
+					<delete>root_documentGroup_generatedDocuments != null &amp;&amp; (root_documentGroup_generatedDocuments.documentStatus.key == 'DOCUMENT_STATUS_NEW' ||  root_documentGroup_generatedDocuments.documentStatus.key == 'DOCUMENT_STATUS_GENERATION_FAILED') </delete>
+				</field>
+				<field name="documentGroup.uploadedDocuments">
+					<default>true</default>
+					<update>root_documentGroup_uploadedDocuments != null &amp;&amp; (root_documentGroup_uploadedDocuments.documentStatus.key != 'DOCUMENT_STATUS_ACCEPTED' &amp;&amp;  root_documentGroup_uploadedDocuments.documentStatus.key != 'DOCUMENT_STATUS_DECLINED' &amp;&amp; root_documentGroup_uploadedDocuments.uploadedBy == null)</update>
+					<delete>root_documentGroup_uploadedDocuments != null &amp;&amp; (root_documentGroup_uploadedDocuments.documentStatus.key == 'DOCUMENT_STATUS_NEW' ||  root_documentGroup_uploadedDocuments.documentStatus.key == 'DOCUMENT_STATUS_PENDING_REVIEW') </delete>
+				</field>				
+				<field name="documentGroup.generatedDocuments.documentStatus">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				<field name="documentGroup.generatedDocuments.readOnly">
+					<default>true</default>
+					<update>!(root_documentGroup_generatedDocuments.esignatureRqd &amp;&amp; !root_documentGroup_generatedDocuments.wetSignature)</update>
+				</field>
+				<field name="documentGroup.generatedDocuments.requestLevel">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				<field name="documentGroup.generatedDocuments.associatedProducts">
+					<default>!(root_documentGroup_generatedDocuments.requestLevel)</default>
+				</field>
+				<field name="documentGroup.uploadedDocuments.documentStatus">
+					<default>true</default>
+					<update>root_documentGroup_uploadedDocuments.documentStatus!=null &amp;&amp; (root_documentGroup_uploadedDocuments.documentStatus.key!='DOCUMENT_STATUS_NEW' &amp;&amp;  root_documentGroup_uploadedDocuments.documentStatus.key!='DOCUMENT_STATUS_ARCHIVED') </update>
+				</field>
+				
+				
+				<field name="allFacilities.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field> 
+				<field name="commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="compliances.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="allRACSetEvaluations.racEvaluations.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="coaCommentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="approval.approvalLevels.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="approval.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="documentGroup.generatedDocuments.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="documentGroup.uploadedDocuments.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="documentGroup.commentGroup.comments">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+
+				<field name="coaFacilities.coasetDefinition.coaEvls">
+					<default>true</default>
+					<update>true</update>
+					<delete>false</delete>
+				</field>
+				<field name="coaFacilities.coasetDefinition.coaEvls.coaDefinition">
+					<update>root_coaFacilities_coasetDefinition_coaEvls.id == null</update>
+				</field>
+			</fields>
+		</entity>
+		<entity name="UCC">
+			<default>true</default>
+			<update>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.wfStatus.statusKey=='UCC_STATUS_SUBMITTED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILED' || thiz.wfStatus.statusKey=='UCC_STATUS_CANCELED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILING_ERROR' || thiz.wfStatus.statusKey=='UCC_STATUS_REJECTED')</update>
+			<delete>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.wfStatus.statusKey=='UCC_STATUS_SUBMITTED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILED' || thiz.wfStatus.statusKey=='UCC_STATUS_CANCELED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILING_ERROR' || thiz.wfStatus.statusKey=='UCC_STATUS_REJECTED')</delete>
+			<fields>
+				<field name="language">
+					<default>true</default>
+					<update>(isdef thiz) &amp;&amp; (thiz == null || thiz.collateralStatement == null || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_BLANKET_CUSTOM' || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_EQUIPMENT_CUSTOM' || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_A1_FIXTURE_FILING_CUSTOM' || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_CUSTOM')</update>
+				</field>
+			</fields>
+		</entity>
+		<entity name="UccSrch">
+			<default>true</default>
+			<update>(!(isdef thiz) || thiz==null || thiz.recordNo == null)</update>
+			<delete>(!(isdef thiz) || thiz==null || thiz.recordNo == null)</delete>
+			<fields>
+				<field name="searchKey">
+					<default>true</default>
+					<update>thiz.recordNo == null</update>
+				</field>
+				<field name="searchBy">
+					<default>true</default>
+					<update>thiz.recordNo == null</update>
+				</field>
+				<field name="location">
+					<default>true</default>
+					<update>thiz.recordNo == null</update>
+				</field>
+			</fields>
+		</entity>
+		<entity name="User">
+			<default>true</default>
+			<fields>
+				<field name="userSource">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				<field name="externalRefId">
+					<default>thiz.userSource != null &amp;&amp; thiz.userSource.key == 'USER_SOURCE_SAML'</default>
+				</field>
+				<field name="password">
+					<default>thiz.userSource != null &amp;&amp; thiz.userSource.key == 'USER_SOURCE_INTERNAL'</default>
+				</field>
+			</fields>
+		</entity>
+	
+		
+		
+	</permission>
+</permissions>

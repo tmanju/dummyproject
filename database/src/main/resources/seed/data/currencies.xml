@@ -1,0 +1,26 @@
+<list>
+	<currency>
+		<isoCode>USD</isoCode>
+		<name>USD</name>
+	</currency>
+	<currency>
+		<isoCode>EUR</isoCode>
+		<name>EUR</name>
+	</currency>
+	<currency>
+		<isoCode>GBP</isoCode>
+		<name>GBP</name>
+	</currency>
+	<currency>
+		<isoCode>INR</isoCode>
+		<name>INR</name>
+	</currency>
+	<currency>
+		<isoCode>AUD</isoCode>
+		<name>AUD</name>
+	</currency>
+	<currency>
+		<isoCode>CAD</isoCode>
+		<name>CAD</name>
+	</currency>
+</list>

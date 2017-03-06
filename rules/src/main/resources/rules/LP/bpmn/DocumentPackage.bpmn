@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DocumentPackage" />
+  <itemDefinition id="_packageInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_requestObjItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_33-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DocumentPackage" />
+  <itemDefinition id="_33-packageInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_33-requestObjItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_31-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DocumentPackage" />
+  <itemDefinition id="_31-packageInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_31-requestObjItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <process processType="Private" isExecutable="true" id="docGenClient" name="docGenClient" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentPackage" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Partner" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approval" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approver" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.WorkflowStatus" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.service.Context" />
+     <tns:import name="com.thirdpillar.foundation.service.ContextHolder" />
+     <tns:import name="java.util.Set" />
+     <tns:import name="java.util.HashSet" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="java.util.Calendar" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="packageInputMap" itemSubjectRef="_packageInputMapItem"/>
+    <property id="requestObj" itemSubjectRef="_requestObjItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <scriptTask id="_32" name="Prepare Document Package For Generation" scriptFormat="http://www.java.com/java" >
+      <script>DocumentPackage docPackage = (DocumentPackage) context.getVariable("contextEntity");
+// read request object to a local variable and set it to context
+Request requestLocalObj = docPackage.getApplication();
+
+HashMap&lt;String,Object&gt; docPackageInputLocalMap = new HashMap&lt;String,Object&gt;();
+docPackageInputLocalMap.put("contextEntity", requestLocalObj);
+docPackageInputLocalMap.put("docPackage", docPackage);
+
+context.setVariable("packageInputMap", docPackageInputLocalMap);
+context.setVariable("requestObj", requestLocalObj);
+ </script>
+    </scriptTask>
+    <task id="_33" name="Generate Document Package Integration Task" tns:taskName="IntegrationTask" >
+      <ioSpecification>
+        <dataInput id="_33_inputInput" name="input" />
+        <dataInput id="_33_entityInput" name="entity" />
+        <dataInput id="_33_ServiceNameInput" name="ServiceName" />
+        <inputSet>
+          <dataInputRefs>_33_inputInput</dataInputRefs>
+          <dataInputRefs>_33_entityInput</dataInputRefs>
+          <dataInputRefs>_33_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>packageInputMap</sourceRef>
+        <targetRef>_33_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>requestObj</sourceRef>
+        <targetRef>_33_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_33_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">docPackageClient</from>
+          <to xsi:type="tFormalExpression">_33_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_28" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_31" name="Save Document Package" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_31_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_31_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_31_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_31-_32" sourceRef="_31" targetRef="_32" />
+    <sequenceFlow id="_32-_33" sourceRef="_32" targetRef="_33" />
+    <sequenceFlow id="_33-_28" sourceRef="_33" targetRef="_28" />
+    <sequenceFlow id="_1-_31" sourceRef="_1" targetRef="_31" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="docGenClient" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="42" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="269" y="140" width="325" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="272" y="319" width="312" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="37" y="499" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="16" y="96" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_31-_32" >
+        <di:waypoint x="66" y="120" />
+        <di:waypoint x="431" y="164" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_33" >
+        <di:waypoint x="431" y="164" />
+        <di:waypoint x="428" y="343" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_33-_28" >
+        <di:waypoint x="428" y="343" />
+        <di:waypoint x="61" y="523" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_31" >
+        <di:waypoint x="66" y="40" />
+        <di:waypoint x="66" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

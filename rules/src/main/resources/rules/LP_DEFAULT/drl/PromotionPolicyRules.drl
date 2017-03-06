@@ -1,0 +1,43 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.model.*;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.LookupService;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.logDebug;
+import java.util.Calendar;
+import java.util.Date;
+
+rule "Default Promotion profile"
+    agenda-group "NEW"
+      when
+        #condition
+      promotion:PromotionPolicy() 
+      then
+      	Currency currency = (Currency)LookupService.getResult("Currency.byIsoCode", "isoCode","USD");
+        promotion.setCurrency(currency);
+      
+     	AttributeChoice promotionType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","PROMOTION_POLICY_TYPE_RATE_REDUCTION");
+        promotion.setPromotionType(promotionType);
+      	
+      	AttributeChoice ouType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","OPERATING_UNIT_OPERATING_UNIT");
+      	promotion.setOu(ouType);
+      	
+      	AttributeChoice sbuType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT");
+      	promotion.setSbu(sbuType);
+      	
+      	AttributeChoice rateType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","RATE_TYPE_FIXED");
+      	promotion.setRateType(rateType);
+      	
+      	promotion.setFormula("0.00");
+      	
+      	Date currentDate = new Date();
+       
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.MONTH, 6);
+
+        Date effectiveTo = calendar.getTime();
+        promotion.setEffectiveToDate(effectiveTo);
+        
+end

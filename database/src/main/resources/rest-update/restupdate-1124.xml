@@ -1,0 +1,14 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+		<role>
+			<description>Underwriter</description>
+			<name>Underwriter</name>
+			<roleCategory>
+				<key>ROLE_CATEGORY_CREDIT_OFFICER</key>
+			</roleCategory>
+			<permissionSet>
+				<name>Credit Officer</name>
+			</permissionSet>
+		</role>
+	</list>
+</mod:sr.addEntityRequest>

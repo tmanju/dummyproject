@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<global-registry>
+	<meta-model>meta-model/loanpath-piedmont-meta-model.xml</meta-model>
+	<plugins>
+		<meta-model>bc-meta-model/bc-meta-model.xml</meta-model>
+		<ui-meta-model>bc-uimetamodel</ui-meta-model>
+	</plugins>	
+	<lookup>
+		<entity>
+			<mapping>
+				<name>AttributeChoice</name>
+				<lookup-class>com.thirdpillar.codify.bc.lookup.AttributeChoiceLookup</lookup-class>
+			</mapping>		
+		</entity>		
+	</lookup>
+	<lookup>
+		<entity>
+			<mapping>
+				<name>WorkflowStatus</name>
+				<lookup-class>com.thirdpillar.codify.bc.lookup.WorkflowStatusLookup</lookup-class>
+			</mapping>		
+		</entity>		
+	</lookup>
+    <database>
+    	<abbreviations>bc-meta-model/db_abbrevations.properties</abbreviations>
+        <abbreviations>meta-model/app_db_abbrevations.properties</abbreviations>
+    </database>	
+	<table-prefix>LP_</table-prefix>
+	<web-resources>src\\main\\webapp</web-resources>
+	<fileImportSupported>true</fileImportSupported>
+	 <humanTaskEnabled>true</humanTaskEnabled>
+</global-registry>

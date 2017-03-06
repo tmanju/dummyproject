@@ -1,0 +1,20 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="PdLgdRating" ignore-annotations="false">
+      <map:class>       
+      </map:class>
+      <map:field name="rawModelLgdScore">            
+            <map:constraint annotation="javax.validation.constraints.Min">
+                <map:element name="value">0</map:element>
+            </map:constraint>
+            <map:constraint annotation="javax.validation.constraints.Max">
+                <map:element name="value">1</map:element>
+            </map:constraint>          
+        </map:field> 
+        <map:field name="lgdRatingDttm">
+		   <map:constraint annotation="javax.validation.constraints.Future">
+		     <map:message>{pdLgd.lgdRatingDttm.pattern}</map:message>
+		   </map:constraint>
+	  </map:field>       
+    </map:bean>
+</map:constraint-mappings>

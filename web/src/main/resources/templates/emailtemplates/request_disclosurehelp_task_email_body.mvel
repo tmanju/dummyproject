@@ -1,0 +1,1 @@
+Application @{entity.refNumber} Disclosures Support Request task. Click here to view the application. <a href="@{CONFIG.getString("webapp.server.baseurl")}/crud/request/edit.seam?canvasType=crud&eid=@{entity.id}">@{CONFIG.getString("webapp.server.baseurl")}</a>
