@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="capitalProvider" type="search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<section id="capitalProvider.search">
+		<field name="capitalProvider.customerAssociated" />
+		<field name="capitalProvider.pending" />
+		<field name="capitalProvider.outstandingPrincipal" />
+		<!--  <field name="capitalProvider.accValue" /> unsupported field type,  codify limitation-->
+		<field name="capitalProvider.participatingInMPsince" />
+		<field name="capitalProvider.noOfFundedDeal" />
+		<field name="capitalProvider.lastDealDt" />
+<!-- 		<field name="capitalProvider.maxConcentrationPercent" /> -->
+		<field name="capitalProvider.customerAssociated.exIndustry" />
+		<field name="capitalProvider.customerAssociated.region" />
+	</section>
+
+	<beans>
+		<bean name="capitalProvider" type="com.thirdpillar.codify.loanpath.model.CapitalProvider" />
+	</beans>
+</canvas>

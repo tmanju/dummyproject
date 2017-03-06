@@ -1,0 +1,7 @@
+Customer @{entity.customerName} exposure limits above threshold.<br><br>
+
+@if{entity.customerExposureLimits != null}
+	@foreach{customerExposureLimit : entity.customerExposureLimits}
+		Exposure Product Type: @{customerExposureLimit.productType.value} - Exposure Limit Amount : @{customerExposureLimit.exposureLimitAmt} - Exposure Amount : @{customerExposureLimit.exposureAmt}<br>
+	@end{}
+@end{}

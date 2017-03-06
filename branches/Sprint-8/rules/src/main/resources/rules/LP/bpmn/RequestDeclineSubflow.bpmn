@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_facilityStatusItem" structureRef="java.lang.String" />
+
+  <itemDefinition id="_17-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_17-clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_17-facilityStatusItem" structureRef="java.lang.String" />
+
+  <itemDefinition id="_11-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_11-clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_11-facilityStatusItem" structureRef="java.lang.String" />
+
+  <process processType="Private" isExecutable="true" id="DeclineRequestFlow" name="DeclineRequestFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.CoasetDefinition" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="clientId" itemSubjectRef="_clientIdItem"/>
+    <property id="facilityStatus" itemSubjectRef="_facilityStatusItem"/>
+
+    <!-- nodes -->
+    <task id="_17" name="Upload Reg B Letter" tns:taskName="RuleServiceTask" >
+      <ioSpecification>
+        <dataInput id="_17_entityInput" name="entity" />
+        <dataInput id="_17_agendagroup-nameInput" name="agendagroup-name" />
+        <inputSet>
+          <dataInputRefs>_17_entityInput</dataInputRefs>
+          <dataInputRefs>_17_agendagroup-nameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_17_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_agendagroup-nameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">UploadRegBLetterDeclineApp</from>
+          <to xsi:type="tFormalExpression">_17_agendagroup-nameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_16" name="End" />
+    <task id="_11" name="Declined" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_11_entityInput" name="entity" />
+        <dataInput id="_11_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_11_entityInput</dataInputRefs>
+          <dataInputRefs>_11_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_DECLINED</from>
+          <to xsi:type="tFormalExpression">_11_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <callActivity id="_12" name="Update to CRM SP" calledElement="UpdateIntegrationCallProcess" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("clientId","internex");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("clientId",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_12_contextEntityInput" name="contextEntity" />
+        <dataInput id="_12_clientIdInput" name="clientId" />
+        <inputSet>
+          <dataInputRefs>_12_contextEntityInput</dataInputRefs>
+          <dataInputRefs>_12_clientIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_12_contextEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>clientId</sourceRef>
+        <targetRef>_12_clientIdInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <callActivity id="_14" name="Product Status - Declined" calledElement="UpdateProductStatus" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus","FACILITY_STATUS_DECLINED");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_14_facilityStatusInput" name="facilityStatus" />
+        <dataInput id="_14_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_14_facilityStatusInput</dataInputRefs>
+          <dataInputRefs>_14_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>nextFacilityStatus</sourceRef>
+        <targetRef>_14_facilityStatusInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_14_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <scriptTask id="_15" name="Set Final Decision Date To Current Date" scriptFormat="http://www.java.com/java" >
+      <script>Request r = (Request) context.getVariable("contextEntity");
+r.setFinalDecisionDate(new java.util.Date());</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_12-_17" sourceRef="_12" targetRef="_17" />
+    <sequenceFlow id="_15-_16" sourceRef="_15" targetRef="_16" />
+    <sequenceFlow id="_1-_11" sourceRef="_1" targetRef="_11" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" />
+    <sequenceFlow id="_17-_14" sourceRef="_17" targetRef="_14" />
+    <sequenceFlow id="_14-_15" sourceRef="_14" targetRef="_15" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="DeclineRequestFlow" >
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="22" y="259" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="49" y="8" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="47" y="496" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="16" y="96" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="16" y="176" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="16" y="336" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="16" y="416" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_12-_17" >
+        <di:waypoint x="71" y="200" />
+        <di:waypoint x="72" y="283" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_16" >
+        <di:waypoint x="71" y="440" />
+        <di:waypoint x="71" y="520" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_11" >
+        <di:waypoint x="73" y="32" />
+        <di:waypoint x="71" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="71" y="120" />
+        <di:waypoint x="71" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_14" >
+        <di:waypoint x="72" y="283" />
+        <di:waypoint x="71" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_15" >
+        <di:waypoint x="71" y="360" />
+        <di:waypoint x="71" y="440" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

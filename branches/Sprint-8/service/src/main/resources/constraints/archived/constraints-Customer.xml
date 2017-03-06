@@ -1,0 +1,427 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="Customer" ignore-annotations="false">
+		<map:class>
+		<!-- Required fields mapping start -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyDetailType}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailType != null]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.legalName.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailType != null && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail.legalName !=null && o.partyDetail.legalName.length !=0]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.taxIDNumber.format}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.taxIDNumber != null && o.partyDetail.taxIDNumber.length != 0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail.taxIDNumber ~= '[0-9]{9}']]></map:element>
+			</map:constraint>
+			<!--<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.previousAnnualRevenue.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailType != null && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail.previousAnnualRevenue !=null]]></map:element>
+			</map:constraint>-->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.firstName.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailType != null && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail.firstName !=null && o.partyDetail.firstName.length !=0]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.lastName.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailType != null && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail.lastName !=null && o.partyDetail.lastName.length !=0 ]]></map:element>
+			</map:constraint>
+					
+			<!--<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.birthDate}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailType != null && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail.birthDttm !=null]]></map:element>
+			</map:constraint>-->
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.address.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[(o.partyDetail.contactTypeDetails !=null && o.partyDetail.contactTypeDetails.size() > 0) || (o.partyDetail.pdContacts !=null && o.partyDetail.pdContacts.size() > 0)]]></map:element>
+			</map:constraint>
+															
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.riskRating.oRR.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.riskRatings !=null && o.partyDetail.riskRatings.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(riskRating : o.partyDetail.riskRatings){if(riskRating.obligorRR == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.riskRating.source.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.riskRatings !=null && o.partyDetail.riskRatings.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(riskRating : o.partyDetail.riskRatings){if(riskRating.obligorRR != null && riskRating.source == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.riskRating.date.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.riskRatings !=null && o.partyDetail.riskRatings.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(riskRating : o.partyDetail.riskRatings){if(riskRating.source != null && riskRating.riskEvaluationDttm == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.bankAccounts.ContactInfo.telephoneNumber.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.bankAccounts !=null && o.partyDetail.bankAccounts.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(bankAccount : o.partyDetail.bankAccounts){if(bankAccount != null && bankAccount.banksTrades!=null && bankAccount.banksTrades.bankContactInfo!=null && bankAccount.banksTrades.bankContactInfo.telephoneNumber!=null && bankAccount.banksTrades.bankContactInfo.telephoneNumber.length == 0)return false;}return true;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.bankAccount.banksTrades.accountType.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.bankAccounts !=null && o.partyDetail.bankAccounts.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(bankAccount : o.partyDetail.bankAccounts){if(bankAccount != null && bankAccount.banksTrades!=null && bankAccount.banksTrades.accountType == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.bankAccount.banksTrades.bankAccountNumber.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.bankAccounts !=null && o.partyDetail.bankAccounts.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(bankAccount : o.partyDetail.bankAccounts){if(bankAccount != null && bankAccount.banksTrades!=null && bankAccount.banksTrades.bankAccountNumber.length == 0)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<!-- Asset -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyOwnedAssets.ownedAsset.Name.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyOwnedAssets !=null && o.partyDetail.partyOwnedAssets.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyOwnedAsset : o.partyDetail.partyOwnedAssets){if(partyOwnedAsset != null && partyOwnedAsset.ownedAsset!=null && partyOwnedAsset.ownedAsset.name!=null && partyOwnedAsset.ownedAsset.name.length == 0)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyOwnedAssets.ownedAsset.AssetType.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyOwnedAssets !=null && o.partyDetail.partyOwnedAssets.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyOwnedAsset : o.partyDetail.partyOwnedAssets){if(partyOwnedAsset != null && partyOwnedAsset.ownedAsset!=null && partyOwnedAsset.ownedAsset.assetType == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyOwnedAssets.ownedAsset.MarketValue.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyOwnedAssets !=null && o.partyDetail.partyOwnedAssets.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyOwnedAsset : o.partyDetail.partyOwnedAssets){if(partyOwnedAsset != null && partyOwnedAsset.ownedAsset!=null && partyOwnedAsset.ownedAsset.marketValue ==null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyOwnedAssets.ownedAsset.MarketValueCurrency.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyOwnedAssets !=null && o.partyDetail.partyOwnedAssets.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyOwnedAsset : o.partyDetail.partyOwnedAssets){if(partyOwnedAsset != null && partyOwnedAsset.ownedAsset!=null && partyOwnedAsset.ownedAsset.marketValueCurrency == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyOwnedAssets.ownedAsset.AsOfDate.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyOwnedAssets !=null && o.partyDetail.partyOwnedAssets.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyOwnedAsset : o.partyDetail.partyOwnedAssets){if(partyOwnedAsset != null && partyOwnedAsset.ownedAsset!=null && partyOwnedAsset.ownedAsset.asOfDate ==null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<!-- End Asset -->
+			
+			<!-- Liability -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyLiabilities.Liability.Name.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyLiabilities !=null && o.partyDetail.partyLiabilities.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyLiability : o.partyDetail.partyLiabilities){if(partyLiability != null && partyLiability.liability!=null && partyLiability.liability.name!=null && partyLiability.liability.name.length == 0)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyLiabilities.Liability.LiabilityType.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyLiabilities !=null && o.partyDetail.partyLiabilities.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyLiability : o.partyDetail.partyLiabilities){if(partyLiability != null && partyLiability.liability!=null && partyLiability.liability.liabilityType == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyLiabilities.Liability.Balance.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyLiabilities !=null && o.partyDetail.partyLiabilities.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyLiability : o.partyDetail.partyLiabilities){if(partyLiability != null && partyLiability.liability!=null && partyLiability.liability.balance == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyLiabilities.Liability.BalanceCurrency.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyLiabilities !=null && o.partyDetail.partyLiabilities.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyLiability : o.partyDetail.partyLiabilities){if(partyLiability != null && partyLiability.liability!=null && partyLiability.liability.balanceCurrency == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.partyLiabilities.Liability.AsOfDate.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyLiabilities !=null && o.partyDetail.partyLiabilities.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(partyLiability : o.partyDetail.partyLiabilities){if(partyLiability != null && partyLiability.liability!=null && partyLiability.liability.asOfDate == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.nonIndividual.required}</map:message>
+				 <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$AmlVerificationGroup</map:value>
+              </map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailAmlInfo !=null && o.partyDetail.partyDetailAmlInfo.verified!=null  && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+															boolean match = false;
+															if (!(o.partyDetail.legalName == null ||  o.partyDetail.evidenceOfLegalStatus == null || o.partyDetail.stateIncorporated == null || o.partyDetail.physicianSpeciality == null || o.partyDetail.naicsCodeId == null || o.partyDetail.partyDetailAmlInfo.addressVerificationMethod == null || (o.partyDetail.pdContacts.size==0  ) ))	{
+																match = true;
+															}
+															else{
+																match = false;
+															}
+															return match;
+				]]></map:element>
+			</map:constraint>
+			 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.businesstelephoneNumber.invalid}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean isValid = true;
+				if(!(isdef root)){
+					isValid=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.partyDetail.businessPhone != null && o.partyDetail.businessPhone.length > 0))
+				{
+					
+					
+				String expression = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+
+				CharSequence inputStr = o.partyDetail.businessPhone; 
+
+				java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(expression); 
+
+				java.util.regex.Matcher matcher = pattern.matcher(inputStr); 
+
+				if(!matcher.matches()){ 
+
+				isValid = false; 
+				
+							
+				} 
+
+				if (isValid == true) {
+
+						String ab = (String) inputStr;
+								
+							ab = ab.replaceAll("\\(","");
+							ab = ab.replaceAll("\\)","");
+							ab = ab.replaceAll("-","");
+							ab = ab.replaceAll(" ","");
+							
+						if (ab.equals("1111111111") || ab.equals("9999999999") || ab.length() <10 || ab.length() >10 ) {
+							isValid = false;
+							
+						}
+						
+						
+		
+				}
+				} return isValid;]]></map:element>				
+		</map:constraint>
+		 
+		 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.alttelephoneNumber.invalid}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean isValid = true;
+				if(!(isdef root)){
+					isValid=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.partyDetail.altPhone != null && o.partyDetail.altPhone.length > 0))
+				{
+					
+					
+				String expression = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+
+				CharSequence inputStr = o.partyDetail.altPhone; 
+
+				java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(expression); 
+
+				java.util.regex.Matcher matcher = pattern.matcher(inputStr); 
+
+				if(!matcher.matches()){ 
+
+				isValid = false; 
+				
+							
+				} 
+
+				if (isValid == true) {
+
+						String ab = (String) inputStr;
+								
+							ab = ab.replaceAll("\\(","");
+							ab = ab.replaceAll("\\)","");
+							ab = ab.replaceAll("-","");
+							ab = ab.replaceAll(" ","");
+							
+						if (ab.equals("1111111111") || ab.equals("9999999999") || ab.length() <10 || ab.length() >10 ) {
+							isValid = false;
+							
+						}
+						
+						
+		
+				}
+				} return isValid;]]></map:element>				
+		</map:constraint>
+		
+		 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.faxNumber.invalid}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean isValid = true;
+				if(!(isdef root)){
+					isValid=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.partyDetail.faxnum != null && o.partyDetail.faxnum.length > 0))
+				{
+					
+					
+				String expression = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+
+				CharSequence inputStr = o.partyDetail.faxnum; 
+
+				java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(expression); 
+
+				java.util.regex.Matcher matcher = pattern.matcher(inputStr); 
+
+				if(!matcher.matches()){ 
+
+				isValid = false; 
+				
+							
+				} 
+
+				if (isValid == true) {
+
+						String ab = (String) inputStr;
+								
+							ab = ab.replaceAll("\\(","");
+							ab = ab.replaceAll("\\)","");
+							ab = ab.replaceAll("-","");
+							ab = ab.replaceAll(" ","");
+							
+						if (ab.equals("1111111111") || ab.equals("9999999999") || ab.length() <10 || ab.length() >10 ) {
+							isValid = false;
+							
+						}
+						
+						
+		
+				}
+				} return isValid;]]></map:element>				
+		</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.individual.required}</map:message>
+				 <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$AmlVerificationGroup</map:value>
+              </map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.partyDetailAmlInfo.verified!=null  && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+															boolean match = false;
+												
+															if(o.partyDetail.pdContacts != null && o.partyDetail.pdContacts.size>0  && o.partyDetail.partyDetailAmlInfo.addressVerificationMethod !=null )	{
+																match = true;
+											
+															}
+															else{
+																match = false;
+													
+															}
+															
+															return match;
+				]]></map:element>
+			</map:constraint>
+			
+			
+				<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.locationStaff.staffPlanCurrent.positive.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.locationStaffs !=null && o.partyDetail.locationStaffs.size >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(locationStaff : o.partyDetail.locationStaffs){if( locationStaff.staffPlanCurrent < 0)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+				<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.locationStaff.staffPlanProposed.positive.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.locationStaffs !=null && o.partyDetail.locationStaffs.size >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(locationStaff : o.partyDetail.locationStaffs){if( locationStaff.staffPlanProposed < 0)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			
+			<!-- End Liability -->
+				<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.BirthDttm.required}</map:message>
+				 <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$DobVerificationGroup</map:value>
+                </map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.partyDetail !=null && o.partyDetail.birthDttm != null && o.partyDetail.partyDetailAmlInfo !=null &&  o.partyDetail.partyDetailAmlInfo.dobVerficationMethod !=null ]]></map:element>
+			</map:constraint>
+				
+				
+				<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.NameTaxid.required}</map:message>
+				 <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$NameVerificationGroup</map:value>
+              </map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null  && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+															boolean match = false;
+												
+															if(o.partyDetail.firstName != null  && o.partyDetail.lastName !=null && o.partyDetail.taxIDNumber !=null  && o.partyDetail.partyDetailAmlInfo !=null &&  o.partyDetail.partyDetailAmlInfo.contactVerificationMethod !=null)	{
+																match = true;
+											
+															}
+															else{
+																match = false;
+													
+															}
+															
+															return match;
+				]]></map:element>
+			</map:constraint>
+			
+				<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.LegalNameVerify.required}</map:message>
+				 <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$AmlVerificationGroup</map:value>
+              </map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null  && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+															boolean match = false;
+												
+															if(o.partyDetail.legalName != null )	{
+																match = true;
+											
+															}
+															else{
+																match = false;
+													
+															}
+															
+															return match;
+				]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.partyDetail.legalTaxId.required}</map:message>
+				 <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$NameVerificationGroup</map:value>
+              </map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.partyDetail !=null  && o.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+															boolean match = false;
+												
+															if(o.partyDetail.taxIDNumber !=null && o.partyDetail.partyDetailAmlInfo !=null &&  o.partyDetail.partyDetailAmlInfo.taxIdVerificationMethod !=null )	{
+																match = true;
+											
+															}
+															else{
+																match = false;
+													
+															}
+															
+															return match;
+				]]></map:element>
+			</map:constraint>
+			
+			
+		<!-- Required fields mapping Ends -->
+		<!-- Length validations -->
+			
+		<!-- Length validations Ends-->
+			
+		</map:class>
+			
+			
+	</map:bean>
+		    
+</map:constraint-mappings>

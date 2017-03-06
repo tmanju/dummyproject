@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="coaDefinition" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="coaDefinitionResults" row="coaDefinition">
+		<columns>
+			<column name="coaDefinition.coaId" label="COA ID"/>
+			<column name="coaDefinition.coaCondition" label="Condition"/>
+			<column name="coaDefinition.coaCategory.value" label="Category"/>
+			<column name="coaDefinition.coaType.value" label="Type"/>
+			<column name="coaDefinition.productCatProject.value" label="Project Loan"/>	
+			<column name="coaDefinition.nonStandard.value" label="Non-Standard Manual"/>	
+			<column name="coaDefinition.priorTo" label="Prior To"/>	
+		</columns>
+		
+	</data-table>
+	<beans>
+		<bean name="coaDefinitionResults" type="com.thirdpillar.codify.loanpath.model.CoaDefinition" />
+	</beans>	
+</canvas>
+

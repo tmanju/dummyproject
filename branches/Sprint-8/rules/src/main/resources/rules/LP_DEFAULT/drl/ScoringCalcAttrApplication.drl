@@ -1,0 +1,82 @@
+
+package LP_DEFAULT
+import com.thirdpillar.codify.loanpath.model.MetaInfo;
+import org.apache.commons.lang.StringUtils;
+import com.thirdpillar.foundation.model.BaseDataObject;
+import org.apache.commons.lang.NumberUtils;
+
+import com.thirdpillar.codify.loanpath.model.Request;
+import com.thirdpillar.codify.loanpath.model.Scoring;
+import com.thirdpillar.codify.loanpath.model.Relationship;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.Customer;
+import com.thirdpillar.codify.loanpath.model.RelationshipParty;
+import com.thirdpillar.codify.loanpath.model.ScrAttrParam;
+import com.thirdpillar.codify.loanpath.util.Utility;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.FacScoring;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.constants.Constants;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.util.concurrent.TimeUnit;
+
+
+rule "APPLICTION_ATTR_CREDIT_SCORE"
+   agenda-group "CalcScoringAttrApplication" 
+   when
+   		request : Request()
+   then
+        Scoring scoring = request.getLatestAppScoring();
+        ScoringAttribute attr = scoring.findAttributeByKey( "APPLICTION_ATTR_CREDIT_SCORE");
+        
+        List<FacilityCustomerRole> borrowerRoles = request.getAllCustomerRolesInRoles("PARTY_ROLE_TYPE_BORROWER");
+	 
+		List<BureauReport> reports = new ArrayList<BureauReport>();
+		
+		for (FacilityCustomerRole role : borrowerRoles) {
+			Customer customer = null;
+			if (role.getCustomer() != null && role.getCustomer().isIndividual()) {
+				customer = role.getCustomer();
+				} else if (role.getCustomer() != null && role.getCustomer().isNonIndividual()){
+					FacilityCustomerRole primaryContactRole = role.getPrimaryContactRole();
+					if (primaryContactRole != null) {
+						customer = primaryContactRole.getCustomer();
+					}
+				}
+				if (customer != null && customer.isIndividual()) {
+					Map<String,BureauReport> reportMap = request.getLatestBureauReports(customer);
+					for (String reportName : reportMap.keySet()) {
+						BureauReport report = reportMap.get(reportName);
+						if(report.getFicoScore()!=null && !report.getFicoScore().equals("")) {
+							int ficoScore=Integer.parseInt(report.getFicoScore());
+							attr.setValue(String.valueOf(ficoScore));
+						}
+					}
+				}
+			}
+        	
+end
+
+rule "APPLICTION_ATTR_REQUESTED_AMOUNT"
+   agenda-group "CalcScoringAttrApplication" 
+   when
+   		request : Request()
+   		f:Facility() from request.allFacilities
+   then
+        Scoring scoring = request.getLatestAppScoring();
+		ScoringAttribute attr = scoring.findAttributeByKey( "APPLICTION_ATTR_REQUESTED_AMOUNT");
+		BigDecimal total = BigDecimal.ZERO;
+		if(request.getTotalRequestedLoanAmt() != null){
+			total = request.getTotalRequestedLoanAmt();
+		}
+		attr.setValue(String.valueOf(total));	
+        
+end

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   ">
+
+<!--                 Examples             -->
+<!--                 <entry key="FieldName"> -->
+<!--                 	<value><![CDATA["Literal Value in quotes"]]></value> -->
+<!--                 </entry> -->
+<!--                 <entry key="FieldName" value="Mvel Expression"/> -->
+
+	<bean id="CreditWriteup" class="com.thirdpillar.foundation.util.pdf.PDFTemplate">
+		<property name="formExpressions">
+			<map>
+                <entry key="/form1/CAS/applicationNumber">
+                	<value><![CDATA[return entity.refNumber;]]></value>
+                </entry>
+                <entry key="/form1/CAS/applicationType">
+                	<value><![CDATA[return entity.requestType;]]></value>
+                </entry>
+                <entry key="/form1/CAS/applicationName">
+                	<value><![CDATA[return entity.requestName;]]></value>
+                </entry>
+                <entry key="/form1/CAS/account">
+                	<value><![CDATA[return entity.account;]]></value>
+                </entry>
+                <entry key="/form1/CAS/status">
+                	<value><![CDATA[return entity.wfStatus;]]></value>
+                </entry>
+                <entry key="/form1/CAS/createdDate">
+                	<value><![CDATA[return entity.metaInfo.createdAt]]></value>
+                </entry>
+                <entry key="/form1/CAS/createdBy">
+                	<value><![CDATA[return entity.metaInfo.createdByUser;]]></value>
+                </entry>
+                <entry key="/form1/CAS/applicationDate">
+                	<value><![CDATA[return entity.receivedDate;]]></value>
+                </entry>
+                <entry key="/form1/CAS/modificationDate">
+                	<value><![CDATA[return entity.modificationDate;]]></value>
+                </entry>
+                <entry key="/form1/CAS/regBStartDate">
+                	<value><![CDATA[return entity.regbDttm;]]></value>
+                </entry>
+                <entry key="/form1/CAS/expectedCloseDate">
+                	<value><![CDATA[return entity.expectedCloseDate;]]></value>
+                </entry>
+                <entry key="/form1/CAS/lastUpdatedDate">
+                	<value><![CDATA[return entity.metaInfo.lastModifiedAt;]]></value>
+                </entry>
+                <entry key="/form1/CAS/lastUpdatedBy">
+                	<value><![CDATA[return entity.metaInfo.lastModifiedByUser;]]></value>
+                </entry>
+                
+                <entry key="/form1/CAS/creditAnalyst">
+                	<value><![CDATA[return entity.creditAnalyst;]]></value>
+                </entry>
+                <entry key="/form1/CAS/existingExposure">
+                	<value><![CDATA[return (entity.exposure != null) ? entity.exposure.totalRelationshipExposure : null;]]></value>
+                </entry>
+                <entry key="/form1/CAS/requestedAmount">
+                	<value><![CDATA[return entity.totalRequestedLoanAmt;]]></value>
+                </entry>
+
+                <entry key="/form1/Subform1/companyOverview">
+                	<value><![CDATA[return entity.companyOverview;]]></value>
+                </entry>
+                <entry key="/form1/Subform1/managementOverview">
+                	<value><![CDATA[return entity.mgmtOverview;]]></value>
+                </entry>
+                <entry key="/form1/Subform1/DealtOverview">
+                	<value><![CDATA[return entity.dealOverview;]]></value>
+                </entry>
+
+				<entry key="/form1/Subform1/conditionsOfApproval"> 
+					<value><![CDATA[StringBuilder value = new StringBuilder();
+							if (entity.coaFacilities != null) {					
+								foreach (coaFac : entity.coaFacilities) {
+									if(coaFac.coasetDefinition.coaEvls.size > 0) {
+										value.append("\n----------------------------------------------------------------------------------- \n")
+										     .append("Product - ").append(coaFac.facilityType.helper.displayValue).append(" for ").append(coaFac.requestedLoanAmt).append("\n")
+											 .append("----------------------------------------------------------------------------------- \n");
+										foreach (coaEval : coaFac.coasetDefinition.coaEvls) {
+											value.append("- ").append(coaEval.coaConditonWithNotes).append(" : ")
+											     .append((coaEval.coaEvaluation != null) ? coaEval.coaEvaluation.helper.displayValue : "<No Result>").append("\n");
+										}									
+									}
+								}
+							}
+							
+							return value.toString();
+					]]></value>
+				</entry>
+				<entry key="/form1/Subform1/riskAssessmentCriteria"> 
+					<value><![CDATA[StringBuilder value = new StringBuilder();
+							if (entity.allRACSetEvaluations != null) {	
+								foreach (rac : entity.allRACSetEvaluations) {
+									if(rac.racEvaluations.size > 0) {
+										value.append("\n-------------------------------------------------------- \n")
+										     .append("Racset - ").append(rac.racsetDefinition.name).append("\n")
+											 .append("-------------------------------------------------------- \n");
+										foreach (racEval : rac.racEvaluations) {
+											value.append("- ").append(racEval.racDefinition.description).append(" : ")
+											     .append((racEval.status != null) ? racEval.status.helper.displayValue : "Incomplete").append("\n");
+										}
+								
+									}								
+								}								
+							}
+
+							return value.toString();
+					]]></value>
+				</entry>
+				<entry key="/form1/Subform1/documentPackage"> 
+					<value><![CDATA[StringBuilder value = new StringBuilder();
+							if (entity.documentGroup != null) {					
+							    value.append("-------------------------------------------------------- \n")
+							     .append("Uploaded Documents").append("\n")
+								 .append("-------------------------------------------------------- \n");
+								foreach (doc : entity.documentGroup.uploadedDocuments) {
+									value.append("- ").append((doc.documentType != null) ? doc.documentType.helper.displayValue : "").append(" : ")
+									     .append((doc.documentStatus != null) ? doc.documentStatus.helper.displayValue : "").append("\n");
+								}
+							    value.append("-------------------------------------------------------- \n")
+							     .append("Generated Documents").append("\n")
+								 .append("-------------------------------------------------------- \n");
+
+								foreach (doc : entity.documentGroup.generatedDocuments) {
+									value.append("- ").append((doc.documentType != null) ? doc.documentType.helper.displayValue : "").append(" : ")
+									     .append((doc.documentStatus != null) ? doc.documentStatus.helper.displayValue : "").append("\n");
+								}
+							}
+
+							return value.toString();
+					]]></value>
+				</entry>
+
+            </map>
+        </property>  
+        <property name="pdfTemplate"  value="pdf-templates/CAS.pdf"/>
+	</bean>
+	
+	<bean id="GenerateContract" class="com.thirdpillar.foundation.util.pdf.PDFTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="form1[0].#subform[0].applicationNumber[0]"> <!-- Application Num --> 
+					<value><![CDATA[return entity.refNumber;
+					]]></value>
+				</entry>
+				<entry key="form1[0].#subform[0].accountName[0]"> <!-- Account Name --> 
+					<value><![CDATA[return (entity.account != null) ? entity.account.helper.displayValue : null;
+					]]></value>
+				</entry>
+				<entry key="form1[0].#subform[0].creditAnalyst[0]"> <!-- Credit Analyst --> 
+					<value><![CDATA[return (entity.creditAnalyst != null) ? entity.creditAnalyst.helper.displayValue : null;
+					]]></value>
+				</entry>
+				<entry key="form1[0].#subform[0].applicationName[0]"> <!-- Application Name --> 
+					<value><![CDATA[return entity.requestName;
+					]]></value>
+				</entry>
+				<entry key="form1[0].#subform[0].expectedCloseDate[0]"> <!-- Expected Close date --> 
+					<value><![CDATA[return entity.expectedCloseDate;
+					]]></value>
+				</entry>
+				<entry key="form1[0].#subform[0].applicationType[0]"> <!-- Application Type--> 
+					<value><![CDATA[return (entity.requestType != null) ? entity.requestType.helper.displayValue : null;
+					]]></value>
+				</entry>
+			
+				<entry key="form1[0].#subform[0].conditionsOfApproval[0]"> <!-- COAs --> 
+					<value><![CDATA[StringBuilder value = new StringBuilder();
+							if (entity.coaFacilities != null) {					
+								foreach (coaFac : entity.coaFacilities) {
+									value.append("\n----------------------------------------------------------------------------------- \n")
+										 .append("----------------------------------------------------------------------------------- \n")
+									     .append("Product - ").append(coaFac.facilityType.helper.displayValue).append(" for ").append(coaFac.requestedLoanAmt).append("\n")
+										 .append("Coa ID | Coa Condition | Coa Category | Prior To | Result \n")
+										 .append("----------------------------------------------------------------------------------- \n");
+									foreach (coaEval : coaFac.coasetDefinition.coaEvls) {
+										value.append(coaEval.coaDefinition.coaId).append(" | ")
+										     .append(coaEval.coaConditonWithNotes).append(" | ")
+										     .append((coaEval.coaDefinition != null) ? coaEval.coaDefinition.coaCategory.helper.displayValue : "").append(" | ")
+										     .append(coaEval.coaDefinition.priorTo).append(" | ")
+										     .append((coaEval.coaEvaluation != null) ? coaEval.coaEvaluation.helper.displayValue : "<No Result>").append("\n");
+									}
+								}
+							}
+
+							return value.toString();
+					]]></value>
+				</entry>
+				<entry key="form1[0].#subform[0].riskAcceptanceCriteria[0]"> <!-- RACs --> 
+					<value><![CDATA[StringBuilder value = new StringBuilder();
+							if (entity.allRACSetEvaluations != null) {					
+								foreach (rac : entity.allRACSetEvaluations) {
+									value.append("-------------------------------------------------------- \n")
+									     .append("Racset - ").append(rac.racsetDefinition.name).append("\n")
+										 .append("Rac ID, Rac Description, Result \n")
+										 .append("-------------------------------------------------------- \n");
+									foreach (racEval : rac.racEvaluations) {
+										value.append(racEval.racDefinition.racId).append(", ")
+										     .append(racEval.racDefinition.description).append(", ")
+										     .append((racEval.status != null) ? racEval.status.helper.displayValue : "").append("\n");
+									}
+								}
+							}
+
+							return value.toString();
+					]]></value>
+					
+				</entry>
+			</map>		
+		</property>
+		<property name="pdfTemplate" value="pdf-templates/COA Summary.pdf"/>
+	</bean>
+
+</beans>
+

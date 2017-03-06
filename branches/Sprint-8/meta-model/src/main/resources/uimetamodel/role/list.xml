@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="role" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="results" row="role">
+		<columns>
+			<column name="role.name"/>
+			<column name="role.description"/>
+			<column name="role.roleCategory"/>
+		</columns>
+		<commands>
+			<command name="Export CSV" action="Role-ExportCSV" type="exportCsv"/>
+		</commands>	
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.Role" />
+	</beans>	
+</canvas>

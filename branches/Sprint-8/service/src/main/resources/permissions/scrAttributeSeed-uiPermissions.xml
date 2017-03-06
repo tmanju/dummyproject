@@ -1,0 +1,27 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="scrAttributeSeed">
+		<tns:read>true</tns:read>
+	</tns:component>
+		<tns:canvas id="scrAttributeSeed_list">
+		<tns:component id="scrAttributeSeed_add">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="scrAttributeSeed_copy">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>
+	<tns:canvas id="scrAttributeSeed_crud">
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="scrAttributeSeed_scrAttrParams_add">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="scrAttributeSeed_scrAttrParams_delete">
+			<tns:default>false</tns:default>
+		</tns:component>
+		
+	</tns:canvas>
+</tns:ui-permissions>

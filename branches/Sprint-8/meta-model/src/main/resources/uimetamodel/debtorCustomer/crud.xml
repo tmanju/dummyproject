@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="debtorCustomer" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<panel id="debtorCustomer.debtorInformation">
+		<field name="debtorCustomer.refNumber" label="Debtor-Account"/>
+		<field name="debtorCustomer.facilityCustomerRole.customer" label="Name" allow="create" targetFields="debtorCustomer.dbas"/>
+		<field name="debtorCustomer.facilityCustomerRole.customer.naicsCode" label="Industry"/>
+		<field name="debtorCustomer.wfStatus" label="Status"/>
+		<field name="debtorCustomer.servicingIdentifier" label="Servicing Identifier"/>
+		<field name="debtorCustomer.nextReviewDate" label="Next Review Date (if Ineligible)"/>
+	</panel>
+	<panel id="debtorCustomer.debtorLimit" label="Debtor-Account Limits">
+		<!-- <field name="debtorCustomer.proposedLimit" label="Debts Limit"/> -->
+		<field name="debtorCustomer.eligibleARLimit" label="Eligible AR Limit *" targetFields="debtorCustomer.fundingLimit"/>
+		<field name="debtorCustomer.retention" label="Dilution Rate % *" targetFields="debtorCustomer.advanceRate,debtorCustomer.fundingLimit"/>
+		<field name="debtorCustomer.creditPeriod" label="Credit Period (days) *"/>
+		<field name="debtorCustomer.concLimit" label="Concentration Limit % *"/>
+		<field name="debtorCustomer.fundingLimit" label="Funding Limit"/>
+		<field name="debtorCustomer.advanceRate" label="Advance Rate %"/>
+		<field name="debtorCustomer.borrowingBaseRes" label="Borrowing Base Reserve *"/>
+	</panel>
+	
+	<data-table name="debtorCustomer.commentGroup.comments" row="comment" sortBy="comment.indexNumber" sortOrder="descending">
+		<columns>
+			<column name="comment.indexNumber" label="No."/>
+			<column name="comment.commentType.value" label="Comment Type"/>
+			<column name="comment.metaInfo.createdByUser" label="Author"/>
+			<column name="comment.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+			<column name="comment.metaInfo.createdAt" label="Date Added"/>
+			<column name="comment.commentText" label="Text"/>
+		</columns>
+		<quickedit-canvas>
+			<panel id="comment.enterComment">
+				<field name="comment.commentType" label="Comment Type"/>
+				<field name="comment.commentText" label="Text"/>
+			</panel>
+		</quickedit-canvas>
+	</data-table>
+	<panel id="debtorCustomer.dbas" label="DBA Names">
+		<data-table name="debtorCustomer.dbas" label="DBA" row="dba">
+			<columns>
+				<column name="dba.refNumber" label="DBA Number"/>
+				<column name="dba.dbaName" label="DBA Name"/>
+			</columns>
+		</data-table>
+	</panel>
+	<panel id="debtorCustomer.debtorAddresses" label="Debtor Address">
+	<data-table name="debtorCustomer.contact.addresses"
+		row="debtorAddress" label="Address">
+		<columns>
+			<column name="debtorAddress.address1" label="Address" />
+			<column name="debtorAddress.city" label="City" />
+			<column name="debtorAddress.stateProvince" label="State" />
+			<column name="debtorAddress.country" label="Country" />
+			<column name="debtorAddress.postalCode" label="Postal Code" />
+			<column name="debtorAddress.usage" label="Usage" />
+		</columns>
+		<quickedit-canvas id="debtorAddress">
+			<panel id="customer.debtorContactInformation" label="Address">
+				<field name="debtorAddress.address1" label="Address" />
+				<field name="debtorAddress.city" label="City" />
+				<field name="debtorAddress.stateProvince" label="State" />
+				<field name="debtorAddress.country" label="Country" />
+				<field name="debtorAddress.postalCode" label="Postal Code" />
+				<field name="debtorAddress.usage" label="Usage" />
+			</panel>
+		</quickedit-canvas>
+	</data-table>
+</panel>
+	<beans>
+		<bean name="debtorCustomer" type="com.thirdpillar.codify.loanpath.model.Customer" />
+	</beans>
+</canvas>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="deal">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="deal_list">
+		<tns:component id="deal_add">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="deal_copy">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>
+	<tns:canvas id="deal_crud">
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="deal_selectedDeal_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="DrawRequest">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getId() != null && root.getWfStatus !=null && root.getWfStatus.getStatusKey.equals("FUNDING_REQUEST_STATUS_FULLY_FUNDED") && root.getSubmitFundingRequestFlag()) {
+								isVisible=true;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="deal_fundAllocators_EditCanvas.fundAllocator_newCapitalProvider">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root_fundAllocators.getId() != null) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="deal_fundAllocators_EditCanvas.fundAllocator_inxTempCp">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root_fundAllocators.getId() == null) {
+								isVisible=false;	
+							}
+							if (root_fundAllocators.getId() != null && !root_fundAllocators.temp.key.equals("FUNDING_PLACEMENT_TEMP_YES")) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="deal_fundAllocators_EditCanvas.fundAllocator_inxTempFundAmt">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root_fundAllocators.getId() == null) {
+								isVisible=false;	
+							}
+							if (root_fundAllocators.getId() != null && !root_fundAllocators.temp.key.equals("FUNDING_PLACEMENT_TEMP_YES")) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="deal_fundAllocators_EditCanvas.fundAllocator_fundedDate">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root_fundAllocators.getId() == null) {
+								isVisible=false;	
+							}
+							if (root_fundAllocators.getId() != null && !root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FUNDED")) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="deal_fundAllocators_EditCanvas.fundAllocator_capitalProvider">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root_fundAllocators.getId() == null) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="deal_fundAllocators_add">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=true;
+							if (root.getSumAllocatedPer() != null && root.getSumAllocatedPer() >= 100) {
+								isVisible=false;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component>
+		 <tns:component id="deal_fundAllocators_delete">
+         	<tns:default>false</tns:default>
+         </tns:component>
+         <tns:component id="deal_fundAllocators_quick_menu_command">
+         	<tns:default>
+         		<![CDATA[
+         			boolean isVisible=true;
+						if (root_fundAllocators !=null && (root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED"))) {
+							isVisible=false;	
+						} 
+						if (root != null && root.getWfStatus() != null && (root.getWfStatus.getStatusKey.equals("FUNDING_REQUEST_STATUS_FULLY_FUNDED")) && root_fundAllocators !=null && root_fundAllocators.getCapitalProvider()!=null && root_fundAllocators.getCapitalProvider().getCustomerAssociated() !=null && !root_fundAllocators.getCapitalProvider().getCustomerAssociated().getIsInxCp()) {
+							isVisible=false;	
+						}
+					return isVisible;
+				]]></tns:default>
+         </tns:component>
+
+ 		<tns:component id="deal_fundAllocators_actions">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false;
+							if (root.getSumAllocatedPer() != null && root.getSumAllocatedPer() >= 100) {
+								isVisible=true;	
+							}
+						return isVisible;
+					]]>
+			</tns:default>
+		</tns:component> 
+		<tns:component id="deal_capitalProviders_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+		 <tns:component id="deal_fundAllocators_EditCanvas.fundAllocator_rejReason">
+         	<tns:default><![CDATA[
+         	if (root_fundAllocators !=null && root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED")) {
+										return  true;
+									} else {
+										return false;
+									}
+				]]></tns:default>
+         </tns:component>
+          <tns:component id="deal_fundAllocators_EditCanvas.replacedFundAllobvcation">
+         	<tns:default><![CDATA[
+	         	boolean isVisible = false;
+				if ((root_fundAllocators != null) && (root_fundAllocators.getSessionId() !=null) && (root_fundAllocators.getId() != null)) {
+											isVisible = true;
+										} 
+	         	if (root_fundAllocators !=null && (root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED") || root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW"))) {
+											isVisible = false;
+										}
+				if (root != null && root.getWfStatus() != null && (root.getWfStatus().getStatusKey().equals("FUNDING_REQUEST_STATUS_FULLY_FUNDED")) && root_fundAllocators !=null && root_fundAllocators.getCapitalProvider()!=null && root_fundAllocators.getCapitalProvider().getCustomerAssociated() !=null && !root_fundAllocators.getCapitalProvider().getCustomerAssociated().getIsInxCp()) {
+					isVisible=false;	
+				}		
+								return isVisible;
+				]]></tns:default>
+         </tns:component>
+
+        <tns:component id="deal_fundAllocators_EditCanvas.failedFundAllobvcation">
+         	<tns:default>false</tns:default>
+         </tns:component>
+
+          <tns:component id="deal_fundAllocators_EditCanvas.fundAllocator_deal_capitalProviders_actionsCol">
+         	<tns:default>false</tns:default>
+         </tns:component>
+         
+		<tns:component id="deal_fundAllocators_EditCanvas.fundedFundAllobvcation">
+			<tns:default><![CDATA[	
+				boolean isVisible = false;
+				if ((root_fundAllocators != null) && (root_fundAllocators.getSessionId() !=null) && (root_fundAllocators.getId() != null) && (! root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED"))) {
+											isVisible = true;
+										} 
+	         	if (root_fundAllocators !=null && (root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED") || root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FUNDED") || root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW"))) {
+											isVisible = false;
+										} 
+								return isVisible;
+				]]></tns:default>
+		</tns:component>
+		<tns:component id="deal_fundAllocators_EditCanvas.submitFundAllocation">
+			<tns:default><![CDATA[
+				boolean isVisible = false;
+				if ((root_fundAllocators != null) && (root_fundAllocators.getSessionId() !=null) && (root_fundAllocators.getId() != null)  && (! root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW"))) {
+										isVisible = false;
+									} else {
+										isVisible = true;
+									} 
+							return isVisible;
+			]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="deal_fundAllocators_EditCanvas.subpageEditCancelBtn">
+			<tns:default><![CDATA[
+				if ((root_fundAllocators != null) && (! root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW"))) {
+										return  false;
+									} else {
+										return true;
+									}
+			]]></tns:default>
+		</tns:component>
+		<tns:component id="deal_fundAllocators_EditCanvas.subpageEditSaveBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="deal_fundAllocators_EditCanvas.subpageEditDoneBtn">
+			<tns:default><![CDATA[
+				if ((root_fundAllocators != null) && (root_fundAllocators.getSessionId() !=null) && (root_fundAllocators.getId() != null)) {
+										return  true;
+									} else {
+										return false;
+									}
+			]]></tns:default>
+		</tns:component>
+		<tns:component id="quick_replacedFundAllobvcation">
+			<tns:default><![CDATA[
+	         	boolean isVisible = false;
+				if ((root_fundAllocators != null) && (root_fundAllocators.getSessionId() !=null) && (root_fundAllocators.getId() != null)) {
+											isVisible = true;
+										} 
+	         	if (root_fundAllocators !=null && (root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED") || root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW"))) {
+											isVisible = false;
+										}
+	         	if (root_fundAllocators !=null && (root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED") || root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW")) && root_fundAllocators.getCapitalProvider() !=null && root_fundAllocators.getCapitalProvider().getAvailableCashDer() !=null && root_fundAllocators.getFundAmt() != null && (root_fundAllocators.getCapitalProvider().getAvailableCashDer() < root_fundAllocators.getFundAmt())) {
+											isVisible = true;
+										}	
+				if (root != null && root.getWfStatus() != null && (root.getWfStatus().getStatusKey().equals("FUNDING_REQUEST_STATUS_FULLY_FUNDED")) && root_fundAllocators !=null && root_fundAllocators.getCapitalProvider()!=null && root_fundAllocators.getCapitalProvider().getCustomerAssociated() !=null && !root_fundAllocators.getCapitalProvider().getCustomerAssociated().getIsInxCp()) {
+					isVisible=false;	
+				}										
+								return isVisible;
+				]]></tns:default>
+		</tns:component>
+        <tns:component id="quick_failedFundAllobvcation">
+         	<tns:default>false</tns:default>
+         </tns:component>
+		<tns:component id="quick_fundedFundAllobvcation">
+			<tns:default><![CDATA[	
+				boolean isVisible = false;
+				if ((root_fundAllocators != null) && (root_fundAllocators.getSessionId() !=null) && (root_fundAllocators.getId() != null) && (! root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED"))) {
+											isVisible = true;
+										} 
+	         	if (root_fundAllocators !=null && (root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FAILED") || root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_FUNDED") || root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW"))) {
+											isVisible = false;
+										} 
+								return isVisible;
+				]]></tns:default>
+		</tns:component>
+		<tns:component id="quick_submitFundAllocation">
+			<tns:default><![CDATA[
+				boolean isVisible = false;
+				if ((root_fundAllocators != null) && (root_fundAllocators.getSessionId() !=null) && (root_fundAllocators.getId() != null)  && (! root_fundAllocators.getWfStatus.getStatusKey.equals("FUNDING_PLACEMENT_STATUS_NEW"))) {
+										isVisible = false;
+									} else {
+										isVisible = true;
+									} 
+							return isVisible;
+			]]></tns:default>
+		</tns:component>
+	</tns:canvas>	
+</tns:ui-permissions>

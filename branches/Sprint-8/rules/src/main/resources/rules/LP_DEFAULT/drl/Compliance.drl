@@ -1,0 +1,215 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.Context;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.Compliance;
+import com.thirdpillar.codify.loanpath.model.FraudAlert;
+import com.thirdpillar.codify.loanpath.model.KYCAlert;
+
+rule "Compliance_OFACTrueHit"
+	when
+		changeModelEvent:Compliance.ChangeModelEvent(property == "complianceHit", newValue != null, ((AttributeChoice) newValue).key == "COMPLIANCE_HIT_TRUE",
+														entity != null, ((Compliance) entity).category != null,
+														((Compliance) entity).category.key == "COMPLIANCE_CATEGORY_OFAC")
+	then
+		Compliance compliance = (Compliance) changeModelEvent.getEntity();
+		AttributeChoice failedStatus =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+		compliance.setStatus(failedStatus);
+end
+
+rule "Compliance_OFACFalseHit"
+	when
+		changeModelEvent:Compliance.ChangeModelEvent(property == "complianceHit", newValue != null, ((AttributeChoice) newValue).key == "COMPLIANCE_HIT_FALSE",
+														entity != null, ((Compliance) entity).category != null,
+														((Compliance) entity).category.key == "COMPLIANCE_CATEGORY_OFAC")
+	then
+		Compliance compliance = (Compliance) changeModelEvent.getEntity();
+		AttributeChoice overrideStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_CLEAR");
+		compliance.setStatus(overrideStatus);
+end
+
+
+rule "Compliance_FraudCheck_Fraud"
+	when
+		changeModelEvent:FraudAlert.ChangeModelEvent(property == "status", newValue != null, ((AttributeChoice)newValue).key == 'FRAUD_ALERT_STATUS_FRAUD')
+	then
+		FraudAlert fraudAlert = (FraudAlert) changeModelEvent.getEntity();
+		Compliance compliance = fraudAlert.getCompliance();
+		AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+		compliance.setStatus(failedStatus);		
+end
+
+rule "Compliance_FraudCheck_Override"
+	when
+		changeModelEvent:FraudAlert.ChangeModelEvent(property == "status", newValue != null, ((AttributeChoice)newValue).key == 'FRAUD_ALERT_STATUS_OVERRIDE')
+	then
+		FraudAlert fraudAlert = (FraudAlert) changeModelEvent.getEntity();
+		Compliance compliance = fraudAlert.getCompliance();
+		boolean fraud = false;
+		boolean open = false;
+		if (compliance.getFraudAlerts() != null) {
+			for (FraudAlert fa : compliance.getFraudAlerts()) {
+				if (fa == fraudAlert) {
+				 // skip
+				} else if (fa.getStatus() == null || fa.getStatus().getKey().equals('FRAUD_ALERT_STATUS_OPEN')) {
+					open = true;
+				} else if (fa.getStatus().getKey().equals('FRAUD_ALERT_STATUS_FRAUD')) {
+					fraud = true;
+				}
+			} 
+		}
+		if (fraud) {
+			AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+			compliance.setStatus(failedStatus);
+		} else if (open == false){
+			AttributeChoice clearStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_CLEAR");
+			compliance.setStatus(clearStatus);
+		} else {
+			AttributeChoice openStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_OPEN");
+			compliance.setStatus(openStatus);
+		}		
+end
+
+rule "Compliance_FraudCheck_Open"
+	when
+		changeModelEvent:FraudAlert.ChangeModelEvent(property == "status", newValue != null, ((AttributeChoice)newValue).key == 'FRAUD_ALERT_STATUS_OPEN')
+	then
+		FraudAlert fraudAlert = (FraudAlert) changeModelEvent.getEntity();
+		Compliance compliance = fraudAlert.getCompliance();
+		boolean fraud = false;
+		if (compliance.getFraudAlerts() != null) {
+			for (FraudAlert fa : compliance.getFraudAlerts()) {
+				if (fa == fraudAlert) {
+				 // skip
+				} else if (fa.getStatus() != null && fa.getStatus().getKey().equals('FRAUD_ALERT_STATUS_FRAUD')) {
+					fraud = true;
+				}
+			} 
+		}
+		if (fraud) {
+			AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+			compliance.setStatus(failedStatus);
+		} else {
+			AttributeChoice openStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_OPEN");
+			compliance.setStatus(openStatus);
+		}		
+end
+
+rule "Compliance_FraudCheck_NullStatus"
+	when
+		changeModelEvent:FraudAlert.ChangeModelEvent(property == "status", newValue == null)
+	then
+		FraudAlert fraudAlert = (FraudAlert) changeModelEvent.getEntity();
+		Compliance compliance = fraudAlert.getCompliance();
+		boolean fraud = false;
+		if (compliance.getFraudAlerts() != null) {
+			for (FraudAlert fa : compliance.getFraudAlerts()) {
+				if (fa == fraudAlert) {
+				 // skip
+				} else if (fa.getStatus() != null && fa.getStatus().getKey().equals('FRAUD_ALERT_STATUS_FRAUD')) {
+					fraud = true;
+				}
+			} 
+		}
+		if (fraud) {
+			AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+			compliance.setStatus(failedStatus);
+		} else {
+			AttributeChoice openStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_OPEN");
+			compliance.setStatus(openStatus);
+		}		
+end
+
+rule "Compliance_KYC_Failed"
+	when
+		changeModelEvent:KYCAlert.ChangeModelEvent(property == "status", newValue != null, ((AttributeChoice)newValue).key == 'KYC_ALERT_STATUS_FAILED')
+	then
+		KYCAlert kycAlert = (KYCAlert) changeModelEvent.getEntity();
+		Compliance compliance = kycAlert.getCompliance();
+		AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+		compliance.setStatus(failedStatus);		
+end
+
+rule "Compliance_KYC_Override"
+	when
+		changeModelEvent:KYCAlert.ChangeModelEvent(property == "status", newValue != null, ((AttributeChoice)newValue).key == 'KYC_ALERT_STATUS_OVERRIDE')
+	then
+		KYCAlert kycAlert = (KYCAlert) changeModelEvent.getEntity();
+		Compliance compliance = kycAlert.getCompliance();
+		boolean failed = false;
+		boolean open = false;
+		if (compliance.getKycAlerts() != null) {
+			for (KYCAlert kycA : compliance.getKycAlerts()) {
+				if (kycA == kycAlert) {
+				 // skip
+				} else if (kycA.getStatus() == null || kycA.getStatus().getKey().equals('KYC_ALERT_STATUS_OPEN')) {
+					open = true;
+				} else if (kycA.getStatus().getKey().equals('KYC_ALERT_STATUS_FAILED')) {
+					failed = true;
+				}
+			} 
+		}
+		if (failed) {
+			AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+			compliance.setStatus(failedStatus);
+		} else if (open == false){
+			AttributeChoice clearStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_CLEAR");
+			compliance.setStatus(clearStatus);
+		} else {
+			AttributeChoice openStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_OPEN");
+			compliance.setStatus(openStatus);
+		}		
+end
+
+rule "Compliance_KYC_Open"
+	when
+		changeModelEvent:KYCAlert.ChangeModelEvent(property == "status", newValue != null, ((AttributeChoice)newValue).key == 'KYC_ALERT_STATUS_OPEN')
+	then
+		KYCAlert kycAlert = (KYCAlert) changeModelEvent.getEntity();
+		Compliance compliance = kycAlert.getCompliance();
+		boolean failed = false;
+		if (compliance.getKycAlerts() != null) {
+			for (KYCAlert kycA : compliance.getKycAlerts()) {
+				if (kycA == kycAlert) {
+				 // skip
+				} else if (kycA.getStatus() != null && kycA.getStatus().getKey().equals('KYC_ALERT_STATUS_FAILED')) {
+					failed = true;
+				}
+			} 
+		}
+		if (failed) {
+			AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+			compliance.setStatus(failedStatus);
+		} else {
+			AttributeChoice openStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_OPEN");
+			compliance.setStatus(openStatus);
+		}		
+end
+
+rule "Compliance_KYC_NullStatus"
+	when
+		changeModelEvent:KYCAlert.ChangeModelEvent(property == "status", newValue == null)
+	then
+		KYCAlert kycAlert = (KYCAlert) changeModelEvent.getEntity();
+		Compliance compliance = kycAlert.getCompliance();
+		boolean failed = false;
+		if (compliance.getKycAlerts() != null) {
+			for (KYCAlert kycA : compliance.getKycAlerts()) {
+				if (kycA == kycAlert) {
+				 // skip
+				} else if (kycA.getStatus() != null && kycA.getStatus().getKey().equals('KYC_ALERT_STATUS_FAILED')) {
+					failed = true;
+				}
+			} 
+		}
+		if (failed) {
+			AttributeChoice failedStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_FAILED");
+			compliance.setStatus(failedStatus);
+		} else {
+			AttributeChoice openStatus =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","COMPLIANCE_STATUS_OPEN");
+			compliance.setStatus(openStatus);
+		}		
+end

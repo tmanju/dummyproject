@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="user" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="user.userInformation">
+		<field name="user.username" label="User Name" />
+		<field name="user.contact.firstName" />
+		<field name="user.contact.middleName" />
+		<field name="user.contact.lastName" />
+		<field name="user.userType" />
+		<field name="user.wfStatus" />
+		<field name="user.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+		<field name="user.metaInfo.lastModifiedByUser" label="Last Updated By"/>
+	    <field name="user.userSource" targetFields="user.userInformation" label="Source System"/>
+    	<field name="user.externalIdentifier"/>
+	</panel>
+	
+	<panel id="user.contactDetails">
+		<field name="user.contact.mobilePhone" label="Phone Number (Mobile)" />
+		<field name="user.contact.businessPhone" label="Phone Number (Business)" />
+		<field name="user.contact.businessFax" />
+		<field name="user.contact.email"  label="Email Address"/>
+		<field name="user.emailEnabled" label="Email Enabled" />
+	</panel>
+	<panel id="user.profile">
+		<field name="user.timeZone"/>
+		<field name="user.language"/>
+		<field name="user.currency"/>
+    	<field name="user.locked"/>
+    	<field name="user.accountExpiryDate"/>
+    	<field name="user.lastPasswordResetDate" label="Last Password Changed"/>		
+	</panel>
+	<panel id="user.limits">
+		<field name="user.creditAuthorityLevel" />
+		<field name="user.racExceptionAuthority" />
+	</panel>
+
+	<panel id="user.teams.Assignment" label="Team Assignment">		
+		<field name="user.teams" label="Available Teams"/>
+	</panel>
+
+	<panel id="user.roles.Assignment" label="Role Assignment">
+		<field name="user.roles" label="Available Roles"/>
+	</panel>
+
+	<panel id="user.esignature.provisionStatus" label="E-Signature Provision Status">
+		<field name="user.createdInEsig" label="Provisioned"/>
+		<field name="user.createdInEsigDttm" label="Provisioned Date"/>
+	</panel>
+	
+	<commands>
+		<!-- <command id="CreateOpenAmUser" name="Provision" action="openAMService" type="businessOp" /> -->
+		<command id="Activate" name="Activate" action="Activate" type="businessOp" >
+			<dialog-canvas>
+	            <section id="activatePanel" label="Confirm Following Activate Fields">
+	                <field name="user.emailEnabled" label="Email Enabled" />
+	                <field name="user.accountExpiryDate" />
+	            </section>
+        	</dialog-canvas>  
+		</command>
+		<command id="Deactivate" name="Deactivate" action="Deactivate" type="businessOp" >
+		</command>
+		
+		<command id="saveEntityBtn" name="Save" >
+			<dialog-canvas>
+	            <section id="saveFields" label="Confirm Following Fields">
+	                <field name="user.emailEnabled" label="Email Enabled" />
+	                <field name="user.accountExpiryDate" />
+	            </section>
+	        </dialog-canvas>  
+		</command>
+		
+	</commands>
+	<beans>
+		<bean name="user" type="com.thirdpillar.codify.loanpath.model.User" />
+	</beans>	
+</canvas>

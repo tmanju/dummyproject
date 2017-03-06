@@ -1,0 +1,585 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="Facility" ignore-annotations="false">
+		 
+		<map:class>
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.facilityType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[!(o.request.requestType.key == 'REQUEST_TYPE_CREDIT' && o.facilityType == null)]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.exposureLimitFacilityType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[!(o.request.requestType.key == 'REQUEST_TYPE_EXPOSURE_LIMIT' && o.exposureLimitFacilityType == null)]]></map:element>
+			</map:constraint> -->
+			<!-- 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.ModsFlow.action.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[if(o.modificationStatus==null || o.modificationStatus.key == 'MODIFICATION_STATUS_PENDING' || o.modificationStatus.key == 'MODIFICATION_STATUS_APPROVED'){
+														return true;
+														}else{
+														return false;
+														}]]></map:element>
+			</map:constraint>
+			-->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.modsFlow.modificationRequestTask.complete}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey ==  'FACILITY_STATUS_DOCS_CREATED' && o.getModificationStatus!=null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.getModificationStatus.key !=  'MODIFICATION_STATUS_REQUESTED']]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.status.otherthan.withdrawn}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityDeclineValidationsGroup</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityApproveValidationsGroup</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityCounterOfferValidationsGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN']]></map:element>
+			</map:constraint>
+			
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.modificationActionAdverseReasons.required}</map:message>
+				<map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityCounterOfferValidationsGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.modCreditDenialReason!=null  && o.modCreditDenialReason.size() == 2]]></map:element>
+			</map:constraint>
+			
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.modificationActionAdverseReasons.required}</map:message>
+				<map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityDeclineValidationsGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.modCreditDenialReason!=null  && o.modCreditDenialReason.size() == 2]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.modificationNOIAReasons.required}</map:message>
+				<map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityNoiaValidationsGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.modNoiaReason!=null]]></map:element>
+			</map:constraint>
+			
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.modificationWithdrawReason.required}</map:message>
+				<map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityWithdrawValidationsGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.modWithdrawReason!=null]]></map:element>
+			</map:constraint>
+			
+
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.ofacCheckResults.contains.clear.or.Override.for.individual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+											boolean result = true;
+											foreach(facilityRelParty : o.facilityRelParties){
+												if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'  && 
+														(facilityRelParty.relationshipParty.partyRole != null && 
+															(facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_GUARANTOR'  ||
+																facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_PRACTICE_OWNER'  || 
+																 facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_PRIMARY_OWNER' )
+														)
+													){
+													
+													foreach(compliance : o.request.compliances ){
+															if (compliance.partyDetail.id == facilityRelParty.relationshipParty.customer.partyDetail.id ) {
+														   		if(compliance.status.key != null && (compliance.status.key == 'COMPLIANCE_STATUS_CLEAR' || compliance.status.key =='COMPLIANCE_STATUS_OVERRIDE' )){
+														   			result = result && true; 
+														   		} 
+														   		else {
+														   			result = false; 
+														   		}
+													   		}
+													   		
+													}
+												}
+											}
+											return result;
+										]]>
+											
+				</map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.customer.amlVerfied.for.individual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+						boolean result = true;
+						foreach(facilityRelParty : o.facilityRelParties){
+							if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'  && 
+									(facilityRelParty.relationshipParty.partyRole != null && 
+										(facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_AUTHORITY_SIGNER'  ||
+											facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_PRACTICE_OWNER'  || 
+											 facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_PRIMARY_OWNER' )
+									)
+								){
+								
+									if (facilityRelParty.relationshipParty.customer.partyDetail.amlVerified != null && facilityRelParty.relationshipParty.customer.partyDetail.amlVerified.key == 'YES_OR_NO_YES' )  {
+										result = result && true;
+										}else {
+											result = false;
+										}		
+										
+								}
+							}
+						return result;
+					]]>		
+				</map:element>
+			</map:constraint>
+
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.ofacCheck.for.nonindividual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+											boolean result = true;
+											foreach(facilityRelParty : o.facilityRelParties){
+												if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL' ){
+													if( (facilityRelParty.relationshipParty.customer.partyDetail.ofacHitWarning != null && facilityRelParty.relationshipParty.customer.partyDetail.ofacHitWarning.key == 'YES_OR_NO_NO' ) &&
+														(facilityRelParty.relationshipParty.customer.partyDetail.ofacReportDate != null && ((new java.util.Date()).getTime() - facilityRelParty.relationshipParty.customer.partyDetail.ofacReportDate.getTime() )  > 0  ) &&
+														( facilityRelParty.relationshipParty.customer.partyDetail.ofacReport != null )
+													  ) {
+													  result = result && true;
+													  }
+													 else {
+													 	result = false;
+													 } 
+												}													
+											}
+											return result;
+										]]>
+											
+				</map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.orgType.for.nonindividual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[
+											boolean result = true;
+											foreach(facilityRelParty : o.facilityRelParties){
+												if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'
+												 && facilityRelParty.relationshipParty.partyRole != null && facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_ACCOUNT')
+												{
+													if(facilityRelParty.relationshipParty.customer.partyDetail.legalEntityType == null)
+													{
+													  result = false;
+												    }
+												}													
+											}
+											return result;
+										]]>
+											
+				</map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.amlVerfied.for.nonindividual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+											boolean result = true;
+											foreach(facilityRelParty : o.facilityRelParties){
+												if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL' && (facilityRelParty.relationshipParty.partyRole != null && ( facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_GUARANTOR' || facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_ACCOUNT'))){
+													if (!(facilityRelParty.relationshipParty.customer.partyDetail.amlVerified != null && facilityRelParty.relationshipParty.customer.partyDetail.amlVerified.key == 'YES_OR_NO_YES' ))  {
+													 	 result = false;
+													  }
+												}													
+											}
+											return result;
+										]]>
+											
+				</map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.relationshipFacParties.addresses.for.nonindividual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+											boolean result = true;
+											foreach(facilityRelParty : o.facilityRelParties){
+												if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL' && (facilityRelParty.relationshipParty.partyRole != null && ( facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_GUARANTOR' || facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_ACCOUNT'))){
+												 	com.thirdpillar.codify.loanpath.model.PartyDetail prtyDetail = facilityRelParty.relationshipParty.customer.partyDetail;
+													if ((prtyDetail.contactTypeDetails !=null && prtyDetail.contactTypeDetails.size() > 0) && (prtyDetail.pdContacts !=null && prtyDetail.pdContacts.size() > 0))  {
+													 	 foreach(contactTypeDetail : prtyDetail.contactTypeDetails){
+													 	 	com.thirdpillar.codify.loanpath.model.ContactInfo cntctInfo = contactTypeDetail.contactInfo;
+													 	 	if(!((cntctInfo.streetName != null && cntctInfo.streetName.length > 0)
+													 	 		&& (cntctInfo.city != null && cntctInfo.city.length > 0)
+													 	 		&& (cntctInfo.postalCode != null && cntctInfo.postalCode.length > 0)
+													 	 		&& (cntctInfo.country != null)
+													 	 		&& (cntctInfo.state != null)
+													 	 	)){
+													 	 		result = false;
+													 	 	}
+													 	 }	
+													 	 foreach(pdContact : prtyDetail.pdContacts){
+													 	 	com.thirdpillar.codify.loanpath.model.ContactInfo pdContactsContactInfo = pdContact.contactInfo;
+													 	 	if(!((pdContactsContactInfo.streetName != null && pdContactsContactInfo.streetName.length > 0)
+													 	 		&& (pdContactsContactInfo.city != null && pdContactsContactInfo.city.length > 0)
+													 	 		&& (pdContactsContactInfo.postalCode != null && pdContactsContactInfo.postalCode.length > 0)
+													 	 		&& (pdContactsContactInfo.country != null)
+													 	 		&& (pdContactsContactInfo.state != null)
+													 	 	)){
+													 	 		result = false;
+													 	 	}
+													 	 }	
+													  }else{
+													  	result = false;
+													  }
+												}													
+											}
+											return result;
+										]]>
+											
+				</map:element>
+			</map:constraint>
+			
+			
+			 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.relationship.guarantor.with.authorizedSigner.for.nonindividual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[
+											boolean match = true; 
+											foreach(facilityRelParty : o.facilityRelParties){
+												if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL' && facilityRelParty.relationshipParty.partyRole != null && (facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_GUARANTOR' || facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_ACCOUNT'  )) 
+												{
+ 													if ( match == true ) {
+ 													    match = false;
+	 													foreach(facilityRelPartyOther : o.facilityRelParties){
+	 														if (facilityRelPartyOther.relationshipParty !=null && 
+																	(facilityRelPartyOther.relationshipParty.parentRelationshipParty != null && facilityRelPartyOther.relationshipParty.parentRelationshipParty.customer.id == facilityRelParty.relationshipParty.customer.id )  && 
+																	(facilityRelPartyOther.relationshipParty.partyRole != null && facilityRelPartyOther.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_AUTHORITY_SIGNER')) {
+																	match = true ;
+															}
+														}
+													}
+												}
+											}
+											return match;
+										]]>
+											
+				</map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.relationshipFacParties.partyRole.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[int count=0;
+										if(o.facilityRelParties !=null && o.facilityRelParties.size() >0){
+											foreach(facilityRelParty : o.facilityRelParties){
+												if(facilityRelParty.relationshipParty.partyRole != null && facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_ACCOUNT' ){
+													
+													count++;
+												}
+											}
+										}
+										if(count==0){return false;}
+										else{return true;}]]>
+											
+				</map:element>
+			</map:constraint>
+			
+			<!-- 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.useOfFunds.reqDescBaps.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.useOfFunds != null && o.useOfFunds.reqBapsPayoff != null && o.useOfFunds.reqBapsPayoff.compareTo(new java.math.BigDecimal(0)) >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.useOfFunds.reqDescriptionBapsOff != null && o.useOfFunds.reqDescriptionBapsOff.length >0]]></map:element>
+			</map:constraint>
+			 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.facilityType.totalLoanRequest}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.useOfFunds.reqTotalLoanRequest != null && o.useOfFunds.reqTotalLoanRequest.compareTo(new java.math.BigDecimal(0))==1]]></map:element>
+			</map:constraint>
+			-->
+			<!-- Group Validations -->
+			<!--<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.expectedCloseDate.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitToLP</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.pricingOption.structure!=null && o.pricingOption.structure.contractStartDttm != null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.structure.termUnit.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitToLP</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.pricingOption.structure!=null && o.pricingOption.structure.termUnit != null]]></map:element>
+			</map:constraint>-->
+			
+			<!-- End Group Validations -->
+			
+			<!-- Fees -->
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.fees.feeType}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.pricingOption != null && o.pricingOption.structure.fees!=null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(fee : o.pricingOption.structure.fees){if(fee != null && fee.feeType == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.fees.requestedFeeAmt}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.pricingOption != null && o.pricingOption.structure.fees!=null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(fee : o.pricingOption.structure.fees){if(fee != null && fee.requestedFeeAmt == null)return false;}return true;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.fees.feeFrequency}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.pricingOption != null && o.pricingOption.structure.fees!=null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(fee : o.pricingOption.structure.fees){if(fee != null && fee.feeFrequency == null)return false;}return true;]]></map:element>
+			</map:constraint> -->
+			
+			<!-- End Fee -->
+								
+						
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.collateral.primary}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.pricingOption != null && o.pricingOption.assets!=null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[ int i=0;
+												boolean match = true;
+				
+				  						if (o.pricingOption.assets.size > 1 ) {
+					  						match = false;
+											foreach(collateral : o.pricingOption.assets){
+												if (collateral != null && collateral.primary != null && collateral.primary == true){
+													match = true;
+												}
+											}
+										}
+											return match;
+											]]>
+											
+				</map:element>
+			</map:constraint>
+			
+		 	  
+			
+			 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.denialReason.denialReasonSize}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+													
+													boolean result=true;
+													if(o.facilityDecision != null && ( o.facilityDecision.key=='FACILITY_DECISION_DECLINE' || o.facilityDecision.key =='FACILITY_DECISION_COUNTER_OFFER'))
+													 {
+														if(o.creditDenialReason.size<2)
+				                                            {
+				                                                result=false;
+				                                            }
+				                                            else
+				                                             {
+				                                                 result=true;
+				                                             }
+				                                      }
+				                                             return result;
+				                                     ]]>
+			 </map:element>
+			</map:constraint>   
+			
+			 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.denialReason.denialReasonSize}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+													
+													boolean result=true;
+													if(o.facilityDecision != null && ( o.facilityDecision.key=='FACILITY_DECISION_DECLINE' || o.facilityDecision.key =='FACILITY_DECISION_COUNTER_OFFER'))
+													 {
+														if(o.creditDenialReason.size<2)
+				                                            {
+				                                                result=false;
+				                                            }
+				                                            else
+				                                             {
+				                                                 result=true;
+				                                             }
+				                                      }
+				                                             return result;
+				                                     ]]>
+			 </map:element>
+			</map:constraint>   
+			
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.allFacilities.decision.Approved.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitToDocs</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[
+				                                            boolean result=true;
+															
+															    if(o.getWfStatus() != null && o.getWfStatus().getStatusKey() == 'FACILITY_STATUS_APPROVED')
+															      {
+															           result=true;
+															       }
+															       else
+															       {
+															         result= false;
+															       }
+															  return result;
+															 
+															 ]]></map:element>
+				
+			</map:constraint>
+			
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.collateral.currency}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.pricingOption.assets!=null]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[foreach(collateral : o.pricingOption.assets){if(collateral != null && collateral.currency == null)return false;}return true;]]></map:element>
+			</map:constraint> -->
+			
+			<!-- End Collateral -->
+			
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.coaSetDefinition.priorToValue.lessThan.disbursed}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.coasetDefinition !=null && o.coasetDefinition.disbursed!= null]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[boolean match = true;
+                                                                foreach(coaEval: o.coasetDefinition.coaEvls){
+                                                                    if(coaEval.coaEvaluation!= null &&  coaEval.coaEvaluation.key == 'COA_EVALUATION_INCOMPLETE' && coaEval.priorToValue != null &&  coaEval.priorToValue < o.coasetDefinition.disbursed ){
+                                                                        match = false;
+                                                                    }
+                                                                }return match;
+                                                                
+                ]]></map:element>
+            </map:constraint> 
+              
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.coaSetDefinition.coaEvaluation.coaEvaluationExceptionMsg.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.coasetDefinition !=null]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[boolean match = true;
+                                                                foreach(coaEval: o.coasetDefinition.coaEvls){
+                                                                    if(coaEval.coaEvaluation!= null && ( coaEval.coaEvaluation.key == "COA_EVALUATION_WAIVED"  || coaEval.coaEvaluation.key == "COA_EVALUATION_EXCEPTION_SALES" || coaEval.coaEvaluation.key == "COA_EVALUATION_EXCEPTION_OPERATIONS"  ) ){
+                                                                       if ( !(coaEval.coaEvaluationExceptionMsg !=null && coaEval.coaEvaluationExceptionMsg.length > 0 ))  { 
+                                                                        	match = false;
+                                                                        }
+                                                                    }
+                                                                }return match;
+                ]]></map:element>
+            </map:constraint> 
+			
+			              
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.coaSetDefinition.coaEvaluation.coaEvaluation.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[o.coasetDefinition !=null]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[boolean match = true;
+                                                                foreach(coaEval: o.coasetDefinition.coaEvls){
+                                                                    if(coaEval.coaEvaluation== null ){
+                                                                        	match = false;
+                                                                    }
+                                                                }return match;
+                ]]></map:element>
+            </map:constraint> 
+            
+            <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.customer.provisioned.for.individual}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ModsFlow</map:value>
+				</map:groups>
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+						boolean result = true;
+						foreach(facilityRelParty : o.facilityRelParties){
+							if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL'  && 
+									(facilityRelParty.relationshipParty.partyRole != null && 
+										(facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_AUTHORITY_SIGNER'  ||
+											facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_GUARANTOR' )
+									)
+								){
+								
+									if (facilityRelParty.relationshipParty.customer.partyDetail.createdInOpenAM != null && facilityRelParty.relationshipParty.customer.partyDetail.createdInOpenAM.key == 'YES_OR_NO_YES' )  {
+										result = result && true;
+										}else {
+											result = false;
+										}		
+										
+								}
+							}
+						return result;
+					]]>		
+				</map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{facility.relationship.customer.riskrating.required}</map:message>
+                <map:groups>
+                     <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityModificationGroup</map:value>
+                </map:groups>
+                <map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0 && o.facilityDecision != null && o.facilityDecision.key != 'FACILITY_DECISION_DECLINE']]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                                    boolean match = true;
+		                                    foreach(facilityRelParty : o.facilityRelParties){
+		                                        if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.partyRole!=null && facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_ACCOUNT' && facilityRelParty.relationshipParty.customer!=null && facilityRelParty.relationshipParty.customer.partyDetail !=null)
+		                                        {
+		                                            if(facilityRelParty.relationshipParty.customer.partyDetail.riskRatings==null || facilityRelParty.relationshipParty.customer.partyDetail.riskRatings.size() == 0 )
+		                                            {
+		                                                match=false;  
+		                                            }
+		                                            
+		                                        }
+		                                    }
+                                    return match;
+                                                        ]]>
+                </map:element>
+            </map:constraint>
+            
+             <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.relationship.customer.amlVerfied.for.individual}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityModificationGroup</map:value>
+                </map:groups>
+
+				<map:element name="triggerExpr"><![CDATA[o.wfStatus!=null && o.wfStatus.statusKey !=  'FACILITY_STATUS_WITHDRAWN' && o.facilityRelParties !=null && o.facilityRelParties.size() >0 && o.facilityDecision != null && o.facilityDecision.key != 'FACILITY_DECISION_DECLINE']]></map:element>
+				<map:element name="matchedExpr"><![CDATA[
+										boolean result = true;
+											
+												foreach(facilityRelParty : o.facilityRelParties){
+													if(facilityRelParty.relationshipParty!=null && facilityRelParty.relationshipParty.customer.partyDetail.partyDetailType.key == 'CUSTOMER_TYPE_INDIVIDUAL' && (facilityRelParty.relationshipParty.partyRole != null && ( facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_PRACTICE_OWNER' || facilityRelParty.relationshipParty.partyRole.key== 'PARTY_ROLE_TYPE_PRIMARY_OWNER' || facilityRelParty.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_AUTHORITY_SIGNER'))){
+														if (facilityRelParty.relationshipParty.customer.partyDetail.amlVerified != null && facilityRelParty.relationshipParty.customer.partyDetail.amlVerified.key == 'YES_OR_NO_YES' )  {
+															 result = result && true;
+														}
+														else {
+															result = false;
+														}																	
+													}
+												}
+											
+										return result;
+										]]>
+											
+				</map:element>
+			</map:constraint>
+            
+		</map:class>
+	</map:bean>
+	
+</map:constraint-mappings>

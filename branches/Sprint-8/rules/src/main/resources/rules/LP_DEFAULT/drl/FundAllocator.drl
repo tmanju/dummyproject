@@ -1,0 +1,141 @@
+#created on: August 27, 2015
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.model.Guarantee;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.*;
+import com.thirdpillar.codify.loanpath.util.Utility;
+
+
+global com.thirdpillar.foundation.service.Context appContext;
+
+rule "initilize_status_on_fund_allocation_portion"
+  agenda-group "NEW" 
+  when
+    fundAllocator:FundAllocator()    
+  then
+  	logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+	modifyWfStatusFundAllocator(fundAllocator,"FUNDING_PLACEMENT_STATUS_NEW");
+  	fundAllocator.setDrawRequestedDate(new Date());
+  
+  	logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+  	
+end
+
+
+rule "reset_fundAllocator_on_capitalProviderChange"
+	when
+		#condition
+		changeModelEvent:FundAllocator.ChangeModelEvent(property == "capitalProvider",newValue != null)
+	then
+		#action
+		logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+		     
+		FundAllocator fundAllocator= (FundAllocator)changeModelEvent.getEntity();
+		CapitalProvider cp = (CapitalProvider) changeModelEvent.getNewValue();
+		if(cp != null && cp.getCustomerAssociated() !=null && cp.getCustomerAssociated().getLegalName() !=null){
+			if(cp.getCustomerAssociated().getIsInxCp()){
+				AttributeChoice temp =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","FUNDING_PLACEMENT_TEMP_YES");
+				fundAllocator.setTemp(temp);
+			}
+			else{
+				AttributeChoice temp =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","FUNDING_PLACEMENT_TEMP_NO");
+				fundAllocator.setTemp(temp);
+			}
+			
+			if(fundAllocator.getDeal() !=null && fundAllocator.getDeal().getFacilityBE() != null && fundAllocator.getDeal().getFacilityBE().getFacAllocators() !=null){
+				List<FacAllocator> facAllocators = fundAllocator.getDeal().getFacilityBE().getFacAllocators();
+				for(FacAllocator aloc : facAllocators){
+					if(cp.getCustomerAssociated().getLegalName().equals(aloc.getCapitalProvider().getCustomerAssociated().getLegalName())){
+						if(aloc.getFundPer() != null){
+							if(aloc.getCapitalProvider().getCustomerAssociated()!=null && aloc.getCapitalProvider().getCustomerAssociated().getIsInxCp()){
+								fundAllocator.setFundPer(fundAllocator.getFundPer());
+							}else{
+								fundAllocator.setFundPer(aloc.getFundPer());
+							}
+						}else{	
+							fundAllocator.setFundPer(null);
+						}
+					}
+				}
+			}
+		}else{		
+			fundAllocator.setFundPer(null);
+		}
+		
+		if(cp != null && cp.getCustomerAssociated() !=null && cp.getCustomerAssociated().getLegalName() !=null && fundAllocator.getFundPer() != null){
+			BigDecimal percentage = (BigDecimal) fundAllocator.getFundPer();
+			System.out.println("#####0000009999reset_fundAmt_on_fundPerChange   "+ percentage);
+			BigDecimal iniFundingReq = fundAllocator.getDeal().getInitialFundingReq() == null? BigDecimal.ZERO: fundAllocator.getDeal().getInitialFundingReq().getAmount();
+			if (iniFundingReq != null
+					&& (iniFundingReq.compareTo(BigDecimal.ZERO) > 0)&& percentage!=null) {
+					BigDecimal per=percentage(iniFundingReq, percentage);
+					fundAllocator.setFundAmt(per);
+				System.out.print("^^^^^^^^^^^^^^^^^^^^ val=   iniFundingReq "+iniFundingReq+"  percentage"+per);
+			}
+		}
+		
+		logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+end
+
+
+rule "set_capitalProvider"
+	when
+		#condition
+		changeModelEvent:FundAllocator.ChangeModelEvent(property == "newCapitalProvider",newValue != null)
+	then
+		logDebug(drools, ">> Starting Rule: " + drools.getRule().getName());
+		FundAllocator fundAllocator= (FundAllocator)changeModelEvent.getEntity();
+		CapitalProvider cp = (CapitalProvider) changeModelEvent.getNewValue();
+		if(cp !=null){
+			fundAllocator.setCapitalProvider(cp);
+		}
+		logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+end
+
+rule "CalculatePendingReqAmt"
+	when
+		#condition
+		changeModelEvent:FundAllocator.ChangeModelEvent(property == "wfStatus",newValue != null)
+	then
+	logDebug(drools, ">> Starting Rule: " + drools.getRule().getName());
+	WorkflowStatus status = (WorkflowStatus) changeModelEvent.getNewValue();
+	FundAllocator fundAllocator = (FundAllocator) changeModelEvent.getEntity();
+	EntityService es = new EntityService();
+	if(status.getStatusKey().equals("FUNDING_PLACEMENT_STATUS_REQUESTED") && fundAllocator != null){
+		BigDecimal requestedAmt = fundAllocator.getFundAmt();
+		FacilityBE facilityBE =  fundAllocator.getDeal().getFacilityBE();
+		BigDecimal pendingFundingReq = facilityBE.getPendingFundingReq() != null ? facilityBE.getPendingFundingReq() : BigDecimal.ZERO;
+		pendingFundingReq = Utility.add(pendingFundingReq,requestedAmt,3);
+		facilityBE.setPendingFundingReq(pendingFundingReq);
+		es.update(facilityBE);
+	}if(status.getStatusKey().equals("FUNDING_PLACEMENT_STATUS_FUNDED") && fundAllocator != null){
+		BigDecimal requestedAmt = fundAllocator.getFundAmt();
+		FacilityBE facilityBE =  fundAllocator.getDeal().getFacilityBE();
+		BigDecimal pendingFundingReq = facilityBE.getPendingFundingReq();
+		pendingFundingReq = Utility.subtract(pendingFundingReq,requestedAmt,3);
+		facilityBE.setPendingFundingReq(pendingFundingReq);
+		es.update(facilityBE);
+	}
+	logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+end
+
+function BigDecimal percentage(BigDecimal base, BigDecimal pct) {
+		return (base.multiply(pct)).divide(new BigDecimal(100),2,RoundingMode.DOWN);
+}
+function BigDecimal getNewPercentage(BigDecimal base, BigDecimal newAmt) {
+		return (newAmt.multiply(new BigDecimal(100))).divide(base,2,RoundingMode.DOWN);
+}
+  	
+function void modifyWfStatusFundAllocator(FundAllocator fundAllocator , String wfStatusKey)
+{
+		System.out.println("====================changeStatus in fundAllocator.drl================================");
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", wfStatusKey);
+  		fundAllocator.setWfStatus(status);
+		
+ }
+
+ 

@@ -1,0 +1,149 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<attribute>
+		<key>AGENCY_RATING</key>
+		<name>Agency Rating</name>
+		<description />
+		<attributeChoices>
+			<attributeChoice>
+				<value>Not Rated</value>
+				<sequence>0</sequence>
+				<key>AGENCY_RATING_NOT_RATED</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>A</value>
+				<sequence>1</sequence>
+				<key>AGENCY_RATING_A</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>A+</value>
+				<sequence>2</sequence>
+				<key>AGENCY_RATING_A_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>A-</value>
+				<sequence>3</sequence>
+				<key>AGENCY_RATING_A_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>AA</value>
+				<sequence>4</sequence>
+				<key>AGENCY_RATING_AA</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>AA+</value>
+				<sequence>5</sequence>
+				<key>AGENCY_RATING_AAA_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>AA-</value>
+				<sequence>6</sequence>
+				<key>AGENCY_RATING_AA_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>AAA</value>
+				<sequence>7</sequence>
+				<key>AGENCY_RATING_AAA</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>B</value>
+				<sequence>8</sequence>
+				<key>AGENCY_RATING_B</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>B+</value>
+				<sequence>9</sequence>
+				<key>AGENCY_RATING_B_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>B-</value>
+				<sequence>10</sequence>
+				<key>AGENCY_RATING_B_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BB</value>
+				<sequence>11</sequence>
+				<key>AGENCY_RATING_BB</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BB+</value>
+				<sequence>12</sequence>
+				<key>AGENCY_RATING_BB_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BB-</value>
+				<sequence>13</sequence>
+				<key>AGENCY_RATING_BB_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BBB</value>
+				<sequence>14</sequence>
+				<key>AGENCY_RATING_BBB</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BBB+</value>
+				<sequence>15</sequence>
+				<key>AGENCY_RATING_BBB_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BBB-</value>
+				<sequence>16</sequence>
+				<key>AGENCY_RATING_BBB_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>C</value>
+				<sequence>17</sequence>
+				<key>AGENCY_RATING_C</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CC</value>
+				<sequence>18</sequence>
+				<key>AGENCY_RATING_CC</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CCC</value>
+				<sequence>19</sequence>
+				<key>AGENCY_RATING_CCC</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CCC+</value>				
+				<sequence>20</sequence>
+				<key>AGENCY_RATING_CCC_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CCC-</value>
+				<sequence>21</sequence>
+				<key>AGENCY_RATING_CCC_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>D</value>
+				<sequence>22</sequence>
+				<key>AGENCY_RATING_D</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+</list>
+</mod:sr.addEntityRequest>

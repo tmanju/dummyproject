@@ -1,0 +1,338 @@
+
+<list>
+	<racsetDefinition>
+		<description>From PS General Lending policy, these apply to all loans.</description>
+		<name>General Lending Policy Exceptions</name>
+		<racDefinitions>
+			<racDefinition>
+				<description>Complete financial information</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GENERAL</key>
+					<value>General</value>
+				</racCategory>
+				<racId>1</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Loan to Gross (LTG) less than 90% </description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GENERAL</key>
+					<value>General</value>
+				</racCategory>
+				<racId>2</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Loan to value for CRE less than 85%</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GENERAL</key>
+					<value>General</value>
+				</racCategory>
+				<racId>3</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Debt service coverage greater than 1.20x in the most recent tax year.</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GENERAL</key>
+					<value>General</value>
+				</racCategory>
+				<racId>4</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>No prior unpaid charge-off or other financial loss.</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GENERAL</key>
+					<value>General</value>
+				</racCategory>
+				<racId>5</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>No balances currently 30 or more days past due.</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GENERAL</key>
+					<value>General</value>
+				</racCategory>
+				<racId>6</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>No previous bankrupcy with in the last 5 years.</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GENERAL</key>
+					<value>General</value>
+				</racCategory>
+				<racId>7</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+		</racDefinitions>
+		<racsetGroup>
+			<attributeChoiceCodes/>
+			<key>RACSET_GROUP_MAIN_GROUP</key>
+			<value>Main Group</value>
+		</racsetGroup>
+	</racsetDefinition>
+	<!-- 2nd RacSet -->
+	<racsetDefinition>
+		<description>From PS Market Profile, these apply to all loans.</description>
+		<name>Market Profile</name>
+		<racDefinitions>
+			<racDefinition>
+				<description>Minimum 3 Years in Business</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_MARKET_PROFILE</key>
+					<value>Market Profile</value>
+				</racCategory>
+				<racId>1</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Maximum Revenue from Customer 15% or less</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_MARKET_PROFILE</key>
+					<value>Market Profile</value>
+				</racCategory>
+				<racId>2</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Within Union Geographic Market Limitations</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_MARKET_PROFILE</key>
+					<value>Market Profile</value>
+				</racCategory>
+				<racId>3</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Minimum 3 Yr. CPA Reviewed F/S, + latest interim or CPA prepared Tax Returns and 3 Yr. compiled F/S + latest interim</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_MARKET_PROFILE</key>
+					<value>Market Profile</value>
+				</racCategory>
+				<racId>4</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			</racDefinitions>
+			<racsetGroup>
+				<attributeChoiceCodes/>
+				<key>RACSET_GROUP_MAIN_GROUP</key>
+				<value>Main Group</value>
+			</racsetGroup>
+   	</racsetDefinition>
+   	<!-- 3rd RacSet -->
+   	<racsetDefinition>
+		<description>From PS Over $5MM Exposure, these apply to all loans.</description>
+		<name>Over $5MM Exposure</name>
+		<racDefinitions>
+			<racDefinition>
+				<description>RA latest 3 Years, most recent interim and comparable prior year</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_OVER_$5MM_EXPOSURE</key>
+					<value>Over $5MM Exposure</value>
+				</racCategory>
+				<racId>1</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+		</racDefinitions>
+		<racsetGroup>
+				<attributeChoiceCodes/>
+				<key>RACSET_GROUP_MAIN_GROUP</key>
+				<value>Main Group</value>
+		</racsetGroup>
+   	</racsetDefinition>
+	<!-- 4th Racset -->
+	<racsetDefinition>
+		<description>From PS Deal Structure, these apply to all loans.</description>
+		<name>Deal Structure</name>
+		<racDefinitions>
+			<racDefinition>
+				<description>Minimum Liquidity UB Current Ratio greater or equal to 1.2</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_DEAL_STRUCTURE</key>
+					<value>Deal Structure</value>
+				</racCategory>
+				<racId>1</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Minimum Debt Service greater or equal to 1.15 (ACF+Lse)/(Adj. Debt Service + Lse)</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_DEAL_STRUCTURE</key>
+					<value>Deal Structure</value>
+				</racCategory>
+				<racId>2</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Maximum Term Unsecured 5 years</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_DEAL_STRUCTURE</key>
+					<value>Deal Structure</value>
+				</racCategory>
+				<racId>3</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Maximum Term Secured 7 years</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_DEAL_STRUCTURE</key>
+					<value>Deal Structure</value>
+				</racCategory>
+				<racId>4</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			</racDefinitions>
+			<racsetGroup>
+				<attributeChoiceCodes/>
+				<key>RACSET_GROUP_MAIN_GROUP</key>
+				<value>Main Group</value>
+			</racsetGroup>
+   	</racsetDefinition>		
+   	<!-- 5th Racset -->
+   	<racsetDefinition>
+		<description>From PS Financials, these apply to all loans.</description>
+		<name>Financials</name>
+		<racDefinitions>
+			<racDefinition>
+				<description>Less then 70% of Appraised Value</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_LOAN_TO_VALUE</key>
+					<value>Loan To Value</value>
+				</racCategory>
+				<racId>1</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Minimum 1.25x</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_DEBT_SERVICE_COV_RATIO</key>
+					<value>Debt Service Coverate Ratio</value>
+				</racCategory>
+				<racId>2</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Minimum 10%</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_DEBT_YIELD_TEST</key>
+					<value>Debt Yield test</value>
+				</racCategory>
+				<racId>3</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+		</racDefinitions>
+		<racsetGroup>
+				<attributeChoiceCodes/>
+				<key>RACSET_GROUP_MAIN_GROUP</key>
+				<value>Main Group</value>
+		</racsetGroup>
+   	</racsetDefinition>
+   	<!-- 6th Racset -->
+   	<racsetDefinition>
+		<description>From PS Cash Flow, these apply to all loans.</description>
+		<name>Cash Flow</name>
+		<racDefinitions/>
+		<racsetGroup>
+				<attributeChoiceCodes/>
+				<key>RACSET_GROUP_MAIN_GROUP</key>
+				<value>Main Group</value>
+		</racsetGroup>
+   	</racsetDefinition>
+   	<!-- 6th Racset -->
+   	<racsetDefinition>
+		<description>From PS Guarantor, these apply to all loans.</description>
+		<name>Guarantor</name>
+		<racDefinitions>
+			<racDefinition>
+				<description>Maximum 10 times of loan amount</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_NET_WORTH</key>
+					<value>Net Worth</value>
+				</racCategory>
+				<racId>1</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Should be equal to loan amount</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_LIQUIDITY</key>
+					<value>Liquidity</value>
+				</racCategory>
+				<racId>2</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Third party Guarantor Required for Loan >10 MM or >50 MM</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_GUARANTOR</key>
+					<value>Guarantor</value>
+				</racCategory>
+				<racId>4</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+			<racDefinition>
+				<description>Minimum fico score of 700 is requried for Sponsors</description>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_CREDIT_SCORES</key>
+					<value>Credit Scores</value>
+				</racCategory>
+				<racId>5</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+		</racDefinitions>
+		<racsetGroup>
+				<attributeChoiceCodes/>
+				<key>RACSET_GROUP_MAIN_GROUP</key>
+				<value>Main Group</value>
+		</racsetGroup>
+   	</racsetDefinition>
+   	<!-- 7th Racset -->
+   	<racsetDefinition>
+		<description>From PS Loan Level, these apply to all loans.</description>
+		<name>Loan Level</name>
+		<racDefinitions>
+			<racDefinition>
+				<description/>
+				<racCategory>
+					<attributeChoiceCodes/>
+					<key>RAC_CATEGORY_LOAN_TERM</key>
+					<value>Loan term</value>
+				</racCategory>
+				<racId>1</racId>
+				<racsetDefinition reference="../../.."/>
+			</racDefinition>
+		</racDefinitions>
+		<racsetGroup>
+				<attributeChoiceCodes/>
+				<key>RACSET_GROUP_MAIN_GROUP</key>
+				<value>Main Group</value>
+		</racsetGroup>
+   	</racsetDefinition>
+   	
+</list>

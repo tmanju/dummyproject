@@ -1,0 +1,29 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+	<team>
+		<description>Credit Decision Team</description>
+		<name>Credit Decision Team</name>
+		<teamCategory>
+			<key>TEAM_CATEGORY_CREDIT</key>
+		</teamCategory>
+	</team>
+	<user>
+		<username>credit.mgr</username>
+		
+		<teams>
+			<team>
+				<name>Credit Decision Team</name>
+			</team>
+		</teams>
+	</user>
+	<user>
+		<username>credit.manager</username>
+		
+		<teams>
+			<team>
+				<name>Credit Decision Team</name>
+			</team>
+		</teams>
+	</user>
+	</list>
+</mod:sr.addEntityRequest>

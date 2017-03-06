@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Attribute" source="/seed/data/attributes.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Attribute" source="/seed/data/attribute_naicsCode.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Attribute" source="/seed/data/attributes_unsorted.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Currency" source="/seed/data/currencies.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Language" source="/seed/data/Languages.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Country" source="/seed/data/countries.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.TimeZone" source="/seed/data/time_zone.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.WorkflowStatus" source="/seed/data/workflow_status.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.PermissionSet" source="/seed/data/permissionSets.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Role" source="/seed/data/role.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Team" source="/seed/data/team.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.RacsetDefinition" source="/seed/data/racsetDefinitions.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.CoaDefinition" source="/seed/data/coa_definition.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.CovenantDefinition" source="/seed/data/covenant_definition.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.User" source="/seed/data/user.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.DocumentCatalogItem" source="/seed/data/doc_catalog.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Partner" source="/seed/data/partner.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Customer" source="/seed/data/customer.xml"/> 
+<!--     <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.CustomerBackend" source="/seed/data/customerbackend.xml"/>  -->
+	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ResidualReference" source="/seed/data/residualReference.xml"/>
+	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.foundation.model.SearchFilter" source="/seed/data/requestsCreatedInLast30Days.xml"/>
+	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.foundation.model.SearchFilter" source="/seed/data/requestsCreatedByLoggedInUser.xml"/>
+	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ValueGrid" source="/seed/data/valueGrids.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ValueGrid" source="/seed/data/valueGrids-bca.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ValueGrid" source="/seed/data/valueGrids-bcp.xml"/> 
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ValueGrid" source="/seed/data/valueGrids-bilWithDraw.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ValueGrid" source="/seed/data/valueGrids-bilWithoutDraw.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.AfsFee" source="/seed/data/afsFee.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.PricingPolicy" source="/seed/data/pricingPolicy.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.FeePolicy" source="/seed/data/feePolicy.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.PromotionPolicy" source="/seed/data/promotionPolicy.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ScrAttributeSeed" source="/seed/data/ScrAttributeSeed.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ScrFactorSeed" source="/seed/data/ScrFactorSeed.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.FacilityTypeCategory" source="/seed/data/facilityTypeCategory.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Program" source="/seed/data/program.xml"/>
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.ScrRecommRuleSeed" source="/seed/data/ScrRecommRuleSeed.xml" />
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.RecomReasonSeed" source="/seed/data/RecomReasonSeed.xml" />
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.FacilityRange" source="/seed/data/FacilityRange.xml" />
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.TaskConfiguration" source="/seed/data/taskConfiguration.xml" />
+ 	<operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.NotificationConfiguration" source="/seed/data/notificationConfiguration.xml"/>	
+	  <!-- candidates of 2nd Run-->
+    <!-- <operation action="upsert" profileName="Import-Run2-Full" type="com.thirdpillar.codify.loanpath.model.AttributeType" source="/seed/data/attribute_types.xml"/>
+    <operation action="upsert" profileName="Import-Run2-Full" type="com.thirdpillar.codify.loanpath.model.AttributeDataType" source="/seed/data/attribute_data_types.xml"/>
+    <operation action="upsert" profileName="Import-Run2-Full" type="com.thirdpillar.codify.loanpath.model.User" source="/seed/data/user.xml"/>
+    
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Customer" source="/seed/data/customer.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Relationship" source="/seed/data/relationship.xml"/>
+    <operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Relationship" source="/seed/data/relationship_relatedParty.xml"/>
+     -->
+    <!-- operation action="upsert" profileName="Import-Run1-Full" type="com.thirdpillar.codify.loanpath.model.Request" source="/seed/data/request.xml"/ -->
+
+</operations>

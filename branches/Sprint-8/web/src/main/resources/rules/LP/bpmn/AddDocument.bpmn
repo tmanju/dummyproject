@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_ResultItem" structureRef="String" />
+
+  <itemDefinition id="_26-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_26-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_26-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_26-ResultItem" structureRef="String" />
+
+  <itemDefinition id="_11-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_11-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_11-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_11-ResultItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="AddDocument" name="AddDocument" tns:packageName="LP.web" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+     <tns:import name="com.thirdpillar.codify.foundation.jsf.EntityBean" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Customer" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="com.thirdpillar.foundation.search.api.*" />
+     <tns:import name="java.util.*" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="flowState" itemSubjectRef="_flowStateItem"/>
+    <property id="parentPage" itemSubjectRef="_parentPageItem"/>
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="Result" itemSubjectRef="_ResultItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <endEvent id="_4" name="End" />
+    <scriptTask id="_6" name="Set contextEntity" scriptFormat="http://www.java.com/java" >
+      <script>FlowState fs  = (FlowState) context.getVariable("flowState");
+context.setVariable("contextEntity",((EntityBean)fs.getEntry().getPrimaryBean()).getEntity());</script>
+    </scriptTask>
+    <scriptTask id="_27" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>EntityService entityService = new EntityService();
+
+Document document= (Document) context.getVariable("contextEntity");
+if(document.getDocumentRelatedTo()!=null  &amp;&amp; document.getDocumentRelatedTo().getKey().equals("DOCUMENT_RELATED_TO_PARTY")) {
+	
+	if(document.getAssociatedCustomers()!=null &amp;&amp; document.getAssociatedCustomers().size()&gt;1) {
+		 int i=0;
+		 for(FacilityCustomerRole customerRole:document.getAssociatedCustomers()) {
+		 	if(i==0) { i++;continue;}
+		 	Document duplicateDoc=(Document)entityService.copy(document);
+		 	List&lt;FacilityCustomerRole&gt; customerRoles=duplicateDoc.getAssociatedCustomers();
+		 	customerRoles.clear();
+		 	customerRoles.add(customerRole);
+		 	duplicateDoc.setAssociatedCustomers(customerRoles);
+		 	document.addMultipleEntryWithCustomer(duplicateDoc);
+		 }
+		for(int j=1;j&lt;document.getAssociatedCustomers().size();j++) {
+			document.getAssociatedCustomers().remove(j);
+		} 
+	}
+}
+
+/*if(document.getDocumentRelatedTo()!=null  &amp;&amp; document.getDocumentRelatedTo().getKey().equals("DOCUMENT_RELATED_TO_FACILITY")) {
+	if(document.getAssociatedFacilities()!=null &amp;&amp; document.getAssociatedFacilities().size()&gt;1) {
+			 int i=0;
+		for(Facility facility:document.getAssociatedFacilities()) {
+		 		if(i==0) { i++;continue;}
+		 		 	Document duplicateDoc=(Document)entityService.copy(document);
+		 			List&lt;Facility&gt; facilities=duplicateDoc.getAssociatedFacilities();
+		 			facilities.clear();
+		 			facilities.add(facility);
+		 			duplicateDoc.setAssociatedFacilities(facilities);
+			     	document.addMultipleEntryWithFacility(duplicateDoc);
+		}
+			for(int j=1;j&lt;document.getAssociatedFacilities().size();j++) {
+					document.getAssociatedFacilities().remove(j);
+			}	 
+	}
+}*/
+
+
+</script>
+    </scriptTask>
+    <task id="_26" name="Document Information" tns:taskName="PageFlow" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_26_parentPageInput" name="parentPage" />
+        <dataInput id="_26_entityInput" name="entity" />
+        <dataInput id="_26_flowStateInput" name="flowState" />
+        <dataInput id="_26_operationInput" name="operation" />
+        <dataInput id="_26_enameInput" name="ename" />
+        <dataInput id="_26_canvasInput" name="canvas" />
+        <dataInput id="_26_propertyInput" name="property" />
+        <dataInput id="_26_actionsInput" name="actions" />
+        <inputSet>
+          <dataInputRefs>_26_parentPageInput</dataInputRefs>
+          <dataInputRefs>_26_entityInput</dataInputRefs>
+          <dataInputRefs>_26_flowStateInput</dataInputRefs>
+          <dataInputRefs>_26_operationInput</dataInputRefs>
+          <dataInputRefs>_26_enameInput</dataInputRefs>
+          <dataInputRefs>_26_canvasInput</dataInputRefs>
+          <dataInputRefs>_26_propertyInput</dataInputRefs>
+          <dataInputRefs>_26_actionsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_26_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_26_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_26_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_26_operationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ShowCrud</from>
+          <to xsi:type="tFormalExpression">_26_operationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_26_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">document</from>
+          <to xsi:type="tFormalExpression">_26_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_26_canvasInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_26_canvasInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_26_propertyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_26_propertyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_26_actionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">done</from>
+          <to xsi:type="tFormalExpression">_26_actionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_11" name="End Page Flow" tns:taskName="EndPageFlow" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_11_parentPageInput" name="parentPage" />
+        <dataInput id="_11_entityInput" name="entity" />
+        <dataInput id="_11_flowStateInput" name="flowState" />
+        <dataInput id="_11_redirectOperationInput" name="redirectOperation" />
+        <dataInput id="_11_enameInput" name="ename" />
+        <inputSet>
+          <dataInputRefs>_11_parentPageInput</dataInputRefs>
+          <dataInputRefs>_11_entityInput</dataInputRefs>
+          <dataInputRefs>_11_flowStateInput</dataInputRefs>
+          <dataInputRefs>_11_redirectOperationInput</dataInputRefs>
+          <dataInputRefs>_11_enameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_11_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_11_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_redirectOperationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_11_redirectOperationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">document</from>
+          <to xsi:type="tFormalExpression">_11_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_11-_4" sourceRef="_11" targetRef="_4" />
+    <sequenceFlow id="_1-_6" sourceRef="_1" targetRef="_6" />
+    <sequenceFlow id="_26-_27" sourceRef="_26" targetRef="_27" />
+    <sequenceFlow id="_6-_26" sourceRef="_6" targetRef="_26" />
+    <sequenceFlow id="_27-_11" sourceRef="_27" targetRef="_11" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="AddDocument" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="16" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="654" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="96" y="16" width="130" height="49" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="410" y="16" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" >
+        <dc:Bounds x="258" y="16" width="120" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="522" y="16" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_11-_4" >
+        <di:waypoint x="572" y="40" />
+        <di:waypoint x="678" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_6" >
+        <di:waypoint x="40" y="40" />
+        <di:waypoint x="161" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_27" >
+        <di:waypoint x="318" y="40" />
+        <di:waypoint x="450" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_26" >
+        <di:waypoint x="161" y="40" />
+        <di:waypoint x="318" y="40" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_11" >
+        <di:waypoint x="450" y="40" />
+        <di:waypoint x="572" y="40" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,21 @@
+#created on: Oct 3, 2011
+package LP_AUTH
+
+import com.thirdpillar.foundation.auth.Authorization;
+import com.thirdpillar.foundation.auth.AuthEntry;
+
+rule "TaskAction"
+	
+	when
+		#conditions
+		auth : Authorization( )
+	then 
+		#actions
+		AuthEntry authEntry = new AuthEntry();
+        authEntry.setFieldName( "entity.task.actions" );
+        authEntry.setEditable( false );
+	    authEntry.setVisible( false );
+        insert(authEntry );
+        auth.setAuthEntry( authEntry );
+		
+end

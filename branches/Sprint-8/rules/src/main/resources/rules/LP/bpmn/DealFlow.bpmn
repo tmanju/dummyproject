@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+
+  <itemDefinition id="_2-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_2-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_2-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_2-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_2-entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_2-entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+
+  <itemDefinition id="_8-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_8-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_8-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_8-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_8-entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_8-entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+
+  <itemDefinition id="_9-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_9-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_9-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_9-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_9-entityInItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_9-entityOutItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+
+  <process processType="Private" isExecutable="true" id="DealFlow" name="DealFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="java.util.Date" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="sfdcInputMap" itemSubjectRef="_sfdcInputMapItem"/>
+    <property id="integrationExchange" itemSubjectRef="_integrationExchangeItem"/>
+    <property id="integrationResultStatus" itemSubjectRef="_integrationResultStatusItem"/>
+    <property id="entityIn" itemSubjectRef="_entityInItem"/>
+    <property id="entityOut" itemSubjectRef="_entityOutItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <task id="_2" name="Deal Flow Wait" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <endEvent id="_3" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <intermediateCatchEvent id="_4" name="DrawRequest" >
+      <signalEventDefinition signalRef="DrawRequest"/>
+    </intermediateCatchEvent>
+    <endEvent id="_5" name="End" />
+    <task id="_8" name="Update to Akritiv" tns:taskName="IntegrationTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("Updating data to Akritiv =================&gt;");
+Deal dataObject  = (Deal) context.getVariable("contextEntity");
+
+Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+inputMap.put("contextEntity",dataObject);
+inputMap.put("entityOut",dataObject);
+
+inputMap.put("clientId","akritiv-internex");
+inputMap.put("action","update");
+
+context.setVariable("sfdcInputMap", inputMap);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
+
+Deal deal = (Deal) context.getVariable("contextEntity");
+IntegrationExchange integrationExchangeObj = (IntegrationExchange) context.getVariable("integrationExchange");
+Object object = integrationExchangeObj.getTaskOutput();
+
+deal.mergeAkritivResponse(deal,rStatus,integrationExchangeObj);
+
+context.setVariable("integrationResultStatus",null);
+context.setVariable("integrationExchange",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_8_inputInput" name="input" />
+        <dataInput id="_8_entityInput" name="entity" />
+        <dataInput id="_8_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_8_entityOutput" name="entity" />
+        <dataOutput id="_8_ResultExchangeOutput" name="ResultExchange" />
+        <dataOutput id="_8_ResultStatusOutput" name="ResultStatus" />
+        <inputSet>
+          <dataInputRefs>_8_inputInput</dataInputRefs>
+          <dataInputRefs>_8_entityInput</dataInputRefs>
+          <dataInputRefs>_8_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_8_entityOutput</dataOutputRefs>
+          <dataOutputRefs>_8_ResultExchangeOutput</dataOutputRefs>
+          <dataOutputRefs>_8_ResultStatusOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>sfdcInputMap</sourceRef>
+        <targetRef>_8_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_8_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_8_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">mpbeService</from>
+          <to xsi:type="tFormalExpression">_8_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_8_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_8_ResultExchangeOutput</sourceRef>
+        <targetRef>integrationExchange</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_8_ResultStatusOutput</sourceRef>
+        <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_9" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_9_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_9_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_9_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_8-_5" sourceRef="_8" targetRef="_5" />
+    <sequenceFlow id="_9-_8" sourceRef="_9" targetRef="_8" />
+    <sequenceFlow id="_4-_9" sourceRef="_4" targetRef="_9" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="DealFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="47" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="16" y="96" width="111" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="47" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="227" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="227" y="256" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="160" y="176" width="183" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="159" y="96" width="184" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="71" y="40" />
+        <di:waypoint x="71" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="71" y="120" />
+        <di:waypoint x="71" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_5" >
+        <di:waypoint x="251" y="200" />
+        <di:waypoint x="251" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_8" >
+        <di:waypoint x="251" y="120" />
+        <di:waypoint x="251" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_9" >
+        <di:waypoint x="251" y="40" />
+        <di:waypoint x="251" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

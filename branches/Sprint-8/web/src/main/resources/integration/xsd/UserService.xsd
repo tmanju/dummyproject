@@ -1,0 +1,30 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:userService="http://schemas.thirdpillar.com/user/service"
+	xmlns:user="http://schemas.thirdpillar.com/user"
+	targetNamespace="http://schemas.thirdpillar.com/user/service"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<xs:import namespace="http://schemas.thirdpillar.com/user" schemaLocation="User.xsd"/>
+	
+	<xs:element name="CreateUser" type="userService:CreateUserType">
+		<xs:annotation>
+			<xs:documentation>Root Element for Create User Operation</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
+	<xs:complexType name="CreateUserType">
+		<xs:choice>
+			<xs:element name="Request" type="userService:CreateUserTypeRequestType"/>
+			<xs:element name="Response" type="userService:CreateUserTypeResponseType"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	<xs:complexType name="CreateUserTypeRequestType">
+		<xs:sequence>
+			<xs:element name="Product" type="user:UserType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="CreateUserTypeResponseType"/>
+	
+</xs:schema>

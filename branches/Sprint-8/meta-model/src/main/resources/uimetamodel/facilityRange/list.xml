@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="facilityRange" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="results" row="facilityRange">
+		<columns>
+			<column name="facilityRange.stateProvince"/>
+			<column name="facilityRange.reqLoanAmtMin"/>
+			<column name="facilityRange.reqLoanAmtMax"/>
+			<column name="facilityRange.locReqMaxAmt"/>
+		</columns>
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.FacilityRange" />
+	</beans>	
+</canvas>

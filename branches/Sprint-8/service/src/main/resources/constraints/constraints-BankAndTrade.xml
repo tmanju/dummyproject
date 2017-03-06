@@ -1,0 +1,99 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="BankAndTrade" ignore-annotations="false">
+      <map:class> 
+            <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{bankTrade.routingnum.check}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean match=true;
+					if(o.routingNumber != null && Double.parseDouble(o.routingNumber)==0)
+					{
+						match=false;
+					}
+				return match;
+				]]></map:element>
+  			</map:constraint>
+  			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{bankTrade.bankAccountNumber.check}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean match=true;
+					if(o.bankAccountNumber != null && Double.parseDouble(o.bankAccountNumber)==0)
+					{
+						match=false;
+					}
+				return match;
+				]]></map:element>
+  			</map:constraint>
+  			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.bankTrade.bankAccountNumber.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean match=true;
+					if(o.bankAccountNumber == null)
+					{
+						match=false;
+					}
+				return match;
+				]]></map:element>
+  			</map:constraint>
+  			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.bankTrade.routingNumber.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean match=true;
+					if(o.routingNumber == null)
+					{
+						match=false;
+					}
+				return match;
+				]]></map:element>
+  			</map:constraint>
+  			         
+      </map:class>
+      <map:field name="bankAccountNumber">
+		  <map:constraint annotation="javax.validation.constraints.Pattern">
+	      	<map:message>{customer.bankTrade.bankAccountNumber.pattern}</map:message>
+	      	<map:element name="regexp">[0-9]*</map:element>
+	   	  </map:constraint>  
+	  </map:field>
+	  <map:field name="routingNumber">
+		  <map:constraint annotation="javax.validation.constraints.Pattern">
+	      	<map:message>{customer.bankTrade.routingNumber.pattern}</map:message>
+	      	<map:element name="regexp">[0-9]*</map:element>
+	   	  </map:constraint>  
+	  </map:field>
+      <map:field name="accountExpOrRenewalDttm">
+		   <map:constraint annotation="javax.validation.constraints.Future">
+		     <map:message>{customer.bankTrade.accountExpOrRenewalDttm.pattern}</map:message>
+		   </map:constraint>
+	  </map:field> 
+<!-- 	  <map:field name="name"> -->
+<!-- 	  <map:constraint annotation="javax.validation.constraints.Pattern"> -->
+<!-- 		     <map:message>{customer.bankTrade.name.pattern}</map:message> -->
+<!-- 		     <map:element name="regexp">[a-zA-Z ]*</map:element> -->
+<!-- 		   </map:constraint>   -->
+<!-- 	  </map:field> -->
+	  <map:field name="nameOnAccount">
+	  <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.bankTrade.nameOnAccount.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z0-9 ]*</map:element>
+		   </map:constraint>  
+	  </map:field>
+	  <map:field name="branchName">
+	  <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.bankTrade.branchName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z0-9]{0,30}</map:element>
+		   </map:constraint>  
+	  </map:field>
+	  <map:field name="phoneNumber">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{bankTrade.number.pattern}</map:message>
+		     <map:element name="regexp">(?!0{10})[0-9]{10}</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="faxNumber">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{bankTrade.number.pattern}</map:message>
+		     <map:element name="regexp">(?!0{10})[0-9]{10}</map:element>
+		   </map:constraint>
+	  </map:field>
+    </map:bean>
+</map:constraint-mappings>

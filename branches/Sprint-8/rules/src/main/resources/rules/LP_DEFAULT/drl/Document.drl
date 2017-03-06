@@ -1,0 +1,303 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.model.Document;
+import com.thirdpillar.codify.loanpath.constants.ConstantsRules;
+import com.thirdpillar.codify.loanpath.model.User;
+import com.thirdpillar.codify.loanpath.model.Request;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.DocumentGroup;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import java.util.Date;
+import java.util.List;
+import com.thirdpillar.codify.loanpath.model.FacilityCustomerRole;
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+
+global com.thirdpillar.foundation.service.Context appContext;
+global java.lang.String actorId;
+
+
+rule "SetStatusBeforeGenerateOrUpload"
+                agenda-group "NEW" 
+                when
+                        #conditions
+        				document:Document()
+        	    then 
+                        #actions 
+                        document.setRequestLevel(true);
+                                          
+end
+
+rule "SetDocumentRelatedTo"
+                agenda-group "NEW" 
+                when
+                        #conditions
+        				document:Document()
+        	    then 
+                        #actions
+                        AttributeChoice attrRelatedTo =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.DOCUMENT_RELATED_TO_PARTY_KEY);
+                        document.setDocumentRelatedTo(attrRelatedTo);
+                                          
+end
+
+
+rule "SetRequestBeforeGenerate"
+                agenda-group "NEW" 
+                when
+                        #conditions
+                        document:Document()
+                        #appContext:Context()
+                        #appContext1:Context(root:rootContextEntity, eval(root instanceof Request))
+                        
+        	    then 
+                        #actions
+                        if(appContext != null && appContext.getRootContextEntity() !=null && (appContext.getRootContextEntity())instanceof Request)
+                        {
+	                        Request req=(Request)appContext.getRootContextEntity();
+	                        document.setAssociatedRequest(req);
+                        } 
+end
+
+rule "SetStatusToNewBeforeGenerate"
+                agenda-group "NEW" 
+                when
+                        #conditions
+        				document:Document()
+        	    then 
+                        #actions 
+                        
+                        com.thirdpillar.codify.loanpath.model.AttributeChoice docStatus=( com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key","DOCUMENT_STATUS_SIGNING_IN_COMPLETE");
+   						document.setDocumentStatus(docStatus);
+end
+
+rule "SetStatusToPendingReviewOnSave"
+                agenda-group "SAVE" 
+                when
+                        #conditions
+        				req:Request(documentGroup != null)
+        	    then 
+                        #actions  
+                        if(((DocumentGroup)req.getDocumentGroup()).getUploadedDocuments()!=null && ((DocumentGroup)req.getDocumentGroup()).getUploadedDocuments().size()>0)
+                        { 
+	                       for(Document document:((DocumentGroup)req.getDocumentGroup()).getUploadedDocuments())
+	                       {
+		                        if(document.getUploadedStream() != null && document.getDocumentStatus()!=null && document.getDocumentStatus().getKey().equalsIgnoreCase("DOCUMENT_STATUS_SIGNING_IN_COMPLETE"))
+		                        {
+		                           com.thirdpillar.codify.loanpath.model.AttributeChoice docStatus=( com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key","DOCUMENT_STATUS_PENDING_REVIEW");
+		   						   document.setDocumentStatus(docStatus);
+		   						}
+	   						}
+	   					}
+end
+
+rule "SetDocumentCategoryOnSave"
+                agenda-group "SAVE" 
+                when
+                        #conditions
+        				req:Request(documentGroup != null)
+        	    then 
+                        #actions  
+                        
+                        if(((DocumentGroup)req.getDocumentGroup()).getUploadedDocuments()!=null && ((DocumentGroup)req.getDocumentGroup()).getUploadedDocuments().size()>0)
+                        { 
+                         EntityService entityService = new EntityService();
+	                       for(Document document:((DocumentGroup)req.getDocumentGroup()).getUploadedDocuments())
+	                       {
+		                        
+		                        if(document.getDocumentClass() !=null && document.getDocumentClass().getKey() !=null && document.getDocumentCategory() !=null && document.getDocumentCategory().getKey() !=null){
+		                        List<Document> docCategory = (List<Document>)entityService.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.Document.findByClassCategory",new String[]{"documentClass","documentCategory"},
+					             new Object[]{document.getDocumentClass().getKey(),document.getDocumentCategory().getKey()});
+					             
+					             for(Document attr : docCategory){
+						            System.out.println("============================docCategory======================="+attr);
+			   						   document.setDocumentCategory(attr.getDocumentCategory());
+			   						   }
+		   						   }
+		   						
+	   						}
+	   					}
+end
+
+rule "SetReadOnly_OnWetSignatureTrue"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "wetSignature",newValue == true)
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                       	document.setReadOnly(false);
+end
+
+rule "SetReadOnly_OnWetSignatureFalse"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "wetSignature",newValue == false)
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        if (document.getEsignatureRqd()) {
+                       		document.setReadOnly(true);
+                       	}
+end
+
+rule "SetOnDocumentTypeChange"
+	salience 100
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "documentType")
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        document.setRequestLevel(true);                        
+                       	document.setReadOnly(false);
+                       	document.setEsignatureRqd(false);
+end
+
+
+rule "SetGeneratedByAndDttmOnStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "generatedStream", newValue != null)        				
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        document.setUploadDttm(new Date());
+                        if (appContext != null && appContext.getUser() != null && (appContext.getUser() instanceof User)) {
+                        	document.setGeneratedStreamBy((User)appContext.getUser());
+                        } else {                        
+                        	document.setGeneratedStreamBy(null);
+                        }
+end
+
+rule "SetUploadedByAndDttmOnStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "uploadedStream", newValue != null)        				
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        document.setUploadDttm(new Date());
+                        if (appContext != null && appContext.getUser() != null && (appContext.getUser() instanceof User)) {
+                        	document.setUploadedStreamBy((User)appContext.getUser());
+                        } else {                        
+                        	document.setUploadedStreamBy(null);
+                        }
+end
+
+rule "SetGeneratedByAndDttmOnStreamToNull"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "generatedStream", newValue == null)        				
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        document.setGeneratedDttm(null);
+                       	document.setGeneratedStreamBy(null);
+                       	document.setDocumentName(null);
+end
+
+rule "SetUploadedByAndDttmOnStreamToNull"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "uploadedStream", newValue == null)        				
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        document.setUploadDttm(null);
+                       	document.setUploadedStreamBy(null);
+                       	document.setDocumentName(null);
+end
+
+rule "CheckinOnStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "generatedStream", newValue != null)
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        if (document.getCheckout() !=null && document.getCheckout().getCheckedOutByUser() != null) {
+                        	document.getCheckout().setCheckedOutByUser(null);
+                        	document.getCheckout().setCheckedOutAt(null);
+                        	document.getCheckout().setLastCheckedInByUser((User)appContext.getUser());
+                        	document.getCheckout().setLastCheckedInAt(new Date());
+                        }
+end
+
+
+rule "CheckinOnUploadedStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "uploadedStream", newValue != null)
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        if (document.getCheckout() !=null && document.getCheckout().getCheckedOutByUser() != null) {
+                        	document.getCheckout().setCheckedOutByUser(null);
+                        	document.getCheckout().setCheckedOutAt(null);
+                        	document.getCheckout().setLastCheckedInByUser((User)appContext.getUser());
+                        	document.getCheckout().setLastCheckedInAt(new Date());
+                        }
+end
+
+
+rule "SetDocumentVersionOnStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "generatedStream", newValue != null)
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        if (document.getVersionNumber() != null) {
+                        	document.setVersionNumber(document.getVersionNumber() + 1);
+                        } else {
+                        	document.setVersionNumber(1);
+                        }
+end
+
+
+rule "SetDocumentVersionOnUploadedStreamChange"
+                when
+                        #conditions
+        				changeModelEvent:Document.ChangeModelEvent(property == "uploadedStream", newValue != null)
+        	    then 
+                        #actions 
+                        Document document = (Document) changeModelEvent.getEntity();
+                        if (document.getVersionNumber() != null) {
+                        	document.setVersionNumber(document.getVersionNumber() + 1);
+                        } else {
+                        	document.setVersionNumber(1);
+                        }
+end
+
+
+rule "SetUploadedDocumentsToCustomerFromRequestOnRequestSave"
+                agenda-group "SAVE" 
+                when
+                        #conditions
+        				req:Request(documentGroup != null)
+        				f:Facility() from req.allFacilities
+        	    then 
+        	    		 DocumentGroup reqDocGroup=(DocumentGroup)req.getDocumentGroup();
+        	    		 if(reqDocGroup.getUploadedDocuments()!= null){
+        	    		 logDebug(drools, "Processing request for id " + req.getId());	
+        	    			 EntityService es = new EntityService();
+	                      	List<FacilityCustomerRole> facCustomerRolesList= f.getFacilityCustomerRoles();
+						  	for(FacilityCustomerRole facCustomerRole : facCustomerRolesList){
+						   		Customer cus = facCustomerRole.getCustomer();
+						   		logDebug(drools, "Processing request to customer transfer for customer id " + cus.getId());
+						   		DocumentGroup cusDocGroup=null;
+						   		if(cus.getDocumentGroup() !=null){
+						   			cusDocGroup=(DocumentGroup)cus.getDocumentGroup();
+						   		}else{
+						   			cusDocGroup = (DocumentGroup)es.createNew(DocumentGroup.class);
+						   		}
+						   		logDebug(drools, "Processing request to customer transfer for document group id " + cusDocGroup.getId());//doc grp
+						}
+					}		
+end
+
+
+
+

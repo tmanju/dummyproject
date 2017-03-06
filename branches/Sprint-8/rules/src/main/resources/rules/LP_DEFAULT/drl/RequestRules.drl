@@ -1,0 +1,606 @@
+#created on: September 23, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.constants.ConstantsRules;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.lang.Integer;
+
+
+
+
+rule "SetCreditAnalyst"
+ agenda-group "NEW" 
+ when
+  #conditions
+      req:Request()
+ then 
+  #actions
+ User user = (User)LookupService.getResult("User.byUsername", "username", "credit.analyst");
+  req.setCreditAnalyst(user);
+end
+
+rule "SetPullNewReportToNo"
+	agenda-group "NEW" 
+	when
+		#conditions
+        req:Request()
+	then 
+		#actions
+		AttributeChoice valueNo=( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","YES_OR_NO_NO");
+		
+		req.setPullNewReport(valueNo);
+end
+
+rule "SetDocumentGroup"
+	agenda-group "NEW" 
+	when
+		#conditions
+        r:Request( documentGroup == ( null ) )
+	then 
+		#actions
+		EntityService es = new EntityService();
+		DocumentGroup documentGroup = (DocumentGroup)es.createNew(DocumentGroup.class);
+		r.setDocumentGroup(documentGroup);
+		logDebug(drools, "setting the document group for Request here");		
+end
+
+rule "AddRequestTag_OnWfStatusChange"
+	when
+		changeModelEvent:Request.ChangeModelEvent(property == "wfStatus", newValue != null)
+	then
+		Request request = (Request) changeModelEvent.getEntity();
+		EntityService es = new EntityService();
+		WorkflowStatus wfStatus = (WorkflowStatus) changeModelEvent.getNewValue();
+		es.tag(request,wfStatus.getHelper().getDisplayValue());
+end
+
+rule "AddRequestTag_OnWfStatusToNull"
+	when
+		changeModelEvent:Request.ChangeModelEvent(property == "wfStatus", newValue == null)
+	then
+		Request request = (Request) changeModelEvent.getEntity();
+		EntityService es = new EntityService();
+		es.tag(request,"No Status Set");
+end
+
+rule "Request_RequestType_OnNew"
+	agenda-group "NEW" 
+	when
+		req:Request()
+	then
+		req.setRequestType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "REQUEST_TYPE_CREDIT"));
+end
+
+rule "Request_receivedDate_OnNew"
+	agenda-group "NEW" 
+	when
+		req:Request()
+	then
+		req.setReceivedDate(new Date());
+end
+
+rule "OneStopApp_ProductType_OnNew"
+	agenda-group "NEW" 
+	when
+		oneStopApp:OneStopApp()
+	then
+		oneStopApp.setProductType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE"));
+end
+
+rule "OneStopExposure_ProductType_OnNew"
+	agenda-group "NEW" 
+	when
+		oneStopExposure:OneStopExposure()
+	then
+		oneStopExposure.setProductType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "EXPOSURE_LIMIT_FACILITY_TYPE_CORPORATE_DEBT"));
+end
+
+rule "RequestStatus_New"
+	agenda-group "NEW" 
+	when
+		req:Request()
+	then
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "REQUEST_STATUS_NEW");
+		req.setWfStatus(status);
+end
+
+rule "RequestStatus_Save"
+	agenda-group "SAVE" 
+	when
+		req:Request(wfStatus == null || wfStatus.statusKey == "REQUEST_STATUS_NEW")
+	then
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "REQUEST_STATUS_SAVED");
+		req.setWfStatus(status);
+end
+
+rule "RequestStatus_SetRegBDTTM"
+	agenda-group "SAVE" 
+	when
+		req:Request(id == null, regbDttm == null)
+	then
+		req.setRegbDttm(new Date());
+end
+
+rule "SetApprovalObjectOnRequest"
+	salience 100
+	agenda-group "ApprovalChainSetup"
+    when
+		#conditions
+		req:Request(approval == null)
+	then 
+        #actions 
+		EntityService es = new EntityService();
+		Approval approval = (Approval)es.createNew(Approval.class);
+		req.setApproval(approval);
+		logDebug(drools, "setting the approval object on request");		
+end
+
+rule "SetCustomerRateOnCOFChange"
+	when
+		changeModelEvent:Structure.ChangeModelEvent(property == "cof")
+	then
+		Structure structure = (Structure) changeModelEvent.getEntity();
+		BigDecimal rate = new BigDecimal(0);
+		if (changeModelEvent.getNewValue() != null) {
+			rate = rate.add((BigDecimal)changeModelEvent.getNewValue());
+		}
+		
+		if (structure.getMargin() != null) {
+			rate = rate.add(structure.getMargin());
+		}
+		
+		structure.setCustomerRate(rate);
+end
+
+//rule "SetCustomerRateOnMarginChange"
+	//when
+		//changeModelEvent:Structure.ChangeModelEvent(property == "margin")
+	//then
+		//Structure structure = (Structure) changeModelEvent.getEntity();
+	//	BigDecimal rate = new BigDecimal(0);
+		//if (changeModelEvent.getNewValue() != null) {
+		//	rate = rate.add((BigDecimal)changeModelEvent.getNewValue());
+		//}
+		
+//		if (structure.getCof() != null) {
+	//		rate = rate.add(structure.getCof());
+		//}
+		
+	//	structure.setCustomerRate(rate);
+//end
+
+rule "SetEntityInformationOnOneStopCustomerChange"
+	when
+		changeModelEvent:OneStopApp.ChangeModelEvent(property == "nonIndividualCustomer",newValue != null)
+	then
+		OneStopApp oneStopApp = (OneStopApp) changeModelEvent.getEntity();
+		Customer customer = (Customer) changeModelEvent.getNewValue();
+		oneStopApp.setLegalEntityType(customer.getLegalEntityType());
+		oneStopApp.setEntityName(customer.getLegalName());
+		oneStopApp.setFederalTaxId(customer.getFederalTaxId());
+		EntityService es = new EntityService();
+		for (Address address : customer.getPrimarySite().getSiteDetails().getAddresses()) {
+			Address a = (Address) es.createNew(Address.class);
+			a.setAddress1(address.getAddress1());
+			a.setAddress2(address.getAddress2());
+			a.setCity(address.getCity());
+			a.setCountry(address.getCountry());
+			a.setStateProvince(address.getStateProvince());
+			a.setPostalCode(address.getPostalCode());
+			a.setUse(address.getUse());			
+			oneStopApp.getContact().addToAddresses(a); 
+		}
+		if(oneStopApp.getProductType() != null && "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE".equals(oneStopApp.getProductType().getKey())){
+			oneStopApp.getContact().setFirstName(customer.getPrimarySite().getSiteDetails().getFirstName());
+			oneStopApp.getContact().setLastName(customer.getPrimarySite().getSiteDetails().getLastName());
+			oneStopApp.getContact().setOtherPhone(customer.getPrimarySite().getSiteDetails().getOtherPhone());
+			oneStopApp.getContact().setEmail(customer.getPrimarySite().getSiteDetails().getEmail());
+		}
+end
+
+rule "SetEntityInformationOnOneStopCustomerNull"
+	when
+		changeModelEvent:OneStopApp.ChangeModelEvent(property == "nonIndividualCustomer",newValue == null)
+	then
+		OneStopApp oneStopApp = (OneStopApp) changeModelEvent.getEntity();
+		oneStopApp.setLegalEntityType(null);
+		oneStopApp.setEntityName(null);
+		oneStopApp.setFederalTaxId(null);
+		if ( oneStopApp.getContact().getAddresses() != null) {
+			oneStopApp.getContact().getAddresses().clear();
+		}
+		if(oneStopApp.getProductType() != null && "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE".equals(oneStopApp.getProductType().getKey())){
+			oneStopApp.getContact().setFirstName(null);
+			oneStopApp.getContact().setLastName(null);
+			oneStopApp.getContact().setOtherPhone(null);
+			oneStopApp.getContact().setEmail(null);
+		}
+end
+
+rule "SetEntityInformationOnOneStopCollateralCustomerChange"
+	when
+		changeModelEvent:Collateral.ChangeModelEvent(property == "collateralDers",newValue != null)
+	then
+		Collateral collateral = (Collateral) changeModelEvent.getEntity();
+		Collateral selectedCollateral = (Collateral) changeModelEvent.getNewValue();
+		collateral.setCollateralName(selectedCollateral.getCollateralName());
+		collateral.setCollateralCategory(selectedCollateral.getCollateralCategory());
+		collateral.setCollateralType(selectedCollateral.getCollateralType());
+		collateral.setCollateralDescription(selectedCollateral.getCollateralDescription());
+		collateral.setLocationHeld(selectedCollateral.getLocationHeld());
+		collateral.setNoi(selectedCollateral.getNoi());
+		collateral.getLocation().setAddress1(selectedCollateral.getLocation().getAddress1());
+		collateral.getLocation().setAddress2(selectedCollateral.getLocation().getAddress2());
+		collateral.getLocation().setCity(selectedCollateral.getLocation().getCity());
+		collateral.getLocation().setStateProvince(selectedCollateral.getLocation().getStateProvince());
+		collateral.getLocation().setCountry(selectedCollateral.getLocation().getCountry());
+		collateral.getLocation().setCounty(selectedCollateral.getLocation().getCounty());
+		collateral.getLocation().setPostalCode(selectedCollateral.getLocation().getPostalCode());
+		collateral.getLocation().setPostalCodePlus4(selectedCollateral.getLocation().getPostalCodePlus4());
+end
+
+rule "SetEntityInformationOnOneStopCollateralCustomerNull"
+when
+		changeModelEvent:Collateral.ChangeModelEvent(property == "collateralDers",newValue == null)
+	then
+		Collateral collateral = (Collateral) changeModelEvent.getEntity();
+		collateral.setCollateralName(null);
+		collateral.setCollateralCategory(null);
+		collateral.setCollateralType(null);
+		collateral.setCollateralDescription(null);
+		collateral.setLocationHeld(null);
+		collateral.setNoi(null);
+		collateral.getLocation().setAddress1(null);
+		collateral.getLocation().setAddress2(null);
+		collateral.getLocation().setCity(null);
+		collateral.getLocation().setStateProvince(null);
+		collateral.getLocation().setCountry(null);
+		collateral.getLocation().setCounty(null);
+		collateral.getLocation().setPostalCode(null);
+		collateral.getLocation().setPostalCodePlus4(null);
+end
+
+rule "SetEntityInformationOnOneStopContactChange"
+	when
+		changeModelEvent:OneStopApp.ChangeModelEvent(property == "contactCustomer",newValue != null)
+	then
+		OneStopApp oneStopApp = (OneStopApp) changeModelEvent.getEntity();
+		if(oneStopApp.getProductType() != null && !"CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE".equals(oneStopApp.getProductType().getKey())){
+			Customer customer = (Customer) changeModelEvent.getNewValue();
+			oneStopApp.getContact().setFirstName(customer.getFirstName());
+			oneStopApp.getContact().setLastName(customer.getLastName());
+			oneStopApp.getContact().setBusinessPhone(customer.getPrimarySite().getSiteDetails().getBusinessPhone());
+			oneStopApp.getContact().setOtherPhone(customer.getPrimarySite().getSiteDetails().getOtherPhone());
+			oneStopApp.getContact().setEmail(customer.getPrimarySite().getSiteDetails().getEmail());		
+		}
+		
+		
+end
+
+rule "SetEntityInformationOnContactCustomerNull"
+	when
+		changeModelEvent:OneStopApp.ChangeModelEvent(property == "contactCustomer",newValue == null)
+	then
+		OneStopApp oneStopApp = (OneStopApp) changeModelEvent.getEntity();
+		if(oneStopApp.getProductType() != null && !"CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE".equals(oneStopApp.getProductType().getKey())){
+			Customer customer = (Customer) changeModelEvent.getNewValue();
+			oneStopApp.getContact().setFirstName(null);
+			oneStopApp.getContact().setLastName(null);
+			oneStopApp.getContact().setBusinessPhone(null);
+			oneStopApp.getContact().setOtherPhone(null);
+			oneStopApp.getContact().setEmail(null);	
+		}			
+		
+end
+
+rule "SetEntityInformationOnOneStopGuarantorChange"
+	when
+		changeModelEvent:OneStopApp.ChangeModelEvent(property == "guarantorCustomer",newValue != null)
+	then
+		OneStopApp oneStopApp = (OneStopApp) changeModelEvent.getEntity();
+		Customer customer = (Customer) changeModelEvent.getNewValue();
+		oneStopApp.getGuarantor().setFirstName(customer.getFirstName());
+		oneStopApp.getGuarantor().setLastName(customer.getLastName());
+		oneStopApp.setGuarantorSsn(customer.getSsn());
+		oneStopApp.getGuarantor().setMobilePhone(customer.getPrimarySite().getSiteDetails().getMobilePhone());
+		oneStopApp.getGuarantor().setOtherPhone(customer.getPrimarySite().getSiteDetails().getOtherPhone());
+		oneStopApp.getGuarantor().setEmail(customer.getPrimarySite().getSiteDetails().getEmail());
+		EntityService es = new EntityService();
+		for (Address address : customer.getPrimarySite().getSiteDetails().getAddresses()) {
+			Address a = (Address) es.createNew(Address.class);
+			a.setAddress1(address.getAddress1());
+			a.setAddress2(address.getAddress2());
+			a.setCity(address.getCity());
+			a.setCountry(address.getCountry());
+			a.setStateProvince(address.getStateProvince());
+			a.setPostalCode(address.getPostalCode());
+			a.setUse(address.getUse());			
+			oneStopApp.getGuarantor().addToAddresses(a); 
+		}
+end
+
+rule "SetEntityInformationOnOneStopGuarantorNull"
+	when
+		changeModelEvent:OneStopApp.ChangeModelEvent(property == "guarantorCustomer",newValue == null)
+	then
+		OneStopApp oneStopApp = (OneStopApp) changeModelEvent.getEntity();
+		Customer customer = (Customer) changeModelEvent.getNewValue();
+		oneStopApp.getGuarantor().setFirstName(null);
+		oneStopApp.getGuarantor().setLastName(null);
+		oneStopApp.setGuarantorSsn(null);
+		oneStopApp.getGuarantor().setMobilePhone(null);
+		oneStopApp.getGuarantor().setOtherPhone(null);
+		oneStopApp.getGuarantor().setEmail(null);
+		if ( oneStopApp.getGuarantor().getAddresses() != null) {
+			oneStopApp.getGuarantor().getAddresses().clear();
+		}
+end
+
+# OneStopExposure Entity Change
+rule "SetEntityInformationOnOneStopExposureCustomerChange"
+	when
+		changeModelEvent:OneStopExposure.ChangeModelEvent(property == "counterParty",newValue != null)
+	then
+		OneStopExposure oneStopExposure = (OneStopExposure) changeModelEvent.getEntity();
+		Customer customer = (Customer) changeModelEvent.getNewValue();
+		oneStopExposure.setEntityName(customer.getLegalName());
+		oneStopExposure.setFederalTaxId(customer.getFederalTaxId());
+		EntityService es = new EntityService();
+		for (Address address : customer.getPrimarySite().getSiteDetails().getAddresses()) {
+			Address a = (Address) es.createNew(Address.class);
+			a.setAddress1(address.getAddress1());
+			a.setAddress2(address.getAddress2());
+			a.setCity(address.getCity());
+			a.setCountry(address.getCountry());
+			a.setStateProvince(address.getStateProvince());
+			a.setPostalCode(address.getPostalCode());
+			a.setUse(address.getUse());			
+			oneStopExposure.getContact().addToAddresses(a); 
+		}
+end
+
+rule "SetEntityInformationOnOneStopExposureCustomerNull"
+	when
+		changeModelEvent:OneStopExposure.ChangeModelEvent(property == "counterParty",newValue == null)
+	then
+		OneStopExposure oneStopExposure = (OneStopExposure) changeModelEvent.getEntity();
+		oneStopExposure.setEntityName(null);
+		oneStopExposure.setFederalTaxId(null);
+		if ( oneStopExposure.getContact().getAddresses() != null) {
+			oneStopExposure.getContact().getAddresses().clear();
+		}
+end
+
+rule "SetEntityInformationOnOneStopExposureContactChange"
+	when
+		changeModelEvent:OneStopExposure.ChangeModelEvent(property == "contactCustomer",newValue != null)
+	then
+		OneStopExposure oneStopExposure = (OneStopExposure) changeModelEvent.getEntity();
+		Customer customer = (Customer) changeModelEvent.getNewValue();
+		oneStopExposure.getContact().setFirstName(customer.getFirstName());
+		oneStopExposure.getContact().setLastName(customer.getLastName());
+		oneStopExposure.getContact().setBusinessPhone(customer.getPrimarySite().getSiteDetails().getBusinessPhone());
+		oneStopExposure.getContact().setOtherPhone(customer.getPrimarySite().getSiteDetails().getOtherPhone());
+		oneStopExposure.getContact().setEmail(customer.getPrimarySite().getSiteDetails().getEmail());		
+		
+end
+
+rule "SetEntityInformationOnOneStopExposureContactCustomerNull"
+	when
+		changeModelEvent:OneStopExposure.ChangeModelEvent(property == "contactCustomer",newValue == null)
+	then
+		OneStopExposure oneStopExposure = (OneStopExposure) changeModelEvent.getEntity();
+		Customer customer = (Customer) changeModelEvent.getNewValue();
+		oneStopExposure.getContact().setFirstName(null);
+		oneStopExposure.getContact().setLastName(null);
+		oneStopExposure.getContact().setBusinessPhone(null);
+		oneStopExposure.getContact().setOtherPhone(null);
+		oneStopExposure.getContact().setEmail(null);				
+		
+end
+
+# Financial Assets and Liabilities
+rule "FinancialAssetRE_New"
+	agenda-group "NEW" 
+	when
+		fin:FinancialAssetRE()
+	then
+			AttributeChoice applicant =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","BORROWER_TYPE_APPLICANT");
+			fin.setBorrower(applicant);		
+end
+
+rule "FinancialAssetSecurities_New"
+	agenda-group "NEW" 
+	when
+		fin:FinancialAssetSecurities()
+	then
+			AttributeChoice applicant =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","BORROWER_TYPE_APPLICANT");
+			fin.setBorrower(applicant);		
+end
+
+rule "FinancialAssetMV_New"
+	agenda-group "NEW" 
+	when
+		fin:FinancialAssetMV()
+	then
+			AttributeChoice applicant =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","BORROWER_TYPE_APPLICANT");
+			fin.setBorrower(applicant);		
+end
+
+rule "FinancialAssetPP_New"
+	agenda-group "NEW" 
+	when
+		fin:FinancialAssetPP()
+	then
+			AttributeChoice applicant =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","BORROWER_TYPE_APPLICANT");
+			fin.setBorrower(applicant);		
+end
+
+rule "FinancialLiabilityMortgage_New"
+	agenda-group "NEW" 
+	when
+		fin:FinancialLiabilityMortgage()
+	then
+			AttributeChoice applicant =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","BORROWER_TYPE_APPLICANT");
+			fin.setBorrower(applicant);		
+end
+
+rule "FinancialLiabilityLoan_New"
+	agenda-group "NEW" 
+	when
+		fin:FinancialLiabilityLoan()
+	then
+			AttributeChoice applicant =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","BORROWER_TYPE_APPLICANT");
+			fin.setBorrower(applicant);		
+end
+
+
+rule "Address_New"
+	agenda-group "NEW" 
+	when
+		address:Address()
+	then
+			Country us =(Country) LookupService.getResult("Country.byIsoCode", "isoCode","US");
+			address.setCountry(us);		
+end
+
+rule "SetupFeeAllocation_OnRequestSave"
+	agenda-group "SAVE" 
+	when
+		req:Request()
+		f:Facility() from req.allFacilities
+	then
+		f.setupFeeAllocation();	
+end
+
+/*rule "SetUploadedDocumentsToRequestFromCustomersOnRequestSave"
+			agenda-group "SAVE" 
+			when
+				req:Request()
+				f:Facility() from req.allFacilities
+			then
+				 List<FacilityCustomerRole> facCustomerRolesList= f.getFacilityCustomerRoles();
+				 logDebug(drools, "Processing request for id " + req.getId());	
+				 for(FacilityCustomerRole facCustomerRole : facCustomerRolesList){
+				 	Customer cus = facCustomerRole.getCustomer();
+				 	logDebug(drools, "Processing request to customer transfer for customer id " + cus.getId());	
+					DocumentGroup docGroupCus=(DocumentGroup)cus.getDocumentGroup();
+					if(docGroupCus !=null && docGroupCus.getUploadedDocuments()!=null){
+						EntityService es = new EntityService();
+						DocumentGroup reqDocGroup=null;
+						if(cus.getDocumentGroup() !=null){
+				   			reqDocGroup=(DocumentGroup)req.getDocumentGroup();
+				   		}else{
+				   			reqDocGroup = (DocumentGroup)es.createNew(DocumentGroup.class);
+				   		}
+				   		logDebug(drools, "Processing request to customer transfer for document group id " + reqDocGroup.getId());//doc grp
+						List<Document> reqDocList=reqDocGroup.getUploadedDocuments();
+						if(reqDocList!=null){
+							for(Document document : docGroupCus.getUploadedDocuments()){
+								logDebug(drools, "Processing request to customer transfer for document id " + document.getId());//doc
+								if(reqDocGroup.getUploadDocument(document) == null){
+							 		Document doc=document.clone();
+							 		doc.setUploadedDocumentGroup(reqDocGroup);
+						 			doc.setAssociatedRequest(req);
+						 			//doc.setAssociatedCustomers(cus);
+							 		reqDocList.add(doc);
+							 		logDebug(drools, "Added document after transfer");//added
+								 }
+							} 
+						}
+					}	
+				}
+
+end*/
+
+#rule "SetRegBLetterOnDeclineApp"
+#	agenda-group "UploadRegBLetterDeclineApp"
+#    when
+		#conditions
+#		request:Request(wfStatus != null && wfStatus.statusKey == "REQUEST_STATUS_DECLINED")
+#	then 
+        #actions 
+#		EntityService es = new EntityService();
+#		DocumentGroup dg = request.getDocumentGroup(); 
+#		if (dg == null) {
+#			 dg = (DocumentGroup) es.createNew(DocumentGroup.class);
+#			 request.setDocumentGroup(dg);
+#		}
+#		Document doc = (Document) es.createNew(Document.class);
+#		doc.setDocumentClass((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","DOCUMENT_CLASS_UPLOADED_DOC"));
+#		doc.setDocumentType((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","DOCUMENT_TYPE_REG_B_NOTICE_DECLINED"));
+#		doc.setAssociatedRequest(request);
+#		DocumentGroup dgImpl = (DocumentGroup) dg; 
+#		dgImpl.addToUploadedDocuments(doc);
+#		doc.setUploadedDocumentGroup(dg); 
+#end
+
+
+rule "SetDealStatusIndicatorOnChangeOfWfStatus"
+	when
+		changeModelEvent:Request.ChangeModelEvent(property == "wfStatus",newValue != null)
+	then
+		Request request = (Request) changeModelEvent.getEntity();
+		WorkflowStatus wfStatus = (WorkflowStatus) changeModelEvent.getNewValue();
+		String wfStatusKey = wfStatus.getStatusKey();
+		if("REQUEST_STATUS_APPROVED".equals(wfStatusKey) || "REQUEST_STATUS_APPROVED_TO_BE_NOTIFIED".equals(wfStatusKey) || "REQUEST_STATUS_APPROVED_DOCUMENTATION".equals(wfStatusKey)){
+			request.setDealStatusInd("Won");
+		}else if("REQUEST_STATUS_APPROVED_NOT_ACCEPTED".equals(wfStatusKey) || "REQUEST_STATUS_DECLINED".equals(wfStatusKey) || "REQUEST_STATUS_WITHDRAWN".equals(wfStatusKey)){
+			request.setDealStatusInd("Lost");
+		}
+end
+
+rule "SetStructureMaxLTV_MinDSCR_OnRequestSave"
+	agenda-group "SAVE" 
+	when
+		req:Request()
+		f:Facility() from req.allFacilities
+	then
+		if(req.getKeyPricing() != null){
+			if(req.getKeyPricing().getLoanToValue() != null){
+				f.getPricingOption().getStructure().setMaxLTV(req.getKeyPricing().getLoanToValue().toString());
+			}if(req.getKeyPricing().getDscr() != null){
+				f.getPricingOption().getStructure().setMinDSCR(req.getKeyPricing().getDscr().toString());
+			}
+		}
+end
+
+rule "SetDocumentSpecialist"
+ agenda-group "NEW" 
+ when
+  #conditions
+      req:Request()
+ then 
+  #actions
+ 	User user = (User)LookupService.getResult("User.byUsername", "username", "demouser1");
+  	req.setDocumentSpecialist(user);
+end
+
+rule "ChangeFacilityCustomerRolesOnAccountChange"
+	when
+		changeModelEvent:Account.ChangeModelEvent(property == "customer",newValue != null)
+	then
+		Account account = (Account) changeModelEvent.getEntity();
+		Customer customer = (Customer) changeModelEvent.getNewValue();
+
+		if(account.getId() != null)
+		{
+			Request request = (Request)LookupService.getResult("Request.byAccount","account", account);
+			for(Facility facility : request.getAllFacilities()){
+				for(FacilityCustomerRole fcr : facility.getFacilityCustomerRoles()){
+					if(fcr.getPrimaryBorrower()){
+						fcr.setCustomer(customer);
+					}
+				}
+			}
+		}
+end

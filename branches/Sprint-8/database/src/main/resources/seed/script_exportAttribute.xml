@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	 <operation action="select" profileName="Full" type="com.thirdpillar.codify.loanpath.model.AttributeType" destination="c:/Temp/attributes1.xml"/>
+	 <operation action="select" profileName="Full" type="com.thirdpillar.codify.loanpath.model.AttributeDataType" destination="c:/Temp/attributes2.xml"/>
+	 <operation action="select" profileName="Full" type="com.thirdpillar.codify.loanpath.model.Attribute" destination="c:/Temp/attributes3.xml"/>
+	<!--<operation action="upsert" profileName="Full" source="E:/Temp/attributeOutput.xml"/>-->
+	<!--<operation action="select" profileName="Full" type="com.thirdpillar.codify.loanpath.model.Attribute"  id="1" destination="E:\codify\import-export\src\main\resources\scripts\attributeOutput.xml"/>-->
+	
+	<!--<operation action="select" profileName="Header" query="select attrib from Attribute as attrib join attrib.attributeChoices"  destination="C:\src\thirdpillar\codify\import-export\src\main\resources\output\attributeOutput.xml"/>-->
+	<!--<operation action="select" profileName="Trans" query="select name, id from Attribute" destination="E:\codify\import-export\src\main\resources\scripts\attributesAndAttributeChoicesOutputFile1.xml"/>-->
+	<!--<operation action="select" profileName="Trans" type="com.thirdpillar.codify.loanpath.model.Attribute" destination="E:\codify\import-export\src\main\resources\scripts\attributesAndAttributeChoicesOutputFile1.xml"/>-->
+	
+</operations>

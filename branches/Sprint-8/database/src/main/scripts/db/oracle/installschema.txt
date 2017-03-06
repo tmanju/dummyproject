@@ -1,0 +1,20 @@
+set escape \
+
+-- Create the users
+PROMPT Install Schema: Creating user '&2' with password '&3' using  and table tablespace name '&4' and index tablespace name '&5' &1 &2 &3 &4 
+@&7/users.txt &1 &2 &3 &4 &5;
+commit;
+
+--
+-- Install schema objects for:  tables, constraints, indexes,
+--
+connect &2/&3@&1
+PROMPT Install Schema: Installing tables.
+PROMPT                 for user '&2'
+@&7/tables &5;
+
+@&7/sequences;
+
+@&7/quartz/tables_oracle &5;
+
+exit;

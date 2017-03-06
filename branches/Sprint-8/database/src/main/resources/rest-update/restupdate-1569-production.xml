@@ -1,0 +1,17 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+<notificationConfiguration>
+		<bodyText>A new Application is created on Grade &lt;br /&gt;&#xd;
+			APPLICATION LINK: &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/request/edit.seam?canvasType=crud&amp;eid=@{entity.id}&quot;&gt;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/request/edit.seam?canvasType=crud&amp;eid=@{entity.id}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Application ID: &lt;a href=&quot;@{_config.getString(&apos;webapp.server.baseurl&apos;)}/crud/request/edit.seam?canvasType=crud&amp;eid=@{entity.id}&quot;&gt;@{entity.refNumber}&lt;/a&gt; &lt;br /&gt;&#xd;
+			Application NAME: @{entity.requestName}&lt;br /&gt;&#xd;
+			Application DATE: @{entity.receivedDate}&lt;br /&gt;&#xd;
+		</bodyText>
+		<notificationKey>NEW_GRADE_APPLICATION</notificationKey>
+		<emailEnabled>true</emailEnabled>
+		<notificationName>NEW GRADE APPLICATION</notificationName>
+		<subject>NEW GRADE APP: #@{entity.refNumber} - @{entity.requestName}</subject>
+		<toRecipients>risk@internexcapital.com</toRecipients>
+</notificationConfiguration>
+</list>
+</mod:sr.addEntityRequest>

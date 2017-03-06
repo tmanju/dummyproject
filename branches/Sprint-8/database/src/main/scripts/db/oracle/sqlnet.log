@@ -1,0 +1,36 @@
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.16.80.182)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=iasdb)(CID=(PROGRAM=C:\Installation\Oracle\product\10.1.0\Client_2\bin\sqlplus.exe)(HOST=L-26804)(USER=shiv.gupta))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.1.0.2.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.1.0.2.0 - Production
+  Time: 14-MAR-2011 13:06:06
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0
+
+
+***********************************************************************
+Fatal NI connect error 12514, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=172.16.80.182)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=iasdb)(CID=(PROGRAM=C:\Installation\Oracle\product\10.1.0\Client_2\bin\sqlplus.exe)(HOST=L-26804)(USER=shiv.gupta))))
+
+  VERSION INFORMATION:
+	TNS for 32-bit Windows: Version 10.1.0.2.0 - Production
+	Windows NT TCP/IP NT Protocol Adapter for 32-bit Windows: Version 10.1.0.2.0 - Production
+  Time: 14-MAR-2011 13:06:07
+  Tracing not turned on.
+  Tns error struct:
+    ns main err code: 12564
+    TNS-12564: TNS:connection refused
+    ns secondary err code: 0
+    nt main err code: 0
+    nt secondary err code: 0
+    nt OS err code: 0

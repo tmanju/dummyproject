@@ -1,0 +1,1414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+    
+            <tns:canvas id="customer_list">
+                <tns:component id="results_importFromXML">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                <tns:component id="results_importFromCSV">
+                    <tns:default>false</tns:default>
+                </tns:component>
+            </tns:canvas>
+
+    
+            <tns:canvas id="customer_crud">
+            	<tns:canvas id="bankInformationEditCanvas">
+            		<tns:component id="bankTrades_doNotDebit">
+						<tns:default>
+							if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+								if(root.customerType.key == 'CUSTOMER_TYPE_INDIVIDUAL'){
+									return false;
+								}
+							}
+							return true;
+						</tns:default>
+            		</tns:component>
+            	</tns:canvas>
+            	<tns:component id="customer_debtorInformation">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+            	<tns:component id="customer_dbas">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+            	<tns:component id="customer_bureauData">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+            	<tns:component id="customer_defaultEvents">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+            	<tns:component id="customer_borrowerRatings">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+
+            	<tns:component id="customer_bankruptcyInfo_beaconScore">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+            	<tns:component id="customer_bankruptcyInfo_empiricaScore">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+            	<tns:component id="customer_bankruptcyInfo_ficoScore">
+            		<tns:default>
+            			if(root != null &amp;&amp; root instanceof com.thirdpillar.codify.loanpath.model.Customer){
+            				if(root.customerType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'){
+            					return false;
+            				}
+            			}
+            			return true;
+            		</tns:default>
+            	</tns:component>
+            	
+            	<tns:component id="customer_dbas_edit">
+            		<tns:default>return false;</tns:default>
+            	</tns:component>
+                
+                <tns:component id="customer_practiceInformation_tab">
+                    <tns:default>_config.getBoolean('implementation.practice.enabled',false)</tns:default>
+                </tns:component>
+               
+                <tns:component id="customer_IndividualDetails">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isIndividual()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>        
+                <tns:component id="customer_businessDetail">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isNonIndividual() || root.isCounterParty()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>    
+                                
+                <tns:component id="customer_counterparty">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isCounterParty()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                 <tns:component id="customer_fdicNumber">
+                    <tns:default>
+                    boolean isVisible=false;
+                        if (root.isBank()) {
+                            isVisible=true;
+                        }
+                    return isVisible;
+                    </tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="customer_occNumber">
+                    <tns:default>
+                    boolean isVisible=false;
+                        if (root.isBank()) {
+                            isVisible=true;
+                        }
+                    return isVisible;
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="customer_abaNumber">
+                    <tns:default>
+                    boolean isVisible=false;
+                        if (root.isBank()) {
+                            isVisible=true;
+                        }
+                    return isVisible;
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="customer_customerExpLimits">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.isIndividual() || root.isNonIndividual()) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>    
+                
+                
+                <tns:component id="customer_customerExpLimits">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isCounterParty()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+        
+                <tns:component id="customer_primarySite_siteDetails_businessPhone">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isNonIndividual() || root.isCounterParty()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>    
+                <tns:component id="customer_primarySite_siteDetails_otherPhone">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isNonIndividual() || root.isCounterParty()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component> 
+                <tns:component id="customer_primarySite_siteDetails_businessTitle">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isNonIndividual()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>   
+                <tns:component id="customer_primarySite_siteDetails_homePhone">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isIndividual()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>    
+                <tns:component id="customer_primarySite_siteDetails_businessFax">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isNonIndividual() || root.isCounterParty()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>    
+                <tns:component id="customer_primarySite_siteDetails_homPhone">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isIndividual()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>                                                                
+            
+
+                <!-- <tns:component id="customer_licenseInformation">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root.isCounterParty() || root.isNonIndividual()) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component> -->
+
+                
+                <tns:component id="customer_primarySite_OfficeDetails">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if(root.isNonIndividual() || root.getSoleProprietor()) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="customer_primarySite_OfficeDetails">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="customer_primarySite_contacts">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isNonIndividual() || root.isCounterParty()  || root.getSoleProprietor() ) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                <tns:component id="customer_primarySite_siteDetails_addresses">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isIndividual() ) {
+                        isVisible=true;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                <tns:component id="customer_sites">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if (root.isNonIndividual() || root.isCounterParty()) {
+                        isVisible=true;
+                    }
+                    return isVisible;                   
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="customer_sites">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                
+                <tns:component id="site_contacts">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if(root.isNonIndividual() || root.isCounterParty() || root.getSoleProprietor()) {
+                        isVisible=true;
+                    }
+                    return isVisible;               
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="collateralCanvas.editThirdPartyRequestCanvas.tab_insuranceInfo_tab">
+                    <tns:default>
+                    boolean isVisible=false;
+                     if ((root_collaterals_assessmentCollateral_thrdPtyReqts != null) &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType != null) &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType.key == "THIRD_PARTY_REQUEST_TYPE_INSURANCE")  ) {
+                        isVisible=true;
+                    }  
+                    return isVisible;
+                    
+                    </tns:default>
+                 </tns:component>
+                     
+				 <tns:component id="collateralCanvas.editThirdPartyRequestCanvas.tab_inspectionInfo_tab">
+                    <tns:default>
+                    boolean isVisible=false;
+                     if ((root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType != null) &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts != null) 
+                    &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType.key == "THIRD_PARTY_REQUEST_TYPE_INSPECTION")  ) {
+                        isVisible=true;
+                    } 
+                    return isVisible;
+                    
+                    </tns:default>
+                  </tns:component>
+                   
+                  <tns:component id="collateralCanvas.editThirdPartyRequestCanvas.tab_map_tab">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if ((root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType != null) &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts != null) 
+                    &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType.key == "THIRD_PARTY_REQUEST_TYPE_APPRAISAL")  ) {
+                        isVisible=true;
+                    } 
+                    return isVisible;
+                    
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.editThirdPartyRequestCanvas.tab_comparables_tab">
+                    <tns:default>
+                    boolean isVisible=false;
+                     if ((root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType != null) &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts != null) 
+                    &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType.key == "THIRD_PARTY_REQUEST_TYPE_APPRAISAL")  ) {
+                        isVisible=true;
+                    } 
+                    return isVisible;
+                    
+                    </tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.editThirdPartyRequestCanvas.tab_appraisalInfo_tab">
+                    <tns:default>
+                    boolean isVisible=false;
+                     if ((root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType != null) &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts != null) 
+                    &amp;&amp; (root_collaterals_assessmentCollateral_thrdPtyReqts.thirdPartyRequestType.key == "THIRD_PARTY_REQUEST_TYPE_APPRAISAL")  ) {
+                        isVisible=true;
+                    } 
+                    return isVisible;
+                    
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_rentRoll_multiFamilies">
+                    <tns:default>
+                   boolean isVisible=false;
+                    if(root_collaterals.cashFlows.rentRoll.propertyType != null &amp;&amp; root_collaterals.cashFlows.rentRoll.propertyType.key != null  
+                    &amp;&amp; (root_collaterals.cashFlows.rentRoll.propertyType.key == "PROPERTY_TYPE_CRE_MULTIFAMILY" || root_collaterals.cashFlows.rentRoll.propertyType.key == "PROPERTY_TYPE_CRE_MIX") ){
+						isVisible=true;
+					}
+                    
+                    return isVisible;
+                    
+                    </tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.collateral_cashFlows_rentRoll_nonMtiFmlies">
+                    <tns:default>
+                    boolean isVisible=false;
+                    if(root_collaterals.cashFlows.rentRoll.propertyType != null &amp;&amp; root_collaterals.cashFlows.rentRoll.propertyType.key != null  
+                    &amp;&amp; (root_collaterals.cashFlows.rentRoll.propertyType.key == "PROPERTY_TYPE_CRE_NON_MULTIFAMILY" || root_collaterals.cashFlows.rentRoll.propertyType.key == "PROPERTY_TYPE_CRE_MIX") ){
+						isVisible=true;
+					}
+                    
+                    return isVisible;
+                    
+                    </tns:default>
+                  </tns:component>
+                  <!-- Revenue -->
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_financialAssessmentRevenues_add">
+                    <tns:default>false</tns:default>
+               	  </tns:component>
+               	  
+               	  <tns:component id="collateralCanvas.collateral_cashFlows_financial_financialAssessmentRevenues_delete">
+                    <tns:default>false</tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_financialAssessmentRevenues_edit">
+                    <tns:default>false</tns:default>
+                  </tns:component>
+                  <!-- Expense -->
+                  <!-- <tns:component id="collateralCanvas.collateral_cashFlows_financial_financialAssessmentExpenses_add">
+                    <tns:default>false</tns:default>
+               	  </tns:component>
+               	  
+               	  <tns:component id="collateralCanvas.collateral_cashFlows_financial_financialAssessmentExpenses_delete">
+                    <tns:default>false</tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_financialAssessmentExpenses_edit">
+                    <tns:default>false</tns:default>
+                  </tns:component> -->
+                  
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_EditCanvas.revenueDer_proRated">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_EditCanvas.expensesDer_proRated">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_EditCanvas.revenueDer_puProRata">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_EditCanvas.expensesDer_puProRata">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_EditCanvas.revenueDer_pu">
+                    <tns:default>
+                    	boolean isVisible=true;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=false;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_EditCanvas.expensesDer_pu">
+                    <tns:default>
+                    	boolean isVisible=true;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=false;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <!-- Income Expenses -->
+                 <tns:component id="collateralCanvas.expenses_yearAppraisal">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isExpenseLineYearApprisal()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.expenses_yearThree">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isExpenseLineYearThree()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.expenses_yearTwo">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isExpenseLineYearTwo()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.expenses_yearOne">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isExpenseLineYearOne()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.revenues_yearAppraisal">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearAppraisal()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.revenues_yearThree">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearThree()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.revenues_yearTwo">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearTwo()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.revenues_yearOne">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearOne()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.head_grossNoiAppraisal">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearAppraisal()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.head_grossNoiYearThree">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearThree()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.head_grossNoiYearTwo">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearTwo()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.head_grossNoiYearOne">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isRevenueLineYearOne()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+				  <tns:component id="collateralCanvas.collateral_cashFlows_financial_headersNoi_actionsCol">
+                    <tns:default>false</tns:default>
+                  </tns:component>
+				  <tns:component id="collateralCanvas.head_grossNoiUnderWriting">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isGrossNoiUnderwrting()){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <!--  Income Expense Expand -->
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_QuickEditCanvas.revenueExpand_proRated">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_QuickEditCanvas.revenueExpand_puProRata">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_QuickEditCanvas.revenueExpand_pu">
+                    <tns:default>
+                    	boolean isVisible=true;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=false;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_QuickEditCanvas.expensesExpand_proRated">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_QuickEditCanvas.expensesExpand_pu">
+                    <tns:default>
+                    	boolean isVisible=true;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=false;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financial_incomeExpenses_QuickEditCanvas.expensesExpand_puProRata">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals_cashFlows_financial_incomeExpenses.proRata){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_cashFlows_financialsAssessment_downloadFinancial">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?cashFlows.?financial.?downloadFinancial.?uploadedStream != null){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_collateralProvider">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_collateralProviderOther">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_effectiveDate">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_appraisalInformation">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_floodInformation">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_envAssesInformation">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_projectInformation">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_tenants">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_assessment_envAssesInformation">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isCollateralTypeCRE){
+							if(root_collaterals.?assessmentCollateral.?envReportRequired.key == "YES_OR_NO_YES"){
+                    			isVisible=true;
+                    		}
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.collateral_assessment_floodInformation">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.isCollateralTypeCRE){
+                    		if(root_collaterals.?realEstateCollateral.?floodZone.key == "YES_OR_NO_YES"){
+                    			isVisible=true;
+                    		}
+							
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_lienPosition">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+				  <tns:component id="collateralCanvas.collateral_realEstateCollateral_prepaymentPenalty">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component><tns:component id="collateralCanvas.collateral_realEstateCollateral_highRiskPropertyType">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component><tns:component id="collateralCanvas.collateral_realEstateCollateral_otherPropertyDetails">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component><tns:component id="collateralCanvas.collateral_realEstateCollateral_censusTract">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component><tns:component id="collateralCanvas.collateral_realEstateCollateral_phoneNo">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component><tns:component id="collateralCanvas.collateral_realEstateCollateral_yearLastRenovated">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component><tns:component id="collateralCanvas.collateral_realEstateCollateral_recentAppraisalDate">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+				  <tns:component id="collateralCanvas.collateral_realEstateCollateral_annualPropertyTaxes">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+				  <tns:component id="collateralCanvas.collateral_realEstateCollateral_monthlyAssociationDues">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_isOnsiteParking">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_numberOfUnits">
+                    <tns:default>
+                    	boolean isVisible=false;
+	                   if(!root_collaterals.isCollateralTypeCRE || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_MULTIFAMILY_APARTMENTS' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_MIXED_USE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_OTHER'){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_residentSqFt">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_MULTIFAMILY_APARTMENTS' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_MIXED_USE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_OTHER'){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_commercialSqFt">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_MIXED_USE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_OTHER' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_LEISURE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_RETAIL' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_OFFICE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_INDUSTRIAL' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_HEALTHCARE'){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <!-- Lot Info hide for CRE -->
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_officeUnits">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                   <tns:component id="collateralCanvas.collateral_realEstateCollateral_otherUnits">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                   <tns:component id="collateralCanvas.collateral_realEstateCollateral_residentUnits">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                   <tns:component id="collateralCanvas.collateral_realEstateCollateral_residentNumbers">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                   <tns:component id="collateralCanvas.collateral_realEstateCollateral_officeSqFt">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                   <tns:component id="collateralCanvas.collateral_realEstateCollateral_retailSqFt">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                   <tns:component id="collateralCanvas.collateral_realEstateCollateral_lotSizeSqFt">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(!root_collaterals.isCollateralTypeCRE){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.collateral_realEstateCollateral_numberOfUnitsCSF">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_MIXED_USE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_OTHER' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_LEISURE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_RETAIL' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_OFFICE' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_INDUSTRIAL' || root_collaterals.?collateralCategory.key == 'COLLATE_CATEGORY_HEALTHCARE'){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <!-- LPOB-1039 Valuation Fields -->
+                  <tns:component id="collateralCanvas.operatingIncome_forcast1">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 1){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast2">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 2){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast3">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 3){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast4">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 4){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast5">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 5){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast6">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 6){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast7">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 7){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast8">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 8){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                 <!--  <tns:component id="collateralCanvas.operatingIncome_forcast9">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 9){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast10">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 10){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast11">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 11){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast12">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 12){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast13">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 13){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast14">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 14){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingIncome_forcast15">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 15){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component> -->
+                  <!-- Expense Valuation -->
+                  <tns:component id="collateralCanvas.operatingExpense_forcast1">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 1){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast2">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 2){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast3">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 3){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast4">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 4){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast5">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 5){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast6">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 6){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast7">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 7){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast8">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 8){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <!-- <tns:component id="collateralCanvas.operatingExpense_forcast9">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 9){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast10">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 10){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast11">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 11){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast12">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 12){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast13">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 13){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast14">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 14){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.operatingExpense_forcast15">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 15){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component> -->
+                  <!-- Ratio and Schedule -->
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast1">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 1){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast2">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 2){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast3">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 3){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast4">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 4){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast5">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 5){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast6">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 6){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast7">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 7){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast8">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 8){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                 <!--  <tns:component id="collateralCanvas.ratioSchedule_forcast9">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 9){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast10">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 10){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast11">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 11){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast12">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 12){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast13">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 13){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast14">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 14){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component>
+                  <tns:component id="collateralCanvas.ratioSchedule_forcast15">
+                    <tns:default>
+                    	boolean isVisible=false;
+                    	if(root_collaterals.?forcastedFinancial.?atcptdHldPrd >= 15){
+							isVisible=true;
+						}
+                    	return isVisible;
+                    </tns:default>
+                  </tns:component> -->
+                  
+                <tns:component id="Generate_Document">
+                    <tns:default>return ( (isdef root_documentGroup_generatedDocuments) &amp;&amp; (root_documentGroup_generatedDocuments.id != null));</tns:default>
+                </tns:component>
+
+                <tns:component id="Archive_Document">
+                    <tns:default>return ( (isdef root_documentGroup_generatedDocuments) &amp;&amp; (root_documentGroup_generatedDocuments.id != null));</tns:default>
+                </tns:component>        
+        
+                <tns:component id="exportEntityBtn">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                <tns:canvas id="customerSite">
+                    <tns:component id="customer_sites_OfficeDetails">
+                        <tns:default>
+                        boolean isVisible=false;
+                        if(root.isNonIndividual() || root.getSoleProprietor()) {
+                            isVisible=true;
+                        }
+                        return isVisible;               
+                        </tns:default>
+                    </tns:component>
+                </tns:canvas>
+
+            </tns:canvas>
+        
+         
+    </tns:ui-permissions>

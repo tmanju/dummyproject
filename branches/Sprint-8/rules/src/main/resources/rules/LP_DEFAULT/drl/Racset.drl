@@ -1,0 +1,30 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.Context;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.RacsetEvaluation;
+import com.thirdpillar.codify.loanpath.model.RacEvaluation;
+import com.thirdpillar.codify.loanpath.model.RacsetDefinition;
+import com.thirdpillar.codify.loanpath.model.RacDefinition;
+
+rule "ApplyRacs"
+	when
+		changeModelEvent:RacsetEvaluation.ChangeModelEvent(property == "racsetDefinition", newValue != null)
+	then
+		RacsetEvaluation racsetEvaluation = (RacsetEvaluation) changeModelEvent.getEntity();
+		EntityService es = new EntityService();
+		RacsetDefinition racsetDefinition = (RacsetDefinition)changeModelEvent.getNewValue();
+		// clear exisitng racEvaluations if any		
+		if (racsetEvaluation.getRacEvaluations() != null) {
+			racsetEvaluation.getRacEvaluations().clear();
+		}
+		for(RacDefinition racDefination : racsetDefinition.getRacDefinitions()){
+			RacEvaluation racEvaluation = new RacEvaluation();
+			racEvaluation.setRacDefinition(racDefination);
+			racEvaluation.setRacsetEvaluation(racsetEvaluation);
+			racsetEvaluation.addToRacEvaluations(racEvaluation);
+		}
+end

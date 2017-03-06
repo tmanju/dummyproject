@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
+  <itemDefinition id="_parentProcessNameItem" structureRef="String" />
+  <itemDefinition id="_contextEntityPricingOptionItem" structureRef="com.thirdpillar.codify.loanpath.model.PricingOption" />
+
+  <process processType="Private" isExecutable="true" id="SolveForFacility" name="SolveForFacility" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.PricingOption" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="parentProcessName" itemSubjectRef="_parentProcessNameItem"/>
+    <property id="contextEntityPricingOption" itemSubjectRef="_contextEntityPricingOptionItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <callActivity id="_3" name="Pricing Pipeline Sub-Process" calledElement="PricingPipeline" tns:independent="false" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("parentProcessName","SolveFor");</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_3_parentProcessNameInput" name="parentProcessName" />
+        <dataInput id="_3_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_3_parentProcessNameInput</dataInputRefs>
+          <dataInputRefs>_3_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentProcessName</sourceRef>
+        <targetRef>_3_parentProcessNameInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntityPricingOption</sourceRef>
+        <targetRef>_3_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <scriptTask id="_4" name="Initialize PricingPipeline" scriptFormat="http://www.java.com/java" >
+      <script>Facility facility = (Facility) context.getVariable("contextEntity");
+context.setVariable("contextEntityPricingOption",facility.getPricingOption());
+
+</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_3-_2" sourceRef="_3" targetRef="_2" />
+    <sequenceFlow id="_4-_3" sourceRef="_4" targetRef="_3" />
+    <sequenceFlow id="_1-_4" sourceRef="_1" targetRef="_4" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="SolveForFacility" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="86" y="100" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="467" y="215" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="406" y="104" width="171" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="204" y="102" width="130" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_3-_2" >
+        <di:waypoint x="491" y="128" />
+        <di:waypoint x="491" y="239" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_3" >
+        <di:waypoint x="269" y="126" />
+        <di:waypoint x="491" y="128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_4" >
+        <di:waypoint x="110" y="124" />
+        <di:waypoint x="269" y="126" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

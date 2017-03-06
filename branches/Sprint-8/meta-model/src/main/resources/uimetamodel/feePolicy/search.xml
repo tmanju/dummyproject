@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="feePolicy" type="search"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="feePolicy.feePolicySearch" label="Fee Search">
+		<field name="feePolicySearch.name" label="Fee Name" />
+		<field name="feePolicySearch.refNumber" label="Fee Number" />
+		<field name="feePolicySearch.afsFeeType.afsValue" label="Backoffice Fee Name" />
+		<field name="feePolicySearch.ou" label="OU" />
+		<field name="feePolicySearch.sbu" label="SBU" />
+		<field name="feePolicySearch.effectiveFromDate" label="Effective Date" />
+		<field name="feePolicySearch.effectiveToDate" label="Through" />
+		
+	</panel>
+	
+	<beans>
+		<bean name="feePolicySearch" type="com.thirdpillar.codify.loanpath.model.FeePolicy" />
+	</beans>
+</canvas>

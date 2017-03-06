@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="search" type="search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="program.programSearch">
+		<field name="program.refNumber"/>
+		<field name="program.programName"/>
+		<field name="program.startDttm" label="Program Date"/>
+		<field name="program.versionNumber" />		
+		<!--<field name="program.endDttm" label="Date To"/>-->
+		
+		<field name="program.programGroup.prgGroupName" label="Program Group"/>
+		<field name="program.operatingUnit" />
+		<field name="program.sbu" />
+		<field name="program.prgPartners.refNumber" label="Partner Number"/>		
+		<field name="program.prgPartners.partyDetail.legalName" label="Partner Name"/>		
+		<field name="program.useStdTmplFlag" />
+		<field name="program.wfStatus" label="Program Status"/>
+		<field name="program.programType" />		
+		<field name="program.financialinstitutionName" label="Lessor Name" >
+			<field name="program.otherFinancialinstitutionName" label="" />
+		</field>
+		
+	</panel>
+	<beans>
+		<bean name="program" type="com.thirdpillar.codify.loanpath.model.Program"/>
+	</beans>
+</canvas>

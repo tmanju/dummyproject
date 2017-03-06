@@ -1,0 +1,119 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model"><list>
+<attribute>
+		<key>AGENCY_RATING</key>
+		<name>Agency Rating</name>
+		<description />
+		<attributeChoices>
+			<attributeChoice>
+				<value>AAA</value>
+				<key>AGENCY_RATING_AAA</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>AA+</value>
+				<key>AGENCY_RATING_AAA_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>AA</value>
+				<key>AGENCY_RATING_AA</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>AA-</value>
+				<key>AGENCY_RATING_AA_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>A+</value>
+				<key>AGENCY_RATING_A_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>A</value>
+				<key>AGENCY_RATING_A</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>A-</value>
+				<key>AGENCY_RATING_A_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BBB+</value>
+				<key>AGENCY_RATING_BBB_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BBB</value>
+				<key>AGENCY_RATING_BBB</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BBB-</value>
+				<key>AGENCY_RATING_BBB_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BB+</value>
+				<key>AGENCY_RATING_BB_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BB</value>
+				<key>AGENCY_RATING_BB</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>BB-</value>
+				<key>AGENCY_RATING_BB_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>B+</value>
+				<key>AGENCY_RATING_B_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>B</value>
+				<key>AGENCY_RATING_B</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>B-</value>
+				<key>AGENCY_RATING_B_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CCC+</value>
+				<key>AGENCY_RATING_CCC_PLUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CCC</value>
+				<key>AGENCY_RATING_CCC</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CCC-</value>
+				<key>AGENCY_RATING_CCC_MINUS</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>CC</value>
+				<key>AGENCY_RATING_CC</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>C</value>
+				<key>AGENCY_RATING_C</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>D</value>
+				<key>AGENCY_RATING_D</key>
+				<attribute reference="../../.." />
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+</list></mod:sr.addEntityRequest>

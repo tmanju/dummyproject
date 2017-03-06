@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:user="http://schemas.thirdpillar.com/user" 
+	targetNamespace="http://schemas.thirdpillar.com/user" 
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<xs:complexType name="UserType">
+		<xs:sequence>
+			<xs:element name="SFDCIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="LoanpathIdentifier" type="xs:integer" minOccurs="0"/>
+			<xs:element name="FirstName" type="xs:string"/>
+			<xs:element name="MiddleName" type="xs:string" minOccurs="0"/>
+			<xs:element name="LastName" type="xs:string"/>
+			<xs:element name="EMail" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

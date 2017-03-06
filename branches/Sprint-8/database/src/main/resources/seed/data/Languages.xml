@@ -1,0 +1,22 @@
+<list>
+  <language>
+    <isoCode>en</isoCode>
+    <name>English</name>
+  </language>
+  <language>
+    <isoCode>es</isoCode>
+    <name>Spanish</name>
+  </language>
+  <language>
+    <isoCode>fr</isoCode>
+    <name>French</name>
+  </language>
+  <language>
+    <isoCode>de</isoCode>
+    <name>German</name>
+  </language>
+  <language>
+    <isoCode>jp</isoCode>
+    <name>Japan</name>
+  </language>
+</list>

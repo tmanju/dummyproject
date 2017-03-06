@@ -1,0 +1,19 @@
+set escape \
+
+-- Create the users
+PROMPT Install Schema: Creating user '&2' with password '&3' using  and table tablespace name '&4' and index tablespace name '&5' &1 &2 &3 &4 
+@ddl/users.txt &1 &2 &3 &4 &5 &6;
+commit;
+
+--
+-- Install schema objects for:  tables, constraints, indexes,
+--
+connect &2/&3@&1
+PROMPT Install Schema: Installing tables.
+PROMPT                 for user '&2'
+@ddl/tables &5;
+
+
+@ddl/sequences;
+
+exit;

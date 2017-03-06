@@ -1,0 +1,48 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.model.*;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.constants.*;
+import com.thirdpillar.foundation.service.LookupService;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.logDebug;
+import java.util.Calendar;
+import java.util.Date;
+
+rule "SetFeeParametersOnFeePolicyChange"
+	when
+		changeModelEvent:Fee.ChangeModelEvent(property == "feePolicy", newValue != null)
+	then
+		FeePolicy feePolicy = (FeePolicy)changeModelEvent.getNewValue();
+		Fee fee = (Fee)changeModelEvent.getEntity();
+		if(fee!=null){
+			fee.setFeePct(feePolicy.getDefaultPct());
+			fee.setFeeFrequency(feePolicy.getFeeFrequency());
+			fee.setCalculationMethod(feePolicy.getCalculationMethod());
+			if(feePolicy.getName().equals("Origination Fee")){
+				AttributeChoice feeBasis =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.FEE_PCT_BASIS_APPROVED_AMOUNT_KEY);
+				fee.setFeePctBasis(feeBasis);
+			}else if(feePolicy.getName().equals("Draw Fee")){
+				AttributeChoice feeBasis =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","FEE_PCT_BASIS_DRAWDOWN_AMOUNT");
+				fee.setFeePctBasis(feeBasis);
+			}else if(feePolicy.getName().equals("Undrawn Rate Fee")){
+				AttributeChoice feeBasis =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","FEE_PCT_BASIS_UNDRAWN_AMOUNT");
+				fee.setFeePctBasis(feeBasis);
+			}else if(feePolicy.getName().equals("Drawn Rate Fee")){
+				AttributeChoice feeBasis =( AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","FEE_PCT_BASIS_DRAWDOWN_AMOUNT");
+				fee.setFeePctBasis(feeBasis);
+			}
+			
+		   	fee.setFeePct(feePolicy.getDefaultPct());
+		}
+end
+
+rule "SetFlagOnFeeValueChange"
+	when
+		changeModelEvent:FeePolicy.ChangeModelEvent(property == "defaultPct", newValue != null)
+	then
+		FeePolicy feePolicy = (FeePolicy) changeModelEvent.getEntity();
+		if(feePolicy != null){
+			feePolicy.setFeeChanged(true);
+		}
+end

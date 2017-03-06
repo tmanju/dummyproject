@@ -1,0 +1,237 @@
+	<!--  <?xml version="1.0" encoding="UTF-8"?> -->
+<list>
+<!-- Application Level Scoring Rules-->
+	<ScrRcmRuleSeed>
+		<name>Credit Score</name>
+		<description>Credit Score of the customer is equal to or above 700</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_JUDGMENTAL_REVIEW</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_REVIEW</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_8</key>
+		</recommendationLevel>
+		<reasonLevel>
+			<key>REASON_LEVEL_12</key>
+		</reasonLevel>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_4</key>
+		</exceptionAuthority>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+		<key>APPLICATION_RULE_AVERAGE_FICO_CUTOFF</key>
+		<ognl>testOgnlRcmRule</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>AVERAGE_FICO_CUTOFF_1</paramKey>
+				<paramName>FICO Score is &lt; x</paramName>
+				<paramValue>700</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+	</ScrRcmRuleSeed>	
+	<ScrRcmRuleSeed>
+		<name>Requested Amount</name>
+		<description>Amount requested by the customer is below $250,000</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_JUDGMENTAL_REVIEW</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_REVIEW</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_3</key>
+		</recommendationLevel>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_2</key>
+		</exceptionAuthority>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+		<reasonLevel>
+			<key>REASON_LEVEL_11</key>
+		</reasonLevel>
+		<key>APPLICATION_RULE_REQUESTED_AMOUNT</key>
+		<ognl>testOgnlRcmRule</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>FAC_RULE_REQUESTED_AMOUNT</paramKey>
+				<paramName>Requested Amount is : &gt; x</paramName>
+				<paramValue>250000</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+	</ScrRcmRuleSeed>
+	<!-- <ScrRcmRuleSeed>
+		<name>Credit Score Available</name>
+		<description>Credit Score Available</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_JUDGMENTAL_REVIEW</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_REVIEW</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_4</key>
+		</recommendationLevel>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_CO1</key>
+		</exceptionAuthority>
+		<key>APPLICATION_RULE_CREDIT_SCORE_AVAILABLE</key>
+		<ognl>testOgnlRcmRuleScoreAvailable</ognl>
+	</ScrRcmRuleSeed> -->
+		
+<!-- Facility Level Scoring Rules-->
+	<ScrRcmRuleSeed>
+		<name>Requested Amount</name>
+		<description>Amount requested by the customer is below $250,000</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_FACILITY</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_JUDGMENTAL_REVIEW</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_REVIEW</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_4</key>
+		</recommendationLevel>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_3</key>
+		</exceptionAuthority>
+		<reasonLevel>
+			<key>REASON_LEVEL_12</key>
+		</reasonLevel>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+		<key>FAC_RULE_REQUESTED_AMOUNT</key>
+		<ognl>testOgnlRcmRule</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>FAC_RULE_REQUESTED_AMOUNT</paramKey>
+				<paramName>Requested Amount is : &gt; x</paramName>
+				<paramValue>250000</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+	</ScrRcmRuleSeed>
+	<ScrRcmRuleSeed>
+		<name>Credit Score</name>
+		<description>Credit Score of the customer is equal to or above 700</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_FACILITY</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_JUDGMENTAL_REVIEW</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_REVIEW</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_5</key>
+		</recommendationLevel>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_3</key>
+		</exceptionAuthority>
+		<reasonLevel>
+			<key>REASON_LEVEL_14</key>
+		</reasonLevel>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+		<key>FAC_RULE_CREDIT_SCORE</key>
+		<ognl>testOgnlRcmRule</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>AVERAGE_FICO_CUTOFF_1</paramKey>
+				<paramName>FICO Score is &lt; x</paramName>
+				<paramValue>700</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+	</ScrRcmRuleSeed>				
+<!-- NON INDIVIDUAL Level Scoring Rules-->
+	<ScrRcmRuleSeed>
+		<name>Years in Business</name>
+		<description>Sufficient years in business</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_NONINDIVIDUAL</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_AUTODECLINE</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_DECLINE</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_4</key>
+		</recommendationLevel>
+		<reasonLevel>
+			<key>REASON_LEVEL_10</key>
+		</reasonLevel>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_1</key>
+		</exceptionAuthority>		
+		<key>NON_INDIVIDUAL_RULE_BUSINESS_YEARS</key>
+		<ognl>businessYearsRuleResult</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>NON_INDIVIDUAL_RULE_BUSINESS_YEARS_1</paramKey>
+				<paramName>Years in Business &lt; x</paramName>
+				<paramValue>1</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+		<recommendationReasonCode>
+			<recomCode>24</recomCode>
+		</recommendationReasonCode>
+	</ScrRcmRuleSeed>
+<!-- INDIVIDUAL Level Scoring Rules-->
+	<ScrRcmRuleSeed>
+		<name>Age of the Party</name>
+		<description>Individual Party’s age is more than 18 years</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_INDIVIDUAL</key>
+		</applicability>
+		<recommendationCategory>
+			<key>RECOMMENDATION_CATEGORY_AUTODECLINE</key>
+		</recommendationCategory>
+		<recommendation>
+			<key>RECOMMENDATION_DECISION_DECLINE</key>
+		</recommendation>
+		<recommendationLevel>
+			<key>RECOMMENDATION_LEVEL_8</key>
+		</recommendationLevel>
+		<reasonLevel>
+			<key>REASON_LEVEL_12</key>
+		</reasonLevel>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+		<exceptionAuthority>
+			<key>RAC_EXCEPTION_AUTHORITY_LEVEL_5</key>
+		</exceptionAuthority>
+		<key>INDIVIDUAL_RULE_AGE_OF_THE_PARTY</key>
+		<ognl>individualAgeRule</ognl>
+		<scrRuleParams>
+			<ScrRuleParam>
+				<paramKey>INDIVIDUAL_RULE_AGE_OF_THE_PARTY</paramKey>
+				<paramName>Age of the Party &lt; x</paramName>
+				<paramValue>18</paramValue>
+				<scrRcmRuleSeed reference="../../.." />
+			</ScrRuleParam>
+		</scrRuleParams>
+	</ScrRcmRuleSeed>	
+	
+</list>

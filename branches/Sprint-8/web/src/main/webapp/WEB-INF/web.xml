@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	      version="3.0">
+	<display-name>Loanpath Codify Web Application</display-name>
+	<context-param>
+		<param-name>facelets.BUILD_BEFORE_RESTORE</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>#{viewStateBean.theme}</param-value>
+	</context-param>
+	<!-- Special Debug Output for Development -->
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<!-- Optional JSF-RI Parameters to Help Debug -->
+	<context-param>
+		<param-name>com.sun.faces.validateXml</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sun.faces.verifyObjects</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+		<param-value>/WEB-INF/jsfzss-taglib.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+	    <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+	    <param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.SUBMIT</param-name>
+		<param-value>partial</param-value>
+	</context-param>
+	<filter>
+     <filter-name>Header Filter</filter-name>
+     <filter-class>com.thirdpillar.codify.foundation.filters.HeaderFilter</filter-class>
+     <init-param>
+		<param-name>X-Frame-Options</param-name>
+		<param-value>DENY</param-value>
+	 </init-param>
+   </filter>
+   <filter>
+     <filter-name>Character Encoding Filter</filter-name>
+     <filter-class>com.thirdpillar.codify.foundation.filters.CharacterEncodingFilter</filter-class>
+     <init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+	 </init-param>
+   </filter>		
+	<filter>
+		<filter-name>Seam Filter</filter-name>
+		<filter-class>org.jboss.seam.servlet.SeamFilter</filter-class>
+		<init-param>
+			<param-name>createTempFiles</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+      <filter-name>Header Filter</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
+    <filter-mapping>
+      <filter-name>Character Encoding Filter</filter-name>
+      <url-pattern>/*</url-pattern>
+    </filter-mapping>	
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>
+            org.primefaces.webapp.filter.FileUploadFilter
+        </filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Seam Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- filter>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+	  <filter-name>springSecurityFilterChain</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping-->
+	<servlet>
+		<description>The asynchronous update engine for ZK</description>
+		<servlet-name>auEngine</servlet-name>
+		<servlet-class>
+			org.zkoss.zk.au.http.DHtmlUpdateServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>auEngine</servlet-name>
+		<url-pattern>/zkau/*</url-pattern>
+	</servlet-mapping>
+	<!-- Faces Servlet -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<!-- Faces Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.seam</url-pattern>
+	</servlet-mapping>
+	<!-- spring-ws servlet -->
+	<servlet>
+		<servlet-name>spring-ws</servlet-name>
+		<servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>transformWsdlLocations</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</servlet>
+	<!-- spring-ws servlet mapping -->
+	<servlet-mapping>
+		<servlet-name>spring-ws</servlet-name>
+		<url-pattern>/soap/*</url-pattern>
+	</servlet-mapping>
+	<!-- begin RESTEasy -->
+	<context-param>
+		<param-name>javax.ws.rs.Application</param-name>
+		<param-value>com.thirdpillar.foundation.service.rest.CodifyRestApplication</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.jboss.seam.servlet.SeamListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>Resteasy</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Resteasy</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	<context-param>
+		<param-name>org.jboss.seam.core.init.debug</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/rest</param-value>
+	</context-param>
+	<!-- end RESTEasy -->
+	<!--	<listener>        
+		<listener-class>com.thirdpillar.foundation.listeners.DroolsServiceListener</listener-class>    
+    </listener>     
+-->
+	
+	<session-config>
+		<!-- Default to 20 minute session timeouts -->
+		<session-timeout>20</session-timeout>
+		<cookie-config> 
+			<http-only>true</http-only> 
+		</cookie-config>
+	</session-config>
+	<error-page>
+        <error-code>400</error-code>
+        <location>/400.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>401</error-code>
+        <location>/401.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>405</error-code>
+        <location>/405.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>406</error-code>
+        <location>/406.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>407</error-code>
+        <location>/407.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>408</error-code>
+        <location>/408.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>413</error-code>
+        <location>/413.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>414</error-code>
+        <location>/414.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>415</error-code>
+        <location>/415.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>429</error-code>
+        <location>/429.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>501</error-code>
+        <location>/501.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>502</error-code>
+        <location>/502.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>503</error-code>
+        <location>/503.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>504</error-code>
+        <location>/504.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>505</error-code>
+        <location>/505.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>507</error-code>
+        <location>/507.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>508</error-code>
+        <location>/508.jsp</location>
+    </error-page>
+	<welcome-file-list>
+		<welcome-file>/index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

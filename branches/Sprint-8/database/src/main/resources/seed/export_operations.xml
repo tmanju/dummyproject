@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- <operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.AttributeType" destination="src/main/resources/seed/data/attribute_types.xml"/>   
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.AttributeDataType" destination="src/main/resources/seed/data/attribute_data_types.xml"/> 
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Attribute" destination="src/main/resources/seed/data/attributes.xml"/>	  
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Currency" destination="src/main/resources/seed/data/currencies.xml"/>	
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Language" destination="src/main/resources/seed/data/Languages.xml"/>	
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Country" destination="src/main/resources/seed/data/countries.xml"/>	
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.WorkflowStatus" destination="src/main/resources/seed/data/workflow_status.xml"/>	
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Role" destination="src/main/resources/seed/data/role.xml"/>
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.User" destination="src/main/resources/seed/data/user.xml"/> -->
+	
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Customer" destination="customer.xml"/>
+	<operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Relationship" destination="relationship.xml"/>
+	<!--  <operation action="select" profileName="Export-Full" type="com.thirdpillar.codify.loanpath.model.Request" destination="request.xml"/> -->
+</operations>

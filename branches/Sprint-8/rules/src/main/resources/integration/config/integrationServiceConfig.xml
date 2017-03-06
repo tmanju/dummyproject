@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<integration>
+	<logTransitionalXmls overwrite="false" enabled="true"/>
+	<logFinalXmls overwrite="false" enabled="true"/>
+	<xstreamConfigLoaderClass>com.thirdpillar.foundation.webservices.utils.CodifyXstreamExtConfigLoader</xstreamConfigLoaderClass>
+	
+	      <service name="AssetGet" enabled="true">
+            <httptransport resource="http://10.1.4.77:8080/drools-guvnor/org.drools.guvnor.Guvnor/api/packages" method="GET" style="REST" returnType="String" pathPropertyOrder="packageName,id">
+                  <properties>
+<!--                          <property key="packageName" value="com.thirdpillar.loanpath.rules.event" type="PATH"/>-->
+<!--                          <property key="id" value="lp.jar" type="PATH"/>-->
+                        <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                        <property key="USER" value="admin" type="AUTH"/>
+                        <property key="PASSWORD" value="admin" type="AUTH"/>
+                  </properties>
+            </httptransport>
+      </service>
+	
+	      <service name="AssetGetStream" enabled="true">
+            <httptransport resource="http://10.1.4.77:8080/drools-guvnor/org.drools.guvnor.Guvnor/api/packages" method="GET" style="REST" returnType="STREAM" pathPropertyOrder="packageName,id">
+                  <properties>
+<!--                          <property key="packageName" value="com.thirdpillar.loanpath.rules.event" type="PATH"/>-->
+<!--                          <property key="id" value="lp.jar" type="PATH"/>-->
+                        <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                        <property key="USER" value="admin" type="AUTH"/>
+                        <property key="PASSWORD" value="admin" type="AUTH"/>
+                  </properties>
+            </httptransport>
+      </service>
+	
+	      <service name="AssetPost" enabled="true">
+            <httptransport resource="http://10.1.4.77:8080/drools-guvnor/org.drools.guvnor.Guvnor/api/packages" method="POST" style="REST" returnType="STREAM" pathPropertyOrder="packageName,id">
+                  <properties>
+<!--                          <property key="packageName" value="com.thirdpillar.loanpath.rules.event" type="PATH"/>-->
+<!--                          <property key="id" value="lp.jar" type="PATH"/>-->
+                        <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                        <property key="USER" value="admin" type="AUTH"/>
+                        <property key="PASSWORD" value="admin" type="AUTH"/>
+                  </properties>
+            </httptransport>
+      </service>
+
+	      <service name="AssetPut" enabled="true">
+            <httptransport resource="http://10.1.4.77:8080/drools-guvnor/org.drools.guvnor.Guvnor/api/packages" method="PUT" style="REST" returnType="STREAM" pathPropertyOrder="packageName,id">
+                  <properties>
+<!--                          <property key="packageName" value="com.thirdpillar.loanpath.rules.event" type="PATH"/>-->
+<!--                          <property key="id" value="lp.jar" type="PATH"/>-->
+                        <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                        <property key="USER" value="admin" type="AUTH"/>
+                        <property key="PASSWORD" value="admin" type="AUTH"/>
+                  </properties>
+            </httptransport>
+      </service>
+
+</integration>

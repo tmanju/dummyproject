@@ -1,0 +1,31 @@
+<ehcache>
+
+    <diskStore path="java.io.tmpdir/ehache-distributed"/>
+
+    <!-- For automatic discovery. Comment this out while enabling manual discovery -->
+    <!-- 
+    <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"
+        properties="peerDiscovery=automatic, multicastGroupAddress=${hibernate.ehcache.multicast.host}, multicastGroupPort=${hibernate.ehcache.multicast.port}, timeToLive=1"
+        propertySeparator="," />
+    <cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"
+        properties="port=${hibernate.ehcache.multicast.port}"
+        propertySeparator="," />
+     -->
+	<cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.jgroups.JGroupsCacheManagerPeerProviderFactory"
+		properties="connect=UDP(mcast_addr=${hibernate.ehcache.multicast.host};mcast_port=${hibernate.ehcache.multicast.port};):PING:
+			MERGE2:FD_SOCK:VERIFY_SUSPECT:pbcast.NAKACK:UNICAST:pbcast.STABLE:FRAG:pbcast.GMS"
+		propertySeparator="::"
+	/>     
+
+     <defaultCache 
+    	maxElementsInMemory="100000" 
+    	eternal="false" 
+    	overflowToDisk="false" 
+    	timeToLiveSeconds="1200"
+    	>
+    	<cacheEventListenerFactory class="net.sf.ehcache.distribution.jgroups.JGroupsCacheReplicatorFactory"
+			properties="replicateAsynchronously=true, replicatePuts=true,
+				replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+    </defaultCache>
+
+</ehcache>

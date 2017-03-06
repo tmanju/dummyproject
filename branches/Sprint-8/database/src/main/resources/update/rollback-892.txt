@@ -1,0 +1,5 @@
+ALTER TABLE internex.lp_cust DROP state_of_incorp_id;
+ALTER TABLE internex.lp_cust_ DROP state_of_incorp_id;
+
+ALTER TABLE internex.lp_bank_and_trd DROP name_on_act;
+ALTER TABLE internex.lp_bank_and_trd_ DROP name_on_act;

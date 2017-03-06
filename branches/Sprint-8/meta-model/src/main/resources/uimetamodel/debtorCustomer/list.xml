@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="debtorCustomer" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<beans>
+		<bean name="debtorCustomer" type="com.thirdpillar.codify.loanpath.model.Customer" />
+	</beans>	
+</canvas>
+

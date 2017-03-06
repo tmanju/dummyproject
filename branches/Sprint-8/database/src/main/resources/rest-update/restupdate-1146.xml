@@ -1,0 +1,28 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+ 	<workflowStatus>
+		<__transient>false</__transient>
+		<childStatuses/>
+		<sequence>1</sequence>
+		<statusKey>COA_EVALUATION_COMPLETE</statusKey>
+		<value>Complete</value>
+		<workflowEntity>COA_EVALUATION_STATUS</workflowEntity>
+	</workflowStatus>
+	<workflowStatus>
+		<__transient>false</__transient>
+		<childStatuses/>
+		<sequence>2</sequence>
+		<statusKey>COA_EVALUATION_PENDING</statusKey>
+		<value>Pending</value>
+		<workflowEntity>COA_EVALUATION_STATUS</workflowEntity>
+	</workflowStatus>
+	<workflowStatus>
+		<__transient>false</__transient>
+		<childStatuses/>
+		<sequence>3</sequence>
+		<statusKey>COA_EVALUATION_SUSPEND</statusKey>
+		<value>Suspend</value>
+		<workflowEntity>COA_EVALUATION_STATUS</workflowEntity>
+	</workflowStatus>
+</list>
+</mod:sr.addEntityRequest>

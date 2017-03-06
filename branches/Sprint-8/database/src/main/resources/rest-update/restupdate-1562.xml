@@ -1,0 +1,131 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<attribute>
+		<key>RISK_SCORE</key>
+		<name>Risk Score</name>
+		<description>#DONE</description>
+		<attributeChoices>
+			<attributeChoice>
+				<sequence>1</sequence>
+				<code>1</code>
+				<value>1</value>
+				<key>RISK_SCORE_ONE</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>2</sequence>
+				<code>2</code>
+				<value>2</value>
+				<key>RISK_SCORE_TWO</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>3</sequence>
+				<code>3</code>
+				<value>3</value>
+				<key>RISK_SCORE_THREE</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>4</sequence>
+				<code>4</code>
+				<value>4</value>
+				<key>RISK_SCORE_FOUR</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>5</sequence>
+				<code>5</code>
+				<value>5</value>
+				<key>RISK_SCORE_FIVE</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>6</sequence>
+				<code>6</code>
+				<value>6</value>
+				<key>RISK_SCORE_SIX</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>7</sequence>
+				<code>7</code>
+				<value>7</value>
+				<key>RISK_SCORE_SEVEN</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>8</sequence>
+				<code>8</code>
+				<value>8</value>
+				<key>RISK_SCORE_EIGHT</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+	
+	<attribute>
+		<key>DEBTOR_RISK_SCORE</key>
+		<name>Debtor Risk Score</name>
+		<description>#DONE</description>
+		<attributeChoices>
+			<attributeChoice>
+				<sequence>1</sequence>
+				<code>1</code>
+				<value>D1</value>
+				<key>DEBTOR_RISK_SCORE_ONE</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>2</sequence>
+				<code>2</code>
+				<value>D2</value>
+				<key>DEBTOR_RISK_SCORE_TWO</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>3</sequence>
+				<code>3</code>
+				<value>D3</value>
+				<key>DEBTOR_RISK_SCORE_THREE</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>4</sequence>
+				<code>4</code>
+				<value>D4</value>
+				<key>DEBTOR_RISK_SCORE_FOUR</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>5</sequence>
+				<code>5</code>
+				<value>D5</value>
+				<key>DEBTOR_RISK_SCORE_FIVE</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>6</sequence>
+				<code>6</code>
+				<value>D6</value>
+				<key>DEBTOR_RISK_SCORE_SIX</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>7</sequence>
+				<code>7</code>
+				<value>D7</value>
+				<key>DEBTOR_RISK_SCORE_SEVEN</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>8</sequence>
+				<code>8</code>
+				<value>D8</value>
+				<key>DEBTOR_RISK_SCORE_EIGHT</key>
+				<attribute reference="../../.."/>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+</list>
+</mod:sr.addEntityRequest>

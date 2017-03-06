@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="user" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<data-table name="results" row="user" sortBy="user.lowerUsername" sortOrder="ascending">
+	<columns>
+			<column name="user.username"/>
+			<column name="user.contact.firstName"/>
+			<column name="user.contact.lastName"/>
+			<column name="user.wfStatus"/>
+			<column name="user.userType"/>
+	</columns>
+	<commands>
+		<command name="Export CSV" action="User-ExportCSV" type="exportCsv"/>
+	</commands>	
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.User" />
+	</beans>	
+</canvas>

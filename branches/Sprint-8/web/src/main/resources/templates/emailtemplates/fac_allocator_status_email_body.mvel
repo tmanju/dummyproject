@@ -1,0 +1,18 @@
+
+Dear<br><br>
+
+Facility Placement Details:<br><br>
+
+ Capital Provider    : @{validateEntity.capitalProvider}.<br><br>
+ % Allocated	     : @{validateEntity.fundPer}.<br><br>
+ Amount Funded 		 : @{validateEntity.fundAmt}.<br><br>
+ Status		 		 : @{validateEntity.wfStatus}.<br><br>
+ Minimum Utilization Amount		 		 : @{validateEntity.minUtilizationAmt}.<br><br>
+ Interest Rate		 : @{validateEntity.placementRate}.<br><br>
+ INX Interest Spread : @{validateEntity.spread}.<br><br>
+ Servicing Fee       : @{validateEntity.servicefee}.<br><br>
+ 
+ 
+Sincerely,<br><br>
+
+Lender Name<br>

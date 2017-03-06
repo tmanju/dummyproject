@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_3-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_3-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_5-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_5-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_5-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_8-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_8-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_8-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_11-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_11-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_11-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_21-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_21-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_21-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_23-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_23-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_23-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_22-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_22-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_22-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_25-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_25-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_25-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_35-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_35-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_35-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_38-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_38-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_38-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_42-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_42-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_42-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_46-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_46-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_46-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_47-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_47-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_47-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_45-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_45-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_45-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_51-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_51-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_51-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_50-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_50-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_50-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_49-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_49-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_49-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_48-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_48-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_48-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_54-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_54-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_54-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_53-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_53-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_53-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_52-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_52-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_52-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_71-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_71-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_71-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_67-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_67-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_67-teamManagerEmailItem" structureRef="String" />
+
+  <itemDefinition id="_76-contextEntityItem" structureRef="com.thirdpillar.codify.bc.model.HumanTask" />
+  <itemDefinition id="_76-prevStatusKeyItem" structureRef="String" />
+  <itemDefinition id="_76-teamManagerEmailItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="HumanTaskFlow" name="HumanTaskFlow" tns:packageName="BC" >
+
+    <extensionElements>
+     <tns:import name="java.util.Date" />
+     <tns:import name="com.thirdpillar.codify.bc.model.*" />
+     <tns:import name="com.thirdpillar.foundation.model.IWorkflowStatus" />
+     <tns:import name="com.thirdpillar.foundation.service.*" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="prevStatusKey" itemSubjectRef="_prevStatusKeyItem"/>
+    <property id="teamManagerEmail" itemSubjectRef="_teamManagerEmailItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_3" name="Wait State" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <intermediateCatchEvent id="_4" name="Signal" >
+      <signalEventDefinition signalRef="Start"/>
+    </intermediateCatchEvent>
+    <task id="_5" name="Start: Status = InProgress" tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_5_entityInput" name="entity" />
+        <dataInput id="_5_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_5_entityInput</dataInputRefs>
+          <dataInputRefs>_5_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_5_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_INPROGRESS</from>
+          <to xsi:type="tFormalExpression">_5_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_6" name="End" />
+    <intermediateCatchEvent id="_7" name="Signal" >
+      <signalEventDefinition signalRef="Suspend"/>
+    </intermediateCatchEvent>
+    <task id="_8" name="Suspend: Status = Suspend" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_8_entityInput" name="entity" />
+        <dataInput id="_8_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_8_entityInput</dataInputRefs>
+          <dataInputRefs>_8_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_8_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_8_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_SUSPENDED</from>
+          <to xsi:type="tFormalExpression">_8_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_9" name="End" />
+    <intermediateCatchEvent id="_10" name="Signal" >
+      <signalEventDefinition signalRef="Resume"/>
+    </intermediateCatchEvent>
+    <task id="_11" name="Resume: Status=Previous Status" tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>prevStatusKey = contextEntity.getPrevWfStatus().getStatusKey();
+IWorkflowStatus prevWfStatus = (IWorkflowStatus) LookupService.getResult("WorkflowStatus.byStatusKey",
+                 "statusKey", prevStatusKey);</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_11_entityInput" name="entity" />
+        <dataInput id="_11_prevStatusKeyInput" name="prevStatusKey" />
+        <dataInput id="_11_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_11_entityInput</dataInputRefs>
+          <dataInputRefs>_11_prevStatusKeyInput</dataInputRefs>
+          <dataInputRefs>_11_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_11_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>prevStatusKey</sourceRef>
+        <targetRef>_11_prevStatusKeyInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_11_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.getPrevWfStatus().getStatusKey()}</from>
+          <to xsi:type="tFormalExpression">_11_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_12" name="End" />
+    <intermediateCatchEvent id="_13" name="Signal" >
+      <signalEventDefinition signalRef="Complete"/>
+    </intermediateCatchEvent>
+    <endEvent id="_15" name="End" />
+    <endEvent id="_17" name="End" />
+    <intermediateCatchEvent id="_16" name="Signal" >
+      <signalEventDefinition signalRef="Reassign"/>
+    </intermediateCatchEvent>
+    <intermediateCatchEvent id="_18" name="Signal" >
+      <signalEventDefinition signalRef="Claim"/>
+    </intermediateCatchEvent>
+    <task id="_21" name="Claim: Status = Reserved" tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_21_entityInput" name="entity" />
+        <dataInput id="_21_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_21_entityInput</dataInputRefs>
+          <dataInputRefs>_21_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_21_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_21_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_RESERVED</from>
+          <to xsi:type="tFormalExpression">_21_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_20" name="End" />
+    <task id="_23" name="Reassign: Status = Reserved" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_23_entityInput" name="entity" />
+        <dataInput id="_23_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_23_entityInput</dataInputRefs>
+          <dataInputRefs>_23_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_23_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_23_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_RESERVED</from>
+          <to xsi:type="tFormalExpression">_23_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_22" name="Complete: Status = Complete" tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_22_entityInput" name="entity" />
+        <dataInput id="_22_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_22_entityInput</dataInputRefs>
+          <dataInputRefs>_22_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_22_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_22_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_COMPLETED</from>
+          <to xsi:type="tFormalExpression">_22_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_25" name="Skip: Status = Obsolete" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_25_entityInput" name="entity" />
+        <dataInput id="_25_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_25_entityInput</dataInputRefs>
+          <dataInputRefs>_25_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_25_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_25_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_OBSOLETE</from>
+          <to xsi:type="tFormalExpression">_25_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <intermediateCatchEvent id="_24" name="Signal" >
+      <signalEventDefinition signalRef="Skip"/>
+    </intermediateCatchEvent>
+    <scriptTask id="_27" name="Owner=LoggedInUser" scriptFormat="http://www.java.com/java" >
+      <script>HumanTask humanTask = (HumanTask) contextEntity;
+User loggedInUser = humanTask.getLoggedInUser();
+humanTask.setOwner(loggedInUser);</script>
+    </scriptTask>
+    <endEvent id="_26" name="End" />
+    <scriptTask id="_29" name="Set Completed Date" scriptFormat="http://www.java.com/java" >
+      <script>contextEntity.setCompletedDate(new Date());</script>
+    </scriptTask>
+    <scriptTask id="_28" name="Set Suspended Date" scriptFormat="http://www.java.com/java" >
+      <script>contextEntity.setSuspendedDate(new Date());</script>
+    </scriptTask>
+    <scriptTask id="_30" name="Owner=LoggedInUser" scriptFormat="http://www.java.com/java" >
+      <script>HumanTask humanTask = (HumanTask) contextEntity;
+User loggedInUser = humanTask.getLoggedInUser();
+humanTask.setOwner(loggedInUser);
+humanTask.setStartDate(new Date());</script>
+    </scriptTask>
+    <scriptTask id="_34" name="Owner=null" scriptFormat="http://www.java.com/java" >
+      <script>HumanTask humanTask = (HumanTask) contextEntity;
+User releaseUser= humanTask.getOwner();
+humanTask.setOwner(releaseUser);
+String emailAdd = humanTask.getTeamManagersEmail();
+System.out.println("***************Inside Release Task*****TeamManager***********"+emailAdd );
+context.setVariable("teamManagerEmail", emailAdd);
+</script>
+    </scriptTask>
+    <task id="_35" name="Release: Status = Ready" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_35_entityInput" name="entity" />
+        <dataInput id="_35_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_35_entityInput</dataInputRefs>
+          <dataInputRefs>_35_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_35_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_35_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_READY</from>
+          <to xsi:type="tFormalExpression">_35_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_33" name="End" />
+    <task id="_38" name="Stop: Status = Reserved" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_38_entityInput" name="entity" />
+        <dataInput id="_38_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_38_entityInput</dataInputRefs>
+          <dataInputRefs>_38_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_38_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_38_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_RESERVED</from>
+          <to xsi:type="tFormalExpression">_38_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <intermediateCatchEvent id="_36" name="Signal" >
+      <signalEventDefinition signalRef="ReleaseTask"/>
+    </intermediateCatchEvent>
+    <intermediateCatchEvent id="_37" name="Signal" >
+      <signalEventDefinition signalRef="Stop"/>
+    </intermediateCatchEvent>
+    <task id="_42" name="Forward : Status = Ready" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_42_entityInput" name="entity" />
+        <dataInput id="_42_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_42_entityInput</dataInputRefs>
+          <dataInputRefs>_42_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_42_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_42_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_READY</from>
+          <to xsi:type="tFormalExpression">_42_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_43" name="Owner = null" scriptFormat="http://www.java.com/java" >
+      <script>HumanTask humanTask = (HumanTask) contextEntity;
+humanTask.setOwner(null);</script>
+    </scriptTask>
+    <endEvent id="_40" name="End" />
+    <intermediateCatchEvent id="_41" name="Signal" >
+      <signalEventDefinition signalRef="Forward"/>
+    </intermediateCatchEvent>
+    <task id="_46" name="Suspend Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_46_taskInput" name="task" />
+        <dataInput id="_46_entityInput" name="entity" />
+        <dataInput id="_46_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_46_taskInput</dataInputRefs>
+          <dataInputRefs>_46_entityInput</dataInputRefs>
+          <dataInputRefs>_46_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_46_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_46_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_46_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">SUSPEND_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_46_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_47" name="Resume Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_47_taskInput" name="task" />
+        <dataInput id="_47_entityInput" name="entity" />
+        <dataInput id="_47_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_47_taskInput</dataInputRefs>
+          <dataInputRefs>_47_entityInput</dataInputRefs>
+          <dataInputRefs>_47_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_47_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_47_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_47_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">RESUME_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_47_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_44" name="End" />
+    <task id="_45" name="Start Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_45_taskInput" name="task" />
+        <dataInput id="_45_entityInput" name="entity" />
+        <dataInput id="_45_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_45_taskInput</dataInputRefs>
+          <dataInputRefs>_45_entityInput</dataInputRefs>
+          <dataInputRefs>_45_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_45_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_45_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_45_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">START_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_45_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_51" name="Release Task Notification" tns:taskName="CustomNotificationTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>String managerEmail =(String)context.getVariable("teamManagerEmail");
+context.setVariable("teamManagerEmail", managerEmail);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>HumanTask humanTask = (HumanTask) contextEntity;
+context.setVariable("teamManagerEmail", null);
+humanTask.setOwner(null);
+humanTask.setStartDate(null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_51_taskInput" name="task" />
+        <dataInput id="_51_entityInput" name="entity" />
+        <dataInput id="_51_teamManagerEmailInput" name="teamManagerEmail" />
+        <dataInput id="_51_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_51_taskInput</dataInputRefs>
+          <dataInputRefs>_51_entityInput</dataInputRefs>
+          <dataInputRefs>_51_teamManagerEmailInput</dataInputRefs>
+          <dataInputRefs>_51_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_51_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_51_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>teamManagerEmail</sourceRef>
+        <targetRef>_51_teamManagerEmailInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_51_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">RELEASE_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_51_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_50" name="Claim Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_50_taskInput" name="task" />
+        <dataInput id="_50_entityInput" name="entity" />
+        <dataInput id="_50_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_50_taskInput</dataInputRefs>
+          <dataInputRefs>_50_entityInput</dataInputRefs>
+          <dataInputRefs>_50_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_50_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_50_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_50_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CLAIM_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_50_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_49" name="Reassign Task Notification" tns:taskName="CustomNotificationTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>String managerEmail =(String)context.getVariable("teamManagerEmail");
+context.setVariable("teamManagerEmail", managerEmail);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("teamManagerEmail", null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_49_taskInput" name="task" />
+        <dataInput id="_49_entityInput" name="entity" />
+        <dataInput id="_49_teamManagerEmailInput" name="teamManagerEmail" />
+        <dataInput id="_49_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_49_taskInput</dataInputRefs>
+          <dataInputRefs>_49_entityInput</dataInputRefs>
+          <dataInputRefs>_49_teamManagerEmailInput</dataInputRefs>
+          <dataInputRefs>_49_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_49_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_49_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>teamManagerEmail</sourceRef>
+        <targetRef>_49_teamManagerEmailInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_49_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REASSIGN_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_49_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_48" name="Complete Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_48_taskInput" name="task" />
+        <dataInput id="_48_entityInput" name="entity" />
+        <dataInput id="_48_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_48_taskInput</dataInputRefs>
+          <dataInputRefs>_48_entityInput</dataInputRefs>
+          <dataInputRefs>_48_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_48_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_48_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_48_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">COMPLETE_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_48_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_54" name="Stop Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_54_taskInput" name="task" />
+        <dataInput id="_54_entityInput" name="entity" />
+        <dataInput id="_54_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_54_taskInput</dataInputRefs>
+          <dataInputRefs>_54_entityInput</dataInputRefs>
+          <dataInputRefs>_54_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_54_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_54_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_54_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">STOP_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_54_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_53" name="Forward Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_53_taskInput" name="task" />
+        <dataInput id="_53_entityInput" name="entity" />
+        <dataInput id="_53_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_53_taskInput</dataInputRefs>
+          <dataInputRefs>_53_entityInput</dataInputRefs>
+          <dataInputRefs>_53_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_53_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_53_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_53_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">FORWARD_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_53_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_52" name="Skip Task Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_52_taskInput" name="task" />
+        <dataInput id="_52_entityInput" name="entity" />
+        <dataInput id="_52_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_52_taskInput</dataInputRefs>
+          <dataInputRefs>_52_entityInput</dataInputRefs>
+          <dataInputRefs>_52_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_52_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_52_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_52_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">SKIP_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_52_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_68" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("========= Task Status Revoked ");</script>
+    </scriptTask>
+    <endEvent id="_69" name="End" />
+    <intermediateCatchEvent id="_70" name="Signal" >
+      <signalEventDefinition signalRef="AsyncErrorEvent"/>
+    </intermediateCatchEvent>
+    <task id="_71" name="AsyncError: Task Prev Status" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_71_entityInput" name="entity" />
+        <dataInput id="_71_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_71_entityInput</dataInputRefs>
+          <dataInputRefs>_71_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_71_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_71_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.getPrevWfStatus().getStatusKey()}</from>
+          <to xsi:type="tFormalExpression">_71_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_65" name="Set Assigned Owner" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("***************Inside ReassignOwner Task****************");
+HumanTask humanTask = (HumanTask) contextEntity;
+User reassignedUser= humanTask.getReassignOwner();
+//this needs to be done after notiifcation email as we need owner &amp; reasssigned owner both in email..
+//humanTask.setOwner(reassignedUser);
+humanTask.setAssignedDate(new Date());
+String emailAdd = humanTask.getTeamManagersEmail();
+System.out.println("***************Inside ReassignOwner Task*****TeamManager***********"+emailAdd );
+context.setVariable("teamManagerEmail", emailAdd);</script>
+    </scriptTask>
+    <intermediateCatchEvent id="_66" name="Signal" >
+      <signalEventDefinition signalRef="Revoke"/>
+    </intermediateCatchEvent>
+    <task id="_67" name="Revoke: Status = Revoke" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_67_entityInput" name="entity" />
+        <dataInput id="_67_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_67_entityInput</dataInputRefs>
+          <dataInputRefs>_67_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_67_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_67_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">TASK_STATUS_REVOKED</from>
+          <to xsi:type="tFormalExpression">_67_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_76" name="Revoke Action Notification" tns:taskName="CustomNotificationTask" >
+      <ioSpecification>
+        <dataInput id="_76_taskInput" name="task" />
+        <dataInput id="_76_entityInput" name="entity" />
+        <dataInput id="_76_NotificationConfigurationKeyInput" name="NotificationConfigurationKey" />
+        <inputSet>
+          <dataInputRefs>_76_taskInput</dataInputRefs>
+          <dataInputRefs>_76_entityInput</dataInputRefs>
+          <dataInputRefs>_76_NotificationConfigurationKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_76_taskInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_76_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_76_NotificationConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REVOKE_TASK_NOTIFICATION</from>
+          <to xsi:type="tFormalExpression">_76_NotificationConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_72" name="End" />
+    <scriptTask id="_73" name="Reassign Owner Update" scriptFormat="http://www.java.com/java" >
+      <script>HumanTask humanTask = (HumanTask) contextEntity;
+User reassignedUser= humanTask.getReassignOwner();
+humanTask.setOwner(reassignedUser);
+</script>
+    </scriptTask>
+    <scriptTask id="_74" name="set reassign reasons and reassign reason comment" scriptFormat="http://www.java.com/java" >
+      <script>HumanTask humanTask = (HumanTask) contextEntity;
+humanTask.setReassignReasons(humanTask.getReassignReasonsDerived());
+humanTask.setReassignReasonComment(humanTask.getReassignReasonCommentDerived());
+System.out.println("*******************To Save Comment entered in Reassign *********************");
+
+CommentGroup commentGroup = humanTask.getCommentGroup();
+if(commentGroup != null){
+	commentGroup.setCommentGroupName("TASK");
+	commentGroup.addComment("COMMENT_TYPE_TASK", humanTask.getReassignReasonCommentDerived());
+}else{
+		EntityService es = new EntityService();
+		commentGroup = (CommentGroup)es.createNew(CommentGroup.class);
+		commentGroup.setCommentGroupName("TASK");
+		commentGroup.addComment("COMMENT_TYPE_TASK", humanTask.getReassignReasonCommentDerived());
+}                   
+humanTask.setCommentGroup(commentGroup);</script>
+    </scriptTask>
+    <scriptTask id="_75" name="set seuspended reason and comment" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("======set the suspended reason and comments======");
+HumanTask humanTask = (HumanTask) contextEntity;
+humanTask.setSuspendReasons(humanTask.getSuspendReasonsDerived());
+humanTask.setSuspendedReason(humanTask.getSuspendedReasonComment());
+
+System.out.println("*******************To Save Comment entered in Suspended Reason*********************");
+
+CommentGroup commentGroup = humanTask.getCommentGroup();
+if(commentGroup != null){
+	commentGroup.setCommentGroupName("TASK");
+ 	commentGroup.addComment("COMMENT_TYPE_TASK", humanTask.getSuspendedReasonComment());
+}else{
+		EntityService es = new EntityService();
+		commentGroup = (CommentGroup)es.createNew(CommentGroup.class);
+		commentGroup.setCommentGroupName("TASK");
+		commentGroup.addComment("COMMENT_TYPE_TASK", humanTask.getSuspendedReasonComment());
+}                   
+humanTask.setCommentGroup(commentGroup);</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_3-_2" sourceRef="_3" targetRef="_2" />
+    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
+    <sequenceFlow id="_45-_6" sourceRef="_45" targetRef="_6" />
+    <sequenceFlow id="_75-_8" sourceRef="_75" targetRef="_8" />
+    <sequenceFlow id="_46-_9" sourceRef="_46" targetRef="_9" />
+    <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" />
+    <sequenceFlow id="_47-_12" sourceRef="_47" targetRef="_12" />
+    <sequenceFlow id="_48-_15" sourceRef="_48" targetRef="_15" />
+    <sequenceFlow id="_73-_17" sourceRef="_73" targetRef="_17" />
+    <sequenceFlow id="_18-_21" sourceRef="_18" targetRef="_21" />
+    <sequenceFlow id="_50-_20" sourceRef="_50" targetRef="_20" />
+    <sequenceFlow id="_74-_23" sourceRef="_74" targetRef="_23" />
+    <sequenceFlow id="_13-_22" sourceRef="_13" targetRef="_22" />
+    <sequenceFlow id="_24-_25" sourceRef="_24" targetRef="_25" />
+    <sequenceFlow id="_5-_27" sourceRef="_5" targetRef="_27" />
+    <sequenceFlow id="_52-_26" sourceRef="_52" targetRef="_26" />
+    <sequenceFlow id="_22-_29" sourceRef="_22" targetRef="_29" />
+    <sequenceFlow id="_8-_28" sourceRef="_8" targetRef="_28" />
+    <sequenceFlow id="_21-_30" sourceRef="_21" targetRef="_30" />
+    <sequenceFlow id="_35-_34" sourceRef="_35" targetRef="_34" />
+    <sequenceFlow id="_36-_35" sourceRef="_36" targetRef="_35" />
+    <sequenceFlow id="_51-_33" sourceRef="_51" targetRef="_33" />
+    <sequenceFlow id="_37-_38" sourceRef="_37" targetRef="_38" />
+    <sequenceFlow id="_41-_42" sourceRef="_41" targetRef="_42" />
+    <sequenceFlow id="_42-_43" sourceRef="_42" targetRef="_43" />
+    <sequenceFlow id="_54-_40" sourceRef="_54" targetRef="_40" />
+    <sequenceFlow id="_28-_46" sourceRef="_28" targetRef="_46" />
+    <sequenceFlow id="_11-_47" sourceRef="_11" targetRef="_47" />
+    <sequenceFlow id="_53-_44" sourceRef="_53" targetRef="_44" />
+    <sequenceFlow id="_27-_45" sourceRef="_27" targetRef="_45" />
+    <sequenceFlow id="_34-_51" sourceRef="_34" targetRef="_51" />
+    <sequenceFlow id="_30-_50" sourceRef="_30" targetRef="_50" />
+    <sequenceFlow id="_65-_49" sourceRef="_65" targetRef="_49" />
+    <sequenceFlow id="_29-_48" sourceRef="_29" targetRef="_48" />
+    <sequenceFlow id="_38-_54" sourceRef="_38" targetRef="_54" />
+    <sequenceFlow id="_43-_53" sourceRef="_43" targetRef="_53" />
+    <sequenceFlow id="_25-_52" sourceRef="_25" targetRef="_52" />
+    <sequenceFlow id="_67-_68" sourceRef="_67" targetRef="_68" />
+    <sequenceFlow id="_76-_69" sourceRef="_76" targetRef="_69" />
+    <sequenceFlow id="_70-_71" sourceRef="_70" targetRef="_71" />
+    <sequenceFlow id="_23-_65" sourceRef="_23" targetRef="_65" />
+    <sequenceFlow id="_66-_67" sourceRef="_66" targetRef="_67" />
+    <sequenceFlow id="_68-_76" sourceRef="_68" targetRef="_76" />
+    <sequenceFlow id="_71-_72" sourceRef="_71" targetRef="_72" />
+    <sequenceFlow id="_49-_73" sourceRef="_49" targetRef="_73" />
+    <sequenceFlow id="_16-_74" sourceRef="_16" targetRef="_74" />
+    <sequenceFlow id="_7-_75" sourceRef="_7" targetRef="_75" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="HumanTaskFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="42" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="42" y="203" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="16" y="96" width="100" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="198" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="148" y="96" width="149" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="195" y="442" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="388" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="333" y="155" width="166" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="386" y="450" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="582" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="527" y="96" width="159" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="579" y="319" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="784" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="785" y="442" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="984" y="600" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="993" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="1207" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="1137" y="96" width="189" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="1203" y="442" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="926" y="203" width="175" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_22" >
+        <dc:Bounds x="718" y="96" width="180" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" >
+        <dc:Bounds x="1358" y="96" width="143" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_24" >
+        <dc:Bounds x="1405" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="144" y="194" width="157" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" >
+        <dc:Bounds x="1406" y="355" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="737" y="194" width="142" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="344" y="248" width="142" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_30" >
+        <dc:Bounds x="1154" y="194" width="155" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="1571" y="194" width="118" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="1533" y="96" width="194" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="1604" y="445" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_38" >
+        <dc:Bounds x="1759" y="96" width="139" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_36" >
+        <dc:Bounds x="1606" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_37" >
+        <dc:Bounds x="1804" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42" >
+        <dc:Bounds x="2129" y="96" width="145" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_43" >
+        <dc:Bounds x="2130" y="194" width="142" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_40" >
+        <dc:Bounds x="1803" y="344" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_41" >
+        <dc:Bounds x="2177" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_46" >
+        <dc:Bounds x="346" y="349" width="139" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_47" >
+        <dc:Bounds x="524" y="194" width="165" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_44" >
+        <dc:Bounds x="2177" y="432" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_45" >
+        <dc:Bounds x="147" y="293" width="151" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_51" >
+        <dc:Bounds x="1553" y="293" width="155" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_50" >
+        <dc:Bounds x="1138" y="293" width="186" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_49" >
+        <dc:Bounds x="921" y="421" width="175" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_48" >
+        <dc:Bounds x="732" y="293" width="153" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_54" >
+        <dc:Bounds x="1754" y="194" width="149" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_53" >
+        <dc:Bounds x="2125" y="293" width="152" height="75" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_52" >
+        <dc:Bounds x="1352" y="194" width="154" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_68" >
+        <dc:Bounds x="2304" y="194" width="135" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_69" >
+        <dc:Bounds x="2348" y="422" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_70" >
+        <dc:Bounds x="1989" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_71" >
+        <dc:Bounds x="1930" y="96" width="167" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_65" >
+        <dc:Bounds x="941" y="322" width="144" height="67" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_66" >
+        <dc:Bounds x="2347" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_67" >
+        <dc:Bounds x="2311" y="96" width="121" height="66" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_76" >
+        <dc:Bounds x="2293" y="308" width="162" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_72" >
+        <dc:Bounds x="1989" y="203" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_73" >
+        <dc:Bounds x="921" y="518" width="176" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_74" >
+        <dc:Bounds x="931" y="110" width="171" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_75" >
+        <dc:Bounds x="346" y="101" width="138" height="35" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_3-_2" >
+        <di:waypoint x="66" y="129" />
+        <di:waypoint x="66" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
+        <di:waypoint x="66" y="40" />
+        <di:waypoint x="66" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="222" y="40" />
+        <di:waypoint x="222" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_45-_6" >
+        <di:waypoint x="222" y="330" />
+        <di:waypoint x="219" y="466" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_75-_8" >
+        <di:waypoint x="415" y="118" />
+        <di:waypoint x="416" y="188" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_46-_9" >
+        <di:waypoint x="415" y="386" />
+        <di:waypoint x="410" y="474" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_11" >
+        <di:waypoint x="606" y="40" />
+        <di:waypoint x="606" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_47-_12" >
+        <di:waypoint x="606" y="227" />
+        <di:waypoint x="603" y="343" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_48-_15" >
+        <di:waypoint x="808" y="330" />
+        <di:waypoint x="809" y="466" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_73-_17" >
+        <di:waypoint x="1009" y="538" />
+        <di:waypoint x="1008" y="624" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_21" >
+        <di:waypoint x="1231" y="40" />
+        <di:waypoint x="1231" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_50-_20" >
+        <di:waypoint x="1231" y="330" />
+        <di:waypoint x="1227" y="466" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_74-_23" >
+        <di:waypoint x="1016" y="134" />
+        <di:waypoint x="1013" y="236" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_22" >
+        <di:waypoint x="808" y="40" />
+        <di:waypoint x="808" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_24-_25" >
+        <di:waypoint x="1429" y="40" />
+        <di:waypoint x="1429" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_27" >
+        <di:waypoint x="222" y="129" />
+        <di:waypoint x="222" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_52-_26" >
+        <di:waypoint x="1429" y="227" />
+        <di:waypoint x="1430" y="379" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_22-_29" >
+        <di:waypoint x="808" y="129" />
+        <di:waypoint x="808" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_28" >
+        <di:waypoint x="416" y="188" />
+        <di:waypoint x="415" y="281" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_30" >
+        <di:waypoint x="1231" y="129" />
+        <di:waypoint x="1231" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_34" >
+        <di:waypoint x="1630" y="129" />
+        <di:waypoint x="1630" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_36-_35" >
+        <di:waypoint x="1630" y="40" />
+        <di:waypoint x="1630" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_51-_33" >
+        <di:waypoint x="1630" y="330" />
+        <di:waypoint x="1628" y="469" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_37-_38" >
+        <di:waypoint x="1828" y="40" />
+        <di:waypoint x="1828" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_41-_42" >
+        <di:waypoint x="2201" y="40" />
+        <di:waypoint x="2201" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-_43" >
+        <di:waypoint x="2201" y="129" />
+        <di:waypoint x="2201" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_54-_40" >
+        <di:waypoint x="1828" y="227" />
+        <di:waypoint x="1827" y="368" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_46" >
+        <di:waypoint x="415" y="281" />
+        <di:waypoint x="415" y="386" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_47" >
+        <di:waypoint x="606" y="129" />
+        <di:waypoint x="606" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_53-_44" >
+        <di:waypoint x="2201" y="330" />
+        <di:waypoint x="2201" y="456" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_45" >
+        <di:waypoint x="222" y="227" />
+        <di:waypoint x="222" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_51" >
+        <di:waypoint x="1630" y="227" />
+        <di:waypoint x="1630" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_30-_50" >
+        <di:waypoint x="1231" y="227" />
+        <di:waypoint x="1231" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_65-_49" >
+        <di:waypoint x="1013" y="355" />
+        <di:waypoint x="1008" y="458" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_48" >
+        <di:waypoint x="808" y="227" />
+        <di:waypoint x="808" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_38-_54" >
+        <di:waypoint x="1828" y="129" />
+        <di:waypoint x="1828" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_43-_53" >
+        <di:waypoint x="2201" y="227" />
+        <di:waypoint x="2201" y="330" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_52" >
+        <di:waypoint x="1429" y="129" />
+        <di:waypoint x="1429" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_67-_68" >
+        <di:waypoint x="2371" y="129" />
+        <di:waypoint x="2371" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_76-_69" >
+        <di:waypoint x="2374" y="332" />
+        <di:waypoint x="2372" y="446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_70-_71" >
+        <di:waypoint x="2013" y="40" />
+        <di:waypoint x="2013" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_65" >
+        <di:waypoint x="1013" y="236" />
+        <di:waypoint x="1013" y="355" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_66-_67" >
+        <di:waypoint x="2371" y="40" />
+        <di:waypoint x="2371" y="129" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_68-_76" >
+        <di:waypoint x="2371" y="227" />
+        <di:waypoint x="2374" y="332" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_71-_72" >
+        <di:waypoint x="2013" y="129" />
+        <di:waypoint x="2013" y="227" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_49-_73" >
+        <di:waypoint x="1008" y="458" />
+        <di:waypoint x="1009" y="538" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_74" >
+        <di:waypoint x="1017" y="40" />
+        <di:waypoint x="1016" y="134" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_75" >
+        <di:waypoint x="412" y="40" />
+        <di:waypoint x="415" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

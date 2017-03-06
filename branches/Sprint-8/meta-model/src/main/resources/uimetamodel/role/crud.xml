@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="role" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="role.role_maintenance">
+		<field name="role.name" />
+		<field name="role.description" />
+		<field name="role.status" />
+		<field name="role.roleCategory" />
+		<field name="role.permissionSet" label="Permission Set"/>
+	</panel>
+
+<!-- 	
+	<data-table name="role.users" row="assignedUser" label="User Assignment">
+		<columns>
+			<column name="assignedUser.username" label="Assigned Users"></column>
+		</columns>
+	</data-table>
+ -->	
+	<beans>
+		<bean name="role" type="com.thirdpillar.codify.loanpath.model.Role" />
+	</beans>	
+</canvas>

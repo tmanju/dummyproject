@@ -1,0 +1,95 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+   <attribute>
+      <key>DOCUMENT_CATEGORY</key>
+      <name>Document Category</name>
+      <description/>
+      <attributeChoices>
+         <attributeChoice>
+            <value>Application</value>
+            <key>DOCUMENT_CATEGORY_APPLICATION</key>
+			<sequence>1</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Financial Statements</value>
+            <key>DOCUMENT_CATEGORY_FINANCIAL_STATEMENTS</key>
+			<sequence>2</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Bank Statements</value>
+            <key>DOCUMENT_CATEGORY_BANK_STATEMENTS</key>
+			<sequence>3</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Aging and Transaction Reports</value>
+            <key>DOCUMENT_CATEGORY_AGING_AND_TRANSACTION_REPORTS</key>
+			<sequence>4</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Incorporation Documents</value>
+            <key>DOCUMENT_CATEGORY_INCORPORATION_DOCUMENTS</key>
+			<sequence>5</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+		 <attributeChoice>
+            <value>Voided Check</value>
+            <key>DOCUMENT_CATEGORY_VOIDED_CHECK</key>
+			<sequence>6</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>KYC Documents</value>
+            <key>DOCUMENT_CATEGORY_KYC_DOCUMENTS</key>
+			<sequence>7</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Credit Bureau Report</value>
+            <key>DOCUMENT_CATEGORY_CREDIT_BUREAU_REPORT</key>
+			<sequence>8</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Loan Agreement</value>
+            <key>DOCUMENT_CATEGORY_LOAN_AGREEMENT</key>
+			<sequence>9</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Lender Statements</value>
+            <key>DOCUMENT_CATEGORY_LENDER_STATEMENTS</key>
+			<sequence>10</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Debtor Check Images</value>
+            <key>DOCUMENT_CATEGORY_DEBTOR_CHECK_IMAGES</key>
+			<sequence>11</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+         <attributeChoice>
+            <value>Other</value>
+            <key>DOCUMENT_CATEGORY_OTHER</key>
+			<sequence>12</sequence>
+            <group>DOCUMENT_CLASS_UPLOADED_DOC_CATEGORY</group>
+            <attribute reference="../../.."/>
+         </attributeChoice>
+	</attributeChoices>
+   </attribute>
+</list>
+</mod:sr.addEntityRequest>

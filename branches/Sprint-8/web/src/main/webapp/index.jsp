@@ -1,0 +1,1 @@
+<html><% response.sendRedirect("pages/home.seam"); %></html>

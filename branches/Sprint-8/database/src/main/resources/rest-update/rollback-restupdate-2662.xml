@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+    <list>
+        <coaDefinition>
+            <documentType>
+                <attributeChoiceCodes/>
+                <key>DOCUMENT_TYPE_BILL_OF_SALE</key>
+                <metaInfo/>
+                <value>Bill of Sale</value>
+            </documentType>
+            <coaId>1100.1</coaId>
+        </coaDefinition>
+        <coaDefinition>
+            <documentType>
+                <attributeChoiceCodes/>
+                <key>DOCUMENT_TYPE_BILL_OF_SALE</key>
+                <metaInfo/>
+                <value>Bill of Sale</value>
+            </documentType>
+            <coaId>1100.2</coaId>
+        </coaDefinition>
+    </list>
+</mod:sr.addEntityRequest>

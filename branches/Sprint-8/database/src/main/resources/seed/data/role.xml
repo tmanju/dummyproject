@@ -1,0 +1,159 @@
+<list>
+	<!-- Sales -->
+	<role>
+		<description>Relationship Manager</description>
+		<name>Relationship Manager</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_RELATIONSHIP_MANAGER</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Relationship Manager</name>
+		</permissionSet>
+	</role>
+
+	<!-- Credit -->
+	<role>
+		<description>Credit Analyst</description>
+		<name>Credit Analyst</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_CREDIT_ANALYST</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Credit Analyst</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Credit Officer</description>
+		<name>Credit Officer</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_CREDIT_OFFICER</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Credit Officer</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Underwriter</description>
+		<name>Underwriter</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_CREDIT_UNDERWRITER</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Credit Officer</name>
+		</permissionSet>
+	</role>
+
+	<!-- Operations -->	
+	<role>
+		<description>Auditor</description>
+		<name>Auditor</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_AUDITOR</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Operations</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Operations</description>
+		<name>Operations</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_OPERATIONS</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Operations</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Operations Manager</description>
+		<name>Operations Manager</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_OPERATION_MANAGER</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Operations</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Documentation Specialist</description>
+		<name>Documentation Specialist</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_DOCUMENTATION_SPECIALIST</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Documentation Specialist</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Legal</description>
+		<name>Legal</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_LEGAL</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Documentation Specialist</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Sourcing</description>
+		<name>Sourcing</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_SOURCING</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Sourcing</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>Vendor</description>
+		<name>Vendor</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_VENDOR</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Vendor</name>
+		</permissionSet>
+	</role>
+
+	<!-- Admin Roles -->
+	<role>
+		<description>Super Administrator</description>
+		<name>Super Administrator</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_SUPER_ADMINISTRATOR</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Super Administrator</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>System Administrator</description>
+		<name>System Administrator</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_SYSTEM_ADMINISTRATOR</key>
+		</roleCategory>
+		<permissionSet>
+			<name>Super Administrator</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>MarketPlace Analyst</description>
+		<name>MarketPlace Analyst</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_MARKETPLACE_ANALYST</key>
+		</roleCategory>
+		<permissionSet>
+			<name>InxCManalyst</name>
+		</permissionSet>
+	</role>
+	<role>
+		<description>MarketPlace Admin</description>
+		<name>MarketPlace Admin</name>
+		<roleCategory>
+			<key>ROLE_CATEGORY_MARKETPLACE_ADMIN</key>
+		</roleCategory>
+		<permissionSet>
+			<name>InxOpsAdminRole</name>
+		</permissionSet>
+	</role>
+</list>

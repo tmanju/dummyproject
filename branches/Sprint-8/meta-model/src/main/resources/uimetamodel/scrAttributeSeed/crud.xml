@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="scrAttributeSeed" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<panel id="scrAttributeSeed.edit"  label="Edit Scoring Attribute">
+		    <field name="scrAttributeSeed.name" label="Name *" />
+			<field name="scrAttributeSeed.description" label="Description *"/>
+			<field name="scrAttributeSeed.applicability" label="Applicability *"  />
+			<field name="scrAttributeSeed.display"  label="Display *"/>
+	    	<field name="scrAttributeSeed.effectiveFrom" label="Effective From *"/>
+			<field name="scrAttributeSeed.effectiveTo" label="Effective To *" />			
+	</panel>
+	
+	
+	<data-table name="scrAttributeSeed.scrAttrParams" row="scrAttrParams"
+		label="Scoring Parameters" empty-message="Nothing found to display.">
+		<columns>
+			<column name="scrAttrParams.paramName" />
+			<column name="scrAttrParams.paramValue" label="Parameter Value *" />
+		</columns>
+	</data-table>
+	
+	<beans>
+		<bean name="scrAttributeSeed" type="com.thirdpillar.codify.loanpath.model.ScrAttributeSeed" />
+	</beans>
+	
+</canvas>

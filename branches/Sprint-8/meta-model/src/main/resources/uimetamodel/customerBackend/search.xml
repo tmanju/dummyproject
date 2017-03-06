@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="customerBackend" type="search" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<section id="customerBackend.customerSearch">
+		<field name="customerBackend.legalName"  label="Funding Provider Name"/>
+		<field name="customerBackend.fpType"  />
+		<field name="customerBackend.firstName" label="First Name" />
+		<field name="customerBackend.middleName" label="Middle Name" />
+		<field name="customerBackend.lastName" label="Last Name" />
+		<field name="customerBackend.tradingName" />
+	</section>
+	<beans>
+		<bean name="customerBackend" type="com.thirdpillar.codify.loanpath.model.CustomerBackend"/>
+	</beans>
+</canvas>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_facilityStatusItem" structureRef="String" />
+  <itemDefinition id="_toStatusItem" structureRef="String" />
+
+  <itemDefinition id="_4-2-3-facilityItem" />
+
+  <itemDefinition id="_4_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="UpdateProductStatus" name="UpdateProductStatus" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="facilityStatus" itemSubjectRef="_facilityStatusItem"/>
+    <property id="toStatus" itemSubjectRef="_toStatusItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <subProcess id="_4" name="Multiple Instances"  >
+      <ioSpecification>
+        <dataInput id="_4_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity.allFacilities</sourceRef>
+        <targetRef>_4_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_4_input</loopDataInputRef>
+        <inputDataItem id="facility" itemSubjectRef="_4_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <startEvent id="_4-2-1" name="Start" />
+    <endEvent id="_4-2-2" name="End" />
+    <task id="_4-2-3" name="StatusUpdate" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_4-2-3_entityInput" name="entity" />
+        <dataInput id="_4-2-3_saveInput" name="save" />
+        <dataInput id="_4-2-3_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_4-2-3_entityInput</dataInputRefs>
+          <dataInputRefs>_4-2-3_saveInput</dataInputRefs>
+          <dataInputRefs>_4-2-3_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>facility</sourceRef>
+        <targetRef>_4-2-3_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4-2-3_saveInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_4-2-3_saveInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_4-2-3_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{toStatus}</from>
+          <to xsi:type="tFormalExpression">_4-2-3_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <exclusiveGateway id="_4-2-4" name="Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_4-2-5" name="Gateway" gatewayDirection="Converging" />
+    <scriptTask id="_4-2-6" name="Determine Facility Status Based on Decision" scriptFormat="http://www.java.com/java" >
+      <script>String status = (String) context.getVariable("facilityStatus");
+Facility fac = (Facility) facility;
+if (status == "FACILITY_STATUS_APPROVED") {
+	if (fac.getFacilityDecision() != null &amp;&amp; "FACILITY_DECISION_DECLINE".equals(fac.getFacilityDecision().getKey())) {
+		// facility decision is declined, the status needs to be declined
+		status = "FACILITY_STATUS_DECLINED";		
+	}
+}
+
+if(fac.getWfStatus() !=  null &amp;&amp; "FACILITY_STATUS_APPROVED_PENDING_RENEWAL".equals(fac.getWfStatus().getStatusKey())){
+	//no change needed for approved pending renewal, as its cloned copy will be used for future transactions
+	status = "FACILITY_STATUS_APPROVED_PENDING_RENEWAL";		
+}
+context.setVariable("toStatus",status);</script>
+    </scriptTask>
+    <!-- connections -->
+    <sequenceFlow id="_4-2-5-_4-2-2" sourceRef="_4-2-5" targetRef="_4-2-2" />
+    <sequenceFlow id="_4-2-6-_4-2-3" sourceRef="_4-2-6" targetRef="_4-2-3" />
+    <sequenceFlow id="_4-2-1-_4-2-4" sourceRef="_4-2-1" targetRef="_4-2-4" />
+    <sequenceFlow id="_4-2-4-_4-2-5" sourceRef="_4-2-4" targetRef="_4-2-5" name="Withdrawn Facilities" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >com.thirdpillar.codify.loanpath.model.Facility facObj = (com.thirdpillar.codify.loanpath.model.Facility) context.getVariable("facility");
+if(facObj.inWfStatus("FACILITY_STATUS_WITHDRAWN"))   {                                                                       
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_4-2-3-_4-2-5" sourceRef="_4-2-3" targetRef="_4-2-5" />
+    <sequenceFlow id="_4-2-4-_4-2-6" sourceRef="_4-2-4" targetRef="_4-2-6" name="Active Facility" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >com.thirdpillar.codify.loanpath.model.Facility facObj = (com.thirdpillar.codify.loanpath.model.Facility) context.getVariable("facility");
+if(!facObj.inWfStatus("FACILITY_STATUS_WITHDRAWN"))   {                                                                       
+	return true;
+} else {
+	return false;
+}</conditionExpression>
+    </sequenceFlow>
+    </subProcess>
+
+    <!-- connections -->
+    <sequenceFlow id="_4-_2" sourceRef="_4" targetRef="_2" />
+    <sequenceFlow id="_1-_4" sourceRef="_1" targetRef="_4" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="UpdateProductStatus" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="344" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="331" y="663" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="16" y="96" width="705" height="331" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-1" >
+        <dc:Bounds x="41" y="125" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-2" >
+        <dc:Bounds x="612" y="130" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-3" >
+        <dc:Bounds x="392" y="311" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-4" >
+        <dc:Bounds x="151" y="128" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-5" >
+        <dc:Bounds x="395" y="128" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-6" >
+        <dc:Bounds x="43" y="328" width="255" height="42" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-5-_4-2-2" >
+        <di:waypoint x="403" y="56" />
+        <di:waypoint x="620" y="58" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-6-_4-2-3" >
+        <di:waypoint x="154" y="253" />
+        <di:waypoint x="426" y="239" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-1-_4-2-4" >
+        <di:waypoint x="49" y="53" />
+        <di:waypoint x="159" y="56" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-4-_4-2-5" >
+        <di:waypoint x="159" y="56" />
+        <di:waypoint x="403" y="56" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-3-_4-2-5" >
+        <di:waypoint x="426" y="239" />
+        <di:waypoint x="403" y="56" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-4-_4-2-6" >
+        <di:waypoint x="159" y="56" />
+        <di:waypoint x="154" y="253" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_2" >
+        <di:waypoint x="368" y="261" />
+        <di:waypoint x="355" y="687" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_4" >
+        <di:waypoint x="368" y="40" />
+        <di:waypoint x="368" y="261" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

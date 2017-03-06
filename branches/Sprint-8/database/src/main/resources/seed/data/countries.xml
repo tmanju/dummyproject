@@ -1,0 +1,2018 @@
+<list>
+
+	<country>
+		<active>true</active>
+		<isoCode>US</isoCode>
+		<name>USA</name>
+		<states>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AL</isoCode>
+				<name>Alabama</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AK</isoCode>
+				<name>Alaska</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AS</isoCode>
+				<name>American Samoa</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AZ</isoCode>
+				<name>Arizona</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AR</isoCode>
+				<name>Arkansas</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AA</isoCode>
+				<name>Armed Forces Americas</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AP</isoCode>
+				<name>Armed Forces Pacific</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>CA</isoCode>
+				<name>California</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>CO</isoCode>
+				<name>Colorado</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>CT</isoCode>
+				<name>Connecticut</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>DE</isoCode>
+				<name>Delaware</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>DC</isoCode>
+				<name>District of Columbia</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>FM</isoCode>
+				<name>Federated States of Micronesia</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>FL</isoCode>
+				<name>Florida</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>GA</isoCode>
+				<name>Georgia</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>GU</isoCode>
+				<name>Guam</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>HI</isoCode>
+				<name>Hawaii</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>ID</isoCode>
+				<name>Idaho</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>IL</isoCode>
+				<name>Illinois</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>IN</isoCode>
+				<name>Indiana</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>IA</isoCode>
+				<name>Iowa</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>KS</isoCode>
+				<name>Kansas</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>KY</isoCode>
+				<name>Kentucky</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>LA</isoCode>
+				<name>Louisiana</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>ME</isoCode>
+				<name>Maine</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MH</isoCode>
+				<name>Marshall Islands</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MD</isoCode>
+				<name>Maryland</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MA</isoCode>
+				<name>Massachusetts</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MI</isoCode>
+				<name>Michigan</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MN</isoCode>
+				<name>Minnesota</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MS</isoCode>
+				<name>Mississippi</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MO</isoCode>
+				<name>Missouri</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MT</isoCode>
+				<name>Montana</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NE</isoCode>
+				<name>Nebraska</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NV</isoCode>
+				<name>Nevada</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NH</isoCode>
+				<name>New Hampshire</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NJ</isoCode>
+				<name>New Jersey</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NM</isoCode>
+				<name>New Mexico</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NY</isoCode>
+				<name>New York</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NC</isoCode>
+				<name>North Carolina</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>ND</isoCode>
+				<name>North Dakota</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MP</isoCode>
+				<name>Northern Mariana Islands</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>OH</isoCode>
+				<name>Ohio</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>OK</isoCode>
+				<name>Oklahoma</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>OR</isoCode>
+				<name>Oregon</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>PW</isoCode>
+				<name>Palau</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>PA</isoCode>
+				<name>Pennsylvania</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>PR</isoCode>
+				<name>Puerto Rico</name>
+			</state>
+
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>RI</isoCode>
+				<name>Rhode Island</name>
+			</state>
+
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>SC</isoCode>
+				<name>South Carolina</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>SD</isoCode>
+				<name>South Dakota</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>TN</isoCode>
+				<name>Tennessee</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>TX</isoCode>
+				<name>Texas</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>UT</isoCode>
+				<name>Utah</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>VT</isoCode>
+				<name>Vermont</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>VI</isoCode>
+				<name>Virgin Islands</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>VA</isoCode>
+				<name>Virginia</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>WA</isoCode>
+				<name>Washington</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>DC</isoCode>
+				<name>Washington DC</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>WV</isoCode>
+				<name>West Virginia</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>WI</isoCode>
+				<name>Wisconsin</name>
+			</state>
+			<state>
+				<active>true</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>WY</isoCode>
+				<name>Wyoming</name>
+			</state>
+		</states>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AX</isoCode>
+	   <name>ALAND ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AL</isoCode>
+	   <name>ALBANIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>DZ</isoCode>
+	   <name>ALGERIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AS</isoCode>
+	   <name>AMERICAN SAMOA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AD</isoCode>
+	   <name>ANDORRA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AO</isoCode>
+	   <name>ANGOLA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AI</isoCode>
+	   <name>ANGUILLA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AQ</isoCode>
+	   <name>ANTARCTICA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AG</isoCode>
+	   <name>ANTIGUA AND BARBUDA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AR</isoCode>
+	   <name>ARGENTINA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AM</isoCode>
+	   <name>ARMENIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AW</isoCode>
+	   <name>ARUBA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AU</isoCode>
+	   <name>AUSTRALIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AT</isoCode>
+	   <name>AUSTRIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AZ</isoCode>
+	   <name>AZERBAIJAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BS</isoCode>
+	   <name>BAHAMAS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BH</isoCode>
+	   <name>BAHRAIN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BD</isoCode>
+	   <name>BANGLADESH</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BB</isoCode>
+	   <name>BARBADOS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BY</isoCode>
+	   <name>BELARUS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BE</isoCode>
+	   <name>BELGIUM</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BZ</isoCode>
+	   <name>BELIZE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BJ</isoCode>
+	   <name>BENIN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BM</isoCode>
+	   <name>BERMUDA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BT</isoCode>
+	   <name>BHUTAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BO</isoCode>
+	   <name>BOLIVIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BA</isoCode>
+	   <name>BOSNIA AND HERZEGOVINA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BW</isoCode>
+	   <name>BOTSWANA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BV</isoCode>
+	   <name>BOUVET ISLAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BR</isoCode>
+	   <name>BRAZIL</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IO</isoCode>
+	   <name>BRITISH INDIAN OCEAN TERRITORY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BN</isoCode>
+	   <name>BRUNEI DARUSSALAM</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BG</isoCode>
+	   <name>BULGARIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BF</isoCode>
+	   <name>BURKINA FASO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BI</isoCode>
+	   <name>BURUNDI</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KH</isoCode>
+	   <name>CAMBODIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CM</isoCode>
+	   <name>CAMEROON</name>
+	   <states/>
+	</country>
+
+	<country>
+		<active>true</active>
+		<isoCode>CA</isoCode>
+		<name>Canada</name>
+		<states>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>AB</isoCode>
+				<name>Alberta</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>BC</isoCode>
+				<name>British Columbia</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>MB</isoCode>
+				<name>Manitoba</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NB</isoCode>
+				<name>New Brunswick</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NL</isoCode>
+				<name>Newfoundland</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NT</isoCode>
+				<name>Northwest Territories</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NS</isoCode>
+				<name>Nova Scotia</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>NU</isoCode>
+				<name>Nunavut</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>ON</isoCode>
+				<name>Ontario</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>PE</isoCode>
+				<name>Prince Edward Island</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>QC</isoCode>
+				<name>Quebec</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>SK</isoCode>
+				<name>Saskatchewan</name>
+			</state>
+			<state>
+				<active>false</active>
+				<counties />
+				<country reference="../../.." />
+				<isoCode>YT</isoCode>
+				<name>Yukon Territory</name>
+			</state>
+		</states>		
+	</country>
+	
+	<country>
+	   <active>true</active>
+	   <isoCode>CV</isoCode>
+	   <name>CAPE VERDE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KY</isoCode>
+	   <name>CAYMAN ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CF</isoCode>
+	   <name>CENTRAL AFRICAN REPUBLIC</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TD</isoCode>
+	   <name>CHAD</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CL</isoCode>
+	   <name>CHILE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CN</isoCode>
+	   <name>CHINA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CX</isoCode>
+	   <name>CHRISTMAS ISLAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CC</isoCode>
+	   <name>COCOS (KEELING) ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CO</isoCode>
+	   <name>COLOMBIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KM</isoCode>
+	   <name>COMOROS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CG</isoCode>
+	   <name>CONGO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CD</isoCode>
+	   <name>CONGO, THE DEMOCRATIC REPUBLIC OF THE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CK</isoCode>
+	   <name>COOK ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CR</isoCode>
+	   <name>COSTA RICA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CI</isoCode>
+	   <name>COTE D&apos;IVOIRE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>HR</isoCode>
+	   <name>CROATIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CU</isoCode>
+	   <name>CUBA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CY</isoCode>
+	   <name>CYPRUS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CZ</isoCode>
+	   <name>CZECH REPUBLIC</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>DK</isoCode>
+	   <name>DENMARK</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>DJ</isoCode>
+	   <name>DJIBOUTI</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>DM</isoCode>
+	   <name>DOMINICA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>DO</isoCode>
+	   <name>DOMINICAN REPUBLIC</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>EC</isoCode>
+	   <name>ECUADOR</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>EG</isoCode>
+	   <name>EGYPT</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SV</isoCode>
+	   <name>EL SALVADOR</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GQ</isoCode>
+	   <name>EQUATORIAL GUINEA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ER</isoCode>
+	   <name>ERITREA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>EE</isoCode>
+	   <name>ESTONIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ET</isoCode>
+	   <name>ETHIOPIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>FK</isoCode>
+	   <name>FALKLAND ISLANDS (MALVINAS)</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>FO</isoCode>
+	   <name>FAROE ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>FJ</isoCode>
+	   <name>FIJI</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>FI</isoCode>
+	   <name>FINLAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>FR</isoCode>
+	   <name>FRANCE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GF</isoCode>
+	   <name>FRENCH GUIANA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PF</isoCode>
+	   <name>FRENCH POLYNESIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TF</isoCode>
+	   <name>FRENCH SOUTHERN TERRITORIES</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GA</isoCode>
+	   <name>GABON</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GM</isoCode>
+	   <name>GAMBIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GE</isoCode>
+	   <name>GEORGIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>DE</isoCode>
+	   <name>GERMANY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GH</isoCode>
+	   <name>GHANA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GI</isoCode>
+	   <name>GIBRALTAR</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GR</isoCode>
+	   <name>GREECE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GL</isoCode>
+	   <name>GREENLAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GD</isoCode>
+	   <name>GRENADA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GP</isoCode>
+	   <name>GUADELOUPE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GU</isoCode>
+	   <name>GUAM</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GT</isoCode>
+	   <name>GUATEMALA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GG</isoCode>
+	   <name>GUERNSEY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GN</isoCode>
+	   <name>GUINEA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GW</isoCode>
+	   <name>GUINEA-BISSAU</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GY</isoCode>
+	   <name>GUYANA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>HT</isoCode>
+	   <name>HAITI</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>HM</isoCode>
+	   <name>HEARD ISLAND AND MCDONALD ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VA</isoCode>
+	   <name>HOLY SEE (VATICAN CITY STATE)</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>HN</isoCode>
+	   <name>HONDURAS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>HK</isoCode>
+	   <name>HONG KONG</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>HU</isoCode>
+	   <name>HUNGARY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IS</isoCode>
+	   <name>ICELAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IN</isoCode>
+	   <name>INDIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ID</isoCode>
+	   <name>INDONESIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IR</isoCode>
+	   <name>IRAN, ISLAMIC REPUBLIC OF</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IQ</isoCode>
+	   <name>IRAQ</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IE</isoCode>
+	   <name>IRELAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IM</isoCode>
+	   <name>ISLE OF MAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IL</isoCode>
+	   <name>ISRAEL</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>IT</isoCode>
+	   <name>ITALY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>JM</isoCode>
+	   <name>JAMAICA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>JP</isoCode>
+	   <name>JAPAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>JE</isoCode>
+	   <name>JERSEY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>JO</isoCode>
+	   <name>JORDAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KZ</isoCode>
+	   <name>KAZAKHSTAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KE</isoCode>
+	   <name>KENYA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KI</isoCode>
+	   <name>KIRIBATI</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KP</isoCode>
+	   <name>KOREA, DEMOCRATIC PEOPLE&apos;S REPUBLIC OF</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KR</isoCode>
+	   <name>KOREA, REPUBLIC OF</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KW</isoCode>
+	   <name>KUWAIT</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KG</isoCode>
+	   <name>KYRGYZSTAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LA</isoCode>
+	   <name>LAO PEOPLE&apos;S DEMOCRATIC REPUBLIC</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LV</isoCode>
+	   <name>LATVIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LB</isoCode>
+	   <name>LEBANON</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LS</isoCode>
+	   <name>LESOTHO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LR</isoCode>
+	   <name>LIBERIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LY</isoCode>
+	   <name>LIBYAN ARAB JAMAHIRIYA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LI</isoCode>
+	   <name>LIECHTENSTEIN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LT</isoCode>
+	   <name>LITHUANIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LU</isoCode>
+	   <name>LUXEMBOURG</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MO</isoCode>
+	   <name>MACAO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MK</isoCode>
+	   <name>MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MG</isoCode>
+	   <name>MADAGASCAR</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MW</isoCode>
+	   <name>MALAWI</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MY</isoCode>
+	   <name>MALAYSIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MV</isoCode>
+	   <name>MALDIVES</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ML</isoCode>
+	   <name>MALI</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MT</isoCode>
+	   <name>MALTA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MH</isoCode>
+	   <name>MARSHALL ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MQ</isoCode>
+	   <name>MARTINIQUE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MR</isoCode>
+	   <name>MAURITANIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MU</isoCode>
+	   <name>MAURITIUS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>YT</isoCode>
+	   <name>MAYOTTE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MX</isoCode>
+	   <name>MEXICO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>FM</isoCode>
+	   <name>MICRONESIA, FEDERATED STATES OF</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MD</isoCode>
+	   <name>MOLDOVA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MC</isoCode>
+	   <name>MONACO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MN</isoCode>
+	   <name>MONGOLIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ME</isoCode>
+	   <name>MONTENEGRO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MS</isoCode>
+	   <name>MONTSERRAT</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MA</isoCode>
+	   <name>MOROCCO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MZ</isoCode>
+	   <name>MOZAMBIQUE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MM</isoCode>
+	   <name>MYANMAR</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NA</isoCode>
+	   <name>NAMIBIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NR</isoCode>
+	   <name>NAURU</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NP</isoCode>
+	   <name>NEPAL</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NL</isoCode>
+	   <name>NETHERLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AN</isoCode>
+	   <name>NETHERLANDS ANTILLES</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NC</isoCode>
+	   <name>NEW CALEDONIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NZ</isoCode>
+	   <name>NEW ZEALAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NI</isoCode>
+	   <name>NICARAGUA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NE</isoCode>
+	   <name>NIGER</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NG</isoCode>
+	   <name>NIGERIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NU</isoCode>
+	   <name>NIUE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NF</isoCode>
+	   <name>NORFOLK ISLAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NP</isoCode>
+	   <name>NORTHERN MARIANA ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>NO</isoCode>
+	   <name>NORWAY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>OM</isoCode>
+	   <name>OMAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PK</isoCode>
+	   <name>PAKISTAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PW</isoCode>
+	   <name>PALAU</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PS</isoCode>
+	   <name>PALESTINIAN TERRITORY, OCCUPIED</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PA</isoCode>
+	   <name>PANAMA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PG</isoCode>
+	   <name>PAPUA NEW GUINEA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PY</isoCode>
+	   <name>PARAGUAY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PE</isoCode>
+	   <name>PERU</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PH</isoCode>
+	   <name>PHILIPPINES</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PN</isoCode>
+	   <name>PITCAIRN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PL</isoCode>
+	   <name>POLAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PT</isoCode>
+	   <name>PORTUGAL</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PR</isoCode>
+	   <name>PUERTO RICO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>QA</isoCode>
+	   <name>QATAR</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>RE</isoCode>
+	   <name>REUNION</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>RO</isoCode>
+	   <name>ROMANIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>RU</isoCode>
+	   <name>RUSSIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>RU</isoCode>
+	   <name>RUSSIAN FEDERATION</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>RW</isoCode>
+	   <name>RWANDA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>BL</isoCode>
+	   <name>SAINT BARTHELEMY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SH</isoCode>
+	   <name>SAINT HELENA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>KN</isoCode>
+	   <name>SAINT KITTS AND NEVIS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LC</isoCode>
+	   <name>SAINT LUCIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>MF</isoCode>
+	   <name>SAINT MARTIN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>PM</isoCode>
+	   <name>SAINT PIERRE AND MIQUELON</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VC</isoCode>
+	   <name>SAINT VINCENT AND THE GRENADINES</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>WS</isoCode>
+	   <name>SAMOA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SM</isoCode>
+	   <name>SAN MARINO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ST</isoCode>
+	   <name>SAO TOME AND PRINCIPE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SA</isoCode>
+	   <name>SAUDI ARABIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SN</isoCode>
+	   <name>SENEGAL</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CS</isoCode>
+	   <name>SERBIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SC</isoCode>
+	   <name>SEYCHELLES</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SL</isoCode>
+	   <name>SIERRA LEONE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SG</isoCode>
+	   <name>SINGAPORE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SK</isoCode>
+	   <name>SLOVAKIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SI</isoCode>
+	   <name>SLOVENIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SB</isoCode>
+	   <name>SOLOMON ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SO</isoCode>
+	   <name>SOMALIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ZA</isoCode>
+	   <name>SOUTH AFRICA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GS</isoCode>
+	   <name>SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ES</isoCode>
+	   <name>SPAIN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>LK</isoCode>
+	   <name>SRI LANKA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SD</isoCode>
+	   <name>SUDAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SR</isoCode>
+	   <name>SURINAME</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SJ</isoCode>
+	   <name>SVALBARD AND JAN MAYEN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SZ</isoCode>
+	   <name>SWAZILAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SE</isoCode>
+	   <name>SWEDEN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>CH</isoCode>
+	   <name>SWITZERLAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>SY</isoCode>
+	   <name>SYRIAN ARAB REPUBLIC</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TW</isoCode>
+	   <name>TAIWAN, PROVINCE OF CHINA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TJ</isoCode>
+	   <name>TAJIKISTAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TZ</isoCode>
+	   <name>TANZANIA, UNITED REPUBLIC OF</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TH</isoCode>
+	   <name>THAILAND</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TL</isoCode>
+	   <name>TIMOR-LESTE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TG</isoCode>
+	   <name>TOGO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TK</isoCode>
+	   <name>TOKELAU</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TO</isoCode>
+	   <name>TONGA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TT</isoCode>
+	   <name>TRINIDAD AND TOBAGO</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TN</isoCode>
+	   <name>TUNISIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TR</isoCode>
+	   <name>TURKEY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TM</isoCode>
+	   <name>TURKMENISTAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TC</isoCode>
+	   <name>TURKS AND CAICOS ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>TV</isoCode>
+	   <name>TUVALU</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>UG</isoCode>
+	   <name>UGANDA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>UA</isoCode>
+	   <name>UKRAINE</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>AE</isoCode>
+	   <name>UNITED ARAB EMIRATES</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>GB</isoCode>
+	   <name>UNITED KINGDOM</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>UM</isoCode>
+	   <name>UNITED STATES MINOR OUTLYING ISLANDS</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>UY</isoCode>
+	   <name>URUGUAY</name>
+	   <states/>
+	</country>
+	
+	<country>
+	   <active>true</active>
+	   <isoCode>UZ</isoCode>
+	   <name>UZBEKISTAN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VU</isoCode>
+	   <name>VANUATU</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VA</isoCode>
+	   <name>VATICAN CITY</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VE</isoCode>
+	   <name>VENEZUELA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VN</isoCode>
+	   <name>VIET NAM</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VG</isoCode>
+	   <name>VIRGIN ISLANDS, BRITISH</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>VI</isoCode>
+	   <name>VIRGIN ISLANDS, U.S.</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>WF</isoCode>
+	   <name>WALLIS AND FUTUNA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>EH</isoCode>
+	   <name>WESTERN SAHARA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>YE</isoCode>
+	   <name>YEMEN</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ZM</isoCode>
+	   <name>ZAMBIA</name>
+	   <states/>
+	</country>
+	<country>
+	   <active>true</active>
+	   <isoCode>ZW</isoCode>
+	   <name>ZIMBABWE</name>
+	   <states/>
+	</country>
+
+</list>  

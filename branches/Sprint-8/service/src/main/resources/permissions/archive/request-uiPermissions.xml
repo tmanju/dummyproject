@@ -1,0 +1,1020 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="request">
+		<tns:read>true</tns:read>
+	</tns:component>
+	
+	<tns:canvas id="request_list">
+		<tns:component id="results_add" >
+			<tns:default>false</tns:default>
+		</tns:component>
+		
+		<tns:component id="results_importFromXML" >
+			<tns:default>false</tns:default>
+		</tns:component>
+		
+		<tns:component id="results_importFromCSV" >
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas> 
+				
+	<tns:canvas id="request_crud">
+		
+		<tns:canvas id="Request_coaFacilities_EditCanvas">
+			<tns:canvas id="coaFacility_coasetDefinition_coaEvls_EditCanvas">
+				<tns:component id="coaEval_coaDefinition_search" >
+					<tns:default>
+						if(isdef root_coaFacilities_coasetDefinition_coaEvls){
+			               if (root_coaFacilities_coasetDefinition_coaEvls.id != null){
+			               		return false;
+			               }else{
+				               return true;
+			               }
+			            }else{
+			         		return true;
+			            }
+					</tns:default>
+				</tns:component>
+				<tns:component id="coaEval_coaDefinition_clear" >
+					<tns:default>
+						if(isdef root_coaFacilities_coasetDefinition_coaEvls){
+			               if (root_coaFacilities_coasetDefinition_coaEvls.id != null){
+			               		return false;
+			               }else{
+				               return true;
+			               }
+			            }else{
+			         		return true;
+			            }
+					</tns:default>
+				</tns:component>
+				<tns:component id="coaEval_coaDefinition_text" >
+					<tns:default>
+						if(isdef root_coaFacilities_coasetDefinition_coaEvls){
+			               if (root_coaFacilities_coasetDefinition_coaEvls.id != null){
+			               		return false;
+			               }else{
+				               return true;
+			               }
+			            }else{
+			         		return true;
+			            }
+					</tns:default>
+				</tns:component>
+			</tns:canvas>
+		</tns:canvas>
+		<tns:component id="request_relationship_search" >
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="request_relationship_clear" >
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="Request_allFacilities_delete" >
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="Request_allFacilities_add" >
+			<tns:default>false</tns:default>
+		</tns:component>
+		
+		<tns:component id="exportEntityBtn" >
+			<tns:default>false</tns:default>
+		</tns:component>
+
+		<tns:component id="Request_compliances_add" >
+			<tns:default>false</tns:default>
+		</tns:component>
+
+		<tns:component id="Request_compliances_delete" >
+			<tns:default>false</tns:default>
+		</tns:component>
+					
+					
+	<tns:component id="Request_approval_approvalLevels_delete">
+			<tns:default>
+								if(root.wfStatus != null &amp;&amp; root.wfStatus.statusKey == 'REQUEST_STATUS_PENDING_DECISION') {
+									return false;
+								}
+								else
+								{
+								  return true;
+								}
+					</tns:default>
+		</tns:component>
+		
+		 <tns:component id="Request_documentGroup_generatedDocuments_delete">
+			<tns:default>
+								if ((isdef root_documentGroup_generatedDocuments) &amp;&amp; root_documentGroup_generatedDocuments.documentStatus != null &amp;&amp; (root_documentGroup_generatedDocuments.documentStatus.key  !='DOCUMENT_STATUS_NEW'  &amp;&amp;  root_documentGroup_generatedDocuments.documentStatus.key != 'DOCUMENT_STATUS_PENDING_REVIEW' &amp;&amp;  root_documentGroup_generatedDocuments.documentStatus.key != 'DOCUMENT_STATUS_GENERATION_FAILED')) {
+									return false;
+								}
+								else
+								{
+								  return true;
+								}
+					</tns:default>
+		</tns:component> 
+		
+		<tns:component id="Request_documentGroup_uploadedDocuments_delete">
+			<tns:default>
+								if ((isdef root_documentGroup_uploadedDocuments) &amp;&amp; root_documentGroup_uploadedDocuments.documentStatus != null &amp;&amp; (root_documentGroup_uploadedDocuments.documentStatus.key  !='DOCUMENT_STATUS_NEW' &amp;&amp;  root_documentGroup_uploadedDocuments.documentStatus.key != 'DOCUMENT_STATUS_PENDING_REVIEW')) {
+									return false;
+								}
+								else
+								{
+								  return true;
+								}
+					</tns:default>
+		</tns:component>
+		
+		
+		
+		<tns:component id="Request_allRACSetEvaluations_add">
+	      <tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="Request_allRACSetEvaluations_delete">
+	      <tns:default>false</tns:default>
+		</tns:component>
+		
+		<tns:canvas id="Request_allRACSetEvaluations_EditCanvas">
+			<tns:component id="rac_racEvaluations_add">
+				<tns:default>false</tns:default>
+			</tns:component>
+			
+			<tns:component id="rac_racEvaluations_delete">
+				<tns:default>false</tns:default>
+			</tns:component>
+		</tns:canvas>
+		
+		<tns:component id="Request_noiaLogs_edit">
+	      <tns:default>false</tns:default>
+		</tns:component>
+			        
+		<tns:component id="Request_noiaLogs_add">
+		    <tns:default>false</tns:default>
+	    </tns:component>	      
+			        
+				        
+		<tns:component id="Request_noiaLogs_delete">
+			<tns:default>false</tns:default>
+	    </tns:component>
+	    	
+	<!--  <tns:component id="Update_SFDC">
+			<tns:default>
+					if(root.wfStatus != null &amp;&amp; (root.inWfStatus('REQUEST_STATUS_APPROVED' ,  'REQUEST_STATUS_APPROVED_FUNDED'))) {
+						return true;
+					}
+					else
+					{
+					  return false;
+					}
+				</tns:default>
+		</tns:component>		  -->      
+
+		<tns:component id="Generate_COAs">
+			<tns:default>
+					
+								if(root.wfStatus != null &amp;&amp; root.wfStatus.statusKey == 'REQUEST_STATUS_WITHDRAWN') {
+									return false;
+								}
+								if(root.wfStatus != null &amp;&amp; (root.inWfStatus('REQUEST_STATUS_PENDING_SUBMITTED_TO_CREDIT' ,  'REQUEST_STATUS_PENDING_ANALYSIS', 'REQUEST_STATUS_PENDING_DECISION' )) &amp;&amp; root.coaFacilities !=null &amp;&amp; root.coaFacilities.size() >0){
+								 	foreach(facility : root.coaFacilities){
+								 		if(facility.coasetDefinition ==null || facility.coasetDefinition.coaNumber ==null || facility.coasetDefinition.coaNumber == 0){
+								 			return true;
+								 		}
+								 	}
+								 }
+								 return false;
+					</tns:default>
+		</tns:component>
+		<tns:component id="Request_srcFacilities_edit">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="Send_To_SFDC">
+			<tns:default>
+								boolean result = false; 		
+
+								if(root.wfStatus != null &amp;&amp; 
+									(!(root.inWfStatus('REQUEST_STATUS_PENDING_SUBMITTED_TO_CREDIT' ,  'REQUEST_STATUS_PENDING_ANALYSIS', 'REQUEST_STATUS_PENDING_DECISION' )))
+								) {
+									result = true; 
+								}
+								 return result;
+					</tns:default>
+		</tns:component>
+		<tns:component id="Regenerate_COAs">
+			<tns:default>
+					
+										
+								if(root.wfStatus != null &amp;&amp; root.wfStatus.statusKey == 'REQUEST_STATUS_WITHDRAWN') {
+									return false;
+								}
+								if(root.wfStatus != null &amp;&amp; (root.inWfStatus('REQUEST_STATUS_PENDING_SUBMITTED_TO_CREDIT' ,  'REQUEST_STATUS_PENDING_ANALYSIS', 'REQUEST_STATUS_PENDING_DECISION' )) &amp;&amp; root.coaFacilities !=null &amp;&amp; root.coaFacilities.size() >0){
+								 	foreach(facility : root.coaFacilities){
+								 		if(facility.coasetDefinition !=null &amp;&amp; facility.coasetDefinition.coaNumber !=null &amp;&amp; facility.coasetDefinition.coaNumber != 0){
+								 			return true;
+								 		}
+								 	}
+								 }
+								 return false;
+					</tns:default>
+		</tns:component>
+		<tns:component id="Archive_Document">
+			<tns:default>
+		            
+		            if(!(isdef root_documentGroup_generatedDocuments) || root_documentGroup_generatedDocuments.documentStatus==null || root_documentGroup_generatedDocuments.documentStatus.key!='DOCUMENT_STATUS_APPROVED')
+		            {
+		               return false;
+		            }
+		            else
+		            {
+		              return true;
+		            }
+		            </tns:default>
+		</tns:component>
+		<tns:component id="Generate_Document">
+			<tns:default>
+		            
+		            if(!(isdef root_documentGroup_generatedDocuments) || root_documentGroup_generatedDocuments.id  == null 
+		            		|| root_documentGroup_generatedDocuments.documentStatus == null || (root_documentGroup_generatedDocuments.documentStatus.key!='DOCUMENT_STATUS_NEW'
+		            				&amp;&amp; root_documentGroup_generatedDocuments.documentStatus.key != 'DOCUMENT_STATUS_GENERATION_FAILED'))
+		            {
+		               return false;
+		            }
+		            else
+		            {
+		              return true;
+		            }
+		            </tns:default>
+		</tns:component>
+		<tns:canvas id="generatedDocEdit">
+			<tns:component id="generatedDocument_associatedCustomers_search">
+				<tns:default>false</tns:default>
+			</tns:component>
+			<tns:component id="generatedDocument_commentGroup_comments_delete">
+				<tns:default>false</tns:default>
+			</tns:component>
+			<tns:component id="Archive_Document">
+				<tns:default>
+		            
+		            if(!(isdef root_documentGroup_generatedDocuments) || root_documentGroup_generatedDocuments.documentStatus==null || root_documentGroup_generatedDocuments.documentStatus.key!='DOCUMENT_STATUS_APPROVED')
+		            {
+		               return false;
+		            }
+		            else
+		            {
+		              return true;
+		            }
+		            </tns:default>
+			</tns:component>
+			<tns:component id="Generate_Document">
+				<tns:default>
+		            
+		            if(!(isdef root_documentGroup_generatedDocuments) || root_documentGroup_generatedDocuments.id  == null 
+		            		|| root_documentGroup_generatedDocuments.documentStatus == null || (root_documentGroup_generatedDocuments.documentStatus.key!='DOCUMENT_STATUS_NEW'
+		            				&amp;&amp; root_documentGroup_generatedDocuments.documentStatus.key != 'DOCUMENT_STATUS_GENERATION_FAILED'))
+		            {
+		               return false;
+		            }
+		            else
+		            {
+		              return true;
+		            }
+		            </tns:default>
+			</tns:component>
+			<tns:component id="generatedDocument_documentSigners_add">
+				<tns:default>false</tns:default>
+			</tns:component>
+			<tns:component id="generatedDocument_documentSigners_delete">
+				<tns:default>false</tns:default>
+			</tns:component>
+			<tns:component id="generatedDocument_documentSigners_edit">
+				<tns:default>false</tns:default>
+			</tns:component>
+			
+		</tns:canvas>
+		<tns:canvas id="uploadedDocEdit">
+			<tns:component id="document_associatedCustomers_search">
+				<tns:default>false</tns:default>
+			</tns:component>
+			<tns:component id="document_commentGroup_comments_delete">
+				<tns:default>false</tns:default>
+			</tns:component>
+		</tns:canvas>
+		<tns:canvas id="facilityEditCanvas">
+			<tns:canvas id="facility_pricingOption_assets_EditCanvas">
+				<tns:component id="facility_Collateral_MortgageInfo">
+					<tns:default>
+							boolean result = false; 
+							if(root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																	root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																	root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																	root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' ||
+																	root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+																	
+										result = true;
+								}
+								else {
+									result = false;
+									
+								}
+								return result;
+							</tns:default>
+				</tns:component>
+				<tns:component id="facility_Collateral_AppraisalDetailInfo">
+					<tns:default> 
+								boolean result = false; 
+								if ( root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' ||
+																	root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+																
+										result = true;
+							}
+							else {
+								result = false;
+								
+							}
+							return result;
+						</tns:default>
+				</tns:component>
+				<tns:component id="facility_Collateral_MortgageDocTrackingInfo">
+					<tns:default> 
+										boolean result = false; 
+								if ( root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' ||
+																	root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+																
+										result = true;
+							}
+							else {
+								result = false;
+								
+							}
+							return result;
+						</tns:default>
+				</tns:component>
+				<tns:component id="facility_Collateral_EnvironmentalAssessmentInfo">
+					<tns:default>
+									boolean result = false;  
+									if ( root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+															root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+															root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+															root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+															
+									result = true;
+									}
+									else {
+										result = false;
+										
+									}
+									return result;
+						</tns:default>
+				</tns:component>
+				<tns:component id="facility_Collateral_TitleInfo">
+					<tns:default>
+									boolean result = false;  
+									if ( root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+															root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+															root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+															root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+															
+									result = true;
+						}
+						else {
+							result = false;
+							
+						}
+						return result;
+					</tns:default>
+				</tns:component>
+				<tns:component id="facility_Collateral_ThirdPartyFulfillmentInfo">
+					<tns:default> 
+									boolean result = false; 
+									if ( root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+														root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+														root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+														root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' ||
+															root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+														
+										result = true;
+									}
+									else {
+										result = false;
+										
+									}
+									return result;
+						</tns:default>
+				</tns:component>
+				<tns:component id="facility_Collateral_FinancialCollateralInfo">
+					<tns:default>					
+							boolean result = false; 
+							if ( root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_CD_BANK_OF_AMERICA' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_CD_OTHER_FINANCIAL_INSTITUTION' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE'  ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+									result = true;
+								}
+								else {
+									result = false;
+									
+								}
+								return result;
+						</tns:default>
+				</tns:component>
+				<tns:component id="facility_Collateral_StockCollateralInfo">
+					<tns:default> 
+								boolean result = false; 
+								if ( root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_STOCK_CERTIFICATED_NON_PUBLIC' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_OTHER')) {
+									result = true;
+								}
+								else {
+									result = false;
+									
+								}
+								return result;
+					</tns:default>
+				</tns:component>
+			</tns:canvas>
+			<!--  <tns:canvas id="facilityEditCanvas">  -->
+			<tns:canvas id="collateralEditCanvas">
+				<tns:component id="facility_Collateral_MortgageInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE')</tns:read>
+				</tns:component>
+				<tns:component id="facility_Collateral_AppraisalDetailInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE')</tns:read>
+				</tns:component>
+				<tns:component id="facility_Collateral_MortgageDocTrackingInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE')</tns:read>
+				</tns:component>
+				<tns:component id="facility_Collateral_EnvironmentalAssessmentInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' )</tns:read>
+				</tns:component>
+				<tns:component id="facility_Collateral_TitleInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' )</tns:read>
+				</tns:component>
+				<tns:component id="facility_Collateral_ThirdPartyFulfillmentInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_COMMERCIAL_MORTGAGE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_RESIDENTIAL_MORTGAGES' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' )</tns:read>
+				</tns:component>
+				<tns:component id="facility_Collateral_FinancialCollateralInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_CD_BANK_OF_AMERICA' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_CD_OTHER_FINANCIAL_INSTITUTION' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE' )</tns:read>
+				</tns:component>
+				<tns:component id="facility_Collateral_StockCollateralInfo">
+					<tns:default>true</tns:default>
+					<tns:read>root_allFacilities_pricingOption_assets.type != null &amp;&amp; (root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_STOCK_CERTIFICATED_NON_PUBLIC' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_DISABILITY_INSURANCE' ||
+																root_allFacilities_pricingOption_assets.type.key=='COLLATE_TYPE_ASSIGN_OF_LIFE_INSURANCE')</tns:read>
+				</tns:component>
+			</tns:canvas>
+			<tns:component id="Submit_to_Docs">
+				<tns:default>root_allFacilities.wfStatus != null &amp;&amp; (root_allFacilities.wfStatus.statusKey == 'FACILITY_STATUS_APPROVED' ||
+											root_allFacilities.wfStatus.statusKey == 'FACILITY_STATUS_DOCUMENTATION' ||
+											root_allFacilities.wfStatus.statusKey == 'FACILITY_STATUS_DOCS_CREATED' ||
+											root_allFacilities.wfStatus.statusKey == 'FACILITY_STATUS_FUNDED')</tns:default>
+			</tns:component>
+			<tns:component id="Final_Disbursement">
+				<tns:default>root_allFacilities.wfStatus != null &amp;&amp; root_allFacilities.wfStatus.statusKey == 'FACILITY_STATUS_DOCS_CREATED'</tns:default>
+			</tns:component>
+		</tns:canvas>
+		<tns:component id="Submit_To_Bureau">
+			<tns:default>				
+								if(root.wfStatus != null &amp;&amp; root.wfStatus.statusKey == 'REQUEST_STATUS_WITHDRAWN') {
+									return false;
+								}
+												
+								boolean isVisible=true;
+								if(root.wfStatus != null &amp;&amp; (root.wfStatus.statusKey == 'REQUEST_STATUS_SAVED' || root.wfStatus.statusKey == '' || root.wfStatus.statusKey == 'REQUEST_STATUS_DECLINED'))
+								{
+								isVisible=true;
+								}
+								else
+								{
+								isVisible=false;
+								}
+								return isVisible;
+						</tns:default>
+		</tns:component>
+		<tns:component id="LandSafe">
+			<tns:default>			
+						
+								boolean isVisible=true;
+								if(root.wfStatus != null &amp;&amp; (root.wfStatus.statusKey == 'REQUEST_STATUS_WITHDRAWN'))
+								{
+								isVisible=false;
+								}
+								else
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+		</tns:component>
+		<tns:component id="Pull_Report">
+			<tns:default>			
+						
+								boolean isVisible=true;
+								if(root.wfStatus != null &amp;&amp; (root.wfStatus.statusKey == 'REQUEST_STATUS_WITHDRAWN'))
+								{
+								isVisible=false;
+								}
+								else
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+		</tns:component>
+		<tns:component id="Generate_Documents">
+			<tns:default>
+								boolean isVisible=true;
+								if(root.wfStatus != null &amp;&amp; (root.wfStatus.statusKey == 'REQUEST_STATUS_WITHDRAWN'))
+								{
+								isVisible=false;
+								}
+								else
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+		</tns:component>
+		<tns:component id="Request_documentGroup_commentGroup_comments_deleteAction">
+			<tns:read>false</tns:read>
+		</tns:component>
+		<tns:component id="Submit_To_Credit">
+			<tns:default>
+								if(root.wfStatus != null &amp;&amp; root.wfStatus.statusKey == 'REQUEST_STATUS_WITHDRAWN') {
+									return false;
+								}
+								boolean isVisible=true;
+								if(root.wfStatus != null &amp;&amp; (root.wfStatus.statusKey == 'REQUEST_STATUS_PENDING_SALES' || root.wfStatus.statusKey=='REQUEST_STATUS_PENDING_APPEAL_SALES' || root.wfStatus.statusKey=='REQUEST_STATUS_PENDING_NOIA' || root.wfStatus.statusKey=='REQUEST_STATUS_APPROVED' ||  root.wfStatus.statusKey=='REQUEST_STATUS_APPROVED_FUNDED' || root.wfStatus.statusKey=='REQUEST_STATUS_PENDING_RETURN_TO_SALES'))
+								{
+								isVisible=true;
+								}
+								else
+								{
+								isVisible=false;
+								}
+								return isVisible;
+						</tns:default>
+		</tns:component>
+		<tns:component id="Submit_Filing">
+			<tns:default>
+							boolean isVisible=true;
+							if(root_uccs.wfStatus != null &amp;&amp; (root_uccs.wfStatus.statusKey == 'UCC_STATUS_NEW' || root_uccs.wfStatus.statusKey == 'UCC_STATUS_SAVED' || root_uccs.wfStatus.statusKey == 'UCC_STATUS_SUBMIT_FAILED'))
+							{
+								isVisible=true;
+							}
+							else
+							{
+								isVisible=false;
+							}
+							return isVisible;
+			</tns:default>
+		</tns:component>
+		<tns:component id="Search">
+			<tns:default>
+							boolean isVisible=true;
+							if(root_uccSrchs.recordNo != null )
+							{
+							isVisible=false;
+							}
+							
+							return isVisible;
+					</tns:default>
+		</tns:component>
+		<tns:component id="Get_All_Details">
+			<tns:default>
+							boolean isVisible=false;
+							if(root_uccSrchs.recordNo != null &amp;&amp; root_uccSrchs.results != null &amp;&amp; root_uccSrchs.results.size() &gt; 0)
+							{
+								foreach(result : root_uccSrchs.results){
+									if(result != null &amp;&amp; (result.details == null || result.details.size() == 0)){
+										isVisible=true;
+									}
+								}
+							}
+							return isVisible;
+					</tns:default>
+		</tns:component>
+		<tns:component id="Order_All_Filings">
+			<tns:default>
+							boolean isVisible=false;
+							if(root_uccSrchs.recordNo != null &amp;&amp; root_uccSrchs.results != null &amp;&amp; root_uccSrchs.results.size() &gt; 0)
+							{
+								foreach(result : root_uccSrchs.results){
+									if(result != null &amp;&amp; (result.details != null || result.details.size() &gt; 0)){
+										isVisible=false;
+										foreach(detail : result.details){
+											if(detail.orderNum == null){
+												isVisible=true;
+											}
+										}
+									}
+								}
+							}
+							else
+							{
+								isVisible=false;
+							}
+							return isVisible;
+					</tns:default>
+		</tns:component>
+		<tns:canvas id="editUccFilingCanvas">
+			<tns:component id="Submit_Filing">
+				<tns:default>
+								boolean isVisible=true;
+								if(root_uccs.wfStatus != null &amp;&amp; (root_uccs.wfStatus.statusKey == 'UCC_STATUS_NEW' || root_uccs.wfStatus.statusKey == 'UCC_STATUS_SAVED' || root_uccs.wfStatus.statusKey == 'UCC_STATUS_SUBMIT_FAILED'))
+								{
+								isVisible=true;
+								}
+								else
+								{
+								isVisible=false;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateFiling != null &amp;&amp; root_uccs.realEstateFiling.key == 'YES_OR_NO_YES')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_propertyOwner">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateInfo.propertyOwnerSameAsDebtor != null &amp;&amp; root_uccs.realEstateInfo.propertyOwnerSameAsDebtor.key == 'YES_OR_NO_NO')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_alMortgageTaxDueAmt">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateFiling.key == 'YES_OR_NO_YES' &amp;&amp; root_uccs.jurisdictionState != null &amp;&amp; root_uccs.jurisdictionState.isoCode == 'AL')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_parcelId">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateFiling.key == 'YES_OR_NO_YES' &amp;&amp; root_uccs.jurisdictionState != null &amp;&amp; (root_uccs.jurisdictionState.isoCode == 'IL' || root_uccs.jurisdictionState.isoCode == 'MD' || root_uccs.jurisdictionState.isoCode == 'WA' || root_uccs.jurisdictionState.isoCode == 'WI'))
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_taxMapNumber">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateFiling.key == 'YES_OR_NO_YES' &amp;&amp; root_uccs.jurisdictionState != null &amp;&amp; root_uccs.jurisdictionState.isoCode == 'VA')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_mdRecordingTaxExempt">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateFiling.key == 'YES_OR_NO_YES' &amp;&amp; root_uccs.jurisdictionState != null &amp;&amp; root_uccs.jurisdictionState.isoCode == 'MD')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_ownerFirstName">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateInfo.ownerType != null &amp;&amp; root_uccs.realEstateInfo.ownerType.key == 'UCC_PROPERTY_OWNER_TYPE_INDIVIDUAL')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_ownerLastName">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateInfo.ownerType != null &amp;&amp; root_uccs.realEstateInfo.ownerType.key == 'UCC_PROPERTY_OWNER_TYPE_INDIVIDUAL')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_ownerSuffix">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateInfo.ownerType != null &amp;&amp; root_uccs.realEstateInfo.ownerType.key == 'UCC_PROPERTY_OWNER_TYPE_INDIVIDUAL')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_realEstateInfo_ownerName">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.realEstateInfo != null &amp;&amp; root_uccs.realEstateInfo.ownerType != null &amp;&amp; root_uccs.realEstateInfo.ownerType.key == 'UCC_PROPERTY_OWNER_TYPE_BUSINESS')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_flTaxStamps">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.jurisdictionState != null &amp;&amp; root_uccs.jurisdictionState.isoCode == 'FL')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="uccFiling_tnRecordingTaxExempt">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccs.jurisdictionState != null &amp;&amp; root_uccs.jurisdictionState.isoCode == 'TN')
+								{
+								isVisible=true;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+		</tns:canvas>
+		<tns:canvas id="editUccSrchCanvas">
+			<tns:component id="newUccSearchPanel">
+				<tns:default>
+								boolean isVisible=true;
+								if(root_uccSrchs.recordNo == null)
+								{
+								isVisible=true;
+								}
+								else
+								{
+								isVisible=false;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="savedUccSearchPanel">
+				<tns:default>
+								boolean isVisible=true;
+								if(root_uccSrchs.recordNo != null)
+								{
+								isVisible=true;
+								}
+								else
+								{
+								isVisible=false;
+								}
+								return isVisible;
+						</tns:default>
+				<tns:update>false</tns:update>
+			</tns:component>
+			<tns:component id="Search">
+				<tns:default>
+								boolean isVisible=true;
+								if(root_uccSrchs.recordNo != null )
+								{
+								isVisible=false;
+								}
+								
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="Get_All_Details">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccSrchs.recordNo != null &amp;&amp; root_uccSrchs.results != null &amp;&amp; root_uccSrchs.results.size() &gt; 0)
+								{
+									foreach(result : root_uccSrchs.results){
+										if(result != null &amp;&amp; (result.details == null || result.details.size() == 0)){
+											isVisible=true;
+										}
+									}
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:component id="Order_All_Filings">
+				<tns:default>
+								boolean isVisible=false;
+								if(root_uccSrchs.recordNo != null &amp;&amp; root_uccSrchs.results != null &amp;&amp; root_uccSrchs.results.size() &gt; 0)
+								{
+									foreach(result : root_uccSrchs.results){
+										if(result != null &amp;&amp; (result.details != null || result.details.size() &gt; 0)){
+											isVisible=false;
+											foreach(detail : result.details){
+												if(detail.orderNum == null){
+													isVisible=true;
+												}
+											}
+										}
+									}
+								}
+								else
+								{
+									isVisible=false;
+								}
+								return isVisible;
+						</tns:default>
+			</tns:component>
+			<tns:canvas id="qeditUccSrchDetailsCanvas">
+				<tns:component id="quccSrchResultDetailsDataTable">
+					<tns:default>
+							boolean isVisible=true;
+							if(isdef root_uccSrchs_results &amp;&amp; root_uccSrchs_results != null &amp;&amp; (root_uccSrchs_results.details == null || root_uccSrchs_results.details.size() == 0))
+							{
+								isVisible=false;
+							}
+							return isVisible;
+						</tns:default>
+				</tns:component>
+				<tns:canvas id="qeditUccSrchQDetailCanvas">
+					<tns:component id="quccSrchResultqDetailUpdatesDataTable">
+						<tns:default>
+								boolean isVisible=true;
+								if(isdef root_uccSrchs_results_details &amp;&amp; root_uccSrchs_results_details != null &amp;&amp; (root_uccSrchs_results_details.updates == null || root_uccSrchs_results_details.updates.size() == 0))
+								{
+									isVisible=false;
+								}
+								return isVisible;
+							</tns:default>
+					</tns:component>
+					<tns:component id="quccSrchResultqDetailPartiesDataTable">
+						<tns:default>
+								boolean isVisible=true;
+								if(isdef root_uccSrchs_results_details &amp;&amp; root_uccSrchs_results_details != null &amp;&amp; (root_uccSrchs_results_details.debtors == null || root_uccSrchs_results_details.debtors.size() == 0))
+								{
+									isVisible=false;
+								}
+								return isVisible;
+							</tns:default>
+					</tns:component>
+				</tns:canvas>
+			</tns:canvas>
+			<tns:canvas id="editUccSrchDetailsCanvas">
+				<tns:component id="uccSearchDetailsUccSearchResultDetailsTable">
+					<tns:default>
+							boolean isVisible=true;
+							if(isdef root_uccSrchs_results &amp;&amp; root_uccSrchs_results != null &amp;&amp; (root_uccSrchs_results.details == null || root_uccSrchs_results.details.size() == 0))
+							{
+								isVisible=false;
+							}
+							return isVisible;
+						</tns:default>
+				</tns:component>
+				<tns:canvas id="qeditUccSrchDetailCanvas">
+					<tns:component id="qeditUccSrchDetailUpdateDataTable">
+						<tns:default>
+								boolean isVisible=false;
+								if(isdef root_uccSrchs_results_details &amp;&amp; root_uccSrchs_results_details != null &amp;&amp; root_uccSrchs_results_details.updates != null &amp;&amp; root_uccSrchs_results_details.updates.size() &gt; 0)
+								{
+									isVisible=true;
+								}
+								return isVisible;
+							</tns:default>
+					</tns:component>
+				</tns:canvas>
+				<tns:canvas id="editUccSrchDetailCanvas">
+					<tns:component id="editUccSrchDetailUpdateDataTable">
+						<tns:default>
+								boolean isVisible=false;
+								if(isdef root_uccSrchs_results_details &amp;&amp; root_uccSrchs_results_details != null &amp;&amp; root_uccSrchs_results_details.updates != null &amp;&amp; root_uccSrchs_results_details.updates.size() &gt; 0)
+								{
+									isVisible=true;
+								}
+								return isVisible;
+							</tns:default>
+					</tns:component>
+					<tns:component id="Order_Filing">
+						<tns:default>
+								boolean isVisible=true;
+								if(isdef root_uccSrchs_results_details &amp;&amp; root_uccSrchs_results_details != null &amp;&amp; root_uccSrchs_results_details.orderNum != null)
+								{
+									isVisible=false;
+								}
+								return isVisible;
+							</tns:default>
+					</tns:component>
+				</tns:canvas>
+				<tns:component id="Order_Filing">
+					<tns:default>
+							boolean isVisible=true;
+							if(isdef root_uccSrchs_results_details &amp;&amp; root_uccSrchs_results_details != null &amp;&amp; root_uccSrchs_results_details.orderNum != null)
+							{
+								isVisible=false;
+							}
+							return isVisible;
+						</tns:default>
+				</tns:component>
+				<tns:component id="Get_Details">
+					<tns:default>
+								boolean isVisible=true;
+								if(root_uccSrchs_results != null &amp;&amp; root_uccSrchs_results.details != null &amp;&amp; root_uccSrchs_results.details.size() &gt; 0)
+								{
+									isVisible=false;
+								}
+								return isVisible;
+						</tns:default>
+				</tns:component>
+				<tns:component id="Order_All_Filings">
+					<tns:default>
+							boolean isVisible=false;
+							if(root_uccSrchs_results != null &amp;&amp; root_uccSrchs_results.details != null &amp;&amp; root_uccSrchs_results.details.size() &gt; 0)
+							{
+								foreach(detail : root_uccSrchs_results.details){
+									if(detail.orderNum == null){
+											isVisible=true;
+									}
+								}
+							}
+							else
+							{
+								isVisible=false;
+							}
+							return isVisible;
+					</tns:default>
+				</tns:component>
+			</tns:canvas>
+			<tns:component id="Get_Details">
+				<tns:default>
+							boolean isVisible=true;
+							if(root_uccSrchs_results != null &amp;&amp; root_uccSrchs_results.details != null &amp;&amp; root_uccSrchs_results.details.size() &gt; 0)
+							{
+								isVisible=false;
+							}
+							return isVisible;
+					</tns:default>
+			</tns:component>
+			<tns:component id="Order_All_Filings_Summary">
+				<tns:default>
+						boolean isVisible=false;
+						if(root_uccSrchs_results != null &amp;&amp; root_uccSrchs_results.details != null &amp;&amp; root_uccSrchs_results.details.size() &gt; 0)
+						{
+							foreach(detail : root_uccSrchs_results.details){
+								if(detail.orderNum == null){
+										isVisible=true;
+								}
+							}
+						}
+						else
+						{
+							isVisible=false;
+						}
+						return isVisible;
+				</tns:default>
+			</tns:component>
+		</tns:canvas>
+	</tns:canvas>
+</tns:ui-permissions>

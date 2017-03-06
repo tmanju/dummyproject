@@ -1,0 +1,42 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="promotionPolicy">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="promotionPolicy_crud">
+		
+		<tns:component id="promotionPolicy_addEditFees">
+			<tns:default>
+				<![CDATA[
+					return (root.id != null) && (root.promotionType != null) && (root.promotionType.key == 'PROMOTION_POLICY_TYPE_FEE_WAIVER');
+				]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="promotionPolicy_addEditFormula">
+			<tns:default>
+				<![CDATA[
+					return (root.id != null) && (root.promotionType != null) && (root.promotionType.key == 'PROMOTION_POLICY_TYPE_RATE_REDUCTION');
+				]]>
+			</tns:default>
+		</tns:component>
+		
+		<tns:component id="promotionPolicy_pricingPolicies_edit">
+			<tns:default>false</tns:default>
+		</tns:component>
+		
+		<tns:component id="promotionPolicy_pricingPolicies_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+		
+		<tns:component id="promotionPolicy_partners_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+	
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+			
+	</tns:canvas>
+</tns:ui-permissions>

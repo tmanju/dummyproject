@@ -1,0 +1,255 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="CustomerBackend" ignore-annotations="false">
+        <map:class>
+        	<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{profile.middleName.len}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?middleName != null){
+						if(o.middleName.length()> 50){
+							return false;
+							}
+				}
+				 return true; 
+				]]></map:element>
+				
+			</map:constraint>
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{profile.firstName.len}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?firstName != null){
+						if(o.firstName.length()> 25){
+							return false;
+							}
+				}
+				 return true; 
+				]]></map:element>
+				
+			</map:constraint>
+			 <map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{profile.lastName.len}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?lastName != null){
+						if(o.lastName.length()> 25){
+							return false;
+							}
+				}
+				 return true; 
+				]]></map:element>
+				
+			</map:constraint>
+			 <map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{profile.tradingName.len}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?tradingName != null){
+						if(o.tradingName.length()> 50){
+							return false;
+							}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			 <map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{profile.legalName.len}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?legalName != null){
+						if(o.legalName.length()> 50){
+							return false;
+							}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			
+      <map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.maxConcentrationPercent.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?maxConcentrationPercent != null){
+						return true;
+				}
+				 return false; 
+				]]></map:element>
+				
+			</map:constraint>
+			
+			
+      <map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.maxConcentrationPercent.noNegative}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?maxConcentrationPercent != null){
+						if(o.maxConcentrationPercent < 0){
+							return false;
+							}
+				}
+				 return true; 
+				]]></map:element>
+				
+			</map:constraint>
+      
+       	 <map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.maxConcentrationPercent.noNegative}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?maxConcentrationPercent != null){
+						if(o.maxConcentrationPercent < 0){
+							return false;
+							}
+				}
+				 return true; 
+				]]></map:element>
+				
+			</map:constraint>
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.allocation}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?allocations != empty){
+					foreach(com.thirdpillar.codify.loanpath.model.Allocation a: o.allocations){
+						if(a.allocPercentage==null){
+							return false;
+							}
+					}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.clientRating}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?allocations != empty){
+					foreach(com.thirdpillar.codify.loanpath.model.Allocation a: o.allocations){
+						if(a.clientRating==null){
+							return false;
+							}
+					}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint> 
+				
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.allAmt}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?allocations != empty){
+					foreach(com.thirdpillar.codify.loanpath.model.Allocation a: o.allocations){
+						if(a.allAmt==null){
+							return false;
+							}
+					}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.allocation.greatorThanZero}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?allocations != empty){
+					foreach(com.thirdpillar.codify.loanpath.model.Allocation a: o.allocations){
+						if(a.allocPercentage < 1){
+							return false;
+							}
+					}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{cp.allocation.max.percent}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?allocations != empty){
+					foreach(com.thirdpillar.codify.loanpath.model.Allocation a: o.allocations){
+						if(a.allocPercentage >100){
+							return false;
+							}
+					}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{capitalProvider.allAmt.greatorThanZero}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				if(o.?allocations != empty){
+					foreach(com.thirdpillar.codify.loanpath.model.Allocation a: o.allocations){
+						if(a.allAmt < 1){
+							return false;
+							}
+					}
+				}
+				 return true; 
+				]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{fpprofile.legalName.required}</map:message>
+<!-- 		                <map:element name="triggerExpr"><![CDATA[return o.isFpTypeBank();]]></map:element> -->
+		                <map:element name="matchedExpr"><![CDATA[return (o.legalName != empty);]]></map:element>
+			</map:constraint>        
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{fpprofile.firstName.required}</map:message>
+		                <map:element name="triggerExpr"><![CDATA[return o.isFpTypeFund();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.firstName != empty);]]></map:element>
+			</map:constraint>        
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{fpprofile.lastName.required}</map:message>
+		                <map:element name="triggerExpr"><![CDATA[return o.isFpTypeFund();]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[return (o.lastName != empty);]]></map:element>
+			</map:constraint>        
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{fpprofile.primarySite.siteDetails.addresses.oneRequired}</map:message>
+		             <!--   <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</map:value>
+		                </map:groups> --> 
+		                <map:element name="matchedExpr"><![CDATA[return (o.?primarySite.?siteDetails.addresses != empty);]]></map:element>
+			</map:constraint> 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{profile.businessStartDttm}</map:message>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						return o.businessStartDate();
+					]]></map:element>
+			</map:constraint>
+        </map:class>
+        <map:field name="firstName">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.firstName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="middleName">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.middleName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	  <map:field name="lastName">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.lastName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+	   <map:field name="legalName">
+		   <map:constraint annotation="javax.validation.constraints.Pattern">
+		     <map:message>{customer.firstName.pattern}</map:message>
+		     <map:element name="regexp">[a-zA-Z0-9 ]*</map:element>
+		   </map:constraint>
+	  </map:field>
+<!-- 	    <map:field name="legalName">                      -->
+<!-- 	      <map:constraint annotation="javax.validation.constraints.NotNull"> -->
+<!-- 	       <map:message>{capitalprovider.maxConcentrationPercent}</map:message> -->
+<!-- 	      </map:constraint>           -->
+<!--       </map:field> -->
+      
+    </map:bean>
+</map:constraint-mappings>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<integration>
+	<service name="sforceService" enabled="true">
+		<marshaler style="XSTREAM" resource="sforce-Full" inputKey="entityOut" outputKey="ENTITY"/>
+		<soaptransport resource="${esb.smx.external.url}/sforce/SforcePushService/" responseType="PAYLOAD" validateResponse="false" readTimeout="1000000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>
+			<operation localName="pushRequest"/>
+			<parameters>
+				<parameter localName="entity" paramValue="data:application" paramType="String"/>
+				<parameter localName="action" paramValue="action" paramType="String"/>
+				<parameter localName="objectType" paramValue="data:application" paramType="String"/>
+				<parameter localName="clientId" paramValue="data:akritiv-internex" paramType="String"/>
+				<parameter localName="data" paramValue="ENTITY" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="sforce-Full" />
+	</service>
+	
+	<service name="akritivService" enabled="true">
+		<marshaler style="XSTREAM" resource="sforce-Full" inputKey="entityOut" outputKey="ENTITY"/>
+		<soaptransport resource="${esb.smx.external.url}/sforce/SforcePushService/" responseType="PAYLOAD" validateResponse="false" readTimeout="1000000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>
+			<operation localName="pushRequest"/>
+			<parameters>
+				<parameter localName="entity" paramValue="entityName" paramType="String"/>
+				<parameter localName="action" paramValue="action" paramType="String"/>
+				<parameter localName="objectType" paramValue="objectType" paramType="String"/>
+				<parameter localName="clientId" paramValue="data:akritiv-internex" paramType="String"/>
+				<parameter localName="data" paramValue="ENTITY" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="sforce-Full" contextLookupKey="entityIn"/>
+	</service>
+	
+	<service name="mpbeService" enabled="true">
+		<marshaler style="XSTREAM" resource="mpbeforce-Full" inputKey="entityOut" outputKey="ENTITY"/>
+		<soaptransport resource="${esb.smx.external.url}/sforce/SforcePushService/" responseType="PAYLOAD" validateResponse="false" readTimeout="1000000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>
+			<operation localName="pushRequest"/>
+			<parameters>
+				<parameter localName="entity" paramValue="data:case" paramType="String"/>
+				<parameter localName="action" paramValue="action" paramType="String"/>
+				<parameter localName="objectType" paramValue="data:case" paramType="String"/>
+				<parameter localName="clientId" paramValue="data:akritiv-internex" paramType="String"/>
+				<parameter localName="data" paramValue="ENTITY" paramType="Element"/> 
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="Full" contextLookupKey="entityIn" />
+	</service>
+	<service name="crmService" enabled="true">
+		<marshaler style="XSTREAM" resource="sforce-Full" inputKey="entityOut" outputKey="ENTITY"/>
+		<soaptransport resource="${esb.smx.external.url}/sforce/SforcePushService/" responseType="PAYLOAD" validateResponse="false" readTimeout="1000000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>
+			<operation localName="pushRequest"/>
+			<parameters>
+				<parameter localName="entity" paramValue="entity" paramType="String"/>
+				<parameter localName="action" paramValue="action" paramType="String"/>
+				<parameter localName="objectType" paramValue="objectType" paramType="String"/>
+				<parameter localName="clientId" paramValue="data:internex" paramType="String"/>
+				<parameter localName="data" paramValue="ENTITY" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="sforce-Full" contextLookupKey="entityIn" />
+	</service>
+	
+	
+	<service name="provisionCustomerService" enabled="true">
+		<marshaler marshalType="XSTREAM" resource="Header" inputKey="contextEntity" outputKey="ENTITY"/>
+		<marshaler marshalType="XSTREAM" resource="Full-No-Binary" inputKey="provisionCustomers" outputKey="ProvisionCustomers"/>
+		<soaptransport resource="${esb.smx.external.url}/outbound/provisionCustomerService/" responseType="PAYLOAD" validateResponse="true" readTimeout="300000">
+			<properties>
+				<property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+				<property key="USER" value="${esb.authuser}" type="AUTH"/>
+				<property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+			</properties>
+			<operation localName="ProvisionCustomerRequest"/>
+			<parameters>
+				<parameter localName="ClientId" paramValue="data:oob" paramType="String"/>
+				<parameter localName="Action" paramValue="data:register" paramType="String"/>
+				<parameter paramValue="ENTITY" paramType="Element"/>
+				<parameter paramValue="ProvisionCustomers" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="Full" contextLookupKey="provisionCustomers"/>
+	</service>
+	
+	<service name="docGenClient" enabled="true">
+           <marshaler style="XSTREAM" resource="Genie-Full" inputKey="documentList" outputKey="documentsXml"/>
+           <marshaler style="XSTREAM" resource="Genie-Full" inputKey="contextEntity" outputKey="entityXml"/>
+           <soaptransport resource="${esb.smx.external.url}/outbound/documentServiceNew/" responseType="PAYLOAD" validateResponse="true">
+				<properties>
+	                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+	                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+	                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+	            </properties>                  
+                  <operation localName="GenerateDocuments"/>
+                  <parameters>
+                        <parameter localName="documents" paramValue="documentsXml" paramType="Element"/>
+                        <parameter localName="entities" paramValue="entityXml" paramType="Element"/>
+                        <parameter localName="client" paramValue="data:internex" paramType="String"/>
+                  </parameters>
+           </soaptransport>
+           <unmarshaler style="XSTREAM" resource="doc-gen-full" contextLookupKey="documentList" />
+    </service>	
+
+	<service name="landsafeServiceManual" enabled="true">
+		<custom resource="com.thirdpillar.codify.loanpath.webservices.landsafe.ManualProcessor"/>
+		<expression style="MVEL2" resource="taskInput[0]" outputKey="request"/>
+		<marshaler marshalType="XSTREAM" resource="Landsafe-Full" inputKey="request" outputKey="ENTITY"/>
+		<marshaler marshalType="XSTREAM" resource="Landsafe-Full" inputKey="user" outputKey="PulledByUser"/>
+		<soaptransport resource="${esb.smx.external.url}/outbound/landsafeService/" responseType="PAYLOAD" validateResponse="true" readTimeout="300000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>                  
+			<operation localName="LandsafeRequest"/>
+			<parameters>
+				<parameter paramValue="ENTITY" paramType="Element"/>
+				<parameter paramValue="PulledByUser" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="Landsafe-Response-Full" contextLookupKey="entityList"/>
+	</service>
+	<!-- <service name="landsafeServiceAuto" enabled="true">
+		<marshaler marshalType="XSTREAM" resource="Landsafe-Full" inputKey="contextEntity" outputKey="ENTITY"/>
+		<marshaler marshalType="XSTREAM" resource="Landsafe-Full" inputKey="systemUser" outputKey="PulledByUser"/>
+		<marshaler marshalType="XSTREAM" resource="Header" inputKey="bureauPartyList" outputKey="BureauParty"/>
+		<soaptransport resource="${esb.smx.external.url}/outbound/landsafeService/" responseType="PAYLOAD" validateResponse="true" readTimeout="300000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>
+                              
+			<operation localName="LandsafeRequest"/>
+			<parameters>
+				<parameter paramValue="ENTITY" paramType="Element"/>
+				<parameter paramValue="PulledByUser" paramType="Element"/>
+				<parameter paramValue="BureauParty" paramType="Element"/>				
+			
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="Landsafe-Response-Full" contextLookupKey="entityList"/>
+		<custom resource="com.thirdpillar.codify.loanpath.webservices.landsafe.LandsafeResponseProcessor"/>
+	</service> -->
+	<service name="bureauService" enabled="true">
+		<marshaler marshalType="XSTREAM" resource="Header" inputKey="contextEntity" outputKey="ENTITY"/>
+		<marshaler marshalType="XSTREAM" resource="Full-No-Binary" inputKey="bureauPartyList" outputKey="BureauParty"/>
+		<soaptransport resource="https://proxy.thirdpillar.com/esb-dev-62/outbound/creditBureauService/" responseType="PAYLOAD" validateResponse="true" readTimeout="300000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>
+                              
+			<operation localName="BureauRequest"/>
+			<parameters>
+				<parameter localName="ClientId" paramValue="data:oob" paramType="String"/>
+				<parameter localName="Action" paramValue="data:pullreport" paramType="String"/>
+				<parameter localName="BureauName" paramValue="bureauName" paramType="String"/>
+				<parameter localName="FreshReport" paramValue="pullNewReport" paramType="String"/>
+				<parameter localName="PulledBy" paramValue="PulledBy" paramType="String"/>	
+				<parameter localName="FrozenFileAccessCode" paramValue="freezeCode" paramType="String"/>								
+				<parameter paramValue="ENTITY" paramType="Element"/>
+				<parameter paramValue="BureauParty" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="Full" contextLookupKey="entityList"/>
+	</service>	
+	<service name="documentEsig" enabled="true">
+		<marshaler marshalType="XSTREAM" resource="doc-gen-full" inputKey="docRequest" outputKey="docRequestXML"/>
+		<transformer resource="/integration/xsl/esig/initDoc.xsl" inputKey="docRequestXML" outputKey="documentXml"/>
+		<soaptransport resource="${esig.citadel.external.host}/axis2/services/CitadelService" soapVersion="SOAP_11" responseType="PAYLOAD" validateResponse="false" readTimeout="300000">
+            <parameters>
+            	<parameter paramValue="documentXml" paramType="Element"/>
+            </parameters>
+            <properties>
+	            <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+	            <property key="USER" value="${esig.citadel.authentication.user}" type="AUTH"/>
+	            <property key="PASSWORD" value="${esig.citadel.authentication.password}" type="AUTH"/>
+            </properties>
+		</soaptransport>
+		<transformer resource="/integration/xsl/esig/extractCDATA.xsl"/>
+		<transformer resource="/integration/xsl/esig/initDocInbound.xsl"/>
+		<transformer resource="/integration/xsl/esig/escapeEsignTemplate.xsl"/>
+		<unmarshaler style="XSTREAM" resource="esig-full" contextLookupKey="document"/>
+	</service>
+	<service name="openAMService" enabled="true">
+		<marshaler style="XSTREAM" resource="Full" inputKey="provisionEntity" outputKey="provisionEntityXml"/>
+		<transformer resource="/integration/xsl/user/openAMUser.xsl"/>
+		<soaptransport resource="${esig.register.external.host}/register/service/CreateUser" soapVersion="SOAP_11" responseType="PAYLOAD" validateResponse="false">	
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esig.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esig.authpassword}" type="AUTH"/>
+            </properties>                  
+		</soaptransport>
+		<transformer resource="/integration/xsl/user/openAMUserInbound.xsl"/>
+		<unmarshaler style="XSTREAM" resource="Full" contextLookupKey="provisionEntity"/>
+	</service>
+	<service name="emailService" enabled="true">
+		<marshaler marshalType="XSTREAM" resource="Full" outputKey="emailMessageXml"/>
+		<soaptransport resource="${esb.smx.external.url}/outbound/emailSoapService/" soapVersion="SOAP_11" responseType="PAYLOAD" validateResponse="true" readTimeout="300000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>                  
+			<operation localName="emailRequest"/>
+			<parameters>
+	            	<parameter localName="payload" paramValue="emailMessageXml" paramType="Element"/>
+                <parameter localName="messageType" paramValue="data:notification" paramType="String"/>
+	        </parameters>
+		</soaptransport>
+	</service>
+	
+	<service name="SearchMoodyService" enabled="true">
+		<expression style="MVEL2" resource="inputObject[0].?criterions['customerName'].?value.value" outputKey="customerName"/>
+		<soaptransport resource="${esb.smx.external.url}/mockService/" responseType="PAYLOAD" validateResponse="false" readTimeout="300000" soapAction="Dummy"> 
+						<!-- outputKey="classpath:read:/integration/mockResponses/searchRealtionshipMockResponse.xml"  --><!--  Add this property for mockign search -->
+			<properties> 	
+	                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+	                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+	                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+	        </properties>
+			<operation localName="Request"/>
+			<parameters>
+				<parameter localName="customerName" paramValue="customerName" paramType="String"/>
+				<parameter localName="Action" paramValue="data:moodys_customersearch" paramType="String"/>
+			</parameters>
+		</soaptransport>
+		<transformer resource="/integration/xsl/searchMoodyCustomerResponse.xsl"/>
+		<unmarshaler style="XSTREAM" resource="Full-No-Binary" />
+	</service>
+	
+	<service name="GetMoodyFinancialService" enabled="true">
+		<marshaler style="XSTREAM" resource="Full-No-Binary" inputKey="selectedMoodyCustomer" outputKey="MoodyCustomerXML"/>
+		<soaptransport resource="${esb.smx.external.url}/mockService/" responseType="PAYLOAD" validateResponse="false" readTimeout="300000" soapAction="Dummy">
+			<properties> 	
+	                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+	                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+	                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+	        </properties>
+			<operation localName="Request"/>
+			<parameters>
+				<parameter localName="moodyCustomer" paramValue="MoodyCustomerXML" paramType="Element"/>
+				<parameter localName="Action" paramValue="data:moodys_transactions" paramType="String"/>
+			</parameters>
+		</soaptransport>
+		<transformer resource="/integration/xsl/getMoodyFinancialResponse.xsl"/>
+		<unmarshaler style="XSTREAM" resource="Full-No-Binary" contextLookupKey="contextEntity" />
+	</service>	
+	<service name="pricingClient" enabled="true">
+		<expression style="MVEL2" resource="taskInput[0]" outputKey="PRICING_OPTION"/>
+		<marshaler style="XSTREAM" resource="pricing-req-full" inputKey="PRICING_OPTION" outputKey="PRICING_OPTION_XML"/>
+		<soaptransport resource="${esb.smx.external.url}/outbound/pricing-connectorService/" responseType="PAYLOAD">
+			<operation localName="PricingRequest"/>
+			<properties> 
+				<property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+	            <property key="USER" value="${esb.authuser}" type="AUTH"/>
+	            <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+			</properties>
+			<parameters>
+				<parameter localName="AdditionalInstructions" paramValue="ADDITIONAL_CALC_INSTRUCTIONS" paramType="String"/>  
+				<parameter localName="Mode" paramValue="PRICING_MODE" paramType="String"/>
+				<parameter localName="ClientId" paramValue="data:oob" paramType="String"/>
+				<parameter paramValue="PRICING_OPTION_XML" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="Full-No-Binary" contextLookupKey="PRICING_OPTION"/>
+	</service>	
+	<service name="docPackageClient" enabled="true">
+           <marshaler style="XSTREAM" resource="docPackage-Full" inputKey="docPackage" outputKey="docPackageXml"/>
+           <soaptransport resource="${esb.smx.external.url}/outbound/packageService/" responseType="PAYLOAD" validateResponse="true">
+				<properties>
+	                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+	                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+	                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+	            </properties>                  
+                  <operation localName="GeneratePackage"/>
+                  <parameters>
+                        <parameter paramValue="docPackageXml" paramType="Element"/>
+                        <parameter localName="client" paramValue="data:internex" paramType="String"/>
+                  </parameters>
+           </soaptransport>
+           <unmarshaler style="XSTREAM" resource="docPackage-Full" contextLookupKey="docPackage" />
+    </service>	
+
+</integration>

@@ -1,0 +1,652 @@
+<list>
+	<valueGrid>
+		<name>BILwithDrawFixedStandardRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  		
+        ],
+        "Values" : [7.50,7.50,7.75,8.00,8.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					8.50,8.50,8.75,9.00,9.00,
+					6.50,6.50,6.75,7.00,7.00,
+					6.50,6.50,6.75,7.00,7.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.00,5.00,5.25,5.50,5.50,
+					2.75,2.75,3.00,3.25,3.25,
+					2.75,2.75,3.00,3.25,3.25,
+					2.75,2.75,3.00,3.25,3.25,
+					2.75,2.75,3.00,3.25,3.25,
+					6.50,6.50,6.75,7.00,7.00,
+					4.00,4.00,4.25,4.50,4.50,
+					4.00,4.00,4.25,4.50,4.50,
+					3.00,3.00,3.25,3.50,3.50,
+					3.00,3.00,3.25,3.50,3.50,
+					8.50,8.50,8.75,9.00,9.00,
+					8.00,8.00,8.25,8.50,8.50,
+					7.50,7.50,7.75,8.00,8.00,
+					7.00,7.00,7.25,7.50,7.50,
+					6.50,6.50,6.75,7.00,7.00,
+					9.50,9.50,9.75,10.00,10.00,
+					9.00,9.00,9.25,9.50,9.50,
+					8.50,8.50,8.75,9.00,9.00,
+					8.00,8.00,8.25,8.50,8.50,
+					7.50,7.50,7.75,8.00,8.00,
+					7.50,7.50,7.75,8.00,8.00,
+					7.00,7.00,7.25,7.50,7.50,
+					6.50,6.50,6.75,7.00,7.00,
+					6.00,6.00,6.25,6.50,6.50,
+					5.50,5.50,5.75,6.00,6.00,
+					8.50,8.50,8.75,9.00,9.00,
+					8.00,8.00,8.25,8.50,8.50,
+					7.50,7.50,7.75,8.00,8.00,
+					7.00,7.00,7.25,7.50,7.50,
+					6.50,6.50,6.75,7.00,7.00
+					]         
+    }]]>
+    </grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BILwithDrawFixedNFPRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  			
+        ],
+        "Values" : [7.50,7.50,7.75,8.00,8.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					8.50,8.50,8.75,9.00,9.00,
+					6.50,6.50,6.75,7.00,7.00,
+					6.50,6.50,6.75,7.00,7.00,
+					5.50,5.50,5.75,6.00,6.00,
+					5.50,5.50,5.75,6.00,6.00,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					8.50,8.50,8.75,9.00,9.00,
+					8.00,8.00,8.25,8.50,8.50,
+					7.50,7.50,7.75,8.00,8.00,
+					7.00,7.00,7.25,7.50,7.50,
+					6.50,6.50,6.75,7.00,7.00,
+					9.50,9.50,9.75,10.00,10.00,
+					9.00,9.00,9.25,9.50,9.50,
+					8.50,8.50,8.75,9.00,9.00,
+					8.00,8.00,8.25,8.50,8.50,
+					7.50,7.50,7.75,8.00,8.00,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null
+			]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BILwithDrawFixedCashSecuredRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  			
+        ],
+        "Values" : [4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75,
+					3.75,3.75,3.75,3.75,3.75,
+					3.75,3.75,3.75,3.75,3.75,
+					3.75,3.75,3.75,3.75,3.75,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75,
+					3.75,3.75,3.75,3.75,3.75,
+					3.25,3.25,3.25,3.25,3.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					4.25,4.25,4.25,4.25,4.25,
+					2.25,2.25,2.25,2.25,2.25,
+					2.25,2.25,2.25,2.25,2.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25
+				]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BILwithDrawFixedSBARate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Facility Approved Amount",
+                "VariableName" : "TotalFacilityApprovedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  			
+        ],
+        "Values" : [6.50,6.50,6.50,6.50,6.50,
+					4.75,4.75,4.75,4.75,4.75,
+					4.75,4.75,4.75,4.75,4.75,
+					4.75,4.75,4.75,4.75,4.75,
+					4.75,4.75,4.75,4.75,4.75,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.25,4.25,4.25,4.25,4.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					4.50,4.50,4.50,4.50,4.50,
+					3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					2.25,2.25,2.25,2.25,2.25,
+					2.25,2.25,2.25,2.25,2.25,
+					6.50,6.50,6.50,6.50,6.50,
+					6.50,6.50,6.50,6.50,6.50,
+					6.50,6.50,6.50,6.50,6.50,
+					6.50,6.50,6.50,6.50,6.50,
+					6.50,6.50,6.50,6.50,6.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					6.50,6.50,6.50,6.50,6.50,
+					5.50,5.50,5.50,5.50,5.50,
+					5.50,5.50,5.50,5.50,5.50,
+					5.50,5.50,5.50,5.50,5.50,
+					5.50,5.50,5.50,5.50,5.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50
+					]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BILwithDrawFloatingStandardRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  			
+        ],
+        "Values" : [5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					7.25,7.25,7.25,7.25,7.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					6.25,6.25,6.25,6.25,6.25,
+					1.75,1.75,1.75,1.75,1.75,
+					1.75,1.75,1.75,1.75,1.75,
+					1.75,1.75,1.75,1.75,1.75,
+					1.75,1.75,1.75,1.75,1.75,
+					7.75,7.75,7.75,7.75,7.75,
+					6.75,6.75,6.75,6.75,6.75,
+					6.25,6.25,6.25,6.25,6.25,
+					5.75,5.75,5.75,5.75,5.75,
+					5.25,5.25,5.25,5.25,5.25,
+					7.75,7.75,7.75,7.75,7.75,
+					7.25,7.25,7.25,7.25,7.25,
+					6.75,6.75,6.75,6.75,6.75,
+					6.25,6.25,6.25,6.25,6.25,
+					5.75,5.75,5.75,5.75,5.75,
+					6.75,6.75,6.75,6.75,6.75,
+					4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75,
+					3.25,3.25,3.25,3.25,3.25,
+					2.75,2.75,2.75,2.75,2.75,
+					7.50,7.50,7.50,7.50,7.50,
+					5.25,5.25,5.25,5.25,5.25,
+					4.75,4.75,4.75,4.75,4.75,
+					4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75						
+					]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BILwithDrawFloatingCashSecuredRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  			
+        ],
+        "Values" : [3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					4.25,4.25,4.25,4.25,4.25,
+					2.25,2.25,2.25,2.25,2.25,
+					2.25,2.25,2.25,2.25,2.25,
+					2.25,2.25,2.25,2.25,2.25,
+					2.25,2.25,2.25,2.25,2.25,
+					1.75,1.75,1.75,1.75,1.75,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					4.25,4.25,4.25,4.25,4.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75,
+					3.25,3.25,3.25,3.25,3.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					3.75,3.75,3.75,3.75,3.75,
+					4.25,4.25,4.25,4.25,4.25,
+					2.25,2.25,2.25,2.25,2.25,
+					1.75,1.75,1.75,1.75,1.75,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					4.25,4.25,4.25,4.25,4.25,
+					3.25,3.25,3.25,3.25,3.25,
+					2.75,2.75,2.75,2.75,2.75,
+					2.25,2.25,2.25,2.25,2.25,
+					1.75,1.75,1.75,1.75,1.75
+					]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BILwithDrawFloatingNFPRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  				
+        ],
+        "Values" : [5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					5.25,5.25,5.25,5.25,5.25,
+					7.25,7.25,7.25,7.25,7.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					7.75,7.75,7.75,7.75,7.75,
+					6.75,6.75,6.75,6.75,6.75,
+					6.25,6.25,6.25,6.25,6.25,
+					5.75,5.75,5.75,5.75,5.75,
+					5.25,5.25,5.25,5.25,5.25,
+					7.75,7.75,7.75,7.75,7.75,
+					7.25,7.25,7.25,7.25,7.25,
+					6.75,6.75,6.75,6.75,6.75,
+					6.25,6.25,6.25,6.25,6.25,
+					5.75,5.75,5.75,5.75,5.75,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null,
+					null,null,null,null,null
+					]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BILwithDrawFloatingSBARate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Facility Approved Amount",
+                "VariableName" : "TotalFacilityApprovedAmount",
+                "Values" : [[0,50001],[50001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,5001],[5001,10001],[10001,20001],[20001,30001],[30001,null]]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }  			
+        ],
+        "Values" : [4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.25,4.25,4.25,4.25,4.25,
+					4.50,4.50,4.50,4.50,4.50,
+					3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					3.25,3.25,3.25,3.25,3.25,
+					2.75,2.75,2.75,2.75,2.75,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					1.25,1.25,1.25,1.25,1.25,
+					4.50,4.50,4.50,4.50,4.50,
+					0.75,0.75,0.75,0.75,0.75,
+					0.75,0.75,0.75,0.75,0.75,
+					0.75,0.75,0.75,0.75,0.75,
+					0.75,0.75,0.75,0.75,0.75,
+					6.50,6.50,6.50,6.50,6.50,
+					5.00,5.00,5.00,5.00,5.00,
+					5.00,5.00,5.00,5.00,5.00,
+					5.00,5.00,5.00,5.00,5.00,
+					5.00,5.00,5.00,5.00,5.00,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					4.50,4.50,4.50,4.50,4.50,
+					6.50,6.50,6.50,6.50,6.50,
+					2.50,2.50,2.50,2.50,2.50,
+					2.50,2.50,2.50,2.50,2.50,
+					2.50,2.50,2.50,2.50,2.50,
+					2.50,2.50,2.50,2.50,2.50,
+					4.50,4.50,4.50,4.50,4.50,
+					3.50,3.50,3.50,3.50,3.50,
+					3.50,3.50,3.50,3.50,3.50,
+					3.50,3.50,3.50,3.50,3.50,
+					3.50,3.50,3.50,3.50,3.50
+					]         
+    }]]></grid>
+	</valueGrid>
+	
+</list>

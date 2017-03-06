@@ -1,0 +1,17 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="Document" ignore-annotations="false">
+		<map:class>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.documentGroup.uploadedDocuments.required}</map:message>
+				<map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitForReview</map:value>
+                </map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.id != null]]></map:element>
+			</map:constraint>
+						
+		</map:class>
+	</map:bean>
+	
+</map:constraint-mappings>

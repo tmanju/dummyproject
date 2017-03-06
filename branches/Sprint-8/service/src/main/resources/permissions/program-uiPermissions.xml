@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+
+    <tns:canvas id="program_crud">
+    
+        <tns:component id="program_prgPartners_autosuggest" >
+                    <tns:default>false</tns:default>
+                </tns:component>
+    
+        <tns:component id="ProgramSubmit">
+                    <tns:default>   
+                                <![CDATA[
+                                    return (root.id != null) && (root.wfStatus != null) && (root.wfStatus.statusKey == 'PROGRAM_STATUS_NEW');
+                                ]]>
+                    </tns:default>
+        </tns:component>
+
+        <tns:component id="prgAdvanceMoneyEdit.advanceMoney_numFirstPayments">
+            <tns:default>
+                boolean isVisible=false;
+                if (root_advanceMonies !=null &amp;&amp;
+                root_advanceMonies.paymentType != null &amp;&amp;
+                root_advanceMonies.paymentType.key ==
+                "PAYMENT_TYPE_NUMBER_OF_PAYMENTS") {
+                isVisible=true;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+
+        <tns:component id="prgAdvanceMoneyEdit.advanceMoney_advancePmtAmt">
+            <tns:default>
+                boolean isVisible=false;
+                if (root_advanceMonies !=null &amp;&amp;
+                root_advanceMonies.paymentType != null &amp;&amp;
+                root_advanceMonies.paymentType.key == "PAYMENT_TYPE_AMOUNT") {
+                isVisible=true;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+
+        <tns:component id="prgAdvanceMoneyEdit.advanceMoney_basisPct">
+            <tns:default>
+                boolean isVisible=false;
+                if (root_advanceMonies !=null &amp;&amp;
+                root_advanceMonies.paymentType != null &amp;&amp;
+                root_advanceMonies.paymentType.key == "PAYMENT_TYPE_PERCENT") {
+                isVisible=true;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+
+        <tns:component id="prgAdvanceMoneyEdit.advanceMoney_advancePmtPct">
+            <tns:default>
+                boolean isVisible=false;
+                if (root_advanceMonies !=null &amp;&amp;
+                root_advanceMonies.paymentType != null &amp;&amp;
+                root_advanceMonies.paymentType.key == "PAYMENT_TYPE_PERCENT") {
+                isVisible=true;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+
+        <tns:component id="program_prgInterimRent_interimRentPlus">
+            <tns:default>
+
+                boolean isVisible=false;
+                if (root.prgInterimRent != null &amp;&amp;
+                root.prgInterimRent.calculationMethod != null &amp;&amp;
+                root.prgInterimRent.calculationMethod.key ==
+                'INTERIM_RENT_CALCULATION_METHOD_INTEREST_ONLY_BASIS') {
+                isVisible=true;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+
+        <tns:component id="program_prgInterimRent_interimRentBasis">
+            <tns:default>
+
+                boolean isVisible=false;
+                if (root.prgInterimRent != null &amp;&amp;
+                root.prgInterimRent.calculationMethod != null &amp;&amp;
+                root.prgInterimRent.calculationMethod.key ==
+                'INTERIM_RENT_CALCULATION_METHOD_INTEREST_ONLY_BASIS') {
+                isVisible=true;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+
+        <tns:component id="program_prgInterimRent_interimRentInterestRate">
+            <tns:default>
+
+                boolean isVisible=false;
+                if (root.prgInterimRent != null &amp;&amp;
+                root.prgInterimRent.calculationMethod != null &amp;&amp;
+                root.prgInterimRent.calculationMethod.key ==
+                'INTERIM_RENT_CALCULATION_METHOD_INTEREST_ONLY_USE_SPECIFIED_INTEREST_RATE')
+                {
+                isVisible=true;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+
+        <tns:component
+            id="program_guarantees_EditCanvas.Guarantee_numberOfPayments">
+            <tns:default>
+                boolean isVisible=true;
+                if (root_guarantees !=null &amp;&amp; (root_guarantees.guaranteeAmount
+                != null || root_guarantees.guaranteePercent != null ||
+                root_guarantees.guaranteeBasis != null )) {
+                	isVisible=false;
+                }
+                return isVisible;
+
+            </tns:default>
+        </tns:component>
+        
+         <tns:component
+            id="program_prgFees_EditCanvas.prgFee_noOfPayment">
+            <tns:default>
+               boolean isVisible=false;
+               if (root_prgFees !=null &amp;&amp; root_prgFees.?feeType.key == "FEE_POLICY_TYPE_PERIODIC") {
+               		isVisible=true;
+               }
+               return isVisible;
+            </tns:default>
+        </tns:component>
+        
+
+    </tns:canvas>
+</tns:ui-permissions>

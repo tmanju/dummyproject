@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="residualReference" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+		<data-table name="results" row="residualReference">
+		<columns>
+			<column name="residualReference.operatingUnit" label="Operating Unit" />
+			<column name="residualReference.sbu" label="Strategic Business Unit" />
+			<column name="residualReference.assetClass" label="Asset Type" />
+			<column name="residualReference.assetSubclass" label="Asset Sub-Type" />
+			<column name="residualReference.assetsCondition" label="Assets Condition" />
+			<column name="residualReference.currency" label="Currency" />
+			<column name="residualReference.residualType" label="Residual Type" />
+			<column name="residualReference.residualValue" label="Residual Value" />
+			<column name="residualReference.depreciationLife" label="Depreciation Life" />
+			<column name="residualReference.depreciationMethod" label="Depreciation Method" />
+		</columns>
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.ResidualReference" />
+	</beans>	
+</canvas>

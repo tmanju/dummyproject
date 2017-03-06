@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jee="http://www.springframework.org/schema/jee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd ">
+
+  <!--
+    Turn on AspectJ @Configurable support. Spring will attempt to perform 
+    dependency injection via the "new" keyword, as well as via reflection. 
+    Without @Configurable you'd only be able to dependency inject objects
+    acquired from Spring. 
+  -->
+  <context:spring-configured />
+  
+  <!--
+    This declaration will cause Spring to automatically locate every 
+    @Component, @Repository and @Service in your application at startup time.
+    Furthermore, this turns on @Autowired, @PostConstruct etc support. 
+  -->
+
+  <import resource="classpath:spring.xml"/>
+  
+  <bean id="sessionFactory" parent="abstractSessionFactory">
+    <property name="packagesToScan" value="com.thirdpillar.codify.loanpath.model"/>
+  </bean>  
+
+  <bean id="profileBindingFactory" class="com.thirdpillar.xstream.ext.spring.ProfileBindingFactory" lazy-init="false" >
+    <property name="mappingResources">
+      <list>
+        <value>profile-full.xml</value>
+        <value>profile-header.xml</value>
+      </list>
+    </property>
+  </bean>
+	
+  <bean id="xStreamExt" class="com.thirdpillar.xstream.ext.spring.XStreamExtFactory">
+    <property name="packageAliases">
+      <map>
+        <entry key="com.thirdpillar.codify.loanpath.model" value=""/>
+      </map>
+    </property>
+  </bean>
+
+  <bean id="ruleService" parent="abstractRuleService" lazy-init="true">
+
+	<property name="scanInterval" value="300"/>
+  </bean>
+
+</beans>

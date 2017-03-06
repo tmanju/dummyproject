@@ -1,0 +1,852 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="customer" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<tabs>
+
+		<tab id="tab.customerInformation" label="Counterparty">
+			<panel id="customer.customerInformation" label="Counterparty Information">
+					<field name="customer.refNumber" label="Counterparty Number"/>
+					<field name="customer.servicingIdentifier" label="Servicing Identifier"/>
+					<field name="customer.customerType" label="Counterparty Type" targetFields="customer.contactInformation,
+																								customer.IndividualDetails,
+																								customer.businessDetail,
+																								customer.primarySite.OfficeDetails,
+																								customer.primarySite.contacts,
+																								customer.sites,
+																								customer.licenseInformation"
+																								/>
+					<field name="customer.metaInfo.createdAt" />
+					<field name="customer.metaInfo.createdByUser" />
+					<field name="customer.sfdcByUser" label="SFDC Created By" />
+					<field name="customer.metaInfo.lastModifiedAt" />
+					<field name="customer.metaInfo.lastModifiedByUser" />
+					<field name="customer.approved" label="Approved"/>
+					<field name="customer.reviewDate" label="Review Date"/>
+			</panel>
+			<panel id="customer.debtorInformation">
+					<field name="customer.debtorContact.email" label="AP Dept Email"/>
+					<field name="customer.debtorContact.homePhone" label="AP Dept Phone"/>
+					<field name="customer.debtorContact.homeFax" label="AP Dept Fax"/>
+					<field name="customer.creditLimit" label="Credit Limit"/>
+					<field name="customer.maxCreditPeriod" label="Max Credit Period (days)"/>
+<!-- 					<field name="customer.daysBeyondTerms" label="Company DBT (Paydex)"/>	 -->
+<!-- 					<field name="customer.industryDBT" label="Industry DBT (Paydex)"/> -->
+					<field name="customer.riskScoreDttm" label="Risk Score Date"/>
+					<field name="customer.riskScore" label="Risk Score"/>
+					<field name="customer.adjRiskScore" label="Adj Risk Score"/>
+			</panel>
+			<panel id="customer.IndividualDetails" label="Individual Information">
+				<section id="customer.IndividualDetails.sect1">
+					<field name="customer.soleProprietor" label="Sole Proprietor" targetFields="customer.contactInformation,
+																								customer.IndividualDetails,
+																								customer.businessDetail,
+																								customer.primarySite.OfficeDetails,
+																								customer.primarySite.contacts,
+																								customer.sites"/>
+				
+					<field name="customer.title" label="Salutation" />
+					<field name="customer.firstName" label="First Name *" />
+					<field name="customer.middleName" label="Middle Name" />
+					<field name="customer.lastName" label="Last Name *" />
+					<field name="customer.suffix" label="Suffix" />
+					<field name="customer.salutation" label="Business Title" />
+	 				<field name="customer.ssn" label="SSN" />
+					<field name="customer.birthDate" label="Date Of Birth" />
+				</section>	
+											
+				<section id="customer.IndividualDetails.sect2">
+					<field name="customer.yearsWithCompany" label="Number of years with company" />
+					<field name="customer.lengthOfEmployment" label="Length Of Employment in current position" />
+					<field name="customer.bankruptcyDeclared" label="Have you ever declared bankruptcy?" />
+	<!-- 				<field name="customer.homeOwnOrRent" label="Home Own/Rent" /> -->
+	<!-- 				<field name="customer.yearsAtCurrentResidence" label="Years at current home address" /> -->
+					<!-- <field name="customer.disclosePersonalInfo" label="Disclose Personal Information for marketing purpose" /> -->
+					<!-- <field name="customer.electronicComAgrAccepted" label="Party has Accepted Terms of Electronic Communications Agreement" /> -->
+					<field name="customer.partyPermissionPullBureau" label="Party has given permission to pull credit bureau report" />
+					<!-- <field name="customer.disclosureMethod" label="Disclosure Method" /> -->
+					<!-- <field name="customer.disclosuresDate" label="Disclosures Date" /> -->
+					<!-- <field name="customer.disclosuresVerifiedBy" label="Disclosures Verified By" /> -->
+					<field name="customer.usCitizen" label="US Citizen" />
+					<field name="customer.countryOfCitizenship" label="Country Of Citizenship" />
+					<!-- <field name="customer.nationality" label="Nationality" /> -->
+					<field name="customer.countryResidence" label="Country of Residence" />
+					<field name="customer.birthCity" label="Place Of Birth (City)" />
+					<field name="customer.birthCountry" label="Place Of Birth (Country)" />				
+					<!-- <field name="customer.yrsMoveToUs" label="Year Moved To Us" /> -->
+					<field name="customer.description" label="Counterparty Description" />
+					<field name="customer.insStatus" label="INS Status" />
+<!-- 					<field name="customer.obligorNumberDer" label="Obligor Number" /> -->
+					<!-- <field name="customer.doNotCall" label="Do Not Call" /> -->
+					<!-- <field name="customer.emailOptOut" label="Email Opt Out" /> -->
+					<field name="customer.privacyIndicator" label="Privacy Indicator" />				
+				</section>
+			</panel>			
+			<panel id="customer.businessDetail" label="Business Details">
+				<section id="customer.counterparty" label="Counterparty Details">
+						<field name="customer.companyType" label="Company Type" targetFields="customer.counterparty"/> 
+						<field name="customer.fdicNumber" label="FDIC Number"/> 
+						<field name="customer.occNumber" label="OCC Number"/> 
+						<field name="customer.abaNumber" label="ABA Number"/> 
+						
+						
+				</section>
+				
+				<section id="customer.business" label="Business Details">
+					<field name="customer.legalName" label="Legal Name *"/>
+					<field name="customer.legalEntityType" label="Legal Entity Type" />
+					<field name="customer.federalTaxId" label="Taxpayer ID(FEIN)" />
+					<field name="customer.duns" label="DUNS *" />
+					<field name="customer.numOfEmployees" label="Number of Employees" />
+					<field name="customer.businessStartDttm" label="Business Start Date" targetFields="customer.yearsInBusinessDer"/>
+					<field name="customer.yearsInBusinessDer" label="Years In Business"/>
+					<field name="customer.description" label="Description" />
+					<field name="customer.annualRevenue" label="Annual Revenue" />
+					<field name="customer.annualNetProfit" label="Annual Net profit" />
+					<field name="customer.plStatementDate" label="P &amp; L Statement Date" />
+					<!-- <field name="customer.sfdcSiteName" label="SFDC Site Name" /> -->
+					<!-- <field name="customer.ownership" label="Ownership" /> -->
+					<field name="customer.yearsInOwnership" label="Years in Ownership" />
+					<field name="customer.website" label="Website" />
+					<field name="customer.sicCode" label="SIC Code" />
+					<field name="customer.naicsCode" label="NAICS Industry Code" targetFields="customer.naicsDescDer" type="SearchNSelect"/>
+					<field name="customer.naicsDescDer" label="NAICS Description" />
+					<field name="customer.currentManagementStartDttm" label="Date Current Management Started" />
+					<!-- <field name="customer.stateIncorporated" label="Organized under laws of (State/Jurisdiction)" targetFields="customer.sosWebsite"/> -->
+					<field name="customer.sosWebsite" label="SOS Website" />
+					<!-- <field name="customer.branchInformation.financialCenter" label="Financial Center" /> -->
+					<!-- <field name="customer.branchInformation.fimp" label="FIMP" /> -->
+					<!-- <field name="customer.branchInformation.bankNumber" label="Bank Number" /> -->
+					<!-- <field name="customer.branchInformation.assignmentUnit" label="Assignment Unit" /> -->
+<!-- 					<field name="customer.obligorNumberDer" label="Obligor Number" /> -->
+                    <field name="customer.stateOfIncorp" label="State of Incorporation"/>
+					<field name="customer.doNotCall" label="Do Not Call" />
+					<field name="customer.emailOptOut" label="Email Opt Out" />
+					<field name="customer.privacyIndicator" label="Privacy Indicator" />
+					<field name="customer.publicCompany" label="Public Company" />		
+				</section>	
+				<data-table name="customer.primarySite.siteDetails.addresses" id="customer_business_primarySite_siteDetails_addresses" row="address" label="Address">
+					<columns>
+						<column name="address.address1" label="Address" />
+						<!-- <column name="address.address2" label="Address 2" /> -->
+						<column name="address.city" label="City" />
+						<column name="address.stateProvince" label="State" />
+						<column name="address.country" label="Country" />		
+						<column name="address.postalCode" label="Postal Code" />
+						<column name="address.usage" label="Usage" />
+					</columns>
+					<quickedit-canvas id="address">
+						<panel id="customer.contactDetailsInformation" label="Address Details">
+							<field name="address.address1" label="Address" />
+							<!-- <field name="address.address2" label="Address 2" /> -->
+							<field name="address.city" label="City" />
+							<field name="address.country" label="Country" />
+							<field name="address.stateProvince" label="State" />
+							<field name="address.postalCode" label="Postal Code" />
+							<field name="address.usage" label="Usage" />
+						</panel>
+					</quickedit-canvas>
+				</data-table>	
+			</panel>
+			<data-table name="customer.bureauData" row="bureauData">
+				<columns>
+					<column name="bureauData.agencyRatingDate" label="Agency Rating Date"/>
+					<column name="bureauData.agencyRating" label="Agency Rating"/>
+					<column name="bureauData.dnbReportDate" label="D&amp;B Report Date"/>
+					<column name="bureauData.dnbCreditScore" label="D&amp;B Credit Score"/>
+					<column name="bureauData.dnbViabilityRating" label="D&amp;B Viability Rating"/>
+					<column name="bureauData.dnbDataDepthIndicator" label="D&amp;B Data Depth Indicator"/>	
+					<column name="bureauData.industryDBT" label="Industry DBT (Paydex)"/>	
+					<column name="bureauData.companyDBT" label="Company DBT (Paydex)"/>
+					<column name="bureauData.paydexTrend" label="Paydex Trend"/>
+				</columns>
+			</data-table>
+
+			<panel id="customer.contactInformation" label="Primary Contact Information">
+				<field name="customer.primarySite.siteDetails.businessTitle" label="Business Title" />
+				<field name="customer.primarySite.siteDetails.firstName" label="First Name" />
+				<field name="customer.primarySite.siteDetails.lastName" label="Last Name" />
+				<field name="customer.primarySite.siteDetails.role" label="Role" />
+				<field name="customer.primarySite.siteDetails.businessPhone" label="Business Phone" />
+				<field name="customer.primarySite.siteDetails.homePhone" label="Home Phone" />
+				<field name="customer.primarySite.siteDetails.mobilePhone" label="Mobile Phone" />
+				<field name="customer.primarySite.siteDetails.email" label="Primary Email *" />
+				<field name="customer.primarySite.siteDetails.businessFax" label="Fax" />
+				<field name="customer.primarySite.siteDetails.otherPhone" label="Other Phone" />
+				<field name="customer.primarySite.siteDetails.servicingIdentifier" label="Servicing Identifier" />
+
+				<data-table name="customer.primarySite.siteDetails.addresses" id="customer_primarySite_siteDetails_addresses" row="address" label="Address">
+					<columns>
+						<column name="address.address1" label="Address" />
+						<!-- <column name="address.address2" label="Address 2" /> -->
+						<column name="address.city" label="City" />
+						<column name="address.stateProvince" label="State" />
+						<column name="address.country" label="Country" />						
+						<column name="address.use" label="Usage" />
+					</columns>
+					<quickedit-canvas>
+						<panel id="customer.contactDetailsInformation" label="Address Details">
+							<field name="address.address1" label="Address" />
+							<!-- <field name="address.address2" label="Address 2" /> -->
+							<field name="address.city" label="City" />
+							<field name="address.country" label="Country" />
+							<field name="address.stateProvince" label="State" />
+							<field name="address.postalCode" label="Postal Code" />
+							<field name="address.use" label="Usage" />
+						</panel>
+					</quickedit-canvas>
+				</data-table>
+				<data-table name="customer.primarySite.contacts" row="custContact" label="Counterparty Contact">
+					<columns>
+						<column name="custContact.role" />
+						<column name="custContact.firstName" />
+						<column name="custContact.lastName" />
+						<column name="custContact.homePhone" />
+						<column name="custContact.mobilePhone" />
+						<column name="custContact.businessPhone" />
+						<column name="custContact.email" />
+	
+					</columns>
+				</data-table>
+			</panel>			
+			
+			<data-table name="customer.licenseInformation" row="info" label="License">
+				<columns>
+					<column name="info.licensedSince" label="Licensed Since" />
+					<column name="info.licenseExpDate" label="Expiration Date" />
+					<column name="info.licenseNumber" label="Number" />
+					<column name="info.licenseState" label="License Issuer" />
+					<column name="info.licenseRenewalDate" label="Renewal Date" />
+					<column name="info.licenseStatus" label="Status" />
+					<column name="info.licenseApprover" label="License Approver" />
+					<column name="info.licenseStatusDate" label="License Status Date" />
+					<column name="info.licenseType" label="Description" />
+					<column name="info.licenseComment" label="Comments" />
+				</columns>
+			</data-table>
+			
+
+			<panel id="customer.bankruptcyInformation">
+				<field name="customer.bankruptcyInfo.bankruptcy" />
+				<field name="customer.bankruptcyInfo.dateDischarged" />
+				<field name="customer.bankruptcyInfo.beaconScore" />
+				<field name="customer.bankruptcyInfo.debtCovenantAmount" />
+				<field name="customer.bankruptcyInfo.empiricaScore" />
+				<field name="customer.bankruptcyInfo.ficoScore" label="FICO Score" />
+			</panel>
+
+			<data-table name="customer.borrowerRatings" row="borrowerRating"
+				label="Borrower Risk Rating">
+				<columns>
+					<column name="borrowerRating.fraudScoreDttm" label="Fraud Score Date" />
+					<column name="borrowerRating.fraudScore" label="Fraud Score" />
+					<column name="borrowerRating.adjFraudScore" label="Adj Fraud Score" />
+					<column name="borrowerRating.riskScoreDttm" label="Risk Score Date" />
+					<column name="borrowerRating.riskScore" label="Risk Score" />
+					<column name="borrowerRating.adjRiskScore" label="Adj Risk Score" />
+				</columns>
+			</data-table>
+
+			<!-- <panel id="customer.pdLgdRating" label="PD and LGD Ratings" >
+				<field name="customer.pdLgdRating.partyRatingDttm" label="Party Rating Date" />
+				<field name="customer.pdLgdRating.rawModelPartyRating" label="Raw Model Party Rating" />
+				<field name="customer.pdLgdRating.rawModelPartyCdtScore" label="Raw Model Party Credit Score" />
+				<field name="customer.pdLgdRating.rawModelLgdScore" label="Raw Model LGD Score" />
+				<field name="customer.pdLgdRating.lgdRatingDttm" label="LGD Rating Date" />
+				<field name="customer.pdLgdRating.lgdRatingModelName" label="LGD Rating Model Name" />
+			</panel> -->
+			<data-table name="customer.defaultEvents" row="defaultEvents"
+				label="Default Events">
+				<columns>
+					<column name="defaultEvents.defaultEvent" label="Default Event" />
+					<column name="defaultEvents.defaultEventDttm" label="Default Event Date" />
+					<column name="defaultEvents.defaultEpisodeStartDttm" label="Default Episode Start Date" />
+				</columns>
+			</data-table>
+			<data-table name="customer.bankTrades" row="bankInformation" label="Bank Information">
+						<columns>
+							<column name="bankInformation.name" label="Bank Name"/>
+							<column name="bankInformation.branchAddress.city" label="City"/>
+							<column name="bankInformation.branchAddress.stateProvince" label="State"/>
+							<column name="bankInformation.primary" label="Primary"/>
+						</columns>
+						<edit-canvas id="bankInformationEditCanvas">
+							<tabs>
+								<tab id="tab.customer.BankInformation" label="Bank Information">
+									<panel id="customer.bankInformation" label="Bank Information">
+										<field name="bankTrades.name" label="Bank Name" />
+										<field name="bankTrades.phoneNumber" label="Phone Number"/>
+										<field name="bankTrades.faxNumber" label="Fax Number" />
+										<field name="bankTrades.primary" label="Primary Flag" />
+										<field name="bankTrades.routingNumber" label="Routing Number *" />
+										<field name="bankTrades.branchName" label="Branch" />
+										<field name="bankTrades.doNotDebit" label="Do Not Debit" />
+										<field name="bankTrades.branchAddress.address1" label="Street Address" />
+										<field name="bankTrades.branchAddress.city" label="City" />
+										<field name="bankTrades.branchAddress.stateProvince" label="State" />
+										<field name="bankTrades.branchAddress.postalCode" label="Postal Code" />
+										<field name="bankTrades.branchAddress.country" label="Country" />
+										<field name="bankTrades.servicingIdentifier" label="Servicing Identifier" />
+									</panel>
+									<panel id="customer.accountInformation" label="Account Information">
+										<field name="bankTrades.nameOnAccount" label="Name on Account" />
+										<field name="bankTrades.accountType" label="Account Type" />
+										<field name="bankTrades.bankAccountNumber" label="Account Number *" />
+										<field name="bankTrades.bankTradeType" label="Personal/Business" />
+										<field name="bankTrades.month1DepositAmount" label="Recent Deposits - Month 1" />
+										<field name="bankTrades.month2DepositAmount" label="Recent Deposits - Month 2" />
+										<field name="bankTrades.month3DepositAmount" label="Recent Deposits - Month 3" />
+										<field name="bankTrades.lineOfCreditAmount" label="Line of Credit Amount" />
+										<field name="bankTrades.presentBalance" label="Current Balance" />
+										<field name="bankTrades.accountOpenedDttm" label="Account Opened Date" />
+										<field name="bankTrades.accountExpOrRenewalDttm" label="Expiration Date"/>
+									</panel>
+								</tab>
+							</tabs>
+						</edit-canvas>
+						</data-table>
+						
+			<data-table name="customer.dbas" row="dba" label="DBA">
+				<columns>
+					<column name="dba.refNumber" label="DBA Number" />
+					<column name="dba.dbaName" label="DBA Name" />
+					<column name="dba.debtorCustomer.facility.request.account.customer" label="Client" />
+				</columns>
+			</data-table>
+
+			<data-table name="customer.externalIdentifiers" row="extIdentifier"
+				label="External Identifiers">
+				<columns>
+					<column name="extIdentifier.extIdentifierType" label="Type" />
+					<column name="extIdentifier.identifierValue" label="Value" />
+					<column name="extIdentifier.expirationDate" />
+				</columns>
+			</data-table>
+			
+			<panel id="customer.primarySite.OfficeDetails" label="Office Details">
+				<field name="customer.primarySite.officeSize" label="Office Size (Sq Ft.) - Proposed" />
+				<field name="customer.primarySite.curOfficeHoursDayPerWeek" />
+				<field name="customer.primarySite.newOfficeHoursDayPerWeek" />
+				<field name="customer.primarySite.leasePayment" />
+				<field name="customer.primarySite.leaseExpirDttm" />
+				<field name="customer.primarySite.nonCompeteTerms" label="Non-Compete Terms at least 3 Years / 10 miles ?" />
+				<field name="customer.primarySite.officeComputerized" label="Is the Office Computerized?" />
+				<field name="customer.primarySite.yrsRemainLease" label="Years Remaining on Lease (Incl. Renewal)" />
+				<field name="customer.primarySite.leaseAmtProposed" label="Lease Amount - Proposed" />
+			</panel>
+
+			<data-table name="customer.sites" row="site"
+				label="Additional Counterparty Sites">
+				<columns>
+					<column name="site.siteName" label="Site Name" />
+					<column name="site.siteUse" label="Site Usage" />
+				</columns>
+				<edit-canvas id="customerSite">
+					<tabs>
+						<tab id="customer.sites.siteDetails" label="Site Details">
+							<panel id="customer.sites.siteInformation" label="Site Information">
+								<field name="site.siteName" label="Site Name" />
+								<field name="site.siteUse" label="Site Usage" />
+								<!-- add Site Usage -->
+							</panel>
+							<panel id="customer.sites.contactInformation" label="Contact Information">
+								<field name="site.siteDetails.homePhone" label="Home/Business Phone" />
+								<field name="site.siteDetails.mobilePhone" label="Mobile/Alt Phone" />
+								<field name="site.siteDetails.email" label="Primary Email *" />
+								<field name="site.siteDetails.businessFax" label="Fax" />
+								<data-table name="site.siteDetails.addresses" row="siteContact"
+									label="Address">
+									<columns>
+										<column name="siteContact.address1" label="Address 1" />
+										<column name="siteContact.address2" label="Address 2" />
+										<column name="siteContact.city" label="City" />
+										<column name="siteContact.country" label="Country" />
+										<column name="siteContact.stateProvince" label="State" />
+										<column name="siteContact.postalCode" label="Postal Code" />
+										<column name="siteContact.use" label="Usage" />
+									</columns>
+								</data-table>
+							</panel>
+		
+							<panel id="customer.sites.OfficeDetails" label="Office Details">
+								<field name="site.officeSize" label="Office Size (Sq Ft.) - Proposed" />
+								<field name="site.curOfficeHoursDayPerWeek" />
+								<field name="site.newOfficeHoursDayPerWeek" />
+								<field name="site.leasePayment" />
+								<field name="site.leaseExpirDttm" />
+								<field name="site.nonCompeteTerms" label="Non-Compete Terms at least 3 Years / 10 miles ?" />
+								<field name="site.officeComputerized" label="Is the Office Computerized?" />
+								<field name="site.yrsRemainLease" label="Years Remaining on Lease (Incl. Renewal)" />
+								<field name="site.leaseAmtProposed" label="Lease Amount - Proposed" />
+							</panel>
+							<data-table name="site.contacts" row="custContact"
+								label="Counterparty Contacts">
+								<columns>
+									<column name="custContact.firstName" />
+									<column name="custContact.lastName" />
+									<column name="custContact.homePhone" />
+									<column name="custContact.mobilePhone" />
+									<column name="custContact.businessPhone" />
+									<column name="custContact.email" />
+								</columns>
+							</data-table>
+						</tab>
+						<tab id="customer.sites.practiceInfo" label="Practice Information">
+							<panel id="site.PracticeInformation" label="General Practice Information">
+										<field name="site.practiceInformation.yearsInPractice" label="Years In Practice"/>
+										<field name="site.practiceInformation.typeOfSpecialist" label="Type Of Specialist"/>
+										<field name="site.practiceInformation.yrCompletedResidency" label="Year Completed Residency"/>
+										<field name="site.practiceInformation.borrowerOwnPriorPrac"/>
+										<field name="site.practiceInformation.borrowerOwnCurrentPrac"/>
+										<field name="site.practiceInformation.doctorHaveLocal"/>
+										<field name="site.practiceInformation.yrsOfExperience" label="Years Of Experience"/>
+										<field name="site.practiceInformation.howLongdocAssoWithSector" label="How long has the doctor been associating within the sector field?"/>
+										<field name="site.practiceInformation.yrsPreviousExp" label="Years Previous Experience - Non Citizen"/>
+										<field name="site.practiceInformation.asOfDate" label="As Of Date"/>
+										<field name="site.practiceInformation.borrowrRelocating" label="Is the borrower relocating for this purchase (PSA Only)?"/>
+										<field name="site.practiceInformation.currentPrevPractice" label="Current/Previous Practice Owner?"/>
+										<field name="site.practiceInformation.malPracticeClaims" label="Has the doctor had any malpractice claims?"/>
+							</panel>
+							
+							<panel id="site.MedicalSiteDetails" label="Medical Site Details">
+											<field name="site.practiceInformation.noOfOperatoriesEqvpd" label=" Number Of Operatories - Equipped"/>
+											<field name="site.practiceInformation.noOfOperatoriesEqvpdPsd"  label=" Number Of Operatories - Equipped (Proposed)"/>   
+											<field name="site.practiceInformation.monthlyOprtryRvnu" label=" Monthly Operatory Revenue"/>
+											<field name="site.practiceInformation.noExamRoom" label="Number Of Exam Rooms (Current)"/>
+											<field name="site.practiceInformation.equipOpsExamLanesProposed" label="# Equip Ops/Exams/Lanes - Proposed"/>
+											<field name="site.practiceInformation.noOfTreatementRooms" label="Number of Treatement Rooms"/>
+											<field name="site.practiceInformation.revenuesSf" label="Revenues/SF"/>
+											<field name="site.practiceInformation.amtOfMalpracticeCoverage" label="Amount of Malpractice Coverage"/>
+											<field name="site.practiceInformation.noOfSurgProcRoomsProposed" label="Number of Surgery/Procedure Rooms (Proposed)"/>
+											<field name="site.practiceInformation.noOfActivePatients" label=" # Of Active Patients"/>
+											<field name="site.practiceInformation.noOfnewPatientsPerMth" label="# New Patients Per Month"/>
+											<field name="site.practiceInformation.buyerPerfProcd" label="Can Buyer Perform All Procedures?"/>
+											<field name="site.practiceInformation.ageOfEqupmentYears" label="Age of Equipment (Years)"/>
+											<field name="site.practiceInformation.conditionOfEquipment" label="Condition of Equipment"/>
+											<field name="site.practiceInformation.equipmentUpgradesNeeded" label="Equipment Upgrades Needed"/>
+											<field name="site.practiceInformation.hospitalDisPrac"/>
+											<field name="site.practiceInformation.officeElecMedicalRecd"/>
+							</panel>
+				
+							<panel id="site.VeterniarySiteDetails" label="Veterinary Site Details">
+										<field name="site.practiceInformation.noOfSurgeryRoom"/>
+										<field name="site.practiceInformation.noOfTreatementTables" label="No Of Treatment Tables (Proposed)"/>
+										<field name="site.practiceInformation.noDarkRoom" label="Number of Dark Rooms"/>
+										<field name="site.practiceInformation.noDarkRoomProposed" label="Number of Dark Rooms (Proposed)"/>
+										<field name="site.practiceInformation.noXrayRoom" label="Number of Xray Rooms"/>
+										<field name="site.practiceInformation.noXrayRoomProposed" label="Number of Xray Rooms (Proposed)"/>
+										<field name="site.practiceInformation.noCagesRun" label="Number of Cages / Runs"/>
+										<field name="site.practiceInformation.noCagesRunProposed" label="Number of Cages / Runs (Proposed)"/>
+										<field name="site.practiceInformation.avrgTransactionCharge" label="Average transaction charge"/>
+										<field name="site.practiceInformation.perOfSmallAnimalProcedure" label="What percentage of Small Animal procedures are performend in the surrounding municipality? (VET)"/>
+										<field name="site.practiceInformation.perOfOthrAnimalProcedure" label="What percentage of Other Animal procedures are performend in the surrounding municipality? (VET)"/>
+							</panel>
+							<panel id="site.customerInformation.siteCollection" label="Site Collection Details">
+										<field name="site.practiceInformation.collectionPctPayments"/>
+										<field name="site.practiceInformation.collectionPctPpo"/>
+										<field name="site.practiceInformation.collectionPctHmo"/>
+										<field name="site.practiceInformation.collectionMedicare"/>
+										<field name="site.practiceInformation.collectionMedic"/>
+										<field name="site.practiceInformation.collectionCaps"/>
+										<field name="site.practiceInformation.collectionPctOther"/>
+							</panel>
+							<panel id="site.practiceInformation.doctorprocedure" label="Doctor Procedures">
+								<data-table name="site.practiceInformation.doctorProcs" row="docProc" label="Doctor Procedure">
+										<columns>
+											<column name="docProc.sector"/>
+											<column name="docProc.doctorProcedure" label="Procedure Name"/>
+											<column name="docProc.doctorProcedureProd"/>
+										</columns>
+								</data-table>
+							</panel>
+							<data-table name="site.practiceInformation.locationStaffPlans" row="locationStaffing" label="Staffing Plans">
+								<columns>
+									<column name="locationStaffing.staffPosition"/>
+									<column name="locationStaffing.staffPlanCurrent"/>
+									<column name="locationStaffing.staffPlanProposed"/>
+								</columns>
+							</data-table>					
+						</tab>
+					</tabs>					
+					<!--   Add Comment Panel for Customer Site-->
+				</edit-canvas>
+
+			</data-table>
+			<data-table name="customer.commentGroup.comments" row="commentCustomer"
+				label="Comments" sortBy="comment.indexNumber" sortOrder="descending">
+				<columns>
+					<column name="commentCustomer.indexNumber" label="No."/>
+					<column name="commentCustomer.commentType.value" label="Comment Type"/>
+					<column name="commentCustomer.metaInfo.createdByUser" label="Author"/>
+					<column name="commentCustomer.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+					<column name="commentCustomer.metaInfo.createdAt" label="Date Added"/>
+					<column name="commentCustomer.commentText" label="Text"/>
+				</columns>
+				<quickedit-canvas id="customerComments">
+						<panel id="comment.enterComment">
+							<field name="comment.commentType" label="Comment Type*"/>
+							<field name="comment.commentText" label="Text*"/>
+							<field />
+						</panel>
+				</quickedit-canvas>
+			</data-table>
+
+
+		</tab>
+		
+        <tab id="tab.Customer.csfp" label="Assets">
+          <panel id="Customer.CSFP.summary" label="Assets/Liabilities Summary" cols="1" orientation="horizontal">
+            <section id="Customer.CSFP.summary.assets" cols="1">
+              <field name="request.assetLiability.totalAssetValue" label="Total Assets"/>
+            </section>
+            <section id="Customer.CSFP.summary.liabilities" cols="1">
+              <field name="Customer.assetLiability.totalLiabilityBalance" label="Total Liabilities"/>
+              <field name="Customer.assetLiability.netWorth" label="Net Worth"/>
+            </section>            
+          </panel>
+          
+          <panel id="Customer.CSFP.assetsLiabilities" label="Assets and Liabilities" orientation="horizontal">
+            <section id="Customer.CSFP.assets" label="Assets">
+              <data-table name="Customer.assetLiability.assetRealEstates" row="assetRealEstate" label="Real Estate" >
+                <columns>
+                  <column name="assetRealEstate.borrower" label="Borrower"/>
+                  <column name="assetRealEstate.address.address1" label="Street"/>
+                  <column name="assetRealEstate.address.address2" label="Address Line2"/>
+                  <column name="assetRealEstate.address.city" label="City"/>
+                  <column name="assetRealEstate.address.stateProvince" label="State"/>
+                  <column name="assetRealEstate.address.country" label="Country"/>
+                  <column name="assetRealEstate.address.postalCode" label="Postal Code"/>
+                  <column name="assetRealEstate.assetValue" label="Value" footer-name="request.assetLiability.totalREValue" targetFields="Customer.CSFP.summary,Customer.assetLiability.assetRealEstates"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.assetLiability.assetMotorVechiles" row="assetMotorVechile" label="Motor Vehicles" >
+                <columns>
+                  <column name="assetMotorVechile.borrower" label="Borrower"/>
+                  <column name="assetMotorVechile.description" />
+                  <column name="assetMotorVechile.assetValue" label="Value" footer-name="Customer.assetLiability.totalMVValue" footer-label="Total" targetFields="Customer.CSFP.summary,Customer.assetLiability.assetMotorVechiles"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.assetLiability.assetSecurities" row="assetSecurity" label="Shares, Cash in bank and other Investments" >
+                <columns>
+                  <column name="assetSecurity.borrower" label="Borrower"/>
+                  <column name="assetSecurity.description" />
+                  <column name="assetSecurity.assetValue" label="Value" footer-name="Customer.assetLiability.totalSecuritiesValue" targetFields="Customer.CSFP.summary,Customer.assetLiability.assetSecurities"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.assetLiability.assetPersonalProperties" row="assetPersonalProperty" label="Contents Of Home" >
+                <columns>
+                  <column name="assetPersonalProperty.borrower" label="Borrower"/>
+                  <column name="assetPersonalProperty.contents" label="Contents"/>
+                  <column name="assetPersonalProperty.assetValue" label="Value" footer-name="Customer.assetLiability.totalPPValue" targetFields="Customer.CSFP.summary,Customer.assetLiability.assetPersonalProperties"/>
+                </columns>
+              </data-table>
+            </section>
+            <section id="Customer.CSFP.liabilities" label="Liabilities">
+                <data-table name="Customer.assetLiability.liabilityMortgages" row="liabilityMortgage" label="Mortgage" >
+                  <columns>
+                    <column name="liabilityMortgage.borrower" label="Borrower"/>
+                    <column name="liabilityMortgage.mortgagee" label="Bank"/>
+                    <column name="liabilityMortgage.limit" label="Limit" footer-name="Customer.assetLiability.totalMortgageLimit" targetFields="Customer.CSFP.summary,Customer.assetLiability.liabilityMortgages"/>
+                    <column name="liabilityMortgage.balance" label="Balance" footer-name="Customer.assetLiability.totalMortgageBalance" targetFields="Customer.CSFP.summary,Customer.assetLiability.liabilityMortgages"/>
+                  </columns>
+                </data-table>
+                <data-table name="Customer.assetLiability.liabilityLoans" row="liabilityLoan" label="Other Loans, store accounts &amp; credit cards" >
+                  <columns>
+                    <column name="liabilityLoan.borrower" label="Borrower"/>
+                    <column name="liabilityLoan.loanType" label="Loan Type" />
+                    <column name="liabilityLoan.loanFor" label="For" />
+                    <column name="liabilityLoan.loanLender" label="Lender" />
+                    <column name="liabilityLoan.limit" label="Limit" footer-name="Customer.assetLiability.totalLoanLimit" targetFields="Customer.CSFP.summary,Customer.assetLiability.liabilityLoans"/>
+                    <column name="liabilityLoan.balance" label="Balance" footer-name="Customer.assetLiability.totalLoanBalance" targetFields="Customer.CSFP.summary,Customer.assetLiability.liabilityLoans"/>
+                  </columns>
+                </data-table> 
+            </section>
+          </panel>
+          
+        </tab>
+        <tab label="Income" id="tab.Customer.capacity">
+        
+          <panel id="Customer.Capacity.summary" label="Income/Expenses Summary" orientation="horizontal">
+            <section id="Customer.Capacity.summary.income" cols="1">
+              <field name="Customer.incomeExpense.totalIncome" label="Total Income"/>
+            </section>
+            <section id="Customer.Capacity.summary.expense" cols="1">
+              <field name="Customer.incomeExpense.totalExpense" label="Total Expense"/>
+            </section>            
+            
+          </panel>        
+          <panel id="Customer.Capacity.incomeExpenses" label="Income and Expenses"  orientation="horizontal">
+            <section id="Customer.Capacity.income" label="Income">
+              <data-table name="Customer.incomeExpense.salaries" row="salary" label="Monthly Income">            
+                <columns>
+                  <column name="salary.borrower" label="Borrower"/>
+                  <column name="salary.source" label="Source"/>
+                  <column name="salary.grossIncome" label="Gross Income" footer-name="Customer.incomeExpense.totalSalaryGrossIncome" targetFields="Customer.Capacity.summary,Customer.incomeExpense.salaries"/>
+                  <column name="salary.netIncome" label="Net Income" footer-name="Customer.incomeExpense.totalSalaryNetIncome" targetFields="Customer.Capacity.summary,Customer.incomeExpense.salaries"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.incomeExpense.dividends" row="dividend" label="Dividends">            
+                <columns>
+                  <column name="dividend.borrower" label="Borrower"/>
+                  <column name="dividend.nameOfListing" label="Name Of Listing"/>
+                  <column name="dividend.netIncome" label="Monthly Amount" footer-name="Customer.incomeExpense.totalDividendIncome" targetFields="Customer.Capacity.summary,Customer.incomeExpense.dividends"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.incomeExpense.rentalIncomes" row="rentalIncome" label="Rental Income">            
+                <columns>
+                  <column name="rentalIncome.borrower" label="Borrower"/>
+                  <column name="rentalIncome.rentalAddress" label="address"/>
+                  <column name="rentalIncome.rentPaid" label="Rent Paid" footer-name="Customer.incomeExpense.totalRentIncome" targetFields="Customer.Capacity.summary,Customer.incomeExpense.rentalIncomes"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.incomeExpense.governmentalIncomes" row="governmentalIncome" label="Government Income">            
+                <columns>
+                  <column name="governmentalIncome.borrower" label="Borrower"/>
+                  <column name="governmentalIncome.govtIncomeType" label="Government Income Type"/>
+                  <column name="governmentalIncome.netIncome" label="Monthly Income" footer-name="Customer.incomeExpense.totalGovtIncome" targetFields="Customer.Capacity.summary,Customer.incomeExpense.governmentalIncomes"/>
+                </columns>
+              </data-table>
+            </section>
+            <section id="Customer.Capacity.expense" label="expense">         
+              <data-table name="Customer.incomeExpense.mortgages" row="mortgage" label="Mortgage(s)">            
+                <columns>
+                  <column name="mortgage.borrower" label="Borrower"/>
+                  <column name="mortgage.mortgagee" label="Bank"/>
+                  <column name="mortgage.monthlyPayment" label="Monthly Repayment" footer-name="Customer.incomeExpense.totalMortgagePayment" targetFields="Customer.Capacity.summary,Customer.incomeExpense.mortgages"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.incomeExpense.loans" row="loan" label="Other Loans, store accounts &amp; credit cards">           
+                <columns>
+                  <column name="loan.borrower" label="Borrower"/>
+                  <column name="loan.loanType" label="Loan Type"/>
+                  <column name="loan.loanFor" label="For"/>
+                  <column name="loan.loanLender" label="Lender"/>
+                  <column name="loan.balancePayment" label="Monthly Repayment" footer-name="Customer.incomeExpense.totalLoanPayment" targetFields="Customer.Capacity.summary,Customer.incomeExpense.loans"/>
+                </columns>
+              </data-table>
+              <data-table name="Customer.incomeExpense.miscExpenses" row="miscExpense" label="Misc Expenses">            
+                <columns>
+                  <column name="miscExpense.borrower" label="Borrower"/>
+                  <column name="miscExpense.miscExpenseType" label="Misc Expense"/>
+                  <column name="miscExpense.balancePayment" label="Monthly Expense" footer-name="Customer.incomeExpense.totalMiscPayment" targetFields="Customer.Capacity.summary,Customer.incomeExpense.miscExpenses"/>
+                </columns>
+              </data-table>
+            </section>
+          </panel>
+        </tab>
+
+    <tab id="tab.Customer.documents">
+          <data-table name="Customer.documentGroup.uploadedDocuments" row="document" label="Uploaded Documents" sortBy="document.documentCategory" sortOrder="ascending">
+            <columns>
+              <column name="document.documentName" label="Filename"/>
+              <column name="document.uploadedStream" label="File" incell-edit="true" targetFields="Customer.documentGroup.uploadedDocuments"/>
+              <column name="document.versionNumber" label="Version"/>
+              <column name="document.documentClass" label="Group"/>
+              <column name="document.documentCategory" label="Category"/>
+              <column name="document.documentType" label="Type"/>             
+              <column name="document.relatedTo"/>
+              <column name="document.documentStatus" label="Status"/>
+              <column name="document.uploadDttm" label="Uploaded Date and Time"/>
+              <column name="document.uploadedStreamBy" label="Uploaded By"/>
+              <column name="document.checkout.checkedOutByUser" label="Checked Out By"/>
+              <column name="document.checkout.checkedOutAt" label="Checked Out At "/>
+              <column name="document.description" label="Description"/>
+            </columns>
+            <quickedit-canvas>
+              <panel id="quick.Customer.uploadedDocEdit" label="Document Details">
+                <field name="document.uploadedStream" label="File"/>
+                <field name="document.documentClass" label="Group" targetFields="Customer.documentGroup.uploadedDocuments"/>
+                <field name="document.documentCategory" label="Category" targetFields="Customer.documentGroup.uploadedDocuments"/>
+                <field name="document.documentType" label="Type" />
+                <field name="document.documentStatus" label="Status"/>
+                <field name="document.description" label="Description"/>
+              </panel>
+            </quickedit-canvas>
+            <edit-canvas id="uploadedDocEdit">
+              <tabs>
+                <tab id="Customer.uploadedDocument" label="Upload Document">
+                  <panel id="Customer.uploadDocGroupCatType" label="Document Details">
+                    <field name="document.uploadedStream" label="File"/>
+                    <field name="document.documentClass" label="Group" targetFields="Customer.uploadDocGroupCatType"/>
+                    <field name="document.documentCategory" label="Category" targetFields="Customer.uploadDocGroupCatType"/>
+                    <field name="document.documentType" label="Type" />
+                    <field name="document.documentStatus" label="Status"/>
+                    <field name="document.description" label="Description"/>
+                    <field name="document.metaInfo.createdByUser" label="Uploaded By"/>
+                  </panel>
+                  <data-table name="document.commentGroup.comments" row="commentDocumentCommentGroup" sortBy="comment.indexNumber" sortOrder="descending">
+                    <columns>
+                      <column name="commentDocumentCommentGroup.indexNumber" label="No."/>
+                      <column name="commentDocumentCommentGroup.commentType.value" label="Comment Type"/>
+                      <column name="commentDocumentCommentGroup.metaInfo.createdByUser" label="Author"/>
+                      <column name="commentDocumentCommentGroup.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+                      <column name="commentDocumentCommentGroup.metaInfo.createdAt" label="Date Added"/>
+                      <column name="commentDocumentCommentGroup.commentText" label="Text"/>                 
+                    </columns>
+                    <quickedit-canvas id="uploadedDocComments">
+                      <panel id="comment.enterComment">
+                        <field name="comment.commentType" label="Comment Type*"/>
+                        <field name="comment.commentText" label="Text*"/>
+                        <field />
+                      </panel>
+                    </quickedit-canvas>
+                  </data-table>
+                  <panel id="Customer.uploadDocumentRelatedTo" label="Document Related To">
+                    <!-- <field name="document.requestLevel" label="Application Level Document"/> -->
+                    <!-- <field name="document.associatedFacilities" label="Product Level Document"/> -->
+                    <field name="document.associatedCustomers" label="Counterparty"/>
+                  </panel>
+                    
+                  <data-table name="document.versions" row="uploadedVersion" label="Document History">
+                    <columns>
+                      <column name="uploadedVersion.documentName" label="Filename"/>
+                      <column name="uploadedVersion.uploadedStream" label="File"/>
+                      <column name="uploadedVersion.versionNumber" label="Version"/>
+                      <column name="uploadedVersion.documentClass" label="Group"/>
+                      <column name="uploadedVersion.documentCategory" label="Category"/>
+                      <column name="uploadedVersion.documentType" label="Type"/>
+                      <column name="uploadedVersion.relatedTo"/>
+                      <column name="uploadedVersion.uploadedStreamBy" label="Uploaded By"/>                     
+                      <column name="uploadedVersion.uploadDttm" label="Uploaded Date and Time"/>
+                      <column name="uploadedVersion.documentStatus" label="Status"/>
+                      <column name="document.checkout.checkedOutByUser" label="Checked Out By"/>
+                      <column name="document.checkout.checkedOutAt" label="Checked Out At "/>                     
+                      <column name="uploadedVersion.description" label="Description"/>
+                    </columns>                  
+                  </data-table>
+                </tab>
+              </tabs>
+              <commands>
+                 <command id="Checkout_Document" name="Checkout" action="DocumentCheckout" type="businessOp"/>
+                 <command id="Checkin_Document" name="Checkin" action="DocumentCheckin" type="businessOp"/>
+              </commands>
+            </edit-canvas>
+          </data-table>
+          <data-table name="Customer.documentGroup.commentGroup.comments" row="commentRequestDocumentGroup" sortBy="comment.indexNumber" sortOrder="descending">
+            <columns>
+              <column name="commentRequestDocumentGroup.indexNumber" label="No."/>
+              <column name="commentRequestDocumentGroup.commentType.value" label="Comment Type"/>
+              <column name="commentRequestDocumentGroup.metaInfo.createdByUser" label="Author"/>
+              <column name="commentRequestDocumentGroup.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+              <column name="commentRequestDocumentGroup.metaInfo.createdAt" label="Date Added"/>
+              <column name="commentRequestDocumentGroup.commentText" label="Text"/>               
+            </columns>
+            <quickedit-canvas id="rqeustApprovalComments">
+              <panel id="comment.enterComment">
+                <field name="comment.commentType" label="Comment Type*"/>
+                <field name="comment.commentText" label="Text*"/>
+                <field />
+              </panel>
+            </quickedit-canvas>
+          </data-table>
+        </tab>    
+    
+		<tab id="tab.customerExposureLimits" label="Exposure Limits">
+			<data-table name="customer.customerExposureLimits" row="exposure" label="Exposure Limits" >
+				<columns>
+					<column name="exposure.productType" label="Product Type" footer-label="Gross Exposure"/>
+					<column name="exposure.exposureLimitAmt" label="Exposure Limit" footer-name="Customer.totalExposureLimitAmt"/>
+					<column name="exposure.expiryDate" label="Next Renewal Date"/>
+					<column name="exposure.exposureAmt" label="Exposure Amount" footer-name="Customer.totalExposureAmt"/>
+					<column name="exposure.exposureAsofDate" label="Exposure Date"/>													
+					<column name="exposure.volatility" label="Volatility"/>
+				</columns>
+				<edit-canvas>
+					<panel id="customer.customerExposureLimits.editcanvas">
+						<field name="exposure.productType" label="Product Type" />
+						<field name="exposure.exposureLimitAmt" label="Exposure Limit" />
+						<field name="exposure.expiryDate" label="Next Renewal Date"/>
+						<field name="exposure.exposureAmt" label="Exposure Amount" />
+						<field name="exposure.exposureAsofDate" label="Exposure Date"/>													
+						<field name="exposure.volatility" label="Volatility"/>					
+					</panel>
+					<data-table name="exposure.versions" row="expVersion" label="Exposure History">
+						<columns>
+							<column name="expVersion.exposureLimitAmt" label="Exposure Limit" />
+							<column name="expVersion.expiryDate" label="Next Renewal Date"/>
+							<column name="expVersion.exposureAmt" label="Exposure Amount" />
+							<column name="expVersion.exposureAsofDate" label="Exposure Date"/>													
+							<column name="expVersion.volatility" label="Volatility"/>
+						</columns>
+					</data-table>
+				</edit-canvas>
+			</data-table>
+			<data-table name="customer.negotiableSecurities" row="security" label="Collateral Grade Assets" >
+				<columns>
+					<column name="security.negotiableSecurityType" label="Security Type" footer-label="Net Exposure"/>
+					<column name="security.description" />
+					<column name="security.quantity" />
+					<column name="security.value" footer-name="Customer.totalNegotiableSecurities"/>
+					<column name="security.haircut"/>	
+					<column name="security.valuationDate" />
+				</columns>
+				<edit-canvas>
+					<panel id="customer.negotiableSecurities.quickedit">
+						<field name="security.negotiableSecurityType" label="Security Type" />
+						<field name="security.identifier" />
+						<field name="security.description" />
+						<field/>
+						<field name="security.quantity" />
+						<field name="security.value" />
+						<field name="security.haircut" />
+						<field name="security.valuationDate" />
+					</panel>
+					<data-table name="security.versions" row="secVersion" label="Security History">
+						<columns>
+							<column name="secVersion.negotiableSecurityType" label="Security Type"/>
+							<column name="secVersion.description" />
+							<column name="secVersion.quantity" />
+							<column name="secVersion.value" />
+							<column name="secVersion.haircut"/>	
+							<column name="secVersion.valuationDate" />
+						</columns>
+					</data-table>
+				</edit-canvas>
+			</data-table>						
+			<panel id="customer.exposureSummary">
+				<field name="customer.securitiesLendingExposure.exposureAmt" label="Securities Lending"/>
+				<field name="customer.reposExposure.exposureAmt" label="Repos (+)"/>
+				<field name="customer.reverseReposExposure.exposureAmt" label="Reverse Repos (+)"/>
+				<field name="customer.placementsExposure.exposureAmt" label="Placements (+)"/>
+				<field name="customer.fedFundsExposure.exposureAmt" label="Fed Funds (+)"/>
+				<field name="customer.settlementExposure.exposureAmt" label="FX Settlement and FX Pre-Settlement (+)"/>
+				<field name="customer.safekeepingExposure.exposureAmt" label="Safekeeping (+)"/>
+				<field name="customer.nostroBalanceExposure.exposureAmt" label="Nostro Balances / Due From (+)"/>
+				<field name="customer.interestRateDerivativesExposure.exposureAmt" label="Interest Rate Derivatives (+)"/>
+				<field name="customer.creditDefaultSwapsExposure.exposureAmt" label="Credit Default Swaps (+)"/>
+				<field name="customer.coveredBondsExposure.exposureAmt" label="Covered Bonds (+)"/>
+				<field name="customer.corporateDebtExposure.exposureAmt" label="Corporate Debt (+)"/>
+				<field name="customer.fxInOutSwapsExposure.exposureAmt" label="FX In/Out Swap (+)"/>
+				<field name="customer.unallocatedLimitsExposure.exposureAmt" label="Unallocated Limits (+)"/>
+				<field name="customer.countryLimitsExposure.exposureAmt" label="Country Limits (+)"/>				
+				<field name="customer.totalExposureAmt" label="Gross Exposure"/>
+				<field />				
+				<field name="customer.unusedCreditLines" label="Unused Credit Lines" />
+				<field name="customer.eligibleGuarantees" label="Eligible Guarantees (-)" />
+				<field name="customer.eligibleEquityCreditDer" label="Eligible Equity and Credit Derivatives (-)" />
+				<field name="customer.otherEligigbleHedges" label="Other Eligible Hedges (-)" />
+				<field name="customer.effectOfBilateralAgreements" label="Effect of Billateral Agreements (-)" />
+				<field name="customer.totalNegotiableSecurities" label="Collateral Grade Assets (-)" />
+				<field />				
+				<field />
+				<field />				
+				<field />
+				<field />				
+				<field />
+				<field />				
+				<field />
+				<field />				
+				<field name="customer.totalEligibleCollateral" label="Eligble Collateral (-)" />
+				<field name="customer.netExposure" label="NetExposure" />
+				
+				
+								
+			</panel>
+		</tab>
+	</tabs>
+
+<beans>
+		<bean name="customer" type="com.thirdpillar.codify.loanpath.model.Customer" />
+	</beans>
+</canvas>

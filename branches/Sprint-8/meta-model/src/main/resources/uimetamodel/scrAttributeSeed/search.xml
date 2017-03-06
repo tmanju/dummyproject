@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="scrAttributeSeed" type="search" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="scrAttributeSeed.name.Search"  label="Scoring Attribute Search">
+		
+		    <field name="scrAttributeSeed.name" label="Name"/>
+			<field name="scrAttributeSeed.description"/>
+			<field name="scrAttributeSeed.applicability" label="Applicability"/>
+	    	<field name="scrAttributeSeed.effectiveFrom" label="Effective From"/>
+			<field name="scrAttributeSeed.effectiveTo" label="Effective To"/>
+				
+			
+	</panel>
+	
+
+
+	<beans>
+		<bean name="scrAttributeSeed" type="com.thirdpillar.codify.loanpath.model.ScrAttributeSeed" />
+	</beans>
+</canvas>

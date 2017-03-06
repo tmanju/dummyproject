@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	
+	<permission  name="Super Administrator" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+	</permission>
+	
+</permissions>

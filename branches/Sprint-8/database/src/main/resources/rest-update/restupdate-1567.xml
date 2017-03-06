@@ -1,0 +1,10 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<taskConfiguration>
+		<taskDescription>@{coaFacility.request.requestName}: Application @{coaFacility.request.refNumber} (Requested Amount: @{coaFacility.requestedLoanAmtDer}) is Pending Verify Conditions Precedent.</taskDescription> 
+		<taskName>Verify Conditions Precedent</taskName> 
+		<taskSummary>@{coaFacility.request.requestName}: Application @{coaFacility.request.refNumber} (Requested Amount: @{coaFacility.requestedLoanAmtDer}) is Pending Verify Conditions Precedent.</taskSummary>
+		<taskKey>REQUEST_CLEAR_COA_TASK_KEY</taskKey> 
+	</taskConfiguration>
+</list>
+</mod:sr.addEntityRequest>

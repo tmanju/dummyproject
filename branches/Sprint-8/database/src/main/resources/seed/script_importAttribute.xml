@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<operation action="upsert" profileName="Full" type="com.thirdpillar.codify.loanpath.model.AttributeType" source="c:/Temp/attributes1.xml"/>
+	<!--<operation action="upsert" profileName="Full" type="com.thirdpillar.codify.loanpath.model.AttributeDataType" source="c:/Temp/attributes2.xml"/>
+	<operation action="upsert" profileName="Full" type="com.thirdpillar.codify.loanpath.model.Attribute" source="c:/Temp/attributes3.xml"/>-->
+</operations>

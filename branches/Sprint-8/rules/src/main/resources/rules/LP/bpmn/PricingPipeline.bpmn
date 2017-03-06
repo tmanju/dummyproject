@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.PricingOption" />
+  <itemDefinition id="_instructionsItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_parentProcessNameItem" structureRef="String" />
+  <itemDefinition id="_paymentFrequencyItem" structureRef="String" />
+  <itemDefinition id="_advanceArrearsItem" structureRef="String" />
+  <itemDefinition id="_integrationResultStatusItem" structureRef="String" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.PricingOption" />
+  <itemDefinition id="_3-instructionsItem" structureRef="java.util.HashMap" />
+  <itemDefinition id="_3-parentProcessNameItem" structureRef="String" />
+  <itemDefinition id="_3-paymentFrequencyItem" structureRef="String" />
+  <itemDefinition id="_3-advanceArrearsItem" structureRef="String" />
+  <itemDefinition id="_3-integrationResultStatusItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="PricingPipeline" name="PricingPipeline" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Calendar" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="java.math.RoundingMode" />
+     <tns:import name="com.thirdpillar.foundation.service.workitems.WorkItemConstants" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.PricingOption" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.SolveFor" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Structure" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Asset" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.PaymentLine" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.SeasonalSchedule" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.MiscellaneousSchedule" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ResidualReference" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.util.StringUtils" />
+     <tns:import name="java.util.Calendar" />
+     <tns:import name="java.util.Date" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="instructions" itemSubjectRef="_instructionsItem"/>
+    <property id="parentProcessName" itemSubjectRef="_parentProcessNameItem"/>
+    <property id="paymentFrequency" itemSubjectRef="_paymentFrequencyItem"/>
+    <property id="advanceArrears" itemSubjectRef="_advanceArrearsItem"/>
+    <property id="integrationResultStatus" itemSubjectRef="_integrationResultStatusItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_3" name="Pricing Integration Task" tns:taskName="IntegrationTask" >
+      <ioSpecification>
+        <dataInput id="_3_inputInput" name="input" />
+        <dataInput id="_3_entityInput" name="entity" />
+        <dataInput id="_3_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_3_entityOutput" name="entity" />
+        <dataOutput id="_3_ResultStatusOutput" name="ResultStatus" />
+        <inputSet>
+          <dataInputRefs>_3_inputInput</dataInputRefs>
+          <dataInputRefs>_3_entityInput</dataInputRefs>
+          <dataInputRefs>_3_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_entityOutput</dataOutputRefs>
+          <dataOutputRefs>_3_ResultStatusOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>instructions</sourceRef>
+        <targetRef>_3_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">pricingClient</from>
+          <to xsi:type="tFormalExpression">_3_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_ResultStatusOutput</sourceRef>
+        <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_4" name="ResetPricingOutput" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Reset Pricing Outputs.. Clear Existing / Initailize if First time");
+
+PricingOption option = (PricingOption) context.getVariable("contextEntity");
+// clear out the existing payment summary schedules and amortization schedules
+if(option != null &amp;&amp; option.getStructure() != null){
+	if(option.getStructure().getPaymentSummarySchedules() != null){
+		option.getStructure().getPaymentSummarySchedules().clear();
+	}
+	if(option.getStructure().getAmortizationSchedules() != null){
+		option.getStructure().getAmortizationSchedules().clear();
+	}
+	if(option.getStructure().getCalculatedRateFactor() == null){
+		option.getStructure().setCalculatedRateFactor(new BigDecimal("0"));
+	}
+	if(option.getStructure().getCalculatedYield() == null){
+		option.getStructure().setCalculatedYield(new BigDecimal("0"));
+	}
+	if(option.getStructure().getCalculatedfmvCapYield() == null){
+		option.getStructure().setCalculatedfmvCapYield(new BigDecimal("0"));
+	}
+	if(option.getStructure().getFinancedAmount() == null){
+		option.getStructure().setFinancedAmount(new BigDecimal("0"));
+	}
+	if(option.getStructure().getCustomerRate() == null){
+		option.getStructure().setCustomerRate(new BigDecimal("0"));
+	}
+	if(option.getStructure().getActualBasePayment() == null){
+		option.getStructure().setActualBasePayment(new BigDecimal("0"));
+	}			
+	if(option.getQuoteAsset() != null){
+		if(option.getQuoteAsset().getCalcResidualRate() == null){
+			option.getQuoteAsset().setCalcResidualRate(new BigDecimal("0"));
+		}
+	}
+	option.setCalculatedStreamPct(new BigDecimal("0"));
+	option.setPvPaymentAmt(new BigDecimal("0"));
+	option.setPvPaymentAmtWithRenewals(new BigDecimal("0"));
+	option.setPvResidualPct(new BigDecimal("0"));
+	option.setPvRentAtCOF(new BigDecimal("0"));
+	option.setAverageLife(new BigDecimal("0"));
+	option.setAprRate(new BigDecimal("0"));
+	option.setImpliedYieldPreTaxPct(new BigDecimal("0"));
+	option.setImpliedYieldPct(new BigDecimal("0"));
+	
+	// set contract start date as the current date
+	Calendar contractStartDttm = Calendar.getInstance();
+	if(option.getStructure() != null &amp;&amp; option.getStructure().getContractStartDate() != null){
+	contractStartDttm.setTime(option.getStructure().getContractStartDate());
+	}
+	// compute extension term start date if externsion details are provided.extensionStartDate
+	if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getLeaseExtension() != null){
+		if(option.getStructure().getLeaseExtension().getExtensionTerm() != null){
+			contractStartDttm.add(Calendar.MONTH, option.getStructure().getTermInMonths().intValue());
+			option.getStructure().getLeaseExtension().setExtensionStartDate(contractStartDttm.getTime());
+		}
+	}
+}
+</script>
+    </scriptTask>
+    <scriptTask id="_6" name="PostProcessingScript" scriptFormat="http://www.java.com/java" >
+      <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
+PricingOption option = (PricingOption) context.getVariable("contextEntity");
+  if ("ERROR".equals(rStatus)) {
+    com.thirdpillar.codify.loanpath.model.AttributeChoice status=( com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key","PRICING_OPTION_STATUS_PENDING");
+ 	 option.setPricingOptionStatus(status);
+ }else{
+     com.thirdpillar.codify.loanpath.model.AttributeChoice status=( com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key","PRICING_OPTION_STATUS_PRICED");
+ 	 option.setPricingOptionStatus(status);
+ }</script>
+    </scriptTask>
+    <exclusiveGateway id="_7" name="Gateway" gatewayDirection="Diverging" />
+    <scriptTask id="_8" name="PrepareSolveForAndInstructions" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Preparing SolveFor Instructions on Calculate Pricing Option From Quote...");
+
+PricingOption option = (PricingOption) context.getVariable("contextEntity");
+
+
+// see if we need to add additional instructions based on the input
+String instructionSet = "";
+
+// check if purchaseOption type is FMV. If true, populate FMV_CAP_YIELD to the instructionSet. in wintip we map fmvCapPct if its present if not use ratecardresidual
+/**
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPurchaseOption() != null){
+    String purchaseOptionType = option.getStructure().getPurchaseOption().getKey();
+    if(StringUtils.equals("PURCHASE_OPTION_FAIR_MARKET_VALUE",purchaseOptionType)  ){
+		if(StringUtils.isEmpty(instructionSet)){
+			instructionSet = "FMV_CAP_YIELD";
+		}else{
+    	    instructionSet = instructionSet + ",FMV_CAP_YIELD";
+		}
+    }
+}
+
+if(option != null &amp;&amp; option.getLeaseExtension() != null &amp;&amp; option.getLeaseExtension().getExtensionTerm() != null){
+		if(StringUtils.isEmpty(instructionSet)){
+			instructionSet = "LEASE_EXTENSION";
+		}else{
+    	    instructionSet = instructionSet + ",LEASE_EXTENSION";
+		}
+}
+*/
+
+HashMap&lt;String,Object&gt; instructionsMap = new HashMap&lt;String,Object&gt;();
+if(context.getVariable("instructions") != null){
+	instructionsMap =(HashMap&lt;String,Object&gt;)context.getVariable("instructions");
+}
+
+if(StringUtils.isNotEmpty(instructionSet)){
+	instructionsMap.put("ADDITIONAL_CALC_INSTRUCTIONS",instructionSet);
+}
+context.setVariable("instructions",instructionsMap);
+
+// calculate yield is default on wintip. clear solve for values so that we dont use those in calculation
+if(option != null &amp;&amp; option.getStructure() != null){
+	if(option.getSolveFor() != null){
+		SolveFor solveFor = option.getSolveFor();
+
+		//AttributeChoice solveForType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key", "SOLVE_FOR_TYPE_RESIDUAL");
+		solveFor.setType(null);
+
+		//AttributeChoice adjustType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key", "SOLVE_FOR_ADJUST_TYPE_YIELD");
+		solveFor.setAdjustType(null);
+
+		solveFor.setValue(null);
+	}
+}</script>
+    </scriptTask>
+    <exclusiveGateway id="_9" name="Gateway" gatewayDirection="Converging" />
+    <scriptTask id="_10" name="PreparePricingInput" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Prepare Pricing Input... Lookup values and Compute derived fields.. etc...");
+
+PricingOption option = (PricingOption) context.getVariable("contextEntity");
+
+if(option != null &amp;&amp; option.getStructure() != null){
+	Structure structure =  option.getStructure();
+	// set Actual Rate
+	if(structure.getRequestedRate() != null){
+		structure.setActualRate(structure.getRequestedRate());
+	}else if(structure.getCalculatedRate() != null){
+		structure.setActualRate(structure.getCalculatedRate());
+	}
+
+	// set Actual Rate Factor
+	if(structure.getRequestedRateFactor() != null){
+		structure.setActualRateFactor(structure.getRequestedRateFactor());
+	}else if(structure.getCalculatedRateFactor() != null){
+		structure.setActualRateFactor(structure.getCalculatedRateFactor());
+	}
+
+	// set Actual Index
+	if(structure.getRequestedIndex() != null){
+		structure.setActualIndex(structure.getRequestedIndex());
+	}else if(structure.getCalculatedIndex() != null){
+		structure.setActualIndex(structure.getCalculatedIndex());
+	}
+	
+	// set Actual Float Spread
+	if(structure.getRequestedFloatSpread() != null){
+		structure.setActualFloatSpread(structure.getRequestedFloatSpread());
+	}else if(structure.getCalculatedFloatSpread() != null){
+		structure.setActualFloatSpread(structure.getCalculatedFloatSpread());
+	}
+
+// set PRICING_MODE based on the product type. For now Hardcode to LEASE as CRE and other flows are not integrated
+HashMap&lt;String,Object&gt; instructionsMap = new HashMap&lt;String,Object&gt;();
+if(context.getVariable("instructions") != null){
+	instructionsMap =(HashMap&lt;String,Object&gt;)context.getVariable("instructions");
+}
+
+instructionsMap.put("PRICING_MODE","LEASING");
+
+context.setVariable("instructions",instructionsMap);	
+
+}
+</script>
+    </scriptTask>
+    <scriptTask id="_11" name="ValidatePricingInput" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Add Pricing Process validations here...");</script>
+    </scriptTask>
+    <callActivity id="_13" name="Residual Reference Lookup" calledElement="ResidualReferenceAssetDetailsFlow" >
+      <ioSpecification>
+        <dataInput id="_13_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_13_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_13_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <scriptTask id="_14" name="Determine Payment Schedule Type" scriptFormat="http://www.java.com/java" >
+      <script>PricingOption option = (PricingOption) context.getVariable("contextEntity");
+String result = "false";
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentSchedule().isSeasonal()){
+result="seasonal";
+}
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentSchedule().isIrregular()){
+result="irregular";
+}
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentSchedule().isRegular()){
+result="regular";
+}
+
+context.setVariable("paymentFrequency",result);
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_15" name="Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_17" name="Gateway" gatewayDirection="Converging" />
+    <scriptTask id="_16" name="Advance Seasonal Schedule Processing" scriptFormat="http://www.java.com/java" >
+      <script>PricingOption option = (PricingOption) context.getVariable("contextEntity");
+// Checking PaymentStart Date not null
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentStartDate() != null){
+//Setting StartDate/End-date variable
+Date contractStartDate=option.getStructure().getPaymentStartDate();
+Calendar endDttm= Calendar.getInstance();
+Calendar paymentLineStartDate = Calendar.getInstance();
+paymentLineStartDate.setTime(contractStartDate);
+endDttm.setTime(contractStartDate);
+endDttm.add(Calendar.MONTH, option.getStructure().getTerm());
+
+//clear pricingOption.Structure.paymentSchedule.paymentLines
+	if(option.getStructure().getPaymentSchedule().getPaymentLines() != null){
+		option.getStructure().getPaymentSchedule().getPaymentLines().clear();
+	}
+//Null check Structure &amp; Selected seasonal schedule months
+	if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; !option.getStructure().getSelectedSeasonalSchedules().isEmpty()){
+		EntityService es = new EntityService();
+	//selected months collection
+	Set&lt;Integer&gt; selectedPaymonths = new LinkedHashSet&lt;Integer&gt;();
+	//collecting months
+	for(SeasonalSchedule seasonalSchedule : option.getStructure().getSelectedSeasonalSchedules() ){
+		selectedPaymonths.add(seasonalSchedule.getMonth().getSequence());
+	}
+	//Loop over schedules
+	while(paymentLineStartDate.before(endDttm)){
+	//Create Payment Lines if condition matches
+	if(selectedPaymonths.contains(paymentLineStartDate.getTime().getMonth())){
+			PaymentLine paymentLine = (PaymentLine) es.createNew(PaymentLine.class);
+			paymentLine.setStartDttm(paymentLineStartDate.getTime());
+			paymentLine.setNumOfPayment(1);
+			paymentLine.setPaymentFrequency((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "PAYMENT_FREQUENCY_MONTHLY"));
+			option.getStructure().getPaymentSchedule().getPaymentLines().add(paymentLine);
+			
+			paymentLine.setPaymentSchedule(option.getStructure().getPaymentSchedule());
+	   }
+	    paymentLineStartDate.add(Calendar.MONTH,1);
+	 }
+	 if(!option.getStructure().getPaymentSchedule().getPaymentLines().isEmpty()){
+		PaymentLine lastPaymentLine = option.getStructure().getPaymentSchedule().getPaymentLines().get(option.getStructure().getPaymentSchedule().getPaymentLines().size() - 1);
+		 if(lastPaymentLine.getStartDttm().before(endDttm.getTime() ) ){
+			PaymentLine paymentLine = (PaymentLine) es.createNew(PaymentLine.class);
+			paymentLine.setStartDttm(endDttm.getTime());
+			paymentLine.setNumOfPayment(1);
+			paymentLine.setPaymentFrequency((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "PAYMENT_FREQUENCY_MONTHLY"));
+			option.getStructure().getPaymentSchedule().getPaymentLines().add(paymentLine);
+			paymentLine.setPaymentSchedule(option.getStructure().getPaymentSchedule());
+	 	}
+	 }
+   }
+}</script>
+    </scriptTask>
+    <scriptTask id="_19" name="Arrears Seasonal Schedule Processing" scriptFormat="http://www.java.com/java" >
+      <script>PricingOption option = (PricingOption) context.getVariable("contextEntity");
+// Checking PaymentStart Date not null
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentStartDate() != null){
+//Setting StartDate/End-date variable
+Date contractStartDate=option.getStructure().getPaymentStartDate();
+Calendar endDttm= Calendar.getInstance();
+Calendar paymentLineStartDate = Calendar.getInstance();
+paymentLineStartDate.setTime(contractStartDate);
+endDttm.setTime(contractStartDate);
+endDttm.add(Calendar.MONTH, option.getStructure().getTerm());
+EntityService es = new EntityService();
+
+//clear pricingOption.Structure.paymentSchedule.paymentLines
+	if(option.getStructure().getPaymentSchedule().getPaymentLines() != null){
+		option.getStructure().getPaymentSchedule().getPaymentLines().clear();
+	}
+//Null check Structure &amp; Selected seasonal schedule months
+	if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; !option.getStructure().getSelectedSeasonalSchedules().isEmpty()){
+	//selected months collection
+	Set&lt;Integer&gt; selectedPaymonths = new LinkedHashSet&lt;Integer&gt;();
+	//collecting months
+	for(SeasonalSchedule seasonalSchedule : option.getStructure().getSelectedSeasonalSchedules() ){
+		selectedPaymonths.add(seasonalSchedule.getMonth().getSequence());
+	}
+	//Loop over schedules
+	while(paymentLineStartDate.before(endDttm)){
+	//Create Payment Lines if condition matches
+	if(selectedPaymonths.contains(paymentLineStartDate.getTime().getMonth())){
+			PaymentLine paymentLine = (PaymentLine) es.createNew(PaymentLine.class);
+			paymentLine.setStartDttm(paymentLineStartDate.getTime());
+			paymentLine.setNumOfPayment(1);
+			paymentLine.setPaymentFrequency((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "PAYMENT_FREQUENCY_MONTHLY"));
+			option.getStructure().getPaymentSchedule().getPaymentLines().add(paymentLine);
+			
+			paymentLine.setPaymentSchedule(option.getStructure().getPaymentSchedule());
+	   }
+	    paymentLineStartDate.add(Calendar.MONTH,1);
+	 }
+	 if(!option.getStructure().getPaymentSchedule().getPaymentLines().isEmpty()){
+		PaymentLine lastPaymentLine = option.getStructure().getPaymentSchedule().getPaymentLines().get(option.getStructure().getPaymentSchedule().getPaymentLines().size() - 1);
+		 if(lastPaymentLine.getStartDttm().before(endDttm.getTime() ) ){
+			PaymentLine paymentLine = (PaymentLine) es.createNew(PaymentLine.class);
+			paymentLine.setStartDttm(endDttm.getTime());
+			paymentLine.setNumOfPayment(1);
+			paymentLine.setPaymentFrequency((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", "PAYMENT_FREQUENCY_MONTHLY"));
+			option.getStructure().getPaymentSchedule().getPaymentLines().add(paymentLine);
+			paymentLine.setPaymentSchedule(option.getStructure().getPaymentSchedule());
+	 	}
+	 }
+   }
+   // setting Start Date as per Arrears requirement
+   if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentSchedule() != null &amp;&amp; option.getStructure().getPaymentSchedule().getPaymentLines() != null){
+	List&lt;PaymentLine&gt; arrearPaymentLines = option.getStructure().getPaymentSchedule().getPaymentLines();
+	int arrearLinesSize = arrearPaymentLines.size();
+	for(int i=0 ; i &lt; arrearLinesSize - 1 ; i++ ){
+		arrearPaymentLines.get(i).setStartDttm(arrearPaymentLines.get(i+1).getStartDttm());
+	}
+	es.save(option);
+   }
+}</script>
+    </scriptTask>
+    <scriptTask id="_18" name="Advance / Arrears" scriptFormat="http://www.java.com/java" >
+      <script>PricingOption option = (PricingOption) context.getVariable("contextEntity");
+String advance = "false";
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; "ADVANCE_OR_ARREARS_ADVANCE".equals(option.getStructure().getAdvancedOrArrears().getKey()) ){
+advance="true";
+}
+ context.setVariable("advanceArrears",advance);</script>
+    </scriptTask>
+    <scriptTask id="_21" name="Regular PaymentLines" scriptFormat="http://www.java.com/java" >
+      <script>PricingOption option = (PricingOption) context.getVariable("contextEntity");
+
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentStartDate() != null &amp;&amp; option.getStructure().getTerm() != null 
+	&amp;&amp; option.getStructure().getTerm() != null &amp;&amp; option.getStructure().getPaymentSchedule() != null &amp;&amp; option.getStructure().getPaymentSchedule().getPaymentFrequency() != null 
+	 &amp;&amp;(option.getStructure().getPaymentSchedule().isMonthly() || option.getStructure().getPaymentSchedule().isQuarterly() ||  option.getStructure().getPaymentSchedule().isSemiAnnual() || option.getStructure().getPaymentSchedule().isAnnual())) {
+	EntityService es = new EntityService();
+	int noOfPayment = 0;
+	int leaseTerm = option.getStructure().getTerm();
+	//clear pricingOption.Structure.paymentSchedule.paymentLines
+	if(option.getStructure().getPaymentSchedule().getPaymentLines() != null){
+		option.getStructure().getPaymentSchedule().getPaymentLines().clear();
+	}
+	if(option.getStructure().getPaymentSchedule().isMonthly()){
+		noOfPayment = leaseTerm;
+	}else if(option.getStructure().getPaymentSchedule().isQuarterly()){
+		noOfPayment = leaseTerm/3;
+	}else if(option.getStructure().getPaymentSchedule().isSemiAnnual()){
+		noOfPayment = leaseTerm/6;
+	}else if(option.getStructure().getPaymentSchedule().isAnnual()){
+		noOfPayment = leaseTerm/12;
+	}
+	PaymentLine paymentLine = (PaymentLine) es.createNew(PaymentLine.class);
+	paymentLine.setStartDttm(option.getStructure().getPaymentStartDate());
+	paymentLine.setNumOfPayment(noOfPayment);
+	paymentLine.setPaymentFrequency((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", option.getStructure().getPaymentSchedule().getPaymentFrequency().getKey()));
+	option.getStructure().getPaymentSchedule().getPaymentLines().add(paymentLine);
+	paymentLine.setPaymentSchedule(option.getStructure().getPaymentSchedule());
+}
+
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_20" name="Gateway" gatewayDirection="Diverging" />
+    <scriptTask id="_22" name="Miscellaneous PaymentLines" scriptFormat="http://www.java.com/java" >
+      <script>PricingOption option = (PricingOption) context.getVariable("contextEntity");
+
+if(option != null &amp;&amp; option.getStructure() != null &amp;&amp; option.getStructure().getPaymentSchedule() !=null 
+     &amp;&amp; ! option.getStructure().getPaymentSchedule().getMiscellaneousSchedules().isEmpty()){
+  	EntityService es = new EntityService();
+	//clear pricingOption.Structure.paymentSchedule.paymentLines
+    if(option.getStructure().getPaymentSchedule().getPaymentLines() != null){
+	    option.getStructure().getPaymentSchedule().getPaymentLines().clear();
+    }
+	for(MiscellaneousSchedule misSchedule : option.getStructure().getPaymentSchedule().getMiscellaneousSchedules()){
+	    PaymentLine paymentLine = (PaymentLine) es.createNew(PaymentLine.class);
+		paymentLine.setStartDttm(misSchedule.getStartDttm());
+		paymentLine.setNumOfPayment(misSchedule.getNumOfPayment());
+		if( misSchedule.getPaymentFrequency() != null){
+			paymentLine.setPaymentFrequency((AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key", misSchedule.getPaymentFrequency().getKey()));
+		 }  
+		option.getStructure().getPaymentSchedule().getPaymentLines().add(paymentLine);
+		paymentLine.setPaymentSchedule(option.getStructure().getPaymentSchedule());
+	}
+}
+
+</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_6-_2" sourceRef="_6" targetRef="_2" />
+    <sequenceFlow id="_4-_3" sourceRef="_4" targetRef="_3" />
+    <sequenceFlow id="_9-_4" sourceRef="_9" targetRef="_4" />
+    <sequenceFlow id="_3-_6" sourceRef="_3" targetRef="_6" />
+    <sequenceFlow id="_10-_7" sourceRef="_10" targetRef="_7" />
+    <sequenceFlow id="_7-_8" sourceRef="_7" targetRef="_8" name="CalculateOptionProcess" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >System.out.println("*** Validating CalculateOptionProcess with parent process name as: "+ context.getVariable("parentProcessName"));
+if("CalculateOption".equals( (String)context.getVariable("parentProcessName"))){
+	return true;
+}
+return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_7-_9" sourceRef="_7" targetRef="_9" name="defaultProcess" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_8-_9" sourceRef="_8" targetRef="_9" />
+    <sequenceFlow id="_13-_10" sourceRef="_13" targetRef="_10" />
+    <sequenceFlow id="_1-_11" sourceRef="_1" targetRef="_11" />
+    <sequenceFlow id="_17-_13" sourceRef="_17" targetRef="_13" />
+    <sequenceFlow id="_11-_14" sourceRef="_11" targetRef="_14" />
+    <sequenceFlow id="_14-_15" sourceRef="_14" targetRef="_15" />
+    <sequenceFlow id="_16-_17" sourceRef="_16" targetRef="_17" />
+    <sequenceFlow id="_15-_17" sourceRef="_15" targetRef="_17" name="No Scedule" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >java.lang.String seasonalFrequency=(String)(context.getVariable("paymentFrequency"));
+
+if(seasonalFrequency.equals("false")){
+		 return true;
+} else{
+	 return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_19-_17" sourceRef="_19" targetRef="_17" />
+    <sequenceFlow id="_22-_17" sourceRef="_22" targetRef="_17" />
+    <sequenceFlow id="_21-_17" sourceRef="_21" targetRef="_17" />
+    <sequenceFlow id="_20-_16" sourceRef="_20" targetRef="_16" name="Advance" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >java.lang.String advance=(String)(context.getVariable("advanceArrears"));
+
+ if(advance.equals("true"))
+  {
+    return true;
+  }
+   else
+  {
+    return false;
+  }</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_20-_19" sourceRef="_20" targetRef="_19" name="Arrears" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >java.lang.String arrear=(String)(context.getVariable("advanceArrears"));
+
+	if(arrear.equals("true"))
+		{
+			 return false;
+		}
+		 else
+		{
+			 return true;
+		}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_15-_18" sourceRef="_15" targetRef="_18" name="Seasonal Schedule" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >java.lang.String seasonalFrequency=(String)(context.getVariable("paymentFrequency"));
+
+ if(seasonalFrequency.equals("seasonal")) {
+    return true;
+  }else{
+    return false;
+  }</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_15-_21" sourceRef="_15" targetRef="_21" name="Regular Scedule" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >java.lang.String seasonalFrequency=(String)(context.getVariable("paymentFrequency"));
+
+ if(seasonalFrequency.equals("regular")) {
+    return true;
+  }else{
+    return false;
+  }
+</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_18-_20" sourceRef="_18" targetRef="_20" />
+    <sequenceFlow id="_15-_22" sourceRef="_15" targetRef="_22" name="Irregular Schedule" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >java.lang.String seasonalFrequency=(String)(context.getVariable("paymentFrequency"));
+ if(seasonalFrequency.equals("irregular")) {
+    return true;
+  }else {
+    return false;
+  }
+</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="PricingPipeline" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="133" y="14" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="677" y="489" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="274" y="483" width="164" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="72" y="485" width="186" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="461" y="483" width="161" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="120" y="192" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="281" y="181" width="206" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="140" y="335" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="78" y="90" width="169" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="290" y="20" width="145" height="37" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="304" y="87" width="175" height="39" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="605" y="17" width="210" height="35" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="696" y="84" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="584" y="85" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="552" y="307" width="152" height="43" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="734" y="306" width="153" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="640" y="168" width="182" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="960" y="152" width="151" height="34" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="702" y="237" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_22" >
+        <dc:Bounds x="1037" y="47" width="178" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_6-_2" >
+        <di:waypoint x="541" y="507" />
+        <di:waypoint x="701" y="513" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_3" >
+        <di:waypoint x="165" y="509" />
+        <di:waypoint x="356" y="507" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_4" >
+        <di:waypoint x="164" y="359" />
+        <di:waypoint x="165" y="509" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_6" >
+        <di:waypoint x="356" y="507" />
+        <di:waypoint x="541" y="507" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_7" >
+        <di:waypoint x="162" y="110" />
+        <di:waypoint x="144" y="216" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_8" >
+        <di:waypoint x="144" y="216" />
+        <di:waypoint x="384" y="205" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_9" >
+        <di:waypoint x="144" y="216" />
+        <di:waypoint x="164" y="359" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_9" >
+        <di:waypoint x="384" y="205" />
+        <di:waypoint x="164" y="359" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_10" >
+        <di:waypoint x="391" y="106" />
+        <di:waypoint x="162" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_11" >
+        <di:waypoint x="157" y="38" />
+        <di:waypoint x="362" y="38" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_13" >
+        <di:waypoint x="608" y="109" />
+        <di:waypoint x="391" y="106" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_14" >
+        <di:waypoint x="362" y="38" />
+        <di:waypoint x="710" y="34" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_15" >
+        <di:waypoint x="710" y="34" />
+        <di:waypoint x="720" y="108" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_17" >
+        <di:waypoint x="628" y="328" />
+        <di:waypoint x="608" y="109" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_17" >
+        <di:waypoint x="720" y="108" />
+        <di:waypoint x="608" y="109" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_17" >
+        <di:waypoint x="810" y="326" />
+        <di:waypoint x="814" y="400" />
+        <di:waypoint x="518" y="402" />
+        <di:waypoint x="518" y="188" />
+        <di:waypoint x="608" y="109" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_22-_17" >
+        <di:waypoint x="1126" y="65" />
+        <di:waypoint x="1121" y="89" />
+        <di:waypoint x="1121" y="159" />
+        <di:waypoint x="1124" y="285" />
+        <di:waypoint x="1128" y="453" />
+        <di:waypoint x="495" y="443" />
+        <di:waypoint x="502" y="183" />
+        <di:waypoint x="608" y="109" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_17" >
+        <di:waypoint x="1035" y="169" />
+        <di:waypoint x="1035" y="432" />
+        <di:waypoint x="789" y="426" />
+        <di:waypoint x="508" y="423" />
+        <di:waypoint x="510" y="187" />
+        <di:waypoint x="608" y="109" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_16" >
+        <di:waypoint x="726" y="261" />
+        <di:waypoint x="628" y="328" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_19" >
+        <di:waypoint x="726" y="261" />
+        <di:waypoint x="810" y="326" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_18" >
+        <di:waypoint x="720" y="108" />
+        <di:waypoint x="731" y="192" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_21" >
+        <di:waypoint x="720" y="108" />
+        <di:waypoint x="876" y="130" />
+        <di:waypoint x="878" y="171" />
+        <di:waypoint x="1035" y="169" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_20" >
+        <di:waypoint x="731" y="192" />
+        <di:waypoint x="726" y="261" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_22" >
+        <di:waypoint x="720" y="108" />
+        <di:waypoint x="872" y="112" />
+        <di:waypoint x="869" y="67" />
+        <di:waypoint x="1126" y="65" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

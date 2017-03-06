@@ -1,0 +1,284 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" 
+
+xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="ContactInfo" ignore-annotations="false">
+		<map:class>
+		
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.streetName.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=false;
+				if(!(isdef root)){
+					match=true;
+				}
+				if(isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.User || root instanceof com.thirdpillar.codify.loanpath.model.Request || root instanceof com.thirdpillar.codify.loanpath.model.Partner)){
+				//skip the validation for User & Request & Partner
+					match=true;
+				} 
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && o.streetName != null && o.streetName.length > 0){
+					match=true;
+				} return match;]]></map:element>
+		</map:constraint> 
+			
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.city.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=false;
+				if(!(isdef root)){
+					match=true;
+				}
+				if(isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.User || root instanceof com.thirdpillar.codify.loanpath.model.Partner)){
+				//skip the validation for User & Partner
+					match=true;
+				} 
+				if((isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.Customer || root instanceof com.thirdpillar.codify.loanpath.model.Request)) && (o.city != null && o.city.length > 0)){
+					match=true;
+				} return match;]]></map:element>
+		</map:constraint>
+		
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.state.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=false;
+				if(!(isdef root)){
+					match=true;
+				}
+				if(isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.User || root instanceof com.thirdpillar.codify.loanpath.model.Partner)){
+				//skip the validation for User & Partner
+					match=true;
+				} 
+				if((isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.Customer || root instanceof com.thirdpillar.codify.loanpath.model.Request)) && (o.state != null)){
+					match=true;
+				} return match;]]></map:element>
+		</map:constraint>
+						
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.postalCode.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=false;
+				if(!(isdef root)){
+					match=true;
+				}
+				if(isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.User || root instanceof com.thirdpillar.codify.loanpath.model.Partner)){
+				//skip the validation for User & Partner
+					match=true;
+				} 
+				if((isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.Customer || root instanceof com.thirdpillar.codify.loanpath.model.Request)) && (o.postalCode != null && o.postalCode.length > 0)){
+					match=true;
+				} return match;]]></map:element>
+		</map:constraint>
+			
+		
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.siteUseType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=false;
+				if(!(isdef root)){
+					match=true;
+				}
+				if(isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.User || root instanceof com.thirdpillar.codify.loanpath.model.Request || root instanceof com.thirdpillar.codify.loanpath.model.Partner)){
+				//skip the validation for User & Request & Partner
+					match=true;
+				} 
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && o.siteUseType != null && o.siteUseType.size()>0){
+					match=true;
+				} return match;]]></map:element>				
+		</map:constraint>
+		
+		
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.address1.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=false;
+				if(!(isdef root)){
+					match=true;
+				}
+				if(isdef root && (root instanceof com.thirdpillar.codify.loanpath.model.User || root instanceof com.thirdpillar.codify.loanpath.model.Customer || root instanceof com.thirdpillar.codify.loanpath.model.Partner)){
+				//skip the validation for User & Customer & Partner
+					match=true;
+				} 
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Request && o.address1 != null && o.address1.length > 0){
+					match=true;
+				} return match;]]></map:element>				
+		</map:constraint>
+		
+			
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.country.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=true;
+				if(!(isdef root)){
+					match=true;
+				}
+				
+				if (isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && o.country == null ){
+					match=false;
+				} return match;]]></map:element>				
+		</map:constraint>
+		
+			<!-- 	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.county.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=true;
+				if(!(isdef root)){
+					match=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.county == null || o.county.length ==0)){
+					match=false;
+					
+				} return match;]]></map:element>				
+		</map:constraint> -->
+		
+		<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.telephoneNumber.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=true;
+				if(!(isdef root)){
+					match=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.telephoneNumber == null && o.telephoneNumber.length ==0)){
+					match=false;
+					
+				} return match;]]></map:element>				
+		</map:constraint>
+		 
+		 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.telephoneNumber.invalid}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=true;
+				boolean isValid = true;
+				if(!(isdef root)){
+					isValid=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.telephoneNumber != null && o.telephoneNumber.length > 0))
+				{
+					
+					
+				String expression = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+
+				CharSequence inputStr = o.telephoneNumber; 
+
+				java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(expression); 
+
+				java.util.regex.Matcher matcher = pattern.matcher(inputStr); 
+
+				if(!matcher.matches()){ 
+
+				isValid = false; 
+							
+				} 
+
+				if (isValid == true) {
+
+						String ab = (String) inputStr;
+								
+							ab = ab.replaceAll("\\(","");
+							ab = ab.replaceAll("\\)","");
+							ab = ab.replaceAll("-","");
+							ab = ab.replaceAll(" ","");	
+							
+						if (ab.equals("1111111111") || ab.equals("9999999999") || ab.length() <10 || ab.length() >10 ) {
+							isValid = false;
+							
+						}
+						
+						
+		
+				}
+				} return isValid;]]></map:element>				
+		</map:constraint>
+		 
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.telephoneNumber.invalid}</map:message>
+				<map:element name="matchedExpr"><![CDATA[
+				boolean isValid = true;
+				if(!(isdef root)){
+					isValid=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.telephoneNumber1 != null && o.telephoneNumber1.length > 0))
+				{
+					
+					
+				String expression = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+
+				CharSequence inputStr = o.telephoneNumber1; 
+
+				java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(expression); 
+
+				java.util.regex.Matcher matcher = pattern.matcher(inputStr); 
+
+				if(!matcher.matches()){ 
+
+				isValid = false; 
+				
+							
+				} 
+
+				if (isValid == true) {
+
+						String ab = (String) inputStr;
+								
+							ab = ab.replaceAll("\\(","");
+							ab = ab.replaceAll("\\)","");
+							ab = ab.replaceAll("-","");
+							ab = ab.replaceAll(" ","");
+							
+						if (ab.equals("1111111111") || ab.equals("9999999999") || ab.length() <10 || ab.length() >10 ) {
+							isValid = false;
+							
+						}
+						
+						
+		
+				}
+				} return isValid;]]></map:element>				
+		</map:constraint>
+		 
+		   <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{contactInfo.faxNumber.invalid}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ boolean match=true;
+				boolean isValid = true;
+				if(!(isdef root)){
+					isValid=true;
+				}
+				
+				if(isdef root && root instanceof com.thirdpillar.codify.loanpath.model.Customer && (o.faxNumber != null && o.faxNumber.length > 0))
+				{
+					
+					
+				String expression = "^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$"; 
+
+				CharSequence inputStr = o.faxNumber; 
+
+				java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(expression); 
+
+				java.util.regex.Matcher matcher = pattern.matcher(inputStr); 
+
+				if(!matcher.matches()){ 
+
+				isValid = false; 
+							
+				} 
+
+				if (isValid == true) {
+
+						String ab = (String) inputStr;
+								
+							ab = ab.replaceAll("\\(","");
+							ab = ab.replaceAll("\\)","");
+							ab = ab.replaceAll("-","");
+							ab = ab.replaceAll(" ","");	
+							
+						if (ab.equals("1111111111") || ab.equals("9999999999") || ab.length() <10 || ab.length() >10 ) {
+							isValid = false;
+							
+						}
+						
+						
+		
+				}
+				} return isValid;]]></map:element>				
+		</map:constraint> -->
+		 
+		 
+		</map:class> 
+			
+			
+	</map:bean>
+		    
+</map:constraint-mappings>

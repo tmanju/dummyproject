@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.PricingOption" />
+  <itemDefinition id="_parentProcessNameItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="CalculateOption" name="CalculateOption" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="com.thirdpillar.foundation.service.workitems.WorkItemConstants" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.PricingOption" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.SolveFor" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.util.StringUtils" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="parentProcessName" itemSubjectRef="_parentProcessNameItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <callActivity id="_7" name="Pricing Pipeline Sub-Process" calledElement="PricingPipeline" tns:independent="false" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("parentProcessName","CalculateOption");</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_7_contextEntityInput" name="contextEntity" />
+        <dataInput id="_7_parentProcessNameInput" name="parentProcessName" />
+        <dataOutput id="_7_contextEntityOutput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_7_contextEntityInput</dataInputRefs>
+          <dataInputRefs>_7_parentProcessNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_7_contextEntityOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_7_contextEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>parentProcessName</sourceRef>
+        <targetRef>_7_parentProcessNameInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_7_contextEntityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
+      </dataOutputAssociation>
+    </callActivity>
+
+    <!-- connections -->
+    <sequenceFlow id="_7-_2" sourceRef="_7" targetRef="_2" />
+    <sequenceFlow id="_1-_7" sourceRef="_1" targetRef="_7" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="CalculateOption" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="108" y="131" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="378" y="282" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="286" y="124" width="220" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_7-_2" >
+        <di:waypoint x="396" y="148" />
+        <di:waypoint x="402" y="306" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_7" >
+        <di:waypoint x="132" y="155" />
+        <di:waypoint x="396" y="148" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

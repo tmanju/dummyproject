@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Program" />
+  <itemDefinition id="_approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+
+  <itemDefinition id="_32-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Program" />
+  <itemDefinition id="_32-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+
+  <itemDefinition id="_36-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Program" />
+  <itemDefinition id="_36-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+
+  <itemDefinition id="_37-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Program" />
+  <itemDefinition id="_37-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+
+  <itemDefinition id="_30-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Program" />
+  <itemDefinition id="_30-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+
+  <process processType="Private" isExecutable="true" id="ProgramFlow" name="ProgramFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Program" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approval" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approver" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.WorkflowStatus" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.service.Context" />
+     <tns:import name="com.thirdpillar.foundation.service.ContextHolder" />
+     <tns:import name="java.util.Set" />
+     <tns:import name="java.util.HashSet" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="approvalEntity" itemSubjectRef="_approvalEntityItem"/>
+
+    <!-- nodes -->
+    <callActivity id="_34" name="Approval Sub-Process" calledElement="ApprovalProgram" >
+      <ioSpecification>
+        <dataInput id="_34_entityInput" name="entity" />
+        <dataInput id="_34_approvalInput" name="approval" />
+        <inputSet>
+          <dataInputRefs>_34_entityInput</dataInputRefs>
+          <dataInputRefs>_34_approvalInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_34_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>approvalEntity</sourceRef>
+        <targetRef>_34_approvalInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <startEvent id="_1" name="Start" />
+    <exclusiveGateway id="_35" name="Gateway" gatewayDirection="Diverging" />
+    <task id="_32" name="Pending Decision" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_32_entityInput" name="entity" />
+        <dataInput id="_32_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_32_entityInput</dataInputRefs>
+          <dataInputRefs>_32_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_32_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_32_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">PROGRAM_STATUS_PENDING_DECISION</from>
+          <to xsi:type="tFormalExpression">_32_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_33" name="Initialize Approval" scriptFormat="http://www.java.com/java" >
+      <script>
+Program program = (Program) context.getVariable("contextEntity");
+Approval approvalObj=program.getApproval();
+if(approvalObj == null) {
+		EntityService es = new EntityService();
+		approvalObj = (Approval) es.createNew(Approval.class);
+		program.setApproval(approvalObj);
+}
+context.setVariable("approvalEntity", approvalObj);</script>
+    </scriptTask>
+    <exclusiveGateway id="_38" name="Gateway" gatewayDirection="Converging" />
+    <endEvent id="_39" name="End" />
+    <task id="_36" name="Approved" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_36_entityInput" name="entity" />
+        <dataInput id="_36_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_36_entityInput</dataInputRefs>
+          <dataInputRefs>_36_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_36_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_36_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">PARTNER_STATUS_APPROVED</from>
+          <to xsi:type="tFormalExpression">_36_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_37" name="Declined" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_37_entityInput" name="entity" />
+        <dataInput id="_37_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_37_entityInput</dataInputRefs>
+          <dataInputRefs>_37_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_37_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_37_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">PARTNER_STATUS_DECLINED</from>
+          <to xsi:type="tFormalExpression">_37_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_29" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>//com.thirdpillar.codify.loanpath.model.Program program = (com.thirdpillar.codify.loanpath.model.Program) context.getVariable("contextEntity");
+</script>
+    </scriptTask>
+    <endEvent id="_28" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <intermediateCatchEvent id="_31" name="ProgramSubmit" >
+      <signalEventDefinition signalRef="ProgramSubmit"/>
+    </intermediateCatchEvent>
+    <task id="_30" name="Wait State" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_33-_34" sourceRef="_33" targetRef="_34" />
+    <sequenceFlow id="_34-_35" sourceRef="_34" targetRef="_35" />
+    <sequenceFlow id="_31-_32" sourceRef="_31" targetRef="_32" />
+    <sequenceFlow id="_32-_33" sourceRef="_32" targetRef="_33" />
+    <sequenceFlow id="_36-_38" sourceRef="_36" targetRef="_38" />
+    <sequenceFlow id="_37-_38" sourceRef="_37" targetRef="_38" />
+    <sequenceFlow id="_38-_39" sourceRef="_38" targetRef="_39" />
+    <sequenceFlow id="_35-_36" sourceRef="_35" targetRef="_36" name="Approved" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >com.thirdpillar.codify.loanpath.model.Program program = (com.thirdpillar.codify.loanpath.model.Program) context.getVariable("contextEntity");
+com.thirdpillar.codify.loanpath.model.Approval approvalObj=program.getApproval();
+if(approvalObj.getDecision().getKey().equals("APPROVAL_DECISION_APPROVED"))
+{
+    return true;
+}
+else
+{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_35-_37" sourceRef="_35" targetRef="_37" name="Declined" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >com.thirdpillar.codify.loanpath.model.Program program = (com.thirdpillar.codify.loanpath.model.Program) context.getVariable("contextEntity");
+com.thirdpillar.codify.loanpath.model.Approval approvalObj=program.getApproval();
+if(approvalObj.getDecision().getKey().equals("APPROVAL_DECISION_APPROVED"))
+{
+    return false;
+}
+else
+{
+    return true;
+}
+
+
+</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_1-_29" sourceRef="_1" targetRef="_29" />
+    <sequenceFlow id="_30-_28" sourceRef="_30" targetRef="_28" />
+    <sequenceFlow id="_29-_30" sourceRef="_29" targetRef="_30" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="ProgramFlow" >
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="240" y="255" width="160" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="50" y="9" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="297" y="348" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="235" y="92" width="154" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="239" y="169" width="152" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_38" >
+        <dc:Bounds x="315" y="554" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_39" >
+        <dc:Bounds x="317" y="648" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_36" >
+        <dc:Bounds x="178" y="463" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_37" >
+        <dc:Bounds x="393" y="460" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="37" y="93" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="58" y="259" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="285" y="7" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_30" >
+        <dc:Bounds x="29" y="173" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_33-_34" >
+        <di:waypoint x="315" y="193" />
+        <di:waypoint x="320" y="279" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_35" >
+        <di:waypoint x="320" y="279" />
+        <di:waypoint x="321" y="372" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_32" >
+        <di:waypoint x="309" y="31" />
+        <di:waypoint x="312" y="116" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_33" >
+        <di:waypoint x="312" y="116" />
+        <di:waypoint x="315" y="193" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_36-_38" >
+        <di:waypoint x="228" y="487" />
+        <di:waypoint x="339" y="578" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_37-_38" >
+        <di:waypoint x="443" y="484" />
+        <di:waypoint x="339" y="578" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_38-_39" >
+        <di:waypoint x="339" y="578" />
+        <di:waypoint x="341" y="672" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_36" >
+        <di:waypoint x="321" y="372" />
+        <di:waypoint x="228" y="487" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_37" >
+        <di:waypoint x="321" y="372" />
+        <di:waypoint x="443" y="484" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_29" >
+        <di:waypoint x="74" y="33" />
+        <di:waypoint x="77" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_30-_28" >
+        <di:waypoint x="79" y="197" />
+        <di:waypoint x="82" y="283" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_30" >
+        <di:waypoint x="77" y="117" />
+        <di:waypoint x="79" y="197" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,17 @@
+Covenant (@{covenantEvaluation.covenant.covenantDefinition.covenantName}) , Category @{covenantEvaluation.covenant.covenantDefinition.covenantCategory.value} on Application @{entity.refNumber} is created.<br/>.<br/>
+
+Description - @{covenantEvaluation.covenant.covenantDefinition.covenantDescription}<br>
+@if{covenantEvaluation.covenant.min != null} Min - @{covenantEvaluation.covenant.min} <br>@end{}
+@if{covenantEvaluation.covenant.max != null} Max - @{covenantEvaluation.covenant.max} <br>@end{}
+@if{covenantEvaluation.covenant.documentClass != null} Document Class- @{covenantEvaluation.covenant.documentClass.value} <br>@end{}
+@if{covenantEvaluation.covenant.documentCategory != null} Document Class- @{covenantEvaluation.covenant.documentCategory.value} <br>@end{}
+@if{covenantEvaluation.covenant.documentType != null} Document Class- @{covenantEvaluation.covenant.documentType.value} <br>@end{}
+<br>
+@if{covenantEvaluation.getQuestions() != null && covenantEvaluation.getQuestions().size() > 0}
+Questionnaire - <br>
+@foreach{questionnaire : covenantEvaluation.getQuestions()}
+ - @{questionnaire.question}<br>
+@end{}
+@end{}
+<br>
+Click here to view the application. <a href="@{CONFIG.getString("webapp.server.baseurl")}/crud/request/edit.seam?canvasType=crud&eid=@{entity.id}">@{CONFIG.getString("webapp.server.baseurl")}</a>

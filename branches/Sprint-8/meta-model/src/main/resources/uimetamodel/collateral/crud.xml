@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="collateral" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="collateral.information" label="Collateral Information">
+		<field name="collateral.collateralCategory" />
+		<field name="collateral.collateralType" />
+		<field name="collateral.collateralDescription" />
+		<field name="collateral.locationHeld" label="Location Held" />
+	</panel>
+	<panel id="collateral.addressInformation" label="Address Information">
+		<field name="collateral.location.address1" />
+		<field name="collateral.location.address2" />
+		<field name="collateral.location.city" />
+		<field name="collateral.location.stateProvince" />
+		<field name="collateral.location.country" />
+		<field name="collateral.location.county" />
+		<field name="collateral.location.postalCode">
+			<field name="collateral.location.postalCodePlus4" label="-" />
+		</field>
+	</panel>
+	<beans>
+		<bean name="collateral" type="com.thirdpillar.codify.loanpath.model.Collateral" />
+	</beans>
+</canvas>

@@ -1,0 +1,565 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="UCC" ignore-annotations="false">
+		<map:class>
+		
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.debtors.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[o.debtors != null && o.debtors.size >0]]></map:element>
+			</map:constraint> 
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.maxPrincipalIndebtness.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null && o.uccType.key == 'UCC_TYPE_UCC1' && o.jurisdictionState != null
+													&& (	(o.jurisdictionState.isoCode == 'TN' && o.tnRecordingTaxExempt !=null && o.tnRecordingTaxExempt.key == 'TN_RECORDING_TAX_EXEMPT_NOT_EXEMPT') 
+														|| 	(o.jurisdictionState.isoCode == 'FL' && o.flTaxStamps !=null && o.flTaxStamps.key != 'FL_TAX_STAMPS_IS_NOT_REQUIRED') 
+														|| 	(o.jurisdictionState.isoCode == 'AL' && o.realEstateFiling !=null && o.realEstateFiling.key == 'YES_OR_NO_YES')
+														|| 	(o.jurisdictionState.isoCode == 'MD' && o.realEstateFiling !=null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo != null && o.realEstateInfo.mdRecordingTaxExempt != null && o.realEstateInfo.mdRecordingTaxExempt.key == 'MD_RECORDING_TAX_EXEMPT_NOT_EXEMPT')
+														)
+													){
+				 										if (o.maxPrincipalIndebtness == null) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.section.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.jurisdictionState != null && o.jurisdictionCounty != null  && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.jurisdictionState.isoCode == 'NY'
+													&& (o.jurisdictionCounty.countyName == 'Bronx' || o.jurisdictionCounty.countyName == 'Kings' || o.jurisdictionCounty.countyName == 'Nassau' || o.jurisdictionCounty.countyName == 'New York' || o.jurisdictionCounty.countyName == 'Queens' || o.jurisdictionCounty.countyName == 'Richmond')
+													){
+															if (o.realEstateInfo.section == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.block.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.jurisdictionState != null && o.jurisdictionCounty != null  && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.jurisdictionState.isoCode == 'NY'
+													&& (o.jurisdictionCounty.countyName == 'Bronx' || o.jurisdictionCounty.countyName == 'Kings' || o.jurisdictionCounty.countyName == 'Nassau' || o.jurisdictionCounty.countyName == 'New York' || o.jurisdictionCounty.countyName == 'Queens' || o.jurisdictionCounty.countyName == 'Richmond')
+													){
+															if (o.realEstateInfo.block == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.lot.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.jurisdictionState != null && o.jurisdictionCounty != null  && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.jurisdictionState.isoCode == 'NY'
+													&& (o.jurisdictionCounty.countyName == 'Bronx' || o.jurisdictionCounty.countyName == 'Kings' || o.jurisdictionCounty.countyName == 'Nassau' || o.jurisdictionCounty.countyName == 'New York' || o.jurisdictionCounty.countyName == 'Queens' || o.jurisdictionCounty.countyName == 'Richmond')
+													){
+															if (o.realEstateInfo.lot == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyType.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.jurisdictionState != null && o.jurisdictionCounty != null  && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.jurisdictionState.isoCode == 'NY'
+													&& (o.jurisdictionCounty.countyName == 'Bronx' || o.jurisdictionCounty.countyName == 'Kings' || o.jurisdictionCounty.countyName == 'Nassau' || o.jurisdictionCounty.countyName == 'New York' || o.jurisdictionCounty.countyName == 'Queens' || o.jurisdictionCounty.countyName == 'Richmond')
+													){
+															if (o.realEstateInfo.propertyType == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.tnRecordingTaxExempt.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null && o.uccType.key == 'UCC_TYPE_UCC1' && o.jurisdictionState != null  && o.jurisdictionState.isoCode == 'TN'){
+															if (o.tnRecordingTaxExempt == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.flTaxStamps.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null && o.uccType.key == 'UCC_TYPE_UCC1' && o.jurisdictionState != null  && o.jurisdictionState.isoCode == 'FL'){
+															if (o.flTaxStamps == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.alMortgageTaxDueAmt.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null && o.uccType.key == 'UCC_TYPE_UCC1' && o.jurisdictionState != null  && o.jurisdictionState.isoCode == 'AL' && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES'){
+															if (o.realEstateInfo.alMortgageTaxDueAmt == null) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.parcelId.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null && o.uccType.key == 'UCC_TYPE_UCC1' && o.jurisdictionState != null  && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES'
+													&& (o.jurisdictionState.isoCode == 'IL' || o.jurisdictionState.isoCode == 'MD' || o.jurisdictionState.isoCode == 'WA' || o.jurisdictionState.isoCode == 'WI')
+													){
+															if (o.realEstateInfo.parcelId == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.taxMapNumber.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null && o.uccType.key == 'UCC_TYPE_UCC1' && o.jurisdictionState != null  && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES'	&& o.jurisdictionState.isoCode == 'VA'){
+															if (o.realEstateInfo.taxMapNumber == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.mdRecordingTaxExempt.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null && o.uccType.key == 'UCC_TYPE_UCC1' && o.jurisdictionState != null  && o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES'	&& o.jurisdictionState.isoCode == 'MD'){
+															if (o.realEstateInfo.mdRecordingTaxExempt == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerType.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.propertyOwnerSameAsDebtor != null && o.realEstateInfo.propertyOwnerSameAsDebtor.key == 'YES_OR_NO_NO'){
+															if (o.realEstateInfo.ownerType == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerAddress.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.propertyOwnerSameAsDebtor != null && o.realEstateInfo.propertyOwnerSameAsDebtor.key == 'YES_OR_NO_NO'){
+															if (o.realEstateInfo.ownerAddress == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerCity.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.propertyOwnerSameAsDebtor != null && o.realEstateInfo.propertyOwnerSameAsDebtor.key == 'YES_OR_NO_NO'){
+															if (o.realEstateInfo.ownerCity == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerState.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.propertyOwnerSameAsDebtor != null && o.realEstateInfo.propertyOwnerSameAsDebtor.key == 'YES_OR_NO_NO'){
+															if (o.realEstateInfo.ownerState == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerZipCode.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.propertyOwnerSameAsDebtor != null && o.realEstateInfo.propertyOwnerSameAsDebtor.key == 'YES_OR_NO_NO'){
+															if (o.realEstateInfo.ownerZipCode == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerFirstName.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.ownerType != null && o.realEstateInfo.ownerType.key == 'UCC_PROPERTY_OWNER_TYPE_INDIVIDUAL'){
+															if (o.realEstateInfo.ownerFirstName == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerLastName.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.ownerType != null && o.realEstateInfo.ownerType.key == 'UCC_PROPERTY_OWNER_TYPE_INDIVIDUAL'){
+															if (o.realEstateInfo.ownerLastName == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateInfo.propertyOwnerName.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling != null && o.realEstateFiling.key == 'YES_OR_NO_YES' && o.realEstateInfo.ownerType != null && o.realEstateInfo.ownerType.key == 'UCC_PROPERTY_OWNER_TYPE_BUSINESS'){
+															if (o.realEstateInfo.ownerName == empty) {
+				 											check1 = false;}
+				 											} return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.taxPayerID.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.jurisdictionState != null  && (o.jurisdictionState.isoCode == 'SD' || o.jurisdictionState.isoCode == 'ND' )&& o.debtors != null && o.debtors.size >0){
+												
+												foreach(debtor : o.debtors ) {
+													
+													if (debtor.customer.partyDetail.taxIDNumber == empty){  
+													check1 = false;
+																									
+													}
+				 										
+				 										} } return check1;]]></map:element>
+			</map:constraint> 
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.attachmentDoc.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.attachmentDocumentType != null && o.attachmentDocumentType.key == 'ATTACHMENT_DOCUMENT_TYPE_E_ELECTRONIC' ){
+													
+				 										if (o.uccAttachment == null || o.uccAttachment.attachment.value == null) {
+				 										
+				 										check1 = false;}
+				 										} return check1;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.filingNumber.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.uccType != null  && o.uccType.key.contains("UCC_TYPE_UCC3_AMD") ){
+				 										if (o.orgFilingNumber == empty || o.orgFilingDate == empty) {
+				 										check1 = false;}
+				 										} return check1;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.debtor.customer.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			 	<!-- map:element name="triggerExpr"><![CDATA[o.uccs!=null]]></map:element>--> 
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.debtors != null && o.debtors.size > 0){
+												
+														foreach(debtor : o.debtors ) {
+													
+															if (debtor.customer == null){  
+																check1 = false;
+																									
+															}
+				 										
+				 										} 
+				 									} 
+				 									return check1;]]>
+				</map:element>
+			</map:constraint>		
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.debtor.stateOfOrganization.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			 	<!-- <map:element name="triggerExpr"><![CDATA[o.uccs!=null]]></map:element>--> 
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.debtors != null && o.debtors.size > 0){
+												
+														foreach(debtor : o.debtors ) {
+													
+															if (debtor.customer != null && debtor.customer.partyDetail.partyDetailType.key == "CUSTOMER_TYPE_NON_INDIVIDUAL"  ){
+															
+																	if (debtor.stateOfOrganization == null) {
+																	  
+																		check1 = false;
+																		}
+																									
+															}
+				 										
+				 										} 
+				 									} 
+				 									return check1;]]>
+				</map:element>
+			</map:constraint>		
+			
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.debtor.organizationId.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			 	<!-- map:element name="triggerExpr"><![CDATA[o.uccs!=null]]></map:element>--> 
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.debtors != null && o.debtors.size > 0){
+												
+														foreach(debtor : o.debtors ) {
+													
+															if (debtor.customer != null && debtor.customer.partyDetail.partyDetailType.key == "CUSTOMER_TYPE_NON_INDIVIDUAL" && debtor.customer.partyDetail.legalEntityType != null && debtor.customer.partyDetail.legalEntityType.key != "LEGAL_ENTITY_TYPE_SOLE_PROPRIETORSHIP"){
+															
+																if (debtor.organizationId == null || debtor.organizationId=="") {
+																  
+																	check1 = false;
+																	}
+																									
+															}
+				 										
+				 										} 
+				 									} 
+				 									return check1;]]>
+				</map:element>
+			</map:constraint>	
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.blanketFiling.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.blanketFiling == null)
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.realEstateFiling.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.realEstateFiling == null)
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.facility.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.facility == null)
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.jurisdictionState.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.jurisdictionState == null)
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>	
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.collateralStatement.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.collateralStatement == null)
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>	
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.language.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.language == null || o.language=="")
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>	
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.attachmentDocumentType.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.attachmentDocumentType == null)
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.indebtednessType.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.indebtednessType == null)
+													{
+				 									   check1 = false;
+				 									}
+				 									 return check1;]]></map:element>
+			</map:constraint>			
+			
+			 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.billCode.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.ref1 == null || o.ref1.equals("") ){
+														check1 = false;}
+				 											 return check1;]]></map:element>
+			</map:constraint>
+					
+					<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.noteNumber.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.ref2 == null || o.ref2.equals("") ){
+														check1 = false;}
+				 											return check1;]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.totalPages.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.attachmentDocumentType != null && o.attachmentDocumentType.key == 'ATTACHMENT_DOCUMENT_TYPE_E_ELECTRONIC' ){
+													
+				 										if (o.noOfAttachments == null || (o.noOfAttachments < 1 || o.noOfAttachments > 999)) {
+				 										
+				 										check1 = false;}
+				 										} return check1;]]></map:element>
+			</map:constraint> 
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.debtor.customer.partyDetail.legalEntityType.required}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			 	<!-- map:element name="triggerExpr"><![CDATA[o.uccs!=null]]></map:element>--> 
+				<map:element name="matchedExpr"><![CDATA[boolean check1 = true;
+													if(o.debtors != null && o.debtors.size > 0){
+												
+														foreach(debtor : o.debtors ) {
+													
+															if (debtor.customer != null && debtor.customer.partyDetail.partyDetailType.key == "CUSTOMER_TYPE_NON_INDIVIDUAL"){
+															
+																if (debtor.customer.partyDetail.legalEntityType == null || debtor.customer.partyDetail.legalEntityType=="") {
+																  
+																	check1 = false;
+																	}
+																									
+															}
+				 										
+				 										} 
+				 									} 
+				 									return check1;]]>
+				</map:element>
+			</map:constraint>	
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.ucc.postalCode.format.check}</map:message>
+				<map:groups>
+     				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup</map:value>
+				</map:groups>
+			
+				<map:element name="matchedExpr"><![CDATA[
+				
+				boolean result = true;
+				String expression = "^\\d{5}(-\\d{4})?$";
+				java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(expression);
+
+				if(o.debtors != null && o.debtors.size > 0){
+					foreach(debtor : o.debtors ) {
+						if (debtor.custAddress != null && debtor.custAddress.postalCode !=null ){
+							CharSequence inputStr = debtor.custAddress.postalCode; 
+							java.util.regex.Matcher matcher = pattern.matcher(inputStr); 
+							if(!matcher.matches()){ 
+					  			result = false;
+							}
+						}
+					}
+				} 
+ 									
+				return result;
+				]]></map:element>
+			</map:constraint> 
+			
+		</map:class>
+	</map:bean>
+</map:constraint-mappings>

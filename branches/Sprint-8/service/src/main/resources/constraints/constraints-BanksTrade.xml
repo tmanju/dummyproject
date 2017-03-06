@@ -1,0 +1,22 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="BanksTrade" ignore-annotations="false">
+      <map:class>       
+      </map:class>
+	  <map:field name="name">
+		  <map:constraint annotation="javax.validation.constraints.NotNull">
+		  	<map:message>{bankTrade.name.required}</map:message>
+		  </map:constraint>  
+	  </map:field>
+	  <map:field name="bankAccountNumber">
+		  <map:constraint annotation="javax.validation.constraints.NotNull">
+	      	<map:message>{bankTrade.bankAccountNumber.required}</map:message>
+	   	  </map:constraint>  
+	  </map:field>
+	  <map:field name="accountType">
+		   <map:constraint annotation="javax.validation.constraints.NotNull">
+		     <map:message>{bankTrade.accountType.required}</map:message>
+		   </map:constraint>
+	  </map:field> 
+    </map:bean>
+</map:constraint-mappings>

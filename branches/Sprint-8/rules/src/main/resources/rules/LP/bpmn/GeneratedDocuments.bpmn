@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_docInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_documentEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_documentsListItem" structureRef="java.util.List" />
+  <itemDefinition id="_documentItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_docListItem" structureRef="java.util.List" />
+  <itemDefinition id="_integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_integrationResultStatusItem" structureRef="String" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_3-docInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_3-documentEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_3-documentsListItem" structureRef="java.util.List" />
+  <itemDefinition id="_3-documentItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_3-docListItem" structureRef="java.util.List" />
+  <itemDefinition id="_3-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_3-integrationResultStatusItem" structureRef="String" />
+
+  <itemDefinition id="_4-2-7-documentItem" />
+
+  <itemDefinition id="_4-2-8-documentItem" />
+
+  <itemDefinition id="_4_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="GeneratedDocuments" name="GeneratedDocuments" tns:packageName="LP" tns:version="1" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="docInputMap" itemSubjectRef="_docInputMapItem"/>
+    <property id="documentEntity" itemSubjectRef="_documentEntityItem"/>
+    <property id="documentsList" itemSubjectRef="_documentsListItem"/>
+    <property id="document" itemSubjectRef="_documentItem"/>
+    <property id="docList" itemSubjectRef="_docListItem"/>
+    <property id="integrationExchange" itemSubjectRef="_integrationExchangeItem"/>
+    <property id="integrationResultStatus" itemSubjectRef="_integrationResultStatusItem"/>
+
+    <!-- nodes -->
+    <scriptTask id="_2" name="Prepare List of Docs to be Generated" scriptFormat="http://www.java.com/java" >
+      <script>Request request = (Request) context.getVariable("contextEntity");
+List&lt;Document&gt; documents = new ArrayList&lt;Document&gt;();  
+if(request.getDocumentGroup() != null ){
+ 	for(Document doc : ((DocumentGroup)request.getDocumentGroup()).getGeneratedDocuments()){
+ 			doc.setGeneratedFlag(false);
+			doc.setUploadDttm(null);
+			doc.setUploadedStream(null);
+			documents.add(doc);
+ 	}
+}
+Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+inputMap.put("documentList",documents);  
+inputMap.put("contextEntity",request);    
+ 
+context.setVariable("docInputMap",inputMap);
+context.setVariable("docList",documents);</script>
+    </scriptTask>
+    <task id="_3" name="Document Generation Call" tns:taskName="IntegrationTask" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
+ if ("ERROR".equals(rStatus)) {
+ CodifyMessage.addMessage("ERR_INT_HTTP_RESP_ERROR",CodifyMessage.Severity.ERROR, new String[]{"Document service"});
+ CodifyMessage.addMessage("ERR_INT_HTTP_REQ_FAIL",CodifyMessage.Severity.ERROR, new String[]{"Document service"});
+ 
+ }else{
+	//System.out.println("******* Bureau Update integration call Successful***************************88");
+}
+
+context.setVariable("integrationResultStatus",null);
+context.setVariable("integrationExchange",null);
+//context.setVariable("consumerBureauInputMap", null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_3_inputInput" name="input" />
+        <dataInput id="_3_entityInput" name="entity" />
+        <dataInput id="_3_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_3_ResultExchangeOutput" name="ResultExchange" />
+        <dataOutput id="_3_ResultStatusOutput" name="ResultStatus" />
+        <inputSet>
+          <dataInputRefs>_3_inputInput</dataInputRefs>
+          <dataInputRefs>_3_entityInput</dataInputRefs>
+          <dataInputRefs>_3_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_ResultExchangeOutput</dataOutputRefs>
+          <dataOutputRefs>_3_ResultStatusOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>docInputMap</sourceRef>
+        <targetRef>_3_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">docGenClient</from>
+          <to xsi:type="tFormalExpression">_3_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_ResultExchangeOutput</sourceRef>
+        <targetRef>integrationExchange</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_ResultStatusOutput</sourceRef>
+        <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <subProcess id="_4" name="Multiple Instances"  >
+      <ioSpecification>
+        <dataInput id="_4_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity.documentGroup.generatedDocuments</sourceRef>
+        <targetRef>_4_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_4_input</loopDataInputRef>
+        <inputDataItem id="document" itemSubjectRef="_4_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <exclusiveGateway id="_4-2-1" name="Gateway" gatewayDirection="Diverging" />
+    <scriptTask id="_4-2-2" name="Status : Pending Review" scriptFormat="http://www.java.com/java" >
+      <script>Document docu = (Document) context.getVariable("document");
+AttributeChoice docStatus=(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","DOCUMENT_STATUS_PENDING_REVIEW");
+docu.setDocumentStatus(docStatus);</script>
+    </scriptTask>
+    <scriptTask id="_4-2-3" name="Status :  Generation Failed" scriptFormat="http://www.java.com/java" >
+      <script>Document docu = (Document) context.getVariable("document");
+AttributeChoice docStatus=(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key","DOCUMENT_STATUS_GENERATION_FAILED");
+docu.setDocumentStatus(docStatus);</script>
+    </scriptTask>
+    <startEvent id="_4-2-4" name="Start" />
+    <endEvent id="_4-2-5" name="End" />
+    <endEvent id="_4-2-6" name="End" />
+    <task id="_4-2-7" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_4-2-7_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_4-2-7_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_4-2-7_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_4-2-8" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_4-2-8_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_4-2-8_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_4-2-8_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <!-- connections -->
+    <sequenceFlow id="_4-2-4-_4-2-1" sourceRef="_4-2-4" targetRef="_4-2-1" />
+    <sequenceFlow id="_4-2-1-_4-2-2" sourceRef="_4-2-1" targetRef="_4-2-2" name="Document Generated" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Document docu = (Document) context.getVariable("document");
+return docu.getGeneratedFlag();</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_4-2-1-_4-2-3" sourceRef="_4-2-1" targetRef="_4-2-3" name="Generation Failed" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Document docu = (Document) context.getVariable("document");
+return !docu.getGeneratedFlag();</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_4-2-7-_4-2-5" sourceRef="_4-2-7" targetRef="_4-2-5" />
+    <sequenceFlow id="_4-2-8-_4-2-6" sourceRef="_4-2-8" targetRef="_4-2-6" />
+    <sequenceFlow id="_4-2-2-_4-2-7" sourceRef="_4-2-2" targetRef="_4-2-7" />
+    <sequenceFlow id="_4-2-3-_4-2-8" sourceRef="_4-2-3" targetRef="_4-2-8" />
+    </subProcess>
+    <endEvent id="_5" name="End" />
+    <startEvent id="_7" name="Start" />
+
+    <!-- connections -->
+    <sequenceFlow id="_7-_2" sourceRef="_7" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="GeneratedDocuments" >
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="123" y="118" width="224" height="34" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="142" y="200" width="190" height="37" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="13" y="298" width="449" height="299" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-1" >
+        <dc:Bounds x="135" y="328" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-2" >
+        <dc:Bounds x="84" y="408" width="150" height="31" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-3" >
+        <dc:Bounds x="256" y="339" width="164" height="30" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-4" >
+        <dc:Bounds x="31" y="329" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-5" >
+        <dc:Bounds x="138" y="544" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-6" >
+        <dc:Bounds x="315" y="537" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-7" >
+        <dc:Bounds x="108" y="470" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4-2-8" >
+        <dc:Bounds x="290" y="452" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="221" y="701" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="207" y="15" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-4-_4-2-1" >
+        <di:waypoint x="42" y="55" />
+        <di:waypoint x="146" y="54" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-1-_4-2-2" >
+        <di:waypoint x="146" y="54" />
+        <di:waypoint x="146" y="125" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-1-_4-2-3" >
+        <di:waypoint x="146" y="54" />
+        <di:waypoint x="325" y="56" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-7-_4-2-5" >
+        <di:waypoint x="145" y="196" />
+        <di:waypoint x="149" y="270" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-8-_4-2-6" >
+        <di:waypoint x="327" y="178" />
+        <di:waypoint x="326" y="263" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-2-_4-2-7" >
+        <di:waypoint x="146" y="125" />
+        <di:waypoint x="145" y="196" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-2-3-_4-2-8" >
+        <di:waypoint x="325" y="56" />
+        <di:waypoint x="327" y="178" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_2" >
+        <di:waypoint x="231" y="39" />
+        <di:waypoint x="235" y="135" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="235" y="135" />
+        <di:waypoint x="237" y="218" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="237" y="218" />
+        <di:waypoint x="237" y="447" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="237" y="447" />
+        <di:waypoint x="245" y="725" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

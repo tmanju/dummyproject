@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="comment" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="comment.enterComment">
+		<field name="comment.commentType"/>
+		<field name="comment.commentText"/>
+	</panel>
+	<beans>
+		<bean name="comment" type="com.thirdpillar.codify.loanpath.model.Comment" />
+	</beans>	
+</canvas>

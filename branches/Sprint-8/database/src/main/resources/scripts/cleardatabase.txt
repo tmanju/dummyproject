@@ -1,0 +1,12 @@
+--
+-- Completely removes the schema
+-- This script must be run when connected as a db administrator.
+--
+
+PROMPT Clear Database: Killing any open sessions on schema '&1'
+@ddl/kill_session.txt &1;
+PROMPT Clear Database: Dropping user '&1'
+drop user &1 cascade;
+
+commit;
+exit;

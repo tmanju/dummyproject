@@ -1,0 +1,81 @@
+#created on: September 23, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.codify.loanpath.constants.*;
+import com.thirdpillar.codify.loanpath.constants.ConstantsRules;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.foundation.model.IDocumentGroup;
+import function com.thirdpillar.foundation.rules.RuleFunctions.*;
+global com.thirdpillar.foundation.service.Context appContext;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
+import java.math.BigDecimal;
+import java.lang.Integer;
+
+rule "SetDefaultParentRole"
+	 agenda-group "SAVE" 
+	when
+		req:Request()
+    	f:Facility() from req.allFacilities
+		facilityCustomerRole:FacilityCustomerRole(partyRole != null && partyRole.key != ConstantsRules.PARTY_ROLE_TYPE_CLIENT_KEY) from f.facilityCustomerRoles 
+	then
+		AttributeChoice role = facilityCustomerRole.getPartyRole();
+			if(appContext.getNamedContext().get("root") instanceof Request){
+  				Request request = (Request)appContext.getNamedContext().get("root");
+  				FacilityCustomerRole pb = null;
+  				for(Facility facility : request.getAllFacilities()){
+					for(FacilityCustomerRole fcr : facility.getFacilityCustomerRoles()){
+						if(fcr.getPrimaryBorrower()){
+							pb = fcr;
+							break;
+						}
+					}
+				}
+				if(pb != null){
+					facilityCustomerRole.setParentRole(pb);
+				}
+  			}
+end
+
+rule "SetDefaultDebtorAddresses"
+	when
+		changeModelEvent:FacilityCustomerRole.ChangeModelEvent(property == "customer",newValue != null)
+	then
+		FacilityCustomerRole facilityCustomerRole = (FacilityCustomerRole) changeModelEvent.getEntity();
+		DebtorCustomer debtorCustomer = (DebtorCustomer)appContext.getNamedContext().get("root_allFacilities_debtors");
+		if(debtorCustomer != null){
+			EntityService es = new EntityService();
+			Customer customer = (Customer) changeModelEvent.getNewValue();
+			List<com.thirdpillar.codify.loanpath.model.Address> addresses = new ArrayList<com.thirdpillar.codify.loanpath.model.Address>();
+			if(customer.getPrimarySite() != null && customer.getPrimarySite().getSiteDetails() != null && customer.getPrimarySite().getSiteDetails().getAddresses() != null){
+				for(com.thirdpillar.codify.loanpath.model.Address address : customer.getPrimarySite().getSiteDetails().getAddresses()){
+					if(address.getUsage() != null){
+						for(AttributeChoice usage : address.getUsage()){
+							if(usage.getKey().equals(ConstantsRules.ADDRESS_USE_TYPE_BILLING_KEY)){
+								com.thirdpillar.codify.loanpath.model.Address a = (com.thirdpillar.codify.loanpath.model.Address) es.createNew(com.thirdpillar.codify.loanpath.model.Address.class);
+								a.setAddress1(address.getAddress1());
+								a.setAddress2(address.getAddress2());
+								a.setCity(address.getCity());
+								a.setCountry(address.getCountry());
+								a.setStateProvince(address.getStateProvince());
+								a.setPostalCode(address.getPostalCode());
+								List<AttributeChoice> usages = new ArrayList<AttributeChoice>();
+								for(AttributeChoice attr : address.getUsage()){
+									usages.add(attr);
+								}
+								a.setUsage(usages);			
+								addresses.add(a);
+								break;
+							}
+						}
+					}
+				}
+				debtorCustomer.getContact().getAddresses().clear();
+				debtorCustomer.getContact().getAddresses().addAll(addresses);
+			}
+		}
+end

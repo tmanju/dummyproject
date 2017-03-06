@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="notificationConfiguration" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="notificationConfiguration.details" label="Notification Configuration">
+		<field name="notificationConfiguration.notificationKey" label="Key" />
+		<field name="notificationConfiguration.notificationName" label="Name"/>
+		<field name="notificationConfiguration.toRecipients"  label="To Recipients"/>
+		<field name="notificationConfiguration.emailEnabled"  label="Email Enabled"/>
+		<section id="notificationConfiguration.body.details" cols="1" orientation="horizontal" label-alignment="top">
+			<field name="notificationConfiguration.subject" label="Subject"/>
+			<field name="notificationConfiguration.bodyText" label="Body" />
+		</section>
+	</panel>
+	<beans>
+		<bean name="notificationConfiguration" type="com.thirdpillar.codify.loanpath.model.NotificationConfiguration" />
+	</beans>
+</canvas>

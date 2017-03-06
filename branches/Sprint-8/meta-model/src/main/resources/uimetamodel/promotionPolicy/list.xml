@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="promotionPolicy" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<data-table name="promotionPolicyList" row="promotionPolicy" sortBy="promotionPolicy.name"
+		sortOrder="ascending" label="Promotion Search Results">
+		<columns>
+			<column name="promotionPolicy.name" label="Promotion Name" />
+			<column name="promotionPolicy.ou" label="OU" />
+			<column name="promotionPolicy.sbu" label="SBU" />
+			<column name="promotionPolicy.promotionType" label="Type" />			
+			<column name="promotionPolicy.effectiveFromDate" label="Effective Date" />
+			<column name="promotionPolicy.effectiveToDate" label="Expiration Date" />
+			<column name="promotionPolicy.pricingPolicies" label="Pricing Profiles" />
+		</columns>
+	</data-table>	
+	<beans>
+		<bean name="promotionPolicyList" type="com.thirdpillar.codify.loanpath.model.PromotionPolicy" />
+	</beans>
+</canvas>
+

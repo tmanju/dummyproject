@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles xmlns="http://www.thirdpillar.com/binding-profile">
+	<profile name="Copy-Customer" extends="Fnd-Copy">
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
+			<excludes>
+				<field name="servicingIdentifier"/>
+				<field name="externalIdentifier"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
+			<excludes>
+				<field name="servicingIdentifier"/>
+				<field name="externalIdentifier"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Facility" inherit="true">
+			<excludes>
+				<field name="servicingIdentifier"/>
+				<field name="externalIdentifier"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.DebtorCustomer" inherit="true">
+			<excludes>
+				<field name="servicingIdentifier"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Contact" inherit="true">
+			<excludes>
+				<field name="servicingIdentifier"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Address" inherit="true">
+			<excludes>
+				<field name="servicingIdentifier"/>
+			</excludes>
+		</class>     
+	</profile>	
+</profiles>
+

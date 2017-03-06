@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	<permission name="BusinessRules" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+		
+		<entity name="RacsetEvaluation">
+			<fields>
+				<field name="racsetDefinition">
+					<default>true</default>
+					<update>thiz.id == null</update>
+				</field>			
+			</fields>
+		</entity>
+		
+		<entity name="Relationship">
+			<default>true</default>
+			<fields>
+				<field name="allRelationshipParties.customer">
+					<default>true</default>
+					<update>root_allRelationshipParties.id == null</update>
+				</field>
+				<field name="allRelationshipParties.partyRole">
+					<default>true</default>
+					<update>root_allRelationshipParties.id == null</update>
+				</field>
+				<field name="allRelationshipParties.parentRelationshipParty">
+					<default>true</default>
+					<update>root_allRelationshipParties.id == null</update>
+				</field>
+			</fields>
+		</entity>
+		
+		<entity name="FacilityRelationshipParty">	
+			<default>true</default>
+			<fields>
+				<field name="relationshipParty">
+					<default>true</default>
+					<update>thiz.id == null</update>
+				</field>			
+				<field name="aditionalGurantor">
+					<default>thiz.relationshipParty != null &amp;&amp; thiz.relationshipParty.partyRole != null &amp;&amp; thiz.relationshipParty.partyRole != null &amp;&amp; (thiz.relationshipParty.partyRole.key == 'PARTY_ROLE_TYPE_GUARANTOR')</default>
+				</field>
+			</fields>
+		</entity>
+		
+		<entity name="FacilityCustomerRole">	
+			<default>true</default>
+			<fields>
+				<field name="primaryBorrower">
+					<default>thiz.partyRole != null &amp;&amp; thiz.partyRole.key == 'PARTY_ROLE_TYPE_CLIENT'</default>
+				</field>
+				<field name="primaryContact">
+					<default>thiz.customer != null &amp;&amp; thiz.customer.isIndividual()</default>
+				</field>
+				<field name="pctOwned">
+					<default>thiz.partyRole != null &amp;&amp; thiz.partyRole.key == 'PARTY_ROLE_TYPE_OWNER'</default>
+				</field>
+				<field name="percentGuaranteed">
+					<default>thiz.partyRole != null &amp;&amp; thiz.partyRole.key == 'PARTY_ROLE_TYPE_GUARANTOR'</default>
+				</field>
+			</fields>
+		</entity>		
+			
+		<entity name="UCC">
+			<default>true</default>
+			<update>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.wfStatus.statusKey=='UCC_STATUS_SUBMITTED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILED' || thiz.wfStatus.statusKey=='UCC_STATUS_CANCELED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILING_ERROR' || thiz.wfStatus.statusKey=='UCC_STATUS_REJECTED')</update>
+			<delete>(!(isdef thiz) || thiz==null ||thiz.wfStatus==null) || !(thiz.wfStatus.statusKey=='UCC_STATUS_SUBMITTED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILED' || thiz.wfStatus.statusKey=='UCC_STATUS_CANCELED' || thiz.wfStatus.statusKey=='UCC_STATUS_FILING_ERROR' || thiz.wfStatus.statusKey=='UCC_STATUS_REJECTED')</delete>
+			<fields>
+				<field name="language">
+					<default>true</default>
+					<update>(isdef thiz) &amp;&amp; (thiz == null || thiz.collateralStatement == null || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_BLANKET_CUSTOM' || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_EQUIPMENT_CUSTOM' || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_A1_FIXTURE_FILING_CUSTOM' || thiz.collateralStatement.key == 'COLLATERAL_STATEMENT_TYPE_CUSTOM')</update>
+				</field>
+			</fields>
+		</entity>
+		<entity name="UccSrch">
+			<default>true</default>
+			<update>(!(isdef thiz) || thiz==null || thiz.recordNo == null)</update>
+			<delete>(!(isdef thiz) || thiz==null || thiz.recordNo == null)</delete>
+			<fields>
+				<field name="searchKey">
+					<default>true</default>
+					<update>thiz.recordNo == null</update>
+				</field>
+				<field name="searchBy">
+					<default>true</default>
+					<update>thiz.recordNo == null</update>
+				</field>
+				<field name="location">
+					<default>true</default>
+					<update>thiz.recordNo == null</update>
+				</field>
+			</fields>
+		</entity>
+		<entity name="User">
+			<default>true</default>
+			<fields>
+				<field name="externalIdentifier">
+					<default>thiz.userSource != null &amp;&amp; thiz.userSource.key == 'USER_SOURCE_SAML'</default>
+				</field>
+			</fields>
+		</entity>
+
+		<entity name="Covenant">
+			<default>true</default>
+			<fields>
+				<field name="min">
+					<default>thiz.eventType != null &amp;&amp; thiz.eventType.key == 'EVENT_TYPE_RANGE_TEST'</default>
+				</field>
+				<field name="max">
+					<default>thiz.eventType != null &amp;&amp; thiz.eventType.key == 'EVENT_TYPE_RANGE_TEST'</default>
+				</field>
+				<field name="documentClass">
+					<default>thiz.eventType != null &amp;&amp; thiz.eventType.key == 'EVENT_TYPE_UPLOAD_DOCUMENT'</default>
+				</field>
+				<field name="documentCategory">
+					<default>thiz.eventType != null &amp;&amp; thiz.eventType.key == 'EVENT_TYPE_UPLOAD_DOCUMENT'</default>
+				</field>
+				<field name="documentType">
+					<default>thiz.eventType != null &amp;&amp; thiz.eventType.key == 'EVENT_TYPE_UPLOAD_DOCUMENT'</default>
+				</field>
+				<field name="questions">
+					<default>thiz.eventType != null &amp;&amp; thiz.eventType.key == 'EVENT_TYPE_QUESTIONNAIRE'</default>
+				</field>
+				<field name="scheduledEvent.startDate">
+					<default>true</default>
+					<update>thiz.id == null</update>
+				</field>
+				<field name="scheduledEvent.endDate">
+					<default>true</default>
+					<update>thiz.id == null</update>
+				</field>
+				<field name="scheduledEvent.cronExpression">
+					<default>true</default>
+					<update>thiz.id == null</update>
+				</field>
+			</fields>
+		</entity>
+		
+		<entity name="CovenantEvaluation">
+			<default>true</default>
+			<fields>
+				<field name="value">
+					<default>thiz.covenant.eventType != null &amp;&amp; thiz.covenant.eventType.key == 'EVENT_TYPE_RANGE_TEST'</default>
+				</field>
+				<field name="questions">
+					<default>thiz.covenant.eventType != null &amp;&amp; thiz.covenant.eventType.key == 'EVENT_TYPE_QUESTIONNAIRE'</default>
+				</field>
+				<field name="questions.question">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				<field name="covenant.min">
+					<default>thiz.covenant.eventType != null &amp;&amp; thiz.covenant.eventType.key == 'EVENT_TYPE_RANGE_TEST'</default>
+				</field>
+				<field name="covenant.max">
+					<default>thiz.covenant.eventType != null &amp;&amp; thiz.covenant.eventType.key == 'EVENT_TYPE_RANGE_TEST'</default>
+				</field>
+				<field name="covenant.documentClass">
+					<default>thiz.covenant.eventType != null &amp;&amp; thiz.covenant.eventType.key == 'EVENT_TYPE_UPLOAD_DOCUMENT'</default>
+				</field>
+				<field name="covenant.documentCategory">
+					<default>thiz.covenant.eventType != null &amp;&amp; thiz.covenant.eventType.key == 'EVENT_TYPE_UPLOAD_DOCUMENT'</default>
+				</field>
+				<field name="covenant.documentType">
+					<default>thiz.covenant.eventType != null &amp;&amp; thiz.covenant.eventType.key == 'EVENT_TYPE_UPLOAD_DOCUMENT'</default>
+				</field>
+				
+			</fields>
+		</entity>
+		
+		<entity name="Document">
+			<default>true</default>
+			<fields>
+				<field name="associatedProducts">
+					<default>!(thiz.requestLevel)</default>
+				</field>
+				<!-- <field name="associatedCustomers">
+					<default>!(thiz.requestLevel)</default>
+				</field> -->
+				<field name="uploadedStream">
+					<default>true</default>
+					<update>thiz.checkout == null || thiz.checkout.checkedOutByUser == null || thiz.checkout.checkedOutByUser.id == ctxUser.id</update>
+				</field>
+				<field name="associatedFacilities">
+					<default>if(thiz.documentRelatedTo != null &amp;&amp; thiz.documentRelatedTo.key == 'DOCUMENT_RELATED_TO_PARTY'){return false;}else{return true;}</default>
+				</field>
+			</fields>
+		</entity>		
+		<entity name="Request">
+			<default>true</default>
+			<fields>
+				<field name="documentGroup.uploadedDocuments.uploadedStream">
+					<default>true</default>
+					<update>isdef root_documentGroup_uploadedDocuments &amp;&amp; root_documentGroup_uploadedDocuments.checkout == null || root_documentGroup_uploadedDocuments.checkout.checkedOutByUser == null || root_documentGroup_uploadedDocuments.checkout.checkedOutByUser.id == ctxUser.id</update>
+				</field>
+				<field name="approval.approvalLevels">
+					<default>false</default>
+					<read>true</read>
+				 </field>
+				 <field name="referralName">
+					<default>true</default>
+					<update>return thiz.updateApplicationInfoAllowed();</update>
+				 </field>
+				 <field name="partnerDrawFeeCommissionPct">
+					<default>true</default>
+					<update>return thiz.updateApplicationInfoAllowed();</update>
+				 </field>
+				 <field name="partnerOrgFeeCommissionPct">
+					<default>true</default>
+					<update>return thiz.updateApplicationInfoAllowed();</update>
+				 </field>
+				 <field name="referralAccountName">
+					<default>true</default>
+					<update>return thiz.updateApplicationInfoAllowed();</update>
+				 </field>
+				 <field name="account">
+				 	<default>true</default>
+				 	<update>isdef root &amp;&amp; (root.wfStatus.statusKey == "REQUEST_STATUS_NEW" || root.wfStatus.statusKey == "REQUEST_STATUS_SAVED")</update>
+				 </field>
+				 <field name="receivedDate">
+				 	<default>true</default>
+				 	<update>isdef root &amp;&amp; (root.wfStatus.statusKey == "REQUEST_STATUS_NEW")</update>
+				 </field>
+			</fields>
+		</entity>			
+		 <entity name="Customer">
+			<default>true</default>
+			<fields>
+				<field name="pdLgdRating">
+					<default>thiz.customerType != null &amp;&amp; thiz.customerType.key != 'CUSTOMER_TYPE_COUNTER_PARTY'</default>
+					<read>true</read>
+				 </field>
+				<field name="riskRatings">
+					<default>thiz.customerType != null &amp;&amp; thiz.customerType.key != 'CUSTOMER_TYPE_COUNTER_PARTY'</default>
+					<read>true</read>
+				 </field>
+				 <field name="publicCompany">
+				 	<default>thiz.customerType != null &amp;&amp; thiz.customerType.key == 'CUSTOMER_TYPE_NON_INDIVIDUAL'</default>
+				 </field>
+				 <field name="naicsDescDer">
+				 	<default>true</default>
+				 	<read>true</read>
+				 </field>
+			</fields>
+		</entity>
+		
+		
+		 <entity name="FeeAllocation">
+			<default>true</default>
+			<fields>
+				<field name="feeAmount">
+					<default>thiz.fee != null &amp;&amp; thiz.fee.feeDistribution != null &amp;&amp; thiz.fee.feeDistribution.key == 'FEE_DISTRIBUTION_AMOUNT'</default>
+				 </field>
+				<field name="feePct">
+					<default>thiz.fee != null &amp;&amp; thiz.fee.feeDistribution != null &amp;&amp; thiz.fee.feeDistribution.key == 'FEE_DISTRIBUTION_PERCENT'</default>
+				 </field>	
+			</fields>
+		</entity>
+		 <entity name="CapitalProvider">
+			<fields>
+				<field name="availableCashDer">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				<field name="pending">
+					<default>true</default>
+					<update>false</update>
+				</field>
+				<field name="outstandingPrincipal">
+					<default>true</default>
+					<update>false</update>
+				</field>
+			</fields>
+		</entity>  
+	 	<entity name="FundAllocator">
+			<fields>
+				<!-- Rejected portion should not be editable  -->
+				<field name="capitalProvider">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'FUNDING_PLACEMENT_STATUS_FAILED'  &amp;&amp;
+													 thiz.wfStatus.statusKey != 'FUNDING_PLACEMENT_STATUS_FUNDED'</update>					
+				</field>
+				<field name="rejReason">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'FUNDING_PLACEMENT_STATUS_FAILED'</update>					
+				</field>
+			</fields>
+		</entity>
+		<entity name="Deal">
+			<fields>
+				<field name="initialFundingReq">
+					<default>true</default>
+					<update>false</update>					
+				</field>
+			</fields>
+		</entity>
+			<entity name="FacilityBE">
+			<fields>
+				<field name="creditFacAmt">
+					<default>true</default>
+					<update>false</update>					
+				</field>
+				<field name="minUtilizationAmt">
+					<default>true</default>
+					<update>false</update>					
+				</field>
+			</fields>
+		</entity>
+		 	<entity name="CustomerBackend">
+			<fields>
+				<field name="fundType">
+					<default>true</default>
+					<update>thiz.fpType != null &amp;&amp; thiz.fpType.key == 'FP_TYPE_FUND'</update>					
+				</field>
+				<field name="domicile">
+					<default>true</default>
+					<update>thiz.fpType != null &amp;&amp; thiz.fpType.key == 'FP_TYPE_FUND'</update>					
+				</field>
+				<field name="bankCharter">
+					<default>true</default>
+					<update>thiz.fpType != null &amp;&amp; thiz.fpType.key == 'FP_TYPE_BANK'</update>					
+				</field>
+				<field name="stateBnkChrtr">
+					<default>true</default>
+					<update>thiz.getBankCharter != null &amp;&amp; thiz.getBankCharter.key == 'BANK_CHARTER_STATE'</update>					
+				</field>
+			</fields>
+		</entity>
+	<!-- -->
+		<entity name="FacAllocator">
+			<fields>
+				<field name="fundAmt">
+					<default>true</default>
+					<update>thiz.percentOrAmt != null &amp;&amp; thiz.percentOrAmt.key == 'AMOUNT_OR_PERCENT_AMOUNT'  &amp;&amp;
+							thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+										 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				<field name="fundPer">
+					<default>true</default>
+					<update>thiz.percentOrAmt != null &amp;&amp; thiz.percentOrAmt.key == 'AMOUNT_OR_PERCENT_PERCENT' &amp;&amp;
+							thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+											thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				<!-- Rejected portion should not be editable  -->
+				<field name="capitalProvider">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+													 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				<field name="percentOrAmt">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+													 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				<field name="placementRate">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+								 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				<field name="spread">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+								 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				<field name="servicefee">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+								 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				
+				<field name="rejReason">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'</update>					
+				</field>
+				<field name="unusedLineRate">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+													 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'</update>					
+				</field>
+				<field name="inxMiscFee">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'DEALS_STATUS_REJECTED'  &amp;&amp;
+													 thiz.wfStatus.statusKey != 'DEALS_STATUS_ACCEPTED'  &amp;&amp;
+													 thiz.wfStatus.statusKey != 'DEALS_STATUS_ASSIGNED'</update>					
+				</field>
+			</fields>
+		</entity>
+		
+		 <entity name="FacilityPayment">
+			<fields>
+				<field name="payment">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'FACILITY_PAYMENT_STATUS_ALLOCATED'</update>
+				</field>
+				<field name="facilityBE">
+					<default>true</default>
+					<update>thiz.wfStatus != null &amp;&amp; thiz.wfStatus.statusKey != 'FACILITY_PAYMENT_STATUS_ALLOCATED'</update>
+				</field>	
+			</fields>
+		</entity>
+		<entity name="DebtorCustomer">
+			<fields>
+				<field name="eligibleARLimit">
+					<default>true</default>
+					<update>return thiz.updateDebtorInfoAllowed();</update>
+				</field>
+				<field name="retention">
+					<default>true</default>
+					<update>return thiz.updateDebtorInfoAllowed();</update>
+				</field>
+				<field name="creditPeriod">
+					<default>true</default>
+					<update>return thiz.updateDebtorInfoAllowed();</update>
+				</field>
+				<field name="borrowingBaseRes">
+					<default>true</default>
+					<update>return thiz.updateDebtorInfoAllowed();</update>
+				</field>
+				<field name="concLimit">
+					<default>true</default>
+					<update>return thiz.updateDebtorInfoAllowed();</update>
+				</field>
+				<field name="dbas">
+					<default>true</default>
+					<update>return thiz.facilityCustomerRole.customer != null</update>
+				</field>
+			</fields>
+		</entity>
+		
+		<entity name="Structure">
+			<fields>
+				<field name="borrowingBaseRes">
+					<default>true</default>
+					<update>return thiz.updateBorrowingBaseAllowed();</update>
+				</field>
+				<field name="reserveReq">
+					<default>true</default>
+					<update>return thiz.updateBorrowingBaseAllowed();</update>
+				</field>
+				<field name="reserveReq">
+					<default>true</default>
+					<update>return thiz.updateReserveReqAllowed();</update>
+				</field>
+			</fields>
+		</entity>
+		<entity name="Facility">
+			<fields>
+				<field name="approvedLoanAmt">
+					<default>true</default>
+					<update>return thiz.updateApprovedAmtAllowed();</update>
+				</field>
+				<field name="renewalDate">
+					<default>true</default>
+					<update>return (thiz.facilityContract != null &amp;&amp; thiz.facilityContract.renewalApprovalDate != null);</update>
+				</field>
+			</fields>
+		</entity>
+	</permission>
+</permissions>

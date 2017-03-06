@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_entityNameItem" structureRef="java.lang.String" />
+  <itemDefinition id="_actionItem" structureRef="java.lang.String" />
+  <itemDefinition id="_clientIdItem" structureRef="java.lang.String" />
+
+  <process processType="Private" isExecutable="true" id="UpdateIntegrationCallProcess" name="Update Integration Call Process" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="entityName" itemSubjectRef="_entityNameItem"/>
+    <property id="action" itemSubjectRef="_actionItem"/>
+    <property id="clientId" itemSubjectRef="_clientIdItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <scriptTask id="_2" name="Set Entity Name and Action" scriptFormat="http://www.java.com/java" >
+      <script>context.setVariable("entityName","application");
+context.setVariable("action","update");</script>
+    </scriptTask>
+    <callActivity id="_3" name="Integration Call Sub-Process" calledElement="IntegrationCallSubProcess" >
+      <ioSpecification>
+        <dataInput id="_3_rootEntityInput" name="rootEntity" />
+        <dataInput id="_3_actionInput" name="action" />
+        <dataInput id="_3_contextEntityInput" name="contextEntity" />
+        <dataInput id="_3_clientIdInput" name="clientId" />
+        <dataInput id="_3_entityNameInput" name="entityName" />
+        <inputSet>
+          <dataInputRefs>_3_rootEntityInput</dataInputRefs>
+          <dataInputRefs>_3_actionInput</dataInputRefs>
+          <dataInputRefs>_3_contextEntityInput</dataInputRefs>
+          <dataInputRefs>_3_clientIdInput</dataInputRefs>
+          <dataInputRefs>_3_entityNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_rootEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>action</sourceRef>
+        <targetRef>_3_actionInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_3_contextEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>clientId</sourceRef>
+        <targetRef>_3_clientIdInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>entityName</sourceRef>
+        <targetRef>_3_entityNameInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <endEvent id="_4" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="UpdateIntegrationCallProcess" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="112" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="40" y="96" width="192" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="16" y="176" width="241" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="112" y="256" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="136" y="40" />
+        <di:waypoint x="136" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="136" y="120" />
+        <di:waypoint x="136" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="136" y="200" />
+        <di:waypoint x="136" y="280" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

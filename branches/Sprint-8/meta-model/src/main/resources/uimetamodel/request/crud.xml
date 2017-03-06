@@ -1,0 +1,3380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="request" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<tabs>
+		<tab id="tab.creditRequest" label="Application">
+			<panel id="creditRequest.applicationInformation">
+				<field name="request.refNumber" label="Application Number" />
+				<!-- <field name="request.quote.refNumber" label="Quote Number" /> -->
+				<field name="request.wfStatus" label="Status" />
+				<field name="request.dealStatusInd" label="Deal status indicator" />
+				<field name="request.requestType" label="Application Type"
+					targetFields="creditRequest_applicationInformation,Request.noiaLogs" />
+				<field name="request.requestName" />
+				<field name="request.account.customer" label="Account" allow="create" />
+				<field name="request.account.servicingIdentifier" label="Account Servicing Identifier"/>
+				<field name="request.receivedDate" label="Application Date" />
+				<field name="request.modificationDate" label="Modification Date" />
+				<field name="request.regbDttm" label="Reg B Start Date" />
+				<field name="request.expectedCloseDate" label="Expected Close Date" />
+				<field name="request.creditAnalyst" label="Credit Analyst" />
+				<field name="request.documentSpecialist" label="Document Specialist" />
+				<field name="request.interviewDttm" label="Interview Date" />
+				<field name="request.complexity" label="Complexity" />
+				<field name="request.description" label="Description" />
+				<field name="request.confidential" label="Confidential" />
+				<field name="request.referralSource" />
+				<field name="request.referralName" label="Referral Contact Name"/>
+				<field name="request.referralAccountName" label="Referral Account Name"/>
+				<!-- <field name="request.recommendDecline" /> -->
+				<field name="request.externalIdentifier" label="Salesforce.com Application ID" />
+				<field name="request.sfdcAppOwnerName" label="Application Owner" />
+				<field name="request.partnerDrawFeeCommissionPct" label="Partner Draw fee commission %"/>
+				<field name="request.partnerOrgFeeCommissionPct" label="Partner Origination fee commission %"/>
+			</panel>
+			
+			<!-- <panel id="request.keyPricingInformation" label="Key Pricing" cols="3">
+				<field name="request.keyPricing.interestRateDer" label="Interest Rate"/>
+				<field name="request.keyPricing.loanToValueDer" label="Loan To Value"/>
+				<field name="request.keyPricing.preQualValue" label="Pre-Qual Value"/>
+				<field name="request.keyPricing.amortizationTerm" label="Amortization Term(M)"/>
+				<field name="request.keyPricing.dscrDer" label="DSCR"/>
+				<field name="request.keyPricing.finalValue" label="Final Value"/>
+				<field name="request.keyPricing.dayCountConvention" label="Day Count Convention"/>
+				<field name="request.keyPricing.debtYieldDer" label="Debt Yield"/>
+			</panel> -->
+
+			<data-table name="Request.allFacilities" row="facility"
+				label="Products" sortBy="facility.refNumber" sortOrder="ascending">
+				<columns>
+					<column name="facility.refNumber" label="Product Number" />
+					<column name="facility.effectiveProductType" label="Product Type" />
+					<column name="facility.requestedLoanAmt" label="Requested Amount" />
+					<column name="facility.approvedLoanAmt" label="Approved Amount" />
+					<column name="facility.primaryBorrower" label="Client" />
+					<column name="facility.wfStatus" label="Product Status" />
+					<column name="facility.renewalDate" label="Renewal Date" />
+				</columns>
+				
+				<edit-canvas id="facilityEditCanvas">
+					<tabs>
+						<tab id="tab.creditRequest.Application.FacilityMain" label="Product">
+							<panel id="facility.information" label="Product Information">
+								<field name="facility.refNumber" label="Product Number" />
+								<field name="facility.wfStatus" label="Product Status" />
+								<field name="facility.requestedLoanAmtDer" label="Requested Amount" />
+								<field name="facility.requestedTermDer" label="Requested Term (months)" />
+								<field name="facility.externalIdentifier" label="SFDC Product ID" />
+								<field name="facility.servicingIdentifier" label="Servicing Identifier" />
+								<field name="facility.facilityRR.value" label="Risk Rating" />
+								<field name="facility.facilityRRSource.value" label="Risk Rating Source" />
+								<field name="facility.approvedLoanAmtDer" label="Approved Amount" />
+								<field name="facility.approvedTermDer" label="Approved Term (months)" />
+								<field name="facility.approvalExpirationDateDer" label="Approval Expiration Date" />
+							</panel>
+							<panel id="facility.limitInformation" label="Limit Information">
+								<field name="facility.refNumber" label="Product Number" />
+								<!-- <field name="facility.facilityType" label="Product Type" targetFields="facility.limitInformation,facility.productSetup"/> -->
+								<!-- <field name="facility.exposureLimitFacilityType" label="Exposure Product Type"
+									targetFields="facility.limitInformation" /> -->
+								<field name="facility.externalIdentifier" label="SFDC Product ID" />
+								<field name="facility.wfStatus" label="Product Status" />
+								<field name="facility.requestedLoanAmt" label="Requested Amount *" targetFields="facility.structure"/>
+								<field name="facility.approvedLoanAmtDer" label="Approved Amount" />
+								<field name="facility.approvalExpirationDateDer" label="Approval Expiration Date" />
+								<field name="facility.requestedTermDer" label="Requested Term (months)" />
+								<field name="facility.approvedTermDer" label="Approved Term (months)" />
+								<field name="facility.facilityRR.value" label="Risk Rating" />
+								<field name="facility.facilityRRSource.value" label="Risk Rating Source" />
+								<!-- <field name="facility.withdrawReason" /> -->
+							</panel>
+							<panel id="facility.salesInformation" label="Sales Information">
+								<field name="facility.accountManager" label="Account Manager" />
+								<field name="facility.relationshipSalesManager" label="Relationship Sales Manager" />
+								<field name="facility.salesAssistant" label="Sales Assistant" />
+								<field name="facility.projectManager" label="Project Manager" />
+							</panel>
+							<panel id="facility.productSetup" label="Product Setup">
+								<!-- <field name="facility.facilityCategory" label="Product Category"/> -->
+								<field name="facility.facilityType" label="Product Type *"
+									targetFields="facility.pricingOption.structure.normal.fees, facility.structure, facility.additionalOptions,facility.facilityGuaranty,facility.pricingOption.structure.normal.fees,facility.modicationPanel,facility.rewriteInfo,facility.assetQualityMetrics,facility.exposureAtDefault,facility.factoring,facility.productLimits,facility.productSetup,facility.limitInformation,facility.request.keyPricingInformation" />
+								<!-- <field name="facility.hierarchy"/> -->
+								<field name="facility.facilitySubType" label="Product Sub-type"/>
+								<field name="facility.productPurpose" label="Product Purpose"/>
+								<field name="facility.sbaType" label="SBA" />
+								<field name="facility.purposeCode" label="Purpose Code" />
+								<field name="facility.natureOfSecurity" label="Nature Of Security" />
+								<field name="facility.securitizationPool" label="Securitization Pool" />
+								<field name="facility.descOfFinancingNeeds" />
+								<!-- <field name="facility.withdrawReason" /> -->
+								<field name="facility.pricingOption.structure.maturityDate" label="Maturity Date" />
+								<field name="facility.renewalDate" id="facility.renewalDate"/>
+								<field name="facility.facilityContract.renewalApprovalDate"
+									label="Renewal Approval Date" targetFields="facility.productSetup"/>
+								<field name="facility.facilityContract.contractStartDate"
+									label="Contract Start Date" />
+								
+							</panel>
+							<data-table name="facility.facilityCustomerRoles" row="facilityCustomerRole"
+							 sortBy="facilityCustomerRole.partyRole" sortOrder="ascending" label="Product Roles">
+								<columns>
+									<column name="facilityCustomerRole.partyRole" label="Role"
+										targetFields="facility.facilityCustomerRoles" />
+									<column name="facilityCustomerRole.customer" label="Name"
+										targetFields="facility.facilityCustomerRoles,facility.collaterals"
+										allow="create" />
+									<column name="facilityCustomerRole.customer.customerType"
+										label="Customer Type" />
+									<column name="facilityCustomerRole.pctOwned" label="% Ownership" />
+									<column name="facilityCustomerRole.percentGuaranteed"
+										label="% Guaranteed" />
+									<column name="facilityCustomerRole.primaryContact"
+										label="Primary Contact" />
+									<column name="facilityCustomerRole.customer.provisioned"
+										label="Provisioned" />
+								</columns>
+							</data-table>
+							
+							<data-table name="facility.collaterals" row="collateral"
+								label="Collateral">
+								<columns>
+									<column name="collateral.refNumber" label="Seq No." />
+									<column name="collateral.collateralCategory" label="Collateral Category" />
+									<column name="collateral.collateralType" label="Collateral Sub-category" />
+									<column name="collateral.collateralDescription" label="Collateral Desc" />
+									<column name="collateral.metaInfo.createdAt" label="Date Created" />
+									<column name="collateral.metaInfo.lastModifiedAt" label="Date Recorded" />
+								</columns>
+								<quickedit-canvas>
+									<panel id="quick.collateral.information" label="Collateral Information">
+										<field name="collateral.collateralCategory" targetFields="facility.collaterals" />
+										<field name="collateral.collateralType" />
+										<field name="collateral.collateralDescription" />
+										<field name="collateral.locationHeld" label="Location Held" />
+									</panel>
+									<panel id="quick.collateral.addressInformation" label="Address Information">
+										<field name="collateral.location.address1" />
+										<field name="collateral.location.address2" />
+										<field name="collateral.location.city" />
+										<field name="collateral.location.stateProvince" />
+										<field name="collateral.location.country" />
+										<field name="collateral.location.county" />
+										<field name="collateral.location.postalCode">
+											<field name="collateral.location.postalCodePlus4"
+												label="-" />
+										</field>
+									</panel>
+								</quickedit-canvas>
+								<edit-canvas id="collateralCanvas">
+									<panel id="collateral.information" label="Collateral Information">
+										<field name="collateral.collateralCategory" targetFields="collateral.information"/>
+										<field name="collateral.collateralType" />
+										<field name="collateral.collateralDescription" />
+										<field name="collateral.collateralProvider" />
+										<field name="collateral.collateralProviderOther" />
+										<field name="collateral.effectiveDate" />
+										<field name="collateral.collateralCreatedDttm" label="Date Created" />
+										<field name="collateral.recordedDttm" label="Date Recorded" />
+										<field name="collateral.collateralPledge" label="Collateral Pledge" />
+										<field name="collateral.locationHeld" label="Location Held" />
+									</panel>
+									<panel id="collateral.addressInformation" label="Address Information">
+										<field name="collateral.location.address1" />
+										<field name="collateral.location.address2" />
+										<field name="collateral.location.city" />
+										<field name="collateral.location.stateProvince" />
+										<field name="collateral.location.country" />
+										<field name="collateral.location.county" />
+										<field name="collateral.location.postalCode">
+											<field name="collateral.location.postalCodePlus4"
+												label="-" />
+										</field>
+									</panel>
+									<panel id="collateral.appraisalInformation" label="Appraisal Information">
+										<field name="collateral.realEstateCollateral.appraisalAmount" />
+										<field
+											name="collateral.realEstateCollateral.originalAppraisalAmount" />
+										<field name="collateral.realEstateCollateral.appraisalMethod" />
+										<field name="collateral.realEstateCollateral.loanToValue" />
+										<field name="collateral.realEstateCollateral.appraisalDateOrdered" />
+										<field name="collateral.realEstateCollateral.appraisalDateReceived" />
+										<field name="collateral.realEstateCollateral.appraisalType" />
+									</panel>
+									<panel id="collateral.floodInformation" label="Flood Information">
+										<field name="collateral.realEstateCollateral.floodCertNumber" />
+										<field name="collateral.realEstateCollateral.floodSeq1" />
+										<field name="collateral.realEstateCollateral.floodSeq2" />
+										<field name="collateral.realEstateCollateral.floodCertVendorName" />
+										<field name="collateral.realEstateCollateral.floodCertDateOrdered" />
+										<field name="collateral.realEstateCollateral.floodCertDateReceived" />
+									</panel>
+									<panel id="collateral.envAssesInformation" label="Environmental Assessment Information">
+										<field name="collateral.realEstateCollateral.envAssessType" />
+										<field name="collateral.realEstateCollateral.envAssessment" />
+										<field name="collateral.realEstateCollateral.envAssessDateOrdered" />
+										<field name="collateral.realEstateCollateral.envAssessDateReceived" />
+									</panel>
+									<panel id="collateral.propertyInformation" label="Property Information">
+										<field name="collateral.realEstateCollateral.propertyDescription" />
+										<field name="collateral.realEstateCollateral.lienPosition"
+											label="Lien Position" />
+										<field name="collateral.realEstateCollateral.prepaymentPenalty" />
+										<field name="collateral.realEstateCollateral.highRiskPropertyType" />
+										<field name="collateral.realEstateCollateral.otherPropertyDetails" />
+										<field name="collateral.realEstateCollateral.censusTract" />
+										<field name="collateral.realEstateCollateral.phoneNo"
+											label="Phone Number of Building" />
+										<field name="collateral.realEstateCollateral.yearLastRenovated" />
+										<field name="collateral.realEstateCollateral.buildingCondition" />
+										<field name="collateral.realEstateCollateral.parcelNo"
+											label="Parcel #" />
+										<field name="collateral.realEstateCollateral.isOnsiteParking"
+											label="Onsite Parking" />
+										<field name="collateral.realEstateCollateral.historicalUse" />
+										<field name="collateral.realEstateCollateral.propertyType" />
+										<field name="collateral.realEstateCollateral.floodZone" />
+										<field name="collateral.realEstateCollateral.pctOwnerOccupied" />
+										<field name="collateral.realEstateCollateral.occupancy" />
+										<field name="collateral.realEstateCollateral.dateConstructed" />
+										<field name="collateral.realEstateCollateral.isAConvertedHome"
+											label="Is building a converted home?" />
+										<field name="collateral.realEstateCollateral.recentAppraisalDate"
+											label="Most Recent Appraisal Date" />
+										<field name="collateral.realEstateCollateral.annualPropertyTaxes" />
+										<field
+											name="collateral.realEstateCollateral.monthlyAssociationDues" />
+
+										<data-table name="collateral.realEstateCollateral.tenants"
+											row="tenant" label="Tenant Profile">
+											<columns>
+												<column name="tenant.tenantName" />
+												<column name="tenant.tenantBusiness" label="Business" />
+												<column name="tenant.yesrsAsTenant" />
+												<column name="tenant.squareFeet" label="Sq Ft" />
+												<column name="tenant.leaseExpDate" label="Lease Exp" />
+												<column name="tenant.monthlyRent" label="MO Rent" />
+												<column name="tenant.leaseType" label="Lease Type" />
+											</columns>
+											<quickedit-canvas>
+												<panel id="quick.collaterals.tenants" label="Tenant Profile">
+													<field name="tenant.tenantName" />
+													<field name="tenant.tenantBusiness" />
+													<field name="tenant.yesrsAsTenant" label="Years As Tenant(Zero if proposed)" />
+													<field name="tenant.squareFeet" />
+													<field name="tenant.leaseExpDate" label="Lease Expiration Date" />
+													<field name="tenant.monthlyRent" />
+													<field name="tenant.leaseType" label="Lease Type Gross/Net" />
+													<field name="tenant.vacantSuites" label="Vacant Suites(List attach)" />
+												</panel>
+											</quickedit-canvas>
+										</data-table>
+									</panel>
+									<panel id="collateral.lotInformation" label="Lot Information">
+										<field name="collateral.realEstateCollateral.salesPrice" />
+										<field name="collateral.realEstateCollateral.stories" />
+										<field name="collateral.realEstateCollateral.numberOfUnits" />
+										<field name="collateral.realEstateCollateral.officeUnits" />
+										<field name="collateral.realEstateCollateral.otherUnits" />
+										<field name="collateral.realEstateCollateral.residentUnits" />
+										<field name="collateral.realEstateCollateral.residentNumbers" />
+										<field name="collateral.realEstateCollateral.residentSqFt" />
+										<field name="collateral.realEstateCollateral.officeSqFt" />
+										<field name="collateral.realEstateCollateral.retailSqFt" />
+										<field name="collateral.realEstateCollateral.commercialSqFt" />
+										<field name="collateral.realEstateCollateral.rentalSqFt" />
+										<field name="collateral.realEstateCollateral.lotSizeSqFt" />
+										<field name="collateral.realEstateCollateral.totalSqFt" />
+									</panel>
+									<panel id="collateral.projectInformation">
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.projectName" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.propertyType"
+											label="Project Property Type" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.projectDesc"
+											label="Brief Project Desccription" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.noOfNewEmployees"
+											label="Projected Net no. New Employees" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.currentValue"
+											label="Value As Is" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.valueOnComplete"
+											label="Projected Value As Complete" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.totalCost"
+											label="Projected Total Developement" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.costPerSqFt"
+											label="Developement Cost Per Sq Ft" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.grossIncomeYr"
+											label="Projected Gross Income/Yr" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.expensesYr"
+											label="Projected Expenses/Yr" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.netIncomeYr"
+											label="Projected Net Income/Yr" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.isPropCollateral"
+											label="Is Property available as collateral" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.isPropInspected"
+											label="Has the property been Inspected" />
+										<field
+											name="collateral.realEstateCollateral.newConstructionProject.propValueDetermined"
+											label="How was value determined?" />
+
+										<panel id="collateral.buildingInformation" label="Building Site Information">
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.statusOfSite"
+												label="Status of Project Site Control" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.salesPrice" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.stories" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.units"
+												label="No.of Units" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.officeUnits"
+												label="Office Units" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.otherUnits" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.residentUnits" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.residentRooms" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.residentSqFt"
+												label="Resident Square Feet" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.officeSqFt"
+												label="Office Square Feet" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.retailSqFt"
+												label="Retail Square Feet" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.commercialSqFt"
+												label="Commercial Square Feet" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.rentableSqFt"
+												label="Building Rentable Square Footage" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.lotSize" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.totalBuildingSqFt"
+												label="Total Building Square Feet" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.pctCommercial" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.projectZone"
+												label="Current Zoning of Project" />
+											<field
+												name="collateral.realEstateCollateral.newConstructionProject.isChgRequired"
+												label="Will site require a change in" />
+										</panel>
+
+										<data-table name="collateral.realEstateCollateral.projDetails"
+											row="newProjDetail" label="Project Detailed BreakDown">
+											<columns>
+												<column name="newProjDetail.proposedName" label="Name of Proposed" />
+												<column name="newProjDetail.businessType" label="Type of Business" />
+												<column name="newProjDetail.propType" label="Comm/Res" />
+												<column name="newProjDetail.areaInAcres" label="Subdiv Acres" />
+												<column name="newProjDetail.areaInSqFt" label="Sq Ft" />
+												<column name="newProjDetail.isLeased" label="Lease?" />
+												<column name="newProjDetail.isDefaulted" label="Cross-Defaulted?" />
+											</columns>
+										</data-table>
+									</panel>
+								</edit-canvas>
+							</data-table>
+
+							<panel id="facility.structure" label="Structure">
+								<field name="facility.requestedLoanAmt" label="Requested Amount *" targetFields="facility.limitInformation" />
+								<field name="facility.drawRequest" label="Draw Request"  />
+								<field name="facility.pricingOption.structure.timeframeForFunding" label="Timeframe for Funding"/>
+								<field name="facility.pricingOption.structure.currency" label="Currency *" />
+								<field name="faciltiy.pricingOption.structure.drawdownCurrency"	label="Drawdown Currency" />
+								<field name="facility.requestedTerm" label="Term (months)">	
+									<!-- <field name="faciltiy.pricingOption.structure.termUnit" label="Term Unit" /> -->
+								</field>
+								<field name="facility.pricingOption.structure.advancedOrArrears" label="Advance/Arrears" />
+								<field name="facility.pricingOption.structure.paymentStartDate"/>
+								<!-- <field name="facility.pricingOption.structure.maturityDate" label="Maturity Date" /> -->
+								<field name="facility.pricingOption.structure.paymentSchedule.paymentFrequency" label="Payment Frequency" />
+								<field name="facility.pricingOption.structure.amortization" label="Amortization (months)">
+									<!-- <field name="faciltiy.pricingOption.structure.amortizationUnit" label="Unit" /> -->
+								</field>
+								<field name="facility.pricingOption.structure.amortizationDate" label="Amortization Date" />
+								<field name="facility.pricingOption.structure.drawingPeriod" label="Drawing Period" />
+								<field name="facility.pricingOption.structure.cashEquity" label="Cash Equity"/>
+								<field name="facility.pricingOption.structure.cashOut" label="Cash Out"/>
+								<field name="facility.pricingOption.structure.crossCollateralized" label="Cross-Collateralized"/>
+								<field name="facility.pricingOption.structure.cashManagement" label="Cash Management"/>
+								<field name="facility.pricingOption.structure.syndication" label="Syndication" targetFields="facility.structure"/>
+								<field name="facility.pricingOption.structure.leadBank" label="Lead Bank"/>
+								<field name="facility.pricingOption.structure.participation" label="Participation"/>
+								<field name="facility.pricingOption.structure.maxLTV" label="LTV"/>
+								<field name="facility.pricingOption.structure.minDSCR" label="DSCR"/>
+								<field name="facility.pricingOption.structure.lienPosition" label="Lien Position"/>
+								<field name="facility.pricingOption.structure.prepaymentPenalty" label="Prepayment Penalty"/>
+								<field name="facility.pricingOption.structure.originationFee" label="Origination Fee"/>
+								<field name="facility.pricingOption.structure.minUtilizationRate" label="Min Utilization Rate"/>
+								<field name="facility.pricingOption.structure.reserveUtilization" label="IUF Reserve Utilization Rate"  targetFields="facility.structure"/>
+								<field id="facility.pricingOption.structure.reserveAmt" name="facility.pricingOption.structure.reserveReq" label="IUF Reserve Amount"/>
+								<field name="facility.pricingOption.structure.borrowingBaseRes" label="Borrowing Base Reserve"/>
+								<data-table name="facility.pricingOption.structure.escrows" row="escrows" label="Escrows Details">
+									<columns>
+										<column name="escrows.refNumber" label="No."/>
+										<column name="escrows.accountName" label="Account Name"/>
+										<column name="escrows.monthly" label="Monthly"/>
+										<column name="escrows.totalAmount" label="Total Amount"/>
+										<column name="escrows.springing" label="Springing"/>
+									</columns>
+								</data-table>
+								<panel id="facility.structure.sourcesUsesStatement" label="Sources and Uses Statement" orientation="horizontal">
+									<section id="facility.structure.sources" label="">
+										<data-table name="facility.pricingOption.structure.sources" row="sources" label="">
+											<columns>
+												<column name="sources.refNumber" label="No."/>
+												<column name="sources.sources" label="Sources"/>
+												<column name="sources.amount" label="Amount"/>
+											</columns>
+										</data-table>
+									</section>
+									<section id="facility.structure.uses" label="">
+										<data-table name="facility.pricingOption.structure.usesStatements" row="usesStatements" label="">
+											<columns>
+												<column name="usesStatements.refNumber" label="No."/>
+												<column name="usesStatements.uses" label="Uses"/>
+												<column name="usesStatements.amount" label="Amount"/>
+											</columns>
+										</data-table>
+									</section>
+								</panel>
+								
+							</panel>
+							<panel id="facility.request.keyPricingInformation" label="Key Statistics" cols="3">
+									<field name="facility.request.keyPricing.interestRateDer" label="Interest Rate"/>
+									<field name="facility.request.keyPricing.loanToValueDer" label="Loan To Value"/>
+									<field name="facility.request.keyPricing.preQualValue" label="Pre-Qual Value"/>
+									<field name="facility.request.keyPricing.amortizationTerm" label="Amortization Term (months)"/>
+									<field name="facility.request.keyPricing.dscrDer" label="DSCR"/>
+									<field name="facility.request.keyPricing.finalValue" label="Final Value"/>
+									<field name="facility.request.keyPricing.dayCountConvention" label="Day Count Convention"/>
+									<field name="facility.request.keyPricing.debtYieldDer" label="Debt Yield"/>
+								</panel>
+							<data-table name="facility.assets" row="asset"
+								label="Assets">
+								<columns>
+									<column name="asset.refNumber" label="Asset Number" />
+									<column name="asset.assetDescription" label="Asset description" />
+									<column name="asset.assetClass" label="Asset Type" />
+									<column name="asset.assetSubclass" label="Asset Sub-Type" />
+									<column name="asset.quantity" label="Quantity" />
+									<column name="asset.unitCostAmt" label="Unit Cost" />
+									<column name="asset.assetAmt" label="Total Cost"
+										footer-name="facility.pricingOption.totalAmt" />
+									<column name="asset.inServiceDate" label="Delivery Date" />
+								</columns>
+								<edit-canvas>
+									<panel id="pricingOption.assets.assetDetail" label="Asset Details">
+										<section id="pricingOption.assets.assetDetail.section1">
+											<field name="asset.refNumber" label="Asset Number" />
+											<field name="asset.assetDescription" label="Asset description" />
+											<field name="asset.assetClass" label="Asset Type"
+												targetFields="pricingOption.assets.assetDetail" />
+											<field name="asset.assetSubclass" label="Asset Sub-Type" />
+											<field name="asset.manufacturer" label="Manufacturer" />
+											<field name="asset.conditionOfEquipment" label="Asset Condition" />
+											<field name="asset.assetModel" label="Model" />
+											<field name="asset.modelYear" label="Model Year" />
+											<field name="asset.tracPct" label="Trac %"/>
+										</section>
+										<section id="pricingOption.assets.assetDetail.section2">
+											<field name="asset.inServiceDate" label="Delivery Date" />
+											<field name="asset.quantity" />
+											<field name="asset.unitCostAmt" label="Unit Cost" />
+											<field name="asset.assetAmt" label="Total Cost" />
+											<field name="asset.leseeGuaranteedResidual" label="Lessee Guaranteed Residual" />
+											<field name="asset.thirdPartyGuaranteedRdual" label="3rd Party Guaranteed Residual" />
+											<field name="asset.residualReference.residualValue"
+												label="Rate Card Residual" />
+										</section>
+									</panel>
+									<panel id="pricingOption.assets.interimRent" label="Interim Rent">
+										<field name="asset.interimRent.chargeInterimRent" label="Charge Interim Rent" />
+										<field name="asset.interimRent.startDttm" label="Interim Rent Start Date" />
+										<field name="asset.interimRent.interimRentEndDate"
+											label="Interim Rent End Date" />
+										<field name="asset.interimRent.calculationMethod" label="Calculation Method"
+											targetFields="pricingOption.assets.interimRent" />
+										<field name="asset.interimRent.basis" label="Interim Rent Basis" />
+										<field name="asset.interimRent.interimRentPlus" label="Interim Rent Basis + Percent" />
+										<field name="asset.interimRent.interestRate" label="Interim Rent Interest Rate" />
+									</panel>
+									<panel id="pricingOption.assets.location" label="Asset Location">
+										<field name="asset.assetLocation.address1" label="Address 1" />
+										<field name="asset.assetLocation.address2" label="Address 2" />
+										<field name="asset.assetLocation.city" label="City" />
+										<field name="asset.assetLocation.country" label="Country" />
+										<field name="asset.assetLocation.stateProvince" label="State" />
+										<field name="asset.assetLocation.postalCode" label="Postal Code" />
+										<field name="asset.assetLocation.use" label="Usage" />
+									</panel>
+									<data-table name="asset.partners" row="partner"
+										label="Partners">
+										<columns>
+											<column name="partner.legalName" label="Partner Name" />
+											<column name="partner.companyInformation.contactName"
+												label="Contact Name" />
+											<column name="partner.companyInformation.businessPhone"
+												label="Business Phone" />
+											<column name="partner.companyInformation.city" label="City" />
+											<column name="partner.companyInformation.state" label="State" />
+											<column name="partner.wfStatus" label="Status" />
+										</columns>
+									</data-table>
+									<data-table name="asset.assetCosts" row="cost"
+										label="Other costs">
+										<columns>
+											<column name="cost.costType" />
+											<column name="cost.amount" />
+											<column name="cost.financed" />
+										</columns>
+									</data-table>
+								</edit-canvas>
+							</data-table>
+							<data-table name="facility.additionalOptions" row="additionalOption"
+								label="Pricing">
+									<columns>
+										<column name="additionalOption.structure.rateType" label="Rate Type" />
+										<column name="additionalOption.structure.basis" label="Basis" />
+										<column name="additionalOption.structure.pricingIndex" label="Index" />
+										<column name="additionalOption.structure.indexValue" label="Index Value" />
+										<column name="additionalOption.structure.margin" label="Margin"/>
+										<column name="additionalOption.structure.cofDate" label="COF Date" />
+										<column name="additionalOption.structure.customerRate" label="Interest Rate" />
+										<column name="additionalOption.structure.interestRate" label="Unused Line Rate" />
+										<!-- <column name="additionalOption.structure.renewalFee" label="Renewal Fee"/> -->
+									</columns>
+									<!-- <quickedit-canvas>
+										
+									
+									</quickedit-canvas> -->
+									<edit-canvas>
+									<panel id="additionalOption.enterDetails">
+											<field name="additionalOption.structure.rateType" label="Rate Type" />
+											<field name="additionalOption.structure.pricingIndex" label="Index" targetFields="additionalOption.enterDetails"/>
+											<field name="additionalOption.structure.basis" label="Basis" />
+											<field name="additionalOption.structure.indexValue" label="Index Value" targetFields="additionalOption.enterDetails"/>
+											<field name="additionalOption.structure.cof" label="COF"/>
+											<field name="additionalOption.structure.margin" label="Margin" targetFields="additionalOption.enterDetails" />
+											<field name="additionalOption.structure.customerRate" label="Interest Rate"/>
+											<field name="additionalOption.structure.cofDate" label="COF Date" />
+											<field name="additionalOption.structure.selected" label="Selected?" />
+											<!-- <field name="additionalOption.structure.spread" label="Spread" /> -->
+											<field name="additionalOption.structure.ceilingRate" label="Ceiling Rate" />
+											<field name="additionalOption.structure.floorRate" label="Floor Rate" />
+											<field name="additionalOption.structure.interestRate" label="Unused Line Rate"/>
+											<field name="additionalOption.structure.capRate" label="Cap Rate" />
+											<field name="additionalOption.structure.discountRate" label="Discount Rate" />
+											<!-- <field name="additionalOption.structure.renewalFee" label="Renewal Fee" /> -->
+										</panel>
+										<data-table
+											name="additionalOption.structure.amortizationSchedules"
+											row="amrt" label="Amortization Schedule">
+											<!-- Payment Schedules -->
+											<columns>
+												<column name="amrt.scheduleDttm" label="Payment Date" />
+												<column name="amrt.debtServiceAmount" label="Payment Amount" />
+												<column name="amrt.interest" label="Interest" />
+												<column name="amrt.principalAmount" label="Principal Amount" />
+												<column name="amrt.takedownsAmount" label="Take Down Amount" />
+												<column name="amrt.startingBalanceAmount" label="Starting Balance" />
+												<column name="amrt.endingBalanceAmount" label="Ending Balance" />
+											</columns>
+										</data-table>
+									
+									</edit-canvas>
+									<!-- <commands>
+										<command selected="n &gt; 0" action="CalculatePricing" name="Calculate" type="businessOp"/> 
+									</commands> -->
+							</data-table>
+
+							<data-table name="facility.facilityGuaranty" row="guaranty"
+								label="Facility Guaranty">
+								<columns>
+									<column name="guaranty.guarantor" label="Guarantor" />
+									<column name="guaranty.natureOfGuaranty" label="Nature Of Guaranty" />
+									<column name="guaranty.amountOrPercent" label="Guaranty Percent/Amt" />
+									<column name="guaranty.guaranteePercent" label="Guaranty %" />
+									<column name="guaranty.guaranteeAmount" label="Guaranty $" />
+								</columns>
+							</data-table>
+
+
+							<data-table id="facility.pricingOption.structure.normal.fees"
+								name="facility.pricingOption.structure.fees" row="fee" label="Fees">
+								<columns>
+									<!-- <column name="fee.feeType" label="Fee Type" /> -->
+									<column name="fee.feePolicy" label="Fee Name" targetFields="facility.pricingOption.structure.normal.fees" />
+									<column name="fee.feeAmt" label="Amount" />
+									<column name="fee.feePct" label="Fee %" />
+									<column name="fee.noOfPayment" label="Number of Payments" />
+									<column name="fee.calculationMethod" label="Calculation Method" />
+									<column name="fee.feeFrequency" label="Fee Frequency" />
+									<column name="fee.feeDistribution" label="Fee Allocation" />
+									<column name="fee.feePctBasis" label="Fee Basis" />
+									<column name="fee.discloseFlag" label="Disclose Fee?" />
+									<column name="fee.endDttm" />
+									<column name="fee.minimalDrawFee" label="Minimal Draw Fee"/>
+								</columns>
+							</data-table>
+							<panel id="facility.modicationPanel" label="Modification Information">
+								<field name="facility.modificationStatus" label="Modification Status" />
+								<field name="facility.modCreditDenialReason" label="Modification Adverse Action Reasons" />
+								<field name="facility.modNoiaReason" label="Modification NOIA Reasons" />
+								<field name="facility.modWithdrawReason" label="Modification Withdraw Reasons" />
+							</panel>
+							<panel id="facility.rewriteInfo" label="Rewrite Information">
+								<field name="facility.rewriteReason" />
+								<data-table name="facility.facilityRewrites" row="facilityRewrite"
+									label="">
+									<columns>
+										<column name="facilityRewrite.originalLoanAccount"
+											label="Original Loan Account #" />
+										<column name="facilityRewrite.originalLoanSystem"
+											label="Original Loan Accounting System" />
+									</columns>
+								</data-table>
+							</panel>
+							<panel id="facility.assetQualityMetrics" label="Asset Quality Metrics">
+								<field name="facility.assetQualityMetrics.impairedLoanIndicator"
+									label="Impaired Loan Indicator" />
+								<field name="facility.assetQualityMetrics.tdrIndicator"
+									label="TDR Indicator" />
+								<field name="facility.assetQualityMetrics.nonEarningAmt"
+									label="Non-Earning Amount" />
+								<field name="facility.assetQualityMetrics.daysPastDue"
+									label="Days Past Due" />
+								<field name="facility.assetQualityMetrics.totalSpecificReserveBal"
+									label="Total Specific Reserve Balance" />
+								<field name="facility.assetQualityMetrics.nonAccrualDate"
+									label="Non-Accrual Date" />
+								<field name="facility.assetQualityMetrics.daysPastDueAmt30to59"
+									label="30 to 59 Days Past Due Amount" />
+								<field name="facility.assetQualityMetrics.daysPastDueAmt60to89"
+									label="60 to 89 Days Past Due Amount" />
+								<field name="facility.assetQualityMetrics.daysPastDueAmt90plus"
+									label="90+ Days Past Due Amount" />
+								<field name="facility.assetQualityMetrics.chargeOffAmt"
+									label="Charge Off Amount" />
+								<field name="facility.assetQualityMetrics.asc310to30"
+									label="ASC 310-30" />
+							</panel>
+							<panel id="facility.exposureAtDefault" label="Exposure At Default">
+								<field name="facility.exposureAtDefault.nonRecourseDebtAmt"
+									label="Non-Recourse Debt Amount" />
+								<field name="facility.exposureAtDefault.accruedInterestRecAmt"
+									label="Accrued Interest Receivable Amount" />
+								<field name="facility.exposureAtDefault.accruedOtherRecAmt"
+									label="Accrued Other Receivables Amount" />
+								<field name="facility.exposureAtDefault.marketValue"
+									label="Market Value" />
+								<field name="facility.exposureAtDefault.subProductLeverageCategory"
+									label="Sub Product Leverage Category" />
+								<field name="facility.exposureAtDefault.totalCommitmentAmt"
+									label="Total Commitment Amount" />
+								<field name="facility.exposureAtDefault.unfundedCommitmentAmt"
+									label="Unfunded Commitment Amount" />
+								<field name="facility.exposureAtDefault.bookedResidualValue"
+									label="Booked Residual Value" />
+								<field name="facility.exposureAtDefault.currentResidualAmt"
+									label="Current Residual Amount" />
+								<field name="facility.exposureAtDefault.fry9cCode" label="FRY 9C Code" />
+							</panel>
+							<panel id="facility.factoring" label="Factoring">
+								<field name="facility.factoring.nonRecourseCommittedAmt"
+									label="Non-Recourse Committed Amount" />
+								<field name="facility.factoring.nonRecourseUncommittedAmt"
+									label="Non-Recourse Uncommitted Amount" />
+								<field name="facility.factoring.nonRecourseExposureAmt"
+									label="Non-Recourse Exposure Amount" />
+								<field name="facility.factoring.factDebtRecrseUnfunded"
+									label="Factoring Debtor Recourse Unfunded" />
+								<field name="facility.factoring.factDebtWithExtInsAmt"
+									label="Factoring Debtor Recourse Funded with External Insurance Amount" />
+								<field name="facility.factoring.factDebtWithoutExtInsAmt"
+									label="Factoring Debtor Recourse Funded without External Insurance Amount" />
+							</panel>
+
+							<data-table name="facility.productLimits" row="limits"
+								label="Limits">
+								<columns>
+									<column name="limits.refNumber" label="Product Number" />
+									<column name="limits.facilityType" label="Product Type" />
+									<column name="limits.requestedLoanAmt" label="Amount" />
+								</columns>
+								<edit-canvas id="productLimitEditCanvas">
+									<tabs>
+										<tab id="tab.creditRequest.Application.productLimits"
+											label="Limit">
+											<panel id="limits.productSetup" label="Product Setup">
+												<field name="limits.facilityCategory" label="Product Category" />
+												<field name="limits.facilityType" label="Product Type"
+													targetFields="limits.productSetup" />
+												<field name="limits.sbaType" label="SBA" />
+												<field name="limits.purposeCode" label="Purpose Code" />
+												<field name="limits.natureOfSecurity" label="Nature Of Security" />
+											</panel>
+											<panel id="limits.structure" label="Structure">
+												<field name="limits.requestedLoanAmt" />
+												<field name="limits.pricingOption.structure.currency"
+													label="Currency" />
+												<field name="limits.pricingOption.structure.term">
+													<field name="limits.pricingOption.structure.termUnit"
+														label="Term Unit" />
+												</field>
+												<field name="limits.pricingOption.structure.advancedOrArrears"
+													label="Advance/Arrears" />
+												<field
+													name="limits.pricingOption.structure.paymentSchedule.paymentFrequency"
+													label="Payment Frequency" />
+												<field name="limits.pricingOption.structure.amortization">
+													<field name="limits.pricingOption.structure.amortizationUnit"
+														label="Unit" />
+												</field>
+												<field name="limits.pricingOption.structure.amortizationDate" />
+												<field name="limits.pricingOption.structure.maturityDate"
+													label="Maturity Date" />
+												<field name="limits.pricingOption.structure.paymentStartDate"
+													label="First Payment Date" />
+												<field name="limits.pricingOption.structure.drawingPeriod" />
+												<field name="limits.pricingOption.structure.drawdownCurrency"
+													label="Drawdown Currency" />
+											</panel>
+											<panel id="limits.pricing" label="Pricing">
+												<field name="limits.pricingOption.structure.rateType"
+													label="Rate Type" />
+												<field name="limits.pricingOption.structure.pricingIndex"
+													label="Index" />
+												<field name="limits.pricingOption.structure.basis"
+													label="Basis" />
+												<field name="limits.pricingOption.structure.indexValue"
+													label="Index Value" />
+												<field name="limits.pricingOption.structure.cof"
+													label="COF" targetFields="limits.pricingOption.structure.customerRate" />
+												<field name="limits.pricingOption.structure.margin"
+													label="Margin" targetFields="limits.pricingOption.structure.customerRate" />
+												<field name="limits.pricingOption.structure.customerRate"
+													label="Rate" />
+												<field name="limits.pricingOption.structure.cofDate"
+													label="COF Date" />
+											</panel>
+											<data-table name="limits.pricingOption.structure.fees"
+												row="fee" label="Fees">
+												<columns>
+													<column name="fee.feeType" label="Fee Type" />
+													<column name="fee.feeAmt" label="Amount" />
+													<column name="fee.feeFrequency" label="Fee Frequency" />
+													<column name="fee.discloseFlag" label="Disclose Fee?" />
+													<column name="fee.endDttm" />
+												</columns>
+											</data-table>
+
+											<data-table name="limits.collaterals" row="collateral"
+												label="Collateral">
+												<columns>
+													<column name="collateral.refNumber" label="Seq No." />
+													<column name="collateral.collateralCategory" label="Collateral Category" />
+													<column name="collateral.collateralType" label="Collateral Sub-category" />
+													<column name="collateral.collateralDescription"
+														label="Collateral Description" />
+													<column name="collateral.collateralCreatedDttm"
+														label="Created Date" />
+													<column name="collateral.recordedDttm" label="Date Recorded" />
+												</columns>
+												<quickedit-canvas>
+													<panel id="limits.quick.collateral.information"
+														label="Collateral Information">
+														<field name="collateral.collateralCategory" targetFields="limits.collaterals"/>
+														<field name="collateral.collateralType" />
+														<field name="collateral.collateralDescription" />
+														<field name="collateral.locationHeld" label="Location Held" />
+													</panel>
+													<panel id="limits.quick.collateral.addressInformation"
+														label="Address Information">
+														<field name="collateral.location.address1" />
+														<field name="collateral.location.address2" />
+														<field name="collateral.location.city" />
+														<field name="collateral.location.stateProvince" />
+														<field name="collateral.location.country" />
+														<field name="collateral.location.county" />
+														<field name="collateral.location.postalCode">
+															<field name="collateral.location.postalCodePlus4"
+																label="-" />
+														</field>
+													</panel>
+												</quickedit-canvas>
+												<edit-canvas id="limits.collateralCanvas">
+													<panel id="limits.collateral.information" label="Collateral Information">
+														<field name="collateral.collateralCategory" targetFields="limits.collateral.information" />
+														<field name="collateral.collateralType" />
+														<field name="collateral.collateralDescription" />
+														<field name="collateral.collateralProvider" />
+														<field name="collateral.collateralProviderOther" />
+														<field name="collateral.effectiveDate" />
+														<field name="collateral.collateralCreatedDttm"
+															label="Created Date" />
+														<field name="collateral.recordedDttm" label="Date Recorded" />
+														<field name="collateral.collateralPledge" label="Collateral Pledge" />
+														<field name="collateral.locationHeld" label="Location Held" />
+													</panel>
+													<panel id="limits.collateral.addressInformation"
+														label="Address Information">
+														<field name="collateral.location.address1" />
+														<field name="collateral.location.address2" />
+														<field name="collateral.location.city" />
+														<field name="collateral.location.stateProvince" />
+														<field name="collateral.location.country" />
+														<field name="collateral.location.county" />
+														<field name="collateral.location.postalCode">
+															<field name="collateral.location.postalCodePlus4"
+																label="-" />
+														</field>
+													</panel>
+													<panel id="limits.collateral.appraisalInformation"
+														label="Appraisal Information">
+														<field name="collateral.realEstateCollateral.appraisalAmount" />
+														<field
+															name="collateral.realEstateCollateral.originalAppraisalAmount" />
+														<field name="collateral.realEstateCollateral.appraisalMethod" />
+														<field name="collateral.realEstateCollateral.loanToValue" />
+														<field
+															name="collateral.realEstateCollateral.appraisalDateOrdered" />
+														<field
+															name="collateral.realEstateCollateral.appraisalDateReceived" />
+														<field name="collateral.realEstateCollateral.appraisalType" />
+													</panel>
+													<panel id="limits.collateral.floodInformation" label="Flood Information">
+														<field name="collateral.realEstateCollateral.floodCertNumber" />
+														<field name="collateral.realEstateCollateral.floodSeq1" />
+														<field name="collateral.realEstateCollateral.floodSeq2" />
+														<field
+															name="collateral.realEstateCollateral.floodCertVendorName" />
+														<field
+															name="collateral.realEstateCollateral.floodCertDateOrdered" />
+														<field
+															name="collateral.realEstateCollateral.floodCertDateReceived" />
+													</panel>
+													<panel id="limits.collateral.envAssesInformation"
+														label="Environmental Assessment Information">
+														<field name="collateral.realEstateCollateral.envAssessType" />
+														<field name="collateral.realEstateCollateral.envAssessment" />
+														<field
+															name="collateral.realEstateCollateral.envAssessDateOrdered" />
+														<field
+															name="collateral.realEstateCollateral.envAssessDateReceived" />
+													</panel>
+													<panel id="limits.collateral.propertyInformation"
+														label="Property Information">
+														<field
+															name="collateral.realEstateCollateral.propertyDescription" />
+														<field name="collateral.realEstateCollateral.firstMortgageLien" />
+														<field name="collateral.realEstateCollateral.prepaymentPenalty" />
+														<field
+															name="collateral.realEstateCollateral.highRiskPropertyType" />
+														<field
+															name="collateral.realEstateCollateral.otherPropertyDetails" />
+														<field name="collateral.realEstateCollateral.censusTract" />
+														<field name="collateral.realEstateCollateral.phoneNo"
+															label="phone Number of Building" />
+														<field name="collateral.realEstateCollateral.yearLastRenovated" />
+														<field name="collateral.realEstateCollateral.buildingCondition" />
+														<field name="collateral.realEstateCollateral.parcelNo"
+															label="Parcel #" />
+														<field name="collateral.realEstateCollateral.isOnsiteParking"
+															label="Onsite Parking" />
+														<field name="collateral.realEstateCollateral.historicalUse" />
+														<field name="collateral.realEstateCollateral.propertyType" />
+														<field name="collateral.realEstateCollateral.floodZone" />
+														<field name="collateral.realEstateCollateral.pctOwnerOccupied" />
+														<field name="collateral.realEstateCollateral.occupancy" />
+														<field name="collateral.realEstateCollateral.dateConstructed" />
+														<field name="collateral.realEstateCollateral.isAConvertedHome"
+															label="Is building a converted home?" />
+														<field
+															name="collateral.realEstateCollateral.recentAppraisalDate"
+															label="Most Recent Appraisal Date" />
+														<field
+															name="collateral.realEstateCollateral.annualPropertyTaxes" />
+														<field
+															name="collateral.realEstateCollateral.monthlyAssociationDues" />
+
+														<data-table name="collateral.realEstateCollateral.tenants"
+															row="tenant" label="Tenant Profile">
+															<columns>
+																<column name="tenant.tenantName" />
+																<column name="tenant.tenantBusiness" label="Business" />
+																<column name="tenant.yesrsAsTenant" />
+																<column name="tenant.squareFeet" label="Sq Ft" />
+																<column name="tenant.leaseExpDate" label="Lease Exp" />
+																<column name="tenant.monthlyRent" label="MO Rent" />
+																<column name="tenant.leaseType" label="Lease Type" />
+															</columns>
+															<quickedit-canvas>
+																<panel id="quick.collaterals.tenants" label="Tenant Profile">
+																	<field name="tenant.tenantName" />
+																	<field name="tenant.tenantBusiness" />
+																	<field name="tenant.yesrsAsTenant" label="Years As Tenant(Zero if proposed)" />
+																	<field name="tenant.squareFeet" />
+																	<field name="tenant.leaseExpDate" label="Lease Expiration Date" />
+																	<field name="tenant.monthlyRent" />
+																	<field name="tenant.leaseType" label="Lease Type Gross/Net" />
+																	<field name="tenant.vacantSuites" label="Vacant Suites(List attach)" />
+																</panel>
+															</quickedit-canvas>
+														</data-table>
+													</panel>
+													<panel id="limits.collateral.lotInformation" label="Lot Information">
+														<field name="collateral.realEstateCollateral.salesPrice" />
+														<field name="collateral.realEstateCollateral.stories" />
+														<field name="collateral.realEstateCollateral.numberOfUnits" />
+														<field name="collateral.realEstateCollateral.officeUnits" />
+														<field name="collateral.realEstateCollateral.otherUnits" />
+														<field name="collateral.realEstateCollateral.residentUnits" />
+														<field name="collateral.realEstateCollateral.residentNumbers" />
+														<field name="collateral.realEstateCollateral.residentSqFt" />
+														<field name="collateral.realEstateCollateral.officeSqFt" />
+														<field name="collateral.realEstateCollateral.retailSqFt" />
+														<field name="collateral.realEstateCollateral.commercialSqFt" />
+														<field name="collateral.realEstateCollateral.rentalSqFt" />
+														<field name="collateral.realEstateCollateral.lotSizeSqFt" />
+														<field name="collateral.realEstateCollateral.totalSqFt" />
+													</panel>
+													<panel id="limits.collateral.projectInformation">
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.projectName" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.propertyType"
+															label="Project Property Type" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.projectDesc"
+															label="Brief Project Desccription" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.noOfNewEmployees"
+															label="Projected Net no. New Employees" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.currentValue"
+															label="Value As Is" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.valueOnComplete"
+															label="Projected Value As Complete" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.totalCost"
+															label="Projected Total Developement" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.costPerSqFt"
+															label="Developement Cost Per Sq Ft" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.grossIncomeYr"
+															label="Projected Gross Income/Yr" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.expensesYr"
+															label="Projected Expenses/Yr" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.netIncomeYr"
+															label="Projected Net Income/Yr" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.isPropCollateral"
+															label="Is Property available as collateral" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.isPropInspected"
+															label="Has the property been Inspected" />
+														<field
+															name="collateral.realEstateCollateral.newConstructionProject.propValueDetermined"
+															label="How was value determined?" />
+
+														<panel id="limits.collateral.buildingInformation"
+															label="Building Site Information">
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.statusOfSite"
+																label="Status of Project Site Control" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.salesPrice" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.stories" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.units"
+																label="No.of Units" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.officeUnits"
+																label="Office Units" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.otherUnits" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.residentUnits" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.residentRooms" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.residentSqFt"
+																label="Resident Square Feet" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.officeSqFt"
+																label="Office Square Feet" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.retailSqFt"
+																label="Retail Square Feet" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.commercialSqFt"
+																label="Commercial Square Feet" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.rentableSqFt"
+																label="Building Rentable Square Footage" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.lotSize" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.totalBuildingSqFt"
+																label="Total Building Square Feet" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.pctCommercial" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.projectZone"
+																label="Current Zoning of Project" />
+															<field
+																name="collateral.realEstateCollateral.newConstructionProject.isChgRequired"
+																label="Will site require a change in" />
+														</panel>
+
+														<data-table name="collateral.realEstateCollateral.projDetails"
+															row="newProjDetail" label="Project Detailed BreakDown">
+															<columns>
+																<column name="newProjDetail.proposedName" label="Name of Proposed" />
+																<column name="newProjDetail.businessType" label="Type of Business" />
+																<column name="newProjDetail.propType" label="Comm/Res" />
+																<column name="newProjDetail.areaInAcres" label="Subdiv Acres" />
+																<column name="newProjDetail.areaInSqFt" label="Sq Ft" />
+																<column name="newProjDetail.isLeased" label="Lease?" />
+																<column name="newProjDetail.isDefaulted" label="Cross-Defaulted?" />
+															</columns>
+														</data-table>
+													</panel>
+												</edit-canvas>
+											</data-table>
+											<data-table name="limits.sublimits" row="sublimits"
+												label="SubLimits">
+												<columns>
+													<column name="sublimits.refNumber" label="Product Number" />
+													<column name="sublimits.facilityType" label="Product Type" />
+													<column name="sublimits.requestedLoanAmt" label="Amount" />
+												</columns>
+												<edit-canvas id="productSubLimitEditCanvas">
+													<tabs>
+														<tab id="tab.productSubLimits" label="Limit">
+															<panel id="sublimits.productSetup" label="Product Setup">
+																<field name="sublimits.facilityCategory" label="Product Category" />
+																<field name="sublimits.facilityType" label="Product Type"
+																	targetFields="sublimits.productSetup" />
+																<field name="sublimits.purposeCode" label="Purpose Code" />
+																<field name="sublimits.natureOfSecurity" label="Nature Of Security" />
+															</panel>
+															<panel id="sublimits.structure" label="Structure">
+																<field name="sublimits.requestedLoanAmt" />
+																<field name="sublimits.pricingOption.structure.currency"
+																	label="Currency" />
+																<field name="sublimits.pricingOption.structure.term">
+																	<field name="sublimits.pricingOption.structure.termUnit"
+																		label="Term Unit" />
+																</field>
+																<field
+																	name="sublimits.pricingOption.structure.advancedOrArrears"
+																	label="Advance/Arrears" />
+																<field
+																	name="sublimits.pricingOption.structure.paymentSchedule.paymentFrequency"
+																	label="Payment Frequency" />
+																<field name="sublimits.pricingOption.structure.amortization">
+																	<field
+																		name="sublimits.pricingOption.structure.amortizationUnit"
+																		label="Unit" />
+																</field>
+																<field
+																	name="sublimits.pricingOption.structure.amortizationDate" />
+																<field name="sublimits.pricingOption.structure.maturityDate"
+																	label="Maturity Date" />
+																<field
+																	name="sublimits.pricingOption.structure.paymentStartDate"
+																	label="First Payment Date" />
+																<field name="sublimits.pricingOption.structure.drawingPeriod" />
+																<field
+																	name="sublimits.pricingOption.structure.drawdownCurrency"
+																	label="Drawdown Currency" />
+															</panel>
+
+															<panel id="sublimits.pricing" label="Pricing">
+																<field name="sublimits.pricingOption.structure.rateType"
+																	label="Rate Type" />
+																<field name="sublimits.pricingOption.structure.pricingIndex"
+																	label="Index" />
+																<field name="sublimits.pricingOption.structure.basis"
+																	label="Basis" />
+																<field name="sublimits.pricingOption.structure.indexValue" />
+																<field name="sublimits.pricingOption.structure.cof"
+																	label="COF" targetFields="sublimits.pricingOption.structure.customerRate" />
+																<field name="sublimits.pricingOption.structure.margin"
+																	label="Margin" targetFields="sublimits.pricingOption.structure.customerRate" />
+																<field name="sublimits.pricingOption.structure.customerRate"
+																	label="Rate" />
+																<field name="sublimits.pricingOption.structure.cofDate"
+																	label="COF Date" />
+															</panel>
+
+															<data-table name="sublimits.pricingOption.structure.fees"
+																row="fee" label="Fees">
+																<columns>
+																	<column name="fee.feeType" label="Fee Type" />
+																	<column name="fee.feeAmt" label="Amount" />
+																	<column name="fee.feeFrequency" label="Fee Frequency" />
+																	<column name="fee.discloseFlag" label="Disclose Fee?" />
+																	<column name="fee.endDttm" />
+																</columns>
+															</data-table>
+															<data-table name="sublimits.collaterals" row="collateral"
+																label="Collateral">
+																<columns>
+																	<column name="collateral.refNumber" label="Seq No." />
+																	<column name="collateral.collateralCategory" label="Collateral Category" />
+																	<column name="collateral.collateralType" label="Collateral Sub-category" />
+																	<column name="collateral.collateralDescription"
+																		label="Collateral Description" />
+																	<column name="collateral.collateralCreatedDttm"
+																		label="Created Date" />
+																	<column name="collateral.recordedDttm" label="Date Recorded" />
+																</columns>
+																<quickedit-canvas>
+																	<panel id="sublimits.quick.collateral.information"
+																		label="Collateral Information">
+																		<field name="collateral.collateralCategory" targetFields="sublimits.collaterals" />
+																		<field name="collateral.collateralType" />
+																		<field name="collateral.collateralDescription" />
+																		<field name="collateral.locationHeld" label="Location Held" />
+																	</panel>
+																	<panel id="sublimits.quick.collateral.addressInformation"
+																		label="Address Information">
+																		<field name="collateral.location.address1" />
+																		<field name="collateral.location.address2" />
+																		<field name="collateral.location.city" />
+																		<field name="collateral.location.stateProvince" />
+																		<field name="collateral.location.country" />
+																		<field name="collateral.location.county" />
+																		<field name="collateral.location.postalCode">
+																			<field name="collateral.location.postalCodePlus4"
+																				label="-" />
+																		</field>
+																	</panel>
+																</quickedit-canvas>
+																<edit-canvas id="sublimits.collateralCanvas">
+																	<panel id="sublimits.collateral.information"
+																		label="Collateral Information">
+																		<field name="collateral.collateralCategory" targetFields="sublimits.collaterals" />
+																		<field name="collateral.collateralType" />
+																		<field name="collateral.collateralDescription" />
+																		<field name="collateral.collateralProvider" />
+																		<field name="collateral.collateralProviderOther" />
+																		<field name="collateral.effectiveDate" />
+																		<field name="collateral.collateralCreatedDttm"
+																			label="Created Date" />
+																		<field name="collateral.recordedDttm" label="Date Recorded" />
+																		<field name="collateral.collateralPledge" label="Collateral Pledge" />
+																		<field name="collateral.locationHeld" label="Location Held" />
+																	</panel>
+																	<panel id="sublimits.collateral.addressInformation"
+																		label="Address Information">
+																		<field name="collateral.location.address1" />
+																		<field name="collateral.location.address2" />
+																		<field name="collateral.location.city" />
+																		<field name="collateral.location.stateProvince" />
+																		<field name="collateral.location.country" />
+																		<field name="collateral.location.county" />
+																		<field name="collateral.location.postalCode">
+																			<field name="collateral.location.postalCodePlus4"
+																				label="-" />
+																		</field>
+																	</panel>
+																	<panel id="sublimits.collateral.appraisalInformation"
+																		label="Appraisal Information">
+																		<field
+																			name="collateral.realEstateCollateral.appraisalAmount" />
+																		<field
+																			name="collateral.realEstateCollateral.originalAppraisalAmount" />
+																		<field
+																			name="collateral.realEstateCollateral.appraisalMethod" />
+																		<field name="collateral.realEstateCollateral.loanToValue" />
+																		<field
+																			name="collateral.realEstateCollateral.appraisalDateOrdered" />
+																		<field
+																			name="collateral.realEstateCollateral.appraisalDateReceived" />
+																		<field name="collateral.realEstateCollateral.appraisalType" />
+																	</panel>
+																	<panel id="sublimits.collateral.floodInformation"
+																		label="Flood Information">
+																		<field
+																			name="collateral.realEstateCollateral.floodCertNumber" />
+																		<field name="collateral.realEstateCollateral.floodSeq1" />
+																		<field name="collateral.realEstateCollateral.floodSeq2" />
+																		<field
+																			name="collateral.realEstateCollateral.floodCertVendorName" />
+																		<field
+																			name="collateral.realEstateCollateral.floodCertDateOrdered" />
+																		<field
+																			name="collateral.realEstateCollateral.floodCertDateReceived" />
+																	</panel>
+																	<panel id="sublimits.collateral.envAssesInformation"
+																		label="Environmental Assessment Information">
+																		<field name="collateral.realEstateCollateral.envAssessType" />
+																		<field name="collateral.realEstateCollateral.envAssessment" />
+																		<field
+																			name="collateral.realEstateCollateral.envAssessDateOrdered" />
+																		<field
+																			name="collateral.realEstateCollateral.envAssessDateReceived" />
+																	</panel>
+																	<panel id="sublimits.collateral.propertyInformation"
+																		label="Property Information">
+																		<field
+																			name="collateral.realEstateCollateral.propertyDescription" />
+																		<field
+																			name="collateral.realEstateCollateral.firstMortgageLien" />
+																		<field
+																			name="collateral.realEstateCollateral.prepaymentPenalty" />
+																		<field
+																			name="collateral.realEstateCollateral.highRiskPropertyType" />
+																		<field
+																			name="collateral.realEstateCollateral.otherPropertyDetails" />
+																		<field name="collateral.realEstateCollateral.censusTract" />
+																		<field name="collateral.realEstateCollateral.phoneNo"
+																			label="phone Number of Building" />
+																		<field
+																			name="collateral.realEstateCollateral.yearLastRenovated" />
+																		<field
+																			name="collateral.realEstateCollateral.buildingCondition" />
+																		<field name="collateral.realEstateCollateral.parcelNo"
+																			label="Parcel #" />
+																		<field
+																			name="collateral.realEstateCollateral.isOnsiteParking"
+																			label="Onsite Parking" />
+																		<field name="collateral.realEstateCollateral.historicalUse" />
+																		<field name="collateral.realEstateCollateral.propertyType" />
+																		<field name="collateral.realEstateCollateral.floodZone" />
+																		<field
+																			name="collateral.realEstateCollateral.pctOwnerOccupied" />
+																		<field name="collateral.realEstateCollateral.occupancy" />
+																		<field
+																			name="collateral.realEstateCollateral.dateConstructed" />
+																		<field
+																			name="collateral.realEstateCollateral.isAConvertedHome"
+																			label="Is building a converted home?" />
+																		<field
+																			name="collateral.realEstateCollateral.recentAppraisalDate"
+																			label="Most Recent Appraisal Date" />
+																		<field
+																			name="collateral.realEstateCollateral.annualPropertyTaxes" />
+																		<field
+																			name="collateral.realEstateCollateral.monthlyAssociationDues" />
+
+																		<data-table name="collateral.realEstateCollateral.tenants"
+																			row="tenant" label="Tenant Profile">
+																			<columns>
+																				<column name="tenant.tenantName" />
+																				<column name="tenant.tenantBusiness" label="Business" />
+																				<column name="tenant.yesrsAsTenant" />
+																				<column name="tenant.squareFeet" label="Sq Ft" />
+																				<column name="tenant.leaseExpDate" label="Lease Exp" />
+																				<column name="tenant.monthlyRent" label="MO Rent" />
+																				<column name="tenant.leaseType" label="Lease Type" />
+																			</columns>
+																			<quickedit-canvas>
+																				<panel id="quick.collaterals.tenants" label="Tenant Profile">
+																					<field name="tenant.tenantName" />
+																					<field name="tenant.tenantBusiness" />
+																					<field name="tenant.yesrsAsTenant"
+																						label="Years As Tenant(Zero if proposed)" />
+																					<field name="tenant.squareFeet" />
+																					<field name="tenant.leaseExpDate" label="Lease Expiration Date" />
+																					<field name="tenant.monthlyRent" />
+																					<field name="tenant.leaseType" label="Lease Type Gross/Net" />
+																					<field name="tenant.vacantSuites" label="Vacant Suites(List attach)" />
+																				</panel>
+																			</quickedit-canvas>
+																		</data-table>
+																	</panel>
+																	<panel id="sublimits.collateral.lotInformation"
+																		label="Lot Information">
+																		<field name="collateral.realEstateCollateral.salesPrice" />
+																		<field name="collateral.realEstateCollateral.stories" />
+																		<field name="collateral.realEstateCollateral.numberOfUnits" />
+																		<field name="collateral.realEstateCollateral.officeUnits" />
+																		<field name="collateral.realEstateCollateral.otherUnits" />
+																		<field name="collateral.realEstateCollateral.residentUnits" />
+																		<field
+																			name="collateral.realEstateCollateral.residentNumbers" />
+																		<field name="collateral.realEstateCollateral.residentSqFt" />
+																		<field name="collateral.realEstateCollateral.officeSqFt" />
+																		<field name="collateral.realEstateCollateral.retailSqFt" />
+																		<field
+																			name="collateral.realEstateCollateral.commercialSqFt" />
+																		<field name="collateral.realEstateCollateral.rentalSqFt" />
+																		<field name="collateral.realEstateCollateral.lotSizeSqFt" />
+																		<field name="collateral.realEstateCollateral.totalSqFt" />
+																	</panel>
+																	<panel id="sublimits.collateral.projectInformation">
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.projectName" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.propertyType"
+																			label="Project Property Type" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.projectDesc"
+																			label="Brief Project Desccription" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.noOfNewEmployees"
+																			label="Projected Net no. New Employees" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.currentValue"
+																			label="Value As Is" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.valueOnComplete"
+																			label="Projected Value As Complete" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.totalCost"
+																			label="Projected Total Developement" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.costPerSqFt"
+																			label="Developement Cost Per Sq Ft" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.grossIncomeYr"
+																			label="Projected Gross Income/Yr" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.expensesYr"
+																			label="Projected Expenses/Yr" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.netIncomeYr"
+																			label="Projected Net Income/Yr" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.isPropCollateral"
+																			label="Is Property available as collateral" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.isPropInspected"
+																			label="Has the property been Inspected" />
+																		<field
+																			name="collateral.realEstateCollateral.newConstructionProject.propValueDetermined"
+																			label="How was value determined?" />
+
+																		<panel id="sublimits.collateral.buildingInformation"
+																			label="Building Site Information">
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.statusOfSite"
+																				label="Status of Project Site Control" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.salesPrice" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.stories" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.units"
+																				label="No.of Units" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.officeUnits"
+																				label="Office Units" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.otherUnits" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.residentUnits" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.residentRooms" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.residentSqFt"
+																				label="Resident Square Feet" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.officeSqFt"
+																				label="Office Square Feet" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.retailSqFt"
+																				label="Retail Square Feet" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.commercialSqFt"
+																				label="Commercial Square Feet" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.rentableSqFt"
+																				label="Building Rentable Square Footage" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.lotSize" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.totalBuildingSqFt"
+																				label="Total Building Square Feet" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.pctCommercial" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.projectZone"
+																				label="Current Zoning of Project" />
+																			<field
+																				name="collateral.realEstateCollateral.newConstructionProject.isChgRequired"
+																				label="Will site require a change in" />
+																		</panel>
+
+																		<data-table
+																			name="collateral.realEstateCollateral.projDetails"
+																			row="newProjDetail" label="Project Detailed BreakDown">
+																			<columns>
+																				<column name="newProjDetail.proposedName"
+																					label="Name of Proposed" />
+																				<column name="newProjDetail.businessType"
+																					label="Type of Business" />
+																				<column name="newProjDetail.propType" label="Comm/Res" />
+																				<column name="newProjDetail.areaInAcres"
+																					label="Subdiv Acres" />
+																				<column name="newProjDetail.areaInSqFt"
+																					label="Sq Ft" />
+																				<column name="newProjDetail.isLeased" label="Lease?" />
+																				<column name="newProjDetail.isDefaulted"
+																					label="Cross-Defaulted?" />
+																			</columns>
+																		</data-table>
+																	</panel>
+																</edit-canvas>
+															</data-table>
+														</tab>
+													</tabs>
+												</edit-canvas>
+											</data-table>
+										</tab>
+									</tabs>
+								</edit-canvas>
+							</data-table>
+						</tab>
+						
+						<tab id="tab.creditRequest.Application.FacilityCustomerRole" label="Debtor-Accounts">
+							<data-table name="facility.debtors" empty-message="No records found" row="debtor">
+								<columns>
+									<column name="debtor.refNumber" label="Debtor-Account"/>
+									<column name="debtor.facilityCustomerRole.customer" label="Debtor Name"/>
+									<column name="debtor.retention" label="Dilution Rate"/>
+									<column name="debtor.advanceRate" label="Advance Rate"/>
+									<column name="debtor.eligibleARLimit" label="Eligible AR Limit"/>
+									<column name="debtor.concLimit" label="Concentration Limit %"/>
+									<column name="debtor.creditPeriod" label="Credit Period"/>
+									<column name="debtor.wfStatus" label="Decision"/>
+								</columns>
+								<edit-canvas src-entity="DebtorCustomer" src-file="crud.xml" />
+							</data-table>
+						</tab>
+						
+						<tab id="tab.creditRequest.Application.ContractSetup" label="Contract Set Up">
+							<panel id="contractSetup.productInformation" label="Product Information">
+								<field name="facility.refNumber" label="Product Number" />
+								<field name="facility.facilityType.value" label="Product Status" />
+								<field name="facility.requestedLoanAmtDer" label="Requested Amount" />
+								<field name="facility.requestedTermDer" label="Requested Term (months)" />
+								<!-- <field name="facility.funding.obligationNumberDer" label="Obligation Number" /> -->
+								<field name="facility.facilityRR.value" label="Risk Rating" />
+								<field name="facility.facilityRRSource.value" label="Risk Rating Source" />
+								<field name="facility.approvedTermDer" label="Approved Term (months)" />
+								<field name="facility.approvedLoanAmtDer" label="Approved Amount" />
+								<field name="facility.approvalExpirationDateDer" label="Approval Expiration Date" />
+							</panel>
+							<panel id="contractSetup.setup" label="Contract Setup">
+								<field name="facility.facilityContract.boardingAssociate"
+									label="Boarding Associate" />
+								<!-- <field name="facility.facilityContract.contractStartDate"
+									label="Contract Start Date" /> -->
+								<!-- <field name="facility.facilityContract.renewalApprovalDate"
+									label="Renewal Approval Date" /> -->
+								<field name="facility.facilityContract.leadDaysId" label="Billing Lead Days" />
+								<field name="facility.facilityContract.repayType" label="Repayment Type" />
+								<field name="facility.facilityContract.subjectToPrepayPen"
+									label="Subject To Pre-Payment Penality?" />
+								<field name="facility.facilityContract.recoverycode"
+									label="Recovery Code" />
+								<field name="facility.facilityContract.classification"
+									label="Classification" />
+								<field name="facility.facilityContract.advised" label="Advised/Guidance" />
+								<field name="facility.facilityContract.fedclass" label="Fed Class" />
+								<field name="facility.facilityContract.prepaymentOption"
+									label="Pre-Payment Option" />
+							</panel>
+							<panel id="contractSetup.sbaInformation" label="SBA Information">
+								<field name="facility.facilityContract.sbaInformation.sbaGpNumber"
+									label="SBA GP Number" />
+								<field name="facility.facilityContract.sbaInformation.amount"
+									label="Amount" />
+								<field name="facility.facilityContract.sbaInformation.approvalDttm"
+									label="Approved Date" />
+								<field name="facility.facilityContract.sbaInformation.guaranteedPct"
+									label="Guaranteed %" />
+								<field name="facility.facilityContract.sbaInformation.sourceCode"
+									label="Source Code" />
+								<field
+									name="facility.facilityContract.sbaInformation.sourceProgramNumber"
+									label="Source Program Number" />
+								<field name="facility.facilityContract.sbaInformation.sbaStatusCode"
+									label="SBA Status Code" />
+								<field
+									name="facility.facilityContract.sbaInformation.spreadPaymentOption"
+									label="Spread Payment Option" />
+							</panel>
+							<panel id="contractSetup.termOutInformation" label="Term Out Information">
+								<field
+									name="facility.facilityContract.termoutInformation.loanTermoutAuto"
+									label="Should Loan Term Out Automatically?" />
+								<field
+									name="facility.facilityContract.termoutInformation.termoutType"
+									label="Type of Term Out" />
+								<field
+									name="facility.facilityContract.termoutInformation.termoutDttm"
+									label="Term Out Date" />
+								<field
+									name="facility.facilityContract.termoutInformation.termoutMonths"
+									label="Term Out Month" />
+								<field
+									name="facility.facilityContract.termoutInformation.delinquentDays"
+									label="Day Delinquent" />
+							</panel>
+							<panel id="contractSetup.amortizationInformation" label="Amortization Information">
+								<field
+									name="facility.facilityContract.amortizationInformation.adjRateRounding"
+									label="Does Adjustable Role Processing or Rounding Apply?" />
+								<field
+									name="facility.facilityContract.amortizationInformation.amortizationLifeCycle"
+									label="Can the Amortization schedule change within the life of the bean? " />
+								<field
+									name="facility.facilityContract.amortizationInformation.reamIndicator"
+									label="Ream Indicator" />
+								<field
+									name="facility.facilityContract.amortizationInformation.amortizationPeriodDiff"
+									label="Is Amortization Period Different Than the Life of Loan?" />
+								<field
+									name="facility.facilityContract.amortizationInformation.reamPeriodDttm"
+									label="Ream Period Date" />
+								<field
+									name="facility.facilityContract.amortizationInformation.nextScheduleDttm"
+									label="Next Schedule Date" />
+								<field
+									name="facility.facilityContract.amortizationInformation.scheduleReamMonths"
+									label="Schedule Ream Months" />
+								<field
+									name="facility.facilityContract.amortizationInformation.customerNotifyDays"
+									label="Customer Notify Days" />
+								<field
+									name="facility.facilityContract.amortizationInformation.reamBasis"
+									label="Ream Basis" />
+								<field
+									name="facility.facilityContract.amortizationInformation.advancePaymentOption"
+									label="Advance Payment Option" />
+								<field
+									name="facility.facilityContract.amortizationInformation.curtailmentOption"
+									label="Curtailment Option" />
+								<field
+									name="facility.facilityContract.amortizationInformation.shortToleranceIndicator"
+									label="Short Tolerance Indicator" />
+								<field
+									name="facility.facilityContract.amortizationInformation.shortTolerancePct"
+									label="Short Tolerance Percent" />
+								<field
+									name="facility.facilityContract.amortizationInformation.shortToleranceAmt"
+									label="Short Tolerance Amount" />
+								<field
+									name="facility.facilityContract.amortizationInformation.overToleranceIndicator"
+									label="Over Tolerance Indicator" />
+								<field
+									name="facility.facilityContract.amortizationInformation.overTolerancePct"
+									label="Over Tolerance Percent" />
+								<field
+									name="facility.facilityContract.amortizationInformation.overToleranceAmt"
+									label="Over Tolerance Amount" />
+							</panel>
+							<panel id="contractSetup.billingParam" label="Billing Parameters Set Up">
+								<field name="facility.facilityContract.billingParameter.paymentDttm"
+									label="Payment Date" />
+								<field name="facility.facilityContract.billingParameter.billDttm"
+									label="Bill Date" />
+								<field
+									name="facility.facilityContract.billingParameter.accountBorrower"
+									label="Name and Account Number"
+									targetFields="facility.facilityContract.billingParameter.routingNumberDer,facility.facilityContract.billingParameter.bankAccountNumberDer" />
+								<field name="facility.facilityContract.billingParameter.leadDays"
+									label="Lead Days" />
+								<field
+									name="facility.facilityContract.billingParameter.collationMethod"
+									label="Method of Collection" />
+								<field
+									name="facility.facilityContract.billingParameter.billFrequency"
+									label="Bill Frequency" />
+								<field
+									name="facility.facilityContract.billingParameter.bankAccountNumberDer"
+									label="Bank Account Number" />
+								<field name="facility.facilityContract.billingParameter.achDelayDays"
+									label="ACH Delay Days" />
+								<field
+									name="facility.facilityContract.billingParameter.collMaturityMethod"
+									label="Maturity Method of Collection" />
+								<field
+									name="facility.facilityContract.billingParameter.principalRelayType"
+									label="Principal Relay Type" />
+								<field
+									name="facility.facilityContract.billingParameter.routingNumberDer"
+									label="Routing Number" />
+							</panel>
+							<panel id="contractSetup.miscellaneousSetup" label="Miscellaneous Setup">
+								<field name="facility.facilityContract.miscellaneous.progressPayment"
+									label="Interest Treatment for Progress Payment" />
+								<field name="facility.facilityContract.miscellaneous.advancedFunding"
+									label="Interest Treatment for Advanced Funding" />
+								<field name="facility.facilityContract.miscellaneous.uzObligation"
+									label="Reg U-Z Obligation" />
+								<field name="facility.facilityContract.miscellaneous.workQueue"
+									label="Paralender Work Queue" />
+								<field name="facility.facilityContract.miscellaneous.orgNoteRate"
+									label="Original Note Rate" />
+								<field name="facility.facilityContract.miscellaneous.loanGrade"
+									label="Loan Grade" />
+								<field name="facility.facilityContract.miscellaneous.ddaReqBalance"
+									label="Does the DDA Have the Required Balance to Book?" />
+								<field name="facility.facilityContract.miscellaneous.crossDefault"
+									label="Cross Default/collateral" />
+								<field name="facility.facilityContract.miscellaneous.swap"
+									label="Swap" />
+								<field
+									name="facility.facilityContract.miscellaneous.nonRealCollateralPct"
+									label="Non Real Estate Collateral %" />
+								<field
+									name="facility.facilityContract.miscellaneous.realCollateralPct"
+									label="Real Estate Collateral %" />
+								<field
+									name="facility.facilityContract.miscellaneous.loanValueRelEstate"
+									label="Loan to value Real Estate Only" />
+								<field name="facility.facilityContract.miscellaneous.changeFormula"
+									label="Late Change Formula" />
+								<field
+									name="facility.facilityContract.miscellaneous.reportCurtialments"
+									label="Do You Wish to Report on Curtailment?" />
+							</panel>
+						</tab>
+						<tab id="tab.creditRequest.Application.Syndication" label="Syndication">
+							<panel id="facility.syndicationInformation" label="Syndication Information">
+								<data-table name="facility.facilityTranches" row="tranche"
+									label="Tranches" sortBy="tranche.startDate">
+									<columns>
+										<column name="tranche.name" />
+										<column name="tranche.maxAmount" label="Amount" />
+										<column name="tranche.totalTrancheAmt" />
+										<column name="tranche.remainingTrancheAmt" label="Remaining Amount" />
+										<column name="tranche.startDate" />
+										<column name="tranche.endDate" />
+									</columns>
+									<edit-canvas>
+										<panel id="facility.facilityTranches.information" label="Tranche Information">
+											<field name="tranche.name" />
+											<field name="tranche.minAmount" />
+											<field name="tranche.maxAmount" />
+											<field name="tranche.startDate" />
+											<field name="tranche.endDate" />
+											<data-table name="tranche.syndications" row="syndication"
+												label="Participants">
+												<columns>
+													<column name="syndication.syndicationAgent" label="Investor" />
+													<column name="syndication.syndicationRole" label="Role" />
+													<column name="syndication.syndicationAmount" label="Amount $" />
+													<column name="syndication.apportioned" label="Apportioned" />
+													<column name="syndication.sharingPct" label="Sharing %" />
+													<column name="syndication.totalCalculatedFee" label="Allocated Fee"
+														footer-name="tranche.totalTrancheFee" />
+												</columns>
+												<edit-canvas>
+													<panel id="tranche.syndications.quickedit" label="Investor Information">
+														<field name="syndication.syndicationAgent" label="Investor"
+															allow="create" />
+														<field name="syndication.syndicationRole" label="Role" />
+														<field name="syndication.syndicationAmount" label="Amount $"
+															targetFields="syndication.feeAllocations" />
+														<field name="syndication.apportioned" label="Apportioned" />
+														<field name="syndication.sharingPct" label="Sharing %" />
+													</panel>
+													<data-table name="syndication.feeAllocations"
+														row="feeAlloc" label="Fees">
+														<columns>
+															<column name="feeAlloc.fee" targetFields="syndication.feeAllocations" />
+															<column name="feeAlloc.fee.feeAmt" label="Fee Amount" />
+															<column name="feeAlloc.fee.feeDistribution" label="Allocation method" />
+															<column name="feeAlloc.feeAmount" label="Allocated $" />
+															<column name="feeAlloc.feePct" label="Allocated %" />
+															<column name="feeAlloc.calculatedFee" label="Allocated Fee"
+																footer-name="syndication.totalCalculatedFee" />
+														</columns>
+													</data-table>
+												</edit-canvas>
+											</data-table>
+											<section id="facility.facilityTranches.trancheSection">
+												<field name="tranche.totalTrancheAmt" label="Total Tranche Amount" />
+												<field name="tranche.remainingTrancheAmt" label="Remaining Amount" />
+											</section>
+										</panel>
+
+									</edit-canvas>
+								</data-table>
+								<section id="facility.facilityTranches.syndicationSection">
+									<field name="facility.totalSyndicatedAmt" label="Total Syndicated Amount" />
+									<field name="facility.remainingSyndicatedAmt" label="Remaining Amount" />
+								</section>
+							</panel>
+						</tab>
+					</tabs>
+					 <panel id="facility.withdrawApplication" label="Withdraw Application">
+				       	 <field name="facility.withdrawReasonLease" label="Withdrawn Reason" />
+				     </panel>
+				     <commands>
+				     	<command id="WithdrawFacility" name="Withdraw" action="WithdrawFacility" type="businessOp" />
+				     </commands>
+				</edit-canvas>
+			</data-table>
+			<data-table name="Request.noiaLogs" row="noiaLog" label="NOIA Information">
+				<columns>
+					<column name="noiaLog.noiaType" />
+					<column name="noiaLog.noiaReason" label="NOIA Reason" />
+					<column name="noiaLog.metaInfo.createdByUser" label="Created By" />
+					<column name="noiaLog.metaInfo.createdAt" label="Date-Time" />
+				</columns>
+			</data-table>
+			<panel id="creditRequest.applicationInformation.additionalInfo"
+				label="">
+				<field name="request.metaInfo.createdAt" label="Created Date" />
+				<field name="request.metaInfo.createdByUser" label="Created By" />
+				<field name="request.metaInfo.lastModifiedAt" label="Last Updated Date" />
+				<field name="request.metaInfo.lastModifiedByUser" label="Last Updated By" />
+			</panel>
+		</tab>
+		<tab id="tab.Request.creditDecision" label="Credit Analysis">
+			<tabs>
+				<tab id="tab.Request.CreditDecision.bureauReports" label="Bureaus">
+					<data-table name="Request.bureauReports" row="bureau"
+						label="Client Bureaus">
+						<columns>
+							<column name="bureau.customer.refNumber" label="Customer Number" />
+							<column name="bureau.customer.customerName" label="Name" />
+							<column name="bureau.customer.formattedTaxIDNum" label="Tax ID" />
+							<column name="bureau.bureauName" label="Bureau Name" />
+							<column name="bureau.pulledBy" label="Pulled By" />
+							<column name="bureau.pullEndDttm" label="Pulled Date" />
+							<column name="bureau.reportStatus" label="Status" />
+							<column name="bureau.ficoScore" label="Score" />
+							<column name="bureau.message" label="Error Message" />
+							<column name="bureau.responsePdf" label="Download" />
+						</columns>
+						<quickedit-canvas>
+							<panel id="bureauReport.indicators" label="Indicators">
+								<field name="bureau.fileHitIndicator" />
+								<field name="bureau.ssnMatchIndicator" />
+								<field name="bureau.suppressionIndicator" />
+								<field name="bureau.scoringIndicator" />
+								<field name="bureau.scoringFactor1" />
+								<field name="bureau.scoringFactor2" />
+								<field name="bureau.scoringFactor3" />
+								<field name="bureau.scoringFactor4" />
+							</panel>
+						</quickedit-canvas>
+					</data-table>
+					<panel id="tab.Request.decision.bureaus.pullReport" label="Pull Report">
+						<field name="Request.pullReportCustomer" label="Customer" />
+						<field name="Request.bureauName" label="Bureau" />
+						<field name="Request.pullNewReport" />
+						<field name="Request.freezeCode" />
+						<commands>
+							<command name="Pull Report" action="ManualBureauPull"
+								type="businessOp" />
+						</commands>
+					</panel>
+				</tab>
+				<tab id="tab.Request.creditDecision.compliance" label="Compliance">
+					<data-table name="Request.compliances" row="compliance"
+						label="Client Compliances">
+						<columns>
+							<column name="compliance.customer.refNumber" label="Customer Number" />
+							<column name="compliance.customer.customerName" label="Customer Name" />
+							<column name="compliance.category" label="Type" />
+							<column name="compliance.complianceCheckDttm" label="Date" />
+							<column name="compliance.result" label="Result" />
+							<column name="compliance.status" label="Status" />
+						</columns>
+						<edit-canvas>
+							<panel id="complianceDetails.customerInformation" label="Customer Information">
+								<field name="compliance.customer.firstName" label="First Name" />
+								<field name="compliance.customer.lastName" label="Last Name" />
+								<field name="compliance.customer.formattedTaxIDNum" label="Tax Id" />
+								<field name="compliance.customer.birthDate" label="Date Of Birth" />
+								<field name="compliance.customer.birthCity" label="Place Of Brith" />
+								<data-table
+									name="compliace.customer.primarySite.siteDetails.addresses"
+									row="address" label="Addresses">
+									<columns>
+										<column name="address.address1" label="Address 1" />
+										<column name="address.address2" label="Address 2" />
+										<column name="address.city" label="City" />
+										<column name="address.stateProvince" label="State" />
+										<column name="address.postalCode" label="Zip" />
+									</columns>
+								</data-table>
+							</panel>
+							<data-table name="compliance.matches" row="match"
+								label="Name Matched Against">
+								<columns>
+									<column name="match.firstName" label="First Name" />
+									<column name="match.lastName" label="Last Name" />
+									<column name="match.accuracy" label="Accuracy" />
+									<column name="match.address.address1" label="Address 1" />
+									<column name="match.nationality" label="Nationality" />
+									<column name="match.passportNumber" label="Passport" />
+									<column name="match.birthDate" label="Date Of Birth" />
+									<column name="match.birthCity" label="Place Of Birth" />
+									<column name="match.deceasedDttm" label="Deceased Date" />
+								</columns>
+							</data-table>
+							<panel id="complianceDetails.verification">
+								<field name="compliance.complianceHit" targetFields="complianceDetails.verification" />
+								<field name="compliance.acknowledge" label="Acknowledged" />
+							</panel>
+							<data-table name="compliance.fraudAlerts" row="fraudAlert"
+								label="Fraud Details">
+								<columns>
+									<column name="fraudAlert.alertId" label="ID" />
+									<column name="fraudAlert.source" label="Source" />
+									<column name="fraudAlert.alertMessage" label="Alert Message" />
+									<column name="fraudAlert.status" label="Status"
+										incell-edit="true" />
+									<column name="fraudAlert.overrideReason" label="Override Reason"
+										incell-edit="true" />
+									<column name="fraudAlert.comments" label="Comment"
+										incell-edit="true" />
+									<column name="fraudAlert.metaInfo.createdAt" label="Created Date" />
+									<column name="fraudAlert.metaInfo.lastModifiedAt" label="Last Updated Date" />
+									<column name="fraudAlert.metaInfo.lastModifiedByUser"
+										label="Last Updated By" />
+								</columns>
+							</data-table>
+							<data-table name="compliance.kycAlerts" row="kycAlert"
+								label="Know Your Customer">
+								<columns>
+									<column name="kycAlert.alertId" label="ID" />
+									<column name="kycAlert.source" label="Source" />
+									<column name="kycAlert.alertMessage" label="Alert Message" />
+									<column name="kycAlert.status" label="Status"
+										incell-edit="true" />
+									<column name="kycAlert.overrideReason" label="Override Reason"
+										incell-edit="true" />
+									<column name="kycAlert.comments" label="Comment"
+										incell-edit="true" />
+									<column name="kycAlert.metaInfo.createdAt" label="Created Date" />
+									<column name="kycAlert.metaInfo.lastModifiedAt" label="Last Modified Date" />
+									<column name="kycAlert.metaInfo.lastModifiedByUser"
+										label="Last Modified By" />
+								</columns>
+							</data-table>
+						</edit-canvas>
+					</data-table>
+				</tab>
+
+				<tab label="Risk Analysis" id="tab.riskAnalysis">
+					<data-table name="Request.moodyCustomers" row="moodyCustomer"
+						label="Moody Linked Customers">
+						<columns>
+							<column name="moodyCustomer.customerNameDer" label="Moody's Customers Name" />
+							<column name="moodyCustomer.mfaId" label="MFA ID" />
+							<column name="moodyCustomer.industryModel" label="Industry Model" />
+							<column name="moodyCustomer.address.city" label="City" />
+							<column name="moodyCustomer.address.stateProvince" label="State" />
+							<column name="moodyCustomer.address.postalCode" label="Postal Code" />
+							<!-- <column name="moodyCustomer.dunsNumber" label="DUNS Number" /> -->
+							<column name="moodyCustomer.lastStatementDate" label="Last Statement Date" />
+						</columns>
+						<edit-canvas>
+							<section id="moody.customerInfo">
+								<field name="moodyCustomer.customerNameDer" label="Moody's Customers Name" />
+								<field name="moodyCustomer.industryModel" label="Industry Model" />
+							</section>
+							<data-table id="moodyCustomer_generalIndustry_income"
+								name="moodyCustomer.financialStatements" row="financialStatement"
+								label="Income Summary" type="vertical">
+								<columns>
+									<column name="financialStatement.statementDate" />
+									<column name="financialStatement.monthsCovered" />
+									<column name="financialStatement.auditMethod" />
+									<column
+										name="financialStatement.generalIndustryModel.financialScale" />
+									<column name="financialStatement.generalIndustryModel.netSales" />
+									<column
+										name="financialStatement.generalIndustryModel.costOfGoodsSold" />
+									<column
+										name="financialStatement.generalIndustryModel.cogsDepreciation" />
+									<column name="financialStatement.generalIndustryModel.grossProfit" />
+									<column name="financialStatement.generalIndustryModel.sgaExpense" />
+									<column
+										name="financialStatement.generalIndustryModel.operatingExpense" />
+									<column
+										name="financialStatement.generalIndustryModel.officersCompensation" />
+									<column name="financialStatement.generalIndustryModel.deprecExpense" />
+									<column name="financialStatement.generalIndustryModel.amortization" />
+									<column
+										name="financialStatement.generalIndustryModel.totalOperatingExpenses" />
+									<column
+										name="financialStatement.generalIndustryModel.netOperatingProfit" />
+									<column
+										name="financialStatement.generalIndustryModel.grossInterestExpense" />
+									<column
+										name="financialStatement.generalIndustryModel.interestIncome" />
+									<column
+										name="financialStatement.generalIndustryModel.incomeFromSubs" />
+									<column
+										name="financialStatement.generalIndustryModel.gainLossOnAssetSale" />
+									<column
+										name="financialStatement.generalIndustryModel.totalOtherIncomeExpense" />
+									<column
+										name="financialStatement.generalIndustryModel.profitBeforeTaxes" />
+									<column
+										name="financialStatement.generalIndustryModel.incomeTaxExpense" />
+									<column
+										name="financialStatement.generalIndustryModel.minorityInterestExpense" />
+									<column
+										name="financialStatement.generalIndustryModel.profitBeforeExtraordinaryItems" />
+									<column
+										name="financialStatement.generalIndustryModel.profitBeforeExtraordinaryItems" />
+									<column name="financialStatement.generalIndustryModel.netIncome" />
+									<column
+										name="financialStatement.generalIndustryModel.dividendsCommon" />
+									<column
+										name="financialStatement.generalIndustryModel.dividendsPreferred" />
+									<column
+										name="financialStatement.generalIndustryModel.dividendsStock" />
+								</columns>
+							</data-table>
+							<data-table id="moodyCustomer_generalIndustry_balanceSheet"
+								name="moodyCustomer.financialStatements" row="financialStatement"
+								label="Balance Sheet" type="vertical">
+								<columns>
+									<column name="financialStatement.statementDate" />
+									<column name="financialStatement.monthsCovered" />
+									<column name="financialStatement.auditMethod" />
+									<column name="financialStatement.generalIndustryModel.cash" />
+									<column
+										name="financialStatement.generalIndustryModel.marketableSecurities" />
+									<column
+										name="financialStatement.generalIndustryModel.accountsReceivableTrade" />
+									<column
+										name="financialStatement.generalIndustryModel.accountsReceivableOther" />
+									<column
+										name="financialStatement.generalIndustryModel.badDebtReserve" />
+									<column name="financialStatement.generalIndustryModel.inventories" />
+									<column
+										name="financialStatement.generalIndustryModel.totalCurrentAssets" />
+									<column name="financialStatement.generalIndustryModel.netPPAndE" />
+									<column
+										name="financialStatement.generalIndustryModel.deferredAssets" />
+									<column
+										name="financialStatement.generalIndustryModel.intangibleAssets" />
+									<column name="financialStatement.generalIndustryModel.totalAssets" />
+									<column name="financialStatement.generalIndustryModel.shortTermDebt" />
+									<column name="financialStatement.generalIndustryModel.curMatOfLTD" />
+									<column
+										name="financialStatement.generalIndustryModel.accountsPayableTrade" />
+									<column
+										name="financialStatement.generalIndustryModel.accountsPayableOther" />
+									<column
+										name="financialStatement.generalIndustryModel.accruedLiabilities" />
+									<column name="financialStatement.generalIndustryModel.taxesPayable" />
+									<column
+										name="financialStatement.generalIndustryModel.totalCurrentLiabilities" />
+									<column name="financialStatement.generalIndustryModel.longTermDebt" />
+									<column
+										name="financialStatement.generalIndustryModel.capitalLeaseObligations" />
+									<column
+										name="financialStatement.generalIndustryModel.minorityInterestLiabilities" />
+									<column
+										name="financialStatement.generalIndustryModel.subordinatedDebt" />
+									<column
+										name="financialStatement.generalIndustryModel.totalNoncurrentLiabilities" />
+									<column
+										name="financialStatement.generalIndustryModel.totalLiabilities" />
+									<column name="financialStatement.generalIndustryModel.commonStock" />
+									<column
+										name="financialStatement.generalIndustryModel.preferredStock" />
+									<column
+										name="financialStatement.generalIndustryModel.retainedEarnings" />
+									<column name="financialStatement.generalIndustryModel.totalNetWorth" />
+									<column
+										name="financialStatement.generalIndustryModel.totalLiabilitiesPlusNetWorth" />
+								</columns>
+							</data-table>
+							<data-table id="moodyCustomer_generalIndustry_stocks_ratios"
+								name="moodyCustomer.financialStatements" row="financialStatement"
+								label="Stocks/Ratios" type="vertical">
+								<columns>
+									<column name="financialStatement.statementDate" />
+									<column name="financialStatement.monthsCovered" />
+									<column name="financialStatement.auditMethod" />
+									<column
+										name="financialStatement.generalIndustryModel.grossRentalExpense" />
+									<column
+										name="financialStatement.generalIndustryModel.interestCapitalized" />
+									<column name="financialStatement.generalIndustryModel.lifoReserve" />
+									<column
+										name="financialStatement.generalIndustryModel.otherNoncashCosts" />
+									<column name="financialStatement.generalIndustryModel.taxRate" />
+									<column
+										name="financialStatement.generalIndustryModel.netSalesGrowth" />
+									<column
+										name="financialStatement.generalIndustryModel.netOperatingMargin" />
+									<column name="financialStatement.generalIndustryModel.netMargin" />
+									<column name="financialStatement.generalIndustryModel.currentRatio" />
+									<column name="financialStatement.generalIndustryModel.quickRatio" />
+									<column
+										name="financialStatement.generalIndustryModel.netAccountsReceivableDays" />
+									<column
+										name="financialStatement.generalIndustryModel.accountsPayableDays" />
+									<column name="financialStatement.generalIndustryModel.inventoryDays" />
+									<column
+										name="financialStatement.generalIndustryModel.tangibleNetWorth" />
+									<column
+										name="financialStatement.generalIndustryModel.debtToTangibleNetWorth" />
+									<column name="financialStatement.generalIndustryModel.ebitda" />
+									<column
+										name="financialStatement.generalIndustryModel.interestCoverage" />
+									<column
+										name="financialStatement.generalIndustryModel.fixedChargeCoverage" />
+									<column
+										name="financialStatement.generalIndustryModel.ebitdaToIntCPLTD" />
+									<column
+										name="financialStatement.generalIndustryModel.riskCalcOneYearPD" />
+									<column
+										name="financialStatement.generalIndustryModel.oneYearBondDefaultRate" />
+									<column name="financialStatement.generalIndustryModel.leverage" />
+								</columns>
+							</data-table>
+						</edit-canvas>
+						<commands>
+							<command id="createAction" name="Pull Moody Customer"
+								action="PullMoodyCustomerWizard" type="pageflow" />
+						</commands>
+					</data-table>
+				</tab>
+				<!-- <tab label="Spreads" id="tab.spreads">
+					<workbook id="onerac" name="request.onerac" />
+				</tab> -->
+				<tab id="tab.Request.decision.RACSet" label="RAC">
+					<data-table name="Request.allRACSetEvaluations" row="rac"
+						label="RAC Set">
+						<columns>
+							<column name="rac.racsetDefinition.name" label="RAC Set" />
+							<column name="rac.racNumber" label="# RAC" />
+							<column name="rac.pass" label="Pass" />
+							<column name="rac.fail" label="Fail" />
+							<column name="rac.na" label="N/A" />
+							<column name="rac.statusValue" label="Status" />
+							<column name="rac.exceptionAuthorityValue" label="Exception Authority" />
+						</columns>
+						<edit-canvas>
+							<panel id="Request.viewRacset" label="RAC Set Detail">
+								<field name="rac.racsetDefinition" label="RAC Set"
+									targetFields="rac.racEvaluations" />
+								<data-table name="rac.racEvaluations" row="racEval"
+									label="" sortBy="racEval.racDefinition.racId" sortOrder="ascending">
+									<columns>
+										<column name="racEval.racDefinition.racId" label="ID" />
+										<column name="racEval.racDefinition.racCategory" label="Category" />
+										<column name="racEval.racDefinition.description" label="Description" />
+										<column name="racEval.status" label="Pass/Fail/NA"
+											incell-edit="true" />
+										<column name="racEval.exceptionAuthority" label="Exception Authority"
+											incell-edit="true" />
+									</columns>
+								</data-table>
+							</panel>
+						</edit-canvas>
+					</data-table>
+				</tab>
+				<tab id="tab.Request.creditDecision.exposure" label="Exposure">
+	                <panel id="request.exposureSummaries" label="Exposure Summary ">
+						<data-table name="Request.exposure.exposureSummaries" row="exposureSummary" label="">
+				            <columns>
+								<column name="exposureSummary.exposureType" label="" />
+				               <column name="exposureSummary.outstandingExposure" label="Current Outstanding" />
+						  	   <column name="exposureSummary.existingExposure" label="Existing" />
+						  	   <column name="exposureSummary.requestedExposure" label="Incremental Requested" />
+						  	   <column name="exposureSummary.adjustedExposure" label="Adjusted" />
+						  	   <column name="exposureSummary.existingIncrementalExposure" label="Total Existing + Incremental" />
+						  	   <column name="exposureSummary.exposureValue" label="Final Exposure" />
+				            </columns>
+						</data-table>
+					</panel>
+	               <!--  <data-grid name="Request.exposure.directFacilityExposures" row="customerExposure" label="Direct exposure" cols="1" >
+	                	<quickedit-canvas>
+		                	<section id="request.exposure.directFacilityExposures" label=" " cols="3" >
+						  	    <field name="customerExposure.customerName"  label="Borrower"  />
+						  	    <field name="customerExposure.relParty.customer.gfcId" label="GFCID" />
+						  	    <field name="customerExposure.relParty.customer.orr"  label="ORR" />
+						  	</section>
+						  	<section id="request.exposure.expoFromIMPACS" label=" " cols="1" >						  	    
+						  	    <field name="Request.exposure.noLoanExposFromIMPACS"  label="" />
+						  	</section>
+						  	<panel id="request.exposure.directFacilityExposures.client" label="Client" >
+								SubPanels will be added accordingly.
+						  	</panel>					
+				    	</quickedit-canvas>	               
+	                </data-grid> -->
+					
+	            <!--    <data-grid  name="Request.exposure.indirFacExposures" row="inDirCustomerExposure" label="Indirect Exposure " cols="1" >
+	                	<quickedit-canvas>
+							<panel id="request.exposure.indirFacExposures.gaurantor" label="Gaurantor">
+						  	    SubPanels will be added accordingly.
+						  	</panel>
+						  	<panel id="request.exposure.indirFacExposures.debtor" label="Debtor" cols="3" >
+						  	    SubPanels will be added accordingly.
+						  	</panel>
+				    	</quickedit-canvas>	               
+	                </data-grid>        -->         
+	                
+					<!-- <panel id="panel.Request.creditDecision.exposureSummary"
+						label="Exposure Summary">
+						<field name="Request.exposure.asOfDate" label="Exposure Values As Of Date" />
+						<panel id="panel.Request.creditDecision.exposure" label="Exposure (Secured + Unsecured)"
+							cols="3">
+							col 1
+							<field name="Request.exposure.totalBorrowerRequestedExposure"
+								label="Approved - Borrower Exposure (A)" />
+							<field name="Request.exposure.totalContingentRequestedExposure"
+								label="Approved - Additional Related Exposure (B)" />
+							<field name="Request.exposure.totalCalculatedRequestedExposure"
+								label="Approved - Subtotal (A+B)" />
+							<field name="Request.exposure.totalOtherRequestedExposure"
+								label="Approved - Additional Corp (non-BU) Exposure (C)"
+								targetFields="Request.exposure.totalRelationshipRequestedExposure,
+																							Request.exposure.totalOtherExposure,
+																							Request.exposure.totalRelationshipExposure" />
+							<field name="Request.exposure.totalRelationshipRequestedExposure"
+								label="Approved - Total BU + Total Non-Bu (A+B+C)" />
+
+							col 2
+							<field name="Request.exposure.totalBorrowerOutstandingExposure"
+								label="Outstanding - Borrower Exposure (D)" />
+							<field name="Request.exposure.totalContingentOutstandingExposure"
+								label="Outstanding - Additional  Related Exposure (E)" />
+							<field name="Request.exposure.totalCalculatedOutstandingExposure"
+								label="Outstanding - Subtotal (D+E)" />
+							<field name="Request.exposure.totalOtherOutstandingExposure"
+								label="Outstanding - Additional Corp (non-BU) Exposure (F)"
+								targetFields="Request.exposure.totalRelationshipOutstandingExposure,
+																							Request.exposure.totalOtherExposure,
+																							Request.exposure.totalRelationshipExposure" />
+							<field name="Request.exposure.totalRelationshipOutstandingExposure"
+								label="Outstanding - Total BU + Total Non-BU (D+E+F)" />
+
+							col 3
+							<field name="Request.exposure.totalBorrowerExposure" label="Total Borrower Exposure(A+D)" />
+							<field name="Request.exposure.totalContingentExposure"
+								label="Total Additional Related Exposure(B+E)" />
+							<field name="Request.exposure.totalCalculatedExposure"
+								label="Total - Subtotal (A+B+D+E)" />
+							<field name="Request.exposure.totalOtherExposure"
+								label="Total - Additional Corp (non-BU) Exposure (C+F)" />
+							<field name="Request.exposure.totalRelationshipExposure"
+								label="Total - Total BU + Total Non-Bu (A+B+C+D+E+F)" />
+
+						</panel>
+						<panel id="panel.Request.creditDecision.unsecuredExposure"
+							label="Exposure (Unsecured)" cols="3">
+							col 4
+							<field name="Request.exposure.totalBorrowerRequestedUnsecuredExposure"
+								label="Approved - Borrower Exposure (A)" />
+							<field
+								name="Request.exposure.totalContingentRequestedUnsecuredExposure"
+								label="Approved - Additional Related Exposure (B)" />
+							<field
+								name="Request.exposure.totalCalculatedRequestedUnsecuredExposure"
+								label="Approved - Subtotal (A+B)" />
+							<field name="Request.exposure.totalOtherRequestedUnsecuredExposure"
+								label="Approved - Additional Corp (non-BU) Exposure (C)"
+								targetFields="Request.exposure.totalRelationshipRequestedUnsecuredExposure,
+																									Request.exposure.totalOtherUnsecuredExposure,
+																									Request.exposure.totalRelationshipUnsecuredExposure" />
+							<field
+								name="Request.exposure.totalRelationshipRequestedUnsecuredExposure"
+								label="Approved - Total BU + Total Non-Bu (A+B+C)" />
+
+							col 5
+							<field
+								name="Request.exposure.totalBorrowerOutstandingUnsecuredExposure"
+								label="Outstanding - Borrower Exposure (D)" />
+							<field
+								name="Request.exposure.totalContingentOutstandingUnsecuredExposure"
+								label="Outstanding - Additional Related Exposure (E)" />
+							<field
+								name="Request.exposure.totalCalculatedOutstandingUnsecuredExposure"
+								label="Outstanding - Subtotal (D+E)" />
+							<field name="Request.exposure.totalOtherOutstandingUnsecuredExposure"
+								label="Outstanding - Additional Corp (non-BU) Exposure (F)"
+								targetFields="Request.exposure.totalRelationshipOutstandingUnsecuredExposure,
+																									Request.exposure.totalOtherUnsecuredExposure,
+																									Request.exposure.totalRelationshipUnsecuredExposure" />
+							<field
+								name="Request.exposure.totalRelationshipOutstandingUnsecuredExposure"
+								label="Outstanding - Total BU + Total Non-BU (D+E+F)" />
+
+							col 6
+							<field name="Request.exposure.totalBorrowerUnsecuredExposure"
+								label="Total Borrower Exposure(A+D)" />
+							<field name="Request.exposure.totalContingentUnsecuredExposure"
+								label="Total Additional Related Exposure(B+E)" />
+							<field name="Request.exposure.totalCalculatedUnsecuredExposure"
+								label="Total - Subtotal (A+B+D+E)" />
+							<field name="Request.exposure.totalOtherUnsecuredExposure"
+								label="Total - Additional Corp (non-BU) Exposure (C+F)" />
+							<field name="Request.exposure.totalRelationshipUnsecuredExposure"
+								label="Total - Total BU + Total Non-Bu (A+B+C+D+E+F)" />
+						</panel>
+					</panel> -->
+					<data-table name="Request.directFacilityExposures"
+						row="customerFacilityExposure" label="Direct Exposure">
+						<columns>
+							<column name="customerFacilityExposure.customerRole.partyRole"
+								label="Role" />
+							<column name="customerFacilityExposure.customerRole.customer"
+								label="Name" />
+							<column name="customerFacilityExposure.customerRole.parentRole"
+								label="Related To" />
+							<column name="customerFacilityExposure.customerRole.customer.orr"
+								label="ORR" />
+						</columns>
+						<data-table name="customerFacilityExposure.facilityExposures"
+							row="facilityExposure" label="Product Exposure">
+							<columns>
+								<column name="facilityExposure.facilityNumber" label="Product Number" />
+								<column name="facilityExposure.facilityType" label="Product Type" />
+								<column name="facilityExposure.natureOfSecurity" label="Collateral Nature" />
+								<column name="facilityExposure.facilityRR" label="FRR" />
+								<!-- column name="facilityExposure.fiservLoanNumber" label="FISERV 
+									Loan Number"/ -->
+								<column name="facilityExposure.borrower" label="Borrower" />
+								<column name="facilityExposure.requestedExposure" label="Client" />
+								<column name="facilityExposure.outstandingExposure"
+									label="Outstanding" />
+								<column name="facilityExposure.thirtyDayArrears" label="Times Ninety" />
+								<column name="facilityExposure.sixtyDayArrears" label="Times Sixty" />
+								<column name="facilityExposure.ninetyDayArrears" label="Times Thirty" />
+							</columns>
+						</data-table>
+					</data-table>
+					
+					<panel id="indirectExposuresDetails">
+						<data-table name="Request.guarantorFacilityExposures"
+						row="customerFacilityExposure" label="Guarantor Exposure Details">
+						<columns>
+							<column name="customerFacilityExposure.customerRole.partyRole"
+								label="Role" />
+							<column name="customerFacilityExposure.customerRole.customer"
+								label="Name" />
+							<column name="customerFacilityExposure.customerRole.parentRole"
+								label="Related To" />
+							<column name="customerFacilityExposure.customerRole.customer.orr"
+								label="ORR" />
+						</columns>
+						<data-table name="customerFacilityExposure.facilityExposures"
+							row="facilityExposure" label="Product Exposure">
+							<columns>
+								<column name="facilityExposure.facilityNumber" label="Product Number" />
+								<column name="facilityExposure.facilityType" label="Product Type" />
+								<column name="facilityExposure.natureOfSecurity" label="Collateral Nature" />
+								<column name="facilityExposure.facilityRR" label="FRR" />
+								<!-- column name="facilityExposure.fiservLoanNumber" label="FISERV 
+									Loan Number"/ -->
+								<column name="facilityExposure.borrower" label="Client" />
+								<column name="facilityExposure.requestedExposure" label="Client Approved" />
+								<column name="facilityExposure.outstandingExposure"	label="Outstanding" />
+								<column name="facilityExposure.thirtyDayArrears" label="Times Ninety" />
+								<column name="facilityExposure.sixtyDayArrears" label="Times Sixty" />
+								<column name="facilityExposure.ninetyDayArrears" label="Times Thirty" />
+							</columns>
+						</data-table>
+					</data-table>
+					<data-table name="Request.debtorFacilityExposures"
+						row="customerFacilityExposure" label="Debtor Exposure Details">
+						<columns>
+							<column name="customerFacilityExposure.customerRole.partyRole"
+								label="Role" />
+							<column name="customerFacilityExposure.customerRole.customer"
+								label="Name" />
+							<column name="customerFacilityExposure.customerRole.parentRole"
+								label="Related To" />
+							<column name="customerFacilityExposure.customerRole.customer.orr"
+								label="ORR" />
+						</columns>
+						<data-table name="customerFacilityExposure.facilityExposuresDer"
+							row="facilityExposure" label="Product Exposure">
+							<columns>
+								<column name="facilityExposure.facilityNumber" label="Product Number" />
+								<column name="facilityExposure.facilityType" label="Product Type" />
+								<column name="facilityExposure.natureOfSecurity" label="Collateral Nature" />
+								<column name="facilityExposure.facilityRR" label="FRR" />
+								<column name="facilityExposure.borrower" label="Client" />
+								<column name="facilityExposure.requestedExposure" label="Client Approved" />
+								<column name="facilityExposure.debtorCustomerDer.fundingLimit" label="Debtor Funding Limit" />
+								<column name="facilityExposure.outstandingExposure"
+									label="Outstanding" />
+								<column name="facilityExposure.thirtyDayArrears" label="Times Ninety" />
+								<column name="facilityExposure.sixtyDayArrears" label="Times Sixty" />
+								<column name="facilityExposure.ninetyDayArrears" label="Times Thirty" />
+							</columns>
+						</data-table>
+					</data-table>
+					</panel>
+					
+					<commands>
+						<command name="Update Exposure" action="UpdateExposureFlow"
+							type="businessOp" />
+					</commands>
+				</tab>
+				
+				<!-- LPOB-1045 Starts -->
+				<tab id="tab.Request.creditDecision.scoring" label="Scoring">
+					<tabs>
+						<tab id="tab.Request.creditDecision.scoring.CustomerScoring" label="Client Scoring">
+							<data-table name="Request.appScorings" row="appScore" sortOrder="descending"  label="Scoring History" empty-message="Nothing found to display.">
+								<columns>
+									<column name="appScore.evalDttm" label="Evaluation Date"/>
+									<column name="appScore.exceptionAuthority" label="Exception Authority"/>							
+								</columns>
+								<edit-canvas>
+							<data-table name="appScore.facScorings" row="facScoring" sortOrder="descending"  label="Facility Recommendations" empty-message="Nothing found to display.">
+								<columns>
+										<column name="facScoring.facilityRecomm.facility.refNumber" label="Facility Number"/>
+										<column name="facScoring.facilityRecomm.facility.facilityType.value" label="Facility Type"/>
+										<column name="facScoring.facilityRecomm.facility.requestedLoanAmt" label="Requested Amount"/>
+										<column name="facScoring.facilityRecomm.recommCategory.value" label="Recomm. Category"/>
+										<column name="facScoring.facilityRecomm.recommId.value" label="Recommendation"/>
+								</columns>
+								<quickedit-canvas id="FacScoringEdit">
+									
+		                            <data-table name="facScoring.facRecomRsnsDer" row="facRecomRsn" sortOrder="descending" label="Top Recommendations Reasons" empty-message="Nothing found to display.">
+				                        <columns>
+				                            <column name="facRecomRsn.recommendationReason.recomReason" label="Verbiage" />
+				                            <column name="facRecomRsn.customer.customerName" label="Party" />
+				                        </columns>	
+				                    </data-table>
+									
+				                    <data-table name="facScoring.scoringRecommRules"
+				                        row="facScRecommRule" sortOrder="descending" label="Rules" empty-message="Nothing found to display.">
+				                        <columns>
+				                            <column name="facScRecommRule.ruleName" label="Rule" />
+				                            <column name="facScRecommRule.description" label="Description" />
+				                            <column name="facScRecommRule.result.value" label="Result" />
+				                            <column name="facScRecommRule.recommCategory.value" label="Recomm. Category" />
+				                            <column name="facScRecommRule.recommendationDecision.value" label="Recomm." />
+				                            <column name="facScRecommRule.reasonCode" label="Reason Code" />
+				                            <column name="facScRecommRule.recommendationLevel" label="Recomm Level" />
+				                     		<column name="facScRecommRule.reasonLevel" label="Reason Level" />
+				                            <column name="facScRecommRule.exceptionAuthority" label="Exception Authority" />
+				                        </columns>
+				                    </data-table>
+				                    <data-table name="facScoring.scoringAttributes" row="facScAttribute" sortOrder="descending" empty-message="Nothing found to display.">
+				                        <columns>
+				                            <column name="facScAttribute.attributeName" label="Name" />
+				                            <column name="facScAttribute.attributeDescription" label="Description" />
+				                            <column name="facScAttribute.value" label="Value" />
+				                        </columns>	
+				                    </data-table>
+			                    </quickedit-canvas>
+							</data-table>
+										<data-table name="appScore.scoringRecommRules" row="scRecommRule" sortOrder="descending" label="Rules" empty-message="Nothing found to display.">
+											<columns>
+												<column name="scRecommRule.ruleName" label="Rule" />
+												<column name="scRecommRule.description" label="Description" />
+												<column name="scRecommRule.result.value" label="Result" />
+												<column name="scRecommRule.recommCategory.value" label="Recomm. Category" />
+												<column name="scRecommRule.recommendationDecision.value" label="Recomm." />
+												<column name="scRecommRule.reasonCode" label="Reason Code" />
+												<column name="scRecommRule.recommendationLevel" label="Recomm Level" />
+												<column name="scRecommRule.reasonLevel" label="Reason Level" />
+												<column name="scRecommRule.exceptionAuthority" label="Exception Authority" />
+											</columns>
+										</data-table>
+										<data-table name="appScore.scoringAttributes" row="scAttribute" sortOrder="descending" empty-message="Nothing found to display.">
+											<columns>
+												<column name="scAttribute.attributeName" label="Name" />
+												<column name="scAttribute.attributeDescription" label="Description" />
+												<column name="scAttribute.value" label="Value" />
+											</columns>
+										</data-table>
+										<data-table name="appScore.partyScorings" row="partyScoring" sortOrder="descending" label="Party Scoring" empty-message="Nothing found to display.">
+											<columns>
+												<column name="partyScoring.party.customerName" label="Party" />
+												<column name="partyScoring.customerType.value" label="Type" />
+												<column name="partyScoring.scorecardDetail.scorecardModel" label="Scoring Model" />
+												<column name="partyScoring.scorecardDetail.recommCategory.value" label="Recomm. Category" />
+												<column name="partyScoring.scorecardDetail.recommId.value" label="Recommendation" />
+												<column name="partyScoring.scorecardDetail.exceptionAuthority.value" label="Exception Authority" />
+											</columns>
+											<quickedit-canvas>
+											<data-table name="partyScoring.partyScoreRating" row="partyScRating" empty-message="Nothing found to display.">
+												<columns>
+													<column name="partyScRating.partyScore" label="Score" />
+													<column name="partyScRating.scoreRatingDate" label="Date" />
+												</columns>
+											</data-table>
+											<data-table name="partyScoring.scoringRecommRules" row="partyScRecommRule"
+												sortOrder="descending" label="Rules" empty-message="Nothing found to display.">
+												<columns>
+													<column name="partyScRecommRule.ruleName" label="Rule" />
+													<column name="partyScRecommRule.description" label="Description" />
+													<column name="partyScRecommRule.result.value" label="Result" />
+													<column name="partyScRecommRule.recommCategory.value" label="Recomm. Category" />
+													<column name="partyScRecommRule.recommendationDecision.value" label="Recomm." />
+													<column name="partyScRecommRule.reasonCode" label="Reason Code" />
+													<column name="partyScRecommRule.recommendationLevel" label="Recomm Level" />
+													<column name="partyScRecommRule.reasonLevel" label="Reason Level" />
+													<column name="partyScRecommRule.exceptionAuthority" label="Exception Authority" />
+												</columns>
+											</data-table>
+											<data-table name="partyScoring.scoringAttributes" row="partyScAttribute" sortOrder="descending" empty-message="Nothing found to display.">
+												<columns>
+													<column name="partyScAttribute.attributeName" label="Name" />
+													<column name="partyScAttribute.attributeDescription" label="Description" />
+													<column name="partyScAttribute.value" label="Value" />
+												</columns>
+											</data-table>
+											</quickedit-canvas>
+									</data-table>
+								</edit-canvas>
+							</data-table>
+						</tab>
+						<tab id="tab.Request.creditDecision.scoring.DebtorRiskRating" label="Debtor Risk Rating">
+								<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors">
+									<columns>
+										<column name="debtor.refNumber" label="Debtor-Account"></column>
+										<column name="debtor.facilityCustomerRole.customer" label="Debtor Name"></column>
+										<column name="debtor.ratingDescription" label="Rating Description"></column>
+										<column name="debtor.riskRating" label="Risk Rating"></column>
+										<column name="debtor.ratingDate" label="Date"></column>
+										<column name="debtor.wfStatus" label="Status"></column>
+									</columns>
+									<edit-canvas id="Request.DebtorRiskRating">
+										<panel id="debtor">
+											<field name="debtor.ratingDescription" label="Rating Description" />
+											<field name="debtor.riskRating" label="Risk Rating" />
+											<field name="debtor.ratingDate" label="Date" />
+										</panel>
+									</edit-canvas>
+								</data-table>
+						</tab>
+					</tabs>
+				</tab>
+				
+				<!-- LPOB-1045 Ends -->
+				<tab id="tab.Request.creditDecision.decision" label="Decision">
+					<tabs>
+						<tab id="tab.Request.creditDecision.decision.AppDecision" label="Application Decision">
+							<data-table name="Request.approval.approvalLevels" row="approvalLevel"
+								label="Application Decision" sortBy="approvalLevel.uppercaseName"
+								sortOrder="ascending">
+								<columns>
+									<column name="approvalLevel.name" label="Approval Level" />
+									<column name="approvalLevel.approverTeamList" label="Approver Details" />
+									<column name="approvalLevel.decision" label="Level Decision" />
+									<column name="approvalLevel.commentGroup.comments" label="Comments" />
+									<column name="approvalLevel.metaInfo.lastModifiedAt"
+										label="Last Updated Date" />
+								</columns>
+								<!-- <edit-canvas>
+									<panel id="Request.approval.addeditApprovalLevel" label="Add/Edit Approval Level">
+										<field name="approvalLevel.name" label="Approval Level Name" />
+										<data-table name="approvalLevel.approverList" row="approver"
+											label="Approver Details">
+											<columns>
+												<column name="approver.user" label="Approver" />
+												<column name="approver.user.creditAuthorityLevel.value"
+													label="Approver Exception AutZhority" />
+												<column name="approver.user.racExceptionAuthority.value"
+													label="RAC Exception Authority" />
+												<column name="approver.decision" label="Approver Decision" />
+											</columns>
+										</data-table>
+									</panel>
+								</edit-canvas> -->
+							</data-table>
+							<panel id="decision.decisionInformation" label="Application Decision Information">
+								<field name="Request.recommendedApprCategory" label="Required Credit Authority" />
+								<field name="Request.racExceptionAuth" label="Required RAC Exception Authority" />
+								<field name="Request.finalDecisionDate" />
+								<field name="Request.approval.decision" label="Final Decision" />
+								<field name="Request.grossRevConsider" label="Gross Revenue Considered" />
+								<field name="Request.loanToGross" label="Loan to Gross (%)" />
+								<!-- <field name="Request.loanToValueCre" label="Loan to Value (CRE)"/> -->
+								<field name="Request.cashFlowDebtServiceRatio" label="Debt Service Coverage Ratio" />
+								<field name="Request.cashFlowMargin" label="Cash Flow Margin" />
+								<!-- <field name="Request.craRevenue" label="CRA Revenue"/> -->
+								<!-- <field name="Request.craRevenueAmt" label="CRA Revenue Amount"/> -->
+							</panel>
+							<data-table name="Request.decisionFacilities" row="Fac"
+								label="Products">
+								<columns>
+									<column name="Fac.refNumber" label="Number" />
+									<column name="Fac.effectiveProductType.value" label="Product Type" />
+									<column name="Fac.facilityRR.value" label="Risk Rating" />
+									<column name="Fac.facilityRRSource" label="Risk Rating Source" />
+									<column name="Fac.requestedLoanAmtDer" label="Requested Amount" />
+									<column name="Fac.approvedLoanAmt" label="Approved Amount" />
+									<column name="Fac.accountCustomers" label="Account" />
+									<column name="Fac.facilityDecision" label="Product Recommendation" />
+									<column name="Fac.creditDenialReason" label="Adverse Action Reasons" />
+								</columns>
+								<edit-canvas id="Request.decisionFacilities.quickedit">
+									<panel id="facility">
+										<field name="Fac.refNumber" label="Number" />
+										<field name="Fac.facilityType.value" label="Product Type" />
+										<field name="Fac.facilityRR" label="Risk Rating" />
+										<field name="Fac.facilityRRSource" label="Risk Rating Source" />
+										<field name="Fac.requestedLoanAmtDer" label="Requested Amount" />
+										<field name="Fac.requestedTermDer" label="Requested Term" />
+										<field name="Fac.approvedLoanAmt" label="Approved Amount" />
+										<field name="Fac.approvedTerm" label="Approved Term" />
+										<field name="Fac.approvalExpirationDate" label="Approval Expiration Date" />
+										<field name="Fac.accountCustomers" label="Account" />
+										<field name="Fac.facilityDecision" label="Product Recommendation" />
+										<field name="Fac.creditDenialReason" label="Adverse Action Reasons" />
+									</panel>
+								</edit-canvas>
+							</data-table>
+					</tab>
+						<tab id="tab.Request.creditDecision.decision.DebtorDecision" label="Debtor Decision">
+							<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors">
+								<columns>
+									<column name="debtor.refNumber" label="Debtor-Account"/>
+									<column name="debtor.facilityCustomerRole.customer" label="Debtor Name"/>
+									<column name="debtor.retention" label="Dillution Rate"/>
+									<column name="debtor.advanceRate" label="Advance Rate"/>
+									<column name="debtor.eligibleARLimit" label="Eligible AR Limit"/>
+									<column name="debtor.concLimit" label="Concentration Limit %"/>
+									<column name="debtor.creditPeriod" label="Credit Period"/>
+									<column name="debtor.wfStatus" label="Decision"></column>
+								</columns>
+								<edit-canvas id="Request.DebtorDecision">
+									<panel id="debtor.debtorInformation">
+										<field name="debtor.refNumber" label="Debtor-Account"/>
+										<field name="debtor.facilityCustomerRole.customer" label="Name" allow="create" targetFields="debtor.dbas"/>
+										<field name="debtor.facilityCustomerRole.customer.naicsCode" label="Industry"/>
+										<field name="debtor.wfStatus" label="Status"/>
+										<field name="debtor.servicingIdentifier" label="Servicing Identifier"/>
+										<field name="debtor.nextReviewDate" label="Next Review Date (if Ineligible)"/>
+									</panel>
+									<panel id="debtor.debtorLimit" label="Debtor-Account Limits">
+										<field name="debtor.eligibleARLimit" label="Eligible AR Limit *" targetFields="debtor.debtorLimit"/>
+										<field name="debtor.retention" label="Dilution Rate % *" targetFields="debtor.debtorLimit"/>
+										<field name="debtor.creditPeriod" label="Credit Period (days) *"/>
+										<field name="debtor.concLimit" label="Concentration Limit % *"/>
+										<field name="debtor.fundingLimit" label="Funding Limit"/>
+										<field name="debtor.advanceRate" label="Advance Rate %"/>
+										<field name="debtor.borrowingBaseRes" label="Borrowing Base Reserve *"/>
+									</panel>
+									
+									<panel id="debtor.dbas" label="DBA Names">
+										<data-table name="debtor.dbas" label="DBA" row="dba">
+											<columns>
+												<column name="dba.refNumber" label="DBA Number"/>
+												<column name="dba.dbaName" label="DBA Name"/>
+											</columns>
+										</data-table>
+									</panel>
+	
+									<data-table name="debtor.commentGroup.comments" row="commentDebtorCustomer" sortBy="commentDebtorCustomer.indexNumber" sortOrder="descending">
+										<columns>
+											<column name="commentDebtorCustomer.indexNumber" label="No."/>
+											<column name="commentDebtorCustomer.commentType.value" label="Comment Type"/>
+											<column name="commentDebtorCustomer.metaInfo.createdByUser" label="Author"/>
+											<column name="commentDebtorCustomer.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+											<column name="commentDebtorCustomer.metaInfo.createdAt" label="Date Added"/>
+											<column name="commentDebtorCustomer.commentText" label="Text"/>								
+										</columns>
+										<quickedit-canvas id="commentDebtorCustomer">
+											<panel id="commentDebtor.enterComment">
+												<field name="commentDebtor.commentType" label="Comment Type*"/>
+												<field name="commentDebtor.commentText" label="Text*"/>
+												<field />
+											</panel>
+										</quickedit-canvas>
+									</data-table>
+	
+									<panel id="debtor.debtorAddresses" label="Debtor Address">
+									<data-table name="debtorCustomer.contact.addresses"
+										row="address" label="Address">
+										<columns>
+											<column name="address.address1" label="Address" />
+											<column name="address.city" label="City" />
+											<column name="address.stateProvince" label="State" />
+											<column name="address.country" label="Country" />
+											<column name="address.postalCode" label="Postal Code" />
+											<column name="address.usage" label="Usage" />
+										</columns>
+										<quickedit-canvas id="address">
+											<panel id="customer.debtorContactInformation" label="Address">
+												<field name="address.address1" label="Address" />
+												<field name="address.city" label="City" />
+												<field name="address.stateProvince" label="State" />
+												<field name="address.country" label="Country" />
+												<field name="address.postalCode" label="Postal Code" />
+												<field name="address.usage" label="Usage" />
+											</panel>
+										</quickedit-canvas>
+									</data-table>
+									</panel>
+	
+									<commands>
+										<command id="approve" action="approveDebtor" type="businessOp" name="Eligible"/>
+										<command id="decline" action="declineDebtor" type="businessOp" name="Ineligible"/>
+									</commands>
+								</edit-canvas>
+							</data-table>
+						</tab>
+					</tabs>
+				</tab>
+				<tab id="tab.Request.CreditDecision.COA" label="Conditions Precedent">
+					<data-table name="Request.coaEvalFacilitiesDer" row="coaEvalEntity"
+						label="Conditions of Approval-Summary" sortBy="coaEvalEntity.coaDefinition.coaId"
+				sortOrder="ascending">
+						<columns>
+							<column name="coaEvalEntity.product.refNumber" label="Product" />
+							<column name="coaEvalEntity.product.facilityType.value" label="Product Type" />
+							<column name="coaEvalEntity.coaDefinition.coaCondition" label="Condition" />
+							<column name="coaEvalEntity.metaInfo.lastModifiedAt"
+					label="Last Updated Date" />
+							<column name="coaEvalEntity.wfStatus" label="Status" />
+						</columns>
+						<edit-canvas>
+							<commands>
+								<command id="completeCOA" name="Complete" action="completeCOA" type="businessOp" />
+								<command id="suspendCOA" name="Suspend" action="suspendCOA" type="businessOp" />
+							</commands>
+						</edit-canvas>
+					</data-table>
+				</tab>
+				<tab label="Covenants" id="tab.Covenants">
+					<data-table name="Request.covenants" row="covenant"
+						label="Covenants">
+						<columns>
+							<column name="covenant.covenantDefinition.covenantName"
+								label="Covenant Name" />
+							<column name="covenant.covenantDefinition.covenantDescription"
+								label="Covenant Description" />
+							<column name="covenant.covenantDefinition.covenantCategory"
+								label="Covenant Category" />
+							<column name="covenant.eventType" />
+							<column name="covenant.scheduledEvent.cronExpression" />
+						</columns>
+						<edit-canvas>
+							<panel id="Request.Covenant.editCovenant" label="Covenant Details">
+								<field name="covenant.covenantDefinition" label="Covenant"
+									targetFields="Request.Covenant.editCovenant,Request.Covenant.covenantSetup" />
+								<field name="covenant.covenantDefinition.covenantDescription"
+									label="Covenant Description" />
+								<field name="covenant.covenantDefinition.covenantCategory"
+									label="Covenant Category" />
+								<field name="covenant.eventType" targetFields="Request.Covenant.covenantSetup" />
+								<field name="covenant.scheduledEvent.startDate" />
+								<field name="covenant.scheduledEvent.cronExpression" />
+								<field name="covenant.scheduledEvent.endDate" />
+							</panel>
+							<panel id="Request.Covenant.covenantSetup" label="Covenant Setup">
+								<field name="covenant.min" />
+								<field name="covenant.max" />
+								<field name="covenant.documentClass" targetFields="Request.Covenant.covenantSetup" />
+								<field name="covenant.documentCategory" targetFields="Request.Covenant.covenantSetup" />
+								<field name="covenant.documentType" />
+								<field name="covenant.teamAssigned" />
+								<data-table name="covenant.questions" row="questionnaire"
+									label="Questionnaire">
+									<columns>
+										<column name="questionnaire.question" />
+									</columns>
+								</data-table>
+							</panel>
+							<data-table name="covenant.covenantEvaluations" row="covenantEvaluation"
+								label="Evaluations">
+								<columns>
+									<column name="covenantEvaluation.covenant.eventType" />
+									<column name="covenantEvaluation.triggeredAt" />
+									<column name="covenantEvaluation.covenant.min" />
+									<column name="covenantEvaluation.covenant.max" />
+									<column name="covenantEvaluation.value" />
+									<column name="covenantEvaluation.covenant.documentClass" />
+									<column name="covenantEvaluation.covenant.documentCategory" />
+									<column name="covenantEvaluation.covenant.documentType" />
+									<column name="covenantEvaluation.covenantEvalStatus" />
+									<column name="covenantEvaluation.completedBy" />
+									<column name="covenantEvaluation.completedDate" />
+								</columns>
+								<edit-canvas>
+									<panel id="covenant.covenantEvaluations" label="Covenant Evaluation">
+										<field name="covenantEvaluation.covenant.eventType" />
+										<field name="covenantEvaluation.triggeredAt" />
+										<field name="covenantEvaluation.covenantEvalStatus" />
+										<field name="covenantEvaluation.completedBy" />
+										<field name="covenantEvaluation.completedDate" />
+										<field name="covenantEvaluation.covenant.min" label="Min" />
+										<field name="covenantEvaluation.covenant.max" label="Max" />
+										<field name="covenantEvaluation.value" label="Value" />
+										<field name="covenantEvaluation.covenant.documentClass" />
+										<field name="covenantEvaluation.covenant.documentCategory" />
+										<field name="covenantEvaluation.covenant.documentType" />
+									</panel>
+									<data-table name="covenantEvaluation.questions" row="questionnaire"
+										label="Questionnaire">
+										<columns>
+											<column name="questionnaire.question" />
+											<column name="questionnaire.answer" incell-edit="true" />
+										</columns>
+									</data-table>
+								</edit-canvas>
+							</data-table>
+
+						</edit-canvas>
+					</data-table>
+				</tab>
+
+			</tabs>
+		</tab>
+		<tab id="tab.Request.creditWriteup">
+			<panel id="creditRequest.creditWriteup.applicationInformation">
+				<field name="request.refNumber" label="Application Number" />
+				<field name="request.requestTypeDer" label="Application Type" />
+				<field name="request.requestNameDer" />
+				<field name="request.accountDer" label="Account" />
+				<field name="request.wfStatus" label="Status" />
+				<field name="request.metaInfo.createdAt" label="Created Date" />
+				<field name="request.createdByUserDer" label="Created By" />
+
+				<field name="request.receivedDateDer" label="Application Date" />
+				<field name="request.modificationDateDer" label="Modification Date" />
+				<field name="request.regbDttmDer" label="Reg B Start Date" />
+				<field name="request.expectedCloseDateDer" label="Expected Close Date" />
+				<field name="request.metaInfo.lastModifiedAt" label="Last Updated Date" />
+				<field name="request.lastModifiedByUserDer" label="Last Updated By" />
+			</panel>
+			<panel id="creditRequest.creditWriteup.information"
+				label-alignment="top" cols="1" label="Credit Write-up">
+				<field name="request.clientOverview" label="Preliminary Overview" />
+				<field name="request.companyOverview" label="Company Overview" />
+				<field name="request.mgmtOverview" label="Management Overview" />
+				<field name="request.debtorOverview" label="Debtor Overview" />
+				<field name="request.dealOverview" label="Deal Overview" />
+				<field name="request.recommendation" label="Recommendation" />
+			</panel>
+		</tab>
+		<tab id="tab.Request.documents">
+				<data-table name="Request.documentGroup.generatedDocuments"
+					row="generatedDocument" label="Generated Documents" sortBy="generatedDocument.uploadDttm"
+					sortOrder="descending">
+					<columns>
+						<column name="generatedDocument.documentName" label="File Name" />
+						<column name="generatedDocument.generatedStream" label="File" />
+						<!--<column name="generatedDocument.documentClass" label="Group" /> 
+							<column name="generatedDocument.documentCategory" label="Category" /> -->
+						<column name="generatedDocument.versionNumber" label="Version" />
+						<column name="generatedDocument.documentType" label="Type" />
+						<column name="generatedDocument.relatedTo" label="Related To"/>
+						<!-- <column name="generatedDocument.coverSheetFlag"/> -->
+						<column name="generatedDocument.documentStatus" label="Status"
+							incell-edit="true" />
+						<column name="generatedDocument.uploadDttm" label="Generated Date and Time" />
+						<column name="generatedDocument.generatedStreamBy" label="Generated By" />
+						<!--<column name="generatedDocument.description" label="Description" 
+							/> <column name="generatedDocument.comments"/> -->
+					</columns>
+					<edit-canvas id="generatedDocEdit">
+						<tabs>
+							<tab id="Request.generatedDocument" label="Document Detail">
+								<panel id="Request.docGroupCatType" label="Document Details">
+									<field name="generatedDocument.documentName" />
+									<field name="generatedDocument.documentClass" label="Document Group"
+										targetFields="Request.docGroupCatType,document.options,Request.documentRelatedTo" />
+									<field name="generatedDocument.documentCategory" label="Document Category"
+										targetFields="Request.docGroupCatType,document.options,Request.documentRelatedTo" />
+									<field name="generatedDocument.documentType" label="Document Type"
+										targetFields="Request.docGroupCatType,document.options,Request.documentRelatedTo" />
+									<field name="generatedDocument.documentStatus" />
+									<field name="generatedDocument.description" />
+									<field name="generatedDocument.autoDocId" label="Template ID" />
+								</panel>
+								<data-table name="generatedDocument.documentSigners"
+									row="documentSigner" label="Signers">
+									<columns>
+										<column name="documentSigner.name" label="Signer" />
+										<column name="documentSigner.signerType" label="Signer Type"/> 
+											<column name="documentSigner.signerRefId" label="Signer Ref Id"/>
+										<column name="documentSigner.docSignedFlag" label="Signature Completed" />
+										<column name="documentSigner.signedDttm" label="Signed On" />
+									</columns>
+								</data-table>
+								<panel id="document.options">
+									<field name="generatedDocument.readOnly" />
+									<field name="generatedDocument.blankDocument" />
+									<field name="generatedDocument.esignatureRqd" label="E-Signature"
+										targetFields="generatedDocument.readOnly" />
+									<field name="generatedDocument.coverSheetFlag"/>
+									<field name="generatedDocument.metaInfo.createdByUser"
+										label="Generated By" />
+									<field name="generatedDocument.wetSignature" label="Override with Wet Signature?"
+									/>
+									<field name="generatedDocument.description" label="Description" />
+								</panel>
+								<panel id="Request.documentRelatedTo">
+									<field name="generatedDocument.documentRelatedTo" type="OneRadio"
+										targetFields="Request.documentRelatedTo" />
+									<section id="documentSelection" cols="2" orientation="horizontal">
+										<field name="generatedDocument.associatedCustomers" label="Party" />
+										<!-- <field name="generatedDocument.associatedFacilities" label="Facility" /> -->
+									</section>
+								</panel>
+								<data-table name="generatedDocument.versions" row="generatedVersion"
+									label="Document History">
+									<columns>
+										<column name="generatedVersion.documentName" label="Filename" />
+										<column name="generatedVersion.generatedStream" label="File" />
+										<column name="generatedVersion.versionNumber" label="Version" />
+										<column name="generatedVersion.documentClass" label="Group" />
+										<column name="generatedVersion.documentCategory" label="Category" />
+										<column name="generatedVersion.documentType" label="Type" />
+										<column name="generatedVersion.uploadDttm" label="Generated Date and Time" />
+										<column name="generatedVersion.generatedStreamBy" label="Generated By" />
+										<column name="generatedVersion.relatedTo" />
+										<column name="generatedVersion.documentStatus" />
+										<column name="generatedVersion.description" label="Description" />
+									</columns>
+								</data-table>
+							</tab>
+						</tabs>
+						<commands>
+							<command id="Archive_Document" name="Archive"
+								action="ArchiveDocumentEvent" type="businessOp" />
+							<command id="Generate_Document" name="Generate" action="GenerateDocument"
+								type="businessOp">
+								 <dialog-canvas>
+									<section label="Generate Document Fields" id="Generate_Doc_Fields">
+									<field name="generatedDocument.documentClass" label="Document Group"
+										targetFields="Generate_Doc_Fields" />
+									<field name="generatedDocument.documentCategory" label="Document Category"
+										targetFields="Generate_Doc_Fields" />
+									<field name="generatedDocument.documentType" label="Document Type"
+										targetFields="Generate_Doc_Fields" />
+									<field name="generatedDocument.documentStatus" />
+									<field name="generatedDocument.description" />
+									
+									 <field name="generatedDocument.readOnly" />
+										
+									</section>
+								</dialog-canvas> 
+							</command>
+						</commands>
+					</edit-canvas>
+					<commands>
+						<command id="createAction" name="Add Document" action="AddDocument"
+							type="pageflow" />
+						<command id="Request_documentGroup_generatedDocuments_deleteAction"
+							name="Delete Document" confirmation-key="Request_documentGroup_generatedDocuments_deleteAction.confirm" />
+						<command id="Generate_Doc" name="Generate All Documents"
+							action="GeneratedDocs" type="businessOp" />
+					
+						<!-- <command id="Generate_Task" name="Generate Task" action="GenerateTask"
+							type="businessOp" /> -->
+					</commands>
+				</data-table>
+			
+			<data-table name="Request.documentGroup.uploadedDocuments"
+				row="document" label="Uploaded Documents" sortBy="document.documentCategory"
+				sortOrder="ascending">
+				<columns>
+					<column name="document.documentName" label="Filename" />
+					<column name="document.uploadedStream" label="File"
+						incell-edit="true" targetFields="Request.documentGroup.uploadedDocuments" />
+					<column name="document.versionNumber" label="Version" />
+					<column name="document.documentClass" label="Group" /> <column 
+						name="document.documentCategory" label="Category" />
+					<column name="document.documentType" label="Type" />
+					<column name="document.relatedTo" />
+					<column name="document.documentStatus" label="Status"
+						incell-edit="true" />
+					<column name="document.uploadDttm" label="Uploaded Date and Time" />
+					<column name="document.uploadedStreamBy" label="Uploaded By" />
+					<!-- <column name="document.checkout.checkedOutByUser" label="Checked Out By" />
+					<column name="document.checkout.checkedOutAt" label="Checked Out At " /> --> 
+					<column name="document.description" label="Description" />
+				</columns>
+				<edit-canvas id="uploadedDocEdit">
+					<tabs>
+						<tab id="Request.uploadedDocument" label="Upload Document">
+							<panel id="Request.uploadDocGroupCatType" label="Document Details">
+								<field name="document.uploadedStream" label="File" />
+								<field name="document.documentClass" label="Group"
+									targetFields="Request.uploadDocGroupCatType" />
+								<field name="document.documentCategory" label="Category"
+									targetFields="Request.uploadDocGroupCatType" />
+								<field name="document.documentType" label="Type" />
+								<field name="document.documentStatus" label="Status" />
+								<field name="document.description" label="Description" />
+								<field name="document.metaInfo.createdByUser" label="Uploaded By" />
+							</panel>
+							<panel id="Request.uploadDocumentRelatedTo" label="Document Related To">
+								<field name="document.documentRelatedTo" type="OneRadio"
+										targetFields="Request.uploadDocumentRelatedTo" />
+									<section id="documentSelection" cols="2" orientation="horizontal">
+										<field name="document.associatedCustomers" label="Party" />
+										<!-- <field name="document.associatedFacilities" label="Facility" /> -->
+									</section>
+							</panel>
+							
+							<data-table name="document.versions" row="uploadedVersion"
+								label="Document History">
+								<columns>
+									<column name="uploadedVersion.documentName" label="Filename" />
+									<column name="uploadedVersion.uploadedStream" label="File" />
+									<column name="uploadedVersion.versionNumber" label="Version" />
+									<column name="uploadedVersion.documentClass" label="Group" />
+									<column name="uploadedVersion.documentCategory" label="Category" />
+									<column name="uploadedVersion.documentType" label="Type" />
+									<column name="uploadedVersion.relatedTo" />
+									<column name="uploadedVersion.uploadedStreamBy" label="Uploaded By" />
+									<column name="uploadedVersion.uploadDttm" label="Uploaded Date and Time" />
+									<column name="uploadedVersion.documentStatus" label="Status" />
+									<column name="document.checkout.checkedOutByUser" label="Checked Out By" />
+									<column name="document.checkout.checkedOutAt" label="Checked Out At " />
+									<column name="uploadedVersion.description" label="Description" />
+								</columns>
+							</data-table>
+						</tab>
+					</tabs>
+					<commands>
+						<command id="Checkout_Document" name="Checkout" action="DocumentCheckout"
+							type="businessOp" />
+						<command id="Checkin_Document" name="Checkin" action="DocumentCheckin"
+							type="businessOp" />
+						<command id="Submit_for_Review" name="Submit for Review"
+							action="SubmitforReview" type="businessOp" />
+					</commands>
+				</edit-canvas>
+			</data-table>
+			<data-table name="Request.documentGroup.documentPackages"
+				row="packageDocument" label="Document Package">
+				<columns>
+					<column name="packageDocument.packageName" label="File Name" />
+					<column name="packageDocument.uploadedStream" label="URL" />
+					<column name="packageDocument.versionNumber" label="Version" />
+					<column name="packageDocument.generatedDttm" />
+					<column name="packageDocument.metaInfo.createdAt" label="Created Date and Time" />
+					<column name="packageDocument.metaInfo.createdByUser" label="Created By" />
+				</columns>
+				<edit-canvas id="packageDocEdit">
+					<panel id="Request.packageDocuments" label="Document Package">
+						<field name="packageDocument.packageName" label="Package Name" />
+						<field name="packageDocument.packageFileName" label="Package File Name" />
+						<field name="packageDocument.versionNumber" label="Package Version" />
+					</panel>
+					<data-table name="packageDocument.genAndUploadedDoc"
+						row="document" label="Documents" sortOrder="ascending"
+						sortBy="document.document.documentName">
+						<columns>
+							<column name="document.document.documentName" label="File Name" />
+							<column name="document.document.documentClass" label="Group" />
+							<column name="document.document.documentCategory" label="Category" />
+							<column name="document.document.documentType" label="Type" />
+							<column name="document.docDescription" label="Description" />
+							<column name="document.orderInpackage" label="Order In Package"
+								incell-edit="true" />
+						</columns>
+						<quickedit-canvas>
+							<panel id="generatedDoc.selectDoc" label="Select Document">
+								<field name="document.document" label="Document" />
+							</panel>
+						</quickedit-canvas>
+					</data-table>
+					<commands>
+						<command id="Generate_DocumentPackage" name="Generate"
+							action="docGenClient" type="businessOp" />
+					</commands>
+				</edit-canvas>
+			</data-table>
+		</tab>
+		<tab id="tab.Request.UCC" label="Due Diligence">
+			<!-- <data-table id="uccSrchDataTable" name="Request.uccSrchs" row="uccSrch" 
+				label="UCC Searches" sortBy="uccSrch.recordNo" sortOrder="descending"> <columns> 
+				<column name="uccSrch.recordNo" label="Record No."/> <column name="uccSrch.metaInfo.createdByUser" 
+				label="Ordered By"/> <column name="uccSrch.metaInfo.createdAt" label="Search 
+				Date"/> <column name="uccSrch.searchKey" /> <column name="uccSrch.searchBy" 
+				/> <column name="uccSrch.location" /> <column name="uccSrch.dateFrom"/> <column 
+				name="uccSrch.includeExpiredLiens"/> </columns> <edit-canvas id="editUccSrchCanvas"> 
+				<panel id="newUccSearchPanel" label="UCC Search"> <field name="uccSrch.searchType"/> 
+				<field name="uccSrch.location"/> <field name="uccSrch.searchBy"/> <field 
+				name="uccSrch.searchKey"/> <field name="uccSrch.dateFrom"/> <field name="uccSrch.includeExpiredLiens"/> 
+				</panel> <panel id="savedUccSearchPanel" label="UCC Search"> <field name="uccSrch.recordNo"/> 
+				<field name="uccSrch.metaInfo.createdByUser" label="Ordered By"/> <field 
+				name="uccSrch.metaInfo.createdAt" label="Search Date"/> <field name="uccSrch.searchKey"/> 
+				<field name="uccSrch.searchBy"/> <field name="uccSrch.location"/> <field 
+				name="uccSrch.dateFrom"/> <field name="uccSrch.includeExpiredLiens"/> <data-table 
+				id="uccSrchResultsDataTable" name="uccSrch.results" row="uccSrchResult" label="Results"> 
+				<columns> <column name="uccSrchResult.name" label="Name"/> <column name="uccSrchResult.address" 
+				label="Address"/> <column name="uccSrchResult.city" label="City"/> </columns> 
+				<quickedit-canvas id="qeditUccSrchDetailsCanvas"> <data-table id="quccSrchResultDetailsDataTable" 
+				name="uccSrchResult.details" row="detail" label="Filings"> <columns> <column 
+				name="detail.fileNo" label="File Number"/> <column name="detail.fileDate"/> 
+				<column name="detail.filingType"/> <column name="detail.imageOnline"/> <column 
+				name="detail.orderNum"/> <column name="detail.orderStatus"/> <column name="detail.imageDoc.uploadedStream" 
+				label="Image"/> </columns> <quickedit-canvas id="qeditUccSrchQDetailCanvas"> 
+				<data-table id="quccSrchResultqDetailUpdatesDataTable" name="detail.updates" 
+				row="update" label="Related Filings"> <columns> <column name="update.fileNo" 
+				label="File Number"/> <column name="update.fileDate"/> <column name="update.filingType"/> 
+				</columns> </data-table> <data-table id="quccSrchResultqDetailPartiesDataTable" 
+				name="detail.debtors" row="debtor" label="Parties"> <columns> <column name="debtor.debtorName" 
+				label="Name"/> <column name="debtor.debtorType" label="Type"/> <column name="debtor.address"/> 
+				<column name="debtor.city"/> </columns> </data-table> </quickedit-canvas> 
+				</data-table> </quickedit-canvas> <edit-canvas id="editUccSrchDetailsCanvas"> 
+				<panel id="uccSearchDetailsUccSrchContextPanel" label="UCC Details"> <field 
+				name="uccSrchResult.uccSrch.recordNo" label="Record No"/> <field name="uccSrchResult.uccSrch.metaInfo.createdByUser" 
+				label="Ordered By"/> <field name="uccSrchResult.uccSrch.metaInfo.createdAt" 
+				label="Search Date"/> <field name="uccSrchResult.uccSrch.searchKey" label="Search 
+				Key"/> <field name="uccSrchResult.uccSrch.searchBy" label="Search By"/> <field 
+				name="uccSrchResult.uccSrch.location" label="Location"/> <field name="uccSrchResult.uccSrch.dateFrom" 
+				label="Date From"/> <field name="uccSrchResult.uccSrch.includeExpiredLiens" 
+				label="Include Expired Liens"/> </panel> <panel id="uccSearchDetailsUccSearchResultContextPanel" 
+				label="Summary"> <field name="uccSrchResult.name" label="Name"/> <field name="uccSrchResult.address" 
+				label="Address"/> <field name="uccSrchResult.city" label="City"/> <data-table 
+				id="uccSearchDetailsUccSearchResultDetailsTable" name="uccSrchResult.details" 
+				row="detail" label="Filings"> <columns> <column name="detail.fileNo" label="File 
+				Number"/> <column name="detail.fileDate"/> <column name="detail.filingType"/> 
+				<column name="detail.imageOnline"/> <column name="detail.orderNum"/> <column 
+				name="detail.orderStatus"/> <column name="detail.imageDoc.uploadedStream" 
+				label="Image"/> </columns> <quickedit-canvas id="qeditUccSrchDetailCanvas"> 
+				<data-table id="qeditUccSrchDetailUpdateDataTable" name="detail.updates" 
+				row="update" label="Related Filings"> <columns> <column name="update.fileNo" 
+				label="File Number"/> <column name="update.fileDate"/> <column name="update.filingType"/> 
+				</columns> </data-table> <data-table id="qeditUccSrchDetailDebtorsDataTable" 
+				name="detail.debtors" row="debtor" label="Parties"> <columns> <column name="debtor.debtorName" 
+				label="Name"/> <column name="debtor.debtorType" label="Type"/> <column name="debtor.address"/> 
+				<column name="debtor.city"/> </columns> </data-table> </quickedit-canvas> 
+				<edit-canvas id="editUccSrchDetailCanvas"> <panel id="uccSearchDetailUccSrchContextPanel" 
+				label="UCC Details"> <field name="detail.uccSrchSummary.uccSrch.recordNo" 
+				label="Record No"/> <field name="detail.uccSrchSummary.uccSrch.metaInfo.createdByUser" 
+				label="Ordered By"/> <field name="detail.uccSrchSummary.uccSrch.metaInfo.createdAt" 
+				label="Search Date"/> <field name="detail.uccSrchSummary.uccSrch.searchKey" 
+				label="Search Key"/> <field name="detail.uccSrchSummary.uccSrch.searchBy" 
+				label="Search By"/> <field name="detail.uccSrchSummary.uccSrch.location" 
+				label="Location"/> <field name="detail.uccSrchSummary.uccSrch.dateFrom" label="Date 
+				From"/> <field name="detail.uccSrchSummary.uccSrch.includeExpiredLiens" label="Include 
+				Expired Liens"/> </panel> <panel id="uccSearchDetailUccSearchResultContextPanel" 
+				label="Summary"> <field name="detail.uccSrchSummary.name" label="Name"/> 
+				<field name="detail.uccSrchSummary.address" label="Address"/> <field name="detail.uccSrchSummary.city" 
+				label="City"/> </panel> <panel id="uccSearchDetailUccSearchDetailContextPanel" 
+				label="Filing"> <field name="detail.fileNo" label="File Number"/> <field 
+				name="detail.fileDate"/> <field name="detail.filingType"/> <field name="detail.imageOnline"/> 
+				<field name="detail.orderNum"/> <field name="detail.orderStatus"/> <field 
+				name="detail.imageDoc.uploadedStream" label="Image"/> <data-table id="editUccSrchDetailUpdateDataTable" 
+				name="detail.updates" row="update" label="Related Filings"> <columns> <column 
+				name="update.fileNo" label="File Number"/> <column name="update.fileDate"/> 
+				<column name="update.filingType"/> </columns> </data-table> <data-table id="editUccSrchDetailDebtorsDataTable" 
+				name="detail.debtors" row="debtor" label="Parties"> <columns> <column name="debtor.debtorName" 
+				label="Name"/> <column name="debtor.debtorType" label="Type"/> <column name="debtor.address"/> 
+				<column name="debtor.city"/> </columns> </data-table> </panel> <commands> 
+				<command name="Order Filing" action="UCCSearchFileOrder" type="businessOp"/> 
+				</commands> </edit-canvas> </data-table> </panel> <commands> <command name="Get 
+				Details" action="UCCDetailSearch" type="businessOp"/> <command id="Order_All_Filings_Summary" 
+				name="Order All Filings" action="UCCSearchSummaryFileOrders" type="businessOp"/> 
+				</commands> </edit-canvas> </data-table> </panel> <commands> <command name="Search" 
+				action="UCCSummarySearch" type="businessOp"/> <command name="Get All Details" 
+				action="UCCDetailsSearch" type="businessOp"/> <command name="Order All Filings" 
+				action="UCCSearchFileOrders" type="businessOp"/> </commands> </edit-canvas> 
+				</data-table> -->
+			<data-table id="uccDataTable" name="Request.uccs" row="uccFiling"
+				label="UCC Filings">
+				<columns>
+					<column name="uccFiling.facility.refNumber" label="Product Number" />
+					<column name="uccFiling.uccType" label="Type" />
+					<column name="uccFiling.wfStatus" label="Status" />
+					<column name="uccFiling.uccFilingNumber" label="UCC Filing Number" />
+					<column name="uccFiling.jurisdictionState" label="State" />
+					<column name="uccFiling.jurisdictionCounty" label="Jurisdiction" />
+					<column name="uccFiling.uccSentDate" label="Sent Date" />
+					<column name="uccFiling.uccFilingDate" label="Filing Date" />
+					<column name="uccFiling.collateralStatement" label="Collateral Statement" />
+				</columns>
+				<edit-canvas id="editUccFilingCanvas">
+					<panel id="uccFiling.filingStatus" label="Filing Status">
+						<field name="uccFiling.wfStatus" label="Filing Status" />
+						<field name="uccFiling.metaInfo.createdAt" label="Filing Created Date" />
+						<field name="uccFiling.ilienStatus" label="iLien Status / Error Code" />
+						<field name="uccFiling.uccSentDate" label="Filing Sent Date" />
+						<field name="uccFiling.uccFilingNumber" label="Filing Number" />
+						<field name="uccFiling.expirationDate" label="Filing Expiration Date" />
+						<field name="uccFiling.confirmationReceivedDate" label="Confirmation Received Date" />
+						<field name="uccFiling.uccFilingDate" label="Filing Date" />
+					</panel>
+					<panel id="uccFiling.filingData" label="Filing Data">
+						<field name="uccFiling.uccType" label="UCC Type" />
+						<field name="uccFiling.blanketFiling" label="Blanket Filing" />
+						<field name="uccFiling.realEstateFiling" label="Real Estate Filing"
+							targetFields="uccFiling.realEstateInfo" />
+						<field name="uccFiling.relation" label="Relation" />
+						<!-- <field name="uccFiling.billCode" label="Bill Code(Ref1)"/> -->
+						<field name="uccFiling.facility" label="Product Number"
+							targetFields="uccFiling.loanType" />
+						<!-- <field name="uccFiling.customerName" label="Customer Name(Ref3)"/> -->
+						<field name="uccFiling.loanType" label="Loan Type" />
+						<!-- <field name="uccFiling.lenderCode" label="Lender Code(Ref5)"/> 
+							<field name="uccFiling.flexField6" label="Flex Field 6(Ref6)"/> <field name="uccFiling.flexField7" 
+							label="Flex Field 7(Ref7)"/> -->
+						<field name="uccFiling.ref1" label="Bill Code" />
+						<field name="uccFiling.ref2" label="Note Number" />
+						<field name="uccFiling.ref3" label="Customer Service #" />
+						<field name="uccFiling.ref4" label="Filer" />
+						<field name="uccFiling.ref5" label="Ref 5" />
+						<field name="uccFiling.ref6" label="Ref 6" />
+						<field name="uccFiling.ref7" label="Ref 7" />
+						<field name="uccFiling.orgFilingNumber" label="Original Filing Number" />
+						<field name="uccFiling.orgFilingDate" label="Original Filing Date" />
+					</panel>
+					<panel id="uccFiling.debtor" label="Debtor">
+						<data-table name="uccFiling.debtors" row="uccFilingDebtor"
+							label="">
+							<columns>
+								<column name="uccFilingDebtor.customer.customerName"
+									label="Debtor Name" />
+								<column name="uccFilingDebtor.stateOfOrganization" label="State of Organization" />
+								<column name="uccFilingDebtor.organizationId" label="Org Id" />
+								<column name="uccFilingDebtor.custAddress.address1"
+									label="Physical Corp. Address" />
+								<column name="uccFilingDebtor.custAddress.city" label="City" />
+								<column name="uccFilingDebtor.custAddress.stateProvince"
+									label="State" />
+								<column name="uccFilingDebtor.custAddress.postalCode"
+									label="Postal Code" />
+							</columns>
+							<edit-canvas id="editUccFilingAddDebtorCanvas">
+								<panel id="uccFilingDebtor.debtor" label="Debtor">
+									<field name="uccFilingDebtor.customer" label="Legal Name"
+										targetFields="uccFiling.debtorad" />
+								</panel>
+								<panel id="uccFiling.debtorad" label="Debtor">
+									<field name="uccFilingDebtor.customer.customerName"
+										label="Debtor Name" />
+									<!-- <field name="uccFilingDebtor.debtorName1" label="Debtor Name"/> -->
+									<field name="uccFilingDebtor.stateOfOrganization" label="State of Organization" />
+									<field name="uccFilingDebtor.organizationId" label="Org Id" />
+									<field name="uccFilingDebtor.custAddress.address1" label="Physical Corp. Address" />
+									<field name="uccFilingDebtor.custAddress.city" label="City" />
+									<field name="uccFilingDebtor.custAddress.stateProvince"
+										label="State" />
+									<field name="uccFilingDebtor.custAddress.postalCode"
+										label="Postal Code" />
+								</panel>
+							</edit-canvas>
+						</data-table>
+					</panel>
+					<panel id="uccFiling.jurisdiction" label="Jurisdiction">
+						<field name="uccFiling.jurisdictionState" label="State / Province"
+							targetFields="uccFiling.jurisdiction,uccFiling.realEstateInfo,uccFiling.collateral" />
+						<field name="uccFiling.jurisdictionCounty" label="Jurisdiction" />
+					</panel>
+					<panel id="uccFiling.collateral" label="Collateral">
+						<field name="uccFiling.collateralStatement" label="Collateral Statement"
+							targetFields="uccFiling.language" />
+						<field name="uccFiling.language" label="Language" />
+						<field name="uccFiling.attachmentDocumentType" label="Attachment Type" />
+						<field name="uccFiling.uccAttachment.attachment.name" label="Attachment Name" />
+						<field name="uccFiling.uccAttachment.attachment" label="Attachment"
+							targetFields="uccFiling.uccAttachment.attachment.name" />
+						<field name="uccFiling.noOfAttachments" label="Total Pages" />
+						<field name="uccFiling.indebtednessType" label="Indebtedness Type" />
+						<field name="uccFiling.maxPrincipalIndebtness" label="Maximum Principal Indebtness" />
+						<field name="uccFiling.tnRecordingTaxExempt" label="TN Recording Tax Exemption" />
+						<field name="uccFiling.flTaxStamps" label="FL Tax Stamps" />
+					</panel>
+					<panel id="uccFiling.realEstateInfo" label="Real Estate Information">
+						<field name="uccFiling.realEstateInfo.designation" label="Designation" />
+						<field name="uccFiling.realEstateInfo.description" label="Description" />
+						<field name="uccFiling.realEstateInfo.propertyOwnerSameAsDebtor"
+							label="Property Owner same as Debtor?" targetFields="uccFiling.realEstateInfo.propertyOwner" />
+						<field name="uccFiling.realEstateInfo.section" label="RESection" />
+						<field name="uccFiling.realEstateInfo.block" label="REBlock" />
+						<field name="uccFiling.realEstateInfo.lot" label="RELot" />
+						<field name="uccFiling.realEstateInfo.county" label="RECounty" />
+						<field name="uccFiling.realEstateInfo.township" label="RETownship" />
+						<field name="uccFiling.realEstateInfo.state" label="REState" />
+						<field name="uccFiling.realEstateInfo.alMortgageTaxDueAmt"
+							label="ALMortgageTaxDue" />
+						<field name="uccFiling.realEstateInfo.bookNum" label="BookNo" />
+						<field name="uccFiling.realEstateInfo.pageNum" label="PageNo" />
+						<field name="uccFiling.realEstateInfo.parcelId" label="ParcelID" />
+						<field name="uccFiling.realEstateInfo.taxMapNumber" label="TaxMapNumber" />
+						<field name="uccFiling.realEstateInfo.propertyType" label="PropertyType" />
+						<field name="uccFiling.realEstateInfo.designation2" label="Designation2" />
+						<field name="uccFiling.realEstateInfo.unitNum" label="UnitNumber" />
+						<field name="uccFiling.realEstateInfo.mdRecordingTaxExempt"
+							label="MD Recording Tax Exemption" />
+						<panel id="uccFiling.realEstateInfo.propertyOwner" label="Property Owner Information">
+							<field name="uccFiling.realEstateInfo.ownerType" label="Business/Individual"
+								targetFields="uccFiling.realEstateInfo.propertyOwner" />
+							<field name="uccFiling.realEstateInfo.ownerFirstName"
+								label="First Name" />
+							<field name="uccFiling.realEstateInfo.ownerLastName" label="Last Name" />
+							<field name="uccFiling.realEstateInfo.ownerSuffix" label="Suffix" />
+							<field name="uccFiling.realEstateInfo.ownerName" label="Name" />
+							<field name="uccFiling.realEstateInfo.ownerAddress" label="Address" />
+							<field name="uccFiling.realEstateInfo.ownerCity" label="City" />
+							<field name="uccFiling.realEstateInfo.ownerState" label="State" />
+							<field name="uccFiling.realEstateInfo.ownerZipCode" label="Zip Code" />
+						</panel>
+					</panel>
+					<commands>
+						<command name="Submit Filing" action="UCCSubmitForFiling"
+							type="businessOp" />
+					</commands>
+				</edit-canvas>
+			</data-table>
+			<data-table name="Request.bankruptcyFilings" row="bankruptcyFiling" label="Bankruptcy Filings">
+				<columns>
+					<column name="bankruptcyFiling.refNumber" label="No."/>
+					<column name="bankruptcyFiling.bfType" label="Type"/>
+					<column name="bankruptcyFiling.bfStatus" label="Status"/>
+					<column name="bankruptcyFiling.filingDate" label="Filing Date"/>
+					<column name="bankruptcyFiling.caseNumber" label="Case Number"/>
+					<column name="bankruptcyFiling.bfJurisdiction" label="Jurisdiction"/>
+				</columns>
+			</data-table>
+			
+			<data-table name="Request.judgmentLiens" row="judgmentLien" label="Judgment/Liens">
+				<columns>
+					<column name="judgmentLiens.refNumber" label="No."/>
+					<column name="judgmentLiens.judgFilingType" label="Filing Type"/>
+					<column name="judgmentLiens.judgAmount" label="Amount"/>
+					<column name="judgmentLiens.judgOriginalDate" label="Filing Date"/>
+					<column name="judgmentLiens.judgFileNumber" label="File Number"/>
+					<column name="judgmentLiens.jurisdiction" label="Jurisdiction"/>
+				</columns>
+			</data-table>
+		</tab>
+		<tab id="requestVersions" label="Versions">
+			<data-table name="request.taggedVersions" row="requestVersion"
+				label="Application History">
+				<columns>
+					<column name="requestVersion.refNumber" label="Application Number" />
+					<column name="requestVersion.requestName" />
+					<column name="requestVersion.wfStatus.value" label="Status" />
+					<column name="requestVersion.requestType" label="Application Type" />
+					<column name="requestVersion.receivedDate" label="Application Date" />
+					<column name="requestVersion.regbDttm" label="Reg B Start Date" />
+				</columns>
+			</data-table>
+		</tab>
+		<tab id="covenantEvaluations" label="Covenant Evaluations">
+			<data-table name="covenant.covenantEvaluations" row="covenantEvaluation"
+				label="Evaluations" sortBy="covenantEvaluation.triggeredAt"
+				sortOrder="descending">
+				<columns>
+					<column
+						name="covenantEvaluation.covenant.covenantDefinition.covenantName"
+						label="Covenant" />
+					<column name="covenantEvaluation.covenant.eventType" />
+					<column name="covenantEvaluation.triggeredAt" />
+					<column name="covenantEvaluation.covenant.min" label="Min" />
+					<column name="covenantEvaluation.covenant.max" label="Max" />
+					<column name="covenantEvaluation.value" label="Value" />
+					<column name="covenantEvaluation.covenant.documentClass"
+						label="Document Class" />
+					<column name="covenantEvaluation.covenant.documentCategory"
+						label="Document Category" />
+					<column name="covenantEvaluation.covenant.documentType"
+						label="Document Type" />
+					<column name="covenantEvaluation.covenantEvalStatus" />
+					<column name="covenantEvaluation.completedBy" />
+					<column name="covenantEvaluation.completedDate" />
+				</columns>
+				<edit-canvas>
+					<panel id="covenant.covenantEvaluations" label="Covenant Evaluation">
+						<field
+							name="covenantEvaluation.covenant.covenantDefinition.covenantName"
+							label="Covenant" />
+						<field
+							name="covenantEvaluation.covenant.covenantDefinition.covenantDescription"
+							label="Covenant Description" />
+						<field
+							name="covenantEvaluation.covenant.covenantDefinition.covenantCategory"
+							label="Covenant Category" />
+						<field name="covenantEvaluation.covenant.eventType" />
+						<field name="covenantEvaluation.triggeredAt" />
+						<field name="covenantEvaluation.covenantEvalStatus" />
+						<field name="covenantEvaluation.completedBy" />
+						<field name="covenantEvaluation.completedDate" />
+						<field name="covenantEvaluation.covenant.min" label="Min" />
+						<field name="covenantEvaluation.covenant.max" label="Max" />
+						<field name="covenantEvaluation.value" label="Value" />
+						<field name="covenantEvaluation.covenant.documentClass"
+							label="Document Class" />
+						<field name="covenantEvaluation.covenant.documentCategory"
+							label="Document Category" />
+						<field name="covenantEvaluation.covenant.documentType"
+							label="Document Type" />
+					</panel>
+					<data-table name="covenantEvaluation.questions" row="questionnaire"
+						label="Questionnaire">
+						<columns>
+							<column name="questionnaire.question" />
+							<column name="questionnaire.answer" incell-edit="true" />
+						</columns>
+					</data-table>
+				</edit-canvas>
+			</data-table>
+		</tab>
+
+	</tabs>
+	<!-- Master Comment Panel -->
+	<data-table name="request.commentGroup.comments" row="commentRequest" sortBy="comment.indexNumber" sortOrder="descending">
+		<columns>
+			<column name="commentRequest.indexNumber" label="No."/>
+			<column name="commentRequest.commentType.value" label="Comment Type"/>
+			<column name="commentRequest.metaInfo.createdByUser" label="Author"/>
+			<column name="commentRequest.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+			<column name="commentRequest.metaInfo.createdAt" label="Date Added"/>
+			<column name="commentRequest.commentText" label="Text"/>								
+		</columns>
+		<quickedit-canvas id="commentRequest">
+			<panel id="comment.enterComment">
+				<field name="comment.commentType" label="Comment Type*"/>
+				<field name="comment.commentText" label="Text*"/>
+				<field />
+			</panel>
+		</quickedit-canvas>
+	</data-table>
+	
+	 <panel id="request.withdrawApplication" label="Withdraw Application">
+       	 <field name="request.withdrawReasonLease" label="Withdrawn Reason" />
+     </panel> 
+     
+	<commands>
+		<command name="Submit To Credit" action="LPSubmitForCredit" type="businessOp" />
+		<command name="Begin Renewal" action="SubmitForRenewal" type="businessOp" />
+		<command name="Send To Booking" action="PortfolioMgmt" type="businessOp" />
+		<command name="Portfolio Mgmt" action="PortfolioMgmt" type="businessOp" />
+		<command name="Send to CRM" action="sendToCrm" type="businessOp" />
+		<command id="Decline" name="Decline" action="DeclineRequest" type="businessOp" confirmation-key="application.decline.confirm"/>
+		<command id="DeclineInit" name="Decline" action="DeclineRequestInit" type="businessOp" confirmation-key="application.decline.confirm" />
+		<command id="Withdraw" name="Withdraw" action="WithdrawRequest" type="businessOp" />
+		<command name="Resend" action="sendToAkritiv" type="businessOp" />
+	</commands>
+	<beans>
+		<bean name="request" type="com.thirdpillar.codify.loanpath.model.Request" />
+	</beans>
+</canvas>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+    <list>
+        <coaDefinition>
+           <documentCategory>
+			<attributeChoiceCodes/>
+			<key>DOCUMENT_CATEGORY_AGREEMENT</key>
+			<metaInfo/>
+			<value>Sales Agreements</value>
+			</documentCategory>
+            <coaId>406</coaId>
+        </coaDefinition>
+        <coaDefinition>
+            <documentCategory>
+			<attributeChoiceCodes/>
+			<key>DOCUMENT_CATEGORY_AGREEMENT</key>
+			<metaInfo/>
+			<value>Sales Agreements</value>
+			</documentCategory>
+            <coaId>700</coaId>
+        </coaDefinition>
+    </list>
+</mod:sr.addEntityRequest>

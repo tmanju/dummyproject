@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.MoodyCustomer" />
+  <itemDefinition id="_ResultItem" structureRef="String" />
+
+  <itemDefinition id="_3-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_3-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_3-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.MoodyCustomer" />
+  <itemDefinition id="_3-ResultItem" structureRef="String" />
+
+  <itemDefinition id="_5-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_5-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_5-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_5-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.MoodyCustomer" />
+  <itemDefinition id="_5-ResultItem" structureRef="String" />
+
+  <itemDefinition id="_6-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_6-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_6-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_6-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.MoodyCustomer" />
+  <itemDefinition id="_6-ResultItem" structureRef="String" />
+
+  <itemDefinition id="_7-flowStateItem" structureRef="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+  <itemDefinition id="_7-parentPageItem" structureRef="com.thirdpillar.codify.jsf.NavigationPage" />
+  <itemDefinition id="_7-integrationInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_7-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.MoodyCustomer" />
+  <itemDefinition id="_7-ResultItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="PullMoodyCustomerWizard" name="PullMoodyCustomerWizard" tns:packageName="LP.web" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.foundation.jsf.flow.FlowState" />
+     <tns:import name="com.thirdpillar.codify.foundation.jsf.EntityBean" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.MoodyCustomer" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="flowState" itemSubjectRef="_flowStateItem"/>
+    <property id="parentPage" itemSubjectRef="_parentPageItem"/>
+    <property id="integrationInputMap" itemSubjectRef="_integrationInputMapItem"/>
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="Result" itemSubjectRef="_ResultItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_3" name="End Page Flow" tns:taskName="EndPageFlow" >
+      <ioSpecification>
+        <dataInput id="_3_parentPageInput" name="parentPage" />
+        <dataInput id="_3_flowStateInput" name="flowState" />
+        <dataInput id="_3_redirectOperationInput" name="redirectOperation" />
+        <dataInput id="_3_enameInput" name="ename" />
+        <inputSet>
+          <dataInputRefs>_3_parentPageInput</dataInputRefs>
+          <dataInputRefs>_3_flowStateInput</dataInputRefs>
+          <dataInputRefs>_3_redirectOperationInput</dataInputRefs>
+          <dataInputRefs>_3_enameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_3_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_3_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_redirectOperationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_3_redirectOperationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">eAApplication</from>
+          <to xsi:type="tFormalExpression">_3_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_4" name="End" />
+    <task id="_5" name="Moody Financial Data" tns:taskName="PageFlow" >
+      <ioSpecification>
+        <dataInput id="_5_parentPageInput" name="parentPage" />
+        <dataInput id="_5_flowStateInput" name="flowState" />
+        <dataInput id="_5_operationInput" name="operation" />
+        <dataInput id="_5_enameInput" name="ename" />
+        <dataInput id="_5_canvasInput" name="canvas" />
+        <dataInput id="_5_actionsInput" name="actions" />
+        <inputSet>
+          <dataInputRefs>_5_parentPageInput</dataInputRefs>
+          <dataInputRefs>_5_flowStateInput</dataInputRefs>
+          <dataInputRefs>_5_operationInput</dataInputRefs>
+          <dataInputRefs>_5_enameInput</dataInputRefs>
+          <dataInputRefs>_5_canvasInput</dataInputRefs>
+          <dataInputRefs>_5_actionsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_5_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_5_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_operationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ShowCrud</from>
+          <to xsi:type="tFormalExpression">_5_operationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">moodyCustomer</from>
+          <to xsi:type="tFormalExpression">_5_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_canvasInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">moodyCustomer_financialInfo</from>
+          <to xsi:type="tFormalExpression">_5_canvasInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_actionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">done</from>
+          <to xsi:type="tFormalExpression">_5_actionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_6" name="Search And Select Moody Customer" tns:taskName="PageFlow" >
+      <ioSpecification>
+        <dataInput id="_6_parentPageInput" name="parentPage" />
+        <dataInput id="_6_flowStateInput" name="flowState" />
+        <dataInput id="_6_operationInput" name="operation" />
+        <dataInput id="_6_enameInput" name="ename" />
+        <dataInput id="_6_propertyInput" name="property" />
+        <dataInput id="_6_actionsInput" name="actions" />
+        <dataOutput id="_6_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_6_parentPageInput</dataInputRefs>
+          <dataInputRefs>_6_flowStateInput</dataInputRefs>
+          <dataInputRefs>_6_operationInput</dataInputRefs>
+          <dataInputRefs>_6_enameInput</dataInputRefs>
+          <dataInputRefs>_6_propertyInput</dataInputRefs>
+          <dataInputRefs>_6_actionsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_6_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>parentPage</sourceRef>
+        <targetRef>_6_parentPageInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>flowState</sourceRef>
+        <targetRef>_6_flowStateInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_operationInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">SNSOne_ReferredReference</from>
+          <to xsi:type="tFormalExpression">_6_operationInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_enameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">moodyCustomer</from>
+          <to xsi:type="tFormalExpression">_6_enameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_propertyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">selectedMoodyCustomer</from>
+          <to xsi:type="tFormalExpression">_6_propertyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_actionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_6_actionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_6_ResultOutput</sourceRef>
+        <targetRef>Result</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_7" name="Get Moody Financial Data" tns:taskName="IntegrationTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+MoodyCustomer moodyCustomer = (MoodyCustomer) context.getVariable("contextEntity");
+inputMap.put("selectedMoodyCustomer",moodyCustomer.getSelectedMoodyCustomer());
+inputMap.put("contextEntity",moodyCustomer);
+context.setVariable("integrationInputMap",inputMap);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("integrationInputMap",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_7_inputInput" name="input" />
+        <dataInput id="_7_entityInput" name="entity" />
+        <dataInput id="_7_ServiceNameInput" name="ServiceName" />
+        <inputSet>
+          <dataInputRefs>_7_inputInput</dataInputRefs>
+          <dataInputRefs>_7_entityInput</dataInputRefs>
+          <dataInputRefs>_7_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>integrationInputMap</sourceRef>
+        <targetRef>_7_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_7_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_7_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">GetMoodyFinancialService</from>
+          <to xsi:type="tFormalExpression">_7_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_8" name="Set Context Variable" scriptFormat="http://www.java.com/java" >
+      <script>FlowState fs  = (FlowState) context.getVariable("flowState");
+context.setVariable("contextEntity",((EntityBean)fs.getEntry().getPrimaryBean()).getEntity());</script>
+    </scriptTask>
+    <scriptTask id="_9" name="Select Mooody Customer" scriptFormat="http://www.java.com/java" >
+      <script>MoodyCustomer moodyCustomer = (MoodyCustomer) context.getVariable("contextEntity");
+MoodyCustomer selected = moodyCustomer.getSelectedMoodyCustomer();
+moodyCustomer.setCustomerName(selected.getCustomerName());
+moodyCustomer.setMfaId(selected.getMfaId());
+moodyCustomer.setAddress(selected.getAddress());
+moodyCustomer.setDunsNumber(selected.getDunsNumber());
+moodyCustomer.setIndustryModel(selected.getIndustryModel());
+moodyCustomer.setLastStatementDate(selected.getLastStatementDate());</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_5-_3" sourceRef="_5" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_7-_5" sourceRef="_7" targetRef="_5" />
+    <sequenceFlow id="_8-_6" sourceRef="_8" targetRef="_6" />
+    <sequenceFlow id="_9-_7" sourceRef="_9" targetRef="_7" />
+    <sequenceFlow id="_1-_8" sourceRef="_1" targetRef="_8" />
+    <sequenceFlow id="_6-_9" sourceRef="_6" targetRef="_9" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="PullMoodyCustomerWizard" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="124" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="100" y="673" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="127" y="760" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="58" y="580" width="178" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="16" y="256" width="264" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="53" y="482" width="195" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="69" y="96" width="158" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="61" y="361" width="171" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_5-_3" >
+        <di:waypoint x="147" y="604" />
+        <di:waypoint x="150" y="697" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="150" y="697" />
+        <di:waypoint x="151" y="784" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_5" >
+        <di:waypoint x="150" y="506" />
+        <di:waypoint x="147" y="604" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_6" >
+        <di:waypoint x="148" y="120" />
+        <di:waypoint x="148" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_7" >
+        <di:waypoint x="146" y="385" />
+        <di:waypoint x="150" y="506" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_8" >
+        <di:waypoint x="148" y="40" />
+        <di:waypoint x="148" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_9" >
+        <di:waypoint x="148" y="280" />
+        <di:waypoint x="146" y="385" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,79 @@
+<change-set xmlns='http://drools.org/drools-5.0/change-set'
+             xmlns:xs='http://www.w3.org/2001/XMLSchema-instance'>
+  <add>
+   		<!-- Default Rules -->
+   		<resource source='classpath:rules/LP_DEFAULT/drl/Customer.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/CustomerBackend.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/Document.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/RequestRules.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/Facility.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/Racset.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/CoaEvaluation.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/Compliance.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/UserRules.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/UCCRules.drl' type='DRL' />
+        <resource source='classpath:rules/LP_DEFAULT/drl/Program.drl' type='DRL' />
+        <resource source='classpath:rules/LP_DEFAULT/drl/Partner.drl' type='DRL' />
+        <resource source='classpath:rules/LP_DEFAULT/drl/PricingOption.drl' type='DRL' />
+        <resource source='classpath:rules/LP_DEFAULT/drl/Structure.drl' type='DRL' />
+        <resource source='classpath:rules/LP_DEFAULT/drl/DocumentPackage.drl' type='DRL' />
+        <resource source='classpath:rules/LP_DEFAULT/drl/PromotionPolicyRules.drl' type='DRL' />
+		<resource source='classpath:rules/LP_DEFAULT/drl/FeePolicyRules.drl' type='DRL' />
+		<resource source='classpath:rules/LP_DEFAULT/drl/PricingPolicyRules.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/PermissionSetRules.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/Fee.drl' type='DRL' />
+   		<!-- Scoring  Attribute-->
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcAttrIndividual.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcAttrNonIndividual.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcAttrFacility.drl' type='DRL' />
+   		<!-- Scoring Rule -->
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcRecommRuleIndividual.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcRecommRuleFacility.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcRecommRuleApplication.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcRecommRuleNonIndividual.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/ScoringCalcAttrApplication.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/DebtorCustomer.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/FacilityCustomerRole.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/FundAllocator.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/deal.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/facilityBE.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/FacAllocator.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/FacilityPayment.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/SessionConfiguration.drl' type='DRL' />
+   		<resource source='classpath:rules/LP_DEFAULT/drl/FacAllocatorTxn.drl' type='DRL' />
+   		
+   		
+		<!-- Decision Tables -->   		
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/CreditAuthorityLevelRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>
+	   	
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/RacsetRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	   	
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/CoaRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	   	
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/DocumentEsigRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	   	
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/DocChecklistRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	   	   		
+      <resource source='classpath:rules/LP_DEFAULT/xls/RenewalDocChecklistRules.xls' type='DTABLE' >
+        <decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+      </resource>           
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/RequestApprovalChainRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	   	   		
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/CovenantAssignmentRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	   	   		
+	   	<resource source='classpath:rules/LP_DEFAULT/xls/CovenantDefaultRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	   	   		
+   		<resource source='classpath:rules/LP_DEFAULT/xls/GeneratedChecklistRules.xls' type='DTABLE' >
+	   		<decisiontable-conf input-type="XLS" worksheet-name="Tables"/>
+	   	</resource>	
+   </add>      
+ </change-set>

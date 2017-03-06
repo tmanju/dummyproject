@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_approvalItem" structureRef="com.thirdpillar.codify.loanpath..model.Approval" />
+  <itemDefinition id="_strategyItem" structureRef="String" />
+  <itemDefinition id="_affirmativeNumberItem" structureRef="Integer" />
+  <itemDefinition id="_consensusPercentageItem" structureRef="Integer" />
+  <itemDefinition id="_counterItem" structureRef="Integer" />
+  <itemDefinition id="_totalNumberOfApprovalStepsItem" structureRef="Integer" />
+  <itemDefinition id="_currentApprovalStepItem" structureRef="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+  <itemDefinition id="_entityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_ResultItem" structureRef="String" />
+  <itemDefinition id="_approvalLevelsItem" structureRef="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+  <itemDefinition id="_teamsItem" structureRef="java.util.List" />
+  <itemDefinition id="_taskActionItem" structureRef="String" />
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+
+  <itemDefinition id="_9-2-2-approverItem" />
+
+  <itemDefinition id="_9-2-4-approverItem" />
+
+  <itemDefinition id="_9-2-9-approverItem" />
+
+  <itemDefinition id="_9_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="Approval" name="Approval" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Team" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Customer" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.BureauReport" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Compliance" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approval" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approver" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.WorkflowStatus" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.service.Context" />
+     <tns:import name="com.thirdpillar.foundation.component.CodifyMessage" />
+     <tns:import name="com.thirdpillar.foundation.service.ContextHolder" />
+     <tns:import name="com.thirdpillar.foundation.integration.IntegrationExchange" />
+     <tns:import name="java.util.Set" />
+     <tns:import name="java.util.HashSet" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="java.util.Calendar" />
+     <tns:import name="com.thirdpillar.foundation.model.Money" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="approval" itemSubjectRef="_approvalItem"/>
+    <property id="strategy" itemSubjectRef="_strategyItem"/>
+    <property id="affirmativeNumber" itemSubjectRef="_affirmativeNumberItem"/>
+    <property id="consensusPercentage" itemSubjectRef="_consensusPercentageItem"/>
+    <property id="counter" itemSubjectRef="_counterItem"/>
+    <property id="totalNumberOfApprovalSteps" itemSubjectRef="_totalNumberOfApprovalStepsItem"/>
+    <property id="currentApprovalStep" itemSubjectRef="_currentApprovalStepItem"/>
+    <property id="entity" itemSubjectRef="_entityItem"/>
+    <property id="Result" itemSubjectRef="_ResultItem"/>
+    <property id="approvalLevels" itemSubjectRef="_approvalLevelsItem"/>
+    <property id="teams" itemSubjectRef="_teamsItem"/>
+    <property id="taskAction" itemSubjectRef="_taskActionItem"/>
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_3" name="Script to initialize" scriptFormat="http://www.java.com/java" >
+      <script>
+context.setVariable("counter", new Integer(0));
+com.thirdpillar.codify.loanpath.model.Approval approvalObj = (com.thirdpillar.codify.loanpath.model.Approval) context.getVariable("approval");
+java.util.List&lt;com.thirdpillar.codify.loanpath.model.ApprovalLevel&gt; listOfApprovalLevels = approvalObj.getOrderedApprovalLevels();
+context.setVariable("totalNumberOfApprovalSteps", new Integer(listOfApprovalLevels.size()));
+
+</script>
+    </scriptTask>
+    <scriptTask id="_4" name="Script to set currentApprovalStep" scriptFormat="http://www.java.com/java" >
+      <script>
+//get the value of counter
+Integer counterInt = (Integer) context.getVariable("counter");
+
+// get the list of approvalLevels
+com.thirdpillar.codify.loanpath.model.Approval approvalObj = (com.thirdpillar.codify.loanpath.model.Approval) context.getVariable("approval");
+java.util.List&lt;com.thirdpillar.codify.loanpath.model.ApprovalLevel&gt; listOfApprovalLevels = approvalObj.getOrderedApprovalLevels();
+
+// get the current approval level
+com.thirdpillar.codify.loanpath.model.ApprovalLevel thisApprovalLevel = (com.thirdpillar.codify.loanpath.model.ApprovalLevel) listOfApprovalLevels.get(counterInt.intValue());
+// set current approval level to a variable
+System.out.println("here is approval step-----&lt;&gt;&gt;&gt;"+thisApprovalLevel.getName());
+
+System.out.println("here is approval step-----&lt;&gt;&gt;&gt;"+thisApprovalLevel.getApproverList());
+
+System.out.println("here is approval step-----&lt;&gt;&gt;&gt;"+thisApprovalLevel.getApproverList().size());
+
+
+List&lt;com.thirdpillar.codify.loanpath.model.ApprovalLevel&gt; levels = new ArrayList&lt;com.thirdpillar.codify.loanpath.model.ApprovalLevel&gt;();
+levels.add(thisApprovalLevel);
+
+context.setVariable("approvalLevels", levels);
+context.setVariable("currentApprovalStep", thisApprovalLevel);
+//
+// increment the counter
+context.setVariable("counter", new Integer(counterInt.intValue() + 1));
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_6" name="Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_7" name="Gateway" gatewayDirection="Converging" />
+    <scriptTask id="_8" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>
+// get the last approvalLevel
+com.thirdpillar.codify.loanpath.model.ApprovalLevel approvalLevel = (com.thirdpillar.codify.loanpath.model.ApprovalLevel) context.getVariable("currentApprovalStep");
+
+//com.thirdpillar.codify.loanpath.model.ApprovalLevel lookedUpApprovalLevel =(com.thirdpillar.codify.loanpath.model.ApprovalLevel)com.thirdpillar.foundation.service.LookupService.getResult("ApprovalLevel.byId", "id", approvalLevel.getId());
+
+com.thirdpillar.codify.loanpath.model.Approval thisApproval = (com.thirdpillar.codify.loanpath.model.Approval) context.getVariable("approval");
+com.thirdpillar.codify.loanpath.model.Approval lookedUpApproval =(com.thirdpillar.codify.loanpath.model.Approval)com.thirdpillar.foundation.service.LookupService.getResult("Approval.byId", "id", thisApproval.getId());
+// set the decision of last approval level into approval object
+lookedUpApproval.setDecision(approvalLevel.getDecision());
+
+context.setVariable("approval", lookedUpApproval);
+
+//To save the approval
+com.thirdpillar.foundation.service.EntityService entityService = new com.thirdpillar.foundation.service.EntityService();
+entityService.save((com.thirdpillar.foundation.model.BaseDataObject)lookedUpApproval);
+
+
+</script>
+    </scriptTask>
+    <subProcess id="_9" name="For all Approvers"  >
+      <ioSpecification>
+        <dataInput id="_9_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>currentApprovalStep.approverList</sourceRef>
+        <targetRef>_9_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_9_input</loopDataInputRef>
+        <inputDataItem id="approver" itemSubjectRef="_9_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <startEvent id="_9-2-1" name="Start" />
+    <task id="_9-2-2" name="Approver" tns:taskName="Approver" >
+      <ioSpecification>
+        <dataInput id="_9-2-2_entityInput" name="entity" />
+        <dataInput id="_9-2-2_CommentInput" name="Comment" />
+        <dataInput id="_9-2-2_ActionsInput" name="Actions" />
+        <dataInput id="_9-2-2_TaskNameInput" name="TaskName" />
+        <dataInput id="_9-2-2_ContentInput" name="Content" />
+        <dataInput id="_9-2-2_ActorIdInput" name="ActorId" />
+        <dataInput id="_9-2-2_ToInput" name="To" />
+        <dataInput id="_9-2-2_FromInput" name="From" />
+        <dataInput id="_9-2-2_BodyInput" name="Body" />
+        <dataInput id="_9-2-2_SubjectInput" name="Subject" />
+        <dataInput id="_9-2-2_notifyInput" name="notify" />
+        <dataInput id="_9-2-2_GroupIdInput" name="GroupId" />
+        <dataOutput id="_9-2-2_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_9-2-2_entityInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_CommentInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_ActionsInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_ContentInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_ActorIdInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_ToInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_FromInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_BodyInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_SubjectInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_notifyInput</dataInputRefs>
+          <dataInputRefs>_9-2-2_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_9-2-2_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_9-2-2_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{entity.requestName}: Application #{entity.refNumber}  (Requested Amount: #{entity.totalRequestedLoanAmt}) is Pending Decision</from>
+          <to xsi:type="tFormalExpression">_9-2-2_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Approve:ApproveValidationsGroup,Decline:DeclineValidationsGroup</from>
+          <to xsi:type="tFormalExpression">_9-2-2_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Credit Decision</from>
+          <to xsi:type="tFormalExpression">_9-2-2_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{entity.requestName}: Application #{entity.refNumber} (Requested Amount: #{entity.totalRequestedLoanAmt}) is Pending Decision</from>
+          <to xsi:type="tFormalExpression">_9-2-2_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_ActorIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_9-2-2_ActorIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{approver.team.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_9-2-2_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_9-2-2_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">request_assigncreditanalyst_task_email_body</from>
+          <to xsi:type="tFormalExpression">_9-2-2_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{entity.requestName}: Application #{entity.refNumber} (Requested Amount: #{entity.totalRequestedLoanAmt}) is Pending Decision</from>
+          <to xsi:type="tFormalExpression">_9-2-2_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_9-2-2_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-2_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{approver.team.name}</from>
+          <to xsi:type="tFormalExpression">_9-2-2_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_9-2-2_ResultOutput</sourceRef>
+        <targetRef>Result</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_9-2-3" name="Set Decision" scriptFormat="http://www.java.com/java" >
+      <script>
+com.thirdpillar.codify.loanpath.model.Approver app = (com.thirdpillar.codify.loanpath.model.Approver) context.getVariable("approver");
+String decisionByApprover = (String) context.getVariable("Result");
+com.thirdpillar.codify.loanpath.model.Approver lookedUpApp =(com.thirdpillar.codify.loanpath.model.Approver)com.thirdpillar.foundation.service.LookupService.getResult("Approver.byId", "id", app.getId());
+
+com.thirdpillar.codify.loanpath.model.AttributeChoice decision;
+if ("Approve".equals(decisionByApprover)) {
+	decision =(com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_APPROVED");
+	lookedUpApp.setDecision(decision);
+} else if ("Decline".equals(decisionByApprover)) {
+	decision =(com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_DECLINED");
+	lookedUpApp.setDecision(decision);
+}
+context.setVariable("approver", lookedUpApp);
+</script>
+    </scriptTask>
+    <task id="_9-2-4" name="Save Approver" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_9-2-4_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_9-2-4_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>approver</sourceRef>
+        <targetRef>_9-2-4_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_9-2-5" name="End" />
+    <exclusiveGateway id="_9-2-7" name="Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_9-2-8" name="Gateway" gatewayDirection="Converging" />
+    <task id="_9-2-9" name="Custom User Task" tns:taskName="CustomUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>//System.out.println("==============Approval Teams====");
+List&lt;Team&gt; t = new ArrayList();
+t.add(((Approver)approver).getTeam());
+context.setVariable("teams",t);
+
+//System.out.println("==============Approval Teams===="+t);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("teams",null);
+//System.out.println("==============Exiting Approval Teams====");</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_9-2-9_potentialTeamsInput" name="potentialTeams" />
+        <dataInput id="_9-2-9_entityInput" name="entity" />
+        <dataInput id="_9-2-9_TaskConfigurationKeyInput" name="TaskConfigurationKey" />
+        <dataInput id="_9-2-9_SwimlaneInput" name="Swimlane" />
+        <dataInput id="_9-2-9_ActionsInput" name="Actions" />
+        <dataOutput id="_9-2-9_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_9-2-9_potentialTeamsInput</dataInputRefs>
+          <dataInputRefs>_9-2-9_entityInput</dataInputRefs>
+          <dataInputRefs>_9-2-9_TaskConfigurationKeyInput</dataInputRefs>
+          <dataInputRefs>_9-2-9_SwimlaneInput</dataInputRefs>
+          <dataInputRefs>_9-2-9_ActionsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_9-2-9_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>teams</sourceRef>
+        <targetRef>_9-2-9_potentialTeamsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>entity</sourceRef>
+        <targetRef>_9-2-9_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-9_TaskConfigurationKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_CREDIT_DECISION_TASK_KEY</from>
+          <to xsi:type="tFormalExpression">_9-2-9_TaskConfigurationKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-9_SwimlaneInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_9-2-9_SwimlaneInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9-2-9_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Approve:ApproveValidationsGroup,Decline:DeclineValidationsGroup</from>
+          <to xsi:type="tFormalExpression">_9-2-9_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_9-2-9_ResultOutput</sourceRef>
+        <targetRef>Result</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <!-- connections -->
+    <sequenceFlow id="_9-2-7-_9-2-2" sourceRef="_9-2-7" targetRef="_9-2-2" name="constraint" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_9-2-8-_9-2-3" sourceRef="_9-2-8" targetRef="_9-2-3" />
+    <sequenceFlow id="_9-2-3-_9-2-4" sourceRef="_9-2-3" targetRef="_9-2-4" />
+    <sequenceFlow id="_9-2-4-_9-2-5" sourceRef="_9-2-4" targetRef="_9-2-5" />
+    <sequenceFlow id="_9-2-1-_9-2-7" sourceRef="_9-2-1" targetRef="_9-2-7" />
+    <sequenceFlow id="_9-2-2-_9-2-8" sourceRef="_9-2-2" targetRef="_9-2-8" />
+    <sequenceFlow id="_9-2-9-_9-2-8" sourceRef="_9-2-9" targetRef="_9-2-8" />
+    <sequenceFlow id="_9-2-7-_9-2-9" sourceRef="_9-2-7" targetRef="_9-2-9" name="New Task System" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
+    </sequenceFlow>
+    </subProcess>
+    <exclusiveGateway id="_10" name="Gateway" gatewayDirection="Diverging" />
+    <scriptTask id="_11" name="Consensus Based Decision" scriptFormat="http://www.java.com/java" >
+      <script>
+com.thirdpillar.codify.loanpath.model.ApprovalLevel step = (com.thirdpillar.codify.loanpath.model.ApprovalLevel) context.getVariable("currentApprovalStep");
+
+Integer approvalPercentageInt = (Integer) context.getVariable("consensusPercentage");
+int approvalPercentage = approvalPercentageInt.intValue();
+
+java.util.List&lt;com.thirdpillar.codify.loanpath.model.Approver&gt; approvers = step.getApproverList();
+
+int totalNumberOfApprovers = approvers.size();
+
+int numberOfApproversRequired = (int) Math.ceil(totalNumberOfApprovers * approvalPercentage / 100);
+
+int approvedDecisionCount = 0;
+
+for (com.thirdpillar.codify.loanpath.model.Approver app : approvers) {
+    if (app.getDecision().getKey().equals("APPROVAL_DECISION_APPROVED")) {
+        approvedDecisionCount++;
+    }
+}
+
+com.thirdpillar.codify.loanpath.model.AttributeChoice approvalStepDecision;
+
+if (approvedDecisionCount &gt;=  numberOfApproversRequired) {
+    approvalStepDecision = (com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_APPROVED");
+}
+else {
+    approvalStepDecision = (com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_DECLINED");
+}
+
+step.setDecision(approvalStepDecision);</script>
+    </scriptTask>
+    <scriptTask id="_12" name="Affirmative Based Decision" scriptFormat="http://www.java.com/java" >
+      <script>
+com.thirdpillar.codify.loanpath.model.ApprovalLevel step = (com.thirdpillar.codify.loanpath.model.ApprovalLevel) context.getVariable("currentApprovalStep");
+
+Integer numberOfApproversInt = (Integer) context.getVariable("affirmativeNumber");
+int numberOfApprovers = numberOfApproversInt.intValue();
+
+java.util.List&lt;com.thirdpillar.codify.loanpath.model.Approver&gt; approvers = step.getApproverList();
+
+int approvedDecisionCount = 0;
+
+for (com.thirdpillar.codify.loanpath.model.Approver app : approvers) {
+    if (app.getDecision().getKey().equals("APPROVAL_DECISION_APPROVED")) {
+        approvedDecisionCount++;
+    }
+}
+
+com.thirdpillar.codify.loanpath.model.AttributeChoice approvalStepDecision;
+
+if (approvedDecisionCount &gt;=  numberOfApprovers) {
+    approvalStepDecision = (com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_APPROVED");
+}
+else {
+    approvalStepDecision = (com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_DECLINED");
+}
+
+step.setDecision(approvalStepDecision);</script>
+    </scriptTask>
+    <scriptTask id="_13" name="Unianimous Based Decision" scriptFormat="http://www.java.com/java" >
+      <script>
+com.thirdpillar.codify.loanpath.model.ApprovalLevel step = (com.thirdpillar.codify.loanpath.model.ApprovalLevel) context.getVariable("currentApprovalStep");
+
+java.util.List&lt;com.thirdpillar.codify.loanpath.model.Approver&gt; approvers = step.getApproverList();
+
+com.thirdpillar.codify.loanpath.model.AttributeChoice approvalStepDecision = (com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_APPROVED");
+for (com.thirdpillar.codify.loanpath.model.Approver app : approvers) {
+    if (!app.getDecision().getKey().equals("APPROVAL_DECISION_APPROVED")) {
+        approvalStepDecision = (com.thirdpillar.codify.loanpath.model.AttributeChoice)com.thirdpillar.foundation.service.LookupService.getResult("AttributeChoice.byKey", "key", "APPROVAL_DECISION_DECLINED");
+        break;
+    }
+}
+
+step.setDecision(approvalStepDecision);</script>
+    </scriptTask>
+    <exclusiveGateway id="_14" name="Gateway" gatewayDirection="Converging" />
+
+    <!-- connections -->
+    <sequenceFlow id="_8-_2" sourceRef="_8" targetRef="_2" />
+    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_7-_4" sourceRef="_7" targetRef="_4" />
+    <sequenceFlow id="_14-_6" sourceRef="_14" targetRef="_6" />
+    <sequenceFlow id="_3-_7" sourceRef="_3" targetRef="_7" />
+    <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" name="There are more approval Levels" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >//get the value of counter
+java.lang.Integer counterInt = (java.lang.Integer) context.getVariable("counter");
+
+// get the list of approvalLevels
+com.thirdpillar.codify.loanpath.model.Approval approvalObj = (com.thirdpillar.codify.loanpath.model.Approval) context.getVariable("approval");
+int size = approvalObj.getOrderedApprovalLevels().size();
+
+com.thirdpillar.codify.loanpath.model.ApprovalLevel approvalLevel = (com.thirdpillar.codify.loanpath.model.ApprovalLevel) context.getVariable("currentApprovalStep");
+
+boolean returnValue = false;
+
+if (counter &gt;= size) {
+    returnValue =  false;
+}
+else {
+    if(approvalLevel.getDecision().getKey().equals("APPROVAL_DECISION_DECLINED")){
+        returnValue =  false;
+    }
+    else{
+        returnValue = true;
+    }
+}
+
+return returnValue;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-_8" sourceRef="_6" targetRef="_8" name="All Approval Levels are decisioned" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >//get the value of counter
+java.lang.Integer counterInt = (java.lang.Integer) context.getVariable("counter");
+
+// get the list of approvalLevels
+com.thirdpillar.codify.loanpath.model.Approval approvalObj = (com.thirdpillar.codify.loanpath.model.Approval) context.getVariable("approval");
+int size = approvalObj.getOrderedApprovalLevels().size();
+
+com.thirdpillar.codify.loanpath.model.ApprovalLevel approvalLevel = (com.thirdpillar.codify.loanpath.model.ApprovalLevel) context.getVariable("currentApprovalStep");
+
+boolean returnValue = false;
+
+if (counter &gt;= size) {
+    returnValue =  true;
+}
+else {
+    if(approvalLevel.getDecision().getKey().equals("APPROVAL_DECISION_DECLINED")){
+        returnValue =  true;
+    }
+    else
+    {
+        returnValue = false;
+    }
+}
+return returnValue;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_4-_9" sourceRef="_4" targetRef="_9" />
+    <sequenceFlow id="_9-_10" sourceRef="_9" targetRef="_10" />
+    <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" name="Consensus" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String strategyToUse = (String) context.getVariable("strategy");
+if ("consensus".equals(strategyToUse)) {
+    return true;
+}
+else {
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_10-_12" sourceRef="_10" targetRef="_12" name="Affirmative" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String strategyToUse = (String) context.getVariable("strategy");
+if ("affirmative".equals(strategyToUse)) {
+    return true;
+}
+else {
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_10-_13" sourceRef="_10" targetRef="_13" name="Unianimous" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_13-_14" sourceRef="_13" targetRef="_14" />
+    <sequenceFlow id="_12-_14" sourceRef="_12" targetRef="_14" />
+    <sequenceFlow id="_11-_14" sourceRef="_11" targetRef="_14" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="Approval" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="229" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="229" y="579" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="147" y="96" width="212" height="49" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="537" y="172" width="211" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="230" y="418" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="229" y="177" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="213" y="499" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="474" y="287" width="689" height="153" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-1" >
+        <dc:Bounds x="482" y="378" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-2" >
+        <dc:Bounds x="610" y="294" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-3" >
+        <dc:Bounds x="771" y="360" width="147" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-4" >
+        <dc:Bounds x="949" y="356" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-5" >
+        <dc:Bounds x="1097" y="353" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-7" >
+        <dc:Bounds x="516" y="292" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-8" >
+        <dc:Bounds x="795" y="298" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9-2-9" >
+        <dc:Bounds x="641" y="375" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="751" y="469" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="481" y="570" width="188" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="722" y="565" width="172" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="961" y="561" width="177" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="770" y="678" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-7-_9-2-2" >
+        <di:waypoint x="66" y="29" />
+        <di:waypoint x="186" y="31" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-8-_9-2-3" >
+        <di:waypoint x="345" y="35" />
+        <di:waypoint x="370" y="97" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-3-_9-2-4" >
+        <di:waypoint x="370" y="97" />
+        <di:waypoint x="525" y="93" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-4-_9-2-5" >
+        <di:waypoint x="525" y="93" />
+        <di:waypoint x="647" y="90" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-1-_9-2-7" >
+        <di:waypoint x="32" y="115" />
+        <di:waypoint x="66" y="29" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-2-_9-2-8" >
+        <di:waypoint x="186" y="31" />
+        <di:waypoint x="345" y="35" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-9-_9-2-8" >
+        <di:waypoint x="217" y="112" />
+        <di:waypoint x="345" y="35" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-2-7-_9-2-9" >
+        <di:waypoint x="66" y="29" />
+        <di:waypoint x="217" y="112" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_2" >
+        <di:waypoint x="253" y="523" />
+        <di:waypoint x="253" y="603" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
+        <di:waypoint x="253" y="40" />
+        <di:waypoint x="253" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_4" >
+        <di:waypoint x="253" y="201" />
+        <di:waypoint x="642" y="196" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_6" >
+        <di:waypoint x="794" y="702" />
+        <di:waypoint x="454" y="671" />
+        <di:waypoint x="254" y="442" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_7" >
+        <di:waypoint x="253" y="120" />
+        <di:waypoint x="253" y="201" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_7" >
+        <di:waypoint x="254" y="442" />
+        <di:waypoint x="253" y="201" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_8" >
+        <di:waypoint x="254" y="442" />
+        <di:waypoint x="253" y="523" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_9" >
+        <di:waypoint x="642" y="196" />
+        <di:waypoint x="818" y="363" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_10" >
+        <di:waypoint x="818" y="363" />
+        <di:waypoint x="775" y="493" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_11" >
+        <di:waypoint x="775" y="493" />
+        <di:waypoint x="575" y="594" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_12" >
+        <di:waypoint x="775" y="493" />
+        <di:waypoint x="808" y="589" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_13" >
+        <di:waypoint x="775" y="493" />
+        <di:waypoint x="1049" y="585" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_14" >
+        <di:waypoint x="1049" y="585" />
+        <di:waypoint x="794" y="702" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_14" >
+        <di:waypoint x="808" y="589" />
+        <di:waypoint x="794" y="702" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_14" >
+        <di:waypoint x="575" y="594" />
+        <di:waypoint x="794" y="702" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

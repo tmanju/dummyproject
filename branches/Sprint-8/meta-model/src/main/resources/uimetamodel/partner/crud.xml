@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="partner" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<tabs>
+		<tab id="tab.partnerDetails">
+			<panel id="partner.information" label="General Information">
+				<field name="partner.legalName" label="Legal Name" />
+				<field name="partner.doingBusinessAs" label="Doing Business As" />
+				<field name="partner.legalEntityType" label="Legal Entity Type" />
+				<field name="partner.legalNameVerified" />
+				<field name="partner.partnerType" label="Partner Type" />
+				<field name="partner.dateVerified" />
+				<field name="partner.wfStatus.value" label="Status"/>
+				<field name="partner.operatingUnit" />
+				<field name="partner.sbu" /> 
+			</panel>
+			<panel id="partner.companyInformation">
+				<!-- <field name="partner.companyInformation.contactName" /> -->
+				<field name="partner.companyInformation.address" />
+				<field name="partner.companyInformation.city" /> 
+				<field name="partner.companyInformation.state" />
+				<field name="partner.companyInformation.zipCode" />
+				<field name="partner.companyInformation.businessPhone" />
+				<field name="partner.companyInformation.fax" />
+			    <field name="partner.companyInformation.email" />
+				<field name="partner.companyInformation.howLongInBus" />
+				<field name="partner.companyInformation.stateOfIncorp" /> 
+				<field name="partner.companyInformation.dateOfIncorp" />
+				<!-- <field name="partner.companyInformation.soleProprietorship" />
+				<field name="partner.companyInformation.partnership" />
+				<field name="partner.companyInformation.corporation" /> -->
+				<field name="partner.companyInformation.other" /> 
+				<field name="partner.companyInformation.fedTaxId" />
+				<field name="partner.companyInformation.owner" />
+				<field name="partner.companyInformation.title" />
+				<field name="partner.companyInformation.ownerShip" label="Ownership" />
+				<field name="partner.companyInformation.ssn" />
+				<field name="partner.companyInformation.cell" label="Mobile"/> 
+				<field name="partner.companyInformation.website" />
+				<field name="partner.companyInformation.ownerEmailAdd" />
+				
+				<data-table name="partner.contactInformation" row="contactInfo">
+					<columns>
+						<column name="contactInfo.firstName" />
+						<column name="contactInfo.lastName" />
+						<column name="contactInfo.partyContactType" />
+						<column name="contactInfo.roleTitle" label="Contact Title" />
+						<column name="contactInfo.telephoneNumber" label="Phone" />
+						<column name="contactInfo.faxNumber" label="Fax" />
+						<column name="contactInfo.email" />
+					</columns>
+					<edit-canvas>
+						<panel id="partner.contactInformation">
+							<field name="contactInfo.firstName" />
+							<field name="contactInfo.partyContactType" />
+							<field name="contactInfo.telephoneNumber" label="Phone" />
+							<field name="contactInfo.email" />
+							<field name="contactInfo.lastName" />
+							<field name="contactInfo.roleTitle" label="Contact Title" />
+							<field name="contactInfo.faxNumber" label="Fax" />								
+						</panel>
+					</edit-canvas>
+				</data-table>
+			</panel>
+			<panel id="partner.businessInformation">
+				<field name="partner.businessInformation.typeOfEquipment" />
+				<field name="partner.businessInformation.annualSales" />
+				<field name="partner.businessInformation.equipmentCostRange" />
+			    <field name="partner.businessInformation.percentageOfSystemsLeased" label="% of Equipment leased" />
+				<field name="partner.businessInformation.otherLeasingComUsed" />
+				<field name="partner.businessInformation.noOfSalesStaff" />
+				<field name="partner.assetClass" label="Asset Type" targetFields="partner.businessInformation"/> 
+				<field name="partner.assetSubclass" label="Asset Sub-Type" />
+			</panel>
+			<data-table name="partner.partnerSites" row="partnerSite" label="Sites">
+				<columns>
+					<column name="partnerSite.partySite.refNumber" label="Site Number" />
+					<column name="partnerSite.partySite.siteName" />
+					<column name="partnerSite.partySite.mainSiteInfo.address1" label="Address 1" />
+					<column name="partnerSite.partySite.mainSiteInfo.city" />
+					<column name="partnerSite.partySite.mainSiteInfo.county" />
+					<column name="partnerSite.partySite.mainSiteInfo.state" />
+				</columns>
+				<edit-canvas>
+					<panel id="partner.siteDetails">
+						<field name="partnerSite.partySite.refNumber" label="Site Number" />
+						<field name="partnerSite.partySite.siteName" />
+						<field name="partnerSite.partySite.mainSiteInfo.city" />
+						<field name="partnerSite.partySite.activeFlag" label="Inactive Site ?" />
+						<field name="partnerSite.partySite.inactivatedDttm" />
+						<field name="partnerSite.partySite.inactiveReason" />
+						<field name="partnerSite.shortFundingAllowedFlag" />
+						<field name="partnerSite.partySite.mainSiteInfo.faxNumber" />
+						<field name="partnerSite.partySite.mainSiteInfo.siteUseType" label="Site Usage" />																			
+						<field name="partnerSite.partySite.mainSiteInfo.address1" label="Address 1" />
+						<field name="partnerSite.partySite.mainSiteInfo.address2" label="Address 2" />
+						<field name="partnerSite.partySite.mainSiteInfo.state" />
+						<field name="partnerSite.partySite.mainSiteInfo.country" targetFields="partner.siteDetails" />
+						<field name="partnerSite.partySite.mainSiteInfo.county" />
+						<field name="partnerSite.partySite.mainSiteInfo.postalCode" />
+						<field name="partnerSite.partySite.mainSiteInfo.telephoneNumber" />
+						<field name="partnerSite.partySite.mainSiteInfo.email" />
+					</panel>
+					<panel id="partner.pricingAndPoints">
+							<field name="partnerSite.pricing.sameAsPrimaryFlag" />	
+							<field name="partnerSite.pricing.leasingRate" label="Leasing Rate" />
+							<field name="partnerSite.pricing.leasingFlatFee" label="Leasing Flat Fee" />
+							<field name="partnerSite.pricing.maxLeasingAmt" label="Max Leasing Amount" />
+							<field name="partnerSite.pricing.financingRate" label="Financing Rate" />
+							<field name="partnerSite.pricing.financingFlatFee" label="Financing Flat Fee" />
+							<field name="partnerSite.pricing.maxFinancingAmt" label="Max Financing Amount" />
+							<field name="partnerSite.pricing.overrideDefaultsFlag" />
+							<!--
+							<field name="partnerSite.pricing.numMaxPoints" />
+							<field name="partnerSite.pricing.defaultPoints" />
+							<field name="partnerSite.pricing.maxFlatAmt" />										
+							<field name="partnerSite.pricing.defaultFlatAmt" />
+							-->
+					</panel>
+					<panel id="partner.fundingInformation">
+						<field name="partnerSite.fundingSameasPrimaryFlag" label="Same as Primary" />
+						<data-table name="partnerSite.fundings" row="funding" label="">
+							<columns>
+								<column name="funding.fundingType" label="Type" />
+								<column name="funding.fundingMethod" />
+								<column name="funding.deliveryMethod" />
+								<column name="funding.banksTrade.name" label="Bank Name" />
+								<column name="funding.routingNumber" />
+								<column name="funding.bankAccountNumber" label="Account Number" />
+								<column name="funding.accountType" />
+								<column name="funding.prenoteSubmittedDttm" />
+								<column name="funding.prenoteSubmittedBy" />
+							</columns>
+							<edit-canvas>
+								<panel id="partner.fundingInformation">
+									<field name="funding.fundingType" />
+									<field name="funding.fundingMethod" />
+									<field name="funding.deliveryMethod" />
+									<field name="funding.authReceivedFlag" label="Authorization Received ?" />
+									<field name="funding.banksTrade" label="Bank Name" />												
+									<field name="funding.routingNumber" />												
+									<field name="funding.bankAccountNumber" label="Account Number" />
+									<field name="funding.accountName" label="Name on Account" />
+									<field name="funding.accountType" />
+									<field name="funding.wiringInstructions" />
+								</panel>
+							</edit-canvas>
+						</data-table>	
+						<field name="partnerSite.totalOfFlatAmtToBePaid" />	
+						<field name="partnerSite.totalOfPercentToBePaid" />						
+					</panel>
+					<panel id="partner.contactInformation1" label="Contact Information">
+						<field name="partnerSite.partySite.contactsSameasPrimaryFlag" label="Same as Primary" />
+						<data-table name="partnerSite.partySite.contactInfo" row="siteContactInfo" label="">
+							<columns>
+								<column name="siteContactInfo.firstName" />
+								<column name="siteContactInfo.lastName" />
+								<column name="siteContactInfo.partyContactType" label="Contact Type" />
+								<column name="siteContactInfo.roleTitle" label="Contact Title" />
+								<column name="siteContactInfo.telephoneNumber" label="Phone" />
+								<column name="siteContactInfo.faxNumber" label="Fax" />
+								<column name="siteContactInfo.email" />
+							</columns>
+							<edit-canvas>
+								<panel id="partner.contactInformation2" label="Contact Information">
+									<field name="siteContactInfo.firstName" />
+									<field name="siteContactInfo.telephoneNumber" label="Phone" />
+									<field name="siteContactInfo.faxNumber" label="Fax" />
+									<field name="siteContactInfo.email" />
+									<field name="siteContactInfo.lastName" />
+									<field name="siteContactInfo.partyContactType" label="Contact Type" />
+									<field name="siteContactInfo.roleTitle" label="Contact Title" />
+								</panel>
+							</edit-canvas>
+						</data-table>
+					</panel>
+					<data-table name="partnerSite.partySite.partyExtIdentifiers" row="extIdentifier" label="External Identifiers">
+						<columns>
+							<column name="extIdentifier.extIdentifierType" label="Type" />
+							<column name="extIdentifier.identifierValue" label="Value" />
+						</columns>
+					</data-table>
+				</edit-canvas>
+			</data-table>
+			<data-table name="partner.fundingInformation" row="funding">
+				<columns>
+					<column name="funding.fundingType" label="Type" />
+					<column name="funding.fundingMethod" />
+					<column name="funding.deliveryMethod" />
+					<column name="funding.banksTrade.name" label="Bank Name" />
+					<column name="funding.routingNumber" />
+					<column name="funding.bankAccountNumber" label="Account Number" />
+					<column name="funding.accountType" />
+					<column name="funding.prenoteSubmittedDttm" />
+					<column name="funding.prenoteSubmittedBy" />
+				</columns>
+				<edit-canvas>
+					<panel id="partner.fundingInformation">
+							<field name="funding.fundingType" />
+							<field name="funding.fundingMethod" />
+							<field name="funding.deliveryMethod" />
+							<field name="funding.authReceivedFlag" label="Authorization Received ?" />
+							<field name="funding.banksTrade" label="Bank Name" />
+							<field name="funding.routingNumber" />												
+							<field name="funding.bankAccountNumber" label="Account Number" />
+							<field name="funding.accountName" label="Name on Account" />
+							<field name="funding.accountType" />
+							<field name="funding.wiringInstructions" />	
+					</panel>
+				</edit-canvas>
+			</data-table>
+			<panel id="partner.supplierInformation">
+				<field name="partner.supplierInformation.companyName" />
+				<field name="partner.supplierInformation.phone" />
+				<field name="partner.supplierInformation.fax" />
+			    <field name="partner.supplierInformation.email" />
+			</panel>
+			<!-- <data-table name="partner.partnerAssetType" row="partnerAssetType">
+				<columns>
+					<column name="partnerAssetType.value" label="Partner Asset Type" />
+				</columns>
+			</data-table>  -->
+			
+				<data-table name="partner.partnerPrograms" row="prg" label="Associate Programs">
+				<columns>
+					<column name="prg.refNumber" />
+					<column name="prg.programName" />
+					<column name="prg.description" label="Program Description" />
+					<column name="prg.operatingUnit" />
+					<column name="prg.sbu" />
+				</columns>
+			</data-table> 
+			<data-table name="partner.banksAndTrade" row="bankAndTrade" label="Bank and Trade Reference">
+				<columns>
+					<column name="bankAndTrade.bankTradeType" label="Type" />
+					<column name="bankAndTrade.name" label="Name" />
+					<column name="bankAndTrade.bankContactInfo.address1" label="Address 1" />
+					<column name="bankAndTrade.bankContactInfo.telephoneNumber" label="Telephone" />
+					<column name="bankAndTrade.banksTradeContactInfo" label="Contact Name" />
+					<column name="bankAndTrade.bankAccountNumber" label="Account/Reference Number" />
+				</columns>
+				<edit-canvas>
+					<panel id="partner.bankAndTradeDetail">
+						<field name="bankAndTrade.bankCustomerCode" />
+						<field name="bankAndTrade.bankTradeType" />
+						<field name="bankAndTrade.name" />
+						<field name="bankAndTrade.bankContactInfo.telephoneNumber" />
+						<field name="bankAndTrade.bankContactInfo.faxNumber" />
+						<field name="bankAndTrade.bankContactInfo.postalCode" />
+						<field name="bankAndTrade.bankContactInfo.address1" label="Address 1" />
+						<field name="bankAndTrade.bankContactInfo.address2" label="Address 2" />
+						<field name="bankAndTrade.bankContactInfo.city" />
+						<field name="bankAndTrade.bankContactInfo.county" />
+						<field name="bankAndTrade.bankContactInfo.state" label="State/Province" />
+						<field name="bankAndTrade.bankContactInfo.country" targetFields="bankAndTrade.bankContactInfo.state" />
+					</panel>
+					<panel id="partner.accountInformation">
+						<field name="bankAndTrade.accountType" />
+						<field name="bankAndTrade.bankAccountNumber" label="Account Number" />
+						<field name="bankAndTrade.accountInfo" label="Account Usage" />
+						<field name="bankAndTrade.comments" />
+					</panel>
+					<data-table name="bankAndTrade.banksTradeContactInfo" row="banksTradeContactInfo" label="Contact Information">
+						<columns>
+							<column name="banksTradeContactInfo.contactInfo.firstName" />
+							<column name="banksTradeContactInfo.contactInfo.lastName" />
+							<column name="banksTradeContactInfo.contactInfo.telephoneNumber" label="Phone" />
+							<column name="banksTradeContactInfo.contactInfo.email" />
+							<column name="banksTradeContactInfo.authorisedSignerFirstName" />
+							<column name="banksTradeContactInfo.authorisedSignerLastName" />
+						</columns>
+						<edit-canvas>
+							<panel id="bankAndTrade.banksTradeContactInfo" label="Contact Information">
+								<field name="banksTradeContactInfo.contactInfo.firstName" />
+								<field name="banksTradeContactInfo.contactInfo.telephoneNumber" label="Phone" />
+								<field name="banksTradeContactInfo.authorisedSignerFirstName" />
+								<field name="banksTradeContactInfo.contactInfo.lastName" />
+								<field name="banksTradeContactInfo.contactInfo.email" />
+								<field name="banksTradeContactInfo.authorisedSignerLastName" />
+							</panel>
+						</edit-canvas>
+					</data-table>
+				</edit-canvas>
+			</data-table>
+			<panel id="partner.pricingAndPoint" label="Pricing and Points">
+					<field name="partner.pricingPoint.leasingRate" label="Leasing Rate" />
+					<field name="partner.pricingPoint.leasingFlatFee" label="Leasing Flat Fee" />
+					<field name="partner.pricingPoint.maxLeasingAmt" label="Max Leasing Amount" />
+					<field name="partner.pricingPoint.financingRate" label="Financing Rate" />
+					<field name="partner.pricingPoint.financingFlatFee" label="Financing Flat Fee" />
+					<field name="partner.pricingPoint.maxFinancingAmt" label="Max Financing Amount" />
+					<field name="partner.pricingPoint.overrideDefaultsFlag" label="Default Override allowed ?" />
+					<!--
+					<field name="partner.pricingPoint.numMaxPoints" label="Max Points"/>
+					<field name="partner.pricingPoint.maxFlatAmt" />
+					<field name="partner.pricingPoint.defaultFlatAmt" />
+					<field name="partner.pricingPoint.defaultPoints" />
+					-->
+			</panel>
+			<data-table name="partner.commentGroup.comments" row="comment">
+				<columns>
+					<column name="comment.commentType.value" label="Comment Type" />
+					<column name="comment.metaInfo.createdByUser" label="Author" />
+					<column name="comment.metaInfo.createdAt" label="Date" />
+					<column name="comment.commentText" label="Text" />
+				</columns>
+				<edit-canvas src-entity="Comment" src-file="crud.xml" />
+			</data-table>
+		</tab>
+		<tab id="tab.compliance">
+			<data-table name="partner.partyDetail.compliances" row="compliance" label="Compliance Check Results">
+				<columns>
+					<column name="compliance.partyDetail.refNumber" label="Partner Number" />
+					<column name="compliance.partyDetail.customerName" label="Name" />
+					<column name="compliance.taxId" label="Taxpayer ID" />
+					<column name="compliance.status" label="OFAC Status" />
+					<column name="compliance.invokdFromTransType" />
+					<column name="compliance.invokdFromTransNum" />
+					<column name="compliance.complianceCheckDttm" />
+				
+				</columns>
+				<edit-canvas id="complianceEdit">
+					<panel id="partner.complianceCheckResult.complianceDetails">
+						<data-table name="compliance.complianceDetails" row="complianceDetail">
+							<columns>
+								<column name="complianceDetail.nameMatchedAgainst" label="Name" />
+								<column name="complianceDetail.dbaNameDetail" label="DBA Name" />
+								<column name="complianceDetail.address" />
+								<column name="complianceDetail.taxIdDetail" label="Taxpayer ID" />
+								<column name="complianceDetail.birthDttm" />
+							</columns>
+						</data-table>
+					</panel>
+				</edit-canvas>
+			</data-table>
+		</tab>
+		<tab id="tab.holds">
+			<data-table name="partner.holds" row="hold">
+					<columns>
+						<column name="hold.holdType" />
+						<column name="hold.holdFlag" />
+						<column name="hold.metaInfo.lastModifiedByUser" label="Last Modified By" />
+						<column name="hold.metaInfo.lastModifiedAt" label="Last Modified At" />
+						<column name="hold.comments" />
+					</columns>
+					<edit-canvas>
+						<panel id="partner.holds.edit">
+							<field name="hold.holdType" targetFields="partner.holds.edit" />
+							<field name="hold.holdFlag" />
+							<field name="hold.metaInfo.lastModifiedByUser" label="Last Modified By" />
+							<field name="hold.metaInfo.lastModifiedAt" label="Last Modified At" />
+							<field name="hold.comments" />	
+						</panel>				
+					</edit-canvas>
+				</data-table>
+		</tab><tab id="tab.cautions">
+			<panel id="partner.cautionList">
+				<field name="partner.partyDetail.cautionList" label="Caution List?" />
+				<field name="partner.partyDetail.cautionListAsOfDate" />
+			</panel>
+			<panel id="partner.bankruptcy">
+				<field name="partner.partyDetail.bankruptcy.statusFlag" label="Bankruptcy Flag?" />
+				<field name="partner.partyDetail.bankruptcy.comments" label="Bankruptcy Comments" />
+				<field name="partner.partyDetail.bankruptcy.bankruptcyFilingDttm" label="Bankruptcy Filing Date" />
+				<field name="partner.partyDetail.bankruptcy.metaInfo.createdByUser" label="Bankruptcy Flagged By" />
+				<field name="partner.partyDetail.bankruptcy.bankruptcyType" />
+				<field name="partner.partyDetail.bankruptcy.statusDttm" label="Bankruptcy Status Date" />
+				<field name="partner.partyDetail.bankruptcy.bankruptcyRelDttm" label="Bankruptcy Release Date" />
+			</panel>
+			<panel id="partner.suspiciousActivity">
+				<field name="partner.partyDetail.suspiciousActivity.statusFlag" label="Suspicious Activity Flag?" />
+				<field name="partner.partyDetail.suspiciousActivity.statusDttm" label="Suspicious Activity Status Date" />
+				<field name="partner.partyDetail.suspiciousActivity.comments" label="Suspicious Activity Reason" />
+				<field name="partner.partyDetail.suspiciousActivity.metaInfo.createdByUser" label="Suspicious Activity Flagged By" />
+			</panel>
+			<panel id="partner.outOfBusiness">
+				<field name="partner.partyDetail.outOfBusiness.statusFlag" label="Out of Business Flag?" />
+				<field name="partner.partyDetail.outOfBusiness.outofBusinessRecDttm" label="Out of Business Recorded Date" />
+				<field name="partner.partyDetail.outOfBusiness.metaInfo.createdByUser" label="Out of Business Flagged By" />
+				<field name="partner.partyDetail.outOfBusiness.comments" label="Out of Business Comments" />
+				<field name="partner.partyDetail.outOfBusiness.outofBusinessDttm" label="Out of Business Date" />
+			</panel>
+		</tab><tab id="tab.credit">
+			<panel id="partner.creditDetails">
+				<field name="partner.partyDetail.creditApprovalAmt" label="Partner Credit Approval Amount" />						
+				<field name="partner.partyDetail.creditApprovalExpDate" label="Partner Credit Approval Expiration Date" />
+				<field name="partner.partyDetail.publicDebtRatingSource" />
+				<field name="partner.partyDetail.publicDebtRating" />
+				<field name="partner.partyDetail.publicDebtRatingDttm" />
+				<field name="partner.partyDetail.finalPDGrade" />
+				<field name="partner.partyDetail.finalPDGradeAsOfDate" />
+				<field name="partner.partyDetail.moodyKmvEdf" />
+				<field name="partner.partyDetail.moodyKmvEdfSource" />
+				<field name="partner.partyDetail.moodyKmvEdfAsOfDate" />
+			</panel>
+			<panel id="partner.businessDetails">						
+				<field name="partner.partyDetail.hqCountry" targetFields="partner.partyDetail.hqState" label="HQ Country" />
+				<field name="partner.partyDetail.hqState" label="HQ State">
+					<field name="partner.partyDetail.hqStateOther" label="" />
+				</field>
+				<field name="partner.partyDetail.hqCity" />
+				<field name="partner.partyDetail.organizationStartDttm" />
+				<field name="partner.partyDetail.currentManagementStartDttm" />
+				<field name="partner.partyDetail.equityCapitalization" />
+				<field name="partner.partnerSinceDttm" />
+				<field name="partner.partyDetail.partnerAlsoDirectObligor" />
+				<field name="partner.partyDetail.partySinceDttm" label="Customer Since" />
+				<field name="partner.partyDetail.numOfEmployees" />
+			</panel>
+			<panel id="partner.publiclyTraded">
+				<field name="partner.partyDetail.ticker" />
+				<field name="partner.partyDetail.marketCapDate" label="Market Cap as of Date" />
+				<field name="partner.partyDetail.marketCap" label="Market Capitalization" />
+			</panel>
+			<panel id="partner.privatelyHeld">
+				<field name="partner.partyDetail.partyBackgroundInfo.paydex" label="PayDex" />
+				<field name="partner.partyDetail.partyBackgroundInfo.highTrade" />
+				<field name="partner.partyDetail.partyBackgroundInfo.noOfTrades" label="# of Trades" />
+				<field name="partner.partyDetail.dunsNum" label="DUNS" />
+			</panel>
+			<panel id="partner.industryInformation">
+				<field name="partner.partyDetail.sicCodeId" />
+				<field name="partner.partyDetail.naicsCodeId" label="NAICS Number" />
+				<field name="partner.partyDetail.partyBackgroundInfo.industryPosition" />
+				<field name="partner.partyDetail.sicCodeId.comments" label="SIC Line of Business Description" />
+				<field name="partner.partyDetail.naicsCodeId.comments" label="NAICS Line of Business Description" />
+			</panel>
+			<panel id="partner.summary">
+				<field name="partner.partyDetail.partyDetailFinAnlysis.detailedFinAnalysis" label="History / Background" />
+				<field name="partner.partyDetail.partyDetailFinAnlysis.strengths" />
+				<field name="partner.partyDetail.partyDetailFinAnlysis.customerFinancialSummary" label="Partner's Financial Summary" />
+				<field name="partner.partyDetail.partyDetailFinAnlysis.weaknesses" />
+			</panel>
+		</tab>
+		<tab id="tab.decision">
+			<data-table name="partner.approval.approvalLevels" row="approvalLevel" label="Application Decision" sortBy="approvalLevel.uppercaseName" sortOrder="ascending">
+				<columns>
+					<column name="approvalLevel.name" label="Approval Level"/>
+					<column name="approvalLevel.approverList" label="Approver Details"/>
+					<column name="approvalLevel.decision" label="Level Decision"/>
+					<column name="approvalLevel.commentGroup.comments" label="Comments"/>
+					<column name="approvalLevel.metaInfo.lastModifiedAt" label="Last Updated Date"/> 
+				</columns>
+				<edit-canvas>
+					<panel id="partner.approval.addeditApprovalLevel" label ="Add/Edit Approval Level">
+						<field name="approvalLevel.name" label="Approval Level Name"/>
+						 <data-table name="approvalLevel.approverList" row="approver" label="Approver Details">
+							<columns>
+								<column name="approver.user" label="Approver"/>
+								<column name="approver.decision" label="Approver Decision"/>
+							</columns>
+						 </data-table>
+						 <data-table name="approvalLevel.commentGroup.comments" row="commentApprovalLevel" label="Comments" sortBy="comment.indexNumber" sortOrder="descending">
+							<columns>
+								<column name="commentApprovalLevel.indexNumber" label="No."/>
+								<column name="commentApprovalLevel.commentType.value" label="Comment Type"/>
+								<column name="commentApprovalLevel.metaInfo.createdByUser" label="Author"/>
+								<column name="commentApprovalLevel.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+								<column name="commentApprovalLevel.metaInfo.createdAt" label="Date Added"/>
+								<column name="commentApprovalLevel.commentText" label="Text"/>
+							</columns>
+							<quickedit-canvas id="approvalLevelComments">
+								<panel id="comment.enterComment">
+									<field name="comment.commentType" label="Comment Type*"/>
+									<field name="comment.commentText" label="Text*"/>
+									<field />
+								</panel>
+							</quickedit-canvas>
+						</data-table>
+					</panel>
+				</edit-canvas>
+			</data-table>
+		</tab>
+		<tab id="tab.partner.documents">
+			<data-table name="partner.documentGroup.generatedDocuments" row="generatedDocument" label="Generated Documents">
+				<columns>
+					<column name="generatedDocument.documentName" />
+					<column name="generatedDocument.uploadedStream" label="Document URL" />
+					<column name="generatedDocument.documentClassRef.documentClassDetail" label="Document Group" />
+					<column name="generatedDocument.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+					<column name="generatedDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+					<column name="generatedDocument.versionNumber" />
+					<column name="generatedDocument.relatedTo" />
+					<column name="generatedDocument.coverSheetFlag" />
+					<column name="generatedDocument.coversheetStream" label="Coversheet" />
+					<column name="generatedDocument.selectSigners" />
+					<column name="generatedDocument.esignatureRqd" />
+					<column name="generatedDocument.documentStatus" />
+					<column name="generatedDocument.metaInfo.createdByUser" label="Generated By" />
+					<column name="generatedDocument.metaInfo.createdAt" label="Generated Date" />
+					<column name="generatedDocument.comment" />
+				</columns>
+				<quickedit-canvas>
+					<panel id="partner.documentGroup.generatedDocuments" label="Generated Documents">
+						<field name="generatedDocument.documentClassRef.documentClassDetail" label="Document Group" />
+						<field name="generatedDocument.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+						<field name="generatedDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+						<field name="generatedDocument.documentStatus" />
+						<field name="generatedDocument.comment" />
+					</panel>
+				</quickedit-canvas>
+				<edit-canvas>
+					<tabs>
+						<tab id="partner.generatedDocumentDetail">
+							<panel id="partner.addDocuments">
+								<panel id="partner.docGroupCatType" label="">
+									<field name="generatedDocument.documentClassRef.documentClassDetail" label="Document Group" />
+									<field name="generatedDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+									<field name="generatedDocument.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+								</panel>
+								<panel id="partner.otherDocFields" label="">	
+									<field name="generatedDocument.documentName" />
+									<field name="generatedDocument.esignatureRqd" />
+									<field name="generatedDocument.comment" />	
+									<field name="generatedDocument.coverSheetFlag" />
+									<field name="generatedDocument.documentStatus" />
+								</panel>
+							</panel>									
+							<data-table name="generatedDocument.documentPublishHistories" row="documentPublishHistory" label="Document History">
+								<columns>
+									<column name="documentPublishHistory.document.documentName" label="Document Filename" />
+									<column name="documentPublishHistory.document.documentClassRef.documentClassDetail" label="Document Group" />
+									<column name="documentPublishHistory.document.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+									<column name="documentPublishHistory.document.documentTypeRef.documentTypeDetail" label="Document Type" />
+									<column name="documentPublishHistory.document.versionNumber" label="Document Version" />
+									<column name="documentPublishHistory.email" />
+									<column name="documentPublishHistory.fax" />
+									<column name="documentPublishHistory.document.documentStatus" label="Status" />
+									<column name="documentPublishHistory.document.metaInfo.createdByUser" label="User" />
+									<column name="documentPublishHistory.document.metaInfo.createdAt" label="Date" />
+									<column name="documentPublishHistory.document.fileSize" label="Size" />		
+									<column name="documentPublishHistory.comments" label="Comments" />
+								</columns>
+								<edit-canvas>
+									<panel id="document.documentPublishHistory" label="Document History">
+										<field name="documentPublishHistory.email" />
+										<field name="documentPublishHistory.comments" />
+										<field name="documentPublishHistory.fax" />
+									</panel>
+								</edit-canvas>
+							</data-table>
+							<panel id="document.sendDocuments">
+								<data-table name="generatedDocument.emailForSendDoc" row="documentPublishHistory" label="Email Documents">
+									<columns>
+										<column name="documentPublishHistory.email" label="Email" />
+										<column name="documentPublishHistory.firstName" label="First Name" />
+										<column name="documentPublishHistory.lastName" label="Last Name" />
+										<column name="documentPublishHistory.comments" />
+									</columns>
+								</data-table>	
+								<data-table name="generatedDocument.faxForSendDoc" row="documentPublishHistory" label="FAX Documents">
+									<columns>
+										<column name="documentPublishHistory.fax" label="FAX Number" />
+										<column name="documentPublishHistory.firstName" label="First Name" />
+										<column name="documentPublishHistory.lastName" label="Last Name" />
+										<column name="documentPublishHistory.comments" />
+									</columns>
+								</data-table>	
+							</panel>
+							<data-table name="generatedDocument.approval.approvalLevels" row="approvalLevel" label="Document Decision">
+								<columns>
+									<column name="approvalLevel.name" label="Approval Level" />
+									<column name="approvalLevel.approverList" label="Approver Details" />
+									<column name="approvalLevel.decision" label="Level Decision" />
+									<column name="approvalLevel.commentGroup.comments" />
+									<!-- <column name="approvalLevel.lastModifiedDttm" label="Last Update"/>-->
+								</columns>
+								<edit-canvas>
+									<panel id="decision.addeditApprovalLevel" label="Add/Edit Approver Level">
+										<field name="approvalLevel.name" label="Approver Level Name" />
+										<field name="approvalLevel.minRespReqPct" label="Minimum Approval Required (%)" />
+										<data-table name="approvalLevel.approverList" row="approver" label="Approvers">
+											<columns>
+												<column name="approver.user" />
+												<column name="approver.user.creditAuthorityLevel.value" label="Credit Authority Level" />
+												<column name="approver.decision.value" label="Approver Decision" />
+											</columns>
+											<edit-canvas>
+												<panel id="partner.approvers" label="Add Approver">
+													<field name="approver.user" label="Approver" />
+												</panel>
+											</edit-canvas>
+										</data-table>
+										<data-table name="approvalLevel.commentGroup.comments" row="comment">
+											<columns>
+												<column name="comment.metaInfo.createdByUser" label="Author" />
+												<column name="comment.metaInfo.createdAt" label="Date" />
+												<column name="comment.commentText" />
+												</columns>
+											<edit-canvas>
+												<panel id="comment.enterComment">
+													<field name="comment.commentType" />
+													<field name="comment.commentText" />
+												</panel>
+											</edit-canvas>
+										</data-table>
+									</panel>
+								</edit-canvas>
+							</data-table>
+						</tab>
+						<tab id="document.generateDocuments">
+							<panel id="document.generateDocuments">
+								<field name="generatedDocument.documentName" />
+								<field name="generatedDocument.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+								<field name="generatedDocument.documentClassRef.documentClassDetail" label="Document Group" />
+								<field name="generatedDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+							</panel>
+							<panel id="document.options">
+								<field name="generatedDocument.readOnly" />
+								<field name="generatedDocument.blankDocument" />
+							</panel>
+							<data-table name="generatedDocument.emailForGenerateDoc" row="documentPublishHistory" label="Email Documents">
+								<columns>
+									<column name="documentPublishHistory.email" label="Email" />
+									<column name="documentPublishHistory.lastName" label="Last Name" />
+									<column name="documentPublishHistory.firstName" label="First Name" />
+									<column name="documentPublishHistory.comments" />
+								</columns>
+							</data-table>
+							<data-table name="generatedDocument.faxForGenerateDoc" row="documentPublishHistory" label="FAX Documents">
+								<columns>
+									<column name="documentPublishHistory.fax" label="FAX Number" />
+									<column name="documentPublishHistory.firstName" label="First Name" />
+									<column name="documentPublishHistory.lastName" label="Last Name" />
+									<column name="documentPublishHistory.comments" />
+								</columns>
+							</data-table>
+						</tab>
+						<tab id="partner.coverSheet">
+							<panel id="partner.coverSheet">
+								<field name="generatedDocument.pagesIncludingCoverSheet" />
+							</panel>
+							<panel id="partner.documentCoverSheet" label="Standard Scanner Cover Sheet">
+								<panel id="partner.docGroupCategoryType" label="">
+									<field name="generatedDocument.documentClassRef.documentClassDetail" label="Document Group" />
+									<field name="generatedDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+									<field name="generatedDocument.documentCategoryRef.documentCategoryDetail" label="Document Category" />											
+								</panel>
+								<panel id="partner.otherDocumentFields" label="">
+									<field name="generatedDocument.requestNumber" />
+									<field name="generatedDocument.documentName" />
+									<field name="generatedDocument.fax" label="FAX this coversheet and related documents to" />
+									<field name="generatedDocument.customerName" />											
+									<field name="generatedDocument.pagesIncludingCoverSheet" />
+								</panel>
+							</panel>
+						</tab>
+						<tab id="document.commentsHistory" label="Comment History">
+							<panel id="commentsHistory.document">
+								<field name="generatedDocument.documentName" label="Document Filename" />
+								<field name="generatedDocument.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+								<field name="generatedDocument.documentClassRef.documentClassDetail" label="Document Group" />
+								<field name="generatedDocument.documentTypeRef.documentTypeDetail" label="Document Type" />
+							</panel>
+							<data-table name="generatedDocument.commentGroup.comments" row="comment">
+								<columns>
+									<column name="comment.indexNumber" label="S.No." />
+									<column name="comment.commentType.value" label="Comment Type" />
+									<column name="comment.metaInfo.createdByUser" label="Author" />
+									<column name="comment.metaInfo.createdAt" label="Date" />
+									<column name="comment.commentText" label="Text" />
+								</columns>
+								<edit-canvas>
+									<panel id="comment.enterComment">
+										<field name="comment.commentType" />
+										<field name="comment.commentText" />
+									</panel>
+								</edit-canvas>
+							</data-table>
+						</tab>
+					</tabs>
+				</edit-canvas>
+			</data-table>
+			<data-table name="partner.documentGroup.uploadedDocuments" row="document" label="Uploaded Documents">
+				<columns>
+					<column name="document.documentName" label="Document Filename" />
+					<column name="document.documentClassRef.documentClassDetail" label="Document Group" />
+					<column name="document.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+					<column name="document.documentTypeRef.documentTypeDetail" label="Document Type" />
+					<column name="document.versionNumber" />
+					<column name="document.relatedTo" />
+					<column name="document.coverSheetFlag" />
+					<column name="document.selectSigners" />
+					<column name="document.esignatureRqd" />
+					<column name="document.documentStatus" />
+					<column name="document.metaInfo.createdByUser" label="Uploaded By" />
+					<column name="document.metaInfo.createdAt" label="Uploaded Date" />
+					<column name="document.comment" />
+				</columns>
+				<quickedit-canvas>
+					<panel id="partner.documentGroup.uploadedDocuments" label="Uploaded Documents">
+						<field name="document.documentClassRef.documentClassDetail" label="Document Group" />
+						<field name="document.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+						<field name="document.documentTypeRef.documentTypeDetail" label="Document Type" />
+						<field name="document.documentStatus" />
+						<field name="document.comment" />
+					</panel>
+				</quickedit-canvas>
+				<edit-canvas>
+					<tabs>
+						<tab id="partner.uploadedDocumentDetail">
+							<panel id="partner.addDocuments">
+								<panel id="partner.docGroupCatType" label="">
+									<field name="document.documentClassRef.documentClassDetail" label="Document Group" />
+									<field name="document.documentTypeRef.documentTypeDetail" label="Document Type" />
+									<field name="document.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+								</panel>
+								<panel id="partner.otherDocFields" label="">
+									<field name="document.uploadedStream" label="Document Filename" />
+									<field name="document.esignatureRqd" />
+									<field name="document.comment" />
+									<field name="document.coverSheetFlag" />																			
+									<field name="document.documentStatus" />											
+								</panel>
+							</panel>							
+							<data-table name="document.documentPublishHistories" row="documentPublishHistory" label="Document History">
+								<columns>
+									<column name="documentPublishHistory.document.documentName" label="Document Filename" />
+									<column name="documentPublishHistory.document.documentClassRef.documentClassDetail" label="Document Group" />
+									<column name="documentPublishHistory.document.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+									<column name="documentPublishHistory.document.documentTypeRef.documentTypeDetail" label="Document Type" />
+									<column name="documentPublishHistory.document.versionNumber" label="Document Version" />
+									<column name="documentPublishHistory.email" />
+									<column name="documentPublishHistory.fax" />
+									<column name="documentPublishHistory.document.documentStatus" label="Status" />
+									<column name="documentPublishHistory.document.metaInfo.createdByUser" label="User" />
+									<column name="documentPublishHistory.document.metaInfo.createdAt" label="Date" />
+									<column name="documentPublishHistory.document.fileSize" label="Size" />		
+									<column name="documentPublishHistory.comments" label="Comments" />
+								</columns>
+								<edit-canvas>
+									<panel id="document.documentPublishHistory" label="Document History">
+										<field name="documentPublishHistory.email" />
+										<field name="documentPublishHistory.comments" />
+										<field name="documentPublishHistory.fax" />												
+									</panel>
+								</edit-canvas>
+							</data-table>
+							
+							<panel id="document.sendDocuments">
+								<data-table name="document.emailForSendDoc" row="documentPublishHistory" label="Email Documents">
+									<columns>
+										<column name="documentPublishHistory.email" label="Email" />
+										<column name="documentPublishHistory.firstName" label="First Name" />
+										<column name="documentPublishHistory.lastName" label="Last Name" />
+										<column name="documentPublishHistory.comments" />
+									</columns>
+								</data-table>	
+								<data-table name="document.faxForSendDoc" row="documentPublishHistory" label="FAX Documents">
+									<columns>
+										<column name="documentPublishHistory.fax" label="FAX Number" />
+										<column name="documentPublishHistory.firstName" label="First Name" />
+										<column name="documentPublishHistory.lastName" label="Last Name" />
+										<column name="documentPublishHistory.comments" />
+									</columns>
+								</data-table>	
+							</panel>
+							<data-table name="document.approval.approvalLevels" row="approvalLevel" label="Document Decision">
+								<columns>
+									<column name="approvalLevel.name" label="Approval Level" />
+									<column name="approvalLevel.approverList" label="Approver Details" />
+									<column name="approvalLevel.decision" label="Level Decision" />
+									<column name="approvalLevel.commentGroup.comments" />
+									<!-- <column name="approvalLevel.lastModifiedDttm" label="Last Update"/>-->
+								</columns>
+								<edit-canvas>
+									<panel id="decision.addeditApprovalLevel" label="Add/Edit Approver Level">
+										<field name="approvalLevel.name" label="Approver Level Name" />
+										<field name="approvalLevel.minRespReqPct" label="Minimum Approval Required (%)" />
+										<data-table name="approvalLevel.approverList" row="approver" label="Approvers">
+											<columns>
+												<column name="approver.user" />
+												<column name="approver.user.creditAuthorityLevel.value" label="Credit Authority Level" />
+												<column name="approver.decision.value" label="Approver Decision" />
+											</columns>
+											<edit-canvas>
+												<panel id="document.approvers" label="Add Approver">
+													<field name="approver.user" label="Approver" />
+												</panel>
+											</edit-canvas>
+										</data-table>
+										<data-table name="approvalLevel.commentGroup.comments" row="comment">
+											<columns>
+												<column name="comment.metaInfo.createdByUser" label="Author" />
+												<column name="comment.metaInfo.createdAt" label="Date" />
+												<column name="comment.commentText" />
+												</columns>
+											<edit-canvas>
+												<panel id="comment.enterComment">
+													<field name="comment.commentType" />
+													<field name="comment.commentText" />
+												</panel>
+											</edit-canvas>
+										</data-table>
+									</panel>
+								</edit-canvas>
+							</data-table>
+						</tab>
+						<tab id="partner.coverSheet">
+							<panel id="partner.coverSheet">
+								<field name="document.pagesIncludingCoverSheet" />
+							</panel>
+							<panel id="partner.documentCoverSheet" label="Standard Scanner Cover Sheet">
+								<panel id="partner.docGroupCategoryType" label="">
+									<field name="document.documentClassRef.documentClassDetail" label="Document Group" />
+									<field name="document.documentTypeRef.documentTypeDetail" label="Document Type" />
+									<field name="document.documentCategoryRef.documentCategoryDetail" label="Document Category" />											
+								</panel>
+								<panel id="partner.otherDocumentFields" label="">
+									<field name="document.requestNumber" />
+									<field name="document.documentName" />
+									<field name="document.fax" label="FAX this coversheet and related documents to" />	
+									<field name="document.customerName" />											
+									<field name="document.pagesIncludingCoverSheet" />											
+								</panel>
+							</panel>
+						</tab>									
+						<tab id="document.commentsHistory" label="Comment History">
+							<panel id="commentsHistory.document">
+								<field name="document.documentName" label="Document Filename" />
+								<field name="document.documentCategoryRef.documentCategoryDetail" label="Document Category" />
+								<field name="document.documentClassRef.documentClassDetail" label="Document Group" />
+								<field name="document.documentTypeRef.documentTypeDetail" label="Document Type" />
+							</panel>
+							<data-table name="document.commentGroup.comments" row="comment">
+								<columns>
+									<column name="comment.indexNumber" label="S.No." />
+									<column name="comment.commentType.value" label="Comment Type" />
+									<column name="comment.metaInfo.createdByUser" label="Author" />
+									<column name="comment.metaInfo.createdAt" label="Date" />
+									<column name="comment.commentText" label="Text" />
+								</columns>
+								<edit-canvas>
+									<panel id="comment.enterComment">
+										<field name="comment.commentType" />
+										<field name="comment.commentText" />
+									</panel>
+								</edit-canvas>
+							</data-table>
+						</tab>
+					</tabs>
+				</edit-canvas>
+			</data-table>
+			<data-table name="partner.documentPackages" row="documentPackage" label="Document Package">
+				<columns>
+					<column name="documentPackage.packageName" />
+					<column name="documentPackage.packageFileName" label="Package Filename" />
+					<column name="documentPackage.versionNumber" />
+					<column name="documentPackage.selectSigners" />
+					<column name="documentPackage.esignatureRqd" />
+					<column name="documentPackage.documentPackageStatus" />
+					<column name="documentPackage.metaInfo.createdByUser" label="Created By" />
+					<column name="documentPackage.metaInfo.createdAt" label="Created Date" />
+				</columns>
+				<edit-canvas>
+					<tabs>
+						<tab id="partner.packageDetails">
+							<panel id="partner.AddDocumentPackage">
+								<field name="documentPackage.packageName" />
+								<field name="documentPackage.esignatureRqd" />
+								<field name="documentPackage.packageFileName" label="Package Filename" />
+								<field name="documentPackage.documentPackageStatus" />
+							</panel>
+							<data-table name="documentPackage.documentPublishHistories" row="documentPublishHistory" label="Package History">
+								<columns>
+									<column name="documentPublishHistory.documentPackage.packageName" label="Package Name" />
+									<column name="documentPublishHistory.documentPackage.packageFileName" label="Package Filename" />
+									<column name="documentPublishHistory.documentPackage.versionNumber" label="Package Version" />
+									<column name="documentPublishHistory.email" />
+									<column name="documentPublishHistory.fax" />
+									<column name="documentPublishHistory.documentPackage.documentPackageStatus" label="Status" />
+									<column name="documentPublishHistory.documentPackage.metaInfo.createdByUser" label="User" />
+									<column name="documentPublishHistory.documentPackage.metaInfo.createdAt" label="Date" />
+									<column name="documentPublishHistory.documentPackage.packageSize" label="Size" />
+								</columns>
+								<edit-canvas>
+									<panel id="documentPackage.documentPublishHistory" label="Package History">
+										<field name="documentPublishHistory.email" />
+										<field name="documentPublishHistory.comments" />
+										<field name="documentPublishHistory.fax" />
+									</panel>
+								</edit-canvas>
+							</data-table>
+						</tab>
+						<tab id="documentPackage.documentDecision">
+							<data-table name="documentPackage.approval.approvalLevels" row="approvalLevel" label="Document Decision">
+								<columns>
+									<column name="approvalLevel.name" label="Approval Level" />
+									<column name="approvalLevel.approverList" label="Approver Details" />
+									<column name="approvalLevel.decision" label="Level Decision" />
+									<column name="approvalLevel.commentGroup.comments" />
+									<!-- <column name="approvalLevel.lastModifiedDttm" label="Last Update"/>-->
+								</columns>
+								<edit-canvas>
+									<panel id="decision.addeditApprovalLevel" label="Add/Edit Approver Level">
+										<field name="approvalLevel.name" label="Approver Level Name" />
+										<field name="approvalLevel.minRespReqPct" label="Minimum Approval Required (%)" />
+										<data-table name="approvalLevel.approverList" row="approver" label="Approvers">
+											<columns>
+												<column name="approver.user" />
+												<column name="approver.user.creditAuthorityLevel.value" label="Credit Authority Level" />
+												<column name="approver.decision.value" label="Approver Decision" />
+											</columns>
+											<edit-canvas>
+												<panel id="partner.approvers" label="Add Approver">
+													<field name="approver.user" label="Approver" />
+												</panel>
+											</edit-canvas>
+										</data-table>
+										<data-table name="approvalLevel.commentGroup.comments" row="comment">
+											<columns>
+												<column name="comment.metaInfo.createdByUser" label="Author" />
+												<column name="comment.metaInfo.createdAt" label="Date" />
+												<column name="comment.commentText" />
+												</columns>
+											<edit-canvas>
+												<panel id="comment.enterComment">
+													<field name="comment.commentType" />
+													<field name="comment.commentText" />
+												</panel>
+											</edit-canvas>
+										</data-table>
+									</panel>
+								</edit-canvas>
+							</data-table>
+						</tab>
+					</tabs>
+				</edit-canvas>
+			</data-table>
+			<data-table name="partner.documentGroup.commentGroup.comments" row="comment">
+				<columns>
+					<column name="comment.indexNumber" label="S.No." />
+					<column name="comment.commentType.value" label="Comment Type" />
+					<column name="comment.metaInfo.createdByUser" label="Author" />
+					<column name="comment.metaInfo.createdAt" label="Date" />
+					<column name="comment.commentText" label="Text" />
+				</columns>
+				<edit-canvas>
+					<panel id="comment.enterComment">
+						<field name="comment.commentType" />
+						<field name="comment.commentText" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+		</tab>
+	</tabs>	
+	<commands>
+ 		<command id="PartnerSubmit" name="Submit" action="PartnerSubmit" type="businessOp" /> 
+	</commands>
+
+	<beans>
+		<bean name="partner" type="com.thirdpillar.codify.loanpath.model.Partner" />
+	</beans>	
+</canvas>

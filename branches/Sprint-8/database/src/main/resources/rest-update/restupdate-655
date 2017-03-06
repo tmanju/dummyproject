@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model"> 
+<list>
+	<attribute>
+		<key>FACILTYBE_TERM</key>
+		<name>Facility Term</name>
+		<description />
+		<attributeChoices>
+			<attributeChoice>
+				<value>6 Month</value>
+				<key>FACILTYBE_TERM_6</key>
+				<code>1</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+			<attributeChoice>
+				<value>12 Month</value>
+				<key>FACILTYBE_TERM_12</key>
+				<code>2</code>
+				<attribute reference="../../.." />
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+</list>
+</mod:sr.upsertEntityRequest>

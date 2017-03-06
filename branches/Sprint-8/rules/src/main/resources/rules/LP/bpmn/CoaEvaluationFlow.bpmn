@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+
+  <itemDefinition id="_3-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+
+  <itemDefinition id="_7-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+
+  <itemDefinition id="_10-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.CoaEvaluation" />
+
+  <process processType="Private" isExecutable="true" id="CoaEvaluationFlow" name="CoaEvaluationFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Team" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Customer" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.BureauReport" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Compliance" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approval" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approver" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.WorkflowStatus" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.service.Context" />
+     <tns:import name="com.thirdpillar.foundation.component.CodifyMessage" />
+     <tns:import name="com.thirdpillar.foundation.service.ContextHolder" />
+     <tns:import name="com.thirdpillar.foundation.integration.IntegrationExchange" />
+     <tns:import name="java.util.Set" />
+     <tns:import name="java.util.HashSet" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="java.util.Calendar" />
+     <tns:import name="com.thirdpillar.foundation.model.Money" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_3" name="Wait State" tns:taskName="WaitState" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <intermediateCatchEvent id="_4" name="completeCOA" >
+      <signalEventDefinition signalRef="completeCOA"/>
+    </intermediateCatchEvent>
+    <endEvent id="_5" name="End" />
+    <task id="_7" name="CompleteCOA -StatusUpdate" tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_7_entityInput" name="entity" />
+        <dataInput id="_7_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_7_entityInput</dataInputRefs>
+          <dataInputRefs>_7_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_7_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_7_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">COA_EVALUATION_COMPLETE</from>
+          <to xsi:type="tFormalExpression">_7_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <intermediateCatchEvent id="_8" name="suspendCOA" >
+      <signalEventDefinition signalRef="suspendCOA"/>
+    </intermediateCatchEvent>
+    <endEvent id="_9" name="End" />
+    <task id="_10" name="SuspendCOA - StatusUpdate" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_10_entityInput" name="entity" />
+        <dataInput id="_10_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_10_entityInput</dataInputRefs>
+          <dataInputRefs>_10_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_10_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_10_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">COA_EVALUATION_SUSPEND</from>
+          <to xsi:type="tFormalExpression">_10_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_3-_2" sourceRef="_3" targetRef="_2" />
+    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_7-_5" sourceRef="_7" targetRef="_5" />
+    <sequenceFlow id="_4-_7" sourceRef="_4" targetRef="_7" />
+    <sequenceFlow id="_10-_9" sourceRef="_10" targetRef="_9" />
+    <sequenceFlow id="_8-_10" sourceRef="_8" targetRef="_10" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="CoaEvaluationFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="73" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="73" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="16" y="96" width="162" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="290" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="290" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="210" y="96" width="209" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="516" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="516" y="176" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="451" y="96" width="178" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_3-_2" >
+        <di:waypoint x="97" y="120" />
+        <di:waypoint x="97" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
+        <di:waypoint x="97" y="40" />
+        <di:waypoint x="97" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_5" >
+        <di:waypoint x="314" y="120" />
+        <di:waypoint x="314" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_7" >
+        <di:waypoint x="314" y="40" />
+        <di:waypoint x="314" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_9" >
+        <di:waypoint x="540" y="120" />
+        <di:waypoint x="540" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_10" >
+        <di:waypoint x="540" y="40" />
+        <di:waypoint x="540" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

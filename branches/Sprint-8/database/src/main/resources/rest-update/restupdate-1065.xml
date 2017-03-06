@@ -1,0 +1,59 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+		<attribute>
+			  <key>LIABILITY_LOAN_TYPE</key>
+			  <name>Liability Loan Type</name>
+			  <description>#DONE</description>
+			  <attributeChoices>
+			 <attributeChoice>
+				<value>Term Loan</value>
+				<key>LIABILITY_LOAN_TYPE_TERM_LOAN</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			 <attributeChoice>
+				<value>Line of Credit</value>
+				<key>LIABILITY_LOAN_TYPE_LINE_OF_CREDIT</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			 <attributeChoice>
+				<value>Factoring</value>
+				<key>LIABILITY_LOAN_TYPE_FACTORING</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			 <attributeChoice>
+				<value>Invoice Discounting</value>
+				<key>LIABILITY_LOAN_TYPE_INVOICE_DISCOUNTING</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			 <attributeChoice>
+				<value>Purchase Order Finance</value>
+				<key>LIABILITY_LOAN_TYPE_PURCHASE_ORDER_FINANCE</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			 <attributeChoice>
+				<value>Cash Advance</value>
+				<key>LIABILITY_LOAN_TYPE_CASH_ADVANCE</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			 <attributeChoice>
+				<value>Equipment Finance</value>
+				<key>LIABILITY_LOAN_TYPE_EQUIPMENT_FINANCE</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			 <attributeChoice>
+				<value>Other</value>
+				<key>LIABILITY_LOAN_TYPE_OTHER</key>
+				<group>LIABILITY_LOAN_TYPE_LOANS</group>
+				<attribute reference="../../.."/>
+			 </attributeChoice>
+			</attributeChoices>
+		</attribute>
+	</list>
+</mod:sr.addEntityRequest>

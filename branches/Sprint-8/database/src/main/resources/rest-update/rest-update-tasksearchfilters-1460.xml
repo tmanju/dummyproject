@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Today</filterName>
+		<groupFilterName>By Due Date</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+				<entry>
+				  <string>dueDate</string>
+				  <sc.searchCriterion>
+					<collection>false</collection>
+					<property>dueDate</property>
+					<value class="sc.rangeCriterionValue">
+					  <defaultOperator>BETWEEN</defaultOperator>
+					  <from class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{Now}</value>
+					  </from>
+					  <to class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{Now}</value>
+					  </to>
+					</value>
+				  </sc.searchCriterion>
+				</entry>
+				<entry>
+			      <string>owner</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>owner</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="user">
+			                <username>@{ctxUser.username}</username>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+				<entry>
+				  <string>id</string>
+				  <sc.sortOrder>DESC</sc.sortOrder>
+				</entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>1</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>This Week</filterName>
+		<groupFilterName>By Due Date</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+				<entry>
+				  <string>dueDate</string>
+				  <sc.searchCriterion>
+					<collection>false</collection>
+					<property>dueDate</property>
+					<value class="sc.rangeCriterionValue">
+					  <defaultOperator>BETWEEN</defaultOperator>
+					  <from class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{Now}</value>
+					  </from>
+					  <to class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(org.apache.commons.lang.time.DateUtils.addDays(new java.util.Date(), 7))}</value>
+					  </to>
+					</value>
+				  </sc.searchCriterion>
+				</entry>
+				<entry>
+			      <string>owner</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>owner</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="user">
+			                <username>@{ctxUser.username}</username>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+				<entry>
+				  <string>id</string>
+				  <sc.sortOrder>DESC</sc.sortOrder>
+				</entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>2</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Next Week</filterName>
+		<groupFilterName>By Due Date</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+				<entry>
+				  <string>dueDate</string>
+				  <sc.searchCriterion>
+					<collection>false</collection>
+					<property>dueDate</property>
+					<value class="sc.rangeCriterionValue">
+					  <defaultOperator>BETWEEN</defaultOperator>
+					  <from class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(org.apache.commons.lang.time.DateUtils.addDays(new java.util.Date(), 7))}</value>
+					  </from>
+					  <to class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(org.apache.commons.lang.time.DateUtils.addDays(new java.util.Date(), 14))}</value>
+					  </to>
+					</value>
+				  </sc.searchCriterion>
+				</entry>
+				<entry>
+			      <string>owner</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>owner</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="user">
+			                <username>@{ctxUser.username}</username>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+				<entry>
+				  <string>id</string>
+				  <sc.sortOrder>DESC</sc.sortOrder>
+				</entry>
+			  </sortOrderList>
+			</sc.searchCriteria>]]>
+		</searchCriteriaXML>
+		<sequence>3</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>This Month</filterName>
+		<groupFilterName>By Due Date</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+				<entry>
+				  <string>dueDate</string>
+				  <sc.searchCriterion>
+					<collection>false</collection>
+					<property>dueDate</property>
+					<value class="sc.rangeCriterionValue">
+					  <defaultOperator>BETWEEN</defaultOperator>
+					  <from class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{Now}</value>
+					  </from>
+					  <to class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{(new java.text.SimpleDateFormat("yyyy-MM-dd")).format(org.apache.commons.lang.time.DateUtils.addDays(new java.util.Date(), 30))}</value>
+					  </to>
+					</value>
+				  </sc.searchCriterion>
+				</entry>
+				<entry>
+			      <string>owner</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>owner</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="user">
+			                <username>@{ctxUser.username}</username>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+				<entry>
+				  <string>id</string>
+				  <sc.sortOrder>DESC</sc.sortOrder>
+				</entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>4</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Past</filterName>
+		<groupFilterName>By Due Date</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+				<entry>
+				  <string>dueDate</string>
+				  <sc.searchCriterion>
+					<collection>false</collection>
+					<property>dueDate</property>
+					<value class="sc.rangeCriterionValue">
+					  <defaultOperator>LE</defaultOperator>
+					  <from class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>null</value>
+					  </from>
+					  <to class="sc.dateCriterionValue">
+						<defaultOperator>EQ</defaultOperator>
+						<value>@{Now}</value>
+					  </to>
+					</value>
+				  </sc.searchCriterion>
+				</entry>
+				<entry>
+			      <string>owner</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>owner</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="user">
+			                <username>@{ctxUser.username}</username>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+				<entry>
+				  <string>id</string>
+				  <sc.sortOrder>DESC</sc.sortOrder>
+				</entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>5</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>All</filterName>
+		<groupFilterName>By Due Date</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+			  <entry>
+			      <string>owner</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>owner</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="user">
+			                <username>@{ctxUser.username}</username>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+				</criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+			    <entry>
+			      <string>id</string>
+			      <sc.sortOrder>DESC</sc.sortOrder>
+			    </entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>6</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>My Open Tasks</filterName>
+		<groupFilterName>By Task Status</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+				  <criterions>
+				      <entry>
+					      <string>wfStatus</string>
+					      <sc.searchCriterion>
+					        <collection>true</collection>
+					        <property>wfStatus</property>
+					        <value class="sc.collectionCriterionValue">
+					          <values>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_INPROGRESS</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_NEW</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_READY</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_RESERVED</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_SUSPENDED</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					          </values>
+				        </value>
+				      </sc.searchCriterion>
+				    </entry>
+				    <entry>
+				      <string>owner</string>
+				      <sc.searchCriterion>
+				        <collection>true</collection>
+				        <property>owner</property>
+				        <value class="sc.collectionCriterionValue">
+				          <values>
+				            <sc.entityCriterionValue>
+				              <entity class="user">
+				                <username>@{ctxUser.username}</username>
+				              </entity>
+				            </sc.entityCriterionValue>
+				          </values>
+				        </value>
+				      </sc.searchCriterion>
+				    </entry>
+				  </criterions>
+				  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+				  <sortOrderList>
+				    <entry>
+				      <string>id</string>
+				      <sc.sortOrder>DESC</sc.sortOrder>
+				    </entry>
+				  </sortOrderList>
+				</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>8</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>My Closed Tasks</filterName>
+		<groupFilterName>By Task Status</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+			    <entry>
+			      <string>wfStatus</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>wfStatus</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="workflowStatus">
+			                <statusKey>TASK_STATUS_OBSOLETE</statusKey>
+			              </entity>
+			            </sc.entityCriterionValue>
+			            <sc.entityCriterionValue>
+			              <entity class="workflowStatus">
+			                <statusKey>TASK_STATUS_COMPLETED</statusKey>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			    <entry>
+			      <string>owner</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>owner</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="user">
+			                <username>@{ctxUser.username}</username>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+			    <entry>
+			      <string>id</string>
+			      <sc.sortOrder>DESC</sc.sortOrder>
+			    </entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>9</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Unassigned Task</filterName>
+		<groupFilterName>By Task Status</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+		<sc.searchCriteria>
+			  <criterions>
+			    <entry>
+			      <string>wfStatus</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>wfStatus</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="workflowStatus">
+			                <statusKey>TASK_STATUS_NEW</statusKey>
+			              </entity>
+			            </sc.entityCriterionValue>
+			            <sc.entityCriterionValue>
+			              <entity class="workflowStatus">
+			                <statusKey>TASK_STATUS_READY</statusKey>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+				<entry>
+                   <string>potentialTeams</string>
+                   <sc.searchCriterion>
+                      <collection>true</collection>
+                      <property>potentialTeams</property>
+                       <value class="sc.collectionCriterionValue">
+                         @foreach{team : ctxUser.teams} 
+                           <values>
+                             <sc.entityCriterionValue>
+                                <entity class="team">
+                                   <name>@{team.name}</name>
+                                </entity>
+                             </sc.entityCriterionValue>
+                           </values>
+                          @end{}
+                        </value>
+                       </sc.searchCriterion>
+                </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+			    <entry>
+			      <string>id</string>
+			      <sc.sortOrder>DESC</sc.sortOrder>
+			    </entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+		]]>
+		</searchCriteriaXML>
+		<sequence>10</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Team Open Tasks</filterName>
+		<groupFilterName>By Task Status</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+				  <criterions>
+				      <entry>
+					      <string>wfStatus</string>
+					      <sc.searchCriterion>
+					        <collection>true</collection>
+					        <property>wfStatus</property>
+					        <value class="sc.collectionCriterionValue">
+					          <values>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_INPROGRESS</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_NEW</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_READY</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_RESERVED</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					            <sc.entityCriterionValue>
+					              <entity class="workflowStatus">
+					                <statusKey>TASK_STATUS_SUSPENDED</statusKey>
+					              </entity>
+					            </sc.entityCriterionValue>
+					          </values>
+				        </value>
+				      </sc.searchCriterion>
+				    </entry>
+				    <entry>
+				      <string>potentialTeams</string>
+				      <sc.searchCriterion>
+				        <collection>true</collection>
+				        <property>potentialTeams</property>
+				        <value class="sc.collectionCriterionValue">
+						@foreach{team : ctxUser.teams} 
+						
+				          <values>
+				            <sc.entityCriterionValue>
+				              <entity class="team">
+				                <name>@{team.name}</name>
+				              </entity>
+				            </sc.entityCriterionValue>
+				          
+				          </values>
+				        @end{}
+				        </value>
+				      </sc.searchCriterion>
+				    </entry>
+				  </criterions>
+				  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+				  <sortOrderList>
+				    <entry>
+				      <string>id</string>
+				      <sc.sortOrder>DESC</sc.sortOrder>
+				    </entry>
+				  </sortOrderList>
+				</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>11</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+		<com.thirdpillar.foundation.model.SearchFilter>
+		<filterName>Team Closed Tasks</filterName>
+		<groupFilterName>By Task Status</groupFilterName>
+		<entityClazzName>com.thirdpillar.codify.loanpath.model.HumanTask
+		</entityClazzName>
+		<searchCriteriaXML>
+			<![CDATA[
+			<sc.searchCriteria>
+			  <criterions>
+			    <entry>
+			      <string>wfStatus</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>wfStatus</property>
+			        <value class="sc.collectionCriterionValue">
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="workflowStatus">
+			                <statusKey>TASK_STATUS_OBSOLETE</statusKey>
+			              </entity>
+			            </sc.entityCriterionValue>
+			            <sc.entityCriterionValue>
+			              <entity class="workflowStatus">
+			                <statusKey>TASK_STATUS_COMPLETED</statusKey>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          </values>
+			        </value>
+			      </sc.searchCriterion>
+			    </entry>
+			    <entry>
+			      <string>potentialTeams</string>
+			      <sc.searchCriterion>
+			        <collection>true</collection>
+			        <property>potentialTeams</property>
+			        <value class="sc.collectionCriterionValue">
+					@foreach{team : ctxUser.teams} 
+					
+			          <values>
+			            <sc.entityCriterionValue>
+			              <entity class="team">
+			                <name>@{team.name}</name>
+			              </entity>
+			            </sc.entityCriterionValue>
+			          
+			          </values>
+			        @end{}
+			        </value>
+			      </sc.searchCriterion>
+				  </entry>
+			  </criterions>
+			  <searchClazzName>com.thirdpillar.codify.loanpath.model.HumanTask</searchClazzName>
+			  <sortOrderList>
+			    <entry>
+			      <string>id</string>
+			      <sc.sortOrder>DESC</sc.sortOrder>
+			    </entry>
+			  </sortOrderList>
+			</sc.searchCriteria>
+			]]>
+		</searchCriteriaXML>
+		<sequence>12</sequence>
+	</com.thirdpillar.foundation.model.SearchFilter>
+	
+</list>
+</mod:sr.addEntityRequest>

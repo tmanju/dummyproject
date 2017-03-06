@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<operation action="select" profileName="Full" destination="E:/Temp/applicationOut.xml" type="com.thirdpillar.codify.loanpath.model.Application"/>
+	<!--<operation action="select" profileName="Full" destination="E:/Temp/applicationOut.xml" type="com.thirdpillar.codify.loanpath.model.Application" id="100"/>-->
+</operations>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.DebtorCustomer" />
+  <itemDefinition id="_debtorStatusItem" structureRef="String" />
+  <itemDefinition id="_toStatusItem" structureRef="String" />
+
+  <itemDefinition id="_2-2-1-2-2-debtorCustomerItem" />
+
+  <itemDefinition id="_2_multiInstanceItemType" />
+
+  <itemDefinition id="_2-2-1_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="UpdateDebtorStatus" name="UpdateDebtorStatus" tns:packageName="LP" >
+
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="debtorStatus" itemSubjectRef="_debtorStatusItem"/>
+    <property id="toStatus" itemSubjectRef="_toStatusItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <subProcess id="_2" name="Iterate for all facilities"  >
+      <ioSpecification>
+        <dataInput id="_2_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity.allFacilities</sourceRef>
+        <targetRef>_2_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_2_input</loopDataInputRef>
+        <inputDataItem id="facility" itemSubjectRef="_2_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <subProcess id="_2-2-1" name="Iterate for all Debtors"  >
+      <ioSpecification>
+        <dataInput id="_2-2-1_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>facility.debtors</sourceRef>
+        <targetRef>_2-2-1_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_2-2-1_input</loopDataInputRef>
+        <inputDataItem id="debtorCustomer" itemSubjectRef="_2-2-1_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <startEvent id="_2-2-1-2-1" name="Start" />
+    <task id="_2-2-1-2-2" name="Update debtor status" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_2-2-1-2-2_entityInput" name="entity" />
+        <dataInput id="_2-2-1-2-2_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_2-2-1-2-2_entityInput</dataInputRefs>
+          <dataInputRefs>_2-2-1-2-2_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>debtorCustomer</sourceRef>
+        <targetRef>_2-2-1-2-2_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_2-2-1-2-2_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{toStatus}</from>
+          <to xsi:type="tFormalExpression">_2-2-1-2-2_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_2-2-1-2-3" name="End" />
+    <scriptTask id="_2-2-1-2-4" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>String toStatus1 = (String)context.getVariable("debtorStatus");
+context.setVariable("toStatus",toStatus1);</script>
+    </scriptTask>
+    <!-- connections -->
+    <sequenceFlow id="_2-2-1-2-4-_2-2-1-2-2" sourceRef="_2-2-1-2-4" targetRef="_2-2-1-2-2" />
+    <sequenceFlow id="_2-2-1-2-2-_2-2-1-2-3" sourceRef="_2-2-1-2-2" targetRef="_2-2-1-2-3" />
+    <sequenceFlow id="_2-2-1-2-1-_2-2-1-2-4" sourceRef="_2-2-1-2-1" targetRef="_2-2-1-2-4" />
+    </subProcess>
+    <startEvent id="_2-2-2" name="Start" />
+    <endEvent id="_2-2-3" name="End" />
+    <!-- connections -->
+    <sequenceFlow id="_2-2-2-_2-2-1" sourceRef="_2-2-2" targetRef="_2-2-1" />
+    <sequenceFlow id="_2-2-1-_2-2-3" sourceRef="_2-2-1" targetRef="_2-2-3" />
+    </subProcess>
+    <endEvent id="_3" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="UpdateDebtorStatus" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="16" y="88" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="96" y="16" width="885" height="192" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-1" >
+        <dc:Bounds x="364" y="41" width="493" height="143" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-1-2-1" >
+        <dc:Bounds x="370" y="79" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-1-2-2" >
+        <dc:Bounds x="602" y="76" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-1-2-3" >
+        <dc:Bounds x="759" y="75" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-1-2-4" >
+        <dc:Bounds x="475" y="80" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-2" >
+        <dc:Bounds x="123" y="93" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2-2-3" >
+        <dc:Bounds x="897" y="90" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="1013" y="88" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_2-2-1-2-4-_2-2-1-2-2" >
+        <di:waypoint x="151" y="63" />
+        <di:waypoint x="288" y="59" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-2-1-2-2-_2-2-1-2-3" >
+        <di:waypoint x="288" y="59" />
+        <di:waypoint x="419" y="58" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-2-1-2-1-_2-2-1-2-4" >
+        <di:waypoint x="30" y="62" />
+        <di:waypoint x="151" y="63" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-2-2-_2-2-1" >
+        <di:waypoint x="51" y="101" />
+        <di:waypoint x="514" y="96" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-2-1-_2-2-3" >
+        <di:waypoint x="514" y="96" />
+        <di:waypoint x="825" y="98" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="40" y="112" />
+        <di:waypoint x="538" y="112" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="538" y="112" />
+        <di:waypoint x="1037" y="112" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	
+	<permission  name="Legal" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+		<entity name="Request">
+			<default>true</default>
+			<create>false</create>
+			<read>true</read>
+			<update>false</update>
+		</entity>
+
+
+		<entity name="Partner">
+			<default>false</default>
+		</entity>
+
+		<entity name="Program">
+			<default>false</default>
+		</entity>
+
+    <entity name="Attribute">
+      <default>false</default>
+    </entity>
+    
+    <entity name="User">
+      <default>false</default>
+	  <read>true</read>
+    </entity>
+    
+    <entity name="Team">
+      <default>false</default>
+    </entity>
+    
+    
+    <entity name="Role">
+      <default>false</default>
+    </entity>
+
+    <entity name="Document">
+      <default>thiz.isDocumentCategory('DOCUMENT_CATEGORY_LEGAL')</default>
+    </entity>   
+    
+    <entity name="DocumentCatalogItem">
+      <default>false</default>
+    </entity>
+
+	</permission>
+	
+</permissions>

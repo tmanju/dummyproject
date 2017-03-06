@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="scrFactorSeed" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	
+	<data-table name="scrFactorSeed" row="scrFactorSeed" label="Score Factor Search Results"
+	sortBy="scrFactorSeed.code" sortOrder="ascending">
+		<columns>
+			<column name="scrFactorSeed.code" label="Code"/>
+			<column name="scrFactorSeed.message"/>
+			<column name="scrFactorSeed.applicability"/>
+<!-- <column name="scrFactorSeed.recommendationReason.recomReason"  label="Recommendation Reason" /> -->
+	    	<column name="scrFactorSeed.derCodMsg"  label="Recommendation Reason" />
+			<column name="scrFactorSeed.active"/>
+				
+		</columns>
+	</data-table>
+	
+
+	<beans>
+		<bean name="scrFactorSeed" type="com.thirdpillar.codify.loanpath.model.ScrFactorSeed" />
+	</beans>
+</canvas>

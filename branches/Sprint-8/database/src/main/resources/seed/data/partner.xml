@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>American Tools</legalName>
+		<submittedDttm>2007-01-01</submittedDttm>
+		<typeOfProductsSold>Hardware Tools</typeOfProductsSold>
+		<financingCompUsed>GE</financingCompUsed>
+		<numOfSalesReps>250</numOfSalesReps>
+		<nameOfAgreement>American Tools Agreement</nameOfAgreement>
+		<signedDttm>1997-01-01</signedDttm>
+		<signerName>ameri_tools</signerName>
+		<signerTitle>Dr</signerTitle>
+		<companyInformation>
+		  <businessPhone>4667145500</businessPhone>
+		  <city>Amador City</city>
+		  <contactName>Joshua Lopez</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>
+				
+	</partner>
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Francisco Gadgets</legalName>
+		<submittedDttm>2007-01-01</submittedDttm>
+		<typeOfProductsSold>Electronic Gadgets</typeOfProductsSold>
+		<financingCompUsed>GE</financingCompUsed>
+		<numOfSalesReps>250</numOfSalesReps>
+		<nameOfAgreement>Francisco Gadgets Agreement</nameOfAgreement>
+		<signedDttm>1997-01-01</signedDttm>
+		<signerName>Francisco</signerName>
+		<signerTitle>Dr</signerTitle>
+		<companyInformation>
+		  <businessPhone>3202409401</businessPhone>
+		  <city>Ione</city>
+		  <contactName>Daniel Lee</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Manhattan Midtown South</legalName>
+		<submittedDttm>2010-09-17</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>7598479771</businessPhone>
+		  <city>Jackson</city>
+		  <contactName>Alexander Gonzalez</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Queens South / Brooklyn East</legalName>
+		<submittedDttm>2010-09-17</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>3584099661</businessPhone>
+		  <city>Plymouth</city>
+		  <contactName>Anthony Harris</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Illinois North Suburban</legalName>
+		<submittedDttm>2010-09-17</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>2159141843</businessPhone>
+		  <city>Sutter Creek</city>
+		  <contactName>William Clark</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Connecticut East</legalName>
+		<submittedDttm>2010-09-17</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>3084544913</businessPhone>
+		  <city>Biggs</city>
+		  <contactName>Christopher Lewis</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Oakland Metro</legalName>
+		<submittedDttm>2008-12-26</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>3203151368</businessPhone>
+		  <city>Chico</city>
+		  <contactName>Matthew Robinson</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Silicon Valley North / East</legalName>
+		<submittedDttm>2008-12-26</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>8749974271</businessPhone>
+		  <city>Gridley</city>
+		  <contactName>Jayden Walker</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Bronx</legalName>
+		<submittedDttm>2009-01-01</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>3520566850</businessPhone>
+		  <city>Oroville</city>
+		  <contactName>Andrew Perez</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Manhattan Central</legalName>
+		<submittedDttm>2009-01-02</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>7195218396</businessPhone>
+		  <city>Paradise</city>
+		  <contactName>Joseph Hall</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Manhattan Uptown East</legalName>
+		<submittedDttm>2009-01-02</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>6346220558</businessPhone>
+		  <city>Angels Camp</city>
+		  <contactName>David Young</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>New York City</legalName>
+		<submittedDttm>2009-01-01</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>5768896196</businessPhone>
+		  <city>Colusa</city>
+		  <contactName>Noah Allen</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>New York City</legalName>
+		<submittedDttm>2009-01-01</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>8843043170</businessPhone>
+		  <city>Williams</city>
+		  <contactName>Aiden Sanchez</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Manhattan Midtown North</legalName>
+		<submittedDttm>2009-01-11</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>7276349946</businessPhone>
+		  <city>Pleasanton</city>
+		  <contactName>Jacob Jackson</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>West Inland Empire</legalName>
+		<submittedDttm>2009-01-02</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>7011683872</businessPhone>
+		  <city>San Leandro</city>
+		  <contactName>Michael Thompson</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>San Mateo / No Santa Clara</legalName>
+		<submittedDttm>2008-12-26</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>4629769770</businessPhone>
+		  <city>Union City</city>
+		  <contactName>Ethan White</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	<partner>
+		<singleAppFlag>false</singleAppFlag>
+		<legalName>Silicon Valley South / West</legalName>
+		<submittedDttm>2008-12-26</submittedDttm>
+		<typeOfProductsSold></typeOfProductsSold>
+		<financingCompUsed></financingCompUsed>
+		<numOfSalesReps></numOfSalesReps>
+		<nameOfAgreement></nameOfAgreement>
+		<signedDttm></signedDttm>
+		<signerName></signerName>
+		<signerTitle></signerTitle>
+		<companyInformation>
+		  <businessPhone>2605461694</businessPhone>
+		  <city>Antioch</city>
+		  <contactName>James Jackson</contactName>
+		  <state>CA</state>
+		</companyInformation>
+		<wfStatus class="workflowStatus"><statusKey>PARTNER_STATUS_APPROVED</statusKey></wfStatus>		
+	</partner>
+	
+	
+</list>

@@ -1,0 +1,43 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.Context;
+import com.thirdpillar.foundation.service.LookupService;
+import java.lang.*;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.*;
+import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+global com.thirdpillar.foundation.service.Context appContext;
+
+rule "set_blank_on_FP_Type_change"
+	when
+		changeModelEvent:CustomerBackend.ChangeModelEvent(property == "fpType",newValue != null)
+	then
+		CustomerBackend customerBackend = (CustomerBackend) changeModelEvent.getEntity();
+		AttributeChoice ac = (AttributeChoice) changeModelEvent.getNewValue();
+		if(ac != null && ac.getKey().equals("FP_TYPE_BANK")){
+				System.out.println("FP_TYPE_BANK  -------------- ");
+			customerBackend.setFundType(null);
+			customerBackend.setDomicile(null);
+				System.out.println("null set  -------------- ");
+		}else if(ac != null && ac.getKey().equals("FP_TYPE_FUND")){
+			customerBackend.setBankCharter(null);
+		}
+end
+
+rule "set_blank_on_bankCharter_change"
+	when
+		changeModelEvent:CustomerBackend.ChangeModelEvent(property == "bankCharter",newValue != null)
+	then
+		CustomerBackend customerBackend = (CustomerBackend) changeModelEvent.getEntity();
+		AttributeChoice ac = (AttributeChoice) changeModelEvent.getNewValue();
+		if(ac != null && ac.getKey().equals("BANK_CHARTER_FEDERAL")){
+			customerBackend.setStateBnkChrtr(null);
+		}
+		
+end

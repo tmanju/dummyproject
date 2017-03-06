@@ -1,0 +1,89 @@
+<canvas id="promotionPolicy" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="promotionPolicy.header" label="">
+		<field name="promotionPolicy.nameDer" label="Promotion Name" />
+		<field name="promotionPolicy.promotionType.value" label="Type" />
+		<field name="promotionPolicy.ouDer" label="OU" />
+		<field name="promotionPolicy.sbuDer" label="SBU" />
+		<field name="promotionPolicy.descriptionDer" label="Description" />
+	</panel>
+
+	<tabs>
+		<tab id="tab.promotionMain" label="Promotion">
+			<panel id="promotionPolicy.info" label="Promotion Summary">
+
+				<field name="promotionPolicy.refNumber" label="Number" />
+				<field id="promotionPolicyName" name="promotionPolicy.name" label="Name*" />
+				<field id="promotionPolicyType" name="promotionPolicy.promotionType" label="Type*" targetFields="promotionPolicy.calculation" />
+				<field name="promotionPolicy.notes" label="Notes" />
+				<field name="promotionPolicy.currency" label="Currency*" />
+				<field name="promotionPolicy.description" label="Description" />
+				<field name="promotionPolicy.afsPromotion" label="AFS Promotion" />
+			</panel>
+			<panel id="promotionPolicy.calculation" label="Calculation">
+
+        <section id="promotionPolicy.addEditFormula" label="" cols="1" label-alignment="top">
+					<field name="promotionPolicy.formula" label="Formula" />
+				</section>
+
+				<section id="promotionPolicy.addEditFees" label="">
+					<data-table name="promotionPolicy.waivedFees" row="feesReduction"
+						label="Fee Reduction">
+						<columns>
+							<column name="feesReduction.name" label="Fee Name" />
+						</columns>
+					</data-table>
+				</section>
+
+			</panel>
+		</tab>
+		<tab id="tab.constraints" label="Constraints">
+			<panel id="promotionPolicy.constraints" label="Constraints">
+
+				<field name="promotionPolicy.ou" label="OU" />
+				<field name="promotionPolicy.sbu" label="SBU" />
+				<field name="promotionPolicy.effectiveFromDate" label="Effective Date" />
+				<field name="promotionPolicy.effectiveToDate" label="Expiration Date" />
+				<field name="promotionPolicy.term.eligibleTerms" label="Eligible Terms" />
+				<field name="promotionPolicy.term.maximumTerm" label="Maximum Terms" />
+				<field name="promotionPolicy.maxFinanceAmt" label="Financed Amount Maximum" />
+				<field name="promotionPolicy.minFinanceAmt" label="Financed Amount Minimum" />
+				<field name="promotionPolicy.program" label="Programs" />
+				<field name="promotionPolicy.rateType" label="Rate Type*" />
+				<field name="promotionPolicy.facilityCategoryTypes" label="Facility Types" />
+				<field name="promotionPolicy.paymentFrequency" label="Payment Frequency"/>
+			</panel>
+			<data-table name="promotionPolicy.partners" row="partnerSpecs"
+				label="Partner Specific">
+				<columns>
+					<column name="partnerSpecs.legalName" label="Partner Name" />
+					<column name="partnerSpecs.refNumber" label="Partner Number" />
+				</columns>
+				<edit-canvas id="promotionPolicy.partnerDetails">
+					<panel id="promotionPolicy.partnerDetails" label="Add Partner">
+						<field name="partnerSpecs" label="Select Partner" type="SearchNSelect" />
+					</panel>
+				</edit-canvas>
+			</data-table>
+		</tab>
+		<tab id="tab.profiles" label="Profiles">
+			<data-table name="promotionPolicy.pricingPolicies" row="promotionPricingProfiles"
+				label="Pricing Profiles">
+				<columns>
+					<column name="promotionPricingProfiles.name" label="Profile Name" />
+					<column name="promotionPricingProfiles.effectiveFromDate"
+						label="Effective Date" />
+					<column name="promotionPricingProfiles.effectiveToDate"
+						label="Expiration Date" />
+				</columns>
+			</data-table>
+		</tab>
+	</tabs>
+	<beans>
+		<bean name="promotionPolicy"
+			type="com.thirdpillar.codify.loanpath.model.PromotionPolicy" />
+	</beans>
+</canvas>

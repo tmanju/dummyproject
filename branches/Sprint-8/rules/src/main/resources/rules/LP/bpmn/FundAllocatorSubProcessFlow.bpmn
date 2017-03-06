@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocator" />
+  <itemDefinition id="_fundAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_dealEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_fundAllocatorHistoryEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+
+  <itemDefinition id="_16-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocator" />
+  <itemDefinition id="_16-fundAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_16-dealEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_16-fundAllocatorHistoryEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+
+  <itemDefinition id="_19-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocator" />
+  <itemDefinition id="_19-fundAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_19-dealEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_19-fundAllocatorHistoryEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+
+  <itemDefinition id="_14-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocator" />
+  <itemDefinition id="_14-fundAllocatorsEmailListItem" structureRef="String" />
+  <itemDefinition id="_14-dealEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Deal" />
+  <itemDefinition id="_14-fundAllocatorHistoryEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+
+  <process processType="Private" isExecutable="true" id="FundAllocatorSubProcessFlow" name="FundAllocatorSubProcessFlow" tns:packageName="LP" tns:version="1" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="fundAllocatorsEmailList" itemSubjectRef="_fundAllocatorsEmailListItem"/>
+    <property id="dealEntity" itemSubjectRef="_dealEntityItem"/>
+    <property id="fundAllocatorHistoryEntity" itemSubjectRef="_fundAllocatorHistoryEntityItem"/>
+
+    <!-- nodes -->
+    <scriptTask id="_17" name="Fund Allocator Last update" scriptFormat="http://www.java.com/java" >
+      <script>FundAllocator fundAllocator=(FundAllocator)context.getVariable("contextEntity");
+//fundAllocator.changeStatus(fundAllocator, "FUNDING_PLACEMENT_STATUS_REQUESTED");
+
+//LastUpdate
+fundAllocator.setLastUpdate(new Date());</script>
+    </scriptTask>
+    <task id="_16" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_16_fundAllocatorHistoryEntityInput" name="fundAllocatorHistoryEntity" />
+        <dataInput id="_16_dealEntityInput" name="dealEntity" />
+        <dataInput id="_16_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_16_fundAllocatorHistoryEntityInput</dataInputRefs>
+          <dataInputRefs>_16_dealEntityInput</dataInputRefs>
+          <dataInputRefs>_16_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>fundAllocatorHistoryEntity</sourceRef>
+        <targetRef>_16_fundAllocatorHistoryEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>dealEntity</sourceRef>
+        <targetRef>_16_dealEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_16_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <startEvent id="_1" name="Start" />
+    <task id="_19" name="Requested - StatusUpdate" tns:taskName="StatusUpdate" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("updating status - Requested----------------------------&gt;");</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_19_entityInput" name="entity" />
+        <dataInput id="_19_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_19_entityInput</dataInputRefs>
+          <dataInputRefs>_19_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_19_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_19_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">FUNDING_PLACEMENT_STATUS_REQUESTED</from>
+          <to xsi:type="tFormalExpression">_19_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_18" name="Add requested amt to pending for FP" scriptFormat="http://www.java.com/java" >
+      <script>FundAllocator fundAllocator=(FundAllocator)context.getVariable("contextEntity");
+//set available cash
+fundAllocator.setAvailableCash(fundAllocator.getCapitalProvider().getAvailableCashDer());
+
+BigDecimal newAmtRequested= fundAllocator.getFundAmt();
+if(newAmtRequested==null )
+	newAmtRequested=BigDecimal.ZERO; 
+	
+CapitalProvider cp= fundAllocator.getCapitalProvider();
+BigDecimal pending= cp.getPending();
+if(pending==null )
+	pending=BigDecimal.ZERO; 
+cp.setPending(pending.add(newAmtRequested));
+
+</script>
+    </scriptTask>
+    <endEvent id="_13" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_14" name="Allocated Email Notification" tns:taskName="NotificationTask" >
+      <ioSpecification>
+        <dataInput id="_14_validateEntityInput" name="validateEntity" />
+        <dataInput id="_14_entityInput" name="entity" />
+        <dataInput id="_14_BodyInput" name="Body" />
+        <dataInput id="_14_SubjectInput" name="Subject" />
+        <dataInput id="_14_ToInput" name="To" />
+        <dataInput id="_14_Reply-ToInput" name="Reply-To" />
+        <dataInput id="_14_FromInput" name="From" />
+        <inputSet>
+          <dataInputRefs>_14_validateEntityInput</dataInputRefs>
+          <dataInputRefs>_14_entityInput</dataInputRefs>
+          <dataInputRefs>_14_BodyInput</dataInputRefs>
+          <dataInputRefs>_14_SubjectInput</dataInputRefs>
+          <dataInputRefs>_14_ToInput</dataInputRefs>
+          <dataInputRefs>_14_Reply-ToInput</dataInputRefs>
+          <dataInputRefs>_14_FromInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_14_validateEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>dealEntity</sourceRef>
+        <targetRef>_14_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">deal_status_email_body</from>
+          <to xsi:type="tFormalExpression">_14_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Funding Placement Details: #{contextEntity.wfStatus}</from>
+          <to xsi:type="tFormalExpression">_14_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{fundAllocatorsEmailList}</from>
+          <to xsi:type="tFormalExpression">_14_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_14_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_14_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_15" name="FundProvider Email Address" scriptFormat="http://www.java.com/java" >
+      <script>FundAllocator fundAllocator=(FundAllocator)context.getVariable("contextEntity");
+
+StringBuffer buffer = new StringBuffer();
+
+if(fundAllocator.getCapitalProvider() != null &amp;&amp; fundAllocator.getCapitalProvider().getCustomerAssociated() !=null  &amp;&amp; fundAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite() !=null &amp;&amp; fundAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails() !=null &amp;&amp; (fundAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails().getEmail() !=null || fundAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails().getEmail() !="")){
+	String email = fundAllocator.getCapitalProvider().getCustomerAssociated().getPrimarySite().getSiteDetails().getEmail();
+	buffer = buffer.append(email).append(";");
+}
+
+context.setVariable("dealEntity",fundAllocator.getDeal());
+//System.out.println("Email Addresses TO:"+buffer);
+context.setVariable("fundAllocatorsEmailList",buffer.toString());</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_19-_17" sourceRef="_19" targetRef="_17" />
+    <sequenceFlow id="_18-_16" sourceRef="_18" targetRef="_16" />
+    <sequenceFlow id="_1-_19" sourceRef="_1" targetRef="_19" />
+    <sequenceFlow id="_17-_18" sourceRef="_17" targetRef="_18" />
+    <sequenceFlow id="_14-_13" sourceRef="_14" targetRef="_13" />
+    <sequenceFlow id="_15-_14" sourceRef="_15" targetRef="_14" />
+    <sequenceFlow id="_16-_15" sourceRef="_16" targetRef="_15" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="FundAllocatorSubProcessFlow" >
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="19" y="176" width="246" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="18" y="336" width="248" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="118" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="19" y="96" width="247" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="17" y="256" width="250" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="118" y="578" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="20" y="497" width="244" height="49" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="16" y="416" width="252" height="49" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_19-_17" >
+        <di:waypoint x="142" y="120" />
+        <di:waypoint x="142" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_16" >
+        <di:waypoint x="142" y="280" />
+        <di:waypoint x="142" y="360" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_19" >
+        <di:waypoint x="142" y="40" />
+        <di:waypoint x="142" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_18" >
+        <di:waypoint x="142" y="200" />
+        <di:waypoint x="142" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_13" >
+        <di:waypoint x="142" y="521" />
+        <di:waypoint x="142" y="602" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_14" >
+        <di:waypoint x="142" y="440" />
+        <di:waypoint x="142" y="521" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_15" >
+        <di:waypoint x="142" y="360" />
+        <di:waypoint x="142" y="440" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

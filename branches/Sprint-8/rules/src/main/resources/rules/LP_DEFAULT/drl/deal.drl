@@ -1,0 +1,205 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.Context;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.RacsetEvaluation;
+import com.thirdpillar.codify.loanpath.model.RacEvaluation;
+import com.thirdpillar.codify.loanpath.model.RacsetDefinition;
+import com.thirdpillar.codify.loanpath.model.RacDefinition;
+import com.thirdpillar.codify.loanpath.model.FundAllocator;
+import com.thirdpillar.codify.loanpath.model.FacAllocator;
+import com.thirdpillar.codify.loanpath.model.Deal;
+import com.thirdpillar.codify.loanpath.util.Utility;
+import java.util.Date;
+import java.util.List;
+import com.thirdpillar.codify.loanpath.model.CapitalProvider;
+
+rule "reset_deal_status_on_fund_allocation_OnSave"
+  agenda-group "SAVE" 
+  when
+    deal:Deal(sumAllocatedPer != null && sumAllocatedPer.compareTo(new BigDecimal("100")) == 0)    
+  then
+  	logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+  	boolean allStatusSame= deal.allFundAssignmentStatusSame();
+  	String firstFundAssignmentStatusKey =deal.getFirstFundAssignmentStatusKey();
+  	if(allStatusSame){
+	  	if(firstFundAssignmentStatusKey.equals("FUNDING_PLACEMENT_STATUS_REQUESTED")){
+	  		changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_ALLOCATED");
+  		}
+  		else if(firstFundAssignmentStatusKey.equals("FUNDING_PLACEMENT_STATUS_FUNDED")){
+  			changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_FULLY_FUNDED");
+  			deal.setFundedDate(new Date());
+  		}
+  		else if(firstFundAssignmentStatusKey.equals("FUNDING_PLACEMENT_STATUS_REPLACED")){
+  			changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_ALLOCATED");
+  		}
+  	}
+  	else{
+  		for(FundAllocator fundAlloc : deal.getFundAllocators()){
+  			if(fundAlloc.getWfStatus().getStatusKey().equals("FUNDING_PLACEMENT_STATUS_FUNDED")  && !fundAlloc.getWfStatus().getStatusKey().equals("FUNDING_PLACEMENT_STATUS_REQUESTED")){
+  				changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_PARTIALLY_FUNDED");
+  				break;
+  			}
+  		}
+  	}
+  	
+  	logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());  	
+end
+
+
+rule "reset_status_on_fund_allocation_revert_OnSave"
+  agenda-group "SAVE" 
+  when
+    deal:Deal( sumAllocatedPer != null && sumAllocatedPer.compareTo(new BigDecimal("100")) != 0)    
+  then
+  	logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+  	if(deal.getWfStatus().getStatusKey().equals("FUNDING_REQUEST_STATUS_FULLY_FUNDED")){
+  		changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_PARTIALLY_FUNDED");
+  	}
+  	else if(deal.getWfStatus().getStatusKey().equals("FUNDING_REQUEST_STATUS_ALLOCATED")){
+  		changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_UNALLOCATED");
+  	}
+  	else{
+  		for(FundAllocator fundAlloc : deal.getFundAllocators()){
+  			if(fundAlloc.getWfStatus().getStatusKey().equals("FUNDING_PLACEMENT_STATUS_FUNDED")){
+  				changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_PARTIALLY_FUNDED");
+  			}
+  			else{
+  				changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_UNALLOCATED");
+  			}
+  		}
+  	}
+  	
+  	  	//auto populate deal fundallocators on facilityBE status Accepeted.
+  	if(deal !=null &&  deal.getFacilityBE() !=null && deal.getFacilityBE().getWfStatus() != null && deal.getFacilityBE().getWfStatus().getStatusKey().equals("DEALS_STATUS_ACCEPTED")){
+  		List<FundAllocator> fundAllocators = deal.getFundAllocators();
+		if(fundAllocators.size() == 0){
+			EntityService es = new EntityService();
+			for(FacAllocator facAlloc : deal.getFacilityBE().getFacAllocators()){
+				FundAllocator fundAlloc = (FundAllocator)es.createNew(FundAllocator.class);
+				fundAlloc.setCapitalProvider(facAlloc.getCapitalProvider());
+				fundAlloc.setDeal(deal);
+				es.saveOrUpdate(fundAlloc);
+				setFundPlacementSection(fundAlloc.getCapitalProvider(),fundAlloc);
+				//es.flush();
+			}
+		}
+  	}
+  	
+  	logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+  	
+end
+
+rule "SetFundAllocatorHistoryOnChangeOfCapitalProvider"
+	when
+		changeModelEvent:FundAllocator.ChangeModelEvent(property == "capitalProvider",newValue != null)
+	then
+		logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+		FundAllocator fundAlloc = (FundAllocator) changeModelEvent.getEntity();
+		if(fundAlloc.getCapitalProvider() !=null){
+			if(!fundAlloc.getWfStatus().getStatusKey().equals("FUNDING_PLACEMENT_STATUS_NEW")){
+				changeLogFundAllocator(fundAlloc);
+			}
+		}
+		logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+end
+
+rule "SetFundAllocatorHistoryOnChangeOfStatus"
+	when
+		changeModelEvent:FundAllocator.ChangeModelEvent(property == "wfStatus",newValue != null)
+	then
+		logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+		FundAllocator fundAlloc = (FundAllocator) changeModelEvent.getEntity();
+		if(fundAlloc.getWfStatus() !=null){
+			if(!fundAlloc.getWfStatus().getStatusKey().equals("FUNDING_PLACEMENT_STATUS_NEW")){
+				if(!fundAlloc.getCapitalProvider().equals(fundAlloc.getNewCP())){
+					changeLogFundAllocator(fundAlloc);
+				}
+			}
+		}
+		logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+end
+
+rule "initilize_status_on_new_deal_creation"
+  agenda-group "NEW" 
+  when
+    deal:Deal()    
+  then
+  	logDebug(drools, ">> Entering Rule: " + drools.getRule().getName());
+  	System.out.println("====================initilize_status_on_new_deal_creation================================");
+  	changeWfStatusDeal(deal,"FUNDING_REQUEST_STATUS_UNALLOCATED");
+  	logDebug(drools, ">> Ending Rule: " + drools.getRule().getName());
+  	
+end                   
+	
+  function void changeWfStatusDeal(Deal deal , String wfStatusKey)
+{
+	System.out.println("====================changeStatusDeal================================");
+  	WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", wfStatusKey);
+  	deal.setWfStatus(status);
+	deal.setStatusChngDt(new Date());
+ }
+ 
+  function void changeLogFundAllocator(FundAllocator fundAllocator)
+{
+		System.out.println("==============ChangeLogFundAllocator==========================");
+		List<FundAllocatorHistory> list = fundAllocator.getFundAllocatorsHistory();
+		if(list !=null){
+	  		EntityService es = new EntityService();
+		  	FundAllocatorHistory fundAllocatorsHistory = (FundAllocatorHistory)es.createNew(FundAllocatorHistory.class);
+		  	fundAllocatorsHistory.setAvailableCash(fundAllocator.getCapitalProvider().getAvailableCashDer());
+		  	fundAllocatorsHistory.setLastUpdate(fundAllocator.getLastUpdate());
+		  	fundAllocatorsHistory.setFundAmt(fundAllocator.getFundAmt());
+		  	fundAllocatorsHistory.setDrawRequestedDate(fundAllocator.getDrawRequestedDate());
+		  	fundAllocatorsHistory.setFundPer(fundAllocator.getFundPer());
+		  	fundAllocatorsHistory.setWfStatus(fundAllocator.getWfStatus());
+		  	fundAllocatorsHistory.setCapitalProvider(fundAllocator.getCapitalProvider());
+		  	fundAllocatorsHistory.setNewCP(fundAllocator.getNewCP());
+		  	fundAllocatorsHistory.setTemp(fundAllocator.getTemp());
+		  	fundAllocatorsHistory.setFundAllocator(fundAllocator);
+		  	list.add(fundAllocatorsHistory);
+	  	}
+ }
+
+ function void setFundPlacementSection(CapitalProvider cp,FundAllocator fundAllocator){
+ 		if(cp != null && cp.getCustomerAssociated() !=null && cp.getCustomerAssociated().getLegalName() !=null){
+			if(cp.getCustomerAssociated().getIsInxCp()){
+				AttributeChoice temp =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","FUNDING_PLACEMENT_TEMP_YES");
+				fundAllocator.setTemp(temp);
+			}
+			else{
+				AttributeChoice temp =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","FUNDING_PLACEMENT_TEMP_NO");
+				fundAllocator.setTemp(temp);
+			}
+			
+			if(fundAllocator.getDeal() !=null && fundAllocator.getDeal().getFacilityBE() != null && fundAllocator.getDeal().getFacilityBE().getFacAllocators() !=null){
+				List<FacAllocator> facAllocators = fundAllocator.getDeal().getFacilityBE().getFacAllocators();
+				for(FacAllocator aloc : facAllocators){
+					if(cp.getCustomerAssociated().getLegalName().equals(aloc.getCapitalProvider().getCustomerAssociated().getLegalName())){
+						if(aloc.getFundPer() != null){
+							fundAllocator.setFundPer(aloc.getFundPer());
+						}else{	
+							fundAllocator.setFundPer(null);
+						}
+					}
+				}
+			}
+		}else{		
+			fundAllocator.setFundPer(null);
+		}
+		
+		if(cp != null && cp.getCustomerAssociated() !=null && cp.getCustomerAssociated().getLegalName() !=null && fundAllocator.getFundPer() != null){
+			BigDecimal percentage = (BigDecimal) fundAllocator.getFundPer();
+			System.out.println("#####0000009999reset_fundAmt_on_fundPerChange   "+ percentage);
+			BigDecimal iniFundingReq = fundAllocator.getDeal().getInitialFundingReq() == null? BigDecimal.ZERO: fundAllocator.getDeal().getInitialFundingReq().getAmount();
+			if (iniFundingReq != null
+					&& (iniFundingReq.compareTo(BigDecimal.ZERO) > 0)&& percentage!=null) {
+					BigDecimal per=percentage(iniFundingReq, percentage);
+					fundAllocator.setFundAmt(per);
+				System.out.print("^^^^^^^^^^^^^^^^^^^^ val=   iniFundingReq "+iniFundingReq+"  percentage"+per);
+			}
+		}
+ }

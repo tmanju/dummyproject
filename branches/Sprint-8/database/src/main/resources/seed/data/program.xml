@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<program>
+		<advanceMonies />
+		<allowForPermtLeases>false</allowForPermtLeases>
+		<allowableAssetClasses />
+		<allowableAssetClassesRef />
+		<allowableConditions />
+		<allowableManufacturers />
+		<allowableManufacturersRef />
+		<approval>
+			<approvalLevels>
+				<approvalLevel>
+					<approval reference="../../.." />
+					<approverList>
+						<approver>
+							<approvalLevel reference="../../.." />
+							<decision>
+								<key>APPROVAL_DECISION_APPROVED</key>
+								<value>Approved</value>
+							</decision>
+							<requiredFlag>false</requiredFlag>
+							<user>
+								<externalIdentifier>demouser1@thirdpillar.com
+								</externalIdentifier>
+								<username>demouser1</username>
+							</user>
+						</approver>
+					</approverList>
+					<commentGroup>
+						<comments />
+					</commentGroup>
+					<decision>
+						<key>APPROVAL_DECISION_APPROVED</key>
+						<value>Approved</value>
+					</decision>
+					<minRespReqPct>100</minRespReqPct>
+					<name>Level1</name>
+				</approvalLevel>
+			</approvalLevels>
+			<decision>
+				<key>APPROVAL_DECISION_APPROVED</key>
+				<value>Approved</value>
+			</decision>
+			<inactive>false</inactive>
+			<refNumber>100040</refNumber>
+		</approval>
+		<assetSubclass />
+		<autoApprovalFICOScore>600</autoApprovalFICOScore>
+		<autoApprovalMinYears>5</autoApprovalMinYears>
+		<autoApproveFlag>true</autoApproveFlag>
+		<bestEffortLanguage>false</bestEffortLanguage>
+		<businessSegment />
+		<commentGroup>
+			<comments />
+		</commentGroup>
+		<documentGroup>
+			<allDocuments />
+			<documentPackages />
+			<generatedDocuments />
+			<uploadedDocuments />
+		</documentGroup>
+		<earlyTerminations>false</earlyTerminations>
+		<eligforEvergreen>false</eligforEvergreen>
+		<endDttm>2015-09-15T00:00:00.000-07:00</endDttm>
+		<excludedPrgPromotions />
+		<facilityCategory />
+		<facilityType />
+		<facilityTypeCategories />
+		<fixedExtension>false</fixedExtension>
+		<fmvCaps>false</fmvCaps>
+		<forcedInsuranceAllwdFlag>false</forcedInsuranceAllwdFlag>
+		<guarantees />
+		<idCFlag>false</idCFlag>
+		<incompatibleBlockCodes />
+		<lateChargeExempt>false</lateChargeExempt>
+		<manufacturers />
+		<maxContractDec>false</maxContractDec>
+		<maxContractInc>false</maxContractInc>
+		<mwdForgiveness>false</mwdForgiveness>
+		<negotiatedRenewals>false</negotiatedRenewals>
+		<noticeMethods />
+		<payCodesForAutoAssgn />
+		<paymentFrequency />
+		<physicalDamageInsurance>false</physicalDamageInsurance>
+		<prgAcqFee>
+			<acqFeeTiers />
+			<eligibilityFlag>false</eligibilityFlag>
+			<overrideAllowedFlag>false</overrideAllowedFlag>
+			<retroactiveIndicatorFlag>false</retroactiveIndicatorFlag>
+		</prgAcqFee>
+		<prgAppEntrySLAs />
+		<prgAssetInfos />
+		<prgCreditDecisionSLAs />
+		<prgCreditRecourses />
+		<prgEarlyTerminations />
+		<prgFaxFunding>
+			<followupOriginalsFlag>false</followupOriginalsFlag>
+		</prgFaxFunding>
+		<prgFees />
+		<prgLetters />
+		<prgPartners />
+		<prgPricingIndices />
+		<prgPricingProfiles />
+		<prgReports />
+		<prgSameDayFundingSLAs />
+		<prgSubsidies />
+		<prgUccs />
+		<prgValidities />
+		<priSrcRelFlag>false</priSrcRelFlag>
+		<pricingProfiles />
+		<privateLblAlwdFlag>false</privateLblAlwdFlag>
+		<processInstanceId>28500</processInstanceId>
+		<programCategory>
+			<key>PROGRAM_CATEGORY_MASTER</key>
+			<value>Master</value>
+		</programCategory>
+		<programName>AZZ groups</programName>
+		<programType>
+			<key>PROGRAM_TYPE_ETPA</key>
+			<value>ETPA</value>
+		</programType>
+		<rateParticipationEligible>false</rateParticipationEligible>
+		<refNumber>100040</refNumber>
+		<renewalAllowed>false</renewalAllowed>
+		<renewalCaps>false</renewalCaps>
+		<residualPolicies />
+		<sessionId>574</sessionId>
+		<startDttm>2015-09-01T00:00:00.000-07:00</startDttm>
+		<stipLossTable>false</stipLossTable>
+		<syndicationEligibleFlag>false</syndicationEligibleFlag>
+		<taxOpnLtrReq>false</taxOpnLtrReq>
+		<telVerificationReqFlag>false</telVerificationReqFlag>
+		<uccRequiredFlag>false</uccRequiredFlag>
+		<useStdTmplFlag>false</useStdTmplFlag>
+		<utilizeLesseeRiskRtngFlag>false</utilizeLesseeRiskRtngFlag>
+		<validityOpinionRqrdFlg>false</validityOpinionRqrdFlg>
+		<wfStatus class="workflowStatus">
+			<statusKey>PARTNER_STATUS_APPROVED</statusKey>
+			<value>Approved</value>
+		</wfStatus>
+	</program>
+	<program>
+		<advanceMonies />
+		<allowForPermtLeases>false</allowForPermtLeases>
+		<allowableAssetClasses />
+		<allowableAssetClassesRef />
+		<allowableConditions />
+		<allowableManufacturers />
+		<allowableManufacturersRef />
+		<approval>
+			<approvalLevels>
+				<approvalLevel>
+					<approval reference="../../.." />
+					<approverList>
+						<approver>
+							<approvalLevel reference="../../.." />
+							<decision>
+								<key>APPROVAL_DECISION_APPROVED</key>
+								<value>Approved</value>
+							</decision>
+							<requiredFlag>false</requiredFlag>
+							<user>
+								<externalIdentifier>demouser1@thirdpillar.com
+								</externalIdentifier>
+								<username>demouser1</username>
+							</user>
+						</approver>
+					</approverList>
+					<commentGroup>
+						<comments />
+					</commentGroup>
+					<decision>
+						<key>APPROVAL_DECISION_APPROVED</key>
+						<value>Approved</value>
+					</decision>
+					<minRespReqPct>100</minRespReqPct>
+					<name>Level1</name>
+				</approvalLevel>
+			</approvalLevels>
+			<decision>
+				<key>APPROVAL_DECISION_APPROVED</key>
+				<value>Approved</value>
+			</decision>
+			<inactive>false</inactive>
+			<refNumber>100020</refNumber>
+		</approval>
+		<assetSubclass />
+		<autoApprovalFICOScore>600</autoApprovalFICOScore>
+		<autoApprovalMinYears>5</autoApprovalMinYears>
+		<autoApproveFlag>true</autoApproveFlag>
+		<bestEffortLanguage>false</bestEffortLanguage>
+		<businessSegment />
+		<commentGroup>
+			<comments />
+		</commentGroup>
+		<documentGroup>
+			<allDocuments />
+			<documentPackages />
+			<generatedDocuments />
+			<uploadedDocuments />
+		</documentGroup>
+		<earlyTerminations>false</earlyTerminations>
+		<eligforEvergreen>false</eligforEvergreen>
+		<endDttm>2015-08-31T00:00:00.000-07:00</endDttm>
+		<excludedPrgPromotions />
+		<facilityCategory />
+		<facilityType />
+		<facilityTypeCategories />
+		<fixedExtension>false</fixedExtension>
+		<fmvCaps>false</fmvCaps>
+		<forcedInsuranceAllwdFlag>false</forcedInsuranceAllwdFlag>
+		<guarantees />
+		<idCFlag>false</idCFlag>
+		<incompatibleBlockCodes />
+		<lateChargeExempt>false</lateChargeExempt>
+		<manufacturers />
+		<maxContractDec>false</maxContractDec>
+		<maxContractInc>false</maxContractInc>
+		<mwdForgiveness>false</mwdForgiveness>
+		<negotiatedRenewals>false</negotiatedRenewals>
+		<noticeMethods />
+		<payCodesForAutoAssgn />
+		<paymentFrequency />
+		<physicalDamageInsurance>false</physicalDamageInsurance>
+		<prgAcqFee>
+			<acqFeeTiers />
+			<eligibilityFlag>false</eligibilityFlag>
+			<overrideAllowedFlag>false</overrideAllowedFlag>
+			<retroactiveIndicatorFlag>false</retroactiveIndicatorFlag>
+		</prgAcqFee>
+		<prgAppEntrySLAs />
+		<prgAssetInfos />
+		<prgCreditDecisionSLAs />
+		<prgCreditRecourses />
+		<prgEarlyTerminations />
+		<prgFaxFunding>
+			<followupOriginalsFlag>false</followupOriginalsFlag>
+		</prgFaxFunding>
+		<prgFees />
+		<prgLetters />
+		<prgPartners />
+		<prgPricingIndices />
+		<prgPricingProfiles />
+		<prgReports />
+		<prgSameDayFundingSLAs />
+		<prgSubsidies />
+		<prgUccs />
+		<prgValidities />
+		<priSrcRelFlag>false</priSrcRelFlag>
+		<pricingProfiles />
+		<privateLblAlwdFlag>false</privateLblAlwdFlag>
+		<processInstanceId>25009</processInstanceId>
+		<programCategory>
+			<key>PROGRAM_CATEGORY_MASTER</key>
+			<value>Master</value>
+		</programCategory>
+		<programName>ABC groups</programName>
+		<programType>
+			<key>PROGRAM_TYPE_BUY_DESK</key>
+			<value>Buy Desk</value>
+		</programType>
+		<rateParticipationEligible>false</rateParticipationEligible>
+		<refNumber>100021</refNumber>
+		<renewalAllowed>false</renewalAllowed>
+		<renewalCaps>false</renewalCaps>
+		<residualPolicies />
+		<sessionId>333</sessionId>
+		<startDttm>2015-08-28T00:00:00.000-07:00</startDttm>
+		<stipLossTable>false</stipLossTable>
+		<syndicationEligibleFlag>false</syndicationEligibleFlag>
+		<taxOpnLtrReq>false</taxOpnLtrReq>
+		<telVerificationReqFlag>false</telVerificationReqFlag>
+		<uccRequiredFlag>false</uccRequiredFlag>
+		<useStdTmplFlag>false</useStdTmplFlag>
+		<utilizeLesseeRiskRtngFlag>false</utilizeLesseeRiskRtngFlag>
+		<validityOpinionRqrdFlg>false</validityOpinionRqrdFlg>
+		<wfStatus class="workflowStatus">
+			<statusKey>PARTNER_STATUS_APPROVED</statusKey>
+			<value>Approved</value>
+		</wfStatus>
+	</program>
+</list>

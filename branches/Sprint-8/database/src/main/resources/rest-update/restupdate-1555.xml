@@ -1,0 +1,36 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+	<attribute>
+		<key>PAYDEX_TREND</key>
+		<name>Paydex Trend</name>
+		<description />
+		<external>false</external>
+       <attributeChoices>
+			<attributeChoice>
+				<value>Flat</value>
+				<key>PAYDEX_TREND_FLAT</key>
+				<attribute reference="../../.." />
+				<sequence>1</sequence>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Increasing</value>
+				<key>PAYDEX_TREND_INCREASING</key>
+				<attribute reference="../../.." />
+				<sequence>2</sequence>
+			</attributeChoice>
+			<attributeChoice>
+				<value>Decreasing</value>
+				<key>PAYDEX_TREND_DECREASING</key>
+				<attribute reference="../../.." />
+				<sequence>3</sequence>
+			</attributeChoice>
+			<attributeChoice>
+				<value>No Trend</value>
+				<key>PAYDEX_TREND_NO_TREND</key>
+				<attribute reference="../../.." />
+				<sequence>4</sequence>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
+</list>
+</mod:sr.addEntityRequest>

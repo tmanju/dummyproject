@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<permissions xmlns="http://www.thirdpillar.com/codify/permissions">
+	
+	<permission  name="ROLE_CATEGORY_CREDIT_ANALYST" default-package="com.thirdpillar.codify.loanpath.model">
+		<default>
+			<default>true</default>
+		</default>
+		<entity name="Request">
+			<default>true</default>
+			<create>true</create>
+			<read>true</read>
+			<update>true</update>
+			<fields>
+				<field name="refNumber" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES')) </update>
+				</field>
+				<field name="applicationName" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>
+				<field name="applicationReceivedDttm" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>
+				<field name="expectedCloseDttm" > 
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>
+				<!--  <field name="regbDttm" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field> -->
+				<field name="wfStatus" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>				
+				<field name="salesforceAppId" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>
+				<field name="creditAnalyst" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>
+				<field name="recommendDecline" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>
+				<field name="appDescription" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>			
+			
+				<field name="relationship" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>	
+			
+				<field name="sortedRelationshipParties" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>	
+			
+			
+				<field name="allFacilities" >
+					<create>false</create>
+					<read>true</read>
+					<update>!((isdef root_allFacilities) &amp;&amp; (root_allFacilities != null) &amp;&amp;
+							  ((thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_PENDING')) || 
+  							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+ 							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_SUBMITTED_TO_CREDIT')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) || 
+ 							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_ANALYSIS')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+ 							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_NOIA')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_PENDING')) ||
+  							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_NOIA')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+  							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_DECISION')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+  							  (thiz.inWfStatus('REQUEST_STATUS_APPROVED')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_DECLINED')) ||
+  							  (thiz.inWfStatus('REQUEST_STATUS_DECLINED')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_DECLINED')) ||
+ 							  (thiz.inWfStatus('REQUEST_STATUS_WITHDRAWN')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+ 							  (thiz.inWfStatus('REQUEST_STATUS_EXPIRED')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_EXPIRED')) ||
+  							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_APPEAL_SALES')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_PENDING')) ||
+							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_APPEAL_SALES')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_APPEAL_SUBMITTED_TO_CREDIT')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_APPEAL_ANALYSIS')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')) ||
+							  (thiz.inWfStatus('REQUEST_STATUS_PENDING_APPEAL_DECISION')   &amp;&amp; root_allFacilities.inWfStatus('FACILITY_STATUS_WITHDRAWN')))
+							 )
+				</update>	
+				</field>	
+				
+				
+				<field name="allFacilities.facilityRelParties" >
+					<create>true</create>
+				</field>
+				<field name="allFacilities.pricingOption.assets" >
+					<create>true</create>
+				</field>
+				<field name="allFacilities.commentGroup.comments" >
+					<create>true</create>
+				</field> 
+			
+				<field name="noiaReason" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>	
+				<field name="noiaLogs" >
+					<create>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</create>
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+					
+				</field>	
+				<field name="commentGroup.comments" >
+					<create>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</create>				
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				
+				</field>		
+				
+				<field name="compliances">
+					<create>true</create>
+				</field>
+				<field name="exposure" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>	
+				<field name="allRACSetEvaluations">
+					<create>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+								'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+								'REQUEST_STATUS_EXPIRED',
+								'REQUEST_STATUS_PENDING_APPEAL_SALES'))</create>
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+					
+				</field>
+				
+				
+				<field name="allRACSetEvaluations.racEvaluations">
+					<create>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</create>	
+				</field>
+				
+				<field name="allRACSetEvaluations.commentGroup.comments">
+					<create>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</create>	
+				</field>
+				
+				<field name="coaFacilities">
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>
+				
+				<field name="coaFacilities.coasetDefinition.override">
+					<read>true</read>
+					<update>false</update>
+				</field>
+				
+				<field name="coaCommentGroup">
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+				</field>			
+				<field name="approval">
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="recommendedApprCategory" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="racExceptionAuth" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="finalDecision">
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="grossRevConsider" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="loanToGross" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="loanToValueCre" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="cashFlowDebtService" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="cashFlowMargin" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				<field name="craRevenue" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				
+				<field name="craRevenueAmt" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				
+				<field name="lowestCBRScore" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				
+				
+				<field name="decisionFacilities" >
+					<read>true</read>
+					<update>!(thiz.inWfStatus('REQUEST_STATUS_PENDING_SALES','REQUEST_STATUS_PENDING_NOIA',
+													'REQUEST_STATUS_DECLINED','REQUEST_STATUS_WITHDRAWN',
+													'REQUEST_STATUS_EXPIRED',
+													'REQUEST_STATUS_PENDING_APPEAL_SALES'))</update>
+
+				</field>
+				
+			</fields>
+		</entity>
+		<entity name="User">
+			<default>false</default>
+		</entity>
+		
+		<entity name="Team">
+			<default>false</default>
+		</entity>		
+		
+		<entity name="Role">
+			<default>false</default>
+		</entity>
+		
+		<entity name="DocumentCatalogItem">
+			<default>false</default>
+		</entity>
+	</permission>
+	
+</permissions>

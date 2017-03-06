@@ -1,0 +1,71 @@
+<map:constraint-mappings
+	xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd"
+	xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="FeePolicy" ignore-annotations="false">
+
+		<map:class>
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.name.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.name!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.feeType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.feeType!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.OuSbu.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.ou!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.OuSbu.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.sbu!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.currency.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.currency!=null]]></map:element>
+			</map:constraint>
+			
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.formula.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.formula!=null]]></map:element>
+			</map:constraint> -->
+			
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.basisPct.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[return (o.calcRateType!=null) && (o.calcRateType.key == 'CALCULATION_RATE_TYPE_PERCENT');]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.basisPct!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.percent.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[return (o.calcRateType!=null) && (o.calcRateType.key == 'CALCULATION_RATE_TYPE_PERCENT');]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.percent!=null]]></map:element>
+			</map:constraint> -->
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.effectiveFromDate.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.effectiveFromDate!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.effectiveToDate.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.effectiveToDate!=null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{feePolicy.defaultAmtOrdefaultPct.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.defaultAmt!=null || o.defaultPct!=null ]]></map:element>
+			</map:constraint>
+			
+				
+		</map:class>
+		
+		
+	</map:bean>
+</map:constraint-mappings>

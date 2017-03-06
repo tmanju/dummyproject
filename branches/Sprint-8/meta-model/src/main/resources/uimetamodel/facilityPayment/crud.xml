@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="facilityPayment" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<panel id="facilityPayment.information" label="Payment Information">
+		<field name="facilityPayment.refNumber"  label="Payment Number"/>
+		<field name="facilityPayment.wfStatus" label="Payment Status"/>
+		<field name="facilityPayment.facilityBE" label="Facility" targetFields="facilityPayment.selectedFacilityPayment,facilityPayment.facilityPaymentPlacements"/>
+		<field name="facilityPayment.payment" label="Payment" targetFields="facilityPayment.selectedFacilityPayment,facilityPayment.facilityPaymentPlacements"/>
+		<field name="facilityPayment.metaInfo.createdAt" label="Payment Date"/>		
+		<!-- <field name="facilityPayment.servicingIdentifier"  label="Servicing Identifier"/> -->
+	</panel>
+	<data-table name="facilityPayment.selectedFacilityPayment" row="facilityPayment" label="Facility Information">
+		<columns>
+			<column name="facilityPayment.facilityBE.customer.refNumber" label="Account Number" />
+			<column name="facilityPayment.facilityBE.customer.legalName" label="Client Name" />
+			<column name="facilityPayment.facilityBE.productType" label="Product Type"/>
+			<column name="facilityPayment.facilityBE.creditFacAmt" label="Credit Facility"/>
+			<column name="facilityPayment.facilityBE.maturityDt" label="Maturity Date"/>
+			<column name="facilityPayment.facilityBE.wfStatus" label="Facility Status"/>
+		</columns>
+	</data-table>
+	
+		<data-table name="facilityPayment.facilityPaymentPlacements" row="facilityPaymentPlacement"	label="Payment Placement">
+			<columns>
+				<column name="facilityPaymentPlacement.facAllocator.dbid" label="Db Id"/>
+				<column name="facilityPaymentPlacement.facAllocator.capitalProvider" label="Capital Provider" />
+				<column name="facilityPaymentPlacement.facAllocator.fundPer" footer-name="facilityPayment.totalDisbursedPercent" label="% Allocation"/>
+				<column name="facilityPaymentPlacement.disbursedAmt" label="Amount disbursed"/>
+				<column name="facilityPaymentPlacement.wfStatus" label="Status"/>
+			</columns>
+			<edit-canvas>
+				<panel id="facilityPaymentPlacement.fundingProviderInformation">
+					<field name="facilityPaymentPlacement.facAllocator.capitalProvider" label="Capital Provider"/>
+					<field name="facilityPaymentPlacement.facAllocator.fundPer" label="% Allocation"/>
+					<field name="facilityPaymentPlacement.disbursedAmt" label="Amount disbursed"/>
+					<field name="facilityPaymentPlacement.wfStatus" label="Status"/>
+				</panel>
+				<!-- <commands>
+					<command id="settlePaymentPlacement" name="Disburse" action="settlePaymentPlacement" type="businessOp"/>
+				</commands> -->
+			</edit-canvas>
+		</data-table>
+		<commands>
+			<command id="settlePaymentPlacement" name="Submit" action="settlePaymentPlacement" type="businessOp"/>
+		</commands>
+	<beans>
+		<bean name="facilityPayment" type="com.thirdpillar.codify.loanpath.model.FacilityPayment" />
+	</beans>
+</canvas>

@@ -1,0 +1,159 @@
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<list>
+<!-- Application Level Scoring Attributes-->
+	<ScrAttributeSeed>
+		<name>Credit Score</name>
+		<description>Credit Score of the customer</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<key>APPLICTION_ATTR_CREDIT_SCORE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>
+		<ognl>testOgnlcreditscore</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+	<ScrAttributeSeed>
+		<name>Requested Amount</name>
+		<description>Requested Amount</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<key>APPLICTION_ATTR_REQUESTED_AMOUNT</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>
+		<ognl>testOgnlrequestedamount</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+	<!-- <ScrAttributeSeed>
+		<name>Credit Score Available</name>
+		<description>Credit Score Available</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_APPLICATION</key>
+		</applicability>
+		<key>APPLICTION_ATTR_CREDIT_SCORE_AVAILABLE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>
+		<ognl>testOgnlcreditscoreavailable</ognl>
+	</ScrAttributeSeed> -->
+<!-- Facility Level Scoring Attributes-->
+	<ScrAttributeSeed>
+		<name>Requested Amount</name>
+		<description>Amount requested by the customer</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_FACILITY</key>
+		</applicability>
+		<key>FAC_ATTR_REQUESTED_AMOUNT</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>requestedAmount</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+	<ScrAttributeSeed>
+		<name>Credit Score</name>
+		<description>Credit Score of the customer</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_FACILITY</key>
+		</applicability>
+		<key>FAC_ATTR_CREDIT_SCORE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>creditScore</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+<!-- Individual Party Level Scoring Attributes-->
+	<ScrAttributeSeed>
+		<name>Age of the Party</name>
+		<description>Age of the Party</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_INDIVIDUAL</key>
+		</applicability>
+		<key>INDVIDUAL_ATTR_AGE_OF_THE_PARTY</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>ageOfTheParty</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+	<ScrAttributeSeed>
+		<name>Date of birth</name>
+		<description>Date of birth of the customer</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_INDIVIDUAL</key>
+		</applicability>
+		<key>INDVIDUAL_ATTR_DATE_OF_BIRTH</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>dateOfBirth</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+	<ScrAttributeSeed>
+		<name>Credit Score</name>
+		<description>Credit Score of the customer</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_INDIVIDUAL</key>
+		</applicability>
+		<key>INDVIDUAL_ATTR_CREDIT_SCORE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>creditScore</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+<!-- NON Individual Party Level Scoring Attributes-->	
+	<ScrAttributeSeed>
+		<name>Years in Business</name>
+		<description>Years in business.</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_NONINDIVIDUAL</key>
+		</applicability>
+		<key>NONINDVIDUAL_ATTR_YEAR_IN_BUSINESS</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>yearInBusiness</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>		
+	<ScrAttributeSeed>
+		<name>Business Start Date</name>
+		<description>Start date of the business</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_NONINDIVIDUAL</key>
+		</applicability>
+		<key>NONINDVIDUAL_ATTR_BUSINESS_START_DATE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>businessStartDate</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>
+	<ScrAttributeSeed>
+		<name>Credit Score</name>
+		<description>Credit score of the customer</description>
+		<applicability>
+			<key>APPLICABILITY_TYPE_NONINDIVIDUAL</key>
+		</applicability>
+		<key>NONINDVIDUAL_ATTR_CREDIT_SCORE</key>
+		<display>
+			<key>YES_OR_NO_YES</key>
+		</display>		
+		<ognl>creditScore</ognl>
+		<effectiveFrom>2015-09-24T00:00:00.000-08:00</effectiveFrom>
+		<effectiveTo>2015-10-30T00:00:00.000-08:00</effectiveTo>
+	</ScrAttributeSeed>	
+</list>

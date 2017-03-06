@@ -1,0 +1,9 @@
+#created on: Oct 3, 2011
+package BOFA
+
+import com.thirdpillar.foundation.rules.RuleLogger;
+import com.thirdpillar.foundation.service.Context;
+
+global RuleLogger logger
+global Context appContext
+global java.lang.String actorId

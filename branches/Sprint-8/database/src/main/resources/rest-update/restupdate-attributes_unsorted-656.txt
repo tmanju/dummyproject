@@ -1,0 +1,17 @@
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model"> 
+ <list>
+<attribute>
+   <key>DOCUMENT_TYPE</key>
+   <name>Document Type</name>
+   <description/>
+   <attributeChoices>
+    <attributeChoice>
+		<value>Loan and Security Agreement</value>
+		<key>DOCUMENT_TYPE_LOAN_SECURITY_AGREEMENT</key>
+		<attribute reference="../../.." />
+		<group>DOCUMENT_CATEGORY_CREDIT_WORKING_FILE</group>
+    </attributeChoice>
+	</attributeChoices>       
+   </attribute>
+ </list>
+</mod:sr.upsertEntityRequest>

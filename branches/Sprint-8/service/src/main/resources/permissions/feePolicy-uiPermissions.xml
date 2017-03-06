@@ -1,0 +1,22 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="feePolicy">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="feePolicy_crud">
+		
+		<!-- <tns:component id="feePolicy_formula">
+			<tns:default>
+				<![CDATA[
+					return (root.id != null) && (root.calcRateType != null) && (root.calcRateType.key == 'CALCULATION_RATE_TYPE_FIXED');
+				]]>
+			</tns:default>
+		</tns:component> -->
+		
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+			
+	</tns:canvas>
+</tns:ui-permissions>

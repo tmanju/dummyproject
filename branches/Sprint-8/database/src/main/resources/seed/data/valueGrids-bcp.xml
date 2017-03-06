@@ -1,0 +1,175 @@
+<list>
+	<valueGrid>
+		<name>BCPStandardRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,20001],[20001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,1001],[1001,5001],[5001,10001],[10001,20001],[20001,null]]
+            }            
+        ],
+        "Values" : [8.75,8.75,8.75,8.75,8.75,
+						8.75,8.75,8.75,8.75,8.75,
+						8.75,8.75,8.75,8.75,8.75,
+						8.75,8.75,8.75,8.75,8.75,
+						11.75,11.75,11.75,11.75,11.75,
+						11.75,11.75,11.75,11.75,11.75,
+						11.75,11.75,11.75,11.75,11.75,
+						11.75,11.75,11.75,11.75,11.75
+					]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BCPCashSecuredRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,20001],[20001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,1001],[1001,5001],[5001,10001],[10001,20001],[20001,null]]
+            }            
+        ],
+        "Values" : [8.75,8.75,8.75,8.75,8.75,
+						8.75,8.75,8.75,8.75,8.75,
+						8.75,8.75,8.75,8.75,8.75,
+						8.75,8.75,8.75,8.75,8.75,
+						11.75,11.75,11.75,11.75,11.75,
+						11.75,11.75,11.75,11.75,11.75,
+						11.75,11.75,11.75,11.75,11.75,
+						11.75,11.75,11.75,11.75,11.75
+					]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>BCPNFPRate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,20001],[20001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,1001],[1001,5001],[5001,10001],[10001,20001],[20001,null]]
+            }                
+        ],
+        "Values" : [8.75,8.75,8.75,8.75,8.75,
+						8.75,8.75,8.75,8.75,8.75,
+						null,null,null,null,null,
+						null,null,null,null,null,
+						11.75,11.75,11.75,11.75,11.75,
+						11.75,11.75,11.75,11.75,11.75,
+						null,null,null,null,null,
+						null,null,null,null,null
+					]         
+    }]]></grid>
+	</valueGrid>
+	
+	<valueGrid>
+		<name>BCPSBARate</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "BOOLEAN",
+                "Name" : "Relationship",
+                "VariableName" : "Relationship",
+                "Values" : [true,false]
+            },
+            {
+            	"DataType" : "INT",
+                "Name" : "FICO Score",
+                "VariableName" : "FICOScore",
+                "Values" : [[0,751],[751,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Facility Approved Amount",
+                "VariableName" : "TotalFacilityApprovedAmount",
+                "Values" : [[0,20001],[20001,null]]
+            },
+            {
+            	"DataType" : "AMOUNT",
+                "Name" : "Current Deposit Balance",
+                "VariableName" : "CurrentDepositBalance",
+                "Values" : [[0,1001],[1001,5001],[5001,10001],[10001,20001],[20001,null]]
+            }                
+        ],
+        "Values" : [null,null,null,null,null,
+						null,null,null,null,null,
+						null,null,null,null,null,
+						null,null,null,null,null,
+						null,null,null,null,null,
+						null,null,null,null,null,
+						null,null,null,null,null,
+						null,null,null,null,null
+					]         
+    }]]></grid>
+	</valueGrid>		
+</list>

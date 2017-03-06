@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="notificationConfiguration" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	<data-table name="results" row="notificationConfiguration" 
+		sortOrder="ascending" label="Notification Configuration Search Results">
+		<columns>
+			<column name="notificationConfiguration.notificationName" label="Name" />
+		
+			
+		</columns>
+	</data-table>
+	
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.NotificationConfiguration" />
+	</beans>
+</canvas>

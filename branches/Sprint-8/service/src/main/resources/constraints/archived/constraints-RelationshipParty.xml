@@ -1,0 +1,90 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+	<map:bean class="RelationshipParty" ignore-annotations="false">
+		<map:class>
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{relationship.allRelationshipParties.customer.name.and.partyrole.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[ 
+									boolean result=true;				
+									if( o.customer == null || o.partyRole == null ) {
+										result=false;	
+									} return result;]]>
+				</map:element>
+			</map:constraint>
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{relationship.allRelationshipParties.relatedTo.required}</map:message>
+				<map:element name="triggerExpr"><![CDATA[
+													 boolean result = false;
+													 if (o.partyRole != null && (o.partyRole.key != "PARTY_ROLE_TYPE_ACCOUNT" && o.partyRole.key != "PARTY_ROLE_TYPE_PARTY_INTEREST")) {
+													 	result=true;
+													 } 
+													 return result;
+												]]>
+				</map:element>
+				<map:element name="matchedExpr"><![CDATA[ 
+													boolean result=true; 
+													if(o.parentRelationshipParty == null){
+														result= false;
+													}	
+													return result;
+												]]>
+				</map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{relationship.allRelationshipParties.customer.duplicated}</map:message>
+				<map:element name="triggerExpr"><![CDATA[
+													 boolean result = false;
+													 if (o.customer != null && o.partyRole != null) {
+													 	result=true;
+													 } 
+													 return result;
+												]]>
+				</map:element>				
+				<map:element name="matchedExpr"><![CDATA[								
+														boolean result = true;
+														foreach(relationshipParty : o.relationship.allRelationshipParties){
+															if (o != relationshipParty) {
+																if(o.parentRelationshipParty == null ){
+																	result = result && (!(relationshipParty.customer.id == o.customer.id  && relationshipParty.partyRole.key ==  o.partyRole.key &&  relationshipParty.parentRelationshipParty == null)) ; 
+																}else {
+																	result = result && (!(relationshipParty.customer.id == o.customer.id  && relationshipParty.partyRole.key ==  o.partyRole.key && relationshipParty.parentRelationshipParty == o.parentRelationshipParty)) ;
+																}
+															}
+															
+															if (!result) {
+																return result;
+															}
+														}
+														return result;
+				]]></map:element>
+			</map:constraint>
+			
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{relationship.allRelationshipParties.same.relationship}</map:message>
+				<map:element name="triggerExpr"><![CDATA[
+													 boolean result = false;
+													 if (o.customer != null && o.partyRole != null) {
+													 	result=true;
+													 } 
+													 return result;
+												]]>
+				</map:element>				
+				<map:element name="matchedExpr"><![CDATA[								
+														boolean result = true;
+														
+														if(o.parentRelationshipParty != null){
+														      result = (o.parentRelationshipParty.relationship.id == o.relationship.id);
+														}	
+													
+														return result;
+				]]></map:element>
+			</map:constraint>			
+			
+			
+		</map:class>
+	</map:bean>
+</map:constraint-mappings>

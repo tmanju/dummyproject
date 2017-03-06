@@ -1,0 +1,10 @@
+
+Dear @{entity.contact.firstName}:<br><br>
+
+Your Grade username and password are now active.  You may visit Grade by clicking on the link, below.  Enter the username and password, also provided below.  When you login for the first time you will be asked to change the password. <br><br>
+
+<a href="@{CONFIG.getString("webapp.server.baseurl")}">@{CONFIG.getString("webapp.server.baseurl")}</a><br><br>
+Username: @{entity.username}<br>
+Password: @{entity.password}<br><br>
+
+

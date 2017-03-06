@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="customerBackend">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="customerBackend_crud">
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+ 		<!-- if Fund then specify Fund Type and Domicile -->					
+ 		<!-- <tns:component id="fundType">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false; 
+ 							if (root.getFpType() != null && root.getFpType().getKey().equals("FP_TYPE_FUND")) { 
+								isVisible=true;	 
+ 							} 
+						return isVisible; 
+					]]> 
+			</tns:default>
+		</tns:component> 
+		<tns:component id="domicile">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false; 
+ 							if (root.getFpType() != null && root.getFpType().getKey().equals("FP_TYPE_FUND")) { 
+								isVisible=true;	 
+ 							} 
+						return isVisible; 
+					]]> 
+			</tns:default>
+		</tns:component> 
+		<tns:component id="bankCharter">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false; 
+ 							if (root.getFpType() != null && root.getFpType().getKey().equals("FP_TYPE_BANK")) { 
+								isVisible=true;	 
+ 							} 
+						return isVisible; 
+					]]> 
+			</tns:default>
+		</tns:component> 
+		<tns:component id="stateBnkChrtr">
+			<tns:default>
+					<![CDATA[
+						boolean isVisible=false; 
+ 							if (root.getBankCharter() != null && root.getBankCharter().getKey().equals("BANK_CHARTER_STATE")) { 
+								isVisible=true;	 
+ 							} 
+						return isVisible; 
+					]]> 
+			</tns:default>
+		</tns:component> -->
+		
+			 
+				
+	</tns:canvas>	
+</tns:ui-permissions>

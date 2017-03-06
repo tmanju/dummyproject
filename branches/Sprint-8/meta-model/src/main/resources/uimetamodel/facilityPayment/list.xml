@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="facilityPayment" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="facilityPayment" row="facilityPayment" label="Payments">
+		<columns>
+			<column name="facilityPayment.refNumber"  label="Payment Number"/>
+			<column name="facilityPayment.facilityBE.customer.refNumber" label="Account Number" /> <!--not sure refNumber should be here -->
+			<column name="facilityPayment.facilityBE.customer.legalName" label="Client Name" />
+<!-- 			<column name="facilityPayment.initialFundingReq" /> -->
+			<column name="facilityPayment.facilityBE.productType" label="Product Type"/>
+			<column name="facilityPayment.facilityBE.maturityDt" label="Maturity Date"/>
+			<column name="facilityPayment.facilityBE.creditFacAmt" label="Credit Facility"/>
+			<column name="facilityPayment.payment" label="Payment"/>
+			<column name="facilityPayment.paymentDate" label="Payment Date"/>
+			<column name="facilityPayment.wfStatus" label="Status"/>
+		</columns>
+	</data-table>
+	<beans>
+		<bean name="facilityPayment" type="com.thirdpillar.codify.loanpath.model.FacilityPayment" />
+	</beans>
+</canvas>
+

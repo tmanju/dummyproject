@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles xmlns="http://www.thirdpillar.com/binding-profile">
+  <profile name="Import-Run1-Full" extends="Export-Full">
+    <class name="com.thirdpillar.codify.loanpath.model.AttributeChoice">
+	  <excludes>
+	    <field name="relatedChoices"/>
+	  </excludes>
+    </class>
+  </profile>
+</profiles>
+

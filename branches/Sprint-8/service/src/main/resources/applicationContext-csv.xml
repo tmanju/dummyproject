@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   ">
+
+	<bean id="Request-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="Application Number">
+					<value><![CDATA[entity.refNumber]]></value>
+				</entry>
+				<entry key="Account">
+					<value><![CDATA[entity.account.helper.displayValue]]></value>
+				</entry>
+				<entry key="Total Requested Amt">
+					<value><![CDATA[entity.totalRequestedLoanAmt]]></value>
+				</entry>
+				<entry key="Status">
+					<value><![CDATA[entity.wfStatus.value]]></value>
+				</entry>
+				<entry key="Products">
+					<value><![CDATA[String stringValue = "";
+							for (int i = 0; i < entity.allFacilities.size; i++ ) {
+								String value = entity.allFacilities[i].facilityType.helper.displayValue + "[" + entity.allFacilities[i].requestedLoanAmt + "]";
+								if (i < entity.allFacilities.size - 1) {
+									stringValue += value + ",";
+								} else {
+									stringValue += value;
+								}
+							}
+							return stringValue;
+					]]></value>
+				</entry>
+				<entry key="Credit Analyst">
+					<value><![CDATA[entity.creditAnalyst.helper.displayValue]]></value>
+				</entry>
+				<entry key="Application Date">
+					<value><![CDATA[entity.receivedDate]]></value>
+				</entry>				
+			</map>
+		</property>
+		<property name="cellNames" >
+			<list>
+				<value>Application Number</value>
+				<value>Account</value>
+				<value>Total Requested Amt</value>
+				<value>Status</value>
+				<value>Products</value>
+				<value>Credit Analyst</value>
+				<value>Application Date</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="Customer-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="Counterparty Number">
+					<value><![CDATA[entity.refNumber]]></value>
+				</entry>
+				<entry key="Legal Name">
+					<value><![CDATA[entity.customerName]]></value>
+				</entry>
+				<entry key="Counterparty Type">
+					<value><![CDATA[entity.customerType.helper.displayValue]]></value>
+				</entry>
+				<entry key="DUNS Number">
+					<value><![CDATA[entity.duns]]></value>
+				</entry>
+				<entry key="Approved">
+					<value><![CDATA[entity.approved]]></value>
+				</entry>
+				<entry key="Review Date">
+					<value><![CDATA[entity.reviewDate]]></value>
+				</entry>
+				<entry key="Agency Rating">
+					<value><![CDATA[entity.?defaultBureauData.?agencyRating.helper.displayValue]]></value>
+				</entry>
+				<entry key="D&amp;B Viability Rating">
+					<value><![CDATA[entity.?defaultBureauData.dnbViabilityRating]]></value>
+				</entry>
+				<entry key="Address">
+					<value><![CDATA[entity.?primarySite.?defaultAddress.address1]]></value>
+				</entry>
+				<entry key="State">
+					<value><![CDATA[entity.?primarySite.state]]></value>
+				</entry>
+				<entry key="City">
+					<value><![CDATA[entity.?primarySite.city]]></value>
+				</entry>
+				<entry key="Country">
+					<value><![CDATA[entity.?primarySite.?defaultAddress.?country.?name]]></value>
+				</entry>
+				<entry key="Postal Code">
+					<value><![CDATA[entity.?primarySite.?defaultAddress.postalCode]]></value>
+				</entry>
+				<entry key="Usage">
+					<value><![CDATA[entity.?primarySite.usage]]></value>
+				</entry>
+			</map>
+		</property>
+		<property name="cellNames" >
+			<list>
+				<value>Counterparty Number</value>
+				<value>Legal Name</value>
+				<value>Counterparty Type</value>
+				<value>DUNS Number</value>
+				<value>Approved</value>
+				<value>Review Date</value>
+				<value>Agency Rating</value>
+				<value>D&amp;B Viability Rating</value>
+				<value>Address</value>
+				<value>State</value>
+				<value>City</value>
+				<value>Country</value>
+				<value>Postal Code</value>
+				<value>Usage</value>
+			</list>
+		</property>
+	</bean>
+				
+	
+  <bean id="User-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="Username">
+					<value><![CDATA[entity.username]]></value>
+				</entry>
+				<entry key="First Name">
+					<value><![CDATA[entity.contact.firstName]]></value>
+				</entry>
+				<entry key="Last Name">
+					<value><![CDATA[entity.contact.lastName]]></value>
+				</entry>
+				<entry key="Status">
+					<value><![CDATA[entity.wfStatus.value]]></value>
+				</entry>				
+				<entry key="Email">
+					<value><![CDATA[entity.contact.email]]></value>
+				</entry>				
+				<entry key="Roles">
+					<value><![CDATA[String roleName = "";
+							roles = (name in entity.roles);
+							for (int i = 0; i < roles.size; i++ ) {
+								if (i < roles.size - 1) {   
+									roleName += roles.get(i) + ",";
+								} else {
+									roleName += roles.get(i);
+								}
+							}
+							return roleName;
+					]]></value>
+				</entry>				
+				<entry key="Teams">
+					<value><![CDATA[String teamName = "";
+							teams = (name in entity.teams);
+							for (int i = 0; i < teams.size; i++ ) {
+								if (i < teams.size - 1) {   
+									teamName += teams.get(i) + ",";
+								} else {
+									teamName += teams.get(i);
+								}
+							}
+							return teamName;
+					]]></value>
+				</entry>				
+			</map>
+		</property>
+		<property name="cellNames" >
+			<list>
+				<value>Username</value>
+				<value>First Name</value>
+				<value>Last Name</value>
+				<value>Status</value>
+				<value>Email</value>
+				<value>Roles</value>
+				<value>Teams</value>
+			</list>
+		</property>
+	</bean>		
+	
+	<bean id="Role-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="Role Name">
+					<value><![CDATA[entity.name]]></value>
+				</entry>
+				<entry key="Description">
+					<value><![CDATA[entity.description]]></value>
+				</entry>
+				<entry key="Role Category">
+					<value><![CDATA[entity.roleCategory.value]]></value>
+				</entry>				
+			</map>
+		</property>
+		<property name="cellNames" >
+			<list>
+				<value>Role Name</value>
+				<value>Description</value>
+				<value>Role Category</value>
+			</list>
+		</property>
+	</bean>	
+
+			
+  <bean id="Team-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="Team Name">
+					<value><![CDATA[entity.name]]></value>
+				</entry>
+				<entry key="Description">
+					<value><![CDATA[entity.description]]></value>
+				</entry>
+				<entry key="Users">
+					<value><![CDATA[String stringValue = "";
+							users = (contact.helper.displayValue in entity.usersDer);
+							for (int i = 0; i < users.size; i++ ) {
+								if (i < users.size - 1) {   
+									stringValue += users.get(i) + ",";
+								} else {
+									stringValue += users.get(i);
+								}
+							}
+							return stringValue;
+					]]></value>
+				</entry>				
+			</map>
+		</property>
+		<property name="cellNames" >
+			<list>
+				<value>Team Name</value>
+				<value>Description</value>
+				<value>Users</value>
+			</list>
+		</property>
+	</bean>		
+
+  <bean id="Attribute-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="Attribute Name">
+					<value><![CDATA[entity.name]]></value>
+				</entry>
+				<entry key="Attribute Key">
+					<value><![CDATA[entity.key]]></value>
+				</entry>
+				<entry key="Choice Keys">
+					<value><![CDATA[String stringValue = "";
+							choices = (key in entity.attributeChoices);
+							
+							for (int i = 0; i < choices.size; i++ ) {
+								if (i < choices.size - 1) {   
+									stringValue += choices.get(i) + ",";
+								} else {
+									stringValue += choices.get(i);
+								}
+							}
+							return stringValue;
+					]]></value>
+				</entry>				
+				<entry key="Choice Values">
+					<value><![CDATA[String stringValue = "";
+							choices = (value in entity.attributeChoices);
+							
+							for (int i = 0; i < choices.size; i++ ) {
+								if (i < choices.size - 1) {   
+									stringValue += choices.get(i) + ",";
+								} else {
+									stringValue += choices.get(i);
+								}
+							}							
+							return stringValue;
+					]]></value>
+				</entry>				
+			</map>
+		</property>
+		<property name="cellNames" >
+			<list>
+				<value>Attribute Name</value>
+				<value>Attribute Key</value>
+				<value>Choice Keys</value>
+				<value>Choice Values</value>
+			</list>
+		</property>
+	</bean>	
+
+</beans>
+

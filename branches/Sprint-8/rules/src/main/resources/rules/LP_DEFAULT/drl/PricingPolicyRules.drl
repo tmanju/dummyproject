@@ -1,0 +1,53 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.model.*;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.foundation.service.EntityService;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.logDebug;
+import java.util.Calendar;
+import java.util.Date;
+
+rule "Default Pricing profile"
+    agenda-group "NEW"
+      when
+        #condition
+      pricing:PricingPolicy() 
+      then
+      	
+      	EntityService es = new EntityService();
+      	
+      	Currency currency = (Currency)LookupService.getResult("Currency.byIsoCode", "isoCode","USD");
+        pricing.setCurrency(currency);
+      
+      	AttributeChoice ouType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","OPERATING_UNIT_OPERATING_UNIT");
+      	pricing.setOu(ouType);
+      	
+      	AttributeChoice sbuType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT");
+      	pricing.setSbu(sbuType);
+      	
+      	pricing.setActive(true);
+      	
+      	AttributeChoice termInc = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","TERM_INCREMENT_12");
+      	
+      	#set effective To Date - 6 months after the current date 
+      	Date currentDate = new Date();
+       
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.MONTH, 6);
+
+        Date effectiveTo = calendar.getTime();
+        pricing.setEffectiveToDate(effectiveTo);
+        
+        if(pricing.getTerm() == null)
+        {
+        	Term term = new Term();
+        	term.setTermIncrement(termInc);
+        	term.setTermStart(0);
+        	term.setTermMax(144);
+        	pricing.setTerm(term);
+        }
+        
+end

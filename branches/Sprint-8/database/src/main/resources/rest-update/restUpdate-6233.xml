@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+    <list>
+        <valueGrid>
+		<name>IndexMatrix</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Index",
+                "VariableName" : "Index",
+                "Values" : [["PRICING_INDICES_ONE_YEAR_LIBOR","1 Year Libor"],
+                			["PRICING_INDICES_NONE","None"],
+                			["PRICING_INDICES_WS_PRIME","WS Prime"]
+                ]
+            }            
+        ],
+        "Values" : [0.85, 0.00, 3.25]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>RateCap</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Product Subtype",
+                "VariableName" : "ProductSubtype",
+                "Values" : [["CRE_FACILITY_SUB_TYPE_CRE_LOAN","CRE loan"],
+							["CRE_FACILITY_SUB_TYPE_CONSTRUCTION_LOAN","Construction loan"],
+							["CRE_FACILITY_SUB_TYPE_LAND_LOAN","Land Loan"],
+							["CRE_FACILITY_SUB_TYPE_LINE_OF_CREDIT","Line of Credit"],
+							["CRE_FACILITY_SUB_TYPE_REAL_ESTATE_OWNED_LOAN","Real Estate Owned Loan"]
+                ]
+            }            
+        ],
+        "Values" : [5.75,5.00,4.75,5.25,5.75]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>RateFloor</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Product Subtype",
+                "VariableName" : "ProductSubtype",
+                "Values" : [["CRE_FACILITY_SUB_TYPE_CRE_LOAN","CRE loan"],
+							["CRE_FACILITY_SUB_TYPE_CONSTRUCTION_LOAN","Construction loan"],
+							["CRE_FACILITY_SUB_TYPE_LAND_LOAN","Land Loan"],
+							["CRE_FACILITY_SUB_TYPE_LINE_OF_CREDIT","Line of Credit"],
+							["CRE_FACILITY_SUB_TYPE_REAL_ESTATE_OWNED_LOAN","Real Estate Owned Loan"]
+                ]
+            }            
+        ],
+        "Values" : [3.00,2.75,2.00,2.25,2.50]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>RateTable</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,500000],
+							[500001,1000000],
+							[1000001,5000000],
+							[5000001,null]]
+            },
+			{
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }
+        ],
+        "Values" : [5.50,5.50,5.75,6.00,6.00,
+					5.00,5.00,5.50,5.75,6.00,
+					2.75,2.75,3.00,3.25,3.25,
+					3.00,3.00,3.25,3.50,3.50]         
+    	}]]></grid>
+	</valueGrid>
+	<pricingPolicy>
+		<name>CRE General Policy</name>
+		<description>CRE General Policy</description>
+		<active>true</active>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<term>
+			<termMax>36</termMax>
+			<termStart>12</termStart>
+			<termIncrement>
+				<key>TERM_INCREMENT_12</key>
+			</termIncrement>
+			<missingTerms>
+				<key>MISSING_TERMS_EXCEPTION</key>
+			</missingTerms>
+		</term>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<formula><![CDATA[
+			IndexValue = IsFloatingRate ? Grid.lookup("IndexMatrix") : 3.25;
+			TableRate = Grid.lookup("RateTable");
+			CeilingRate = (ProductSubtype != null) ? Grid.lookup("RateCap"): null;
+			FloorRate = (ProductSubtype != null) ? Grid.lookup("RateFloor"): null;
+						
+			CustomerRate = TableRate;
+						
+			if (CeilingRate != null && FloorRate != null) {
+				if (TableRate < FloorRate) {
+					CustomerRate = FloorRate;
+				} else if (TableRate > CeilingRate) {
+					CustomerRate = CeilingRate;
+				}
+			}
+		]]></formula>
+	</pricingPolicy>
+    </list>
+</mod:sr.upsertEntityRequest>

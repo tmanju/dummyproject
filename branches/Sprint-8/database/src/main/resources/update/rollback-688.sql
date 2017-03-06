@@ -1,0 +1,14 @@
+
+ALTER TABLE lp_address DROP COLUMN servicing_id;
+ALTER TABLE lp_address_ DROP COLUMN servicing_id;
+
+DROP index IDX_100901;
+DROP index IDX_1009552;
+DROP index IDX_1000552;
+DROP index IDX_1002552;
+DROP index IDX_1003552;
+DROP index IDX_1004552;
+DROP index IDX_1005552;
+DROP index IDX_1006552;
+DROP index IDX_1007552;
+DROP index IDX_100552;

@@ -1,0 +1,2 @@
+@{document.getAssociatedRequest().getRelationship().getName()} :  @{document.getDocumentType().getValue()} Document on Application @{entity.getRefNumber()} failed to generate. @if{document.getAssociatedRequest().getCreditAnalyst() != null} @{document.getAssociatedRequest().getCreditAnalyst().getHelper().getDisplayValue()} is the Credit Analyst for this application. @end{}
+A task has been created in LoanPath to document your review of this action.  

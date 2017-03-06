@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<profiles xmlns="http://www.thirdpillar.com/binding-profile">
+	<!-- loanex full profile start -->
+	<profile name="loanex-full" extends="Full-No-Binary">
+		<class name="com.thirdpillar.codify.loanpath.model.BureauReport" inherit="true">
+			<includes>
+				<field name="responseXml"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
+			<includes>
+				<field name="relationshipParties"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Facility" inherit="true">
+			<includes>
+				<field name="coaAvailableDisburse"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.CoasetDefinition" inherit="true">
+			<includes>
+				<field name="override"/>
+			</includes>
+		</class>
+	</profile>
+	<!-- ucc full profile start -->
+	<profile name="ucc-full" extends="Full">
+		<class name="com.thirdpillar.codify.loanpath.model.Debtor" inherit="true">
+			<includes>
+				<field name="custAddress"/>
+				<field name="customer"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Customer">
+			<includes>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="customerType" profile="Header"/>
+				<field name="legalName"/>
+				<field name="lastName"/>
+				<field name="firstName"/>
+				<field name="middleName"/>
+				<field name="suffix" profile="Header"/>
+				<field name="taxIDNumber"/>
+				<field name="legalEntityType" profile="Header"/>
+			</includes>
+		</class>
+	</profile>
+	<!-- ucc search full profile start -->
+	<profile name="uccdtlsrch-full" extends="Full">
+		<class name="com.thirdpillar.codify.loanpath.model.UccSrch" inherit="true">
+			<excludes>
+				<field name="results"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.UccSearchDetail" inherit="true">
+			<includes>
+				<field name="orderNum"/>
+			</includes>
+			<excludes>
+				<field name="updates"/>
+				<field name="debtors"/>
+			</excludes>
+		</class>
+	</profile>
+	
+	<!-- mbpeforce full profile start -->
+	<profile name="mpbeforce-Full" extends="Full" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Deal" inherit="true">
+			<includes>
+				<field name="id" />
+        		<field name="refNumber" />
+        		<field name="servicingIdentifier"/>
+				<field name="facilityBE" profile="Header"/>
+				<field name="fundAllocators"/>
+			</includes>
+			<excludes>
+				<field name="metaInfo"/> 
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.FundAllocator" inherit="true">
+			<includes>
+				<field name="id"/>
+				<field name="capitalProvider"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.CapitalProvider" inherit="true">
+			<includes>
+				<field name="id"/>
+				<field name="customerAssociated"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.CustomerBackend" inherit="true">
+			<includes>
+				<field name="id"/>
+				<field name="bankTrades"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BankAndTrade" inherit="true">
+			<includes>
+				<field name="id"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.FacilityBE" inherit="true">
+			<includes>
+				<field name="id"/>
+				<field name="servicingIdentifier"/>
+			</includes>
+		</class>
+	</profile>
+	
+	<!-- sforce full profile start -->
+	<profile name="sforce-Full" extends="Full-No-Binary" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Account" inherit="true">
+			<includes>
+				<field name="customer"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
+			<includes>
+				<field name="salesOfficer"/>
+				<field name="account"/>
+				<field name="companyOverview"/>
+				<field name="debtorOverview"/>
+				<field name="clientOverview"/>
+				<field name="mgmtOverview"/>
+				<field name="dealOverview"/>
+			</includes>
+			<excludes>
+				<field name="allRelParRskGding"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" inherit="true">
+			<includes>
+				<field name="customer"/>
+			</includes>
+		</class>		
+		<class name="com.thirdpillar.codify.loanpath.model.User" inherit="true">
+			<includes>
+				<field name="contact"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Facility" inherit="true">
+			<includes>
+				<field name="facilityCategory"/>
+				<field name="program"/>
+				<field name="partner"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Structure" inherit="true">
+			<includes>
+				<field name="currency"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Contact" inherit="true">
+			<includes>
+				<field name="state" profile="Header"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Document" inherit="true">
+			<includes>
+				<field name="autoDocId"/>
+			</includes>
+			<excludes>
+				<field name="uploadedStream"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BureauReport" inherit="true">
+			<includes>
+				<field name="pulledBy"/>
+			</includes>
+			<excludes>
+				<field name="responseXml"/>
+				<field name="responsePdf"/>
+				<field name="requestXml"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.CoaEvaluation" inherit="true">
+			<includes>
+				<field name="id"/>
+				<field name="coaDefinition"/>
+				<field name="sfdcCaseId"/>
+			</includes>
+		</class>
+
+		<class name="com.thirdpillar.codify.loanpath.model.Exposure" inherit="true">
+			<includes>
+				<field name="totalBorrowerRequestedExposure"/>
+				<field name="totalContingentRequestedExposure"/>
+				<field name="totalCalculatedRequestedExposure"/>
+				<field name="totalOtherRequestedExposure"/>
+				<field name="totalRelationshipRequestedExposure"/>
+				<field name="totalBorrowerOutstandingExposure"/>
+				<field name="totalContingentOutstandingExposure"/>
+				<field name="totalCalculatedOutstandingExposure"/>
+				<field name="totalOtherOutstandingExposure"/>
+				<field name="totalRelationshipOutstandingExposure"/>
+				<field name="totalBorrowerExposure"/>
+				<field name="totalContingentExposure"/>
+				<field name="totalCalculatedExposure"/>
+				<field name="totalOtherExposure"/>
+				<field name="totalRelationshipExposure"/>
+				<field name="totalBorrowerRequestedUnsecuredExposure"/>
+				<field name="totalContingentRequestedUnsecuredExposure"/>
+				<field name="totalCalculatedRequestedUnsecuredExposure"/>
+				<field name="totalOtherRequestedUnsecuredExposure"/>
+				<field name="totalRelationshipRequestedUnsecuredExposure"/>
+				<field name="totalBorrowerOutstandingUnsecuredExposure"/>
+				<field name="totalContingentOutstandingUnsecuredExposure"/>
+				<field name="totalCalculatedOutstandingUnsecuredExposure"/>
+				<field name="totalOtherOutstandingUnsecuredExposure"/>
+				<field name="totalRelationshipOutstandingUnsecuredExposure"/>
+				<field name="totalBorrowerUnsecuredExposure"/>
+				<field name="totalContingentUnsecuredExposure"/>
+				<field name="totalCalculatedUnsecuredExposure"/>
+				<field name="totalOtherUnsecuredExposure"/>
+				<field name="totalRelationshipUnsecuredExposure"/>
+			</includes>
+		</class>
+
+	</profile>
+	<!-- doc gen profile start -->
+	<profile name="doc-gen-header" extends="Header">
+		<class name="com.thirdpillar.codify.loanpath.model.RelationshipParty" inherit="true">
+			<includes>
+				<field name="partyRole"/>
+				<field name="parentRelationshipParty"/>
+			</includes>
+		</class>
+	</profile>
+	<profile name="doc-gen-full" extends="Full" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
+			<includes>
+				<field name="relationship"/>
+				<field name="salesOfficer"/>
+				<field name="sortedRelationshipParties"/>
+			</includes>
+			<excludes>
+				<field name="allRelParRskGding"/>
+				<field name="documentGroup"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
+			<includes>
+				<field name="signingMetadata"/>
+			</includes>
+			<excludes>
+				<field name="documentGroup"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Relationship" inherit="true">
+			<includes>
+				<field name="allRelationshipParties"/>
+				<field name="externalRefId"/>
+			</includes>
+			<excludes>
+				<field name="customers"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.RelationshipParty" inherit="true">
+			<includes>
+				<field name="customer"/>
+				<field name="parentRelationshipParty" profile="doc-gen-header"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.User" inherit="true">
+			<includes>
+				<field name="contact"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Facility" inherit="true">
+			<includes>
+				<field name="program"/>
+				<field name="partner"/>
+				<field name="requestAmt"/>
+				<field name="appAmount"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Contact" inherit="true">
+			<includes>
+				<field name="state" profile="Header"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Partner" inherit="true">
+			<includes>
+				<field name="partyDetail"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Document" inherit="true">
+			<includes>
+				<field name="autoDocId"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BureauReport" inherit="true">
+			<includes>
+				<field name="pulledBy"/>
+			</includes>
+			<excludes>
+				<field name="responseXml"/>
+				<field name="responsePdf"/>
+				<field name="requestXml"/>
+			</excludes>
+		</class>
+	</profile>
+	<!-- landsafe full profile start -->
+	<profile name="Landsafe-Full" extends="Full-No-Binary" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
+			<includes>
+				<field name="relationship"/>
+			</includes>
+			<excludes>
+				<field name="allRelParRskGding"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Relationship" inherit="true">
+			<includes>
+				<field name="allRelationshipParties"/>
+				<field name="externalRefId"/>
+			</includes>
+			<excludes>
+				<field name="customers"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.RelationshipParty" inherit="true">
+			<includes>
+				<field name="customer"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.User" inherit="true">
+			<includes>
+				<field name="contact"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Contact" inherit="true">
+			<includes>
+				<field name="state" profile="Header"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.DocumentGroup" inherit="true">
+			<excludes>
+				<field name="allDocuments"/>
+				<field name="generatedDocuments"/>
+				<field name="uploadedDocuments"/>
+			</excludes>
+		</class>
+	</profile>
+	<!-- landsafe response full profile start -->
+	<profile name="Landsafe-Response-Full" extends="Full" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
+			<includes>
+				<field name="relationship"/>
+				<field name="salesOfficer"/>
+				<field name="sortedRelationshipParties"/>
+			</includes>
+			<excludes>
+				<field name="allRelParRskGding"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Relationship" inherit="true">
+			<includes>
+				<field name="allRelationshipParties"/>
+				<field name="externalRefId"/>
+			</includes>
+			<excludes>
+				<field name="customers"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.RelationshipParty" inherit="true">
+			<includes>
+				<field name="customer"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.User" inherit="true">
+			<includes>
+				<field name="contact"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Facility" inherit="true">
+			<includes>
+				<field name="facilityCategory"/>
+				<field name="program"/>
+				<field name="partner"/>
+				<field name="relationshipFacParties"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Contact" inherit="true">
+			<includes>
+				<field name="state" profile="Header"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Partner" inherit="true">
+			<includes>
+				<field name="partyDetail"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Document" inherit="true">
+			<includes>
+				<field name="autoDocId"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BureauReport" inherit="true">
+			<includes>
+				<field name="pulledBy"/>
+			</includes>
+		</class>
+	</profile>
+	<!-- eSignature full profile, includes document binary contents and binary document page images -->
+	<profile name="esig-full" extends="Full">
+		<class name="com.thirdpillar.codify.loanpath.model.Customer">
+			<includes>
+				<field name="esignatureRqdDocs"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="firstName"/>
+				<field name="middleName"/>
+				<field name="lastName"/>
+				<field name="emailAddress"/>				
+				<field name="salesForcecomId"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Document">
+			<includes>
+				<field name="associatedRequest"/>
+				<field name="documentName"/>
+				<field name="documentPagesAsImages"/>
+				<field name="documentSigners"/>
+				<field name="documentStatus" profile="Header"/>
+				<field name="esignatureRqd"/>
+				<field name="esignTemplate"/>
+				<field name="initializeDttm"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="archiveStream"/>
+				<field name="uploadedStream"/>				
+				<field name="wetSignature"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Request">
+			<includes>
+				<field name="applicationName"/>
+				<field name="applicationReceivedDttm"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="relationship"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Relationship">
+			<includes>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="name"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.User">
+			<includes>
+				<field name="esignatureRqdDocs"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="firstName" />
+				<field name="middleInitial"/>
+            	<field name="lastName" />
+			</includes>
+		</class>
+	</profile>
+	<!-- eSignature profile, includes document binary contents but not the binary document page images -->
+	<profile name="esig-no-page-images" extends="Full">
+		<class name="com.thirdpillar.codify.loanpath.model.Customer">
+			<includes>
+				<field name="esignatureRqdDocs"/>
+				<field name="id"/>
+				<field name="partyDetail"/>
+				<field name="salesForcecomId"/>
+				<field name="firstName"/>
+				<field name="middleName"/>
+				<field name="lastName"/>
+				<field name="emailAddress"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Document">
+			<includes>
+				<field name="associatedRequest"/>
+				<field name="documentName"/>
+				<field name="documentSigners"/>
+				<field name="documentStatus" profile="Header"/>
+				<field name="esignatureRqd"/>
+				<field name="esignTemplate"/>
+				<field name="initializeDttm"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="archiveStream"/>
+				<field name="uploadedStream"/>								
+				<field name="wetSignature"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Request">
+			<includes>
+				<field name="applicationName"/>
+				<field name="applicationReceivedDttm"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="relationship"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Relationship">
+			<includes>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="name"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.User">
+			<includes>
+				<field name="esignatureRqdDocs"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="firstName" />
+				<field name="middleInitial"/>
+            	<field name="lastName" />
+			</includes>
+		</class>
+	</profile>
+	<!-- eSignature summary profile that does not include any encoded binary data for Documents -->
+	<profile name="esig-summary" extends="Full">
+		<class name="com.thirdpillar.codify.loanpath.model.Customer">
+			<includes>
+				<field name="esignatureRqdDocs"/>
+				<field name="id"/>
+				<field name="salesForcecomId"/>
+				<field name="firstName"/>
+				<field name="middleName"/>
+				<field name="lastName"/>
+				<field name="emailAddress"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Document">
+			<includes>
+				<field name="associatedRequest"/>
+				<field name="documentName"/>
+				<field name="documentSigners"/>
+				<field name="documentStatus" profile="Header"/>
+				<field name="esignatureRqd"/>
+				<field name="esignTemplate"/>
+				<field name="initializeDttm"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="wetSignature"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Request">
+			<includes>
+				<field name="applicationName"/>
+				<field name="applicationReceivedDttm"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="relationship"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Relationship">
+			<includes>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="name"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.User">
+			<includes>
+				<field name="esignatureRqdDocs"/>
+				<field name="id"/>
+				<field name="refNumber"/>
+				<field name="firstName" />
+				<field name="middleInitial"/>
+            	<field name="lastName" />
+			</includes>
+		</class>
+	</profile>
+	<profile name="DWExport" extends="Full-No-Binary">
+	</profile>
+	<profile name="application-summary" extends="Full">
+		<class name="com.thirdpillar.codify.loanpath.model.Request">
+			<includes>
+				<field name="appDescription" />
+	            <field name="applicationName" />
+				<field name="applicationReceivedDttm" />
+	            <field name="externalRefId" />
+	            <field name="id" />
+	            <field name="refNumber" />
+	            <field name="requestedAmountTotal" />
+	            <field name="wfStatus" />
+			</includes>
+		</class>
+	</profile>
+	<profile name="pricing-req-full" extends="Full-No-Binary">
+		<class name="com.thirdpillar.codify.loanpath.model.Asset" inherit="true">
+			<includes>
+				<field name="assetAmt" />
+				<field name="residualReference" />
+				<field name="rateCardResidualRate" />
+				<field name="pricingInputResidualRate" />
+			</includes>
+		</class>
+	</profile>
+
+	<profile name="CustomerPortal-Read" extends="Full-No-Binary">
+		<class name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" inherit="true">
+			<includes>
+				<field name="customer" profile="CustomerPortal-Read"/>
+			</includes>
+		</class>
+	</profile>
+	
+	<profile name="Akritiv-Read" extends="Full-No-Binary">
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
+		</class>
+	</profile>	
+</profiles>

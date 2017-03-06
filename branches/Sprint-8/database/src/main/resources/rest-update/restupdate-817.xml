@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.upsertEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+        <documentCatalogItem>
+       <autoDocId>LoanSecurityAgreement</autoDocId>
+       <criterionValueGroups/>
+       <description>Loan and Security Agreement</description>
+       <documentCatalogItemName>LoanSecurityAgreement</documentCatalogItemName>
+       <documentClassDetail>
+         <key>DOCUMENT_CLASS_CREDIT</key>
+       </documentClassDetail>
+       <documentCategoryDetail>
+       <key>DOCUMENT_CATEGORY_CREDIT_WORKING_FILE</key>
+       </documentCategoryDetail>
+       <documentTypeDetail>
+         <key>DOCUMENT_TYPE_LOAN_SECURITY_AGREEMENT</key>
+       </documentTypeDetail>
+       <effectiveDttm>2015-08-24T00:00:00.0</effectiveDttm>
+       <metaInfo/>
+     </documentCatalogItem>
+</list>
+</mod:sr.upsertEntityRequest>

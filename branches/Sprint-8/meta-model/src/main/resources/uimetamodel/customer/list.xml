@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="customer" type="list"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	<data-table name="results" row="customer"  label="Counterparty">
+		<columns>
+			<column name="customer.refNumber" label="Counterparty Number"/>
+			<column name="customer.customerName" label="Counterparty Name"/>
+			<column name="customer.customerType" label="Counterparty Type"/>
+<!-- 			<column name="customer.externalIdentifier" label="External System Id"/> -->
+			<column name="customer.primarySite.city" label="City"/>
+			<column name="customer.primarySite.state" label="State/Province"/>
+			<column name="customer.metaInfo.createdAt" label="Created Date"/>	
+		</columns>
+		<commands>
+			<command name="Export CSV" action="Customer-ExportCSV" type="exportCsv"/>
+		</commands>			
+	</data-table>
+	<beans>
+		<bean name="results" type="com.thirdpillar.codify.loanpath.model.Customer" />
+	</beans>	
+</canvas>
+

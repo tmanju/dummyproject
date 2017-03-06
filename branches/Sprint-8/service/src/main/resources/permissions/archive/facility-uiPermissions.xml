@@ -1,0 +1,41 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+			<tns:component id="facility">                      
+			  <tns:read>true</tns:read>
+			</tns:component>
+
+			<tns:canvas id="request_crud">
+				<tns:component id="exportEntityBtn" >
+					<tns:default>false</tns:default>
+				</tns:component>
+				<tns:component id="editEntityBtn" >
+					<tns:default>false</tns:default>
+				</tns:component>
+				
+				<tns:component id="facility_structure">
+					<tns:default>
+					boolean isVisible=true;
+					if (root.facility.facilityType.key != "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<!-- <tns:component id="facilityEditCanvas.quote_structure">
+					<tns:default>
+					boolean isVisible=true;
+					if (root.facility.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component> -->
+				
+				
+				
+				
+			</tns:canvas>
+
+	</tns:ui-permissions>

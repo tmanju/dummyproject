@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="moodyCustomer" type="list" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<data-table name="moodyCustomers" row="moodyCustomer">
+		<columns>
+			<column name="moodyCustomer.customerNameDer" label="Moody's Customer Name"/>
+			<column name="moodyCustomer.mfaId" label="MFA ID"/>
+			<column name="moodyCustomer.industryModel" label="Industry Model"/>
+			<column name="moodyCustomer.address.city" label="City"/>
+			<column name="moodyCustomer.address.stateProvince" label="State"/>
+			<column name="moodyCustomer.address.postalCode" label="Zip"/>
+			<column name="moodyCustomer.dunsNumber" label="DUNS Number"/>
+			<column name="moodyCustomer.lastStatementDate" label="Last Statement Date"/>
+		</columns>
+	</data-table>
+	<beans>
+		<bean name="moodyCustomers" type="com.thirdpillar.codify.loanpath.model.MoodyCustomer"/>
+	</beans>
+</canvas>
+
+
+
+

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_entityNameItem" structureRef="java.lang.String" />
+  <itemDefinition id="_actionItem" structureRef="java.lang.String" />
+  <itemDefinition id="_entityOutItem" />
+  <itemDefinition id="_entityInItem" />
+  <itemDefinition id="_sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_rootEntityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+
+  <process processType="Private" isExecutable="true" id="SalesforceUpdateProcess" name="Salesforce Update Common Process" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.foundation.model.BaseDataObject" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Customer" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="entityName" itemSubjectRef="_entityNameItem"/>
+    <property id="action" itemSubjectRef="_actionItem"/>
+    <property id="entityOut" itemSubjectRef="_entityOutItem"/>
+    <property id="entityIn" itemSubjectRef="_entityInItem"/>
+    <property id="sfdcInputMap" itemSubjectRef="_sfdcInputMapItem"/>
+    <property id="rootEntity" itemSubjectRef="_rootEntityItem"/>
+
+    <!-- nodes -->
+    <task id="_34" name="SFDC Update Integration" tns:taskName="IntegrationTask" >
+      <ioSpecification>
+        <dataInput id="_34_inputInput" name="input" />
+        <dataInput id="_34_entityInput" name="entity" />
+        <dataInput id="_34_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_34_entityOutput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_34_inputInput</dataInputRefs>
+          <dataInputRefs>_34_entityInput</dataInputRefs>
+          <dataInputRefs>_34_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_34_entityOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>sfdcInputMap</sourceRef>
+        <targetRef>_34_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_34_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_34_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">sforceService</from>
+          <to xsi:type="tFormalExpression">_34_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_34_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_35" name="Gateway" gatewayDirection="Diverging" />
+    <startEvent id="_1" name="Start" />
+    <scriptTask id="_32" name="Process Input for SFDC" scriptFormat="http://www.java.com/java" >
+      <script>BaseDataObject dataObject = (BaseDataObject) context.getVariable("contextEntity");
+Object entityOutObj = (Object) context.getVariable("entityOut");
+Object entityInObj = (Object) context.getVariable("entityIn");
+Object entityName1 = (Object) context.getVariable("entityName");
+Object entityAction = (Object) context.getVariable("action");
+
+if(entityOutObj == null){
+	entityOutObj = dataObject;
+}
+
+if(entityInObj == null){
+	entityInObj = dataObject;
+}
+
+Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+inputMap.put("contextEntity",dataObject);
+inputMap.put("entityOut",entityOutObj);
+inputMap.put("entityIn",entityInObj);
+inputMap.put("entityName",entityName1);
+inputMap.put("action",entityAction);
+
+context.setVariable("sfdcInputMap", inputMap);</script>
+    </scriptTask>
+    <endEvent id="_33" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <endEvent id="_36" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+
+    <!-- connections -->
+    <sequenceFlow id="_32-_34" sourceRef="_32" targetRef="_34" />
+    <sequenceFlow id="_1-_35" sourceRef="_1" targetRef="_35" />
+    <sequenceFlow id="_35-_32" sourceRef="_35" targetRef="_32" name="is salesforce entity" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >BaseDataObject rootEntityObj = (BaseDataObject) context.getVariable("rootEntity");
+if(rootEntityObj != null){
+	if(rootEntityObj instanceof Request){
+		Request requestObj = (Request) rootEntityObj;
+		if(requestObj.getExternalIdentifier() != null){
+			return true;
+		}
+	}else if(rootEntityObj instanceof Customer){
+		Customer customerObj = (Customer) rootEntityObj;	
+		if(customerObj.getExternalIdentifier() != null){
+			return true;
+		}
+	}
+}
+
+return false;
+</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_34-_33" sourceRef="_34" targetRef="_33" />
+    <sequenceFlow id="_35-_36" sourceRef="_35" targetRef="_36" name="not salesforce entity" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >BaseDataObject rootEntityObj = (BaseDataObject) context.getVariable("rootEntity");
+if(rootEntityObj != null){
+	if(rootEntityObj instanceof Request){
+		Request requestObj = (Request) rootEntityObj;
+		if(requestObj.getExternalIdentifier() != null){
+			return false;
+		}
+	}else if(rootEntityObj instanceof Customer){
+		Customer customerObj = (Customer) rootEntityObj;	
+		if(customerObj.getExternalIdentifier() != null){
+			return false;
+		}
+	}
+}
+
+return true;</conditionExpression>
+    </sequenceFlow>
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="SalesforceUpdateProcess" >
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="47" y="298" width="233" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="134" y="104" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="134" y="15" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="41" y="200" width="238" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="140" y="408" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_36" >
+        <dc:Bounds x="273" y="104" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_32-_34" >
+        <di:waypoint x="160" y="224" />
+        <di:waypoint x="163" y="322" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_35" >
+        <di:waypoint x="158" y="39" />
+        <di:waypoint x="158" y="128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_32" >
+        <di:waypoint x="158" y="128" />
+        <di:waypoint x="160" y="224" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_33" >
+        <di:waypoint x="163" y="322" />
+        <di:waypoint x="164" y="432" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_36" >
+        <di:waypoint x="158" y="128" />
+        <di:waypoint x="297" y="128" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

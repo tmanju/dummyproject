@@ -1,0 +1,385 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+			<tns:component id="facility">                      
+			  <tns:read>true</tns:read>
+			</tns:component>
+
+			<tns:canvas id="request_crud">
+				<tns:component id="exportEntityBtn" >
+					<tns:default>false</tns:default>
+				</tns:component>
+				<tns:component id="editEntityBtn" >
+					<tns:default>true</tns:default>
+				</tns:component>
+				
+				<tns:canvas id="facilityEditCanvas">
+					<tns:component id="facility_facilityCustomerRoles_delete">
+	                	<tns:default>
+	                		if(root_allFacilities != empty  &amp;&amp; root_allFacilities_facilityCustomerRoles != empty &amp;&amp; root_allFacilities != null &amp;&amp; root_allFacilities_facilityCustomerRoles != null){
+	                			if(root_allFacilities_facilityCustomerRoles.primaryBorrower){
+	                				return false;
+	                			}
+	                		}
+	                		return true;
+	                	</tns:default>
+	                </tns:component>
+	                
+	                <tns:component id="facility_facilityCustomerRoles_edit">
+	                	<tns:default>
+	                		if(root_allFacilities != empty  &amp;&amp; root_allFacilities_facilityCustomerRoles != empty &amp;&amp; root_allFacilities != null &amp;&amp; root_allFacilities_facilityCustomerRoles != null){
+	                			if(root_allFacilities_facilityCustomerRoles.primaryBorrower){
+	                				return false;
+	                			}
+	                		}
+	                		return true;
+	                	</tns:default>
+	                </tns:component>
+                </tns:canvas>
+                
+				<tns:component id="facilityEditCanvas.WithdrawFacility">
+                    <tns:default>
+	                    boolean isVisible=true;
+	                    if (root_allFacilities.inWfStatus("FACILITY_STATUS_NEW","FACILITY_STATUS_DECLINED","FACILITY_STATUS_APPROVED","FACILITY_STATUS_DOCUMENTATION","FACILITY_STATUS_DOCS_CREATED","FACILITY_STATUS_FUNDED","FACILITY_STATUS_WITHDRAWN","FACILITY_STATUS_EXPIRED","FACILITY_STATUS_PRE_DOCUMENTATION","FACILITY_STATUS_APPROVED_PENDING_RENEWAL")) {
+	                        isVisible = false;
+	                    }
+	                    return isVisible;
+                    </tns:default>
+                </tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_structure">
+					<tns:default>
+					boolean isVisible=false;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key != "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=true;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_facilitySubType">
+					<tns:default>
+					boolean isVisible=false;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE") {
+						isVisible=true;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_lesase_structure">
+					<tns:default>
+					boolean isVisible=false;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=true;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				
+				<tns:component id="facilityEditCanvas.facility_additionalOptions">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_facilityGuaranty">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="facilityEditCanvas.facility_pricingOption_structure_normal_fees">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_rewriteInfo">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_assetQualityMetrics">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_exposureAtDefault">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_factoring">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+
+				<tns:component id="facilityEditCanvas.facility_productLimits">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_modicationPanel">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="facilityEditCanvas.facility_pricingOption_assets_EditCanvas.asset_tracPct">
+					<tns:default>
+							boolean isVisible=false;
+							if (root_allFacilities.pricingOption.structure.?financialProductType.?key == 'FINANCIAL_PRODUCT_TYPE_TRAC') {
+								isVisible=true;
+							}
+							return isVisible;
+					</tns:default>
+				</tns:component>
+				<!-- <tns:component id="facilityEditCanvas.facility_pricingOption_solveFor">
+					<tns:default>
+						return root_allFacilities.isShowSolveFor();
+					</tns:default>
+				</tns:component> -->
+				<!-- CRE LPOB-1005 -->
+				<tns:component id="facilityEditCanvas.facility_securitizationPool">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="facilityEditCanvas.facility_purposeCode">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="facilityEditCanvas.facility_productPurpose">
+					<tns:default>
+					boolean isVisible=false;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE") {
+						isVisible=true;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				<tns:component id="facilityEditCanvas.facility_pricingOption_assets">
+					<tns:default>
+					boolean isVisible=true;
+					if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE") {
+						isVisible=false;
+					}
+					return isVisible;
+					</tns:default>
+				</tns:component>
+				
+				<tns:component id="facilityEditCanvas.facility_pricingOption_structure_leadBank">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root_allFacilities.pricingOption.structure.?syndication.?key == 'SYNDICATION_OPTON_NO') {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                 
+                <tns:component id="facilityEditCanvas.facility_pricingOption_structure_participation">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root_allFacilities.pricingOption.structure.?syndication.?key == 'SYNDICATION_OPTON_NO') {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+               
+				<tns:component id="facilityEditCanvas.facility_limitInformation">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root_allFacilities.facilityType!=null &amp;&amp; (root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE" || root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE")) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+               
+                <tns:component id="facilityEditCanvas.contractSetup_termOutInformation">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.contractSetup_amortizationInformation">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.contractSetup_miscellaneousSetup">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root_allFacilities.facilityType!=null &amp;&amp; root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE") {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                 <tns:component id="facilityEditCanvas.facility_assetQualityMetrics">
+                    <tns:default>
+                    boolean isVisible=true;
+                     if (root_allFacilities.facilityType!=null &amp;&amp; (root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE" || root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE")) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.facility_exposureAtDefault">
+                    <tns:default>
+                    boolean isVisible=true;
+                     if (root_allFacilities.facilityType!=null &amp;&amp; (root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE" || root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE")) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.facility_factoring">
+                    <tns:default>
+                    boolean isVisible=true;
+                     if (root_allFacilities.facilityType!=null &amp;&amp; (root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE" || root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE")) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.facility_productLimits">
+                    <tns:default>
+                    boolean isVisible=true;
+                    if (root_allFacilities.facilityType!=null &amp;&amp; (root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE" || root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE" )) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.facility_pricingOption_structure_paymentSchedule_seasonalSchedules">
+                    <tns:default>
+                            boolean isVisible=false;
+                            if (root_allFacilities.pricingOption.structure.?paymentSchedule.?paymentScheduleType.?key == 'PAYMENT_SCHEDULE_TYPE_SEASONAL') {
+                                isVisible=true;
+                            }
+                            return isVisible;
+                    </tns:default>
+                </tns:component>
+                <tns:component id="facilityEditCanvas.facility_pricingOption_structure_paymentSchedule_miscellaneousSchedules">
+                    <tns:default>
+                            boolean isVisible=false;
+                            if (root_allFacilities.pricingOption.structure.?paymentSchedule.?paymentScheduleType.?key != 'PAYMENT_SCHEDULE_TYPE_SEASONAL') {
+                                isVisible=true;
+                            }
+                            return isVisible;
+                    </tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.facility_pricingOption_structure_paymentSchedule_seasonalSchedules_add">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                <tns:component id="facilityEditCanvas.facility_pricingOption_structure_paymentSchedule_seasonalSchedules_delete">
+                    <tns:default>false</tns:default>
+                </tns:component>
+                
+                 <tns:component id="facilityEditCanvas.facility_assets">
+                    <tns:default>
+					boolean isVisible=true;
+                     if (root_allFacilities.facilityType!=null &amp;&amp; (root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_LEASE" || root_allFacilities.facilityType.key == "CREDIT_FACILITY_TYPE_COMMERCIAL_REAL_ESTATE")) {
+                        isVisible=false;
+                    }
+                    return isVisible;
+                    </tns:default>
+                </tns:component>
+                
+                
+                <!-- <tns:component id="facilityEditCanvas.facility_request_keyPricingInformation">
+	                  <tns:default>
+	                  boolean isVisible=false;
+	                  if (ctxUser.hasRoleCategoryOtherThan('ROLE_CATEGORY_VENDOR')) {
+	                    isVisible=true;
+	                  }
+	                  return isVisible;
+	                  
+	                  </tns:default>
+                </tns:component> -->
+                
+                
+                
+			</tns:canvas>
+
+	</tns:ui-permissions>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="scrRcmRuleSeed" type="list"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	
+	<data-table name="scrRcmRuleSeed" row="scrRcmRuleSeed" label="Scoring Rule Search Results">
+		<columns>
+			<column name="scrRcmRuleSeed.name" label="Name Of the Rule"/>
+			<column name="scrRcmRuleSeed.description" />
+			<column name="scrRcmRuleSeed.applicability" />
+			<column name="scrRcmRuleSeed.recommendationCategory" />
+			<column name="scrRcmRuleSeed.recommendation" />
+			<column name="scrRcmRuleSeed.recommendationLevel" />
+			<column name="scrRcmRuleSeed.reasonLevel" />
+			<column name="scrRcmRuleSeed.exceptionAuthority" />
+			<column name="scrRcmRuleSeed.effectiveFrom" />
+			<column name="scrRcmRuleSeed.effectiveTo" />
+				
+		</columns>
+	</data-table>
+	
+
+	<beans>
+		<bean name="scrRcmRuleSeed" type="com.thirdpillar.codify.loanpath.model.ScrRcmRuleSeed" />
+	</beans>
+</canvas>

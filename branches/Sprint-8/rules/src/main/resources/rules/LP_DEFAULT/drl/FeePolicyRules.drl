@@ -1,0 +1,35 @@
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.model.*;
+import com.thirdpillar.codify.loanpath.model.*;
+import com.thirdpillar.foundation.service.LookupService;
+
+import function com.thirdpillar.foundation.rules.RuleFunctions.logDebug;
+import java.util.Calendar;
+import java.util.Date;
+
+rule "Default Fee Policy profile"
+    agenda-group "NEW"
+      when
+        #condition
+      fee:FeePolicy() 
+      then
+	    
+	    AttributeChoice ouType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","OPERATING_UNIT_OPERATING_UNIT");
+      	fee.setOu(ouType);
+      	
+      	AttributeChoice sbuType = (AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT");
+      	fee.setSbu(sbuType);
+      	
+      	Date currentDate = new Date();
+        //fee.setEffectiveFromDate(currentDate);
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.MONTH, 6);
+
+        Date effectiveTo = calendar.getTime();
+        fee.setEffectiveToDate(effectiveTo);
+        
+        
+end

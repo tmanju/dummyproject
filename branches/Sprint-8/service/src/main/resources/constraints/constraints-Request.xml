@@ -1,0 +1,955 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="Request" ignore-annotations="false">
+    
+        <map:class>
+       
+       		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+       			<map:message>{request.partnerDrawFeeCommissionPct.valid}</map:message>  
+       			<map:groups>
+       				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value>
+				</map:groups>
+       			<map:element name="triggerExpr"><![CDATA[return o.partnerDrawFeeCommissionPct != null;]]></map:element>
+       			<map:element name="matchedExpr">
+       				<![CDATA[
+                	boolean match = true;
+                		if(o.allFacilities != null && !o.allFacilities.isEmpty()){
+                			com.thirdpillar.codify.loanpath.model.Facility f = o.allFacilities.get(0);
+                			if(f.pricingOption != null && f.pricingOption.structure != null && f.pricingOption.structure.fees != null){
+                				for(com.thirdpillar.codify.loanpath.model.Fee fee : f.pricingOption.structure.fees){
+                					com.thirdpillar.codify.loanpath.model.FeePolicy feePolicy = fee.getFeePolicy();
+                					if(feePolicy != null && feePolicy.getName().equals("Draw Fee")){
+                						java.math.BigDecimal feePct = fee.getFeePct();
+                						if(feePct != null && feePct.compareTo(o.partnerDrawFeeCommissionPct) < 0){
+                							match = false;
+                						}
+                					}
+                				}
+                			}
+                		}
+                	return match;
+                ]]>
+       			</map:element>     		
+       		</map:constraint>
+       		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+       			<map:message>{request.partnerOrgFeeCommissionPct.valid}</map:message>
+       			<map:groups>
+       				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value>
+				</map:groups>
+       			<map:element name="triggerExpr"><![CDATA[return o.partnerOrgFeeCommissionPct != null;]]></map:element>
+       			<map:element name="matchedExpr"><![CDATA[
+       				boolean match = true;
+                		if(o.allFacilities != null && !o.allFacilities.isEmpty()){
+                			com.thirdpillar.codify.loanpath.model.Facility f = o.allFacilities.get(0);
+                			if(f.pricingOption != null && f.pricingOption.structure != null && f.pricingOption.structure.fees != null){
+                				for(com.thirdpillar.codify.loanpath.model.Fee fee : f.pricingOption.structure.fees){
+                					com.thirdpillar.codify.loanpath.model.FeePolicy feePolicy = fee.getFeePolicy();
+                					if(feePolicy != null && feePolicy.getName().equals("Origination Fee")){
+                						java.math.BigDecimal feePct = fee.getFeePct();
+                						if(feePct != null && feePct.compareTo(o.partnerOrgFeeCommissionPct) < 0){
+                							match = false;
+                						}
+                					}
+                				}
+                			}
+                		}
+                	return match;
+                ]]>
+       			</map:element>     		
+       		</map:constraint>
+       		
+        	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.requestName.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[(o.requestName != empty || o.requestName!=null)]]></map:element>
+  			</map:constraint>
+        
+ 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.facility.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[(o.allFacilities != empty)]]></map:element>
+  			</map:constraint>
+  			
+  			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.requestType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[(o.requestType != null)]]></map:element>
+  			</map:constraint>
+ 
+ <!-- PENDING DECISION DECLINE VALIDATIONS -->
+
+     
+<!-- PENDING SALES VALIDATIONS --> 
+     
+     <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{request.facility.required}</map:message>
+		<map:groups>
+			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</map:value>
+		</map:groups>
+		<map:element name="matchedExpr"><![CDATA[o.allFacilities != empty]]></map:element>
+	</map:constraint>
+     <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{request.receivedDate.required}</map:message>
+		<map:groups>
+			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</map:value>
+		</map:groups>
+		<map:element name="matchedExpr"><![CDATA[o.receivedDate != empty]]></map:element>
+	</map:constraint>	
+	
+<!-- PENDING ANALYSIS VALIDATIONS --> 
+
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		<map:message>{request.creditAnalyst.required}</map:message>
+		<map:groups>
+			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+		</map:groups>
+		<map:element name="matchedExpr"><![CDATA[o.creditAnalyst != null]]></map:element>
+	</map:constraint>
+	
+ <!-- PENDING DECISION VALIDATIONS -->
+ 	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.approverRequired}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                </map:groups>
+                <map:element name="matchedExpr"><![CDATA[return (o.?approval.approvalLevels != empty);]]></map:element>
+	</map:constraint> 
+ 
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.approverRequired}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                </map:groups>
+                <map:element name="triggerExpr"><![CDATA[return o.?approval.approvalLevels != empty;]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                	boolean match = false;
+                	foreach(approvalLevel : o.approval.approvalLevels){
+                		if (approvalLevel.approverList != null && approvalLevel.approverList.size > 0) {
+                			match = true;
+                		}
+                	}
+                	return match;
+                ]]></map:element>
+	</map:constraint> 
+
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.approval.approvalLevels.user.creditAuthorityLevel.value}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                </map:groups>
+                <map:element name="triggerExpr"><![CDATA[return o.wfStatus!=null && o.recommendedApprCategory != null;]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[   
+                                    boolean match = true;
+                                    if(o.getLoggedInUser().creditAuthorityLevel != null && o.approval != null && o.approval.orderedApprovalLevels != null && o.approval.orderedApprovalLevels.size() > 0){
+                                    com.thirdpillar.codify.loanpath.model.ApprovalLevel approvalLevel = (com.thirdpillar.codify.loanpath.model.ApprovalLevel)o.approval.orderedApprovalLevels.get(o.approval.approvalLevels.size() - 1);                                                           
+                                    
+                                    if(com.thirdpillar.codify.loanpath.service.DroolsUtil.getIntValueCreditAuthorityLevel(o.getLoggedInUser().creditAuthorityLevel.value) < com.thirdpillar.codify.loanpath.service.DroolsUtil.getIntValueCreditAuthorityLevel(o.recommendedApprCategory.value)){   
+                                   		 match = false;
+                                   	 }
+                                    }
+                                       
+                                    return match;
+                ]]></map:element>
+	</map:constraint>
+
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.creditAnalyst.creditAuthorityLevel.value}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+                </map:groups>
+                <map:element name="triggerExpr"><![CDATA[return o.creditAnalyst!=null && o.recommendedApprCategory != null;]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[   
+                                    boolean match = true;
+                                    if(o.creditAnalyst != null && o.creditAnalyst.creditAuthorityLevel != null && o.creditAnalyst.creditAuthorityLevel.value != null 
+                                    && com.thirdpillar.codify.loanpath.service.DroolsUtil.getIntValueCreditAuthorityLevel(o.creditAnalyst.creditAuthorityLevel.value) < com.thirdpillar.codify.loanpath.service.DroolsUtil.getIntValueCreditAuthorityLevel(o.recommendedApprCategory.value)){
+                                    match = false;
+                                    }
+                                       
+                                    return match;
+                ]]></map:element>
+	</map:constraint>
+
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+	                <map:message>{request.debtorDecision.required}</map:message>
+	                <map:groups>
+	                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+	                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+	                </map:groups>
+	                 <map:element name="triggerExpr"><![CDATA[return (o.wfStatus!=null && o.allFacilities.size() > 0 ) ;]]></map:element>
+	                <map:element name="matchedExpr"><![CDATA[
+	                                   boolean match = true;
+	                                       foreach(facility : o.allFacilities){
+		                                               for(com.thirdpillar.codify.loanpath.model.DebtorCustomer dc : facility.getDebtors()){
+				                                                if((dc != null) && !(dc.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE') && !(dc.wfStatus.statusKey == 'DEBTOR_STATUS_INELIGIBLE')){
+				                                                 	match = false;
+				                                                }
+	                                               		}
+	                                           }
+	                                          return match;
+	                                   ]]></map:element>
+	                
+	 </map:constraint>
+	 
+	  <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.productDecision.approvedAmt.valid}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+                </map:groups>
+                <map:element name="triggerExpr"><![CDATA[return o.wfStatus!=null && o.allFacilities!=null;]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                                    boolean match = true;
+                                    	foreach(facility : o.allFacilities){
+                                    		if(facility.getApprovedLoanAmt() != null && facility.getApprovedLoanAmt().compareTo(facility.getRequestedLoanAmt()) > 0){
+                                    			match = false;
+                                    		}
+                                    	}
+                                       
+                                    return match;]]>
+              	</map:element>
+       </map:constraint>
+	 
+	 <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.productDecision.required}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+                </map:groups>
+                <map:element name="triggerExpr"><![CDATA[return o.wfStatus!=null && o.allFacilities!=null;]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                                    boolean match = true;
+                                       foreach(facility : o.allFacilities){
+                                           if(facility.facilityDecision == null && facility.wfStatus.statusKey != 'FACILITY_STATUS_WITHDRAWN'){
+                                               match = false;
+                                               }
+                                           }
+                                        return match;]]></map:element>
+                
+	</map:constraint>
+	
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.productDecision.approve.approvedLoanAmt}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+                </map:groups>
+                 <map:element name="triggerExpr"><![CDATA[return o.wfStatus!=null && o.allFacilities!=null;]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                                    boolean match = true;
+                                       foreach(facility : o.allFacilities){
+                                           if(facility.wfStatus.statusKey != 'FACILITY_STATUS_WITHDRAWN' && facility.facilityDecision != null && facility.facilityDecision.key == 'FACILITY_DECISION_APPROVE' && (facility.approvedLoanAmt == null || facility.approvedLoanAmt <= 0)){
+                                               match = false;
+                                               }
+                                           }
+                                        return match;]]></map:element>
+                
+	</map:constraint>		
+	
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{request.productDecision.decline.approvedLoanAmt}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                </map:groups>
+                 <map:element name="triggerExpr"><![CDATA[return o.wfStatus!=null && o.allFacilities!=null;]]></map:element>
+                <map:element name="matchedExpr"><![CDATA[
+                                    boolean match = true;
+                                       foreach(facility : o.allFacilities){
+                                           if(facility.facilityDecision != null && facility.facilityDecision.key == 'FACILITY_DECISION_DECLINE' && facility.approvedLoanAmt != null && facility.approvedLoanAmt != 0){
+                                               match = false;
+                                               }
+                                           }
+                                        return match;]]></map:element>
+                
+	</map:constraint>		
+	
+<!--  DECLINED VALIDATIONS -->
+
+	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			<map:message>{request.allFacilities.status.declined}</map:message>
+			<map:groups>
+				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Declined</map:value>
+			</map:groups>
+			<map:element name="matchedExpr"><![CDATA[
+			boolean match=true;
+			if(o.allFacilities!=null && o.allFacilities.size > 0)
+			{
+			  foreach(facility : o.allFacilities)
+			   {
+			  		if(facility.wfStatus.statusKey != 'FACILITY_STATUS_APPROVED_PENDING_RENEWAL' && facility.?facilityDecision.key !='FACILITY_DECISION_DECLINE') {
+			  			  match=false;
+			  	    }
+			  	}
+			}
+			return match;
+			]]></map:element>
+	</map:constraint>
+
+<!-- Uploaded Document Final Status Validation -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.documentGroup.uploadedDocuments.NotInFinalStatus}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$UploadedDocumentFinalStatus</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+			                boolean match=true;
+							if(o.documentGroup.uploadedDocuments!=null && o.documentGroup.uploadedDocuments.size > 0)
+							{
+							  foreach(document : o.documentGroup.uploadedDocuments)
+							   {
+							  		if(document.documentStatus.key == 'DOCUMENT_STATUS_PENDING_REVIEW' || document.documentStatus.key == 'DOCUMENT_STATUS_NEW' || document.documentStatus.key == 'DOCUMENT_STATUS_SIGNING_IN_COMPLETE') {
+							  			  match=false;
+							  	    }
+							  	}
+							}
+							return match;
+		                ]]></map:element>
+			</map:constraint>   
+
+<!-- Generated Document Final Status Validation -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.documentGroup.generatedDocuments.NotInFinalStatus}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$GeneratedDocumentFinalStatus</map:value>
+		                </map:groups>
+		                    <map:element name="matchedExpr"><![CDATA[
+				                boolean match=true;
+								if(o.documentGroup.generatedDocuments!=null && o.documentGroup.generatedDocuments.size > 0)
+								{
+								  foreach(document : o.documentGroup.generatedDocuments)
+								   {
+								  		if(document.documentStatus.key == 'DOCUMENT_STATUS_PENDING_REVIEW' || document.documentStatus.key == 'DOCUMENT_STATUS_NEW' || document.documentStatus.key == 'DOCUMENT_STATUS_SIGNING_IN_COMPLETE') {
+								  			  match=false;
+								  	    }
+								  	}
+								}
+								return match;
+		                ]]></map:element>
+			</map:constraint>
+
+<!-- Uploaded Document Pre-Validation -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.documentGroup.uploadedDocuments.PreValidation}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$UploadedDocumentPreValidation</map:value>
+		                </map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+			                boolean match=true;
+							if(o.documentGroup.uploadedDocuments!=null && o.documentGroup.uploadedDocuments.size > 0)
+							{
+							  foreach(document : o.documentGroup.uploadedDocuments)
+							   {
+							  		if(document.documentStatus.key == 'DOCUMENT_STATUS_NEW' || document.documentStatus.key == 'DOCUMENT_STATUS_SIGNING_IN_COMPLETE') {
+							  			  match=false;
+							  	    }
+							  	}
+							}
+							return match;
+		                ]]></map:element>
+			</map:constraint>   
+
+<!-- Generated Document Pre-Validation -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.documentGroup.generatedDocuments.PreValidation}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$GeneratedDocumentPreValidation</map:value>
+		                </map:groups>
+		                    <map:element name="matchedExpr"><![CDATA[
+				                boolean match=true;
+								if(o.documentGroup.generatedDocuments!=null && o.documentGroup.generatedDocuments.size > 0)
+								{
+								  foreach(document : o.documentGroup.generatedDocuments)
+								   {
+								  		if(document.documentStatus.key == 'DOCUMENT_STATUS_NEW' || document.documentStatus.key == 'DOCUMENT_STATUS_SIGNING_IN_COMPLETE' ) {
+								  			  match=false;
+								  	    }
+								  	}
+								}
+								return match;
+		                ]]></map:element>
+			</map:constraint>
+			
+<!-- ManualPullReport Validation -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.pullReportCustomer.Validation}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ManualBureauPullCustomer</map:value>
+		                </map:groups>
+		                   <map:element name="matchedExpr"><![CDATA[(o.pullReportCustomer != null)]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.bureauName.Validation}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$ManualBureauPullBureau</map:value>
+		                </map:groups>
+		                   <map:element name="matchedExpr"><![CDATA[(o.bureauName != null)]]></map:element>
+			</map:constraint>
+						     
+ <!-- End Group Validations -->
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{freezeCode.alphaNumeric.length}</map:message>
+				<map:element name="triggerExpr"><![CDATA[return (o.freezeCode != empty);]]></map:element>
+				<map:element name="matchedExpr"><![CDATA[o.freezeCode != '[a-zA-Z0-9]{8}']]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.allFacilities.fee.validation}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+		                </map:groups>
+		                  	<map:element name="triggerExpr"><![CDATA[return (o.allFacilities != empty);]]></map:element>
+		                    <map:element name="matchedExpr"><![CDATA[ 
+								  foreach(facility : o.allFacilities){
+							  		if(facility.pricingOption != null && facility.pricingOption.structure !=null && facility.pricingOption.structure.fees != empty){
+							  			foreach(fee : facility.pricingOption.structure.fees){
+							  				if(fee.feePct != null && fee.isFeePctValid()){
+							  					return false;
+							  				}	
+							  			} 
+							  	    }
+							  	 }   
+								return true;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{request.allFacilities.financedAmt.validation}</map:message>
+		                <map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+		                </map:groups>
+		                  	<map:element name="triggerExpr"><![CDATA[return (o.allFacilities != empty);]]></map:element>
+		                    <map:element name="matchedExpr"><![CDATA[
+								  foreach(facility : o.allFacilities){
+							  		if(facility.isFinancedAmtValid()){
+							  			  return false;
+							  	    }
+								  }
+								return true;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.withdrawReason.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$WithdrawApplicationForRequest</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+						if(o.withdrawReasonLease == null){
+							match=false;
+						}
+						return match;
+					]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.expectedCloseDate.valid}</map:message>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+						if(o.expectedCloseDate != null && o.receivedDate != null){
+							if(o.expectedCloseDate.before(o.receivedDate)){
+								match=false;
+							}
+						}
+						return match;
+					]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.facility.renewalDate.valid}</map:message>
+				<map:groups>
+		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+		                </map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+						if(o.getReceivedDate() != null && o.expectedCloseDate != null){
+						
+						
+						 foreach(facility : o.allFacilities){
+						 if(facility.getRenewalDate()!=null){
+							if(facility.getRenewalDate().before(o.getReceivedDate()) && facility.getRenewalDate().before(o.expectedCloseDate)){
+								match=false;
+							}
+								  }}
+							
+						}
+						return match;
+					]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.account.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						if(o.account == null){
+							return false;
+						}
+						return true;
+					]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+              <map:message>{request.facility.requestedLoanAmt.range}</map:message>
+              <map:element name="matchedExpr"><![CDATA[ 
+							  	if(o.fetchCurrentFacility() != null){
+							  		return o.fetchCurrentFacility().validateRequestedAmount();
+							  	}
+							  	return true;
+		                ]]></map:element>
+            </map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.account.valid}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						return o.validateAccount();
+					]]></map:element>
+			</map:constraint> 
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.customer.dedup.check}</map:message>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						return o.validateDeDupCustomer();
+					]]></map:element>
+			</map:constraint>
+			
+          	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{facility.additionalOption.structure.pricing.require}</map:message>
+                <map:groups>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+                </map:groups>
+                 <map:element name="triggerExpr"><![CDATA[return o.wfStatus!=null && o.allFacilities!=null;]]></map:element>
+                	 <map:element name="matchedExpr"><![CDATA[
+                                    boolean match = true;
+                                       foreach(facility : o.allFacilities){
+									   if(facility.additionalOptions.size()==0) 
+									   { 
+									   	match = false; 
+									   }
+								   }
+                                        return match;
+                      ]]></map:element>
+			</map:constraint>
+		
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.renewaldate.greater.expectedclosedate}</map:message>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+						foreach(facility : o.allFacilities)
+						{
+							if ((facility.renewalDate !=null) && (o.expectedCloseDate != null) 
+							&& (facility.renewalDate.before(o.expectedCloseDate)))
+								{
+									match=false;
+								}
+						}
+						return match;
+					]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.renewaldate.greater.applicationdate}</map:message>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+						foreach(facility : o.allFacilities)
+						{							
+							if ((facility.renewalDate !=null) && (o.receivedDate != null) 
+							&& (facility.renewalDate.before(o.receivedDate)))
+								{
+									match=false;
+								}
+							
+						}
+						return match;
+					]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.expectedclosedate.check}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+							if (o.expectedCloseDate != null && o.expectedCloseDate.before(new java.util.Date())) 
+							{
+								match=false;
+							}
+						
+						return match;
+					]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.client.required}</map:message>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+							if (o.getAccount().getCustomer() == null) 
+							{
+								match=false;
+							}
+						
+						return match;
+					]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.client.required}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+							if (o.getAccount().getCustomer() == null) 
+							{
+								match=false;
+							}
+						
+						return match;
+					]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{application.client.bankinformation.required}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						return o.clientBankInfo();
+					]]></map:element>
+			</map:constraint>
+			
+<!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.bankinformation.cityRequired}</map:message>
+							<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+		                if(o.account != empty && o.account.customer != empty && o.account.customer.bankTrades !=empty)
+		                {
+		                 	foreach(banktrade:o.account.customer.bankTrades){	
+		                 		if(banktrade.branchAddress != null){
+				                 	if(banktrade.branchAddress.city == null)
+				                	{
+				                		match=false;
+				                	}
+				                }
+		                 	}
+		                }
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.bankinformation.stateRequired}</map:message>
+							<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+		                if(o.account != empty && o.account.customer != empty && o.account.customer.bankTrades !=empty)
+		                {
+		                 	foreach(banktrade:o.account.customer.bankTrades){	
+		                 		if(banktrade.branchAddress != null){
+				                 	if(banktrade.branchAddress.stateProvince == null)
+				                	{
+				                		match=false;
+				                	}
+				                }
+		                 	}
+		                }
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.bankinformation.postalCodeRequired}</map:message>
+							<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+		                if(o.account != empty && o.account.customer != empty && o.account.customer.bankTrades !=empty)
+		                {
+		                 	foreach(banktrade:o.account.customer.bankTrades){	
+		                 		if(banktrade.branchAddress != null){
+				                 	if(banktrade.branchAddress.postalCode == null)
+				                	{
+				                		match=false;
+				                	}
+				                }
+		                 	}
+		                }
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.bankinformation.countryRequired}</map:message>
+							<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+		                if(o.account != empty && o.account.customer != empty && o.account.customer.bankTrades !=empty)
+		                {
+		                 	foreach(banktrade:o.account.customer.bankTrades){	
+		                 		if(banktrade.branchAddress != null){
+				                 	if(banktrade.branchAddress.country == null)
+				                	{
+				                		match=false;
+				                	}
+				                }
+		                 	}
+		                }
+		                return match;
+		                ]]></map:element>
+			</map:constraint>  -->
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.primarySite.siteDetails.addresses.stateRequired}</map:message>
+						<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+						foreach(facility : o.allFacilities)
+							{							
+								if (facility !=null && facility.facilityCustomerRoles !=null )
+								{
+									foreach(facilityCustomerRole:facility.facilityCustomerRoles)
+									{
+										if(facilityCustomerRole.customer !=null && facilityCustomerRole.customer.primarySite !=null && facilityCustomerRole.customer.primarySite.siteDetails !=null && facilityCustomerRole.customer.primarySite.siteDetails.addresses !=null)
+										{
+											foreach(address:facilityCustomerRole.customer.primarySite.siteDetails.addresses)
+											{
+												if(address.stateProvince == null)
+												{
+													match=false;
+													return match;
+												}
+											}
+										}
+									}
+								}
+							}
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.primarySite.siteDetails.addresses.postalCodeRequired}</map:message>
+						<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+						foreach(facility : o.allFacilities)
+							{							
+								if (facility !=null && facility.facilityCustomerRoles !=null )
+								{
+									foreach(facilityCustomerRole:facility.facilityCustomerRoles)
+									{
+										if(facilityCustomerRole.customer !=null && facilityCustomerRole.customer.primarySite !=null && facilityCustomerRole.customer.primarySite.siteDetails !=null && facilityCustomerRole.customer.primarySite.siteDetails.addresses !=null)
+										{
+											foreach(address:facilityCustomerRole.customer.primarySite.siteDetails.addresses)
+											{
+												if(address.postalCode == null)
+												{
+													match=false;
+													return match;
+												}
+											}
+										}
+									}
+								}
+							}
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.primarySite.siteDetails.addresses.countryRequired}</map:message>
+						<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+						foreach(facility : o.allFacilities)
+							{							
+								if (facility !=null && facility.facilityCustomerRoles !=null )
+								{
+									foreach(facilityCustomerRole:facility.facilityCustomerRoles)
+									{
+										if(facilityCustomerRole.customer !=null && facilityCustomerRole.customer.primarySite !=null && facilityCustomerRole.customer.primarySite.siteDetails !=null && facilityCustomerRole.customer.primarySite.siteDetails.addresses !=null)
+										{
+											foreach(address:facilityCustomerRole.customer.primarySite.siteDetails.addresses)
+											{
+												if(address.country == null)
+												{
+													match=false;
+													return match;
+												}
+											}
+										}
+									}
+								}
+							}
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+		                <map:message>{customer.primarySite.siteDetails.addresses.cityRequired}</map:message>
+						<map:groups>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+						</map:groups>
+		                <map:element name="matchedExpr"><![CDATA[
+		                boolean match = true;
+						foreach(facility : o.allFacilities)
+							{							
+								if (facility !=null && facility.facilityCustomerRoles !=null )
+								{
+									foreach(facilityCustomerRole:facility.facilityCustomerRoles)
+									{
+										if(facilityCustomerRole.customer !=null && facilityCustomerRole.customer.primarySite !=null && facilityCustomerRole.customer.primarySite.siteDetails !=null && facilityCustomerRole.customer.primarySite.siteDetails.addresses !=null)
+										{
+											foreach(address:facilityCustomerRole.customer.primarySite.siteDetails.addresses)
+											{
+												if(address.city == null)
+												{
+													match=false;
+													return match;
+												}
+											}
+										}
+									}
+								}
+							}
+		                return match;
+		                ]]></map:element>
+			</map:constraint>
+		     <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{request.facility.coacomplete}</map:message>
+				<map:groups>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value>
+				</map:groups>
+				<map:element name="matchedExpr"><![CDATA[return o.getCompletedCoaCheck();]]></map:element>
+			</map:constraint>
+
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{facility.facilitycusomerrole.duplicate}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CreditAnalystPendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value>
+					<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						return o.customerDuplicateRolesCheck();
+					]]></map:element>
+			</map:constraint>
+			
+<!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
+<!-- 	                <map:message>{customer.borrowerratings.borrowerratingsfields.required}</map:message> -->
+<!-- 	                <map:groups> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value> -->
+<!-- 			  			<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	  -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</map:value> -->
+<!-- 						<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</map:value> -->
+<!-- 	                </map:groups> -->
+<!-- 	                	 <map:element name="matchedExpr"><![CDATA[ -->
+<!--                 		boolean match = true; -->
+                		
+<!--                 		if(o.account !=null && o.account.customer !=null ){ -->
+<!--                 			match = o.account.customer.borrowerRatingsCheck(); -->
+<!--                 			return match; -->
+<!--                 		} -->
+<!-- 						  return match; -->
+<!-- 	                	 ]]></map:element> -->
+<!-- 			</map:constraint> -->
+		</map:class>
+		
+	  <map:field name="partnerDrawFeeCommissionPct">
+		  <map:constraint annotation="javax.validation.constraints.Min">
+	                <map:element name="value">0</map:element>
+	            </map:constraint>
+	            <map:constraint annotation="javax.validation.constraints.Max">
+	                <map:element name="value">100</map:element>
+	            </map:constraint>
+		  </map:field>
+	<map:field name="partnerOrgFeeCommissionPct">
+		  <map:constraint annotation="javax.validation.constraints.Min">
+	                <map:element name="value">0</map:element>
+	            </map:constraint>
+	            <map:constraint annotation="javax.validation.constraints.Max">
+	                <map:element name="value">100</map:element>
+	            </map:constraint>
+		  </map:field>  
+	  <map:getter name="allCustomers">
+			<map:valid/>
+		</map:getter> 
+    </map:bean>
+</map:constraint-mappings>

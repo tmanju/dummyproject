@@ -1,0 +1,12 @@
+<change-set xmlns='http://drools.org/drools-5.0/change-set'
+             xmlns:xs='http://www.w3.org/2001/XMLSchema-instance'
+             xs:schemaLocation='http://drools.org/drools-5.0/change-set http://anonsvn.jboss.org/repos/labs/labs/jbossrules/trunk/drools-api/src/main/resources/change-set-1.0.0.xsd'>
+     <add>
+		<resource source='classpath:rules/LP/bpmn/CreateOneStopApp.bpmn' type='BPMN2' />
+		<resource source='classpath:rules/LP/bpmn/CreateOneStopExposure.bpmn' type='BPMN2' />
+		<resource source='classpath:rules/LP/bpmn/PullMoodyCustomerWizard.bpmn' type='BPMN2' />
+		<resource source='classpath:rules/LP/bpmn/CreateProgram.bpmn' type='BPMN2' />
+		<resource source='classpath:rules/LP/bpmn/AddDocument.bpmn' type='BPMN2' />
+		<resource source='classpath:rules/BC/drl/GlobalDef.drl' type='DRL' />	
+     </add>   
+ </change-set>

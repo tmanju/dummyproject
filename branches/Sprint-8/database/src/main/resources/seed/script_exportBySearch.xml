@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<operations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<operation action="select" profileName="Export-Full" searchCriteriaSource="src/main/resources/seed/searchCriteria.xml" destination="src/main/resources/seed/data/findBySearchResults.xml"/>   
+</operations>

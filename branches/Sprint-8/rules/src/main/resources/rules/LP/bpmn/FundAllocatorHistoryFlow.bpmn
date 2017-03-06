@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+  <itemDefinition id="_fundAllocatorHistoryItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+
+  <itemDefinition id="_4-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+  <itemDefinition id="_4-fundAllocatorHistoryItem" structureRef="com.thirdpillar.codify.loanpath.model.FundAllocatorHistory" />
+
+  <process processType="Private" isExecutable="true" id="FundAllocatorHistoryFlow" name="FundAllocatorHistoryFlow" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.*" />
+     <tns:import name="java.util.Date" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="fundAllocatorHistory" itemSubjectRef="_fundAllocatorHistoryItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_3" name="FundAllocatorHistory setup" scriptFormat="http://www.java.com/java" >
+      <script>FundAllocator fundAllocator=(FundAllocator)context.getVariable("fundAllocContextEntity");
+System.out.println("=========Inside FundAllocator History Flow=============");
+if(fundAllocator !=null){
+if(fundAllocator.getNewCP() != null){	
+CapitalProvider oldCP= fundAllocator.getCapitalProvider();
+fundAllocator.setCapitalProvider(fundAllocator.getNewCP());
+
+WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FUNDING_PLACEMENT_STATUS_REPLACED");
+
+//saving old starts
+FundAllocatorHistory old= new FundAllocatorHistory();
+if(old !=null &amp;&amp; status !=null){
+old.setNewCP(fundAllocator.getNewCP());
+old.setCapitalProvider(oldCP);
+old.setFundPer(fundAllocator.getFundPer());
+old.setFundAmt(fundAllocator.getFundAmt());
+old.setTemp(fundAllocator.getTemp());
+old.setAvailableCash(fundAllocator.getAvailableCash());
+old.setWfStatus(status);
+old.setDeal(fundAllocator.getDeal());
+old.setLastUpdate(fundAllocator.getLastUpdate());
+old.setDrawRequestedDate(fundAllocator.getDrawRequestedDate());
+old.setFundAllocator(fundAllocator);
+fundAllocator.getOldCPs().add(old);
+//old.setDbid(fundAllocator.getId());
+}
+
+//fundAllocator.changeStatus(fundAllocator, "FUNDING_PLACEMENT_STATUS_REPLACED");
+//context.setVariable("fundAllocatorHistory",old);
+context.setVariable("contextEntity",old);
+//saving old ends
+}
+}</script>
+    </scriptTask>
+    <task id="_4" name="Save Entity" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_4_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_4_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_4_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_4-_2" sourceRef="_4" targetRef="_2" />
+    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="FundAllocatorHistoryFlow" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="103" y="16" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="103" y="256" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="16" y="96" width="222" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="20" y="176" width="214" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_4-_2" >
+        <di:waypoint x="127" y="200" />
+        <di:waypoint x="127" y="280" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
+        <di:waypoint x="127" y="40" />
+        <di:waypoint x="127" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="127" y="120" />
+        <di:waypoint x="127" y="200" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

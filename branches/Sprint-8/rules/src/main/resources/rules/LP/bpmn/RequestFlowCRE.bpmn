@@ -1,0 +1,1743 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_customerRoleItem" structureRef="String" />
+  <itemDefinition id="_custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_callProvisionItem" structureRef="String" />
+  <itemDefinition id="_provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_custNameItem" structureRef="String" />
+  <itemDefinition id="_approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_taskActionItem" structureRef="String" />
+  <itemDefinition id="_creFlowItem" structureRef="String" />
+  <itemDefinition id="_writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_76-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_76-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_76-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_76-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_76-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_76-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_76-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_76-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_76-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_76-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_76-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_76-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_76-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_76-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_76-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_76-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_76-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_76-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_76-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_76-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_76-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_76-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_76-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_76-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_76-custNameItem" structureRef="String" />
+  <itemDefinition id="_76-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_76-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_76-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_76-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_76-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_76-taskActionItem" structureRef="String" />
+  <itemDefinition id="_76-creFlowItem" structureRef="String" />
+  <itemDefinition id="_76-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_76-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_76-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_76-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_76-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_76-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_75-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_75-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_75-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_75-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_75-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_75-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_75-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_75-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_75-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_75-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_75-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_75-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_75-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_75-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_75-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_75-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_75-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_75-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_75-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_75-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_75-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_75-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_75-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_75-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_75-custNameItem" structureRef="String" />
+  <itemDefinition id="_75-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_75-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_75-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_75-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_75-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_75-taskActionItem" structureRef="String" />
+  <itemDefinition id="_75-creFlowItem" structureRef="String" />
+  <itemDefinition id="_75-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_75-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_75-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_75-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_75-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_75-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_84-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_84-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_84-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_84-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_84-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_84-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_84-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_84-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_84-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_84-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_84-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_84-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_84-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_84-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_84-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_84-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_84-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_84-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_84-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_84-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_84-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_84-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_84-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_84-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_84-custNameItem" structureRef="String" />
+  <itemDefinition id="_84-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_84-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_84-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_84-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_84-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_84-taskActionItem" structureRef="String" />
+  <itemDefinition id="_84-creFlowItem" structureRef="String" />
+  <itemDefinition id="_84-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_84-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_84-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_84-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_84-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_84-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_93-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_93-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_93-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_93-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_93-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_93-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_93-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_93-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_93-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_93-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_93-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_93-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_93-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_93-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_93-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_93-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_93-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_93-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_93-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_93-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_93-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_93-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_93-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_93-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_93-custNameItem" structureRef="String" />
+  <itemDefinition id="_93-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_93-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_93-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_93-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_93-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_93-taskActionItem" structureRef="String" />
+  <itemDefinition id="_93-creFlowItem" structureRef="String" />
+  <itemDefinition id="_93-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_93-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_93-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_93-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_93-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_93-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_88-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_88-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_88-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_88-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_88-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_88-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_88-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_88-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_88-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_88-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_88-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_88-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_88-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_88-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_88-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_88-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_88-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_88-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_88-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_88-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_88-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_88-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_88-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_88-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_88-custNameItem" structureRef="String" />
+  <itemDefinition id="_88-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_88-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_88-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_88-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_88-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_88-taskActionItem" structureRef="String" />
+  <itemDefinition id="_88-creFlowItem" structureRef="String" />
+  <itemDefinition id="_88-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_88-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_88-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_88-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_88-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_88-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_288-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_288-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_288-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_288-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_288-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_288-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_288-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_288-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_288-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_288-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_288-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_288-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_288-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_288-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_288-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_288-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_288-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_288-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_288-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_288-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_288-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_288-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_288-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_288-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_288-custNameItem" structureRef="String" />
+  <itemDefinition id="_288-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_288-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_288-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_288-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_288-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_288-taskActionItem" structureRef="String" />
+  <itemDefinition id="_288-creFlowItem" structureRef="String" />
+  <itemDefinition id="_288-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_288-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_288-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_288-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_288-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_288-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_289-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_289-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_289-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_289-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_289-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_289-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_289-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_289-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_289-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_289-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_289-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_289-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_289-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_289-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_289-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_289-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_289-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_289-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_289-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_289-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_289-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_289-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_289-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_289-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_289-custNameItem" structureRef="String" />
+  <itemDefinition id="_289-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_289-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_289-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_289-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_289-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_289-taskActionItem" structureRef="String" />
+  <itemDefinition id="_289-creFlowItem" structureRef="String" />
+  <itemDefinition id="_289-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_289-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_289-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_289-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_289-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_289-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_184-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_184-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_184-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_184-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_184-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_184-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_184-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_184-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_184-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_184-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_184-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_184-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_184-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_184-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_184-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_184-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_184-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_184-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_184-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_184-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_184-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_184-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_184-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_184-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_184-custNameItem" structureRef="String" />
+  <itemDefinition id="_184-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_184-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_184-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_184-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_184-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_184-taskActionItem" structureRef="String" />
+  <itemDefinition id="_184-creFlowItem" structureRef="String" />
+  <itemDefinition id="_184-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_184-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_184-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_184-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_184-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_184-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_292-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_292-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_292-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_292-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_292-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_292-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_292-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_292-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_292-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_292-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_292-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_292-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_292-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_292-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_292-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_292-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_292-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_292-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_292-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_292-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_292-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_292-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_292-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_292-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_292-custNameItem" structureRef="String" />
+  <itemDefinition id="_292-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_292-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_292-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_292-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_292-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_292-taskActionItem" structureRef="String" />
+  <itemDefinition id="_292-creFlowItem" structureRef="String" />
+  <itemDefinition id="_292-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_292-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_292-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_292-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_292-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_292-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_293-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_293-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_293-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_293-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_293-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_293-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_293-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_293-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_293-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_293-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_293-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_293-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_293-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_293-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_293-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_293-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_293-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_293-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_293-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_293-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_293-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_293-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_293-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_293-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_293-custNameItem" structureRef="String" />
+  <itemDefinition id="_293-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_293-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_293-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_293-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_293-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_293-taskActionItem" structureRef="String" />
+  <itemDefinition id="_293-creFlowItem" structureRef="String" />
+  <itemDefinition id="_293-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_293-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_293-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_293-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_293-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_293-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_297-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_297-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_297-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_297-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_297-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_297-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_297-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_297-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_297-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_297-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_297-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_297-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_297-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_297-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_297-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_297-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_297-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_297-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_297-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_297-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_297-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_297-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_297-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_297-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_297-custNameItem" structureRef="String" />
+  <itemDefinition id="_297-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_297-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_297-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_297-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_297-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_297-taskActionItem" structureRef="String" />
+  <itemDefinition id="_297-creFlowItem" structureRef="String" />
+  <itemDefinition id="_297-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_297-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_297-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_297-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_297-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_297-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_298-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_298-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_298-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_298-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_298-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_298-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_298-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_298-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_298-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_298-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_298-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_298-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_298-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_298-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_298-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_298-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_298-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_298-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_298-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_298-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_298-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_298-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_298-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_298-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_298-custNameItem" structureRef="String" />
+  <itemDefinition id="_298-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_298-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_298-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_298-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_298-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_298-taskActionItem" structureRef="String" />
+  <itemDefinition id="_298-creFlowItem" structureRef="String" />
+  <itemDefinition id="_298-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_298-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_298-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_298-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_298-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_298-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_182-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_182-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_182-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_182-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_182-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_182-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_182-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_182-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_182-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_182-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_182-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_182-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_182-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_182-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_182-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_182-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_182-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_182-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_182-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_182-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_182-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_182-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_182-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_182-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_182-custNameItem" structureRef="String" />
+  <itemDefinition id="_182-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_182-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_182-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_182-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_182-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_182-taskActionItem" structureRef="String" />
+  <itemDefinition id="_182-creFlowItem" structureRef="String" />
+  <itemDefinition id="_182-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_182-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_182-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_182-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_182-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_182-autoDecisionMinYearsItem" structureRef="String" />
+
+  <itemDefinition id="_180-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_180-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_180-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_180-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_180-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_180-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_180-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_180-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_180-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_180-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_180-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_180-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_180-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_180-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_180-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_180-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_180-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_180-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_180-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_180-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_180-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_180-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_180-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_180-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_180-custNameItem" structureRef="String" />
+  <itemDefinition id="_180-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_180-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_180-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_180-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_180-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_180-taskActionItem" structureRef="String" />
+  <itemDefinition id="_180-creFlowItem" structureRef="String" />
+  <itemDefinition id="_180-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_180-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_180-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_180-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_180-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_180-autoDecisionMinYearsItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="RequestFlowCRE" name="RequestFlowCRE" tns:packageName="LP" >
+
+    <extensionElements>
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Request" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Team" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Customer" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.AttributeChoice" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Facility" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.BureauReport" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Compliance" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approval" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.ApprovalLevel" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Approver" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.Document" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.User" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.DocumentGroup" />
+     <tns:import name="com.thirdpillar.codify.loanpath.model.WorkflowStatus" />
+     <tns:import name="com.thirdpillar.foundation.service.LookupService" />
+     <tns:import name="com.thirdpillar.foundation.service.EntityService" />
+     <tns:import name="com.thirdpillar.foundation.service.Context" />
+     <tns:import name="com.thirdpillar.foundation.service.ContextHolder" />
+     <tns:import name="java.util.Set" />
+     <tns:import name="java.util.HashSet" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="java.util.Date" />
+     <tns:import name="java.util.Map" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="java.math.BigDecimal" />
+     <tns:import name="java.util.Calendar" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
+    <property id="nextFacilityStatus" itemSubjectRef="_nextFacilityStatusItem"/>
+    <property id="customersEmailList" itemSubjectRef="_customersEmailListItem"/>
+    <property id="borrowerName" itemSubjectRef="_borrowerNameItem"/>
+    <property id="borrowerFirstName" itemSubjectRef="_borrowerFirstNameItem"/>
+    <property id="team" itemSubjectRef="_teamItem"/>
+    <property id="bureauInputMap" itemSubjectRef="_bureauInputMapItem"/>
+    <property id="callConsumerBureau" itemSubjectRef="_callConsumerBureauItem"/>
+    <property id="bureauSuccess" itemSubjectRef="_bureauSuccessItem"/>
+    <property id="mcdForLargeLoan" itemSubjectRef="_mcdForLargeLoanItem"/>
+    <property id="isValidFicoScore" itemSubjectRef="_isValidFicoScoreItem"/>
+    <property id="moveToStatus" itemSubjectRef="_moveToStatusItem"/>
+    <property id="complianceSuccess" itemSubjectRef="_complianceSuccessItem"/>
+    <property id="manualDecision" itemSubjectRef="_manualDecisionItem"/>
+    <property id="requestCustomers" itemSubjectRef="_requestCustomersItem"/>
+    <property id="customerRole" itemSubjectRef="_customerRoleItem"/>
+    <property id="custFirstName" itemSubjectRef="_custFirstNameItem"/>
+    <property id="callProvision" itemSubjectRef="_callProvisionItem"/>
+    <property id="provisionCustomersMap" itemSubjectRef="_provisionCustomersMapItem"/>
+    <property id="borrowers" itemSubjectRef="_borrowersItem"/>
+    <property id="coBorrowers" itemSubjectRef="_coBorrowersItem"/>
+    <property id="requestDecision" itemSubjectRef="_requestDecisionItem"/>
+    <property id="decisionFromTask" itemSubjectRef="_decisionFromTaskItem"/>
+    <property id="frozenReports" itemSubjectRef="_frozenReportsItem"/>
+    <property id="custName" itemSubjectRef="_custNameItem"/>
+    <property id="approvalEntity" itemSubjectRef="_approvalEntityItem"/>
+    <property id="emailRecipient" itemSubjectRef="_emailRecipientItem"/>
+    <property id="bureauReport" itemSubjectRef="_bureauReportItem"/>
+    <property id="coborrowerName" itemSubjectRef="_coborrowerNameItem"/>
+    <property id="coborrowerFirstName" itemSubjectRef="_coborrowerFirstNameItem"/>
+    <property id="taskAction" itemSubjectRef="_taskActionItem"/>
+    <property id="creFlow" itemSubjectRef="_creFlowItem"/>
+    <property id="writeupDoc" itemSubjectRef="_writeupDocItem"/>
+    <property id="callCommercialBureau" itemSubjectRef="_callCommercialBureauItem"/>
+    <property id="consumerBureauInputMap" itemSubjectRef="_consumerBureauInputMapItem"/>
+    <property id="commercialBureauInputMap" itemSubjectRef="_commercialBureauInputMapItem"/>
+    <property id="isDocumentStatusRejected" itemSubjectRef="_isDocumentStatusRejectedItem"/>
+    <property id="autoDecisionMinYears" itemSubjectRef="_autoDecisionMinYearsItem"/>
+
+    <!-- nodes -->
+    <task id="_76" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_76_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_76_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_76_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <startEvent id="_287" name="Start" />
+    <callActivity id="_74" name="Product Status Pending" calledElement="UpdateProductStatus" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus","FACILITY_STATUS_PENDING");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_74_facilityStatusInput" name="facilityStatus" />
+        <dataInput id="_74_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_74_facilityStatusInput</dataInputRefs>
+          <dataInputRefs>_74_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>nextFacilityStatus</sourceRef>
+        <targetRef>_74_facilityStatusInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_74_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <task id="_75" name="Approved - Pre-Qual" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_75_entityInput" name="entity" />
+        <dataInput id="_75_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_75_entityInput</dataInputRefs>
+          <dataInputRefs>_75_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_75_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_75_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_APPROVED_PRE_QUAL</from>
+          <to xsi:type="tFormalExpression">_75_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_84" name="Credit Analysis Task" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>Team currentTeam = (Team) LookupService.getResult("Team.byName","name", "Credit Analyst Team"); 
+context.setVariable("team", currentTeam);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("team", null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_84_entityInput" name="entity" />
+        <dataInput id="_84_ActorIdInput" name="ActorId" />
+        <dataInput id="_84_BodyInput" name="Body" />
+        <dataInput id="_84_SubjectInput" name="Subject" />
+        <dataInput id="_84_notifyInput" name="notify" />
+        <dataInput id="_84_ToInput" name="To" />
+        <dataInput id="_84_CommentInput" name="Comment" />
+        <dataInput id="_84_ActionsInput" name="Actions" />
+        <dataInput id="_84_ContentInput" name="Content" />
+        <dataInput id="_84_TaskNameInput" name="TaskName" />
+        <dataInput id="_84_GroupIdInput" name="GroupId" />
+        <dataInput id="_84_FromInput" name="From" />
+        <dataInput id="_84_Reply-ToInput" name="Reply-To" />
+        <dataOutput id="_84_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_84_entityInput</dataInputRefs>
+          <dataInputRefs>_84_ActorIdInput</dataInputRefs>
+          <dataInputRefs>_84_BodyInput</dataInputRefs>
+          <dataInputRefs>_84_SubjectInput</dataInputRefs>
+          <dataInputRefs>_84_notifyInput</dataInputRefs>
+          <dataInputRefs>_84_ToInput</dataInputRefs>
+          <dataInputRefs>_84_CommentInput</dataInputRefs>
+          <dataInputRefs>_84_ActionsInput</dataInputRefs>
+          <dataInputRefs>_84_ContentInput</dataInputRefs>
+          <dataInputRefs>_84_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_84_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_84_FromInput</dataInputRefs>
+          <dataInputRefs>_84_Reply-ToInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_84_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_84_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_ActorIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_84_ActorIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">request_creditanalysis_task_email_body</from>
+          <to xsi:type="tFormalExpression">_84_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber} is Pending Analysis</from>
+          <to xsi:type="tFormalExpression">_84_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_84_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_84_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber} is Pending Analysis</from>
+          <to xsi:type="tFormalExpression">_84_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Submit For Decision:CRECreditAnalyst</from>
+          <to xsi:type="tFormalExpression">_84_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber} is Pending Analysis</from>
+          <to xsi:type="tFormalExpression">_84_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Credit Analysis</from>
+          <to xsi:type="tFormalExpression">_84_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.name}</from>
+          <to xsi:type="tFormalExpression">_84_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_84_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_84_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_84_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_84_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_93" name="Approved" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_93_entityInput" name="entity" />
+        <dataInput id="_93_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_93_entityInput</dataInputRefs>
+          <dataInputRefs>_93_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_93_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_93_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_APPROVED</from>
+          <to xsi:type="tFormalExpression">_93_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <callActivity id="_95" name="Product Status - Approved" calledElement="UpdateProductStatus" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus","FACILITY_STATUS_APPROVED");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_95_facilityStatusInput" name="facilityStatus" />
+        <dataInput id="_95_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_95_facilityStatusInput</dataInputRefs>
+          <dataInputRefs>_95_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>nextFacilityStatus</sourceRef>
+        <targetRef>_95_facilityStatusInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_95_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <task id="_88" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_88_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_88_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_88_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <scriptTask id="_97" name="Set Approval Expiration Date" scriptFormat="http://www.java.com/java" >
+      <script>Request r = (Request) context.getVariable("contextEntity");
+for (Facility f : r.getDecisionFacilities()) {
+	if(f.getFacilityCategory()!=null &amp;&amp; f.getFacilityCategory().getKey().equals("PROJECT")) {
+	    Calendar now = Calendar.getInstance();
+    	now.add(Calendar.MONTH,9);
+	    Date date=now.getTime();
+    	f.setApprovalExpirationDate(date);
+	} else if(f.getFacilityCategory()!=null &amp;&amp; f.getFacilityCategory().getKey().equals("NON_PROJECT")) {
+    	Calendar now = Calendar.getInstance();
+	    now.add(java.util.Calendar.MONTH,6);
+    	Date date=now.getTime();
+	    f.setApprovalExpirationDate(date);
+	}
+	if(f.getFacilityType()!=null &amp;&amp; f.getApprovalExpirationDate() == null) {
+    	Calendar now = Calendar.getInstance();
+	    now.add(java.util.Calendar.MONTH,3);
+    	Date date=now.getTime();
+	    f.setApprovalExpirationDate(date);
+	}
+}</script>
+    </scriptTask>
+    <scriptTask id="_254" name="Set Final Decision Date To Current Date" scriptFormat="http://www.java.com/java" >
+      <script>Request r = (Request) context.getVariable("contextEntity");
+r.setFinalDecisionDate(new java.util.Date());</script>
+    </scriptTask>
+    <task id="_288" name="Pending - Credit Approval" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_288_entityInput" name="entity" />
+        <dataInput id="_288_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_288_entityInput</dataInputRefs>
+          <dataInputRefs>_288_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_288_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_288_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_PENDING_CREDIT_APPROVAL</from>
+          <to xsi:type="tFormalExpression">_288_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_289" name="Pending - Product Decision" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>Team currentTeam = (Team) LookupService.getResult("Team.byName","name", "Credit Manager Team"); 
+context.setVariable("team", currentTeam);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("team", null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_289_entityInput" name="entity" />
+        <dataInput id="_289_SubjectInput" name="Subject" />
+        <dataInput id="_289_notifyInput" name="notify" />
+        <dataInput id="_289_ToInput" name="To" />
+        <dataInput id="_289_CommentInput" name="Comment" />
+        <dataInput id="_289_ActionsInput" name="Actions" />
+        <dataInput id="_289_TaskNameInput" name="TaskName" />
+        <dataInput id="_289_ContentInput" name="Content" />
+        <dataInput id="_289_GroupIdInput" name="GroupId" />
+        <dataInput id="_289_Reply-ToInput" name="Reply-To" />
+        <dataInput id="_289_FromInput" name="From" />
+        <dataOutput id="_289_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_289_entityInput</dataInputRefs>
+          <dataInputRefs>_289_SubjectInput</dataInputRefs>
+          <dataInputRefs>_289_notifyInput</dataInputRefs>
+          <dataInputRefs>_289_ToInput</dataInputRefs>
+          <dataInputRefs>_289_CommentInput</dataInputRefs>
+          <dataInputRefs>_289_ActionsInput</dataInputRefs>
+          <dataInputRefs>_289_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_289_ContentInput</dataInputRefs>
+          <dataInputRefs>_289_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_289_Reply-ToInput</dataInputRefs>
+          <dataInputRefs>_289_FromInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_289_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_289_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber}  is  Pending - Product Decision</from>
+          <to xsi:type="tFormalExpression">_289_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_289_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_289_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber}  is  Pending - Product Decision</from>
+          <to xsi:type="tFormalExpression">_289_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Approve:CREApproved,Return to Credit Analyst</from>
+          <to xsi:type="tFormalExpression">_289_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Pending - Product Decision</from>
+          <to xsi:type="tFormalExpression">_289_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber}  is  Pending - Product Decision</from>
+          <to xsi:type="tFormalExpression">_289_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.name}</from>
+          <to xsi:type="tFormalExpression">_289_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_289_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_289_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_289_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_289_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_184" name="Pending - Pre-Qual Approval" tns:taskName="LPUserTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>Team currentTeam = (Team) LookupService.getResult("Team.byName","name", "Credit Approval Team"); 
+context.setVariable("team", currentTeam);</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("team", null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_184_entityInput" name="entity" />
+        <dataInput id="_184_BodyInput" name="Body" />
+        <dataInput id="_184_SubjectInput" name="Subject" />
+        <dataInput id="_184_notifyInput" name="notify" />
+        <dataInput id="_184_ToInput" name="To" />
+        <dataInput id="_184_CommentInput" name="Comment" />
+        <dataInput id="_184_ActionsInput" name="Actions" />
+        <dataInput id="_184_ContentInput" name="Content" />
+        <dataInput id="_184_TaskNameInput" name="TaskName" />
+        <dataInput id="_184_GroupIdInput" name="GroupId" />
+        <dataInput id="_184_FromInput" name="From" />
+        <dataInput id="_184_Reply-ToInput" name="Reply-To" />
+        <dataOutput id="_184_ResultOutput" name="Result" />
+        <inputSet>
+          <dataInputRefs>_184_entityInput</dataInputRefs>
+          <dataInputRefs>_184_BodyInput</dataInputRefs>
+          <dataInputRefs>_184_SubjectInput</dataInputRefs>
+          <dataInputRefs>_184_notifyInput</dataInputRefs>
+          <dataInputRefs>_184_ToInput</dataInputRefs>
+          <dataInputRefs>_184_CommentInput</dataInputRefs>
+          <dataInputRefs>_184_ActionsInput</dataInputRefs>
+          <dataInputRefs>_184_ContentInput</dataInputRefs>
+          <dataInputRefs>_184_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_184_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_184_FromInput</dataInputRefs>
+          <dataInputRefs>_184_Reply-ToInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_184_ResultOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_184_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_BodyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">request_salesupport_task_email_body</from>
+          <to xsi:type="tFormalExpression">_184_BodyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_SubjectInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber}  is  Pending - Approve Pre-Qual</from>
+          <to xsi:type="tFormalExpression">_184_SubjectInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_notifyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">true</from>
+          <to xsi:type="tFormalExpression">_184_notifyInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.emailAddressForAllUsers}</from>
+          <to xsi:type="tFormalExpression">_184_ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber}  is  Pending - Approve Pre-Qual</from>
+          <to xsi:type="tFormalExpression">_184_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_ActionsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Approve Pre-Qual:CRESalesSupport,Return To RM,Decline,Withdraw</from>
+          <to xsi:type="tFormalExpression">_184_ActionsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_ContentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{contextEntity.nullSafeNameFromAccountDer}: Application #{contextEntity.refNumber}  is  Pending - Approve Pre-Qual</from>
+          <to xsi:type="tFormalExpression">_184_ContentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Pending - Pre-Qual Approval</from>
+          <to xsi:type="tFormalExpression">_184_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">#{team.name}</from>
+          <to xsi:type="tFormalExpression">_184_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_FromInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_184_FromInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_184_Reply-ToInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">no-reply@thirdpillar.com</from>
+          <to xsi:type="tFormalExpression">_184_Reply-ToInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_184_ResultOutput</sourceRef>
+        <targetRef>taskAction</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_290" name="End" />
+    <exclusiveGateway id="_291" name="Gateway" gatewayDirection="Diverging" />
+    <task id="_292" name="Return To RealtionShip Manager" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_292_entityInput" name="entity" />
+        <dataInput id="_292_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_292_entityInput</dataInputRefs>
+          <dataInputRefs>_292_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_292_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_292_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_PENDING_APPLICATION_REVIEW</from>
+          <to xsi:type="tFormalExpression">_292_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_293" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_293_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_293_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_293_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_294" name="End" />
+    <exclusiveGateway id="_295" name="Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_296" name="Credit Analyst" gatewayDirection="Converging" />
+    <task id="_297" name="Decline" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_297_entityInput" name="entity" />
+        <dataInput id="_297_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_297_entityInput</dataInputRefs>
+          <dataInputRefs>_297_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_297_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_297_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_DECLINED</from>
+          <to xsi:type="tFormalExpression">_297_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_298" name="Withdraw" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_298_entityInput" name="entity" />
+        <dataInput id="_298_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_298_entityInput</dataInputRefs>
+          <dataInputRefs>_298_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_298_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_298_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_WITHDRAWN</from>
+          <to xsi:type="tFormalExpression">_298_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_299" name="End" />
+    <endEvent id="_300" name="End" />
+    <task id="_182" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_182_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_182_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_182_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <callActivity id="_301" name="Product Status - Decline" calledElement="UpdateProductStatus" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus","FACILITY_STATUS_DECLINED");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_301_facilityStatusInput" name="facilityStatus" />
+        <dataInput id="_301_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_301_facilityStatusInput</dataInputRefs>
+          <dataInputRefs>_301_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>nextFacilityStatus</sourceRef>
+        <targetRef>_301_facilityStatusInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_301_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <callActivity id="_302" name="Product Status - WithDraw" calledElement="UpdateProductStatus" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus","FACILITY_STATUS_WITHDRAWN");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_302_facilityStatusInput" name="facilityStatus" />
+        <dataInput id="_302_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_302_facilityStatusInput</dataInputRefs>
+          <dataInputRefs>_302_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>nextFacilityStatus</sourceRef>
+        <targetRef>_302_facilityStatusInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_302_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <task id="_180" name="Pending - Pre-Qual Approval" tns:taskName="StatusUpdate" >
+      <ioSpecification>
+        <dataInput id="_180_entityInput" name="entity" />
+        <dataInput id="_180_nextStatusKeyInput" name="nextStatusKey" />
+        <inputSet>
+          <dataInputRefs>_180_entityInput</dataInputRefs>
+          <dataInputRefs>_180_nextStatusKeyInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_180_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_180_nextStatusKeyInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REQUEST_STATUS_PENDING_PRE_QUAL_APPROVAL</from>
+          <to xsi:type="tFormalExpression">_180_nextStatusKeyInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <callActivity id="_181" name="Product Status to Pending" calledElement="UpdateProductStatus" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus","FACILITY_STATUS_PENDING");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("nextFacilityStatus",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_181_facilityStatusInput" name="facilityStatus" />
+        <dataInput id="_181_contextEntityInput" name="contextEntity" />
+        <inputSet>
+          <dataInputRefs>_181_facilityStatusInput</dataInputRefs>
+          <dataInputRefs>_181_contextEntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>nextFacilityStatus</sourceRef>
+        <targetRef>_181_facilityStatusInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_181_contextEntityInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+
+    <!-- connections -->
+    <sequenceFlow id="_74-_76" sourceRef="_74" targetRef="_76" />
+    <sequenceFlow id="_75-_74" sourceRef="_75" targetRef="_74" />
+    <sequenceFlow id="_296-_75" sourceRef="_296" targetRef="_75" />
+    <sequenceFlow id="_76-_84" sourceRef="_76" targetRef="_84" />
+    <sequenceFlow id="_295-_93" sourceRef="_295" targetRef="_93" name="Approved" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String userAction = (String) context.getVariable("taskAction");
+
+if ("Approve".equals(userAction)) {
+    return true;
+}else{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_93-_95" sourceRef="_93" targetRef="_95" />
+    <sequenceFlow id="_288-_88" sourceRef="_288" targetRef="_88" />
+    <sequenceFlow id="_254-_97" sourceRef="_254" targetRef="_97" />
+    <sequenceFlow id="_95-_254" sourceRef="_95" targetRef="_254" />
+    <sequenceFlow id="_84-_288" sourceRef="_84" targetRef="_288" />
+    <sequenceFlow id="_88-_289" sourceRef="_88" targetRef="_289" />
+    <sequenceFlow id="_182-_184" sourceRef="_182" targetRef="_184" />
+    <sequenceFlow id="_97-_290" sourceRef="_97" targetRef="_290" />
+    <sequenceFlow id="_184-_291" sourceRef="_184" targetRef="_291" />
+    <sequenceFlow id="_291-_292" sourceRef="_291" targetRef="_292" name="Return to RM" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String userAction = (String) context.getVariable("taskAction");
+
+if ("Return To RM".equals(userAction)) {
+    return true;
+}else{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_292-_293" sourceRef="_292" targetRef="_293" />
+    <sequenceFlow id="_293-_294" sourceRef="_293" targetRef="_294" />
+    <sequenceFlow id="_289-_295" sourceRef="_289" targetRef="_295" />
+    <sequenceFlow id="_291-_296" sourceRef="_291" targetRef="_296" name="Approved to Credit Analyst" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String userAction = (String) context.getVariable("taskAction");
+
+if ("Approve Pre-Qual".equals(userAction)) {
+    return true;
+}else{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_295-_296" sourceRef="_295" targetRef="_296" name="Retuen to Credit Analyst" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String userAction = (String) context.getVariable("taskAction");
+
+if ("Return to Credit Analyst".equals(userAction)) {
+    return true;
+}else{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_291-_297" sourceRef="_291" targetRef="_297" name="Decline" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String userAction = (String) context.getVariable("taskAction");
+
+if ("Decline".equals(userAction)) {
+    return true;
+}else{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_291-_298" sourceRef="_291" targetRef="_298" name="Withdraw" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String userAction = (String) context.getVariable("taskAction");
+
+if ("Withdraw".equals(userAction)) {
+    return true;
+}else{
+    return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_301-_299" sourceRef="_301" targetRef="_299" />
+    <sequenceFlow id="_302-_300" sourceRef="_302" targetRef="_300" />
+    <sequenceFlow id="_181-_182" sourceRef="_181" targetRef="_182" />
+    <sequenceFlow id="_297-_301" sourceRef="_297" targetRef="_301" />
+    <sequenceFlow id="_298-_302" sourceRef="_298" targetRef="_302" />
+    <sequenceFlow id="_287-_180" sourceRef="_287" targetRef="_180" />
+    <sequenceFlow id="_180-_181" sourceRef="_180" targetRef="_181" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="RequestFlowCRE" >
+      <bpmndi:BPMNShape bpmnElement="_76" >
+        <dc:Bounds x="167" y="600" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_287" >
+        <dc:Bounds x="195" y="34" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_74" >
+        <dc:Bounds x="136" y="526" width="178" height="49" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_75" >
+        <dc:Bounds x="119" y="459" width="214" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_84" >
+        <dc:Bounds x="139" y="681" width="136" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_93" >
+        <dc:Bounds x="77" y="990" width="208" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_95" >
+        <dc:Bounds x="94" y="1067" width="188" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_88" >
+        <dc:Bounds x="149" y="816" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_97" >
+        <dc:Bounds x="89" y="1219" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_254" >
+        <dc:Bounds x="70" y="1143" width="239" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_288" >
+        <dc:Bounds x="124" y="760" width="167" height="29" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_289" >
+        <dc:Bounds x="73" y="902" width="218" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_184" >
+        <dc:Bounds x="107" y="369" width="249" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_290" >
+        <dc:Bounds x="165" y="1311" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_291" >
+        <dc:Bounds x="502" y="297" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_292" >
+        <dc:Bounds x="904" y="307" width="156" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_293" >
+        <dc:Bounds x="939" y="399" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_294" >
+        <dc:Bounds x="969" y="494" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_295" >
+        <dc:Bounds x="399" y="899" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_296" >
+        <dc:Bounds x="394" y="463" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_297" >
+        <dc:Bounds x="631" y="462" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_298" >
+        <dc:Bounds x="836" y="461" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_299" >
+        <dc:Bounds x="657" y="609" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_300" >
+        <dc:Bounds x="867" y="611" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_182" >
+        <dc:Bounds x="154" y="276" width="130" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_301" >
+        <dc:Bounds x="589" y="539" width="176" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_302" >
+        <dc:Bounds x="805" y="539" width="168" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_180" >
+        <dc:Bounds x="132" y="117" width="183" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_181" >
+        <dc:Bounds x="135" y="202" width="171" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_74-_76" >
+        <di:waypoint x="225" y="550" />
+        <di:waypoint x="217" y="624" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_75-_74" >
+        <di:waypoint x="226" y="483" />
+        <di:waypoint x="225" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_296-_75" >
+        <di:waypoint x="418" y="487" />
+        <di:waypoint x="226" y="483" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_76-_84" >
+        <di:waypoint x="217" y="624" />
+        <di:waypoint x="207" y="705" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_295-_93" >
+        <di:waypoint x="423" y="923" />
+        <di:waypoint x="427" y="1007" />
+        <di:waypoint x="181" y="1014" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_93-_95" >
+        <di:waypoint x="181" y="1014" />
+        <di:waypoint x="188" y="1091" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_288-_88" >
+        <di:waypoint x="207" y="774" />
+        <di:waypoint x="199" y="840" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_254-_97" >
+        <di:waypoint x="189" y="1167" />
+        <di:waypoint x="189" y="1243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_95-_254" >
+        <di:waypoint x="188" y="1091" />
+        <di:waypoint x="189" y="1167" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_84-_288" >
+        <di:waypoint x="207" y="705" />
+        <di:waypoint x="207" y="774" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_88-_289" >
+        <di:waypoint x="199" y="840" />
+        <di:waypoint x="182" y="926" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_182-_184" >
+        <di:waypoint x="219" y="300" />
+        <di:waypoint x="231" y="393" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_97-_290" >
+        <di:waypoint x="189" y="1243" />
+        <di:waypoint x="189" y="1335" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_184-_291" >
+        <di:waypoint x="231" y="393" />
+        <di:waypoint x="372" y="328" />
+        <di:waypoint x="526" y="321" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_291-_292" >
+        <di:waypoint x="526" y="321" />
+        <di:waypoint x="982" y="331" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_292-_293" >
+        <di:waypoint x="982" y="331" />
+        <di:waypoint x="989" y="423" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_293-_294" >
+        <di:waypoint x="989" y="423" />
+        <di:waypoint x="993" y="518" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_289-_295" >
+        <di:waypoint x="182" y="926" />
+        <di:waypoint x="423" y="923" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_291-_296" >
+        <di:waypoint x="526" y="321" />
+        <di:waypoint x="425" y="346" />
+        <di:waypoint x="418" y="487" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_295-_296" >
+        <di:waypoint x="423" y="923" />
+        <di:waypoint x="418" y="487" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_291-_297" >
+        <di:waypoint x="526" y="321" />
+        <di:waypoint x="681" y="486" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_291-_298" >
+        <di:waypoint x="526" y="321" />
+        <di:waypoint x="714" y="372" />
+        <di:waypoint x="886" y="485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_301-_299" >
+        <di:waypoint x="677" y="563" />
+        <di:waypoint x="681" y="633" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_302-_300" >
+        <di:waypoint x="889" y="563" />
+        <di:waypoint x="891" y="635" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_181-_182" >
+        <di:waypoint x="220" y="226" />
+        <di:waypoint x="219" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_297-_301" >
+        <di:waypoint x="681" y="486" />
+        <di:waypoint x="677" y="563" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_298-_302" >
+        <di:waypoint x="886" y="485" />
+        <di:waypoint x="889" y="563" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_287-_180" >
+        <di:waypoint x="219" y="58" />
+        <di:waypoint x="223" y="141" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_180-_181" >
+        <di:waypoint x="223" y="141" />
+        <di:waypoint x="220" y="226" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

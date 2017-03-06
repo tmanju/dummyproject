@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="fcParty" type="crud"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+	
+	
+	<panel id="fcParty.fraudCheck" label="">
+		<field name="fcParty.recordNumber" label ="Record Number" />
+		<field name="fcParty.caseId" label ="Case ID" /> 
+		<field name="fcParty.reason" label ="Reason" />
+		<field name="fcParty.metaInfo.createdByUser" label ="Record Created By" />
+		<field name="fcParty.metaInfo.lastModifiedByUser" label ="Last Updated By" />
+		<field name="fcParty.metaInfo.createdAt" label ="Record Created Date" />
+		<field name="fcParty.metaInfo.lastModifiedAt" label ="Last Updated Date" /> 
+	</panel>
+	<panel id="fcParty.info" label="Demographic Information">
+		<field name="fcParty.active" label="Active*" /> 
+		<field name="fcParty.partyType" label ="Party Type*" />		
+		<field name="fcParty.firstName" label ="Company Name / First Name*" />
+		<field name="fcParty.middleName" label ="Middle Name" /> 
+	 	<field name="fcParty.lastName" label ="Last Name*" /> 
+	 	<field name="fcParty.ssn" label ="SSN*" /> 
+	 	<field name="fcParty.mothersMaidenName" label ="Mother's Maiden Name" /> 
+	 	<field name="fcParty.alias" label ="Alias" /> 
+	 	<field name="fcParty.birthDate" label ="Date Of Birth" /> 
+	 	<field name="fcParty.placeOfBirth" label ="Place Of Birth" /> 
+	 	<field name="fcParty.driversLicenseNumber" label ="Driver's License Number" /> 
+	 	<!-- <field name="fcParty.alias" label ="Driver's License State" />  -->
+	 	<field name="fcParty.passportNumber" label ="Passport Number" /> 
+	 	<field name="fcParty.countryOfCitizenship" label ="Country Of Citizenship" /> 
+	 	<field name="fcParty.employerName" label ="Employer Name" /> 
+	 	<field name="fcParty.federalTax" label ="Federal Tax ID*" />
+	</panel>
+	<data-table name="fcParty.addresses" row="fcPartyAddress" label="Address Information">
+		<columns>
+			<column name="fcPartyAddress.address1" label="Address Line 1"/>
+			<column name="fcPartyAddress.city" label="City"/>
+			<column name="fcPartyAddress.stateProvince" label="State / Province"/>
+			<column name="fcPartyAddress.zip" label ="Zip" /> 
+			<column name="fcPartyAddress.country" label="Country"/>
+			<column name="fcPartyAddress.phoneNumber" label ="Telephone Number" /> 
+			<column name="fcPartyAddress.fax" label ="Fax Number" /> 
+			<column name="fcPartyAddress.email" label ="Email" /> 
+			<column name="fcPartyAddress.addressType" label ="Address Type" /> 
+			
+		</columns>
+		<quickedit-canvas>
+		    <panel id="fcParty.address" label="Address Details">
+				<field name="fcPartyAddress.address1" label="Address Line 1*" />
+				<field name="fcPartyAddress.address2" label="Address Line 2" />
+				<field name="fcPartyAddress.address3" label="Address Line 3" />
+				<field name="fcPartyAddress.city" label="City*" />
+				<field name="fcPartyAddress.stateProvince" label="State/Province*" />
+				<field name="fcPartyAddress.zip" label="Zip*" />
+				<field name="fcPartyAddress.country" label="Country" />
+				<field name="fcPartyAddress.phoneNumber" label="Telephone Number 1*" />
+				<field name="fcPartyAddress.phoneNumber2" label="Telephone Number 2" />
+				<field name="fcPartyAddress.phoneNumber3" label="Telephone Number 3" />
+				<field name="fcPartyAddress.cellnumber" label="Cell Number 1" />
+				<field name="fcPartyAddress.cellnumber2" label="Cell Number 2" />
+				<field name="fcPartyAddress.cellnumber3" label="Cell Number 3" />
+				<field name="fcPartyAddress.addressType" label ="Address Type*" /> 
+				<field name="fcPartyAddress.email" label="Email 1" />
+				<field name="fcPartyAddress.email2" label="Email 2" />
+				<field name="fcPartyAddress.email3" label="Email 3" />
+				<field name="fcPartyAddress.website" label="Web Address 1" />
+				<field name="fcPartyAddress.website2" label="Web Address 2" />
+		    </panel>
+        </quickedit-canvas>
+	</data-table>
+	
+	<data-table name="fcParty.accInfo" row="fcAccInfo" label="Account Information">
+		<columns>
+			<column name="fcAccInfo.accType" label="Account Type" />
+			<column name="fcAccInfo.accNo" label="Account Name" />
+			<column name="fcAccInfo.accOpenDate" label="Account Open Date" />
+			<column name="fcAccInfo.businessName" label="Business Name" />
+			<column name="fcAccInfo.custName" label="Customer Name" />
+		</columns>
+	</data-table>
+	<data-table name="fcParty.commentGroup.comments" row="comment"
+		id="fcParty.comment" label="Comment" sortBy="comment.metaInfo.createdAt"
+		sortOrder="ascending">
+		<columns>			
+			<column name="comment.commentType.value" label="Comment Type" />
+			<column name="comment.metaInfo.createdByUser"
+				label="Author" />
+			<column id="fcParty.commentDate" name="comment.metaInfo.createdAt"
+				label="Date" />
+<!-- 			<column name="comment.time" label="Time" /> -->			
+			<column name="comment.commentText" label="Text" />
+		</columns>
+		<quickedit-canvas>
+			<panel id="fcParty.comment.enterComment" label=" ">
+				<field name="comment.commentType" />
+				<field name="comment.commentText" label="Text" />
+			</panel>
+		</quickedit-canvas>
+	</data-table>
+	
+	
+	<beans>
+		<bean name="fcParty" type="com.thirdpillar.codify.loanpath.model.FcParty" />
+	</beans>
+</canvas>

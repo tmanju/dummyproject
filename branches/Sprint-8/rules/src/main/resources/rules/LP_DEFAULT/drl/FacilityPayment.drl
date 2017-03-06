@@ -1,0 +1,206 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.Context;
+import com.thirdpillar.foundation.service.LookupService;
+import java.lang.*;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.*;
+import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+global com.thirdpillar.foundation.service.Context appContext;
+
+rule "SetFPStatusOnNew"
+	agenda-group "NEW" 
+	when
+		facilityPayment:FacilityPayment();
+	then
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FACILITY_PAYMENT_STATUS_UNALLOCATED");
+		facilityPayment.setWfStatus(status);
+end
+
+rule "AddFacAllocatorsOnFacilitySelect"
+	when
+		changeModelEvent:FacilityPayment.ChangeModelEvent(property == "facilityBE", newValue != null)
+	then
+	System.out.println(" >> Starting Rule: " + drools.getRule().getName());
+	FacilityPayment facilityPayment = (FacilityPayment)changeModelEvent.getEntity();
+		if(facilityPayment != null){
+		FacilityBE facilityBE = (FacilityBE) changeModelEvent.getNewValue();
+				facilityPayment.getFacilityPaymentPlacements().clear();
+				for(FacAllocator facAllocator : facilityBE.getFacAllocators()){
+					FacilityPaymentPlacement facilityPaymentPlacement = new FacilityPaymentPlacement();
+					facilityPaymentPlacement.setFacilityPayment(facilityPayment);
+					facilityPaymentPlacement.setFacAllocator(facAllocator);
+					
+					WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FACILITY_PAYMENT_PLACEMENT_STATUS_UNDISBURSED");
+					facilityPaymentPlacement.setWfStatus(status);
+					
+					if(facAllocator.getFundPer() != null && facilityPayment.getPayment() != null){
+						facilityPaymentPlacement.setDisbursedAmt(facilityPayment.getPayment().multiply(facAllocator.getFundPer()).divide(new BigDecimal(100)));
+					}
+					
+					facilityPayment.getFacilityPaymentPlacements().add(facilityPaymentPlacement);
+					System.out.println(" >> Creating options done: " + facilityPaymentPlacement);
+				}
+	}
+	System.out.println(" >> End Rule: " + drools.getRule().getName());
+end
+
+rule "CalculateAmtOnPaymentChange"
+	when
+		changeModelEvent:FacilityPayment.ChangeModelEvent(property == "payment", newValue != null)
+	then
+	System.out.println(" >> Starting Rule: " + drools.getRule().getName());
+	FacilityPayment facilityPayment = (FacilityPayment)changeModelEvent.getEntity();
+	BigDecimal payment = (BigDecimal) changeModelEvent.getNewValue();
+	if(facilityPayment != null && facilityPayment.getFacilityBE() != null && facilityPayment.getFacilityPaymentPlacements() != null){
+		for(FacilityPaymentPlacement facilityPaymentPlacement : facilityPayment.getFacilityPaymentPlacements()){
+			if(facilityPaymentPlacement.getFacAllocator().getFundPer() != null){
+				facilityPaymentPlacement.setDisbursedAmt(payment.multiply(facilityPaymentPlacement.getFacAllocator().getFundPer()).divide(new BigDecimal(100)));
+			}
+		}
+	}
+	System.out.println(" >> End Rule: " + drools.getRule().getName());
+end
+	
+
+rule "SetFPPlacementStatusOnNew"
+	agenda-group "NEW" 
+	when
+		facilityPaymentPlacement:FacilityPaymentPlacement();
+	then
+		WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FACILITY_PAYMENT_PLACEMENT_STATUS_UNDISBURSED");
+		facilityPaymentPlacement.setWfStatus(status);
+end
+
+rule "calculateDisbursedAmtOnCpChange"
+	when
+		changeModelEvent:FacilityPaymentPlacement.ChangeModelEvent(property == "facAllocator", newValue != null)
+	then
+	System.out.println(" >> Starting Rule: " + drools.getRule().getName());
+	if(appContext.getNamedContext().get("root") instanceof FacilityPayment){
+		FacilityPayment  payment = (FacilityPayment) appContext.getNamedContext().get("root");
+		FacilityPaymentPlacement facilityPaymentPlacement = (FacilityPaymentPlacement)changeModelEvent.getEntity();
+		FacAllocator facAllocator = (FacAllocator) changeModelEvent.getNewValue();
+		if(facAllocator.getFundPer() != null){
+			facilityPaymentPlacement.setDisbursedAmt(payment.getPayment().multiply(facAllocator.getFundPer()).divide(new BigDecimal(100)));
+		} 
+	}
+	System.out.println(" >> Ending Rule: " + drools.getRule().getName());
+end
+
+
+
+rule "setFacInterimBalOnStatusChange"
+	when
+		changeModelEvent:FacilityPayment.ChangeModelEvent(property == "wfStatus", newValue != null)
+	then
+		System.out.println(" >> Starting Rule: " + drools.getRule().getName());
+		FacilityPayment  facPayment = (FacilityPayment) changeModelEvent.getEntity();
+		FacilityBE facilityBE = facPayment.getFacilityBE();
+		WorkflowStatus status = (WorkflowStatus)changeModelEvent.getNewValue();
+		if(facilityBE != null && status.getStatusKey().equals("FACILITY_PAYMENT_STATUS_ALLOCATED")){
+			BigDecimal facilityBalance = facilityBE.getFacBalance() != null ? facilityBE.getFacBalance() : BigDecimal.ZERO;
+			System.out.println(" >> Rule: "+drools.getRule().getName()+": Initial Facility Balance: " + facilityBalance);
+			
+			BigDecimal minUtilization = facilityBE.getMinUtilizationAmt();
+			System.out.println(" >> Rule: "+drools.getRule().getName()+": Min Utilization amount: " + minUtilization);
+			
+			BigDecimal cpBalance = facilityBE.getTotalCpBalance();
+			System.out.println(" >> Rule: "+drools.getRule().getName()+": Total Capital Provider Balance: " + cpBalance);
+			
+			BigDecimal interimBalance = facilityBE.getInterimBalance();
+			System.out.println(" >> Rule: "+drools.getRule().getName()+": Interim Balance: " + interimBalance);
+			
+			BigDecimal payment = facPayment.getPayment();
+			System.out.println(" >> Rule: "+drools.getRule().getName()+": Payment: " + payment);
+			
+			#Facility Balance is always facility balance - payment
+			#facilityBalance = facilityBalance.subtract(payment);
+			BigDecimal newFacBal = facilityBalance.subtract(payment);
+			
+			if((newFacBal.compareTo(minUtilization) < 0) && facilityBalance.compareTo(minUtilization) > 0){
+				cpBalance = minUtilization;
+				System.out.println(" >> Rule: "+drools.getRule().getName()+": New Total Capital Provider Balance: " + cpBalance);
+				
+				interimBalance = facilityBalance.subtract(minUtilization);
+				System.out.println(" >> Rule: "+drools.getRule().getName()+": New Interim Balance: " + interimBalance);
+				
+			}else if((newFacBal.compareTo(minUtilization) < 0) && facilityBalance.compareTo(minUtilization) <= 0){
+				cpBalance = minUtilization;
+				System.out.println(" >> Rule: "+drools.getRule().getName()+": New Total Capital Provider Balance: " + cpBalance);
+				
+				interimBalance = payment;
+				System.out.println(" >> Rule: "+drools.getRule().getName()+": New Interim Balance: " + interimBalance);
+			}
+			else if(newFacBal.compareTo(minUtilization) > 0){
+				cpBalance = facilityBalance;
+				System.out.println(" >> Rule: "+drools.getRule().getName()+": New Total Capital Provider Balance: " + cpBalance);
+				
+				//interimBalance = facilityBalance.subtract(minUtilization);
+				interimBalance = facilityBalance.subtract(cpBalance);
+				System.out.println(" >> Rule: "+drools.getRule().getName()+": New Interim Balance: " + interimBalance);
+			}
+			
+			//facilityBE.calculateInterimBalance(interimBalance);
+			//facilityBE.setTotalCpBalance(cpBalance);
+			facilityBE.setFacBalance(newFacBal);
+		}
+		System.out.println(" >> Ending Rule: " + drools.getRule().getName());
+end
+
+/*rule "SetFPPOnSave"
+	agenda-group "SAVE" 
+	when
+		facilityPayment:FacilityPayment();
+	then
+		System.out.println(" >> Creating options Rule: " + drools.getRule().getName());
+		EntityService es = new EntityService();
+		if(facilityPayment != null && facilityPayment.getFacilityBE() != null && facilityPayment.getWfStatus().getStatusKey().equals("FACILITY_PAYMENT_STATUS_UNALLOCATED") && facilityPayment.getTotalDisbursedPercent().compareTo(new BigDecimal(100)) < 0){
+				for(FacAllocator facAllocator : facilityPayment.getFacilityBE().getFacAllocators()){
+					FacilityPaymentPlacement facilityPaymentPlacement = new FacilityPaymentPlacement();
+					facilityPaymentPlacement.setFacilityPayment(facilityPayment);
+					facilityPaymentPlacement.setFacAllocator(facAllocator);
+					
+					WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FACILITY_PAYMENT_PLACEMENT_STATUS_UNDISBURSED");
+					facilityPaymentPlacement.setWfStatus(status);
+					
+					if(facAllocator.getFundPer() != null){
+						facilityPaymentPlacement.setDisbursedAmt(facilityPayment.getPayment().multiply(facAllocator.getFundPer()).divide(new BigDecimal(100)));
+					}
+					
+					es.saveOrUpdate(facilityPaymentPlacement);
+					facilityPayment.getFacilityPaymentPlacements().add(facilityPaymentPlacement);
+					//es.saveOrUpdate(facilityPayment);
+					System.out.println(" >> Creating options done: " + facilityPaymentPlacement);
+				}
+					//facilityPayment.getFacilityPaymentPlacements().add(facilityPaymentPlacement);
+					//es.saveOrUpdate(facilityPayment);
+				//es.flush();
+		}
+end*/
+
+/*rule "setWfStatusOnSave"
+	agenda-group "SAVE" 
+	when
+		facilityPayment:FacilityPayment()
+	then
+		if(facilityPayment.getFacilityPaymentPlacements() != null){
+			boolean flag = true;
+			for(FacilityPaymentPlacement facilityPaymentPlacement : facilityPayment.getFacilityPaymentPlacements()){
+				if(facilityPaymentPlacement.getWfStatus().getStatusKey().equals("FACILITY_PAYMENT_PLACEMENT_STATUS_UNDISBURSED")){
+					flag = false;
+					break;
+				}
+			}
+			if(!((WorkflowStatus)facilityPayment.getWfStatus()).getStatusKey().equals("FACILITY_PAYMENT_STATUS_ALLOCATED") && (facilityPayment.getTotalDisbursedPercent().compareTo(new BigDecimal(100)) == 0) && flag){
+				WorkflowStatus status=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "FACILITY_PAYMENT_STATUS_ALLOCATED");
+				facilityPayment.setWfStatus(status);
+			}		
+		}
+end*/

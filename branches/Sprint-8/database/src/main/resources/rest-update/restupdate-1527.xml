@@ -1,0 +1,27 @@
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+	<list>
+<feePolicy>
+		<name>Renewal Fee</name>
+		<feeType>
+			<key>FEE_POLICY_TYPE_AD_HOC</key>
+		</feeType>
+		<defaultPct>1</defaultPct>
+		<effectiveFromDate>2008-12-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<active>true</active>
+		<currency>
+			<isoCode>USD</isoCode>
+			<name>USD</name>
+		</currency>
+		<ou>
+			<key>OPERATING_UNIT_OPERATING_UNIT</key>
+		</ou>
+		<sbu>
+			<key>STRATEGIC_BUSINESS_UNIT_STRATEGIC_BUSINESS_UNIT</key>
+		</sbu>
+		<pricingIndex>
+			<key>PRICING_INDEX_ONE_YEAR_LIBOR</key>
+		</pricingIndex>
+	</feePolicy>
+</list>
+</mod:sr.addEntityRequest>

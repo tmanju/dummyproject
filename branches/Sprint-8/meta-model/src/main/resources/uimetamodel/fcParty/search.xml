@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<canvas id="fcParty" type="search" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+	xmlns="http://www.thirdpillar.com/codify/ui-metamodel">
+
+	<panel id="fcParty.fraudCheckSearch" label="Party Search">
+	 	<field name="fcParty.recordNumber" label ="Record Number" /> 
+	 	<field name="fcParty.partyType" label ="Party Type" /> 
+	 	<field name="fcParty.firstName" label ="Company Name / First Name" /> 
+	 	<field name="fcParty.lastName" label ="Last Name" /> 
+	 	<field name="fcParty.ssn" label ="SSN" /> 
+	 	<field name="fcParty.alias" label ="Alias" /> 
+	 	<field name="fcParty.employerName" label ="Employer Name" /> 
+	 	<field name="fcParty.federalTax" label ="Federal Tax ID" /> 
+	 	<field name="fcParty.caseId" label ="Case ID" /> 
+	 	<field name="fcParty.addresses.address1" label ="Address Line 1" /> 
+	 	<field name="fcParty.addresses.city" label ="City" />
+	 	<field name="fcParty.addresses.stateProvince" label="State / Province" /> 
+	 		<field name="fcParty.displayAddress.zip" label="Zip"/>
+	 	<field name="fcParty.addresses.country" label="Country" /> 
+	 	<field name="fcParty.addresses.phoneNumber" label ="Phone Number" /> 
+	 	
+		<field name="fcParty.active" label="Active" />
+		
+	</panel>
+	<beans>
+		<bean name="fcParty" type="com.thirdpillar.codify.loanpath.model.FcParty" />
+	</beans>
+</canvas>

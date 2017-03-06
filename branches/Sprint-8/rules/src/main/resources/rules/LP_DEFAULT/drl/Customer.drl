@@ -1,0 +1,514 @@
+#created on: Sept 21, 2011
+package LP_DEFAULT
+
+import com.thirdpillar.foundation.service.Context;
+import com.thirdpillar.foundation.service.LookupService;
+import java.lang.*;
+import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.*;
+import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+global com.thirdpillar.foundation.service.Context appContext;
+
+rule "setCustomerType"
+	agenda-group "NEW" 
+	when
+		customer:Customer()
+	then
+		AttributeChoice type =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","CUSTOMER_TYPE_NON_INDIVIDUAL");
+		customer.setCustomerType(type);
+		if(appContext.getNamedContext().get("root") instanceof Request){
+			if(appContext.getNamedContext().get("root_allFacilities") != null && appContext.getNamedContext().get("root_allFacilities") instanceof Facility){
+				DebtorCustomer debtorCustomer=(DebtorCustomer)appContext.getNamedContext().get("root_allFacilities_debtors");
+				if(debtorCustomer != null){
+					customer.setDebtor(true);					
+				}
+			}
+			else
+			{
+				customer.setAccount(true);
+			}
+		}
+end
+
+rule "setDefaultApprovedValue"
+agenda-group "NEW" 
+	when
+		#condition
+		customer:Customer()
+	then
+		#action
+		EntityService es = new EntityService();
+		AttributeChoice approved =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","YES_OR_NO_NO");
+		customer.setApproved(approved);
+end
+
+rule "setDefaultMaxCreditPeriod"
+agenda-group "NEW" 
+	when
+		#condition
+		customer:Customer()
+	then
+		#action
+		customer.setMaxCreditPeriod(new Integer(90));
+end
+
+rule "setAssessmentCollateralRevenue"
+	agenda-group "SAVE" 
+	when
+		customer:Customer()
+	then
+		for(Collateral collateral : customer.getCollaterals()){
+			if(collateral.getCashFlows() != null && collateral.getCashFlows().getFinancial() != null && collateral.getAssessmentCollateral() != null ){
+				for(IncomeExpense incomeExpense : collateral.getCashFlows().getFinancial().getIncomeExpenses()){
+					for(RevenueLine revLine : incomeExpense.getRevenueLines()){
+						revLine.setAssessmentCollateral(collateral.getAssessmentCollateral());
+					}
+				}
+			}
+	}
+end
+
+
+
+rule "setAssessmentCollateralExpense"
+	agenda-group "SAVE" 
+	when
+		customer:Customer()
+	then
+		for(Collateral collateral : customer.getCollaterals()){
+			if(collateral.getCashFlows() != null && collateral.getCashFlows().getFinancial() != null && collateral.getAssessmentCollateral() != null ){
+				for(IncomeExpense incomeExpense : collateral.getCashFlows().getFinancial().getIncomeExpenses()){
+					for(ExpenseLine expLine : incomeExpense.getExpenseLines()){
+						expLine.setAssessmentCollateral(collateral.getAssessmentCollateral());
+					}
+				}
+			}
+	}
+end
+
+rule "setAssessmentCollateralFinancialRevenue"
+	agenda-group "SAVE" 
+	when
+		customer:Customer()
+	then
+		for(Collateral collateral : customer.getCollaterals()){
+		if(collateral.getCashFlows() != null && collateral.getCashFlows().getFinancial() != null && collateral.getAssessmentCollateral() != null ){
+				for(FinancialAssessmentRevenue finRev : collateral.getCashFlows().getFinancial().getFinancialAssessmentRevenues()){
+					finRev.setAssessmentCollateral(collateral.getAssessmentCollateral());
+				}
+			}
+		}
+end
+
+rule "setAssessmentCollateralFinancialExpense"
+	agenda-group "SAVE" 
+	when
+		customer:Customer()
+	then
+		for(Collateral collateral : customer.getCollaterals()){
+		if(collateral.getCashFlows() != null && collateral.getCashFlows().getFinancial() != null && collateral.getAssessmentCollateral() != null ){
+				for(FinancialAssessmentExpense finExp : collateral.getCashFlows().getFinancial().getFinancialAssessmentExpenses()){
+					finExp.setAssessmentCollateral(collateral.getAssessmentCollateral());
+				}
+			}
+		}
+end
+
+rule "Set Financial Assessment Expense"
+agenda-group "SAVE"
+when 
+ 	customer:Customer()
+then
+	List<FinancialAssessmentExpense> fincAssttExpenseList = new ArrayList<FinancialAssessmentExpense>();
+	List<AttributeChoice> currentExpenseLegendList = new ArrayList<AttributeChoice>();
+	EntityService es = new EntityService();
+	for(Collateral collateral : customer.getCollaterals()){
+		if(!collateral.getExpenseLegendList().isEmpty()){
+			for(AttributeChoice expenseLegend : collateral.getExpenseLegendList()){
+				if(!collateral.getCashFlows().getFinancial().getFinancialAssessmentExpenses().isEmpty()){
+					for(FinancialAssessmentExpense currentExpense : collateral.getCashFlows().getFinancial().getFinancialAssessmentExpenses()){
+						currentExpenseLegendList.add(currentExpense.getExpenseLegend());
+					}if(!currentExpenseLegendList.contains(expenseLegend)){
+						FinancialAssessmentExpense financialAssessment = (FinancialAssessmentExpense) es.createNew(FinancialAssessmentExpense.class);
+						financialAssessment.setExpenseLegend(expenseLegend);
+						financialAssessment.setFinancialCRE(collateral.getCashFlows().getFinancial());
+	 					fincAssttExpenseList.add(financialAssessment);
+					}
+				}else{
+					FinancialAssessmentExpense financialAssessment = (FinancialAssessmentExpense) es.createNew(FinancialAssessmentExpense.class);
+					financialAssessment.setExpenseLegend(expenseLegend);
+					financialAssessment.setFinancialCRE(collateral.getCashFlows().getFinancial());
+	 				fincAssttExpenseList.add(financialAssessment);
+				}
+			}
+			collateral.getCashFlows().getFinancial().getFinancialAssessmentExpenses().addAll(fincAssttExpenseList);	
+		}
+	}
+end
+
+rule "Set Financial Assessment Revenue"
+agenda-group "SAVE"
+when 
+ 	customer:Customer()
+then
+	List<FinancialAssessmentRevenue> fincAssttRevenueList = new ArrayList<FinancialAssessmentRevenue>();
+	List<AttributeChoice> currentRevenueLegendList = new ArrayList<AttributeChoice>();
+	EntityService es = new EntityService();
+	for(Collateral collateral : customer.getCollaterals()){
+		if(!collateral.getRevenueLegendList().isEmpty()){
+			for(AttributeChoice revenueLegend : collateral.getRevenueLegendList()){
+				if(!collateral.getCashFlows().getFinancial().getFinancialAssessmentRevenues().isEmpty()){
+					for(FinancialAssessmentRevenue currentExpense : collateral.getCashFlows().getFinancial().getFinancialAssessmentRevenues()){
+						currentRevenueLegendList.add(currentExpense.getRevenueLegend());
+					}if(!currentRevenueLegendList.contains(revenueLegend)){
+						FinancialAssessmentRevenue financialAssessment = (FinancialAssessmentRevenue) es.createNew(FinancialAssessmentRevenue.class);
+						financialAssessment.setRevenueLegend(revenueLegend);
+						financialAssessment.setFinancialCRE(collateral.getCashFlows().getFinancial());
+	 					fincAssttRevenueList.add(financialAssessment);
+					}
+				}else{
+					FinancialAssessmentRevenue financialAssessment = (FinancialAssessmentRevenue) es.createNew(FinancialAssessmentRevenue.class);
+					financialAssessment.setRevenueLegend(revenueLegend);
+					financialAssessment.setFinancialCRE(collateral.getCashFlows().getFinancial());
+	 				fincAssttRevenueList.add(financialAssessment);
+				}
+			}
+			collateral.getCashFlows().getFinancial().getFinancialAssessmentRevenues().addAll(fincAssttRevenueList);	
+		}
+	}
+end
+
+rule "setFinancialCREDocument"
+	agenda-group "NEW" 
+	when
+		financial:FinancialCRE()
+	then
+		EntityService es = new EntityService();
+		Document document = (Document)es.createNew(Document.class);
+		financial.setDownloadFinancial(document);
+end
+
+rule "SetAppraisalUnitAreaFromAssessmentNew"
+	agenda-group "NEW" 
+	when
+		appraisal:Appraisal()
+	then
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		if(collateral.getAssessmentCollateral().getUnitArea() != null){
+			appraisal.setTotalUnit(collateral.getAssessmentCollateral().getUnitArea());
+		}
+		
+end
+
+rule "SetAppraisalUnitAreaFromAssessment"
+	when
+		changeModelEvent:AssessmentCollateral.ChangeModelEvent(property == "unitArea",newValue != null)
+	then
+		AssessmentCollateral assessmentCollateral = (AssessmentCollateral) changeModelEvent.getEntity();
+		BigDecimal unitArea = (BigDecimal) changeModelEvent.getNewValue();
+		for(ThirdPartyRequest thirdParty : assessmentCollateral.getThrdPtyReqts()){
+			if(thirdParty.getThirdPartyRequestType() != null && thirdParty.getThirdPartyRequestType().getKey().equalsIgnoreCase("THIRD_PARTY_REQUEST_TYPE_APPRAISAL")){
+				if(thirdParty.getAppraisal() != null){
+					thirdParty.getAppraisal().setTotalUnit(unitArea);
+				}
+			}
+		}
+end
+
+rule "SetAppraisalUnitAreaBasisFromAssessment"
+	when
+		changeModelEvent:AssessmentCollateral.ChangeModelEvent(property == "unitAreaBasis",newValue != null)
+	then
+		AssessmentCollateral assessmentCollateral = (AssessmentCollateral) changeModelEvent.getEntity();
+		AttributeChoice unitAreaBasis = (AttributeChoice) changeModelEvent.getNewValue();
+		for(ThirdPartyRequest thirdParty : assessmentCollateral.getThrdPtyReqts()){
+			if(thirdParty.getThirdPartyRequestType().getKey().equalsIgnoreCase("THIRD_PARTY_REQUEST_TYPE_APPRAISAL")){
+				thirdParty.getAppraisal().setUnitAreaBasis(unitAreaBasis);
+			}
+		}
+end
+rule "SetCollteralForcastedFinancialNew"
+	agenda-group "NEW" 
+	when
+		forcastedFin:ForcastedFinancial()
+	then
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		if(collateral != null){
+			forcastedFin.setCollateral(collateral);
+		}
+		
+end
+
+rule "SetOperatingIncomeinValuation"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue != null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		IncomeExpense incomeExpense = (IncomeExpense) changeModelEvent.getNewValue();
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		List<OperatingIncome> opIncomeList = new ArrayList<OperatingIncome>();
+		EntityService es = new EntityService();
+		// clear exisitng operatingIncome if any		
+		if (forcastedFinancial.getOperatingIncomes() != null) {
+			forcastedFinancial.getOperatingIncomes().clear();
+		}
+		for(RevenueLine revLine : incomeExpense.getRevenueLinesDer()){
+			if(revLine.isRevenueCalledOperating()){
+				OperatingIncome operatingIncome = (OperatingIncome) es.createNew(OperatingIncome.class);
+				operatingIncome.setRevenueLegend(revLine.getRevenueLegend());
+				operatingIncome.setTotalAmount(revLine.getTotalAmountProRata());
+				operatingIncome.setForcastedFinancial(forcastedFinancial);
+				opIncomeList.add(operatingIncome);
+			}
+		}
+		//Add default lines 
+		for(AttributeChoice choice : forcastedFinancial.getDefaultOperatingIncomeList()){
+			OperatingIncome operatingIncomeDefault = (OperatingIncome) es.createNew(OperatingIncome.class);
+			operatingIncomeDefault.setRevenueLegend(choice);
+			operatingIncomeDefault.setForcastedFinancial(forcastedFinancial);
+			opIncomeList.add(operatingIncomeDefault);
+		}
+		forcastedFinancial.getOperatingIncomes().addAll(opIncomeList);	
+end
+
+rule "SetDefaultOperatingIncomeAmount"
+	agenda-group "SAVE" 
+	when
+		customer:Customer()
+	then
+		for(Collateral collateral : customer.getCollaterals()){
+		if(collateral.getForcastedFinancial() != null){
+				for(OperatingIncome income : collateral.getForcastedFinancial().getOperatingIncomes()){
+					if(income.getRevenueLegend() != null){
+						if("REVENUE_LEGEND_TYPE_GROSS_POTENTIAL_RENT".equals(income.getRevenueLegend().getKey())){
+							income.setTotalAmount(collateral.getForcastedFinancial().getGPR());
+						}else if("REVENUE_LEGEND_TYPE_BAD_DEBTS".equals(income.getRevenueLegend().getKey())){
+							income.setTotalAmount(collateral.getForcastedFinancial().getBadDebts());
+						}else if("REVENUE_LEGEND_TYPE_CONCESSIONS".equals(income.getRevenueLegend().getKey())){
+							income.setTotalAmount(collateral.getForcastedFinancial().getConcessions());
+						}else if("REVENUE_LEGEND_TYPE_VACANCY_LOSS".equals(income.getRevenueLegend().getKey())){
+							income.setTotalAmount(collateral.getForcastedFinancial().getVacancyLoss());
+						}
+					}
+				}
+			}
+		}
+end
+//Operating Expenses
+rule "SetOperatingExpenseinValuation"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue != null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		IncomeExpense incomeExpense = (IncomeExpense) changeModelEvent.getNewValue();
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		List<OperatingExpense> opIncomeList = new ArrayList<OperatingExpense>();
+		EntityService es = new EntityService();
+		// clear exisitng operatingIncome if any		
+		if (forcastedFinancial.getOperatingExpenses() != null) {
+			forcastedFinancial.getOperatingExpenses().clear();
+		}
+		for(ExpenseLine expLine : incomeExpense.getExpenseLinesDer()){
+			if(expLine.isExpenseCalledOperating()){
+				OperatingExpense operatingExpense = (OperatingExpense) es.createNew(OperatingExpense.class);
+				operatingExpense.setExpenseLegend(expLine.getExpenseLegend());
+				operatingExpense.setTotalAmount(expLine.getTotalAmountProRata());
+				operatingExpense.setForcastedFinancial(forcastedFinancial);
+				opIncomeList.add(operatingExpense);
+			}
+		}
+		//Add default lines 
+		for(AttributeChoice choice : forcastedFinancial.getDefaultOperatingExpenseList()){
+			OperatingExpense operatingExpenseDefault = (OperatingExpense) es.createNew(OperatingExpense.class);
+			operatingExpenseDefault.setExpenseLegend(choice);
+			operatingExpenseDefault.setForcastedFinancial(forcastedFinancial);
+			opIncomeList.add(operatingExpenseDefault);
+		}
+		forcastedFinancial.getOperatingExpenses().addAll(opIncomeList);	
+end
+
+//Ratio Schedules
+rule "SetOperatingRatioSchedule"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue != null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		IncomeExpense incomeExpense = (IncomeExpense) changeModelEvent.getNewValue();
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		List<RatioSchedule> ratioList = new ArrayList<RatioSchedule>();
+		EntityService es = new EntityService();
+		// clear exisitng schedules if any		
+		if (forcastedFinancial.getRatioSchedules() != null) {
+			forcastedFinancial.getRatioSchedules().clear();
+		}
+		//Add Ratio Schedules
+		for(AttributeChoice choice : forcastedFinancial.getDefaultRatioSchedule()){
+			RatioSchedule ratioSchedule = (RatioSchedule) es.createNew(RatioSchedule.class);
+			ratioSchedule.setRatioSchedule(choice);
+			ratioSchedule.setForcastedFinancial(forcastedFinancial);
+			ratioList.add(ratioSchedule);
+		}
+		forcastedFinancial.getRatioSchedules().addAll(ratioList);	
+end
+
+//Income Multiplier
+rule "SetIncomeMultiplierDefaultLines"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue != null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		IncomeExpense incomeExpense = (IncomeExpense) changeModelEvent.getNewValue();
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		List<IncomeMultiplier> defaultList = new ArrayList<IncomeMultiplier>();
+		EntityService es = new EntityService();
+		// clear exisitng incomeMultiplier if any		
+		if (forcastedFinancial.getIncomeMultipliers() != null) {
+			forcastedFinancial.getIncomeMultipliers().clear();
+		}
+		//Add Ratio Schedules
+		for(AttributeChoice choice : forcastedFinancial.getDefaultIncomeMultiplier()){
+			IncomeMultiplier incomeMultiplier = (IncomeMultiplier) es.createNew(IncomeMultiplier.class);
+			incomeMultiplier.setIncomeMultiplier(choice);
+			incomeMultiplier.setForcastedFinancial(forcastedFinancial);
+			defaultList.add(incomeMultiplier);
+		}
+		forcastedFinancial.getIncomeMultipliers().addAll(defaultList);	
+end
+
+//Income Multiplier Method
+rule "SetIncMultiMethodsDefaultLines"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue != null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		IncomeExpense incomeExpense = (IncomeExpense) changeModelEvent.getNewValue();
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		List<IncMultiMethod> defaultList = new ArrayList<IncMultiMethod>();
+		EntityService es = new EntityService();
+		// clear exisitng IncMultiMethods if any		
+		if (forcastedFinancial.getIncMultiMethods() != null) {
+			forcastedFinancial.getIncMultiMethods().clear();
+		}
+		//Add Ratio Schedules
+		for(AttributeChoice choice : forcastedFinancial.getDefaultIncMultiMethod()){
+			IncMultiMethod incomeMultiMethod = (IncMultiMethod) es.createNew(IncMultiMethod.class);
+			incomeMultiMethod.setIncomeMultiMethod(choice);
+			incomeMultiMethod.setForcastedFinancial(forcastedFinancial);
+			defaultList.add(incomeMultiMethod);
+		}
+		forcastedFinancial.getIncMultiMethods().addAll(defaultList);	
+end
+
+//Finanacial Ratios
+rule "SetFncMultiMethodsDefaultLines"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue != null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		IncomeExpense incomeExpense = (IncomeExpense) changeModelEvent.getNewValue();
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		List<FinancialRatio> defaultList = new ArrayList<FinancialRatio>();
+		EntityService es = new EntityService();
+		// clear exisitng FncMultiMethods if any		
+		if (forcastedFinancial.getFinancialRatios() != null) {
+			forcastedFinancial.getFinancialRatios().clear();
+		}
+		//Add Ratio Schedules
+		for(AttributeChoice choice : forcastedFinancial.getDefaultFinancialRatio()){
+			FinancialRatio financialRatio = (FinancialRatio) es.createNew(FinancialRatio.class);
+			financialRatio.setFinancialRatio(choice);
+			financialRatio.setForcastedFinancial(forcastedFinancial);
+			defaultList.add(financialRatio);
+		}
+		forcastedFinancial.getFinancialRatios().addAll(defaultList);	
+end
+
+//Profit Measures
+rule "SetProfitMeasuresDefaultLines"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue != null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		IncomeExpense incomeExpense = (IncomeExpense) changeModelEvent.getNewValue();
+		Collateral collateral=(Collateral)appContext.getNamedContext().get("root_collaterals");
+		List<ProfitMeasure> defaultList = new ArrayList<ProfitMeasure>();
+		EntityService es = new EntityService();
+		// clear exisitng profitMeasures if any		
+		if (forcastedFinancial.getProfitMeasures() != null) {
+			forcastedFinancial.getProfitMeasures().clear();
+		}
+		//Add Ratio Schedules
+		for(AttributeChoice choice : forcastedFinancial.getDefaultProfitMeasure()){
+			ProfitMeasure profitMeasure = (ProfitMeasure) es.createNew(ProfitMeasure.class);
+			profitMeasure.setProfitMeasures(choice);
+			profitMeasure.setForcastedFinancial(forcastedFinancial);
+			defaultList.add(profitMeasure);
+		}
+		forcastedFinancial.getProfitMeasures().addAll(defaultList);	
+end
+
+
+rule "SetValuationListToNull"
+	when
+		changeModelEvent:ForcastedFinancial.ChangeModelEvent(property == "baseYear",newValue == null)
+	then
+		ForcastedFinancial forcastedFinancial = (ForcastedFinancial) changeModelEvent.getEntity();
+		// clear exisitng ratio schedule if any		
+		if (forcastedFinancial.getRatioSchedules() != null) {
+			forcastedFinancial.getRatioSchedules().clear();
+		}
+		// clear exisitng operatingExpense if any		
+		if (forcastedFinancial.getOperatingExpenses() != null) {
+			forcastedFinancial.getOperatingExpenses().clear();
+		}
+		// clear exisitng operatingIncome if any		
+		if (forcastedFinancial.getOperatingIncomes() != null) {
+			forcastedFinancial.getOperatingIncomes().clear();
+		}
+		// clear exisitng incomeMultiplier if any		
+		if (forcastedFinancial.getIncomeMultipliers() != null) {
+			forcastedFinancial.getIncomeMultipliers().clear();
+		}
+		// clear exisitng FncMultiMethods if any		
+		if (forcastedFinancial.getFinancialRatios() != null) {
+			forcastedFinancial.getFinancialRatios().clear();
+		}
+		// clear exisitng IncMultiMethods if any		
+		if (forcastedFinancial.getIncMultiMethods() != null) {
+			forcastedFinancial.getIncMultiMethods().clear();
+		}
+		// clear exisitng profitMeasures if any		
+		if (forcastedFinancial.getProfitMeasures() != null) {
+			forcastedFinancial.getProfitMeasures().clear();
+		}
+end
+
+rule "SetYearsInBusiness_OnBusinessStartDate"
+  when
+        changeModelEvent:Customer.ChangeModelEvent(property == "businessStartDttm", newValue != null)        
+  then 
+    Customer cust = (Customer) changeModelEvent.getEntity();
+    java.util.Date date= (java.util.Date) changeModelEvent.getNewValue();
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    cal.setTime(date);
+	int businessStartYear = cal.get(java.util.Calendar.YEAR);
+    cal.setTime(new java.util.Date());
+	int currentYears = cal.get(java.util.Calendar.YEAR);
+	int yearsInBusiness = currentYears - businessStartYear;
+	cust.setYearsInBusiness(yearsInBusiness);
+end
+
+rule "SetDunsLookupOnDunsSave"
+  agenda-group "SAVE" 
+	when
+		customer:Customer()
+	then
+	if(customer != null){
+		customer.setDunsLookup(customer.getDuns());
+	}
+end

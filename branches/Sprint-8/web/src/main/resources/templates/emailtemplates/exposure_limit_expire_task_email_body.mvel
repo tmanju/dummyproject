@@ -1,0 +1,7 @@
+Customer @{entity.customerName} exposure limits have expired.<br><br>
+
+@if{entity.customerExposureLimits != null}
+	@foreach{customerExposureLimit : entity.customerExposureLimits}
+		Exposure Product Type: @{customerExposureLimit.productType.value} - Expiry Date : @{customerExposureLimit.expiryDate}<br>
+	@end{}
+@end{}

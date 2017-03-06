@@ -1,0 +1,41 @@
+#created on: Fabuary 03, 2012
+package LP_DEFAULT
+
+import com.thirdpillar.codify.loanpath.model.AttributeChoice;
+import com.thirdpillar.codify.loanpath.model.Facility;
+import com.thirdpillar.codify.loanpath.model.CoaEvaluation;
+import com.thirdpillar.codify.loanpath.model.CoaDefinition;
+import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.codify.loanpath.model.WorkflowStatus;
+import function com.thirdpillar.foundation.rules.RuleFunctions.logDebug;
+global com.thirdpillar.foundation.service.Context appContext;
+import java.util.ArrayList;
+import java.util.List;
+import java.math.BigDecimal;
+
+
+/*
+	Rule to set default evaluation to Incomplete
+*/
+
+rule "SetStatusToPending"
+		agenda-group "NEW"
+			when
+				#condition
+			coaEval:CoaEvaluation() 
+			then
+			#actions 
+			WorkflowStatus coaType=(WorkflowStatus)LookupService.getResult("WorkflowStatus.byStatusKey", "statusKey", "COA_EVALUATION_PENDING");
+			coaEval.setWfStatus(coaType);
+end
+
+rule "SetCoaEvaluationProduct"
+	agenda-group "NEW"
+	when
+		coaEval:CoaEvaluation()
+	then
+		if (appContext != null && appContext.getNamedContext().get("root_coaFacilities") != null) {
+			coaEval.setProduct((Facility) appContext.getNamedContext().get("root_coaFacilities"));
+		}
+end
+

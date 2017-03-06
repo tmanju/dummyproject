@@ -1,0 +1,1088 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jee="http://www.springframework.org/schema/jee" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd   
+  http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd ">
+
+		<alias name="com.thirdpillar.codify.bc.model.User.Activate" alias="com.thirdpillar.codify.loanpath.model.User.Activate" />
+		<alias name="com.thirdpillar.codify.bc.model.User.Deactivate" alias="com.thirdpillar.codify.loanpath.model.User.Deactivate" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.CompleteTask" alias="com.thirdpillar.codify.loanpath.model.HumanTask.CompleteTask" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Claim" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Claim" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Start" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Start" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Suspend" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Suspend" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Resume" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Resume" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Complete" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Complete" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.AsyncErrorEvent" alias="com.thirdpillar.codify.loanpath.model.HumanTask.AsyncErrorEvent" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.ReleaseTask" alias="com.thirdpillar.codify.loanpath.model.HumanTask.ReleaseTask" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Reassign" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Reassign" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Skip" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Skip" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Stop" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Stop" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Forward" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Forward" />
+		<alias name="com.thirdpillar.codify.bc.model.HumanTask.Revoke" alias="com.thirdpillar.codify.loanpath.model.HumanTask.Revoke" />
+		
+	<!-- 	<bean name="com.thirdpillar.codify.loanpath.model.FacilityBE.Confirmation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	       <property name="eventName" value="ValidateAndRunChecklist"/> 
+	       <property name="validationGroups">
+                  <list>
+                       <value>com.thirdpillar.codify.loanpath.ValidationGroup$ElectronicApplicationValidate</value>
+                       <value>javax.validation.groups.Default</value>
+                  </list>
+	       </property>                                                                    
+	       <property name="confirmationGroups">
+                <list>
+					<value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityBEValidateConfirm</value>
+                </list>
+            </property>                                                                       
+        </bean>  --> 
+        <bean name="com.thirdpillar.codify.loanpath.model.FacilityBE.FundedFacAllocation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="fundedFacAllocation" />
+			<property name="validationGroups">
+				<list>
+					<value>com.thirdpillar.codify.loanpath.ValidationGroup$AssignNewCapitalProviderValidationGroup</value>
+				</list>
+			</property>
+		</bean>
+
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.CreateDocumentChecklist" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="CreateDocumentChecklist"/>
+	  	</bean>	  		  	
+	  	
+
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.CreateRequest" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">	  	
+	  		<property name="eventName" value="CreateRequest"/>
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+	  	
+		<bean name="com.thirdpillar.codify.loanpath.model.MoodyCustomer.MoodyCustomerSearch" class="com.thirdpillar.foundation.service.WebServiceBizOp">
+ 			<property name="serviceName" value="SearchMoodyService"/>
+ 		</bean>
+	  	
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.ReSendEmail" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="ReSendEmail"/>
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$StatusValidationGroup</value>
+	  			</list>
+	  		</property>
+		</bean>
+
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.OpenRequest" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="OpenRequest"/>
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$StatusValidationForAppSent</value>
+	  			</list>
+	  		</property>
+	  	</bean>	  	
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.RequestDisclosureHelp" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="RequestDisclosureHelp"/>
+	  	</bean>	  		  	
+
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.LPSubmitForCredit" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="LPSubmitForCredit"/>
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Submit_For_Credit" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="SubmitForCredit"/>
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  			</list>
+	  		</property>	  		
+	  	</bean>	  	
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.CoaClearance" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityCoaCleared</value>
+	  		</property>
+	  	</bean>
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.ReSubmitAction" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.VerifiedForDeDup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+	  	
+	  	<!-- <bean name="com.thirdpillar.codify.loanpath.model.Request.SubmittedToCredit" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>javax.validation.groups.Default</value>
+	  			</list>
+	  		</property>
+	  	</bean> -->	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.SalesSupport" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.AssignedToSalesTeam" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>javax.validation.groups.Default</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.AssignToBackOffice" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>javax.validation.groups.Default</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.RenewalSubmitForDecision" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+	  		<property name="processId" value="RequestPreSubmitForDecision"/>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Spreading" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  			</list>
+	  		</property>
+	  	</bean>	
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Pricing" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  			</list>
+	  		</property>
+	  	</bean>	
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Appraisal" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  			</list>
+	  		</property>
+	  	</bean>		  		  		  	
+
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.PreSubmitForDecision" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+	  		<property name="processId" value="RequestPreSubmitForDecision"/>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.ApplicationCompleted" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups"> 
+	  		 <list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</value>
+	  		 </list>
+	  		 </property>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.CoaDecision" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups"> 
+	  		 <list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CoaCompleted</value>
+	  		 </list>
+	  		 </property>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.SubmitForNoia" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups"> 
+	  		 <list>
+	  		 		<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingNoia</value>
+	  		 </list>
+	  		 </property>
+	  	</bean>	
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.OneStopAppValidationGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopAppValidation</value>
+	  			</list>
+	  		</property>
+	  	</bean> 
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.OneStopExposureValidationGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$OneStopExposureValidation</value>
+	  			</list>
+	  		</property>
+	  	</bean> 	
+	  	
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.VerifySsnDob" class="com.thirdpillar.codify.loanpath.service.VerifySsnDobBizOp">
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.DeDupProcess" class="com.thirdpillar.codify.loanpath.service.DeDupBizOp">
+		</bean>	  	
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.GenerateContract" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="GenerateContract"/>
+		</bean>
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.CreditWriteup" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="CreditWriteup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.createRenewals" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.CreateFacilityRenewal" />
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.exportToMarketplace" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.MarketPlaceBackendAdaptorBizOp" />
+		</bean>
+		
+		 <!-- Collateral Financial -->
+	    <bean name="com.thirdpillar.codify.loanpath.model.Collateral.ExportFinancialCSV" class="com.thirdpillar.foundation.service.JavaMethodBizOp" >
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.ExcelUtil"/>
+	    </bean>
+	  
+				
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.SubmitForRenewal" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="SubmitForRenewal"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.PortfolioMgmt" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="PortfolioMgmt"/>
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PortfolioSubmit</value>
+	  			</list>
+	  		</property>
+		</bean>
+	  	
+	  	
+<!-- 		<bean name="com.thirdpillar.codify.loanpath.model.Facility.generateCOA" class="com.thirdpillar.foundation.service.WorkflowBizOp" > -->
+<!-- 			<property name="processId" value="GenerateCOAFlow"/> -->
+<!-- 			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$GenerateCoa"/> -->
+<!-- 		</bean> -->
+		<bean name="com.thirdpillar.codify.loanpath.model.CoaEvaluation.completeCOA" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="completeCOA"/>
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.CoaEvaluation.suspendCOA" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="suspendCOA"/>
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.ManualBureauPull" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="ManualBureauPull"/>
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$ManualBureauPullCustomer</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$ManualBureauPullBureau</value>
+	  			</list>
+	  		</property>
+		</bean>
+
+		<bean name="com.thirdpillar.codify.loanpath.model.CoaEvaluation.COASubmitForReview" class="com.thirdpillar.foundation.service.WorkflowBizOp" />
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.CovenantEvaluation.CovenantEvaluation" class="com.thirdpillar.foundation.service.WorkflowBizOp" >
+			<property name="processId" value="CovenantEvaluation" />
+		</bean>	  	
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.DocumentCheckout" class="com.thirdpillar.codify.loanpath.service.DocumentCheckoutBizOp" />
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.DocumentCheckin" class="com.thirdpillar.codify.loanpath.service.DocumentCheckinBizOp" />
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.SubmitforReview" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="SubmitDocumentForReview"/>
+ 			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$SubmitForReview</value>
+	  			</list>
+	  		</property>
+ 		</bean>
+		
+		<!-- Please don't add anything below this, Anything below needs to be removed eventually -->
+ 
+  	   	<!-- Action Operations -->
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.SubmitToLoanPath" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="SubmitToLoanPath"/>
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  			</list>
+	  		</property>	  		
+	  	</bean>
+	  	
+	  	<!-- ?? Is this used?? -->
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Submit_For_Bureaus" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="SubmitToLoanPath"/>
+	  	</bean>
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.FacilityDecisionFlow" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="FacilityDecisionFlow"/>
+		</bean>		 		
+ 		
+		<!-- Task Completions -->
+
+
+	<bean name="com.thirdpillar.codify.loanpath.model.Facility.CompleteCoaValidationGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups"> 
+		  		 <list>
+		  		 		<value>com.thirdpillar.codify.loanpath.ValidationGroup$CompleteCoa</value>
+		  		 </list>
+			</property>
+	</bean>
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.ReturnToSales" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups"> 
+	  		 <list>
+	  		 		<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingReturnToSales</value>
+	  		 </list>
+	  		 </property>
+	  	</bean>	  	
+	  	
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.ApproveValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</value>
+	  			</list>
+	  		</property>
+		</bean>
+
+	
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.DeclineValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Declined</value>
+	  			</list>
+	  		</property>
+	  		
+		</bean>	  	
+		
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Facility.PreDocumentation" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</value>	  				
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Documentation</value>
+	  			</list>
+	  		</property>	  		
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Facility.DocsCreated" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</value>	  				
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Documentation</value>
+	  			</list>
+	  		</property>	  		
+	  	</bean>	  	
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Facility.CompleteFunding" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</value>	  				
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Documentation</value>
+	  			</list>
+	  		</property>	  		
+	  	</bean>	  		  	
+ 
+ 		<!-- Unsorted -->
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.docGenClient" class="com.thirdpillar.foundation.service.WebServiceBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.User.openAMService" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$EsignatureGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.provisionCustomer" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="provisionCustomer"/>
+		</bean>
+		
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.ProductFunded" class="com.thirdpillar.foundation.service.WorkflowEventBizOp" >
+			<property name="eventName" value="ProductFunded"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Relationship.UpdateExposure" class="com.thirdpillar.codify.loanpath.service.CalculateRelationshipExposure"/>		
+
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.UpdateExposureFlow" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.FacilityModsFlow" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.updateFacilityExposure" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.RequestExposure" />
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.convertOneStopAppToRequest" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.OneStopAppRequestConverter" />
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.convertOneStopExposureToRequest" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.OneStopExposureRequestConverter" />
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.updateExposureSummary" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.RequestExposure" />
+		</bean>		
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.submitFilingService" class="com.thirdpillar.foundation.service.WorkflowEventBizOp" >
+			<property name="eventName" value="SubmitFilingEvent"/>
+		</bean>
+		
+        <!-- Noia Scheduler events  -->
+ 
+			<bean name="com.thirdpillar.codify.loanpath.model.Request.NoiaSchedulerBizOp" class="com.thirdpillar.codify.loanpath.service.NoiaSchedulerBizOp"/>
+			<!-- <bean name="NoiaSchedulerBizOp" class="com.thirdpillar.codify.loanpath.service.NoiaSchedulerBizOp"/>--> 
+
+			<bean name="noiaSchedulerJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+                     <property name="jobClass" value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob"/>
+                     <property name="jobDataAsMap">
+                    <map>
+                           <entry key="businessOperationName" value="com.thirdpillar.codify.loanpath.model.Request.NoiaSchedulerBizOp"/>
+                    </map>
+                     </property>
+                     <property name="durability" value="true" />
+            </bean> 
+              
+  			<bean id="noiaTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	            <property name="jobDetail" ref="noiaSchedulerJob"/>
+	            <property name="cronExpression" value="${noia.trigger.scheduler.expression}"/> <!--  12:00 PM -->
+        	</bean>
+        
+        	<bean name="com.thirdpillar.codify.loanpath.model.Request.NOIASchedulerFlow" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 				<property name="eventName" value="NOIASchedulerFlow"/>
+ 			</bean>
+ 			
+ 			<!-- <bean name="NOIASchedulerFlow" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 				<property name="eventName" value="NOIASchedulerFlow"/>
+ 			</bean>-->
+ 
+        
+        <!--  Exit Noia Scheduler entities -->
+			
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.sendToSFDC" class="com.thirdpillar.foundation.service.WorkflowEventBizOp" >
+			<property name="eventName" value="SendToSFDC"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.addCoaTask" class="com.thirdpillar.foundation.service.WorkflowEventBizOp" >
+			<property name="eventName" value="AddCoaTask"/>
+		</bean>	
+
+		<!-- UCC Def Start -->
+		<bean name="com.thirdpillar.codify.loanpath.model.UCC.UCCSubmitForFiling" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+		      <property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$SubmitFilingGroup"/>
+		</bean>
+
+		<!-- Document Specialist   -->
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.DocumentFinalStatus" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$UploadedDocumentFinalStatus</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$GeneratedDocumentFinalStatus</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.FileImport.fileImport" class="com.thirdpillar.foundation.service.FileImportBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.UCC.UCCFiling" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="uccFilingEvent"/>
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSrch.UCCSummarySearch" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSrch.UCCDetailsSearch" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSearchSummary.UCCDetailSearch" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSrch.UCCSearchFileOrders" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSearchSummary.UCCSearchSummaryFileOrders" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSearchDetail.UCCSearchFileOrder" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSearchDetail.UCCSearchOrderStatus" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		<!-- UCC Order Status Job  -->
+		<bean name="com.thirdpillar.codify.loanpath.model.UccSearchDetail.UccOrderStatusSchedulerBizOp" class="com.thirdpillar.codify.loanpath.service.UccOrderStatusBizOp"/>
+		<bean name="uccOrderStatusSchedulerJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        	<property name="jobClass" value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob"/>
+        	<property name="jobDataAsMap">
+        		<map>
+        			<entry key="businessOperationName" value="com.thirdpillar.codify.loanpath.model.UccSearchDetail.UccOrderStatusSchedulerBizOp"/>
+        		</map>
+        	</property>
+        	<property name="durability" value="true" />
+        </bean>
+  		<bean id="uccOrderStatusTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    	<property name="jobDetail" ref="uccOrderStatusSchedulerJob"/>
+	    	<property name="cronExpression" value="${ucc.search.order.status.scheduler.expression}"/> <!--  default is 9PM -->
+       	</bean>		
+		<!-- UCC Def Done -->
+			
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.withdrawFacility" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="withdrawFacility"/>
+		</bean>
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Appeal" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="AppealEvent"/>
+	  	</bean>
+	  	
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.withdrawRequest" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="withdrawRequest"/>
+	  	</bean>
+
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Doc_Gen_Client" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="GenerateDocs"/>
+	  	</bean>
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Submit_For_Appeal" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="AppealEvent"/>
+	  	</bean>
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Request.Upload_Document" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="UploadDocEvent"/>
+	  	</bean>
+	  	
+	 <!-- <bean name="com.thirdpillar.codify.loanpath.model.Request.Update_SFDC" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+	  		<property name="eventName" value="UpdateSFDCEvent"/>
+	  	</bean>		-->
+
+
+	  	
+	  	<!--  <bean name="com.thirdpillar.codify.loanpath.model.Request.DeclineCreditDecision" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$DeclineCreditDecision"/>
+	  	</bean>-->
+		<!--business operations for customers -->
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.Verify" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="VerifyEvent"/>
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$NameVerificationGroup"/>	
+		</bean>	
+			
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.Unlock" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="UnlockEvent"/>
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.DOBVerify" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="DOBVerifyEvent"/>
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$DobVerificationGroup"/>
+		</bean>	
+	
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.DOBUnlock" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="DOBUnlockEvent"/>
+		</bean>
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.AddressVerify" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="AddressVerifyEvent"/>
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$AmlVerificationGroup"/>
+			
+		</bean>	
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.AddressUnlock" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="AddressUnlockEvent"/>
+		</bean>
+		
+	
+	
+
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.DeclineValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$FacilityDeclineValidationsGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.DeclineValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$CustomerDeclineValidationsGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Relationship.DeclineValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$RelationshipDeclineValidationsGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.DeclineValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$DocumentDeclineValidationsGroup"/>
+		</bean>
+		
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.ApproveValidationsGroup" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+			<property name="processId" value="RequestValidation"/>
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$FacilityApproveValidationsGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.CounterOfferValidationsGroup" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+			<property name="processId" value="RequestValidation"/>
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$FacilityCounterOfferValidationsGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.ApproveValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$CustomerApproveValidationsGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Relationship.ApproveValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$RelationshipApproveValidationsGroup"/>
+		</bean>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.ApproveValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$DocumentApproveValidationsGroup"/>
+		</bean>
+		
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.NoiaValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$FacilityNoiaValidationsGroup"/>
+		</bean>
+		
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.WithdrawValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$FacilityWithdrawValidationsGroup"/>
+		</bean>
+		
+		
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.DocumentStatusValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp">
+			<property name="validationGroups" value="com.thirdpillar.codify.loanpath.ValidationGroup$DocumentStatusValidationsGroup"/>
+		</bean>
+		
+	<!--  	<bean name="com.thirdpillar.codify.loanpath.model.Request.DocStatusEvent" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="DocStatusEvent"/>
+ 		</bean> -->
+ 		
+ 		<bean name="com.thirdpillar.codify.loanpath.model.Document.SubmitDocumentForReview" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="SubmitDocumentForReview"/>
+ 		</bean>
+ 		
+ 		<bean name="com.thirdpillar.codify.loanpath.model.Document.GenerateDocument" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="GenerateDocument"/>
+ 		</bean>
+
+ 		<bean name="com.thirdpillar.codify.loanpath.model.Document.AutoGenerateDocument" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="AutoGenerateDocument"/>
+ 		</bean>
+
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.GeneratedDocs" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="GeneratedDocs"/>
+ 		</bean>
+ 		
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.ArchiveDocumentEvent" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="ArchiveDocumentEvent"/>
+		</bean>
+			
+		<bean name="com.thirdpillar.codify.loanpath.model.Document.DocumentSigningCompleted" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="DocumentSigningCompleted"/>
+		</bean>
+		<!-- use this business operation (saveDocument to save document (temporarily to add it to collection of the owned business entity) and sync with salesforce) -->
+	  	<bean name="com.thirdpillar.codify.loanpath.model.Document.SaveDocument" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.User.Activate" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="Activate"/>
+ 		</bean>
+
+		<bean name="com.thirdpillar.codify.loanpath.model.User.Deactivate" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="Deactivate"/>
+ 		</bean>
+		
+		<!-- Customer Exposure Limit -->
+		<bean name="com.thirdpillar.codify.loanpath.model.Customer.ExposureAmtBreached" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="ExposureAmtBreached"/>
+ 		</bean>
+ 		
+ 		<bean name="com.thirdpillar.codify.loanpath.model.Customer.ExposureLimitExpired" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="ExposureLimitExpired"/>
+ 		</bean>
+ 		
+ 		<bean name="com.thirdpillar.codify.loanpath.model.Customer.ExposureLimitBreached" class="com.thirdpillar.foundation.service.EmptyBizOp">
+	  		<property name="validationGroups">
+	  			<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerExposureLimit</value>
+	  			</list>
+	  		</property>
+	  	</bean>
+		
+		<!-- CRE Review -->
+		<bean name="com.thirdpillar.codify.loanpath.model.ThirdPartyRequest.ReviewThirdPartyRequest" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="ReviewThirdPartyRequest"/>
+ 		</bean>
+ 			
+ 		<!-- Exposure Limit Monitoring Job  -->
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.ExposureLimitMonitoringBizOp" class="com.thirdpillar.codify.loanpath.service.ExposureLimitMonitoringBizOp"/>
+		<bean name="exposureLimitMonitoringSchedulerJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        	<property name="jobClass" value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob"/>
+        	<property name="jobDataAsMap">
+        		<map>
+        			<entry key="businessOperationName" value="com.thirdpillar.codify.loanpath.model.Request.ExposureLimitMonitoringBizOp"/>
+        		</map>
+        	</property>
+        	<property name="durability" value="true" />
+        </bean>
+  		<bean id="exposureLimitMonitoringTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    	<property name="jobDetail" ref="exposureLimitMonitoringSchedulerJob"/>
+	    	<property name="cronExpression" value="${exposure.limit.monitoring.scheduler.expression}"/>
+       	</bean>	
+       	
+       	
+       	<!-- Exposure Expire Monitoring Job  -->
+		<bean name="com.thirdpillar.codify.loanpath.model.Request.ExposureLimitExpiryMonitoringBizOp" class="com.thirdpillar.codify.loanpath.service.ExposureLimitExpiryMonitoringBizOp"/>
+		<bean name="exposureExpireMonitoringSchedulerJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        	<property name="jobClass" value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob"/>
+        	<property name="jobDataAsMap">
+        		<map>
+        			<entry key="businessOperationName" value="com.thirdpillar.codify.loanpath.model.Request.ExposureLimitExpiryMonitoringBizOp"/>
+        		</map>
+        	</property>
+        	<property name="durability" value="true" />
+        </bean>
+  		<bean id="exposureExpireMonitoringTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	    	<property name="jobDetail" ref="exposureExpireMonitoringSchedulerJob"/>
+	    	<property name="cronExpression" value="${exposure.expire.monitoring.scheduler.expression}"/>
+       	</bean>	
+       	
+	  <bean name="com.thirdpillar.codify.loanpath.model.PricingOption.CalculateOption" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+		<property name="validationGroups">
+	  		<list>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CalculateOption</value>
+	  		</list>
+	  	</property>
+	  </bean>
+	  
+		<bean name="com.thirdpillar.codify.loanpath.model.Partner.PartnerSubmit" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="PartnerSubmit"/>
+ 			<property name="validationGroups">
+					<list>
+						<value>com.thirdpillar.codify.loanpath.ValidationGroup$PartnerSubmit</value>
+					</list> 			
+ 			</property>
+ 		</bean>
+ 		
+ 		<bean name="com.thirdpillar.codify.loanpath.model.Program.ProgramSubmit" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+ 			<property name="eventName" value="ProgramSubmit"/>
+ 			<property name="validationGroups">
+					<list>
+						<value>com.thirdpillar.codify.loanpath.ValidationGroup$ProgramSubmit</value>
+					</list> 			
+ 			</property>
+ 		</bean>
+ 		
+ 		<bean name="com.thirdpillar.codify.loanpath.model.Request.WithdrawRequest" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="WithdrawRequest" />
+			<property name="validationGroups">
+				<list>
+					<value>com.thirdpillar.codify.loanpath.ValidationGroup$WithdrawApplicationForRequest</value>
+				</list>
+			</property>
+		</bean> 
+		
+		<bean name="com.thirdpillar.codify.loanpath.model.Facility.WithdrawFacility" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+			<property name="eventName" value="WithdrawFacility" />
+			<property name="validationGroups">
+				<list>
+					<value>com.thirdpillar.codify.loanpath.ValidationGroup$WithdrawApplicationForFacility</value>
+				</list>
+			</property>
+		</bean> 
+ 	  <bean name="com.thirdpillar.codify.loanpath.model.Facility.CalculateOptionForFacility" class="com.thirdpillar.foundation.service.WorkflowBizOp" />
+	  
+	  <bean name="com.thirdpillar.codify.loanpath.model.PricingOption.SolveForOption" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+	  
+	  <bean name="com.thirdpillar.codify.loanpath.model.Facility.SolveForFacility" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+	  
+	  <bean name="com.thirdpillar.codify.loanpath.model.Partner.ApproveValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp" />
+	  
+	  <bean name="com.thirdpillar.codify.loanpath.model.Program.ApproveValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp" />
+	  
+	  <bean name="com.thirdpillar.codify.loanpath.model.Program.DeclineValidationsGroup" class="com.thirdpillar.foundation.service.EmptyBizOp" />
+	  
+	  <bean name="com.thirdpillar.codify.loanpath.model.DocumentPackage.docGenClient" class="com.thirdpillar.foundation.service.WorkflowBizOp"/>
+	  
+	  <!-- CRE Flow -->
+	  <bean name="com.thirdpillar.codify.loanpath.model.Request.CRESalesSupport" class="com.thirdpillar.foundation.service.EmptyBizOp"/>
+	  <bean name="com.thirdpillar.codify.loanpath.model.Request.CRECreditAnalyst" class="com.thirdpillar.foundation.service.EmptyBizOp"/>
+	  <bean name="com.thirdpillar.codify.loanpath.model.Request.CREApproved" class="com.thirdpillar.foundation.service.EmptyBizOp"/>
+	  
+	  <bean name="com.thirdpillar.codify.loanpath.model.Facility.CalculatePricing" class="com.thirdpillar.codify.loanpath.service.CalculatePricingBizOp" />
+	  
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.calcScoring" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+		<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.CalculateScroing" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.setFacilityRecommendation" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+		<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.request.CalculateScroing" />
+	</bean>
+
+	<!-- For Submitting and Saving the assignment-Submit button. -->
+	 <bean name="com.thirdpillar.codify.loanpath.model.FundAllocator.submitFundAllocation" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+		<property name="processId" value="FundAllocatorSubProcessFlow" />
+  		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$FundSubmit</value>
+  			</list>
+  		</property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FundAllocator.fundedFundAllocation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="fundedFundAllocation" />
+  		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$FundedByCPSubmit</value>
+  			</list>
+  		</property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FundAllocator.failedFundAllocation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="failedFundAllocation" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FundAllocator.replacedFundAllocation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="replacedFundAllocation"></property>
+  		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$ReplacedFundSubmit</value>
+  			</list>
+  		</property>
+	</bean> 
+	
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.debtorDecision" class="com.thirdpillar.foundation.service.EmptyBizOp">
+  		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$ApproveDebtorValidationsGroup</value>
+  			</list>
+  		</property>
+	</bean>
+	
+		
+	<bean name="com.thirdpillar.codify.loanpath.model.DebtorCustomer.approveDebtor" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="approveDebtor" />
+		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecision</value>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecisionEligible</value>
+  			</list>
+  		</property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.DebtorCustomer.declineDebtor" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="declineDebtor" />
+		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$DebtorDecision</value>
+  			</list>
+  		</property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.DebtorCustomer.addDebtor" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="addDebtor" />
+	</bean>
+	
+	<bean name="com.thirdpillar.codify.loanpath.model.DebtorCustomer.addNewDebtor" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+		<property name="processId" value="DebtorSubProcessFlow" />
+	</bean>
+	
+	<bean name="com.thirdpillar.codify.loanpath.model.DebtorCustomer.updateAllDebtors" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="addDebtor" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.sendToAkritiv" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="sendToAkritiv" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.sendToCrm" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="sendToCrm" />
+	</bean>
+	
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.DeclineRequest" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="DeclineRequest" />
+		<property name="validationGroups">
+  			<list>
+  					<value>com.thirdpillar.codify.loanpath.ValidationGroup$CreateRequest</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSales</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingSubmittedToCredit</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</value>
+	  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$Declined</value>
+  			</list>
+  		</property>
+	</bean>
+	
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.DeclineRequestInit" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="DeclineRequestInit" />
+	</bean>
+	
+		<!--FacilityBE For Submitting and Saving the assignment-Submit button. -->
+	 <bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.submitFacAllocation" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+		<property name="processId" value="FacAllocatorSubProcessFlow" />
+		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityPortionSumbit</value>
+  			</list>
+  		</property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.acceptFacAllocation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="acceptFacAllocation" />
+		<property name="validationGroups">
+  			<list>
+  				<value>com.thirdpillar.codify.loanpath.ValidationGroup$FacilityAcceptPortionSumbit</value>
+  			</list>
+  		</property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.fundedFacAllocation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="fundedFacAllocation"></property>
+		<property name="validationGroups">
+			<list>
+				<value>com.thirdpillar.codify.loanpath.ValidationGroup$AssignNewCapitalProviderValidationGroup</value>
+			</list>
+		</property>
+	</bean> 
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.rejectFacAllocation" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="rejectFacAllocation" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacilityBE.processInterimBalSettlement" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+		<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.facilityBE.FacilityBEAccountingBizOp" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.processFacAllocatorSettlement" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+		<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.facilityBE.FacilityBEAccountingBizOp" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacilityBE.interimBalSettlement" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="interimBalSettlement"></property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.cpSettlement" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="cpSettlement"></property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Deal.DrawRequest" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="DrawRequest"></property> 
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacilityBE.cpCommitted" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="cpCommitted"></property> 
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacilityPayment.settlePaymentPlacement" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="settlePaymentPlacement"></property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.updateFacilityTotalCPBal" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+		<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.facilityBE.FacilityBEAccountingBizOp" />
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocatorTxn.submitCPTransaction" class="com.thirdpillar.foundation.service.WorkflowBizOp">
+		<property name="processId" value="FacAllocatorTxn" />
+		<property name="validationGroups">
+				<list>
+					<value>com.thirdpillar.codify.loanpath.ValidationGroup$CPPaidInterestSubmit</value>
+				</list>
+			</property>
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocatorTxn.doCPTxn" class="com.thirdpillar.foundation.service.JavaMethodBizOp">
+			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.facAllocatorTxn.FacAllocatorTransactionBizOp" />
+	</bean>
+	
+	<!-- Jobs for capital provider interest calculations -->
+	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.DailyIntCalcBusinessOperation" class="com.thirdpillar.codify.loanpath.service.CalculateDailyInterestBizOp"/>
+
+	<bean name="interestCalcJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="businessOperationName"
+					value="com.thirdpillar.codify.loanpath.model.FacAllocator.DailyIntCalcBusinessOperation" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	
+	<bean id="interestCalcTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="interestCalcJob" />
+		<property name="cronExpression" value="${cpInterest.trigger.scheduler.expression}" />
+	</bean>
+       <!-- Jobs for capital provider interest calculations -->
+
+	<!-- Job for facility renewal start -->
+	<bean name="com.thirdpillar.codify.loanpath.model.Facility.FacilityRenewalBusinessOperation" class="com.thirdpillar.codify.loanpath.service.FacilityRenewalUpdatorBizOp"/>
+	
+	<bean name="facilityRenewalUpdatorJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="businessOperationName"
+					value="com.thirdpillar.codify.loanpath.model.Facility.FacilityRenewalBusinessOperation" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	<bean id="facilityRenewalUpdatorTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="facilityRenewalUpdatorJob" />
+		<property name="cronExpression" value="${facilityRenewal.trigger.scheduler.expression}" />
+	</bean>
+	<!-- Job for facility renewal end -->
+	
+	<!-- Job for updating application fees start -->
+	<bean name="com.thirdpillar.codify.loanpath.model.Fee.FeeUpdator" class="com.thirdpillar.codify.loanpath.service.FeeUpdatorJob"/>
+
+	<bean name="feeUpdatorJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="businessOperationName"
+					value="com.thirdpillar.codify.loanpath.model.Fee.FeeUpdator" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	
+	<bean id="feeUpdatorTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="feeUpdatorJob" />
+		<property name="cronExpression" value="${feeUpdator.trigger.scheduler.expression}" />
+	</bean>
+	
+	<!-- Job for updating application fees end -->
+</beans>

@@ -1,0 +1,16 @@
+
+Dear<br><br>
+
+Funding Placement Details:<br><br>
+
+ Funding Provider    : @{validateEntity.capitalProvider}.<br><br>
+ % Allocated	     : @{validateEntity.fundPer}.<br><br>
+ Amount Funded 		 : @{validateEntity.fundAmt}.<br><br>
+ Funding Status		 : @{validateEntity.wfStatus}.<br><br>
+ Temp?				 : @{validateEntity.temp}.<br><br>
+ Draw Requested Date : @{validateEntity.drawRequestedDate}.<br><br>
+ Last Update		 : @{validateEntity.lastUpdate}.<br><br>
+
+Sincerely,<br><br>
+
+Lender Name<br>

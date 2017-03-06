@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+
+    <tns:component id="facilityPayment">                      
+            <tns:read>true</tns:read>
+    </tns:component>
+	<tns:canvas id="facilityPayment_list">
+		<!-- <tns:component id="facilityPayment_add">
+			<tns:default>false</tns:default>
+		</tns:component> -->
+		<tns:component id="facilityPayment_copy">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>
+    <tns:canvas id="facilityPayment_crud">
+        <tns:component id="facilityPayment_selectedFacilityPayment_actionsCol">
+            <tns:default>false</tns:default>
+        </tns:component>
+        <tns:component id="facilityPayment_facilityPaymentPlacements_add">
+            <tns:default>false</tns:default>
+        </tns:component>
+        <tns:component id="facilityPayment_facilityPaymentPlacements_delete">
+            <tns:default>false</tns:default>
+        </tns:component>
+        <tns:component id="settlePaymentPlacement">
+            <tns:default>if(root != null &amp;&amp; root.wfStatus != null &amp;&amp; root.id != null &amp;&amp; root.wfStatus.statusKey != 'FACILITY_PAYMENT_STATUS_ALLOCATED'){ return true; } return false;</tns:default>
+        </tns:component>
+        
+        <tns:component id="quick_settlePaymentPlacement">
+            <tns:default>if(root_facilityPaymentPlacements != null &amp;&amp; root_facilityPaymentPlacements.getWfStatus().getStatusKey().equals("FACILITY_PAYMENT_PLACEMENT_STATUS_UNDISBURSED")){
+            	return true;	
+            }
+            return false;
+            </tns:default>
+        </tns:component>
+        <tns:component id="facilityPayment_facilityPaymentPlacements_EditCanvas.settlePaymentPlacement">
+            <tns:default>if(root_facilityPaymentPlacements != null &amp;&amp; root_facilityPaymentPlacements.getWfStatus().getStatusKey().equals("FACILITY_PAYMENT_PLACEMENT_STATUS_UNDISBURSED")){
+            	return true;	
+            }
+            return false;</tns:default>
+        </tns:component>
+    </tns:canvas>
+</tns:ui-permissions>

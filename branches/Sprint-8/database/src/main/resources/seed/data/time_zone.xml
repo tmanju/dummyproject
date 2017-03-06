@@ -1,0 +1,18 @@
+<list>
+  <timeZone>
+		<name>Eastern Time</name>
+    <isoCode>America/New_York</isoCode>
+  </timeZone>
+  <timeZone>
+    <name>Central Time</name>
+    <isoCode>America/Chicago</isoCode>
+  </timeZone>
+  <timeZone>
+    <name>Mountain Time</name>
+    <isoCode>America/Denver</isoCode>
+  </timeZone>
+  <timeZone>
+    <name>Pacific Time</name>
+    <isoCode>America/Los_Angeles</isoCode>
+  </timeZone>
+</list>

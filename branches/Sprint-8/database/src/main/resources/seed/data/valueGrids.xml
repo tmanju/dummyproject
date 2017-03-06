@@ -1,0 +1,206 @@
+<list>
+	<valueGrid>
+		<name>IndexException</name>
+		<grid><![CDATA[{
+		"DataType" : "BOOLEAN",
+        "Dimensions" : [
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Index",
+                "VariableName" : "Index",
+                "Values" : [["PRICING_INDICES_CITIBANK","Citibank"],
+                				["PRICING_INDICES_LIBOR_ONE_MONTH","Libor - One Month"],
+                				["PRICING_INDICES_LIBOR_THREE_MONTHS","Libor - Three Months"],
+                				["PRICING_INDICES_WSJ_PRIME_EAST","WSJ Prime East"],
+                				["PRICING_INDICES_WSJ_PRIME_WEST","WSJ Prime West"],
+                				["PRICING_INDICES_HIGHER_OF_CITI_PRIME","Higher of Citi Prime/1-Month Libor + 2"],
+                				["PRICING_INDICES_PRICING_INDICES_HIGHER_OF_WSJE_PRIME","Higher of WSJE Prime/1-Month Libor + 2"],
+                				["PRICING_INDICES_PRICING_INDICES_HIGHER_OF_WSJW_PRIME","Higher of WSJW Prime/1-Month Libor + 2"]
+                			]
+            }            
+        ],
+        "Values" : [false,false,false,false,false,false,false,false]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>IndexMatrix</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Index",
+                "VariableName" : "Index",
+                "Values" : [["PRICING_INDICES_ONE_YEAR_LIBOR","1 Year Libor"],
+                			["PRICING_INDICES_NONE","None"],
+                			["PRICING_INDICES_WS_PRIME","WS Prime"]
+                ]
+            }            
+        ],
+        "Values" : [0.85, 0.00, 3.25]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>IndexSpreadFloor</name>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "TEXT",
+                "Name" : "Basis",
+                "VariableName" : "Basis",
+                "Values" : [["FACILITY_TYPE_BASIS_NYEDC","NYEDC"],["FACILITY_TYPE_BASIS_7_11","7-11"],["FACILITY_TYPE_BASIS_NONE","None"]]
+            },
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Index",
+                "VariableName" : "Index",
+                "Values" : [["PRICING_INDICES_CITIBANK","Citibank"],
+                				["PRICING_INDICES_LIBOR_ONE_MONTH","Libor - One Month"],
+                				["PRICING_INDICES_LIBOR_THREE_MONTHS","Libor - Three Months"],
+                				["PRICING_INDICES_WSJ_PRIME_EAST","WSJ Prime East"],
+                				["PRICING_INDICES_WSJ_PRIME_WEST","WSJ Prime West"],
+                				["PRICING_INDICES_HIGHER_OF_CITI_PRIME","Higher of Citi Prime/1-Month Libor + 2"],
+                				["PRICING_INDICES_PRICING_INDICES_HIGHER_OF_WSJE_PRIME","Higher of WSJE Prime/1-Month Libor + 2"],
+                				["PRICING_INDICES_PRICING_INDICES_HIGHER_OF_WSJW_PRIME","Higher of WSJW Prime/1-Month Libor + 2"]
+                			]
+            }            
+        ],
+        "Values" : [5, null, null,5,5,5,5,5,4,null,null,4,4,4,4,4,null,null,null,null,null,null,null,null]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>IndexSpreadCap</name>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "TEXT",
+                "Name" : "Basis",
+                "VariableName" : "Basis",
+                "Values" : [["FACILITY_TYPE_BASIS_NYEDC","NYEDC"],["FACILITY_TYPE_BASIS_7_11","7-11"],["FACILITY_TYPE_BASIS_NONE","None"]]
+            },
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Index",
+                "VariableName" : "Index",
+                "Values" : [["PRICING_INDICES_CITIBANK","Citibank"],
+                				["PRICING_INDICES_LIBOR_ONE_MONTH","Libor - One Month"],
+                				["PRICING_INDICES_LIBOR_THREE_MONTHS","Libor - Three Months"],
+                				["PRICING_INDICES_WSJ_PRIME_EAST","WSJ Prime East"],
+                				["PRICING_INDICES_WSJ_PRIME_WEST","WSJ Prime West"],
+                				["PRICING_INDICES_HIGHER_OF_CITI_PRIME","Higher of Citi Prime/1-Month Libor + 2"],
+                				["PRICING_INDICES_PRICING_INDICES_HIGHER_OF_WSJE_PRIME","Higher of WSJE Prime/1-Month Libor + 2"],
+                				["PRICING_INDICES_PRICING_INDICES_HIGHER_OF_WSJW_PRIME","Higher of WSJW Prime/1-Month Libor + 2"]
+                			]
+            }            
+        ],
+        "Values" : [8, null, null,8,8,8,8,8,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>FixedSpreadCap</name>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "TEXT",
+                "Name" : "Basis",
+                "VariableName" : "Basis",
+                "Values" : [["FACILITY_TYPE_BASIS_NYEDC","NYEDC"],["FACILITY_TYPE_BASIS_7_11","7-11"],["FACILITY_TYPE_BASIS_NONE","None"]]
+            }
+        ],
+        "Values" : [6, null, null]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>FixedSpreadFloor</name>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+            {
+            	"DataType" : "TEXT",
+                "Name" : "Basis",
+                "VariableName" : "Basis",
+                "Values" : [["FACILITY_TYPE_BASIS_NYEDC","NYEDC"],["FACILITY_TYPE_BASIS_7_11","7-11"],["FACILITY_TYPE_BASIS_NONE","None"]]
+            }
+        ],
+        "Values" : [5, 4, null]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>RateTable</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "AMOUNT",
+                "Name" : "Total Requested Amount",
+                "VariableName" : "TotalRequestedAmount",
+                "Values" : [[0,500000],
+							[500001,1000000],
+							[1000001,5000000],
+							[5000001,null]]
+            },
+			{
+            	"DataType" : "INT",
+                "Name" : "Term",
+                "VariableName" : "Term",
+                "Values" : [[36,48],[48,60],[60,72],[72,84],[84,null]]
+            }
+        ],
+        "Values" : [5.50,5.50,5.75,6.00,6.00,
+					5.00,5.00,5.50,5.75,6.00,
+					2.75,2.75,3.00,3.25,3.25,
+					3.00,3.00,3.25,3.50,3.50]         
+    	}]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>RateCap</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Product Subtype",
+                "VariableName" : "ProductSubtype",
+                "Values" : [["CRE_FACILITY_SUB_TYPE_CRE_LOAN","CRE loan"],
+							["CRE_FACILITY_SUB_TYPE_CONSTRUCTION_LOAN","Construction loan"],
+							["CRE_FACILITY_SUB_TYPE_LAND_LOAN","Land Loan"],
+							["CRE_FACILITY_SUB_TYPE_LINE_OF_CREDIT","Line of Credit"],
+							["CRE_FACILITY_SUB_TYPE_REAL_ESTATE_OWNED_LOAN","Real Estate Owned Loan"]
+                ]
+            }            
+        ],
+        "Values" : [5.75,5.00,4.75,5.25,5.75]         
+    }]]></grid>
+	</valueGrid>
+	<valueGrid>
+		<name>RateFloor</name>
+		<effectiveFromDate>2011-05-01</effectiveFromDate>
+		<effectiveToDate>2025-12-31</effectiveToDate>
+		<grid><![CDATA[{
+		"DataType" : "PERCENT",
+        "Dimensions" : [
+			{
+            	"DataType" : "TEXT",
+                "Name" : "Product Subtype",
+                "VariableName" : "ProductSubtype",
+                "Values" : [["CRE_FACILITY_SUB_TYPE_CRE_LOAN","CRE loan"],
+							["CRE_FACILITY_SUB_TYPE_CONSTRUCTION_LOAN","Construction loan"],
+							["CRE_FACILITY_SUB_TYPE_LAND_LOAN","Land Loan"],
+							["CRE_FACILITY_SUB_TYPE_LINE_OF_CREDIT","Line of Credit"],
+							["CRE_FACILITY_SUB_TYPE_REAL_ESTATE_OWNED_LOAN","Real Estate Owned Loan"]
+                ]
+            }            
+        ],
+        "Values" : [3.00,2.75,2.00,2.25,2.50]         
+    }]]></grid>
+	</valueGrid>
+</list>

@@ -1,0 +1,33 @@
+<map:constraint-mappings xsi:schemaLocation="http://jboss.org/xml/ns/javax/validation/mapping http://www.jboss.org/xml/ns/javax/validation/mapping/validation-mapping-1.0.xsd" xmlns:map="http://jboss.org/xml/ns/javax/validation/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <map:default-package>com.thirdpillar.codify.loanpath.model</map:default-package>
+    <map:bean class="Comment" ignore-annotations="false">
+    	<map:class>
+    	
+    	    <map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{comment.commentType.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.commentType != null]]></map:element>
+			</map:constraint>
+			
+			<map:constraint
+				annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{comment.commentText.required}</map:message>
+				<map:element name="matchedExpr"><![CDATA[o.commentText != null]]></map:element>
+			</map:constraint>
+			
+		  
+        </map:class>
+       	<!-- <map:getter name="commentType">
+			<map:constraint annotation="javax.validation.constraints.NotNull">
+				<map:message>{comment.commentType.required}</map:message>
+			</map:constraint>
+		</map:getter>
+		
+		<map:getter name="commentText">
+			<map:constraint annotation="javax.validation.constraints.NotNull">
+				<map:message>{comment.commentText.required}</map:message>
+			</map:constraint>
+		</map:getter> -->
+    </map:bean>
+</map:constraint-mappings>
+ 

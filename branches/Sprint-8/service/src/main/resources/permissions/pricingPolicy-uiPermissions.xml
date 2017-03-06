@@ -1,0 +1,66 @@
+<tns:ui-permissions xmlns:tns="http://www.thirdpillar.com/codify/ui-permissions"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-permissions ui-permissions.xsd">
+	<tns:component id="pricingPolicy">
+		<tns:read>true</tns:read>
+	</tns:component>
+	<tns:canvas id="pricingPolicy_crud">
+
+		<tns:component id="tab_exception_tab">
+			<tns:default>
+				<![CDATA[
+					boolean isVisible=false;
+					if (root.id!=null && root.name!=null) {
+						isVisible=true;	
+					}
+					return isVisible;
+				]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="tab_calculations_tab">
+			<tns:default>
+				<![CDATA[
+					boolean isVisible=false;
+					if (root.id!=null && root.name!=null) {
+						isVisible=true;	
+					}
+					return isVisible;
+				]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="tab_promotions_tab">
+			<tns:default>
+				<![CDATA[
+					boolean isVisible=false;
+					if (root.id!=null && root.name!=null) {
+						isVisible=true;	
+					}
+					return isVisible;
+				]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="tab_verification_tab">
+			<tns:default>
+				<![CDATA[
+					boolean isVisible=false;
+					if (root.id!=null && root.name!=null) {
+						isVisible=true;	
+					}
+					return isVisible;
+				]]>
+			</tns:default>
+		</tns:component>
+		<tns:component id="exportEntityBtn">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="pricingPolicy_associatedPrograms_edit">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="pricingPolicy_associatedPrograms_actionsCol">
+			<tns:default>false</tns:default>
+		</tns:component>
+		<tns:component id="pricingPolicy_associatedPrograms_autosuggest">
+			<tns:default>false</tns:default>
+		</tns:component>
+	</tns:canvas>
+</tns:ui-permissions>

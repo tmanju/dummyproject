@@ -1,0 +1,123 @@
+<canvas id="relationship" type="crud"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.thirdpillar.com/codify/ui-metamodel ui-metamodel.xsd"
+		xmlns="http://www.thirdpillar.com/codify/ui-metamodel">	
+	
+	<tabs>
+		<tab id="tab.relationshipInfo" label="Relationship Details">	
+			<panel id="relationship.relationshipInformation">					
+				<field name="relationship.name"/> 
+				<field name="relationship.relationshipDetails"/>
+				<field name="relationship.relationshipManager"/>
+				<field name="relationship.creditManager"/>
+				<field name="relationship.metaInfo.createdAt" label="Created Date"/>
+				<field name="relationship.metaInfo.createdByUser" label="Created By"/>
+				<field name="relationship.metaInfo.lastModifiedAt" label="Last Updated Date"/>
+				<field name="relationship.metaInfo.lastModifiedByUser" label="Last Updated By"/>
+			</panel>
+			<data-table name="relationship.allRelationshipParties" row="relParty" label="Roles">
+				<columns>
+					<column name="relParty.partyRole" label="Role"/>
+					<column name="relParty.customer" label="Name"/>
+					<column name="relParty.parentRelationshipParty" label="Related To" />
+					<column name="relParty.customer.formattedTaxIDNum" label="Taxpayer ID Number"/>	
+					<column name="relParty.customer.provisioned"/>		
+				</columns>
+			</data-table>
+			<panel id="relationship.WatchList" label="Watch List"> 
+				<field name="relationship.watchList"/>
+				<field name="relationship.watchListDate"/>
+				<field name="relationship.watchListRootCause"/>
+				<field name="relationship.watchListRootAnalysis" label="Root Cause Analysis"/>
+				<field name="relationship.watchlistStrategy"/>
+				<field name="relationship.watchlistNotes"/>
+			</panel>
+			<panel id="relationship.creditProfileInfo" label="Credit Profile Information"> 
+				<field name="relationship.creditProfileInfo.profileDate"/>
+				<field name="relationship.creditProfileInfo.lastCreditVisit" label="Last Credit Visit Completed"/>
+				<field name="relationship.creditProfileInfo.lastCreditVisitBy" label="Last Credit Visit Completed By"/>
+				<field name="relationship.creditProfileInfo.nextCreditVisitDue" label="Next Credit Visit Due"/>
+				<field name="relationship.creditProfileInfo.yearOfTaxReturnUsed" label="Year of Tax Return Utilized"/>
+				<field name="relationship.creditProfileInfo.mostRecentFYEType" label="Most Recent FYE Type"/>
+				<field name="relationship.creditProfileInfo.interimPLType" label="Interim P and L Type"/>
+				<field name="relationship.creditProfileInfo.interimPLThrough" label="Interim P and L Through"/>
+				<field name="relationship.creditProfileInfo.consolidtdOrConsolidtng" label="Consolidated or Consolidating"/>
+				<field name="relationship.creditProfileInfo.numberOfLocations" />
+				<field name="relationship.creditProfileInfo.intendsToExpand" />
+				<field name="relationship.creditProfileInfo.crossDefltdGuaranteed" label="Cross-Defaulted/Cross-Guaranteed?"/>
+				<field name="relationship.creditProfileInfo.mostRecentFYEFixedChrg" label="Most Recent FYE Fixed Charge Coverage"/>
+				<field name="relationship.creditProfileInfo.currentYrInterimFixedChrg" label="Current Year Interim Fixed Charge Coverage"/>
+				<field name="relationship.creditProfileInfo.loanToGross" label="Loan To Gross"/>
+				<field name="relationship.creditProfileInfo.lowestFYEPersonalDSC" label="Lowest FYE Personal DSC"/>
+				<field name="relationship.creditProfileInfo.combinedPersonalLiquidity" label="Combined Personal Liquidity (All Owners)"/>
+				<field name="relationship.creditProfileInfo.monthlyBusinessDebtSrvc" label="Monthly Business Debt Service"/>
+				<field name="relationship.creditProfileInfo.numberOfMonthsLiquidity" label="Number of Months Liquidity Coverage"/>
+				<field name="relationship.creditProfileInfo.totalBusinessIndebted" label="Total Business Indebtedness"/>
+			</panel>
+			<panel id="relationship.annualReviewInfo" label="Annual Review Information"> 
+				<field name="relationship.annualReviewInfo.dueDate"/>
+				<field name="relationship.annualReviewInfo.last1040Date" label="Last 1040 Date"/>
+				<field name="relationship.annualReviewInfo.currentReviewStatus"/>
+				<field name="relationship.annualReviewInfo.waiverReason"/>
+				<field name="relationship.annualReviewInfo.completionDate"/>
+				<field name="relationship.annualReviewInfo.nextDueDate"/>
+				<field name="relationship.annualReviewInfo.annualReviewDttm" label="Annual Review Date"/>
+			</panel>	
+		</tab>
+		<tab id="tab.relationshipExposure" label="Exposure">
+			<panel id="panel.relationship.exposureSummary" label="Exposure Summary">
+				<field name="relationship.exposure.asOfDate" label="Exposure Values As Of Date"/>
+				<section id="panel.relationship.creditDecision.exposure" cols="3">
+					<!-- col 1  -->
+					<field name="relationship.exposure.totalBorrowerRequestedExposure" label="Approved - Borrower Exposure (A)"/>
+					<field name="relationship.exposure.totalContingentRequestedExposure" label="Approved - Additional Related Exposure (B)"/>
+					<field name="relationship.exposure.totalCalculatedRequestedExposure" label="Approved - Subtotal (A+B)"/>
+					<field name="relationship.exposure.totalOtherRequestedExposure" label="Approved - Additional Corp (non-BU) Exposure (C)" 
+																	targetFields="relationship.exposure.totalRelationshipRequestedExposure,
+																					relationship.exposure.totalOtherExposure,
+																					relationship.exposure.totalRelationshipExposure"/>
+					<field name="relationship.exposure.totalRelationshipRequestedExposure" label="Approved - Total BU + Total Non-Bu (A+B+C)"/>
+
+					<!-- col 2  -->
+					<field name="relationship.exposure.totalBorrowerOutstandingExposure" label="Outstanding - Borrower Exposure (D)"/>
+					<field name="relationship.exposure.totalContingentOutstandingExposure" label="Outstanding - Additional  Related Exposure (E)"/>
+					<field name="relationship.exposure.totalCalculatedOutstandingExposure" label="Outstanding - Subtotal (D+E)" />
+					<field name="relationship.exposure.totalOtherOutstandingExposure" label="Outstanding - Additional Corp (non-BU) Exposure (F)" 
+																	targetFields="relationship.exposure.totalRelationshipOutstandingExposure,
+																					relationship.exposure.totalOtherExposure,
+																					relationship.exposure.totalRelationshipExposure"/>
+					<field name="relationship.exposure.totalRelationshipOutstandingExposure" label="Outstanding - Total BU + Total Non-BU (D+E+F)"/>
+
+					<!-- col 3  -->
+					<field name="relationship.exposure.totalBorrowerExposure" label="Total Borrower Exposure(A+D)"/>
+					<field name="relationship.exposure.totalContingentExposure" label="Total Additional Related Exposure(B+E)"/>
+					<field name="relationship.exposure.totalCalculatedExposure" label="Total - Subtotal (A+B+D+E)"/>
+					<field name="relationship.exposure.totalOtherExposure" label="Total - Additional Corp (non-BU) Exposure (C+F)" />
+					<field name="relationship.exposure.totalRelationshipExposure" label="Total - Total BU + Total Non-Bu (A+B+C+D+E+F)"/>
+
+				</section>	
+			</panel>	
+			<data-table name="relationship.exposure.facilityExposures" row="facilityExposure" label="Product Exposure">
+				<columns>
+					<column name="facilityExposure.facilityType" label="Product Type"/>
+					<column name="facilityExposure.counterParty" label="Counter Party"/>
+					<column name="facilityExposure.requestedExposure" label="Approved"/>
+					<column name="facilityExposure.outstandingExposure" label="Outstanding"  />
+					<column name="facilityExposure.thirtyDayArrears" label="Times Ninety"/>
+					<column name="facilityExposure.sixtyDayArrears" label="Times Sixty"/>
+					<column name="facilityExposure.ninetyDayArrears" label="Times Thirty"/>
+				</columns>
+			</data-table>
+			<commands>
+				<command name="Update Exposure" action="UpdateExposure" type="businessOp"/>
+			</commands>
+				
+		</tab>
+	</tabs>
+
+	<commands>
+	</commands>
+	<beans>
+		<bean name="relationship" type="com.thirdpillar.codify.loanpath.model.Relationship" />
+	</beans>	
+</canvas>
