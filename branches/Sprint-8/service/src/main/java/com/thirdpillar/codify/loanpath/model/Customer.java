@@ -44,11 +44,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 	        @XStreamLookupCollectionByOGNL(
 	            name = "byExternalIdentifier",
 	            keys = { "externalIdentifier" }
-	        ),
+	        )/*,
 	    	@XStreamLookupCollectionByOGNL(
 	           name = "byServicingIdentifier",
 	           keys = { "servicingIdentifier" }
-	        ),
+	        )*/,
 	        @XStreamLookupCollectionByOGNL(
 	           name = "byFein",
 	           keys = { "customerFEIN" }
@@ -56,7 +56,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 	        @XStreamLookupCollectionByOGNL(
 	 	           name = "bySsn",
 	 	           keys = { "customerSSN" }
-	 	        )
+	 	        ),
+		        @XStreamLookupCollectionByOGNL(
+			 	           name = "byRefNumber",
+			 	           keys = { "refNumber" }
+			 	        )
 	    }
 	)
 public class Customer {

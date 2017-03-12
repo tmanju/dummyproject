@@ -17,7 +17,7 @@
 				<parameter localName="data" paramValue="ENTITY" paramType="Element"/>
 			</parameters>
 		</soaptransport>
-		<unmarshaler style="XSTREAM" resource="sforce-Full" />
+		<unmarshaler style="XSTREAM" resource="sforce-Full" contextLookupKey="entityIn"/>
 	</service>
 	
 	<service name="akritivService" enabled="true">

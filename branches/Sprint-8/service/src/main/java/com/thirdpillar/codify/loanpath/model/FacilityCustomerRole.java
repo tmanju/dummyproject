@@ -67,7 +67,11 @@ import javax.persistence.Entity;
 	    { @XStreamLookupCollectionByOGNL(
 	            name = "byExternalIdentifier",
 	            keys = { "externalIdentifier" }
-	        ) }
+	        ),
+	        @XStreamLookupCollectionByOGNL(
+		            name = "byServicingIdentifier",
+		            keys = { "servicingIdentifier" }
+		        )}
 	)
 public  class FacilityCustomerRole {
 	

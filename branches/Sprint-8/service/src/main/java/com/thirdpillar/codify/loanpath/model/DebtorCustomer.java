@@ -10,7 +10,16 @@ import com.thirdpillar.foundation.model.WorkflowAware;
 import com.thirdpillar.foundation.service.ContextHolder;
 import com.thirdpillar.foundation.service.EntityService;
 import com.thirdpillar.foundation.service.LookupService;
+import com.thirdpillar.xstream.ext.lookup.XStreamLookupCollectionByOGNL;
 
+@XStreamLookupCollectionByOGNL.List(
+	    {
+	    	@XStreamLookupCollectionByOGNL(
+	           name = "byRefNumber",
+	           keys = { "refNumber" }
+	        )
+	    }
+	)
 public class DebtorCustomer extends BaseDataObject{
 	
 	@Transient
@@ -44,7 +53,7 @@ public class DebtorCustomer extends BaseDataObject{
 		if(this.getFacilityCustomerRole() != null && this.getFacilityCustomerRole().getCustomer() != null && this.getFacilityCustomerRole().getCustomer().getDuns() != null && this.getFacility() != null){
 			EntityService es = new EntityService();
 			for(DebtorCustomer dc : this.getFacility().getDebtors()){
-				if(this.getRefNumber() == dc.getRefNumber()){
+				if(this.getRefNumber().equals(dc.getRefNumber())){
 					continue;
 				}
 				if(this.getId() == null && dc.getFacilityCustomerRole().getCustomer().getDuns().equals(this.getFacilityCustomerRole().getCustomer().getDuns())){

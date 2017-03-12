@@ -239,7 +239,7 @@ public class RequestExposure {
 			
 			for (FacilityExposure facilityExposure : facilityExposures) {
 				FacilityCustomerRole fcr = (FacilityCustomerRole) LookupService.getResult("FacilityCustomerRole.byCustomerId", "customerId", customer.getId());
-				if ( !containsFacility(facilitiesIncludedInSummary,facilityExposure.getFacility()) && (fcr != null && fcr.getPartyRole().getKey().equals(Constants.PARTY_ROLE_TYPE_GUARANTOR_KEY))) {
+ 				if ( !containsFacility(facilitiesIncludedInSummary,facilityExposure.getFacility()) && (fcr != null && fcr.getPartyRole().getKey().equals(Constants.PARTY_ROLE_TYPE_GUARANTOR_KEY))) {
 					if (LOG.isDebugEnabled()) {
 						LOG.debug("Including facilityExposure for summary - " + facilityExposure);
 					}

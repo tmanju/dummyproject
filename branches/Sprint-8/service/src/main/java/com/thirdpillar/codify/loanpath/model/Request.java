@@ -36,6 +36,7 @@ import com.thirdpillar.foundation.integration.IntegrationResult;
 import com.thirdpillar.foundation.model.*;
 import com.thirdpillar.foundation.service.ContextHolder;
 import com.thirdpillar.foundation.service.EntityService;
+import com.thirdpillar.xstream.ext.lookup.XStreamLookupCollectionByOGNL;
 
 /**
  * Model Class for Request
@@ -44,6 +45,18 @@ import com.thirdpillar.foundation.service.EntityService;
  * @version 1.0
  * @since 1.0
  */
+@XStreamLookupCollectionByOGNL.List(
+	    {
+	        @XStreamLookupCollectionByOGNL(
+	            name = "byExternalIdentifier",
+	            keys = { "externalIdentifier" }
+	        ),
+	    	@XStreamLookupCollectionByOGNL(
+	           name = "byRefNumber",
+	           keys = { "refNumber" }
+	        )
+	    }
+	)
 public class Request extends BaseDataObject {
 
 	// ~ Static fields/initializers
@@ -918,117 +931,33 @@ public class Request extends BaseDataObject {
 			 CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",serviceMessage.getMessage()});
 		 }else{
 			 Object object = integrationExchangeObj.getTaskOutput();
-		List<Customer> customers = new ArrayList<Customer>();
+		//List<Customer> customers = new ArrayList<Customer>();
 		if(object instanceof Request){
 			LOGGER.info("**************Accept Akritiv response************************");
-			Request responseObj = (Request)object;
+			//Request responseObj = (Request)object;
 			/**
 			 * Saving servicing identifier for account
 			 */
-			if(responseObj.getAccount() != null){
-				request.getAccount().setServicingIdentifier(responseObj.getAccount().getServicingIdentifier());
-			}
-				for(Facility facility : responseObj.getAllFacilities()){
-					for(Facility f : request.getAllFacilities()){
-						
-						if(f.getRefNumber().equals(facility.getRefNumber())){
-							/**
-							 * Saving servicing identifier for facility
-							 */
-							f.setServicingIdentifier(facility.getServicingIdentifier());
-							
-							/**
-							 * Saving servicing identifier for facility customer roles
-							 */
-							for(FacilityCustomerRole facilitycustomerRole : facility.getFacilityCustomerRoles()){
-								for(FacilityCustomerRole fcr : f.getFacilityCustomerRoles()){
-									if(facilitycustomerRole.getCustomer() != null && facilitycustomerRole.getCustomer().getRefNumber() != null && facilitycustomerRole.getCustomer().getRefNumber().equals(fcr.getCustomer().getRefNumber())){
-										fcr.getCustomer().setServicingIdentifier(facilitycustomerRole.getCustomer().getServicingIdentifier());
-										if(fcr.getCustomer().getPrimarySite() != null && fcr.getCustomer().getPrimarySite().getSiteDetails() != null && facilitycustomerRole.getCustomer().getPrimarySite() != null && facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails() != null 
-												&& fcr.getCustomer().getPrimarySite().getSiteDetails().getRefNumber().equals(facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails().getRefNumber())){
-											fcr.getCustomer().getPrimarySite().getSiteDetails().setServicingIdentifier(facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails().getServicingIdentifier());
-										}
-										if(facilitycustomerRole.getCustomer().getBankTrades() != null && fcr.getCustomer().getBankTrades() != null){
-											
-											for(BankAndTrade bankAndTrade : facilitycustomerRole.getCustomer().getBankTrades()){
-												
-												for(BankAndTrade b : fcr.getCustomer().getBankTrades()){
-													if(b.getRefNumber().equals(bankAndTrade.getRefNumber())){
-														b.setServicingIdentifier(bankAndTrade.getServicingIdentifier());
-													}
-												}
-											}
-										}
-										customers.add(fcr.getCustomer());
-									}
-									
-									/**
-									 * Saving for primary contact
-									 */
-									if(facilitycustomerRole.getPrimaryContact() && facilitycustomerRole.getCustomer() != null && fcr.getPrimaryContact()){
-										if(facilitycustomerRole.getCustomer().getPrimarySite() != null && facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails() != null
-											&& 	facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails().getRefNumber().equals(fcr.getCustomer().getPrimarySite().getSiteDetails().getRefNumber())){
-											fcr.getCustomer().getPrimarySite().getSiteDetails().setServicingIdentifier(facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails().getServicingIdentifier());
-										}										
-									}
-								}
-								LOGGER.info(">>>>>>>>>Debtors size>>>>>>>>>>>>"+f.getDebtors());
-								for(DebtorCustomer dc : f.getDebtors()){
-									if(facilitycustomerRole != null){
-										LOGGER.info(">>>>>>>>>facilitycustomerRole>>>>>>>>>>>>"+facilitycustomerRole);
-									}
-									if(facilitycustomerRole.getCustomer() != null){
-										LOGGER.info(">>>>>>>>>facilitycustomerRole.getCustomer()>>>>>>>>>>>>"+facilitycustomerRole.getCustomer());
-									}
-									if(dc != null && dc.getFacilityCustomerRole() != null && facilitycustomerRole != null && facilitycustomerRole.getCustomer() != null && facilitycustomerRole.getCustomer().getRefNumber() != null && dc.getFacilityCustomerRole().getCustomer().getRefNumber().equals(facilitycustomerRole.getCustomer().getRefNumber())){
-										dc.getFacilityCustomerRole().getCustomer().setServicingIdentifier(facilitycustomerRole.getCustomer().getServicingIdentifier());
-										if(facilitycustomerRole.getCustomer().getPrimarySite() != null && facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails() != null){
-											dc.getFacilityCustomerRole().getCustomer().getPrimarySite().getSiteDetails().setServicingIdentifier(facilitycustomerRole.getCustomer().getPrimarySite().getSiteDetails().getServicingIdentifier());
-										}
-										customers.add(dc.getFacilityCustomerRole().getCustomer());
-									}
-								}
-								
-							}
-							
-							/**
-							 * Saving servicing identifier for DebtorCustomers
-							 */
-							LOGGER.info(">>>>>>>>>Response Debtors size>>>>>>>>>>>>"+facility.getDebtors());
-							for(DebtorCustomer debtors : facility.getDebtors()){
-									for(DebtorCustomer dc : f.getDebtors()){
-										if(dc.getRefNumber().equals(debtors.getRefNumber())){
-											for(PartyDba dba : dc.getDbas()){
-												for(PartyDba partyDba : debtors.getDbas()){
-													if(dba.getRefNumber().equals(partyDba.getRefNumber())){
-														dba.setServicingIdentifier(partyDba.getServicingIdentifier());
-													}
-												}
-											}
-											dc.setServicingIdentifier(debtors.getServicingIdentifier());
-										}
-									}
-								}
-						}
-					}
-					
-				}
 			
 				StringBuffer buffer = new StringBuffer();
+				//if(request.getServiceMessages() != null){
+					//request.getServiceMessages().clear();
+				//}
+				//System.out.println(responseObj);
+				//System.out.println(request.getServiceMessages());
+				//System.out.println(responseObj.getServiceMessages());
 				if(request.getServiceMessages() != null){
-					request.getServiceMessages().clear();
-				}
-				if(responseObj.getServiceMessages() != null){
-					request.getServiceMessages().addAll(responseObj.getServiceMessages());
-					for(ServiceMessage msg : responseObj.getServiceMessages()){
+					//request.getServiceMessages().addAll(responseObj.getServiceMessages());
+					for(ServiceMessage msg : request.getServiceMessages()){
 						buffer.append(msg.getMessage());
 						buffer.append("\n");
 					}
+					request.getServiceMessages().clear();
 				}
 				
-					es.saveOrUpdate(request);
-					es.saveOrUpdateAll(customers);
-					es.flush();
+					//es.saveOrUpdate(request);
+					//es.saveOrUpdateAll(customers);
+					//es.flush();
 				
 				if(buffer.toString().length()>0){
 					buffer = buffer.delete(buffer.length()-1, buffer.length());

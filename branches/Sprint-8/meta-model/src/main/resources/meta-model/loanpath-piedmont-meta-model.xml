@@ -105,7 +105,8 @@
             <field name="externalIdentifier" type="text" length="36" indexed="true" />    
             <display-format>$o.displayName$</display-format>  
             <find-queries>
-            	<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
+            	<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
+            	<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
                 <query name="byExternalIdentifier" select="one">where externalIdentifier = :externalIdentifier</query>
             </find-queries>                  
         </entity>        
@@ -669,7 +670,7 @@
             </feature>
             <display-format>$o.customerName$</display-format>
             <find-queries>
-            	<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
+            	<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
                 <query name="quickSearch" select="many">where firstName like :q or lastName like :q or legalName like :q</query>
                 <query name="byRefNumber" select="one">where refNumber = :refNumber</query>
                 <query name="bySalesForcecomId" select="one">where externalIdentifier = :externalIdentifier</query>
@@ -842,7 +843,7 @@
             <reference name="customer" entity-type="Customer" relation="refers-to"/>
             <reference name="debtorCustomer" entity-type="DebtorCustomer" relation="refers-to"/>
             <find-queries>
-        		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
+        		<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
             </find-queries>
         </entity>        
@@ -2644,7 +2645,8 @@
             <reference name="customer" entity-type="Customer" relation="refers-to"/>
             <display-format>$o.name$</display-format>
             <find-queries>
-            	<query name="byServicingIdentifier" select="many">where servicingIdentifier like :servicingIdentifier</query>
+            	<!-- <query name="byServicingIdentifier" select="many">where servicingIdentifier like :servicingIdentifier</query> -->
+            	<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
                 <query name="quickSearch" select="many">where name like :q</query>
             </find-queries>            
         </entity>
@@ -2864,10 +2866,11 @@
             <display-format>$o.refNumber$</display-format>
             <find-queries>
             	<query name="byWfStatus" select="many"> where wfStatus.statusKey in (:statusKeys)</query>
-            	<!-- <query name="byRefNumber" select="one"> where refNumber = :refNumber</query> -->
+            	<query name="byRefNumber" select="one"> where refNumber = :refNumber</query>
                 <query name="byExternalIdentifier" select="one">where externalIdentifier = :externalIdentifier</query>
                 <query name="byAccount" select="one">where account = :account</query>
                 <query name="forNOIAProcess" select="many">where wfStatus.statusKey in (:noiaStatuses) and regbDttm &lt; :regbDttm </query>
+                <!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier like :servicingIdentifier</query> -->
             </find-queries>
         </entity>		   
         <entity name="NoiaLogs" stereotype="managed" label="NOIA Log">
@@ -3092,8 +3095,9 @@
             </feature>
             <display-format>$o.refNumber$ - $o.facilityType.value$</display-format>
             <find-queries>
-            	<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
+            	<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
             	<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
+            	<!-- <query name="byRefNumberAndServicingIdentifier" select="one">where refNumber = :refNumber and servicingIdentifier = :servicingIdentifier</query> -->
                 <query name="byExternalIdentifier" select="one">where externalIdentifier = :externalIdentifier</query>
                 <query name="byCustomerAndRoleAndNotInStatuses" select="many">where wfStatus.statusKey not in (:notInStatuses) and id in (select fac.id from com.thirdpillar.codify.loanpath.model.Facility as fac join fac.facilityCustomerRoles as facilityCustomerRole where facilityCustomerRole.partyRole.key in (:roles)  and facilityCustomerRole.customer.id in (:customerIds))</query>
                 <query name="byCustomerAndRoleAndInStatuses" select="many">where wfStatus.statusKey in (:inStatuses) and id in (select fac.id from com.thirdpillar.codify.loanpath.model.Facility as fac join fac.facilityCustomerRoles as facilityCustomerRole where facilityCustomerRole.partyRole.key in (:roles)  and facilityCustomerRole.customer.id in (:customerIds))</query>
@@ -3249,8 +3253,9 @@
                 <data>com.thirdpillar.foundation.model.WorkflowAware</data>
             </feature>
         	<find-queries>
+        		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
         		<query name="byAkritivCustomer" select="many"> where akritivCustomer = :akritivCustomer and facility is not null</query>
-        		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
+        		<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
                 <query name="byFacilityCustomerRoleId" select="one">where facilityCustomerRole.id = :facilityCustomerRoleId</query>
                 <query name="byDunsAndFacility" select="many">where facility.refNumber = :facRefNumber and facilityCustomerRole.customer.duns = :duns</query>
             </find-queries>
@@ -3258,6 +3263,7 @@
              
         <entity name="FacilityCustomerRole" stereotype="managed" label="Product Role">
             <field name="externalIdentifier" type="text" length="255" internal="true" indexed="true" />
+            <field name="servicingIdentifier" type="text" length="255" internal="true" indexed="true" />
             <reference name="facility" entity-type="Facility" relation="refers-to"/>
             <reference name="partyRole" entity-type="AttributeChoice" relation="refers-to" label="Role" required="false" ruleTriggerOnEvent="true">
                 <lookup>
@@ -3293,6 +3299,7 @@
             <display-format>$o.customer.customerName$ - ($o.partyRole.value$)</display-format>
             <find-queries>
                 <query name="byExternalIdentifier" select="one">where externalIdentifier = :externalIdentifier</query>
+                <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
                 <query name="byCustomerId" select="one">where customer.id = :customerId</query>
             </find-queries>
         </entity>
