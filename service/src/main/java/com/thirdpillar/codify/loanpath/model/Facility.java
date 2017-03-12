@@ -52,10 +52,10 @@ import org.apache.log4j.Logger;
             name = "byExternalIdentifier",
             keys = { "externalIdentifier" }
         ),
-    	@XStreamLookupCollectionByOGNL(
-                name = "byServicingIdentifier",
-                keys = { "servicingIdentifier" }
-            )
+        	@XStreamLookupCollectionByOGNL(
+                    name = "byRefNumber",
+                    keys = { "refNumber"}
+                )
     }
 )
 public class Facility extends BaseDataObject{

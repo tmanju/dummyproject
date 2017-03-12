@@ -15,7 +15,10 @@ import com.thirdpillar.xstream.ext.lookup.XStreamLookupCollectionByOGNL;
 	        @XStreamLookupCollectionByOGNL(
 	            name = "byExternalIdentifier",
 	            keys = { "externalIdentifier" }
-	        )
+	        ), @XStreamLookupCollectionByOGNL(
+		            name = "byRefNumber",
+		            keys = { "refNumber" }
+		        )
 	    }
 	)
 
