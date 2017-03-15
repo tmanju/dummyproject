@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:codify="http://codify.thirdpillar.com/ui"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+	
+<p:dialog id="importDialog"  position="450,200" height="250" width="400" closable="true" closeOnEscape="true" draggable="true" resizable="true" modal="false"  widgetVar="uploadFileDialog"> 
+<p:ajax event="close" update="@this" listener="#{fileImportBean.cleanup()}" />
+<f:facet name="header">
+    		<h:panelGroup>
+    			<h:outputText value="File Import"></h:outputText>
+    		</h:panelGroup>
+</f:facet>
+		
+<h:form enctype="multipart/form-data">
+<p:messages id="dialogMsg"/>
+
+<p:outputPanel id="erroRptPanel">
+<p:commandLink value="Download Error File" ajax="false" icon="ui-icon-arrowthick-1-s" rendered="#{fileImportBean.errorReport!=null}">
+        <p:fileDownload value="#{fileImportBean.errorFile}" />
+</p:commandLink>
+</p:outputPanel>	
+<p:outputPanel>
+
+ <h:panelGroup>
+ 
+<h:panelGrid width="100%"  columns="1" columnClasses="section-col"  class="section-col">
+	
+		<h:panelGrid width="80%" columns="2" columnClasses="right-label,control">
+		
+
+ 
+		
+<h:outputText id="fileTypeLabel" style="font-weight:bold;align:right" value="Select File Type" > </h:outputText>
+			
+<p:selectOneButton value="#{fileImportBean.format}">
+            <f:selectItem itemLabel="CSV" itemValue="csv" />
+            <f:selectItem itemLabel="XML" itemValue="xml" />
+			<p:ajax update="@form" listener="#{fileImportBean.update()}"/>
+
+</p:selectOneButton>
+
+
+		<h:outputText value=" " />
+		<h:outputText value=" " />
+
+			<h:outputText id="templateLabel" style="font-weight:bold;align:right" value="Select Template" rendered="#{fileImportBean.showTemplateSelector}"> </h:outputText>
+			
+				<p:selectOneMenu id="advanced" value="#{fileImportBean.template}"  rendered="#{fileImportBean.showTemplateSelector}" 
+                        ajax="true" effect="fade" var="t" styleClass="input  cd-dt-one-menu" filter="true" filterMatchMode="startsWith"
+						update="dialogMsg">
+				<f:selectItems value="#{viewStateBean.csvTemplates}" var="template" itemLabel="#{template}" itemValue="#{template}" />
+ 
+					<p:column >
+						<h:outputText styleClass="ui-theme ui-theme-#{template}" />
+					</p:column>
+ 
+					<p:column>
+						<h:outputText value="#{template}" />
+					</p:column>
+				</p:selectOneMenu>
+
+			
+			
+			<h:outputText id="fileLabel" style="font-weight:bold;align:right" value="Select File" rendered="#{fileImportBean.showFileSelector}"> </h:outputText>
+			
+				<h:panelGrid columns="2" columnClasses="right-label,control" rendered="#{fileImportBean.showFileSelector}" >
+				<p:fileUpload id="fileId" fileUploadListener="#{entityActionsBean.handleFileUpload}" 
+						auto="true"  mode="advanced" ajax="true"  height="8" width="16" image="/images/upload.png" label="File"  styleClass="cd-dt-binary" update="erroRptPanel fileNameId dialogMsg">
+							<f:attribute name="uploadParam" value="dataFile" />
+						</p:fileUpload>
+				<h:outputText id="fileNameId" value="#{fileImportBean.fileName}"/> 		
+				</h:panelGrid>
+		</h:panelGrid>
+	</h:panelGrid>
+
+</h:panelGroup>
+</p:outputPanel>
+
+<p:toolbar>
+	<p:toolbarGroup align="left">
+	</p:toolbarGroup>
+    
+	<p:toolbarGroup align="right">
+        <p:commandButton value="Import" action="#{entityActionsBean.doImport(true)}" rendered="#{fileImportBean.showFileSelector and  fileImportBean.async}"
+            id="processImport" title="Import" immediate="false" ajax="true" global="false"   update="@form" icon="importIcon"
+        >
+        </p:commandButton> 
+		
+		<p:commandButton value="Import" action="#{entityActionsBean.doImport(true)}" rendered="#{fileImportBean.showFileSelector and !fileImportBean.async}"
+            id="processImportAsync" title="Import" immediate="false" ajax="true" global="false"   update="@form" icon="importIcon" onstart= "blockUi();" oncomplete="unBlockUi();"
+        >
+		
+        </p:commandButton>
+		
+		
+		
+    </p:toolbarGroup>   
+</p:toolbar>
+		
+</h:form>
+</p:dialog>  
+</html>
