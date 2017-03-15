@@ -1,0 +1,10 @@
+<!-- Select servicing_id,ref_num from internex5.lp_fac where rq_id in (Select lp_rq_id from internex5.lp_rq where ref_num='100078'); -->
+<?xml version="1.0" encoding="UTF-8"?>
+<mod:sr.addEntityRequest xmlns:mod="http://www.thirdpillar.com/codify/loanpath/model">
+<list>
+  <facility>
+	<servicingIdentifier></servicingIdentifier>
+	<coaCleared>false</coaCleared>
+  </facility>
+</list>
+</mod:sr.addEntityRequest>
