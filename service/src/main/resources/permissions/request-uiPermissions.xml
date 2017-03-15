@@ -118,16 +118,26 @@
 	                		return true;
 	                </tns:default>
 			</tns:component>
-					
-	         <tns:component id="Request.allDebtorsDer.quick_menu_command">
-	         	<tns:default>
-					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.modifyDebtorsAllowed()){
-						return true;
-					}
-					return false;
-				</tns:default>
-			</tns:component>
-			
+
+            <tns:component id="request_crud.Request_allDebtorsDer_quick_menu_command">
+            	<tns:default>
+            	boolean isVisible = true;
+            	
+            	if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; !root.modifyDebtorsAllowed()){
+					isVisible = false;
+				}
+				
+            	if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
+            		isVisible = false;
+            	}
+            	
+            	if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE") &amp;&amp; root.modifyDebtorsAllowed()){
+            		isVisible = true;
+            	}
+
+            	return isVisible;
+            	</tns:default>
+            </tns:component>
 			<tns:component id="Request_allDebtorsDer_edit">
 				<tns:default>
 					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.modifyDebtorsAllowed()){
@@ -183,15 +193,7 @@
             			return isVisible;
             	</tns:default>
             </tns:component>
-            
-            
-            <tns:component id="Request_allDebtorsDer_quick_menu_command">
-            	<tns:default>if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
-            		return false;
-            	}
-            	return true;
-            	</tns:default>
-            </tns:component>
+ 
             <tns:component id="Request.DebtorDecision.decline">
             	<tns:default>if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
             		return false;
@@ -316,6 +318,7 @@
                     if(root.coaCleared()){
                     	isVisible=true;
                     }
+
                     return isVisible;
                     
                     </tns:default>
