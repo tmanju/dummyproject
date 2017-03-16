@@ -115,7 +115,7 @@ inputMap.put("contextEntity",dataObject);
 inputMap.put("entityOut",dataObject);
 inputMap.put("objectType","application");
 inputMap.put("entity","application");
-inputMap.put("clientId","internex");
+//inputMap.put("clientId","internex");
 inputMap.put("action","update");
 
 context.setVariable("sfdcInputMap", inputMap);</script>
@@ -157,18 +157,18 @@ context.setVariable("integrationExchange",null);</script>
         <dataInput id="_6_inputInput" name="input" />
         <dataInput id="_6_entityInput" name="entity" />
         <dataInput id="_6_ServiceNameInput" name="ServiceName" />
-        <dataOutput id="_6_entityOutput" name="entity" />
         <dataOutput id="_6_ResultExchangeOutput" name="ResultExchange" />
         <dataOutput id="_6_ResultStatusOutput" name="ResultStatus" />
+        <dataOutput id="_6_entityOutput" name="entity" />
         <inputSet>
           <dataInputRefs>_6_inputInput</dataInputRefs>
           <dataInputRefs>_6_entityInput</dataInputRefs>
           <dataInputRefs>_6_ServiceNameInput</dataInputRefs>
         </inputSet>
         <outputSet>
-          <dataOutputRefs>_6_entityOutput</dataOutputRefs>
           <dataOutputRefs>_6_ResultExchangeOutput</dataOutputRefs>
           <dataOutputRefs>_6_ResultStatusOutput</dataOutputRefs>
+          <dataOutputRefs>_6_entityOutput</dataOutputRefs>
         </outputSet>
       </ioSpecification>
       <dataInputAssociation>
@@ -187,16 +187,16 @@ context.setVariable("integrationExchange",null);</script>
         </assignment>
       </dataInputAssociation>
       <dataOutputAssociation>
-        <sourceRef>_6_entityOutput</sourceRef>
-        <targetRef>contextEntity</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation>
         <sourceRef>_6_ResultExchangeOutput</sourceRef>
         <targetRef>integrationExchange</targetRef>
       </dataOutputAssociation>
       <dataOutputAssociation>
         <sourceRef>_6_ResultStatusOutput</sourceRef>
         <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_6_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
       </dataOutputAssociation>
     </task>
     <endEvent id="_7" name="End" >
@@ -236,18 +236,18 @@ context.setVariable("integrationExchange",null);</script>
         <dataInput id="_8_inputInput" name="input" />
         <dataInput id="_8_entityInput" name="entity" />
         <dataInput id="_8_ServiceNameInput" name="ServiceName" />
-        <dataOutput id="_8_entityOutput" name="entity" />
         <dataOutput id="_8_ResultExchangeOutput" name="ResultExchange" />
         <dataOutput id="_8_ResultStatusOutput" name="ResultStatus" />
+        <dataOutput id="_8_entityOutput" name="entity" />
         <inputSet>
           <dataInputRefs>_8_inputInput</dataInputRefs>
           <dataInputRefs>_8_entityInput</dataInputRefs>
           <dataInputRefs>_8_ServiceNameInput</dataInputRefs>
         </inputSet>
         <outputSet>
-          <dataOutputRefs>_8_entityOutput</dataOutputRefs>
           <dataOutputRefs>_8_ResultExchangeOutput</dataOutputRefs>
           <dataOutputRefs>_8_ResultStatusOutput</dataOutputRefs>
+          <dataOutputRefs>_8_entityOutput</dataOutputRefs>
         </outputSet>
       </ioSpecification>
       <dataInputAssociation>
@@ -266,16 +266,16 @@ context.setVariable("integrationExchange",null);</script>
         </assignment>
       </dataInputAssociation>
       <dataOutputAssociation>
-        <sourceRef>_8_entityOutput</sourceRef>
-        <targetRef>contextEntity</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation>
         <sourceRef>_8_ResultExchangeOutput</sourceRef>
         <targetRef>integrationExchange</targetRef>
       </dataOutputAssociation>
       <dataOutputAssociation>
         <sourceRef>_8_ResultStatusOutput</sourceRef>
         <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_8_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
       </dataOutputAssociation>
     </task>
     <endEvent id="_9" name="End" >
