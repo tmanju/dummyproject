@@ -3232,6 +3232,8 @@
 			<field name="nextReviewDate" type="date"/>
 			<field name="borrowingBaseRes" type="amount" length="18"/>
         	<field name="akritivCustomer" type="boolean"/>
+        	<field name="duplicateDbaNameValueDer" type="derived:text" />
+        	<field name="dbaNameValueDer" type="derived:text" />
         	<!-- <reference name="account" entity-type="Account" relation="owner" ruleTriggerOnEvent="true"/> -->
         	<reference name="ratingDescription" entity-type="AttributeChoice" relation="refers-to">
                 <lookup>

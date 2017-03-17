@@ -126,6 +126,12 @@
                    }
                 ]]></map:element>
         </map:constraint>
+      	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{debtorCustomer.dbaname.duplicate}</map:message>
+                <map:element name="matchedExpr"><![CDATA[
+                   return o.duplicateDbaName();
+                ]]></map:element>
+        </map:constraint>
       </map:class>
     </map:bean>
 </map:constraint-mappings>
