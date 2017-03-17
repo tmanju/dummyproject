@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.thirdpillar.codify.loanpath.model.DebtorCustomer>
+	<refNumber></refNumber>
+	<customer>
+		<legalName></legalName>
+	</customer>
+	<dbas>
+		<partyDba>
+			<dbaName></dbaName>
+		</partyDba>
+	</dbas>
+</com.thirdpillar.codify.loanpath.model.DebtorCustomer>

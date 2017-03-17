@@ -1,5 +1,6 @@
 package com.thirdpillar.codify.loanpath.model;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.persistence.Transient;
@@ -62,6 +63,59 @@ public class DebtorCustomer extends BaseDataObject{
 			}
 		}
 		return duplicateDebtor;
+	}
+	
+	public boolean duplicateDbaName(){
+		boolean match = true;
+		HashSet<String> set = new HashSet<>();
+		if(this.getDbas() !=null){
+			for(PartyDba partyDba : this.getDbas()){
+				if(partyDba.getDbaName() != null && partyDba.getDebtorCustomer() != null){
+					match = set.add(partyDba.getDbaName()+"-"+partyDba.getDebtorCustomer().toString());
+				}
+			}
+		}
+		return match;
+	}
+	
+	public String duplicateDbaNameValueDer(){
+		boolean match = true;
+		String duplicateDbaNameValue= null;
+		HashSet<String> set = new HashSet<>();
+		if(this.getDbas() !=null){
+			for(PartyDba partyDba : this.getDbas()){
+				if(partyDba.getDbaName() != null && partyDba.getDebtorCustomer() != null){
+					match = set.add(partyDba.getDbaName()+"-"+partyDba.getDebtorCustomer().toString());
+				}
+				
+				if(!match){
+					if(partyDba.getDebtorCustomer() !=null && partyDba.getDebtorCustomer().getFacilityCustomerRole() !=null && partyDba.getDebtorCustomer().getFacilityCustomerRole().getCustomer() !=null && partyDba.getDebtorCustomer().getFacilityCustomerRole().getCustomer().getLegalName() !=null){
+						duplicateDbaNameValue =  partyDba.getDebtorCustomer().getFacilityCustomerRole().getCustomer().getLegalName();
+					}
+				}
+			}
+		}
+		return duplicateDbaNameValue;
+	}
+	
+	public String dbaNameValueDer(){
+		boolean match = true;
+		String dbaNameValue= null;
+		HashSet<String> set = new HashSet<>();
+		if(this.getDbas() !=null){
+			for(PartyDba partyDba : this.getDbas()){
+				if(partyDba.getDbaName() != null && partyDba.getDebtorCustomer() != null){
+					match = set.add(partyDba.getDbaName()+"-"+partyDba.getDebtorCustomer().toString());
+				}
+				
+				if(!match){
+					if(partyDba.getDebtorCustomer() !=null && partyDba.getDebtorCustomer().getFacilityCustomerRole() !=null && partyDba.getDebtorCustomer().getFacilityCustomerRole().getCustomer() !=null && partyDba.getDebtorCustomer().getFacilityCustomerRole().getCustomer().getLegalName() !=null){
+						dbaNameValue =  partyDba.getDbaName();
+					}
+				}
+			}
+		}
+		return dbaNameValue;
 	}
 	
 	public boolean isDuplicateDebtor() {
