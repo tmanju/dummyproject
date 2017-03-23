@@ -932,40 +932,31 @@ public class Request extends BaseDataObject {
 		 }else{
 			 Object object = integrationExchangeObj.getTaskOutput();
 		//List<Customer> customers = new ArrayList<Customer>();
-		if(object instanceof Request){
+		if(object instanceof List){
 			LOGGER.info("**************Accept Akritiv response************************");
-			//Request responseObj = (Request)object;
-			/**
-			 * Saving servicing identifier for account
-			 */
-			
-				StringBuffer buffer = new StringBuffer();
-				//if(request.getServiceMessages() != null){
-					//request.getServiceMessages().clear();
-				//}
-				//System.out.println(responseObj);
-				//System.out.println(request.getServiceMessages());
-				//System.out.println(responseObj.getServiceMessages());
-				if(request.getServiceMessages() != null){
-					//request.getServiceMessages().addAll(responseObj.getServiceMessages());
-					for(ServiceMessage msg : request.getServiceMessages()){
-						buffer.append(msg.getMessage());
-						buffer.append("\n");
+			List resp = (List)object;
+			for(Object o : resp){
+				if(o instanceof Request){
+					Request responseObj = (Request)o;
+					StringBuffer buffer = new StringBuffer();
+					if(request.getServiceMessages() != null){
+						for(ServiceMessage msg : request.getServiceMessages()){
+							buffer.append(msg.getMessage());
+							buffer.append("\n");
+						}
+						request.getServiceMessages().clear();
 					}
-					request.getServiceMessages().clear();
-				}
-				
-					//es.saveOrUpdate(request);
-					//es.saveOrUpdateAll(customers);
-					//es.flush();
-				
-				if(buffer.toString().length()>0){
-					buffer = buffer.delete(buffer.length()-1, buffer.length());
-					CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
-				}
-				LOGGER.info("**************Akritiv response saved Successfully************************");
-		 }
-		}
+					
+					if(buffer.toString().length()>0){
+						buffer = buffer.delete(buffer.length()-1, buffer.length());
+						CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
+					}
+
+							}
+						}
+					}
+			}
+			LOGGER.info("**************Akritiv response saved Successfully************************");
 
 	}
     

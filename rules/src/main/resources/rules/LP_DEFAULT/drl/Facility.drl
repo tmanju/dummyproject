@@ -469,3 +469,14 @@ rule "SetIUFReserveAmountOnChangeOfApprovedLoanAmt"
     	
     }
 end
+
+rule "FacilityServicingIdentifier_Save"
+  agenda-group "SAVE" 
+  when
+    req:Request()    
+    f:Facility(servicingIdentifierLookup != null) from req.allFacilities
+  then
+    if(f.getServicingIdentifierLookup() != null && f.getServicingIdentifier() == null){
+    	f.setServicingIdentifier(f.getServicingIdentifierLookup());
+    }
+end

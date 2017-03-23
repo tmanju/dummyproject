@@ -3316,6 +3316,53 @@
   <itemDefinition id="_338-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
   <itemDefinition id="_338-teamsItem" structureRef="java.util.List" />
 
+  <itemDefinition id="_368-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_368-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_368-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_368-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_368-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_368-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_368-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_368-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_368-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_368-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_368-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_368-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_368-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_368-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_368-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_368-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_368-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_368-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_368-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_368-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_368-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_368-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_368-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_368-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_368-custNameItem" structureRef="String" />
+  <itemDefinition id="_368-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_368-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_368-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_368-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_368-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_368-taskActionItem" structureRef="String" />
+  <itemDefinition id="_368-creFlowItem" structureRef="String" />
+  <itemDefinition id="_368-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_368-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_368-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_368-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_368-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_368-autoDecisionMinYearsItem" structureRef="String" />
+  <itemDefinition id="_368-creditAnalystItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_368-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_368-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_368-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_368-nextDebtorStatusItem" structureRef="String" />
+  <itemDefinition id="_368-clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_368-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
+  <itemDefinition id="_368-teamsItem" structureRef="java.util.List" />
+
   <itemDefinition id="_359-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
   <itemDefinition id="_359-nextFacilityStatusItem" structureRef="String" />
   <itemDefinition id="_359-customersEmailListItem" structureRef="String" />
@@ -9171,6 +9218,20 @@ for(Facility f : rq.getAllFacilities()){
         <targetRef>_329_clientIdInput</targetRef>
       </dataInputAssociation>
     </callActivity>
+    <task id="_368" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_368_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_368_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_368_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
     <task id="_359" name="Document Specialist Team Custom Task" tns:taskName="CustomUserTask" >
       <extensionElements>
         <tns:onEntry-script scriptFormat="http://www.java.com/java">
@@ -10119,10 +10180,11 @@ return true;
 return false;</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_331-_332" sourceRef="_331" targetRef="_332" />
-    <sequenceFlow id="_332-_333" sourceRef="_332" targetRef="_333" />
+    <sequenceFlow id="_368-_333" sourceRef="_368" targetRef="_333" />
     <sequenceFlow id="_200-_330" sourceRef="_200" targetRef="_330" />
     <sequenceFlow id="_273-_328" sourceRef="_273" targetRef="_328" />
     <sequenceFlow id="_339-_329" sourceRef="_339" targetRef="_329" />
+    <sequenceFlow id="_332-_368" sourceRef="_332" targetRef="_368" />
     <sequenceFlow id="_97-_359" sourceRef="_97" targetRef="_359" />
     <sequenceFlow id="_351-_352" sourceRef="_351" targetRef="_352" />
     <sequenceFlow id="_353-_354" sourceRef="_353" targetRef="_354" />
@@ -10929,19 +10991,22 @@ return false;</conditionExpression>
         <dc:Bounds x="3006" y="392" width="110" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_333" >
-        <dc:Bounds x="3040" y="470" width="48" height="48" />
+        <dc:Bounds x="3034" y="546" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_330" >
         <dc:Bounds x="3440" y="56" width="139" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_331" >
-        <dc:Bounds x="3026" y="328" width="48" height="48" />
+        <dc:Bounds x="3032" y="326" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_328" >
         <dc:Bounds x="2263" y="3189" width="132" height="34" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_329" >
         <dc:Bounds x="3663" y="298" width="139" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_368" >
+        <dc:Bounds x="3007" y="463" width="100" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_359" >
         <dc:Bounds x="2000" y="2744" width="213" height="48" />
@@ -12041,12 +12106,12 @@ return false;</conditionExpression>
         <di:waypoint x="3517" y="287" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_331-_332" >
-        <di:waypoint x="3050" y="352" />
+        <di:waypoint x="3056" y="350" />
         <di:waypoint x="3061" y="416" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_332-_333" >
-        <di:waypoint x="3061" y="416" />
-        <di:waypoint x="3064" y="494" />
+      <bpmndi:BPMNEdge bpmnElement="_368-_333" >
+        <di:waypoint x="3057" y="487" />
+        <di:waypoint x="3058" y="570" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_200-_330" >
         <di:waypoint x="3514" y="11" />
@@ -12059,6 +12124,10 @@ return false;</conditionExpression>
       <bpmndi:BPMNEdge bpmnElement="_339-_329" >
         <di:waypoint x="3743" y="258" />
         <di:waypoint x="3732" y="318" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_332-_368" >
+        <di:waypoint x="3061" y="416" />
+        <di:waypoint x="3057" y="487" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_97-_359" >
         <di:waypoint x="2180" y="2465" />

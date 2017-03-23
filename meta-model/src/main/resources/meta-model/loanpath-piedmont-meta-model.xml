@@ -638,6 +638,7 @@
         	<field name="daysBeyondTerms" type="integer" length="9"/>
         	<field name="industryDBT" type="text" length="9"/>
         	<field name="servicingIdentifier" type="text" internal="true" tags="Header" indexed="true" unique="true"/>
+        	<field name="servicingIdentifierLookup" type="text" internal="true" tags="Header" indexed="true" unique="true"/>
         	<reference name="debtorContact" entity-type="Contact" relation="owner"/>
         	<collection name="collaterals" collection-type="list" entity-type="Collateral" relation="owner" referred-by="customer"/>
             
@@ -670,7 +671,7 @@
             </feature>
             <display-format>$o.customerName$</display-format>
             <find-queries>
-            	<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
+            	<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
                 <query name="quickSearch" select="many">where firstName like :q or lastName like :q or legalName like :q</query>
                 <query name="byRefNumber" select="one">where refNumber = :refNumber</query>
                 <query name="bySalesForcecomId" select="one">where externalIdentifier = :externalIdentifier</query>
@@ -840,10 +841,11 @@
             <field name="dbaName" type="text" label="DBA Name"/>
             <field name="primaryDbaFlag" type="boolean"/>
             <field name="servicingIdentifier" type="text" tags="Header"/>
+            <field name="servicingIdentifierLookup" type="text" tags="Header"/>
             <reference name="customer" entity-type="Customer" relation="refers-to"/>
             <reference name="debtorCustomer" entity-type="DebtorCustomer" relation="refers-to"/>
             <find-queries>
-        		<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
+        		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
             </find-queries>
         </entity>        
@@ -2995,6 +2997,7 @@
         	<field name="totalSyndicatedAmt" type="derived:amount"/>
         	<field name="remainingSyndicatedAmt" type="derived:amount"/>
         	<field name="servicingIdentifier" type="text" internal="true" indexed="true"  tags="Header"/>
+        	<field name="servicingIdentifierLookup" type="text" internal="true" indexed="true"  tags="Header"/>
         	<field name="coaCleared" type="boolean" />
         	<field name="renewalApprDtUpdated" type="boolean"/>
         	
@@ -3095,9 +3098,8 @@
             </feature>
             <display-format>$o.refNumber$ - $o.facilityType.value$</display-format>
             <find-queries>
-            	<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
+            	<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
             	<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
-            	<!-- <query name="byRefNumberAndServicingIdentifier" select="one">where refNumber = :refNumber and servicingIdentifier = :servicingIdentifier</query> -->
                 <query name="byExternalIdentifier" select="one">where externalIdentifier = :externalIdentifier</query>
                 <query name="byCustomerAndRoleAndNotInStatuses" select="many">where wfStatus.statusKey not in (:notInStatuses) and id in (select fac.id from com.thirdpillar.codify.loanpath.model.Facility as fac join fac.facilityCustomerRoles as facilityCustomerRole where facilityCustomerRole.partyRole.key in (:roles)  and facilityCustomerRole.customer.id in (:customerIds))</query>
                 <query name="byCustomerAndRoleAndInStatuses" select="many">where wfStatus.statusKey in (:inStatuses) and id in (select fac.id from com.thirdpillar.codify.loanpath.model.Facility as fac join fac.facilityCustomerRoles as facilityCustomerRole where facilityCustomerRole.partyRole.key in (:roles)  and facilityCustomerRole.customer.id in (:customerIds))</query>
@@ -3226,6 +3228,7 @@
         	<field name="creditPeriod" type="number" length="9"/>
         	<field name="advanceRate" type="number" internal="true" />
         	<field name="servicingIdentifier" type="text" internal="true" indexed="true" tags="Header"/>
+        	<field name="servicingIdentifierLookup" type="text" internal="true" indexed="true" tags="Header" ruleTriggerOnEvent="true"/>
         	<field name="riskRating" type="text"/>
         	<field name="dbaName" type="text"/>
 			<field name="ratingDate" type="date"/>
@@ -3257,7 +3260,7 @@
         	<find-queries>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
         		<query name="byAkritivCustomer" select="many"> where akritivCustomer = :akritivCustomer and facility is not null</query>
-        		<!-- <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query> -->
+        		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
                 <query name="byFacilityCustomerRoleId" select="one">where facilityCustomerRole.id = :facilityCustomerRoleId</query>
                 <query name="byDunsAndFacility" select="many">where facility.refNumber = :facRefNumber and facilityCustomerRole.customer.duns = :duns</query>
             </find-queries>
@@ -3301,7 +3304,6 @@
             <display-format>$o.customer.customerName$ - ($o.partyRole.value$)</display-format>
             <find-queries>
                 <query name="byExternalIdentifier" select="one">where externalIdentifier = :externalIdentifier</query>
-                <query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
                 <query name="byCustomerId" select="one">where customer.id = :customerId</query>
             </find-queries>
         </entity>
