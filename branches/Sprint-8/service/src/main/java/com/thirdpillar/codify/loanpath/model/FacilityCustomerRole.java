@@ -71,7 +71,12 @@ import javax.persistence.Entity;
 	        @XStreamLookupCollectionByOGNL(
 		            name = "byServicingIdentifier",
 		            keys = { "servicingIdentifier" }
-		        )}
+		        ),
+	    	@XStreamLookupCollectionByOGNL(
+	    		 name="byFcrLookup",
+	    		 keys={"fcrLookup"}
+	    	)
+	    }
 	)
 public  class FacilityCustomerRole {
 	

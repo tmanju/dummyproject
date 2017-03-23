@@ -18,7 +18,11 @@ import com.thirdpillar.xstream.ext.lookup.XStreamLookupCollectionByOGNL;
 	    	@XStreamLookupCollectionByOGNL(
 	           name = "byRefNumber",
 	           keys = { "refNumber" }
-	        )
+	        ),
+	        @XStreamLookupCollectionByOGNL(
+	 	           name = "byServicingIdentifier",
+	 	           keys = { "servicingIdentifier" }
+	 	        )
 	    }
 	)
 public class DebtorCustomer extends BaseDataObject{

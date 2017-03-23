@@ -512,3 +512,13 @@ rule "SetDunsLookupOnDunsSave"
 		customer.setDunsLookup(customer.getDuns());
 	}
 end
+
+rule "CustomerServicingIdentifier_Save"
+  agenda-group "SAVE" 
+  when
+    customer:Customer()
+  then
+    if(customer.getServicingIdentifierLookup() != null && customer.getServicingIdentifier() == null){
+    	customer.setServicingIdentifier(customer.getServicingIdentifierLookup());
+    }
+end

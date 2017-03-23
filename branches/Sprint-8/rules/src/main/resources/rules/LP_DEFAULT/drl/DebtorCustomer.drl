@@ -170,3 +170,29 @@ rule "DeleteDbaNameOnCounterParty"
 			}
 		}
 end
+
+
+rule "DebtorCustomerServicingIdentifier_Save"
+  agenda-group "SAVE" 
+  when
+  		req:Request()
+    	facility:Facility() from req.allFacilities
+    	debtorCustomer:DebtorCustomer() from facility.debtors
+  then
+    if(debtorCustomer.getServicingIdentifierLookup() != null && debtorCustomer.getServicingIdentifier() == null){
+    	debtorCustomer.setServicingIdentifier(debtorCustomer.getServicingIdentifierLookup());
+    }
+end
+
+rule "PartyDbaServicingIdentifier_Save"
+	agenda-group "SAVE" 
+ 	when
+ 		req:Request()
+    	facility:Facility() from req.allFacilities
+    	debtorCustomer:DebtorCustomer() from facility.debtors
+ 		partyDba:PartyDba() from debtorCustomer.dbas
+ 	then
+ 	if(partyDba.getServicingIdentifierLookup() != null && partyDba.getServicingIdentifier() == null){
+    	partyDba.setServicingIdentifier(partyDba.getServicingIdentifierLookup());
+    }
+end
