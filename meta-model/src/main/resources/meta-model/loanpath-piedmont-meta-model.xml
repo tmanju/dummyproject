@@ -3268,7 +3268,6 @@
              
         <entity name="FacilityCustomerRole" stereotype="managed" label="Product Role">
             <field name="externalIdentifier" type="text" length="255" internal="true" indexed="true" />
-            <field name="servicingIdentifier" type="text" length="255" internal="true" indexed="true" />
             <reference name="facility" entity-type="Facility" relation="refers-to"/>
             <reference name="partyRole" entity-type="AttributeChoice" relation="refers-to" label="Role" required="false" ruleTriggerOnEvent="true">
                 <lookup>
