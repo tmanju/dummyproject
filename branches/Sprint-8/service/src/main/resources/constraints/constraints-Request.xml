@@ -911,7 +911,31 @@
 						return o.customerDuplicateRolesCheck();
 					]]></map:element>
 			</map:constraint>
-			
+			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+				<map:message>{customer.primarySite.siteDetails.email.required}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>
+				</map:groups>
+				<map:element name="matchedExpr">
+					<![CDATA[
+						boolean match = true;
+						foreach(facility : o.allFacilities)
+							{							
+								if (facility !=null && facility.facilityCustomerRoles !=null )
+								{
+									foreach(facilityCustomerRole:facility.facilityCustomerRoles)
+									{
+										if(facilityCustomerRole.customer !=null && facilityCustomerRole.customer.primarySite !=null && facilityCustomerRole.customer.primarySite.siteDetails !=null && facilityCustomerRole.customer.primarySite.siteDetails.email == null)
+										{
+											match=false;
+											return match;
+										}
+									}
+								}
+							}
+		                return match;
+					]]></map:element>
+			</map:constraint>
 <!-- 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
 <!-- 	                <map:message>{customer.borrowerratings.borrowerratingsfields.required}</map:message> -->
 <!-- 	                <map:groups> -->
