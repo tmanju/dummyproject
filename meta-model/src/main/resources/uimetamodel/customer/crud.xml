@@ -171,7 +171,7 @@
 				<field name="customer.primarySite.siteDetails.businessPhone" label="Business Phone" />
 				<field name="customer.primarySite.siteDetails.homePhone" label="Home Phone" />
 				<field name="customer.primarySite.siteDetails.mobilePhone" label="Mobile Phone" />
-				<field name="customer.primarySite.siteDetails.email" label="Primary Email *" />
+				<field name="customer.primarySite.siteDetails.email" label="Primary Email" />
 				<field name="customer.primarySite.siteDetails.businessFax" label="Fax" />
 				<field name="customer.primarySite.siteDetails.otherPhone" label="Other Phone" />
 				<field name="customer.primarySite.siteDetails.servicingIdentifier" label="Servicing Identifier" />
