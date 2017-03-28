@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -24,7 +23,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 
 import com.thirdpillar.codify.loanpath.constants.Constants;
-import com.thirdpillar.codify.loanpath.service.DroolsUtil;
 import com.thirdpillar.codify.loanpath.util.BureauReportComparator;
 import com.thirdpillar.codify.loanpath.util.CoaComparator;
 import com.thirdpillar.codify.loanpath.util.ComplianceComparator;
@@ -32,8 +30,7 @@ import com.thirdpillar.codify.loanpath.util.UserExceptionAuthorityLevelComparato
 import com.thirdpillar.codify.loanpath.util.Utility;
 import com.thirdpillar.foundation.component.CodifyMessage;
 import com.thirdpillar.foundation.integration.IntegrationExchange;
-import com.thirdpillar.foundation.integration.IntegrationResult;
-import com.thirdpillar.foundation.model.*;
+import com.thirdpillar.foundation.model.BaseDataObject;
 import com.thirdpillar.foundation.service.ContextHolder;
 import com.thirdpillar.foundation.service.EntityService;
 import com.thirdpillar.xstream.ext.lookup.XStreamLookupCollectionByOGNL;
@@ -932,31 +929,40 @@ public class Request extends BaseDataObject {
 		 }else{
 			 Object object = integrationExchangeObj.getTaskOutput();
 		//List<Customer> customers = new ArrayList<Customer>();
-		if(object instanceof List){
+		if(object instanceof Request){
 			LOGGER.info("**************Accept Akritiv response************************");
-			List resp = (List)object;
-			for(Object o : resp){
-				if(o instanceof Request){
-					Request responseObj = (Request)o;
-					StringBuffer buffer = new StringBuffer();
-					if(request.getServiceMessages() != null){
-						for(ServiceMessage msg : request.getServiceMessages()){
-							buffer.append(msg.getMessage());
-							buffer.append("\n");
-						}
-						request.getServiceMessages().clear();
+			//Request responseObj = (Request)object;
+			/**
+			 * Saving servicing identifier for account
+			 */
+			
+				StringBuffer buffer = new StringBuffer();
+				//if(request.getServiceMessages() != null){
+					//request.getServiceMessages().clear();
+				//}
+				//System.out.println(responseObj);
+				//System.out.println(request.getServiceMessages());
+				//System.out.println(responseObj.getServiceMessages());
+				if(request.getServiceMessages() != null){
+					//request.getServiceMessages().addAll(responseObj.getServiceMessages());
+					for(ServiceMessage msg : request.getServiceMessages()){
+						buffer.append(msg.getMessage());
+						buffer.append("\n");
 					}
-					
-					if(buffer.toString().length()>0){
-						buffer = buffer.delete(buffer.length()-1, buffer.length());
-						CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
-					}
-
-							}
-						}
-					}
-			}
-			LOGGER.info("**************Akritiv response saved Successfully************************");
+					request.getServiceMessages().clear();
+				}
+				
+					//es.saveOrUpdate(request);
+					//es.saveOrUpdateAll(customers);
+					//es.flush();
+				
+				if(buffer.toString().length()>0){
+					buffer = buffer.delete(buffer.length()-1, buffer.length());
+					CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
+				}
+				LOGGER.info("**************Akritiv response saved Successfully************************");
+		 }
+		}
 
 	}
     
@@ -1137,6 +1143,25 @@ public class Request extends BaseDataObject {
 			for(Team team : teams){
 				//System.out.println("=============Team Name========="+team.getName());
 				if(team.getName() !=null && "credit decision team".equals(team.getName().toLowerCase()) && this.inWfStatus("REQUEST_STATUS_APPROVED_DOCUMENTATION","REQUEST_STATUS_PORTFOLIO_MANAGMENT")){
+					match = true;
+					break;
+				}
+			}
+			return match;
+		}
+		
+		public boolean updateDebtorMultiSelect(){
+			boolean match = false;
+			User user = (User)ContextHolder.getContext().getUser();
+			List<Team> teams = user.getTeams();
+			for(Team team : teams){
+				//System.out.println("=============Team Name========="+team.getName());
+				if(team.getName() !=null && "credit analyst team".equals(team.getName().toLowerCase())){
+					match = true;
+					break;
+				}
+				
+				if(team.getName() !=null && ("credit decision team".equals(team.getName().toLowerCase()) || "admin team".equals(team.getName().toLowerCase()) || "credit officer team".equals(team.getName().toLowerCase()))){
 					match = true;
 					break;
 				}

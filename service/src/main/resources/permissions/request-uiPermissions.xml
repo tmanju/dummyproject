@@ -118,35 +118,60 @@
 	                		return true;
 	                </tns:default>
 			</tns:component>
-
-            <tns:component id="request_crud.Request_allDebtorsDer_quick_menu_command">
-            	<tns:default>
-            	boolean isVisible = true;
-            	
-            	if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; !root.modifyDebtorsAllowed()){
-					isVisible = false;
-				}
-				
-            	if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
-            		isVisible = false;
-            	}
-            	
-            	if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE") &amp;&amp; root.modifyDebtorsAllowed()){
-            		isVisible = true;
-            	}
-
-            	return isVisible;
-            	</tns:default>
-            </tns:component>
-			<tns:component id="Request_allDebtorsDer_edit">
-				<tns:default>
-					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.modifyDebtorsAllowed()){
-						return true;
+					
+	         <tns:component id="request_crud.Request_allDebtorsDer_quick_menu_command">
+	         	<tns:default>
+	         		boolean isVisible = false;
+					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.updateDebtorMultiSelect()){
+						isVisible = true;
 					}
-					return false;
+					
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelect() &amp;&amp; !root.inWfStatus("REQUEST_STATUS_PENDING_DECISION","REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_APPROVED_TO_BE_NOTIFIED","REQUEST_STATUS_APPROVED_DOCUMENTATION")){
+						isVisible = true;
+					}
+					return isVisible;
 				</tns:default>
 			</tns:component>
 			
+			<tns:component id="Request_allDebtorsDer_edit">
+				<tns:default>
+					boolean isVisible = false;
+					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.updateDebtorMultiSelect()){
+						isVisible = true;
+					}
+					
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelect() &amp;&amp; !root.inWfStatus("REQUEST_STATUS_PENDING_DECISION","REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_APPROVED_TO_BE_NOTIFIED","REQUEST_STATUS_APPROVED_DOCUMENTATION")){
+						isVisible = true;
+					}
+					return isVisible;
+				</tns:default>
+			</tns:component>
+			<tns:component id="All_Eligible">
+				<tns:default>
+					boolean isVisible = false;
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelect()){
+						isVisible = true;
+					}
+					
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelect() &amp;&amp; !root.inWfStatus("REQUEST_STATUS_PENDING_DECISION","REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_APPROVED_TO_BE_NOTIFIED","REQUEST_STATUS_APPROVED_DOCUMENTATION")){
+						isVisible = true;
+					}
+					return isVisible;
+				</tns:default>
+			</tns:component>
+			<tns:component id="All_InEligible">
+				<tns:default>
+					boolean isVisible = false;
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelect()){
+						isVisible = true;
+					}
+					
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelect() &amp;&amp; !root.inWfStatus("REQUEST_STATUS_PENDING_DECISION","REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_APPROVED_TO_BE_NOTIFIED","REQUEST_STATUS_APPROVED_DOCUMENTATION")){
+						isVisible = true;
+					}
+					return isVisible;
+				</tns:default>
+			</tns:component>
 			<tns:component id="facilityEditCanvas.facility_additionalOptions_actionsCol">
 				<tns:default>
 					if(root!= null &amp;&amp; root_allFacilities != null &amp;&amp; root_allFacilities.updateApprovedAmtAllowed()){
@@ -193,7 +218,15 @@
             			return isVisible;
             	</tns:default>
             </tns:component>
- 
+            
+            
+            <tns:component id="Request_allDebtorsDer_quick_menu_command">
+            	<tns:default>if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
+            		return false;
+            	}
+            	return true;
+            	</tns:default>
+            </tns:component>
             <tns:component id="Request.DebtorDecision.decline">
             	<tns:default>if(root_allDebtorsDer.inWfStatus("DEBTOR_STATUS_ELIGIBLE","DEBTOR_STATUS_INELIGIBLE")){
             		return false;
@@ -318,7 +351,6 @@
                     if(root.coaCleared()){
                     	isVisible=true;
                     }
-
                     return isVisible;
                     
                     </tns:default>
