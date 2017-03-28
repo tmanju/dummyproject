@@ -122,7 +122,7 @@
 	         <tns:component id="request_crud.Request_allDebtorsDer_quick_menu_command">
 	         	<tns:default>
 	         		boolean isVisible = false;
-					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.updateDebtorMultiSelect()){
+					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.updateDebtorMultiSelectAll()){
 						isVisible = true;
 					}
 					
@@ -136,7 +136,7 @@
 			<tns:component id="Request_allDebtorsDer_edit">
 				<tns:default>
 					boolean isVisible = false;
-					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.updateDebtorMultiSelect()){
+					if(root!= null &amp;&amp; root_allDebtorsDer != null &amp;&amp; root.updateDebtorMultiSelectAll()){
 						isVisible = true;
 					}
 					
@@ -149,20 +149,21 @@
 			<tns:component id="All_Eligible">
 				<tns:default>
 					boolean isVisible = false;
-					if(root!= null &amp;&amp; root.updateDebtorMultiSelect()){
+					
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelectAll()){
 						isVisible = true;
 					}
-					
 					if(root!= null &amp;&amp; root.updateDebtorMultiSelect() &amp;&amp; !root.inWfStatus("REQUEST_STATUS_PENDING_DECISION","REQUEST_STATUS_PORTFOLIO_MANAGMENT","REQUEST_STATUS_APPROVED_TO_BE_NOTIFIED","REQUEST_STATUS_APPROVED_DOCUMENTATION")){
 						isVisible = true;
 					}
+					
 					return isVisible;
 				</tns:default>
 			</tns:component>
 			<tns:component id="All_InEligible">
 				<tns:default>
 					boolean isVisible = false;
-					if(root!= null &amp;&amp; root.updateDebtorMultiSelect()){
+					if(root!= null &amp;&amp; root.updateDebtorMultiSelectAll()){
 						isVisible = true;
 					}
 					

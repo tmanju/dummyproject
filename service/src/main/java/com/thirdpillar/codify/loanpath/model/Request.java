@@ -1161,6 +1161,17 @@ public class Request extends BaseDataObject {
 					break;
 				}
 				
+			}
+			return match;
+		}
+		
+		public boolean updateDebtorMultiSelectAll(){
+			boolean match = false;
+			User user = (User)ContextHolder.getContext().getUser();
+			List<Team> teams = user.getTeams();
+			for(Team team : teams){
+				//System.out.println("=============Team Name========="+team.getName());
+				
 				if(team.getName() !=null && ("credit decision team".equals(team.getName().toLowerCase()) || "admin team".equals(team.getName().toLowerCase()) || "credit officer team".equals(team.getName().toLowerCase()))){
 					match = true;
 					break;
