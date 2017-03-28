@@ -2641,6 +2641,10 @@
 										<command id="decline" action="declineDebtor" type="businessOp" name="Ineligible"/>
 									</commands>
 								</edit-canvas>
+								<commands>
+									<command selected="n &gt; 0" name="All Eligible" action="DebtorEligible" type="businessOp" />
+									<command selected="n &gt; 0" name="All InEligible" action="DebtorInEligible" type="businessOp" />
+								</commands>
 							</data-table>
 						</tab>
 					</tabs>

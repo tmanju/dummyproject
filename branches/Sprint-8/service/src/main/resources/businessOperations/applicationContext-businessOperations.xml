@@ -1023,6 +1023,11 @@
 			<property name="hostingClassName" value="com.thirdpillar.codify.loanpath.service.facAllocatorTxn.FacAllocatorTransactionBizOp" />
 	</bean>
 	
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.DebtorEligible" class="com.thirdpillar.codify.loanpath.service.DebtorCustomerEligibleBizOp" >
+	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.DebtorInEligible" class="com.thirdpillar.codify.loanpath.service.DebtorCustomerInEligibleBizOp" >
+	</bean>
+	
 	<!-- Jobs for capital provider interest calculations -->
 	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.DailyIntCalcBusinessOperation" class="com.thirdpillar.codify.loanpath.service.CalculateDailyInterestBizOp"/>
 
