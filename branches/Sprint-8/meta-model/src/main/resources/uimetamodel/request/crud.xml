@@ -2555,7 +2555,12 @@
 							</data-table>
 					</tab>
 						<tab id="tab.Request.creditDecision.decision.DebtorDecision" label="Debtor Decision">
-							<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors">
+							<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors" paginator="true">
+								<filters> 
+									<filter name="Pending" expr="debtor.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
+									<filter name="Eligible" expr="debtor.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
+									<filter name="Ineligible" expr="debtor.wfStatus.statusKey == 'DEBTOR_STATUS_INELIGIBLE'" /> 
+								</filters>
 								<columns>
 									<column name="debtor.refNumber" label="Debtor-Account"/>
 									<column name="debtor.facilityCustomerRole.customer" label="Debtor Name"/>
