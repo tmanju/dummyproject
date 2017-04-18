@@ -72,7 +72,7 @@ public class DebtorCustomer extends BaseDataObject{
 	public boolean duplicateDbaName(){
 		boolean match = true;
 		HashSet<String> set = new HashSet<>();
-		if(this.getDbas() !=null){
+		if(this.getDbas() != null){
 			for(PartyDba partyDba : this.getDbas()){
 				if(partyDba.getDbaName() != null && partyDba.getDebtorCustomer() != null){
 					match = set.add(partyDba.getDbaName()+"-"+partyDba.getDebtorCustomer().toString());
