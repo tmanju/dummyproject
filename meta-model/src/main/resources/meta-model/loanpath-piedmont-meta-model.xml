@@ -428,6 +428,7 @@
                     <param name="groupMvel"><![CDATA[if(thiz.isDebtor()||thiz.isAccount()) {return 'CUSTOMER_TYPE_ROLE_DEBTOR'; } else {return 'CUSTOMER_TYPE_ANY_ROLE'; }]]></param>
                 </lookup>
             </reference>
+            <field name="generateDuns" type="boolean" ruleTriggerOnEvent="true"/>
         	<field name="publicCompany" type="boolean"/>
             <field name="soleProprietor" type="boolean" label="Sole Proprietor"/>
             <field name="refNumber" type="auto" tags="Header"/>

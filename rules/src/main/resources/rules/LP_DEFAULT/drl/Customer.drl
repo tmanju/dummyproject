@@ -21,7 +21,7 @@ rule "setCustomerType"
 	then
 		AttributeChoice type =(AttributeChoice)LookupService.getResult("AttributeChoice.byKey", "key","CUSTOMER_TYPE_NON_INDIVIDUAL");
 		customer.setCustomerType(type);
-		if(appContext.getNamedContext().get("root") instanceof Request){
+		if(appContext != null && appContext.getNamedContext() != null && appContext.getNamedContext().get("root") instanceof Request){
 			if(appContext.getNamedContext().get("root_allFacilities") != null && appContext.getNamedContext().get("root_allFacilities") instanceof Facility){
 				DebtorCustomer debtorCustomer=(DebtorCustomer)appContext.getNamedContext().get("root_allFacilities_debtors");
 				if(debtorCustomer != null){
@@ -520,5 +520,38 @@ rule "CustomerServicingIdentifier_Save"
   then
     if(customer.getServicingIdentifierLookup() != null && customer.getServicingIdentifier() == null){
     	customer.setServicingIdentifier(customer.getServicingIdentifierLookup());
+    }
+end
+
+rule "GenerateDunsOnFlagChange"
+  when
+    changeModelEvent:Customer.ChangeModelEvent(property == "generateDuns")
+  then
+    Boolean generateDuns = (Boolean)changeModelEvent.getNewValue();
+    Customer cust = (Customer)changeModelEvent.getEntity();
+    if(generateDuns){
+    	if(cust.getDuns() != null){
+    		cust.setTempDuns(cust.getDuns());
+    	}
+	    StringBuilder duns = new StringBuilder();
+	    int length = cust.getRefNumber().length();
+	    int diff = 8 -length;
+	    if(diff >= 1){
+    		duns.append("T");
+    		for(int i=0; i<diff;i++){
+    			duns.append("0");
+    		}
+    		duns.append(cust.getRefNumber());
+   		}else if(diff < 1){
+   			duns.append("T");
+   			duns.append(cust.getRefNumber().substring(cust.getRefNumber().length()-8,cust.getRefNumber().length()-1));
+   		}
+    	cust.setDuns(duns.toString());
+    }else{
+    	if(cust.getTempDuns() != null){
+    		cust.setDuns(cust.getTempDuns());
+    	}else{
+    		cust.setDuns(null);
+    	}
     }
 end

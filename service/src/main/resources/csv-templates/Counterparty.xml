@@ -78,4 +78,5 @@
                 	<businessFax></businessFax>
                 </siteDetails>
             </primarySite>
+            <generateDuns></generateDuns>
 </com.thirdpillar.codify.loanpath.model.Customer>
