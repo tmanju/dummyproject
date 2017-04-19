@@ -1027,6 +1027,11 @@
 	</bean>
 	<bean name="com.thirdpillar.codify.loanpath.model.Request.DebtorInEligible" class="com.thirdpillar.codify.loanpath.service.DebtorCustomerInEligibleBizOp" >
 	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Facility.sendDebtorsToAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsHandlerBizOp" >
+	</bean>
+	
+	<bean name="com.thirdpillar.codify.loanpath.model.Facility.sendDebtors" class="com.thirdpillar.foundation.service.WorkflowEventBizOp" >
+	</bean>
 	
 	<!-- Jobs for capital provider interest calculations -->
 	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.DailyIntCalcBusinessOperation" class="com.thirdpillar.codify.loanpath.service.CalculateDailyInterestBizOp"/>
@@ -1090,4 +1095,25 @@
 	</bean>
 	
 	<!-- Job for updating application fees end -->
+	
+	<!-- Job for updating debtor on Akritiv start -->
+	<bean name="com.thirdpillar.codify.loanpath.model.Facility.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp"/>
+
+	<bean name="debtorsUpdatorJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass"
+			value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="businessOperationName"
+					value="com.thirdpillar.codify.loanpath.model.Facility.updateDebtorsOnAkritiv" />
+			</map>
+		</property>
+		<property name="durability" value="true" />
+	</bean>
+	
+	<bean id="debtorsUpdatorTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="debtorsUpdatorJob" />
+		<property name="cronExpression" value="0 0/10 * * * ?" />
+	</bean>
+       <!-- Job for updating debtor on Akritiv end -->
 </beans>

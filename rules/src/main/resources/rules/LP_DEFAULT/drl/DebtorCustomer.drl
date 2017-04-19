@@ -37,26 +37,28 @@ rule "SetDebtorCustomerValues"
         //fcr:FacilityCustomerRole() from  debtorCustomer.facilityCustomerRole
   then 
     #actions
-    Facility f = (Facility) appContext.getNamedContext().get("root_allFacilities");
-	FacilityCustomerRole pb = null;
-	EntityService es = new EntityService();
-	  if(f != null && f.getFacilityCustomerRoles() != null){
-		  for(FacilityCustomerRole facilityCustomerRole : f.getFacilityCustomerRoles()){
-		    		if(facilityCustomerRole.getPartyRole() != null 
-		    				&& (ConstantsRules.PARTY_ROLE_TYPE_CLIENT_KEY.equals(facilityCustomerRole.getPartyRole().getKey()))
-		    				&& facilityCustomerRole.getPrimaryBorrower()){
-		    			pb = facilityCustomerRole;
-		    			break;
-		    		}
+    if(appContext != null && appContext.getNamedContext() != null){
+	    Facility f = (Facility) appContext.getNamedContext().get("root_allFacilities");
+		FacilityCustomerRole pb = null;
+		EntityService es = new EntityService();
+		  if(f != null && f.getFacilityCustomerRoles() != null){
+			  for(FacilityCustomerRole facilityCustomerRole : f.getFacilityCustomerRoles()){
+			    		if(facilityCustomerRole.getPartyRole() != null 
+			    				&& (ConstantsRules.PARTY_ROLE_TYPE_CLIENT_KEY.equals(facilityCustomerRole.getPartyRole().getKey()))
+			    				&& facilityCustomerRole.getPrimaryBorrower()){
+			    			pb = facilityCustomerRole;
+			    			break;
+			    		}
+			    }
+			    if(pb != null){
+			    	FacilityCustomerRole fcr = (FacilityCustomerRole)es.createNew(FacilityCustomerRole.class);
+			    	AttributeChoice partyRole =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.PARTY_ROLE_TYPE_DEBTOR_KEY);
+			    	fcr.setPartyRole(partyRole);
+			    	fcr.setParentRole(pb);
+			    	debtorCustomer.setFacilityCustomerRole(fcr);
+			    }
 		    }
-		    if(pb != null){
-		    	FacilityCustomerRole fcr = (FacilityCustomerRole)es.createNew(FacilityCustomerRole.class);
-		    	AttributeChoice partyRole =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.PARTY_ROLE_TYPE_DEBTOR_KEY);
-		    	fcr.setPartyRole(partyRole);
-		    	fcr.setParentRole(pb);
-		    	debtorCustomer.setFacilityCustomerRole(fcr);
-		    }
-	    }
+	  }
 end
 
 rule "SetDebtorStatus"
@@ -195,4 +197,12 @@ rule "PartyDbaServicingIdentifier_Save"
  	if(partyDba.getServicingIdentifierLookup() != null && partyDba.getServicingIdentifier() == null){
     	partyDba.setServicingIdentifier(partyDba.getServicingIdentifierLookup());
     }
+end
+
+rule "SetSynctoAkritivOnPropsChange"
+	when
+		changeModelEvent:DebtorCustomer.ChangeModelEvent(property == "eligibleARLimit" || property == "retention" || property == "creditPeriod" || property == "concLimit" || property == "borrowingBaseRes", newValue != null)
+	then
+		DebtorCustomer debtor = (DebtorCustomer)changeModelEvent.getEntity();
+		debtor.setSyncedToAkritiv(false);
 end

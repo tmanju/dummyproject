@@ -1473,9 +1473,13 @@
 									<column name="debtor.eligibleARLimit" label="Eligible AR Limit"/>
 									<column name="debtor.concLimit" label="Concentration Limit %"/>
 									<column name="debtor.creditPeriod" label="Credit Period"/>
+									<column name="debtor.servicingIdentifier" label="Servicing Identifier"/>
 									<column name="debtor.wfStatus" label="Decision"/>
 								</columns>
 								<edit-canvas src-entity="DebtorCustomer" src-file="crud.xml" />
+								<commands>
+									<command selected="n &gt; 0" name="Send To Akritiv" action="sendDebtorsToAkritiv" type="businessOp" />
+								</commands>
 							</data-table>
 						</tab>
 						
