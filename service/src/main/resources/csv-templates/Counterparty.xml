@@ -5,6 +5,7 @@
             </customerType>
             <legalName></legalName>
             <duns></duns>
+            <generateDuns></generateDuns>
             <approved>			                
                   <key></key>
 			</approved>
@@ -78,5 +79,4 @@
                 	<businessFax></businessFax>
                 </siteDetails>
             </primarySite>
-            <generateDuns></generateDuns>
 </com.thirdpillar.codify.loanpath.model.Customer>
