@@ -1,0 +1,7 @@
+-- Table: int_dev.lp_fac_srv_messages
+
+-- DROP TABLE int_dev.lp_fac_srv_messages;
+
+CREATE INDEX idx_lp_fac_srv_messages_1
+DROP INDEX int_dev.idx_lp_fac_srv_messages_2;
+DROP TABLE int_dev.lp_fac_srv_messages_;
