@@ -52,6 +52,47 @@
 		</property>
 	</bean>
 
+	<bean id="DebtorCustomer-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
+		<property name="formExpressions">
+			<map>
+				<entry key="Debtor-Account">
+					<value><![CDATA[entity.refNumber]]></value>
+				</entry>
+				<entry key="Debtor Name">
+					<value><![CDATA[entity]]></value>
+				</entry>
+				<entry key="Dilution Rate">
+					<value><![CDATA[entity.retention]]></value>
+				</entry>
+				<entry key="Advance Rate">
+					<value><![CDATA[entity.advanceRate]]></value>
+				</entry>
+				<entry key="Eligible AR Limit">
+					<value><![CDATA[entity.eligibleARLimit]]></value>
+				</entry>
+				<entry key="Concentration Limit %">
+					<value><![CDATA[entity.concLimit]]></value>
+				</entry>
+				<entry key="Credit Period">
+					<value><![CDATA[entity.creditPeriod]]></value>
+				</entry>
+				<entry key="Decision">
+					<value><![CDATA[entity.wfStatus]]></value>
+				</entry>
+			</map>
+		</property>
+		<property name="cellNames" >
+			<list>
+				<value>Debtor-Account</value>
+				<value>Dilution Rate</value>
+				<value>Advance Rate</value>
+				<value>Eligible AR Limit"</value>
+				<value>Concentration Limit %</value>
+				<value>Credit Period</value>
+				<value>Decision</value>
+			</list>
+		</property>
+	</bean>
 	<bean id="Customer-ExportCSV" class="com.thirdpillar.foundation.util.csv.CSVTemplate">
 		<property name="formExpressions">
 			<map>
