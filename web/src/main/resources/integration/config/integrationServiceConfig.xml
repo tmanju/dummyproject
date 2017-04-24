@@ -20,6 +20,26 @@
 		<unmarshaler style="XSTREAM" resource="Full" contextLookupKey="entityOut"/>
 	</service>
 	
+	<service name="sforceDbaService" enabled="true">
+		<marshaler style="XSTREAM" resource="sforce-DBA-Full" inputKey="entityIn" outputKey="ENTITY"/>
+		<soaptransport resource="${esb.smx.external.url}/sforce/SforcePushService/" responseType="PAYLOAD" validateResponse="false" readTimeout="1000000">
+			<properties>
+                    <property key="AUTH_TYPE" value="BASIC" type="AUTH"/>
+                    <property key="USER" value="${esb.authuser}" type="AUTH"/>
+                    <property key="PASSWORD" value="${esb.authpassword}" type="AUTH"/>
+            </properties>
+			<operation localName="pushRequest"/>
+			<parameters>
+				<parameter localName="entity" paramValue="data:debtor__c" paramType="String"/>
+				<parameter localName="action" paramValue="action" paramType="String"/>
+				<parameter localName="objectType" paramValue="data:debtor__c" paramType="String"/>
+				<parameter localName="clientId" paramValue="data:akritiv-internex" paramType="String"/>
+				<parameter localName="data" paramValue="ENTITY" paramType="Element"/>
+			</parameters>
+		</soaptransport>
+		<unmarshaler style="XSTREAM" resource="sforce-DBA-Full" contextLookupKey="entityOut"/>
+	</service>
+	
 	<service name="akritivService" enabled="true">
 		<marshaler style="XSTREAM" resource="sforce-Full" inputKey="entityOut" outputKey="ENTITY"/>
 		<soaptransport resource="${esb.smx.external.url}/sforce/SforcePushService/" responseType="PAYLOAD" validateResponse="false" readTimeout="1000000">
