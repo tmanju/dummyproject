@@ -1097,9 +1097,10 @@
 	<!-- Job for updating application fees end -->
 	
 	<!-- Job for updating debtor on Akritiv start -->
-	<bean name="com.thirdpillar.codify.loanpath.model.Facility.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp"/>
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp">
+	</bean>
 
-	<bean name="debtorsUpdatorJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<!-- <bean name="debtorsUpdatorJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 		<property name="jobClass"
 			value="com.thirdpillar.foundation.service.jobs.InvokeBusinessOperationJob" />
 		<property name="jobDataAsMap">
@@ -1113,7 +1114,7 @@
 	
 	<bean id="debtorsUpdatorTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="debtorsUpdatorJob" />
-		<property name="cronExpression" value="0 0/10 * * * ?" />
-	</bean>
+		<property name="cronExpression" value="0 0/1 * * * ?" />
+	</bean> -->
        <!-- Job for updating debtor on Akritiv end -->
 </beans>

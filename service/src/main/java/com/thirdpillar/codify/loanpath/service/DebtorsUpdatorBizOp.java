@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.thirdpillar.codify.loanpath.model.DebtorCustomer;
+import com.thirdpillar.foundation.model.BaseDataObject;
 import com.thirdpillar.foundation.service.AbstractBusinessOperation;
 import com.thirdpillar.foundation.service.EntityService;
 
@@ -17,13 +18,15 @@ public class DebtorsUpdatorBizOp extends AbstractBusinessOperation{
 
 	private DebtorsHandlerBizOp debtorsHandlerBizOp;
 	
-	public Object execute(String operation, Object... params) {
+	@Override
+	public Object execute(BaseDataObject entity, String operation, Object... params) {
 		EntityService es = new EntityService();
-		List<DebtorCustomer> debtorCustomers = (List<DebtorCustomer>)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncedToAkritiv", new String[]{"syncedToAkritiv"}, new Object[]{false});
+		List<DebtorCustomer> debtorCustomers = (List<DebtorCustomer>)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncedToAkritiv", new String[]{"syncedToAkritiv"}, new Object[]{false}, 0, 100, null);
 		if(debtorCustomers != null && !debtorCustomers.isEmpty()){
+			System.out.println("Selected debtors size is==============>>>>>>>>>>"+debtorCustomers.size());
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("selectedEntities", debtorCustomers);
-			debtorsHandlerBizOp.execute(debtorCustomers.get(0).getFacility(), operation, map);
+			debtorsHandlerBizOp.execute(debtorCustomers.get(0).getFacility(), "updateDebtorsOnAkritiv", map);
 		}
 		return null;
 	}
