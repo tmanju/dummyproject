@@ -65,7 +65,11 @@
 		                    <map:value>com.thirdpillar.codify.loanpath.ValidationGroup$CustomerSubmit</map:value>
 		                </map:groups>
 		                <map:element name="triggerExpr"><![CDATA[return o.isIndividual();]]></map:element>
-		                <map:element name="matchedExpr"><![CDATA[return (o.ssn != empty);]]></map:element>
+		                <map:element name="matchedExpr"><![CDATA[if(o.ssn == empty){
+		                	return false;
+		                }else{
+		                	return true;
+		                }]]></map:element>
 			</map:constraint>
 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
 		                <map:message>{customer.ssn.length}</map:message>
@@ -76,10 +80,10 @@
 		                <map:element name="matchedExpr"><![CDATA[return (o.ssn ~= '[0-9]{9}');]]></map:element>
 			</map:constraint>
 			
-			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
 		                <map:message>{customer.primarySite.siteDetails.addresses.oneRequired}</map:message>
 		                <map:element name="matchedExpr"><![CDATA[return (o.?primarySite.?siteDetails.addresses != empty);]]></map:element>
-			</map:constraint>
+			</map:constraint> -->
 			
 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
 		        <map:message>{customer.primarySite.siteDetails.addresses.oneRequired}</map:message>
