@@ -1473,7 +1473,7 @@
 									<column name="debtor.eligibleARLimit" label="Eligible AR Limit"/>
 									<column name="debtor.concLimit" label="Concentration Limit %"/>
 									<column name="debtor.creditPeriod" label="Credit Period"/>
-									<column name="debtor.servicingIdentifier" label="Servicing Identifier"/>
+									<column name="debtor.syncedToAkritiv" label="Synced"/>
 									<column name="debtor.wfStatus" label="Decision"/>
 								</columns>
 								<edit-canvas src-entity="DebtorCustomer" src-file="crud.xml" />
@@ -2474,6 +2474,7 @@
 										<column name="debtor.ratingDescription" label="Rating Description"></column>
 										<column name="debtor.riskRating" label="Risk Rating"></column>
 										<column name="debtor.ratingDate" label="Date"></column>
+										<column name="debtor.syncedToAkritiv" label="Synced"/>
 										<column name="debtor.wfStatus" label="Status"></column>
 									</columns>
 									<edit-canvas id="Request.DebtorRiskRating">
@@ -2579,6 +2580,7 @@
 									<column name="debtor.eligibleARLimit" label="Eligible AR Limit"/>
 									<column name="debtor.concLimit" label="Concentration Limit %"/>
 									<column name="debtor.creditPeriod" label="Credit Period"/>
+									<column name="debtor.syncedToAkritiv" label="Synced"/>
 									<column name="debtor.wfStatus" label="Decision"></column>
 								</columns>
 								<edit-canvas id="Request.DebtorDecision">

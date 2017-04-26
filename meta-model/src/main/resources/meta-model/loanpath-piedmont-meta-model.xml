@@ -3234,7 +3234,7 @@
         	<field name="riskRating" type="text"/>
         	<field name="dbaName" type="text"/>
 			<field name="ratingDate" type="date"/>
-			<field name="nextReviewDate" type="date"/>
+			<field name="nextReviewDate" type="date" ruleTriggerOnEvent="true"/>
 			<field name="borrowingBaseRes" type="amount" length="18" ruleTriggerOnEvent="true"/>
         	<field name="akritivCustomer" type="boolean"/>
         	<field name="duplicateDbaNameValueDer" type="derived:text" />
@@ -3261,7 +3261,7 @@
                 <data>com.thirdpillar.foundation.model.WorkflowAware</data>
             </feature>
         	<find-queries>
-        		<query name="bySyncedToAkritiv" select="many">where syncedToAkritiv = :syncedToAkritiv</query>
+        		<query name="bySyncedToAkritiv" select="many">where syncedToAkritiv = :syncedToAkritiv and facility.request.refNumber = :refNumber</query>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
         		<query name="byAkritivCustomer" select="many"> where akritivCustomer = :akritivCustomer and facility is not null</query>
         		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
@@ -3300,7 +3300,7 @@
 				<lookup>
 					<param name="key">PERCENT_GUARANTEED</param>
 				</lookup>
-			</reference>            
+			</reference>
             <field name="primaryBorrower" type="boolean"/>
             <field name="primaryContact" type="boolean"/>
             <collection name="relatedRoles" collection-type="derived:list" entity-type="FacilityCustomerRole" relation="refers-to"/>

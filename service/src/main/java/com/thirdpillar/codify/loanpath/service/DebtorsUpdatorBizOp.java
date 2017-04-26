@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bouncycastle.cert.ocsp.Req;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.thirdpillar.codify.loanpath.model.DebtorCustomer;
+import com.thirdpillar.codify.loanpath.model.Request;
 import com.thirdpillar.foundation.model.BaseDataObject;
 import com.thirdpillar.foundation.service.AbstractBusinessOperation;
 import com.thirdpillar.foundation.service.EntityService;
@@ -21,7 +23,8 @@ public class DebtorsUpdatorBizOp extends AbstractBusinessOperation{
 	@Override
 	public Object execute(BaseDataObject entity, String operation, Object... params) {
 		EntityService es = new EntityService();
-		List<DebtorCustomer> debtorCustomers = (List<DebtorCustomer>)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncedToAkritiv", new String[]{"syncedToAkritiv"}, new Object[]{false}, 0, 100, null);
+		Request request = (Request)entity;
+		List<DebtorCustomer> debtorCustomers = (List<DebtorCustomer>)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncedToAkritiv", new String[]{"syncedToAkritiv","refNumber"}, new Object[]{false,request.getRefNumber()}, 0, 50, null);
 		if(debtorCustomers != null && !debtorCustomers.isEmpty()){
 			System.out.println("Selected debtors size is==============>>>>>>>>>>"+debtorCustomers.size());
 			Map<String, Object> map = new HashMap<String, Object>();

@@ -59,7 +59,7 @@
 					<value><![CDATA[entity.refNumber]]></value>
 				</entry>
 				<entry key="Debtor Name">
-					<value><![CDATA[entity]]></value>
+					<value><![CDATA[entity.facilityCustomerRole.customer]]></value>
 				</entry>
 				<entry key="Dilution Rate">
 					<value><![CDATA[entity.retention]]></value>
@@ -84,6 +84,7 @@
 		<property name="cellNames" >
 			<list>
 				<value>Debtor-Account</value>
+				<value>Debtor Name</value>
 				<value>Dilution Rate</value>
 				<value>Advance Rate</value>
 				<value>Eligible AR Limit"</value>

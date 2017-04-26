@@ -281,7 +281,6 @@
 	              <ref bean="interestCalcTrigger"/>
 	              <ref bean="facilityRenewalUpdatorTrigger"/>
 	              <ref bean="feeUpdatorTrigger"/>
-	              <!-- <ref bean="debtorsUpdatorTrigger"/> -->
 	          </list>          
 	     </property>
      </bean>
