@@ -40,8 +40,7 @@
                     boolean match = true;
                     if (o.facilityCustomerRoles != empty){
                         foreach(facilityCustomerRole : o.facilityCustomerRoles){
-                        	match=false;
-                            if (facilityCustomerRole.?customer.Individual && facilityCustomerRole.primaryContact && facilityCustomerRole.customer.ssn == null){
+                            if (facilityCustomerRole.?customer.Individual && facilityCustomerRole.primaryContact && facilityCustomerRole.customer.ssn == empty){
                             			match = false;
                             	}
                             }  
