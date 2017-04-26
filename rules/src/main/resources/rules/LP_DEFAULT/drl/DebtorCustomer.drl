@@ -138,6 +138,7 @@ rule "SetDbaNameOnCounterParty"
 			if(debtor.getFacilityCustomerRole().getCustomer() != null){
 				debtor.getFacilityCustomerRole().getCustomer().addToDbas(partyDba);
 			}
+			debtor.setSyncedToAkritiv(false);
 		}
 end
 
@@ -170,6 +171,7 @@ rule "DeleteDbaNameOnCounterParty"
 			if(debtor.getFacilityCustomerRole().getCustomer().getDbas() != null && !debtor.getFacilityCustomerRole().getCustomer().getDbas().isEmpty()){
 				debtor.getFacilityCustomerRole().getCustomer().getDbas().remove(partyDba);
 			}
+			debtor.setSyncedToAkritiv(false);
 		}
 end
 
@@ -201,7 +203,7 @@ end
 
 rule "SetSynctoAkritivOnPropsChange"
 	when
-		changeModelEvent:DebtorCustomer.ChangeModelEvent(property == "eligibleARLimit" || property == "retention" || property == "creditPeriod" || property == "concLimit" || property == "borrowingBaseRes", newValue != null)
+		changeModelEvent:DebtorCustomer.ChangeModelEvent(property == "eligibleARLimit" || property == "retention" || property == "creditPeriod" || property == "concLimit" || property == "borrowingBaseRes" || property == "nextReviewDate", newValue != null)
 	then
 		DebtorCustomer debtor = (DebtorCustomer)changeModelEvent.getEntity();
 		debtor.setSyncedToAkritiv(false);
