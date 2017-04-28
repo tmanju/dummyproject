@@ -485,6 +485,7 @@
             <field name="dunsLookup" type="secret"/>
             <field name="ssn" type="secret" input-mask="999-999-999" label="Social Security Number"/>
         	<field name="externalIdentifier" type="text" length="36" label="External ID" internal="true" tags="Header" indexed="true" unique="externalIdentifier"/>
+        	<field name="externalIdentifierLookup" type="text" length="255" internal="true"/>
         	<field name="portalCustomerId" type="text" length="36" label="Portal Customer ID" internal="true" tags="Header" indexed="true"/>
   			<field name="obligorNumber" type="text" label="Obligor Number"/>
   			<field name="obligorNumberDer" type="derived:text" label="Obligor Number"/>
@@ -2716,7 +2717,7 @@
             <field name="regbDttm" type="date-time" label="Reg B Start Date"/>
             <field name="regbDttmDer" type="derived:date-time" label="Reg B Start Date"/>
 			<field name="fullySecure" type="boolean" required="false" label="Customer willing to fully secure?:"/>
-			<field name="externalIdentifier" type="text" length="255" tags="Header" indexed="true" internal="true"/> 
+			<field name="externalIdentifier" type="text" length="255" tags="Header" indexed="true" internal="true"/>
 			<field name="sfdcAppOwnerId" type="text" length="255" internal="true" label="SFDC Owner ID"/>
 			<field name="sfdcAppOwnerName" type="text" length="255" internal="true"  label="SFDC Owner Name"/>			
 			<field name="portalAccessKey" type="text" length="255" internal="true" indexed="true" />       	

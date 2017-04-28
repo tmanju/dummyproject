@@ -272,32 +272,6 @@ rule "SetDocumentVersionOnUploadedStreamChange"
 end
 
 
-rule "SetUploadedDocumentsToCustomerFromRequestOnRequestSave"
-                agenda-group "SAVE" 
-                when
-                        #conditions
-        				req:Request(documentGroup != null)
-        				f:Facility() from req.allFacilities
-        	    then 
-        	    		 DocumentGroup reqDocGroup=(DocumentGroup)req.getDocumentGroup();
-        	    		 if(reqDocGroup.getUploadedDocuments()!= null){
-        	    		 logDebug(drools, "Processing request for id " + req.getId());	
-        	    			 EntityService es = new EntityService();
-	                      	List<FacilityCustomerRole> facCustomerRolesList= f.getFacilityCustomerRoles();
-						  	for(FacilityCustomerRole facCustomerRole : facCustomerRolesList){
-						   		Customer cus = facCustomerRole.getCustomer();
-						   		logDebug(drools, "Processing request to customer transfer for customer id " + cus.getId());
-						   		DocumentGroup cusDocGroup=null;
-						   		if(cus.getDocumentGroup() !=null){
-						   			cusDocGroup=(DocumentGroup)cus.getDocumentGroup();
-						   		}else{
-						   			cusDocGroup = (DocumentGroup)es.createNew(DocumentGroup.class);
-						   		}
-						   		logDebug(drools, "Processing request to customer transfer for document group id " + cusDocGroup.getId());//doc grp
-						}
-					}		
-end
-
 
 
 

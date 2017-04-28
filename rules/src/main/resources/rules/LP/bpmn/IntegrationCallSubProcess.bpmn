@@ -45,6 +45,17 @@
   <itemDefinition id="_8-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
   <itemDefinition id="_8-integrationResultStatusItem" structureRef="java.lang.String" />
 
+  <itemDefinition id="_10-contextEntityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_10-entityNameItem" structureRef="java.lang.String" />
+  <itemDefinition id="_10-entityOutItem" />
+  <itemDefinition id="_10-actionItem" structureRef="java.lang.String" />
+  <itemDefinition id="_10-entityInItem" />
+  <itemDefinition id="_10-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_10-clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_10-rootEntityItem" structureRef="com.thirdpillar.foundation.model.BaseDataObject" />
+  <itemDefinition id="_10-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_10-integrationResultStatusItem" structureRef="java.lang.String" />
+
   <process processType="Private" isExecutable="true" id="IntegrationCallSubProcess" name="Integration Call Sub Process" tns:packageName="LP" >
 
     <extensionElements>
@@ -99,6 +110,9 @@ if(clID==null || clID.equals("akritiv-internex")){
 			a.add(d.getFacilityCustomerRole().getCustomer());
 		}
 	}
+}else{
+	a.add(dataObject.getAccount().getCustomer());
+	a.add(entityInObj);
 }
 
 Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
@@ -121,9 +135,22 @@ context.setVariable("sfdcInputMap", inputMap);</script>
           <script>System.out.println("Updating data to CRM -==========================&gt;");
 Request dataObject = (Request) context.getVariable("contextEntity");
 
+List&lt;Object&gt; a = new ArrayList&lt;Object&gt;();
+for(Facility f : dataObject.getAllFacilities()){
+	for(FacilityCustomerRole fcr : f.getFacilityCustomerRoles()){
+		if(fcr.getPartyRole() != null &amp;&amp; fcr.getPartyRole().equals("PARTY_ROLE_TYPE_OWNER")){
+			a.add(fcr.getCustomer());			
+		}
+	}
+}
+
+a.add(dataObject);
+
+
 Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
 inputMap.put("contextEntity",dataObject);
-inputMap.put("entityOut",dataObject);
+inputMap.put("entityIn",dataObject);
+inputMap.put("entityOut",a);
 inputMap.put("objectType","application");
 inputMap.put("entity","application");
 inputMap.put("clientId","internex");
@@ -140,23 +167,10 @@ CodifyMessage.addMessage("ERR_INT_HTTP_REQ_FAIL",CodifyMessage.Severity.ERROR, n
 }else{
 	Request rq = (Request)context.getVariable("contextEntity");
 	IntegrationExchange integrationExchangeObj = (IntegrationExchange) context.getVariable("integrationExchange");
-	Request req = (Request)integrationExchange.getTaskOutput();
-
-    	StringBuffer buffer = new StringBuffer();
-    				if(rq.getServiceMessages() != null){
-    					rq.getServiceMessages().clear();
-    				}
-    				if(rq.getServiceMessages() != null){
-    					rq.getServiceMessages().addAll(req.getServiceMessages());
-    					for(ServiceMessage msg : req.getServiceMessages()){
-    						buffer.append(msg.getMessage());
-    						buffer.append("\n");
-    					}
-    				}
-    				if(buffer.toString().length()&gt;0){
-    					buffer = buffer.delete(buffer.length()-1, buffer.length());
-    					CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"CRM service",buffer.toString()});
-    				}			
+	System.out.println("******* Crm Update Done **********");
+rq.mergeCRMResponse(rq,rStatus,integrationExchangeObj);
+   				
+    							
 	System.out.println("******* Crm Update Successful");
 }
 
@@ -168,18 +182,18 @@ context.setVariable("integrationExchange",null);</script>
         <dataInput id="_6_inputInput" name="input" />
         <dataInput id="_6_entityInput" name="entity" />
         <dataInput id="_6_ServiceNameInput" name="ServiceName" />
-        <dataOutput id="_6_entityOutput" name="entity" />
         <dataOutput id="_6_ResultExchangeOutput" name="ResultExchange" />
         <dataOutput id="_6_ResultStatusOutput" name="ResultStatus" />
+        <dataOutput id="_6_entityOutput" name="entity" />
         <inputSet>
           <dataInputRefs>_6_inputInput</dataInputRefs>
           <dataInputRefs>_6_entityInput</dataInputRefs>
           <dataInputRefs>_6_ServiceNameInput</dataInputRefs>
         </inputSet>
         <outputSet>
-          <dataOutputRefs>_6_entityOutput</dataOutputRefs>
           <dataOutputRefs>_6_ResultExchangeOutput</dataOutputRefs>
           <dataOutputRefs>_6_ResultStatusOutput</dataOutputRefs>
+          <dataOutputRefs>_6_entityOutput</dataOutputRefs>
         </outputSet>
       </ioSpecification>
       <dataInputAssociation>
@@ -198,16 +212,16 @@ context.setVariable("integrationExchange",null);</script>
         </assignment>
       </dataInputAssociation>
       <dataOutputAssociation>
-        <sourceRef>_6_entityOutput</sourceRef>
-        <targetRef>contextEntity</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation>
         <sourceRef>_6_ResultExchangeOutput</sourceRef>
         <targetRef>integrationExchange</targetRef>
       </dataOutputAssociation>
       <dataOutputAssociation>
         <sourceRef>_6_ResultStatusOutput</sourceRef>
         <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_6_entityOutput</sourceRef>
+        <targetRef>contextEntity</targetRef>
       </dataOutputAssociation>
     </task>
     <endEvent id="_7" name="End" >
@@ -287,6 +301,29 @@ context.setVariable("integrationExchange",null);</script>
     <endEvent id="_9" name="End" >
         <terminateEventDefinition/>
     </endEvent>
+    <task id="_10" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_10_entityInput" name="entity" />
+        <dataInput id="_10_EntityInput" name="Entity" />
+        <inputSet>
+          <dataInputRefs>_10_entityInput</dataInputRefs>
+          <dataInputRefs>_10_EntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_10_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_10_EntityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_10_EntityInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
 
     <!-- connections -->
     <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
@@ -342,7 +379,7 @@ if(rootEntityObj != null &amp;&amp; clID!=null){
 
 return false;</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" />
+    <sequenceFlow id="_10-_7" sourceRef="_10" targetRef="_7" />
     <sequenceFlow id="_3-_8" sourceRef="_3" targetRef="_8" name="Akritiv Integration Call" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >String cID = (String) context.getVariable("clientId");
 System.out.println("======Client ID======="+cID);
@@ -356,6 +393,7 @@ return false;
 }</conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="_8-_9" sourceRef="_8" targetRef="_9" />
+    <sequenceFlow id="_6-_10" sourceRef="_6" targetRef="_10" />
 
   </process>
 
@@ -388,6 +426,9 @@ return false;
       <bpmndi:BPMNShape bpmnElement="_9" >
         <dc:Bounds x="151" y="500" width="48" height="48" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="610" y="498" width="100" height="48" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_1-_2" >
         <di:waypoint x="318" y="63" />
         <di:waypoint x="319" y="148" />
@@ -408,8 +449,8 @@ return false;
         <di:waypoint x="455" y="361" />
         <di:waypoint x="458" y="478" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_6-_7" >
-        <di:waypoint x="458" y="478" />
+      <bpmndi:BPMNEdge bpmnElement="_10-_7" >
+        <di:waypoint x="660" y="522" />
         <di:waypoint x="460" y="578" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_3-_8" >
@@ -419,6 +460,10 @@ return false;
       <bpmndi:BPMNEdge bpmnElement="_8-_9" >
         <di:waypoint x="172" y="409" />
         <di:waypoint x="175" y="524" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_10" >
+        <di:waypoint x="458" y="478" />
+        <di:waypoint x="660" y="522" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

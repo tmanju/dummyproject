@@ -96,7 +96,7 @@
 				<parameter localName="data" paramValue="ENTITY" paramType="Element"/>
 			</parameters>
 		</soaptransport>
-		<unmarshaler style="XSTREAM" resource="sforce-Full" contextLookupKey="entityIn" />
+		<unmarshaler style="XSTREAM" resource="Full" contextLookupKey="entityOut"/>
 	</service>
 	
 	

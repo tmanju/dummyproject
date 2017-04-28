@@ -523,6 +523,16 @@ rule "CustomerServicingIdentifier_Save"
     }
 end
 
+rule "CustomerExternalIdentifier_Save"
+  agenda-group "SAVE" 
+  when
+    customer:Customer()
+  then
+    if(customer.getExternalIdentifierLookup() != null && customer.getExternalIdentifier() == null){
+    	customer.setExternalIdentifier(customer.getExternalIdentifierLookup());
+    }
+end
+
 rule "GenerateDunsOnFlagChange"
   when
     changeModelEvent:Customer.ChangeModelEvent(property == "generateDuns")
