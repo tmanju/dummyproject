@@ -1459,7 +1459,8 @@
 						</tab>
 						
 						<tab id="tab.creditRequest.Application.FacilityCustomerRole" label="Debtor-Accounts">
-							<data-table name="facility.debtors" empty-message="No records found" row="debtor" paginator="true" sortBy="debtor.facilityCustomerRole.customer" sortOrder="ascending">
+							<data-table name="facility.debtors" empty-message="No records found" row="debtor" 
+							paginator="true" sortBy="debtor.facilityCustomerRole.customer" sortOrder="ascending">
 								<filters> 
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
@@ -1473,13 +1474,13 @@
 									<column name="debtor.eligibleARLimit" label="Eligible AR Limit"/>
 									<column name="debtor.concLimit" label="Concentration Limit %"/>
 									<column name="debtor.creditPeriod" label="Credit Period"/>
-									<column name="debtor.syncedToAkritiv" label="Synced"/>
+									<!-- <column name="debtor.syncedToAkritiv" label="Synced"/> -->
 									<column name="debtor.wfStatus" label="Decision"/>
 								</columns>
 								<edit-canvas src-entity="DebtorCustomer" src-file="crud.xml" />
 								<commands>
 									<command name="Export CSV" action="DebtorCustomer-ExportCSV" type="exportCsv"/>
-									<command selected="n &gt; 0" name="Send To Akritiv" action="sendDebtorsToAkritiv" type="businessOp" />
+									<!-- <command selected="n &gt; 0" name="Send To Akritiv" action="sendDebtorsToAkritiv" type="businessOp" /> -->
 								</commands>
 							</data-table>
 						</tab>
@@ -3393,7 +3394,7 @@
 		<command id="Decline" name="Decline" action="DeclineRequest" type="businessOp" confirmation-key="application.decline.confirm"/>
 		<command id="DeclineInit" name="Decline" action="DeclineRequestInit" type="businessOp" confirmation-key="application.decline.confirm" />
 		<command id="Withdraw" name="Withdraw" action="WithdrawRequest" type="businessOp" />
-		<command id="updateDebtors" name="Update Debtors" action="updateDebtorsOnAkritiv" type="businessOp"/>
+		<!-- <command id="updateDebtors" name="Update Debtors" action="updateDebtorsOnAkritiv" type="businessOp"/> -->
 		<command name="Resend" action="sendToAkritiv" type="businessOp" />
 	</commands>
 	<beans>
