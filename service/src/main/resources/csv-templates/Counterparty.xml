@@ -35,7 +35,9 @@
             <creditLimit></creditLimit>
             <maxCreditPeriod></maxCreditPeriod>
             <riskScoreDttm></riskScoreDttm>
-            <riskScore></riskScore>
+            <riskScore>
+            	<key></key>
+            </riskScore>
             <adjRiskScore>
             	<key></key>
             </adjRiskScore>
@@ -48,7 +50,9 @@
              	<key></key>
              </naicsCode>
              <publicCompany></publicCompany>
-             <website></website>
+             <website>
+             	<label></label>
+             </website>
             <primarySite>
                 <siteDetails>
                     <addresses>

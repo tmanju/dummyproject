@@ -565,3 +565,13 @@ rule "GenerateDunsOnFlagChange"
     	}
     }
 end
+
+rule "UpdateWebsiteOnSave"
+	agenda-group "SAVE"
+	when
+	customer:Customer()
+	then
+	if(customer.getWebsite() != null && customer.getWebsite().getLabel() != null && customer.getWebsite().getUrl() == null){
+		customer.getWebsite().setUrl(customer.getWebsite().getLabel());
+	} 
+end
