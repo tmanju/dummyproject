@@ -17,8 +17,6 @@ CREATE TABLE int_dev.lp_fac_srv_messages
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE int_dev.lp_fac_srv_messages
-  OWNER TO tps_dev_master;
 
 -- Index: int_dev.idx_lp_fac_srv_messages_1
 
@@ -58,10 +56,9 @@ CREATE TABLE int_dev.lp_fac_srv_messages_
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE int_dev.lp_fac_srv_messages_
-  OWNER TO tps_dev_master;
+
 
 ALTER TABLE int_dev.lp_debtor_cust ADD COLUMN synced_to_akritiv boolean;
 ALTER TABLE int_dev.lp_debtor_cust_ ADD COLUMN synced_to_akritiv boolean;
-update int_dev.lp_cust set synced_to_akritiv= true;
-update int_dev.lp_cust_ set synced_to_akritiv= true;
+update int_dev.lp_debtor_cust set synced_to_akritiv= true;
+update int_dev.lp_debtor_cust_ set synced_to_akritiv= true;
