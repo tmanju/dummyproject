@@ -2660,6 +2660,7 @@
 									</commands>
 								</edit-canvas>
 								<commands>
+									<command name="Export CSV" action="DebtorCustomer-ExportCSV" type="exportCsv"/>
 									<command selected="n &gt; 0" name="All Eligible" action="DebtorEligible" type="businessOp" />
 									<command selected="n &gt; 0" name="All InEligible" action="DebtorInEligible" type="businessOp" />
 								</commands>
