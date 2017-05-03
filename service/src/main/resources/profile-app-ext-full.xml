@@ -111,6 +111,11 @@
 	
 	<!-- sforce full profile start -->
 	<profile name="sforce-Full" extends="Full-No-Binary" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Account" inherit="true">
+			<includes>
+				<field name="customer"/>
+			</includes>
+		</class>
 		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
 			<excludes>
 				<field name="annualNetProfit"/>
