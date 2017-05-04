@@ -111,22 +111,15 @@
 	
 	<!-- sforce full profile start -->
 	<profile name="sforce-Full" extends="Full-No-Binary" cascade="update">
-		<class name="com.thirdpillar.codify.loanpath.model.Account" inherit="true">
-			<includes>
-				<field name="customer"/>
-			</includes>
-		</class>
 		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
 			<excludes>
 				<field name="annualNetProfit"/>
 				<field name="annualRevenue"/>
-				<field name="approved"/>
 				<field name="bankruptcyDeclared"/>
 				<field name="bankruptcyInfo"/>
 				<field name="debtorContact"/>
 				<field name="metaInfo"/>
 				<field name="borrowerRatings"/>
-				<field name="bureauData"/>
 				<field name="collaterals"/>
 				<field name="commentGroup"/>
 				<field name="currCitiEmployee"/>
@@ -140,16 +133,12 @@
 				<field name="duplicateCustomer"/>
 				<field name="electronicComAgrAccepted"/>
 				<field name="emailOptOut"/>
-				<field name="maxCreditPeriod"/>
 				<field name="medicalOrDentalProvider"/>
 				<field name="partyPermissionPullBureau"/>
 				<field name="privacyIndicator"/>
 				<field name="processInstanceId"/>
-				<field name="publicCompany"/>
-				<field name="reviewDate"/>
 				<field name="sessionId"/>
 				<field name="soleProprietor"/>
-				<field name="usCitizen"/>
 				<field name="verifiedForDeDup"/>
 				<field name="version"/>
 			</excludes>
