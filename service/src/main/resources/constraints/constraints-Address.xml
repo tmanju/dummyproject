@@ -35,12 +35,12 @@
       </map:constraint>
            
       </map:class>
-        <map:field name="city">
+        <!-- <map:field name="city">
 	  <map:constraint annotation="javax.validation.constraints.Pattern">
 		     <map:message>{address.city.pattern}</map:message>
 		     <map:element name="regexp">[a-zA-Z ]*</map:element>
 		   </map:constraint>  
-	  </map:field>
+	  </map:field> -->
 	 <!--  <map:field name="postalCode">
 	  <map:constraint annotation="javax.validation.constraints.Pattern">
 		     <map:message>{address.postalCode.pattern}</map:message>
