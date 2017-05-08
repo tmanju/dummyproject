@@ -425,7 +425,7 @@ public class Request extends BaseDataObject {
 	
 	class DebtorComparator implements Comparator<DebtorCustomer> {
 		public int compare(DebtorCustomer d1, DebtorCustomer d2){
-			return d1.getFacilityCustomerRole().getCustomer().getLegalName().compareTo(d2.getFacilityCustomerRole().getCustomer().getLegalName());
+			return d1.getFacilityCustomerRole().getCustomer().getLegalName().toLowerCase().compareTo(d2.getFacilityCustomerRole().getCustomer().getLegalName().toLowerCase());
 		}
 	}
 	

@@ -1460,7 +1460,7 @@
 						
 						<tab id="tab.creditRequest.Application.FacilityCustomerRole" label="Debtor-Accounts">
 							<data-table name="facility.debtors" empty-message="No records found" row="debtor" 
-							paginator="true" sortBy="debtor.facilityCustomerRole.customer.legalName" sortOrder="ascending">
+							paginator="true" sortBy="debtor.facilityCustomerRole.customer" sortOrder="ascending">
 								<filters> 
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
@@ -2468,7 +2468,7 @@
 							</data-table>
 						</tab>
 						<tab id="tab.Request.creditDecision.scoring.DebtorRiskRating" label="Debtor Risk Rating">
-								<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors" sortBy="debtor.facilityCustomerRole.customer.legalName" sortOrder="ascending">
+								<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors" sortBy="debtor.facilityCustomerRole.customer" sortOrder="ascending">
 									<columns>
 										<column name="debtor.refNumber" label="Debtor-Account"></column>
 										<column name="debtor.facilityCustomerRole.customer" label="Debtor Name"></column>
@@ -2567,8 +2567,7 @@
 							</data-table>
 					</tab>
 						<tab id="tab.Request.creditDecision.decision.DebtorDecision" label="Debtor Decision">
-							<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors" paginator="true"
-							 sortBy="debtor.facilityCustomerRole.customer.legalName" sortOrder="ascending">
+							<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors" paginator="true">
 								<filters> 
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
