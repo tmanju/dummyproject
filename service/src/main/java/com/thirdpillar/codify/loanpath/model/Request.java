@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -412,13 +413,20 @@ public class Request extends BaseDataObject {
 	
 	public List<DebtorCustomer> getAllDebtorsDer(){
 
-		List<DebtorCustomer> debtorCustomers = new ArrayList<DebtorCustomer>();
+		List<DebtorCustomer> debtorCustomers = new LinkedList<DebtorCustomer>();
 		for (Facility facility : getAllActiveFacilities()) {
 				for(DebtorCustomer dc : facility.getDebtors()){
 					debtorCustomers.add(dc);
 				}
 			}
+		Collections.sort(debtorCustomers, new DebtorComparator());
 		return debtorCustomers;
+	}
+	
+	class DebtorComparator implements Comparator<DebtorCustomer> {
+		public int compare(DebtorCustomer d1, DebtorCustomer d2){
+			return d1.getFacilityCustomerRole().getCustomer().getLegalName().compareTo(d2.getFacilityCustomerRole().getCustomer().getLegalName());
+		}
 	}
 	
 	public List<FacilityCustomerRole> getAllFacilityCustomerRoles() {
