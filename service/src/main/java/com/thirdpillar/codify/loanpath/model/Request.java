@@ -979,9 +979,13 @@ public class Request extends BaseDataObject {
 			}
 			for(Facility f : this.getAllFacilities()){
 				for(FacilityCustomerRole role : f.getFacilityCustomerRoles()){
-					if(role.getPartyRole() != null && role.getPartyRole().equals("PARTY_ROLE_TYPE_OWNER")){
-						role.setExternalIdentifier(externalRefId);
-						role.getCustomer().setExternalIdentifier(custExternalRefId);
+					if(role.getPartyRole() != null && role.getPartyRole().getKey().equals("PARTY_ROLE_TYPE_OWNER")){
+						if(externalRefId != null){
+							role.setExternalIdentifier(externalRefId);
+						}
+						if(custExternalRefId != null){
+							role.getCustomer().setExternalIdentifier(custExternalRefId);
+						}
 					}
 				}
 			}
