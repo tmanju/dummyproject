@@ -968,7 +968,9 @@ public class Request extends BaseDataObject {
 					
 					for(Facility f : rs.getAllFacilities()){
 						for(FacilityCustomerRole role : f.getFacilityCustomerRoles()){
-							externalRefId = role.getExternalIdentifier();
+							if(role.getPartyRole() != null && role.getPartyRole().getKey().equals("PARTY_ROLE_TYPE_OWNER")){
+								externalRefId = role.getExternalIdentifier();
+							}
 						}
 					}
 				}
