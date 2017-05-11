@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -412,13 +413,20 @@ public class Request extends BaseDataObject {
 	
 	public List<DebtorCustomer> getAllDebtorsDer(){
 
-		List<DebtorCustomer> debtorCustomers = new ArrayList<DebtorCustomer>();
+		List<DebtorCustomer> debtorCustomers = new LinkedList<DebtorCustomer>();
 		for (Facility facility : getAllActiveFacilities()) {
 				for(DebtorCustomer dc : facility.getDebtors()){
 					debtorCustomers.add(dc);
 				}
 			}
+		Collections.sort(debtorCustomers, new DebtorComparator());
 		return debtorCustomers;
+	}
+	
+	class DebtorComparator implements Comparator<DebtorCustomer> {
+		public int compare(DebtorCustomer d1, DebtorCustomer d2){
+			return d1.getFacilityCustomerRole().getCustomer().getLegalName().toLowerCase().compareTo(d2.getFacilityCustomerRole().getCustomer().getLegalName().toLowerCase());
+		}
 	}
 	
 	public List<FacilityCustomerRole> getAllFacilityCustomerRoles() {
@@ -960,7 +968,9 @@ public class Request extends BaseDataObject {
 					
 					for(Facility f : rs.getAllFacilities()){
 						for(FacilityCustomerRole role : f.getFacilityCustomerRoles()){
-							externalRefId = role.getExternalIdentifier();
+							if(role.getPartyRole() != null && role.getPartyRole().getKey().equals("PARTY_ROLE_TYPE_OWNER")){
+								externalRefId = role.getExternalIdentifier();
+							}
 						}
 					}
 				}
@@ -971,9 +981,13 @@ public class Request extends BaseDataObject {
 			}
 			for(Facility f : this.getAllFacilities()){
 				for(FacilityCustomerRole role : f.getFacilityCustomerRoles()){
-					if(role.getPartyRole() != null && role.getPartyRole().equals("PARTY_ROLE_TYPE_OWNER")){
-						role.setExternalIdentifier(externalRefId);
-						role.getCustomer().setExternalIdentifier(custExternalRefId);
+					if(role.getPartyRole() != null && role.getPartyRole().getKey().equals("PARTY_ROLE_TYPE_OWNER")){
+						if(externalRefId != null){
+							role.setExternalIdentifier(externalRefId);
+						}
+						if(custExternalRefId != null){
+							role.getCustomer().setExternalIdentifier(custExternalRefId);
+						}
 					}
 				}
 			}

@@ -2567,7 +2567,7 @@
 							</data-table>
 					</tab>
 						<tab id="tab.Request.creditDecision.decision.DebtorDecision" label="Debtor Decision">
-							<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors" paginator="true" sortBy="debtor.facilityCustomerRole.customer" sortOrder="ascending">
+							<data-table name="Request.allDebtorsDer" row="debtor" label="Debtors" paginator="true">
 								<filters> 
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
@@ -2581,7 +2581,6 @@
 									<column name="debtor.eligibleARLimit" label="Eligible AR Limit"/>
 									<column name="debtor.concLimit" label="Concentration Limit %"/>
 									<column name="debtor.creditPeriod" label="Credit Period"/>
-									<column name="debtor.syncedToAkritiv" label="Synced"/>
 									<column name="debtor.wfStatus" label="Decision"></column>
 								</columns>
 								<edit-canvas id="Request.DebtorDecision">

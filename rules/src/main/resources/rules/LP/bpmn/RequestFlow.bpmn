@@ -3175,53 +3175,6 @@
   <itemDefinition id="_318-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
   <itemDefinition id="_318-teamsItem" structureRef="java.util.List" />
 
-  <itemDefinition id="_319-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
-  <itemDefinition id="_319-nextFacilityStatusItem" structureRef="String" />
-  <itemDefinition id="_319-customersEmailListItem" structureRef="String" />
-  <itemDefinition id="_319-borrowerNameItem" structureRef="String" />
-  <itemDefinition id="_319-borrowerFirstNameItem" structureRef="String" />
-  <itemDefinition id="_319-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
-  <itemDefinition id="_319-bureauInputMapItem" structureRef="java.util.Map" />
-  <itemDefinition id="_319-callConsumerBureauItem" structureRef="String" />
-  <itemDefinition id="_319-bureauSuccessItem" structureRef="String" />
-  <itemDefinition id="_319-mcdForLargeLoanItem" structureRef="String" />
-  <itemDefinition id="_319-isValidFicoScoreItem" structureRef="String" />
-  <itemDefinition id="_319-moveToStatusItem" structureRef="String" />
-  <itemDefinition id="_319-complianceSuccessItem" structureRef="String" />
-  <itemDefinition id="_319-manualDecisionItem" structureRef="String" />
-  <itemDefinition id="_319-requestCustomersItem" structureRef="java.util.List" />
-  <itemDefinition id="_319-customerRoleItem" structureRef="String" />
-  <itemDefinition id="_319-custFirstNameItem" structureRef="String" />
-  <itemDefinition id="_319-callProvisionItem" structureRef="String" />
-  <itemDefinition id="_319-provisionCustomersMapItem" structureRef="java.util.Map" />
-  <itemDefinition id="_319-borrowersItem" structureRef="java.util.Set" />
-  <itemDefinition id="_319-coBorrowersItem" structureRef="java.util.Set" />
-  <itemDefinition id="_319-requestDecisionItem" structureRef="String" />
-  <itemDefinition id="_319-decisionFromTaskItem" structureRef="String" />
-  <itemDefinition id="_319-frozenReportsItem" structureRef="java.util.List" />
-  <itemDefinition id="_319-custNameItem" structureRef="String" />
-  <itemDefinition id="_319-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
-  <itemDefinition id="_319-emailRecipientItem" structureRef="String" />
-  <itemDefinition id="_319-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
-  <itemDefinition id="_319-coborrowerNameItem" structureRef="String" />
-  <itemDefinition id="_319-coborrowerFirstNameItem" structureRef="String" />
-  <itemDefinition id="_319-taskActionItem" structureRef="String" />
-  <itemDefinition id="_319-creFlowItem" structureRef="String" />
-  <itemDefinition id="_319-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
-  <itemDefinition id="_319-callCommercialBureauItem" structureRef="String" />
-  <itemDefinition id="_319-consumerBureauInputMapItem" structureRef="java.util.Map" />
-  <itemDefinition id="_319-commercialBureauInputMapItem" structureRef="java.util.Map" />
-  <itemDefinition id="_319-isDocumentStatusRejectedItem" structureRef="String" />
-  <itemDefinition id="_319-autoDecisionMinYearsItem" structureRef="String" />
-  <itemDefinition id="_319-creditAnalystItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
-  <itemDefinition id="_319-sfdcInputMapItem" structureRef="java.util.Map" />
-  <itemDefinition id="_319-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
-  <itemDefinition id="_319-integrationResultStatusItem" structureRef="String" />
-  <itemDefinition id="_319-nextDebtorStatusItem" structureRef="String" />
-  <itemDefinition id="_319-clientIdItem" structureRef="java.lang.String" />
-  <itemDefinition id="_319-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
-  <itemDefinition id="_319-teamsItem" structureRef="java.util.List" />
-
   <itemDefinition id="_338-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
   <itemDefinition id="_338-nextFacilityStatusItem" structureRef="String" />
   <itemDefinition id="_338-customersEmailListItem" structureRef="String" />
@@ -3550,6 +3503,53 @@
   <itemDefinition id="_368-clientIdItem" structureRef="java.lang.String" />
   <itemDefinition id="_368-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
   <itemDefinition id="_368-teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_370-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_370-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_370-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_370-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_370-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_370-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_370-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_370-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_370-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_370-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_370-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_370-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_370-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_370-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_370-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_370-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_370-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_370-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_370-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_370-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_370-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_370-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_370-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_370-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_370-custNameItem" structureRef="String" />
+  <itemDefinition id="_370-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_370-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_370-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_370-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_370-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_370-taskActionItem" structureRef="String" />
+  <itemDefinition id="_370-creFlowItem" structureRef="String" />
+  <itemDefinition id="_370-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_370-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_370-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_370-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_370-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_370-autoDecisionMinYearsItem" structureRef="String" />
+  <itemDefinition id="_370-creditAnalystItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_370-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_370-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_370-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_370-nextDebtorStatusItem" structureRef="String" />
+  <itemDefinition id="_370-clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_370-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
+  <itemDefinition id="_370-teamsItem" structureRef="java.util.List" />
 
   <itemDefinition id="_66_multiInstanceItemType" />
 
@@ -8689,81 +8689,6 @@ context.setVariable("integrationExchange",null);</script>
         <targetRef>_318_entityInput</targetRef>
       </dataInputAssociation>
     </task>
-    <task id="_319" name="Update to CRM" tns:taskName="IntegrationTask" >
-      <extensionElements>
-        <tns:onEntry-script scriptFormat="http://www.java.com/java">
-          <script>System.out.println("Updating data to CRM - Approved to be Notified==========================&gt;");
-Request dataObject = (Request) context.getVariable("contextEntity");
-
-Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
-inputMap.put("contextEntity",dataObject);
-inputMap.put("entityOut",dataObject);
-inputMap.put("entity","application");
-inputMap.put("clientId","internex");
-inputMap.put("action","update");
-
-context.setVariable("sfdcInputMap", inputMap);</script>
-        </tns:onEntry-script>
-        <tns:onExit-script scriptFormat="http://www.java.com/java">
-          <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
- if ("ERROR".equals(rStatus)) {
- System.out.println("******* Call Failed");
-	CodifyMessage.addMessage("ERR_INT_HTTP_RESP_ERROR",CodifyMessage.Severity.ERROR, new String[]{"CRM service"});
-	CodifyMessage.addMessage("ERR_INT_HTTP_REQ_FAIL",CodifyMessage.Severity.ERROR, new String[]{"CRM service"});
- }else{
-	System.out.println("******* Crm Update Successful");
-}
-
-context.setVariable("integrationResultStatus",null);
-context.setVariable("integrationExchange",null);</script>
-        </tns:onExit-script>
-      </extensionElements>
-      <ioSpecification>
-        <dataInput id="_319_inputInput" name="input" />
-        <dataInput id="_319_entityInput" name="entity" />
-        <dataInput id="_319_ServiceNameInput" name="ServiceName" />
-        <dataOutput id="_319_ResultExchangeOutput" name="ResultExchange" />
-        <dataOutput id="_319_ResultStatusOutput" name="ResultStatus" />
-        <dataOutput id="_319_entityOutput" name="entity" />
-        <inputSet>
-          <dataInputRefs>_319_inputInput</dataInputRefs>
-          <dataInputRefs>_319_entityInput</dataInputRefs>
-          <dataInputRefs>_319_ServiceNameInput</dataInputRefs>
-        </inputSet>
-        <outputSet>
-          <dataOutputRefs>_319_ResultExchangeOutput</dataOutputRefs>
-          <dataOutputRefs>_319_ResultStatusOutput</dataOutputRefs>
-          <dataOutputRefs>_319_entityOutput</dataOutputRefs>
-        </outputSet>
-      </ioSpecification>
-      <dataInputAssociation>
-        <sourceRef>sfdcInputMap</sourceRef>
-        <targetRef>_319_inputInput</targetRef>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <sourceRef>contextEntity</sourceRef>
-        <targetRef>_319_entityInput</targetRef>
-      </dataInputAssociation>
-      <dataInputAssociation>
-        <targetRef>_319_ServiceNameInput</targetRef>
-        <assignment>
-          <from xsi:type="tFormalExpression">crmService</from>
-          <to xsi:type="tFormalExpression">_319_ServiceNameInput</to>
-        </assignment>
-      </dataInputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_319_ResultExchangeOutput</sourceRef>
-        <targetRef>integrationExchange</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_319_ResultStatusOutput</sourceRef>
-        <targetRef>integrationResultStatus</targetRef>
-      </dataOutputAssociation>
-      <dataOutputAssociation>
-        <sourceRef>_319_entityOutput</sourceRef>
-        <targetRef>contextEntity</targetRef>
-      </dataOutputAssociation>
-    </task>
     <callActivity id="_320" name="Update to CRM SP" calledElement="UpdateIntegrationCallProcess" >
       <extensionElements>
         <tns:onEntry-script scriptFormat="http://www.java.com/java">
@@ -9505,6 +9430,48 @@ System.out.println("======Exit Credit Analysis Custom User Task========");</scri
         <targetRef>_368_entityInput</targetRef>
       </dataInputAssociation>
     </task>
+    <callActivity id="_369" name="Update to CRM" calledElement="UpdateIntegrationCallProcess" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("clientId","internex");</script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>context.setVariable("clientId",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_369_contextEntityInput" name="contextEntity" />
+        <dataInput id="_369_clientIdInput" name="clientId" />
+        <inputSet>
+          <dataInputRefs>_369_contextEntityInput</dataInputRefs>
+          <dataInputRefs>_369_clientIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_369_contextEntityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>clientId</sourceRef>
+        <targetRef>_369_clientIdInput</targetRef>
+      </dataInputAssociation>
+    </callActivity>
+    <task id="_370" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_370_entityInput" name="entity" />
+        <inputSet>
+          <dataInputRefs>_370_entityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_370_entityInput</targetRef>
+      </dataInputAssociation>
+    </task>
 
     <!-- connections -->
     <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
@@ -10141,7 +10108,6 @@ if ("true".equals(cre)) {
     <sequenceFlow id="_7-_301" sourceRef="_7" targetRef="_301" />
     <sequenceFlow id="_101-_316" sourceRef="_101" targetRef="_316" />
     <sequenceFlow id="_12-_318" sourceRef="_12" targetRef="_318" />
-    <sequenceFlow id="_318-_319" sourceRef="_318" targetRef="_319" />
     <sequenceFlow id="_80-_320" sourceRef="_80" targetRef="_320" />
     <sequenceFlow id="_244-_321" sourceRef="_244" targetRef="_321" />
     <sequenceFlow id="_133-_322" sourceRef="_133" targetRef="_322" />
@@ -10162,7 +10128,7 @@ return true;
 }
 return false;</conditionExpression>
     </sequenceFlow>
-    <sequenceFlow id="_329-_336" sourceRef="_329" targetRef="_336" />
+    <sequenceFlow id="_370-_336" sourceRef="_370" targetRef="_336" />
     <sequenceFlow id="_202-_337" sourceRef="_202" targetRef="_337" />
     <sequenceFlow id="_334-_338" sourceRef="_334" targetRef="_338" name="Akritiv call successful" tns:priority="1" >
       <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Request r = (Request) context.getVariable("contextEntity");
@@ -10191,8 +10157,10 @@ return false;</conditionExpression>
     <sequenceFlow id="_342-_363" sourceRef="_342" targetRef="_363" />
     <sequenceFlow id="_363-_364" sourceRef="_363" targetRef="_364" />
     <sequenceFlow id="_82-_365" sourceRef="_82" targetRef="_365" />
-    <sequenceFlow id="_319-_367" sourceRef="_319" targetRef="_367" />
+    <sequenceFlow id="_369-_367" sourceRef="_369" targetRef="_367" />
     <sequenceFlow id="_332-_368" sourceRef="_332" targetRef="_368" />
+    <sequenceFlow id="_318-_369" sourceRef="_318" targetRef="_369" />
+    <sequenceFlow id="_329-_370" sourceRef="_329" targetRef="_370" />
 
   </process>
 
@@ -10915,9 +10883,6 @@ return false;</conditionExpression>
       <bpmndi:BPMNShape bpmnElement="_318" >
         <dc:Bounds x="484" y="341" width="100" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_319" >
-        <dc:Bounds x="484" y="458" width="100" height="48" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_320" >
         <dc:Bounds x="2342" y="932" width="148" height="48" />
       </bpmndi:BPMNShape>
@@ -11034,6 +10999,12 @@ return false;</conditionExpression>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_368" >
         <dc:Bounds x="3007" y="463" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_369" >
+        <dc:Bounds x="360" y="422" width="110" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_370" >
+        <dc:Bounds x="3909" y="232" width="100" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_66-2-1-_66-2-2" >
         <di:waypoint x="133" y="50" />
@@ -12017,10 +11988,6 @@ return false;</conditionExpression>
         <di:waypoint x="527" y="233" />
         <di:waypoint x="534" y="365" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_318-_319" >
-        <di:waypoint x="534" y="365" />
-        <di:waypoint x="534" y="482" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_80-_320" >
         <di:waypoint x="2406" y="798" />
         <di:waypoint x="2416" y="956" />
@@ -12077,8 +12044,8 @@ return false;</conditionExpression>
         <di:waypoint x="3512" y="197" />
         <di:waypoint x="3517" y="287" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_329-_336" >
-        <di:waypoint x="3732" y="318" />
+      <bpmndi:BPMNEdge bpmnElement="_370-_336" >
+        <di:waypoint x="3959" y="256" />
         <di:waypoint x="3729" y="366" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_202-_337" >
@@ -12153,13 +12120,21 @@ return false;</conditionExpression>
         <di:waypoint x="2427" y="1204" />
         <di:waypoint x="2428" y="1332" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_319-_367" >
-        <di:waypoint x="534" y="482" />
+      <bpmndi:BPMNEdge bpmnElement="_369-_367" >
+        <di:waypoint x="415" y="446" />
         <di:waypoint x="535" y="568" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_332-_368" >
         <di:waypoint x="3061" y="416" />
         <di:waypoint x="3057" y="487" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_318-_369" >
+        <di:waypoint x="534" y="365" />
+        <di:waypoint x="415" y="446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_329-_370" >
+        <di:waypoint x="3732" y="318" />
+        <di:waypoint x="3959" y="256" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
