@@ -98,6 +98,7 @@
 					<field name="customer.legalEntityType" label="Legal Entity Type" />
 					<field name="customer.federalTaxId" label="Taxpayer ID(FEIN)" />
 					<field name="customer.duns" label="DUNS *" />
+					<field name="customer.generateDuns" label="Generate DUNS number" targetFields="customer.duns"/>
 					<field name="customer.numOfEmployees" label="Number of Employees" />
 					<field name="customer.businessStartDttm" label="Business Start Date" targetFields="customer.yearsInBusinessDer"/>
 					<field name="customer.yearsInBusinessDer" label="Years In Business"/>

@@ -428,6 +428,7 @@
                     <param name="groupMvel"><![CDATA[if(thiz.isDebtor()||thiz.isAccount()) {return 'CUSTOMER_TYPE_ROLE_DEBTOR'; } else {return 'CUSTOMER_TYPE_ANY_ROLE'; }]]></param>
                 </lookup>
             </reference>
+            <field name="generateDuns" type="boolean" ruleTriggerOnEvent="true"/>
         	<field name="publicCompany" type="boolean"/>
             <field name="soleProprietor" type="boolean" label="Sole Proprietor"/>
             <field name="refNumber" type="auto" tags="Header"/>
@@ -484,6 +485,7 @@
             <field name="dunsLookup" type="secret"/>
             <field name="ssn" type="secret" input-mask="999-999-999" label="Social Security Number"/>
         	<field name="externalIdentifier" type="text" length="36" label="External ID" internal="true" tags="Header" indexed="true" unique="externalIdentifier"/>
+        	<field name="externalIdentifierLookup" type="text" length="255" internal="true"/>
         	<field name="portalCustomerId" type="text" length="36" label="Portal Customer ID" internal="true" tags="Header" indexed="true"/>
   			<field name="obligorNumber" type="text" label="Obligor Number"/>
   			<field name="obligorNumberDer" type="derived:text" label="Obligor Number"/>
@@ -2715,7 +2717,7 @@
             <field name="regbDttm" type="date-time" label="Reg B Start Date"/>
             <field name="regbDttmDer" type="derived:date-time" label="Reg B Start Date"/>
 			<field name="fullySecure" type="boolean" required="false" label="Customer willing to fully secure?:"/>
-			<field name="externalIdentifier" type="text" length="255" tags="Header" indexed="true" internal="true"/> 
+			<field name="externalIdentifier" type="text" length="255" tags="Header" indexed="true" internal="true"/>
 			<field name="sfdcAppOwnerId" type="text" length="255" internal="true" label="SFDC Owner ID"/>
 			<field name="sfdcAppOwnerName" type="text" length="255" internal="true"  label="SFDC Owner Name"/>			
 			<field name="portalAccessKey" type="text" length="255" internal="true" indexed="true" />       	
@@ -2905,6 +2907,7 @@
         	<field name="refNumber" type="auto" label="Credit Facility Number" tags="Header"/>
         	<field name="linkToCheckingAccount" type="text"/>
         	<field name="obligationNumber" type="text" />
+        	<collection name="serviceMessages" collection-type="list" entity-type="ServiceMessage" relation="owner"/>
             <reference name="facilityCategory" entity-type="AttributeChoice" relation="refers-to">
                 <lookup>
                     <param name="key">CREDIT_FACILITY_CATEGORY</param>
@@ -3221,22 +3224,23 @@
         
         <entity name="DebtorCustomer" stereotype="managed" label="Debtor-Account">
         	<field name="eligibleARLimit" type="amount" ruleTriggerOnEvent="true" length="18"/>
-        	<field name="concLimit" type="amount"/>
+        	<field name="concLimit" type="amount" ruleTriggerOnEvent="true"/>
         	<field name="retention" type="amount" ruleTriggerOnEvent="true"/>
         	<field name="fundingLimit" type="amount" length="18" internal="true"/>
         	<field name="refNumber" type="auto" tags="Header"/>
-        	<field name="creditPeriod" type="number" length="9"/>
+        	<field name="creditPeriod" type="number" length="9" ruleTriggerOnEvent="true"/>
         	<field name="advanceRate" type="number" internal="true" />
         	<field name="servicingIdentifier" type="text" internal="true" indexed="true" tags="Header"/>
         	<field name="servicingIdentifierLookup" type="text" internal="true" indexed="true" tags="Header" ruleTriggerOnEvent="true"/>
         	<field name="riskRating" type="text"/>
         	<field name="dbaName" type="text"/>
 			<field name="ratingDate" type="date"/>
-			<field name="nextReviewDate" type="date"/>
-			<field name="borrowingBaseRes" type="amount" length="18"/>
+			<field name="nextReviewDate" type="date" ruleTriggerOnEvent="true"/>
+			<field name="borrowingBaseRes" type="amount" length="18" ruleTriggerOnEvent="true"/>
         	<field name="akritivCustomer" type="boolean"/>
         	<field name="duplicateDbaNameValueDer" type="derived:text" />
         	<field name="dbaNameValueDer" type="derived:text" />
+        	<field name="syncedToAkritiv" type="boolean"/>
         	<!-- <reference name="account" entity-type="Account" relation="owner" ruleTriggerOnEvent="true"/> -->
         	<reference name="ratingDescription" entity-type="AttributeChoice" relation="refers-to">
                 <lookup>
@@ -3258,6 +3262,7 @@
                 <data>com.thirdpillar.foundation.model.WorkflowAware</data>
             </feature>
         	<find-queries>
+        		<query name="bySyncedToAkritiv" select="many">where syncedToAkritiv = :syncedToAkritiv and facility.request.refNumber = :refNumber</query>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
         		<query name="byAkritivCustomer" select="many"> where akritivCustomer = :akritivCustomer and facility is not null</query>
         		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
@@ -3296,7 +3301,7 @@
 				<lookup>
 					<param name="key">PERCENT_GUARANTEED</param>
 				</lookup>
-			</reference>            
+			</reference>
             <field name="primaryBorrower" type="boolean"/>
             <field name="primaryContact" type="boolean"/>
             <collection name="relatedRoles" collection-type="derived:list" entity-type="FacilityCustomerRole" relation="refers-to"/>
