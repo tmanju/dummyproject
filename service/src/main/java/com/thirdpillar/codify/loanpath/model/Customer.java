@@ -74,6 +74,9 @@ public class Customer {
 	
 	@Transient
 	private String fieldName="";
+	
+	@Transient
+	private String tempDuns;
 
 	// ~ Methods
 	// --------------------------------------------------------------------------------------------------------
@@ -1042,4 +1045,12 @@ public class Customer {
     public BureauData getDefaultBureauData(){
     	return (this.getBureauData() != null && !this.getBureauData().isEmpty()) ? this.getBureauData().get(0) : null;
     }
+
+	public String getTempDuns() {
+		return tempDuns;
+	}
+
+	public void setTempDuns(String tempDuns) {
+		this.tempDuns = tempDuns;
+	}
 }

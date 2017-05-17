@@ -116,6 +116,50 @@
 				<field name="customer"/>
 			</includes>
 		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
+			<excludes>
+				<field name="annualNetProfit"/>
+				<field name="annualRevenue"/>
+				<field name="bankruptcyDeclared"/>
+				<field name="bankruptcyInfo"/>
+				<field name="debtorContact"/>
+				<field name="metaInfo"/>
+				<field name="borrowerRatings"/>
+				<field name="collaterals"/>
+				<field name="commentGroup"/>
+				<field name="currCitiEmployee"/>
+				<field name="customerExposureLimits"/>
+				<field name="customerRelations"/>
+				<field name="defaultEvents"/>
+				<field name="disclosePersonalInfo"/>
+				<field name="disclosureStmtCommunicated"/>
+				<field name="disclosuresAccepted"/>
+				<field name="doNotCall"/>
+				<field name="duplicateCustomer"/>
+				<field name="electronicComAgrAccepted"/>
+				<field name="emailOptOut"/>
+				<field name="medicalOrDentalProvider"/>
+				<field name="partyPermissionPullBureau"/>
+				<field name="privacyIndicator"/>
+				<field name="processInstanceId"/>
+				<field name="sessionId"/>
+				<field name="soleProprietor"/>
+				<field name="verifiedForDeDup"/>
+				<field name="version"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BankAndTrade" inherit="true">
+			<excludes>
+				<field name="banksTradeContactInfo"/>
+				<field name="doNotDebit"/>
+				<field name="lineOfCreditAmount"/>
+				<field name="month1DepositAmount"/>
+				<field name="month2DepositAmount"/>
+				<field name="month3DepositAmount"/>
+				<field name="presentBalance"/>
+				<field name="version"/>
+			</excludes>
+		</class>
 		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
 			<includes>
 				<field name="salesOfficer"/>
@@ -128,6 +172,13 @@
 			</includes>
 			<excludes>
 				<field name="allRelParRskGding"/>
+				<field name="exposure"/>
+				<field name="documentGroup"/>
+				<field name="approval"/>
+				<field name="appScorings"/>
+				<field name="metaInfo"/>
+				<field name="version"/>
+				<field name="serviceMessages"/>
 			</excludes>
 		</class>
 		<class name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" inherit="true">
@@ -146,6 +197,13 @@
 				<field name="program"/>
 				<field name="partner"/>
 			</includes>
+			<excludes>
+				<field name="coasetDefinition"/>
+				<field name="withCheckAccess"/>
+				<field name="version"/>
+				<field name="sessionId"/>
+				<field name="processInstanceId"/>
+			</excludes>
 		</class>
 		<class name="com.thirdpillar.codify.loanpath.model.Structure" inherit="true">
 			<includes>
@@ -183,42 +241,143 @@
 			</includes>
 		</class>
 
-		<class name="com.thirdpillar.codify.loanpath.model.Exposure" inherit="true">
+	</profile>
+	
+	<profile name="sforce-DBA-Full" extends="Full-No-Binary" cascade="update">
+		<class name="com.thirdpillar.codify.loanpath.model.Customer" inherit="true">
+			<excludes>
+				<field name="annualNetProfit"/>
+				<field name="annualRevenue"/>
+				<field name="approved"/>
+				<field name="bankruptcyDeclared"/>
+				<field name="bankruptcyInfo"/>
+				<field name="debtorContact"/>
+				<field name="metaInfo"/>
+				<field name="borrowerRatings"/>
+				<field name="bureauData"/>
+				<field name="collaterals"/>
+				<field name="commentGroup"/>
+				<field name="currCitiEmployee"/>
+				<field name="customerExposureLimits"/>
+				<field name="customerRelations"/>
+				<field name="defaultEvents"/>
+				<field name="disclosePersonalInfo"/>
+				<field name="disclosureStmtCommunicated"/>
+				<field name="disclosuresAccepted"/>
+				<field name="doNotCall"/>
+				<field name="duplicateCustomer"/>
+				<field name="electronicComAgrAccepted"/>
+				<field name="emailOptOut"/>
+				<field name="maxCreditPeriod"/>
+				<field name="medicalOrDentalProvider"/>
+				<field name="partyPermissionPullBureau"/>
+				<field name="privacyIndicator"/>
+				<field name="processInstanceId"/>
+				<field name="publicCompany"/>
+				<field name="reviewDate"/>
+				<field name="sessionId"/>
+				<field name="soleProprietor"/>
+				<field name="usCitizen"/>
+				<field name="verifiedForDeDup"/>
+				<field name="version"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BankAndTrade" inherit="true">
+			<excludes>
+				<field name="banksTradeContactInfo"/>
+				<field name="doNotDebit"/>
+				<field name="lineOfCreditAmount"/>
+				<field name="month1DepositAmount"/>
+				<field name="month2DepositAmount"/>
+				<field name="month3DepositAmount"/>
+				<field name="presentBalance"/>
+				<field name="version"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Request" inherit="true">
 			<includes>
-				<field name="totalBorrowerRequestedExposure"/>
-				<field name="totalContingentRequestedExposure"/>
-				<field name="totalCalculatedRequestedExposure"/>
-				<field name="totalOtherRequestedExposure"/>
-				<field name="totalRelationshipRequestedExposure"/>
-				<field name="totalBorrowerOutstandingExposure"/>
-				<field name="totalContingentOutstandingExposure"/>
-				<field name="totalCalculatedOutstandingExposure"/>
-				<field name="totalOtherOutstandingExposure"/>
-				<field name="totalRelationshipOutstandingExposure"/>
-				<field name="totalBorrowerExposure"/>
-				<field name="totalContingentExposure"/>
-				<field name="totalCalculatedExposure"/>
-				<field name="totalOtherExposure"/>
-				<field name="totalRelationshipExposure"/>
-				<field name="totalBorrowerRequestedUnsecuredExposure"/>
-				<field name="totalContingentRequestedUnsecuredExposure"/>
-				<field name="totalCalculatedRequestedUnsecuredExposure"/>
-				<field name="totalOtherRequestedUnsecuredExposure"/>
-				<field name="totalRelationshipRequestedUnsecuredExposure"/>
-				<field name="totalBorrowerOutstandingUnsecuredExposure"/>
-				<field name="totalContingentOutstandingUnsecuredExposure"/>
-				<field name="totalCalculatedOutstandingUnsecuredExposure"/>
-				<field name="totalOtherOutstandingUnsecuredExposure"/>
-				<field name="totalRelationshipOutstandingUnsecuredExposure"/>
-				<field name="totalBorrowerUnsecuredExposure"/>
-				<field name="totalContingentUnsecuredExposure"/>
-				<field name="totalCalculatedUnsecuredExposure"/>
-				<field name="totalOtherUnsecuredExposure"/>
-				<field name="totalRelationshipUnsecuredExposure"/>
+				<field name="salesOfficer"/>
+				<field name="account"/>
+				<field name="companyOverview"/>
+				<field name="debtorOverview"/>
+				<field name="clientOverview"/>
+				<field name="mgmtOverview"/>
+				<field name="dealOverview"/>
+			</includes>
+			<excludes>
+				<field name="allRelParRskGding"/>
+				<field name="exposure"/>
+				<field name="documentGroup"/>
+				<field name="approval"/>
+				<field name="appScorings"/>
+				<field name="metaInfo"/>
+				<field name="version"/>
+				<field name="serviceMessages"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.FacilityCustomerRole" inherit="true">
+			<includes>
+				<field name="customer"/>
+			</includes>
+		</class>		
+		<class name="com.thirdpillar.codify.loanpath.model.User" inherit="true">
+			<includes>
+				<field name="contact"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Facility" inherit="true">
+			<includes>
+				<field name="facilityCategory"/>
+				<field name="program"/>
+				<field name="partner"/>
+			</includes>
+			<excludes>
+				<field name="coasetDefinition"/>
+				<field name="withCheckAccess"/>
+				<field name="version"/>
+				<field name="sessionId"/>
+				<field name="processInstanceId"/>
+				<field name="debtors"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Structure" inherit="true">
+			<includes>
+				<field name="currency"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Contact" inherit="true">
+			<includes>
+				<field name="state" profile="Header"/>
+			</includes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.Document" inherit="true">
+			<includes>
+				<field name="autoDocId"/>
+			</includes>
+			<excludes>
+				<field name="uploadedStream"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.BureauReport" inherit="true">
+			<includes>
+				<field name="pulledBy"/>
+			</includes>
+			<excludes>
+				<field name="responseXml"/>
+				<field name="responsePdf"/>
+				<field name="requestXml"/>
+			</excludes>
+		</class>
+		<class name="com.thirdpillar.codify.loanpath.model.CoaEvaluation" inherit="true">
+			<includes>
+				<field name="id"/>
+				<field name="coaDefinition"/>
+				<field name="sfdcCaseId"/>
 			</includes>
 		</class>
 
 	</profile>
+	
 	<!-- doc gen profile start -->
 	<profile name="doc-gen-header" extends="Header">
 		<class name="com.thirdpillar.codify.loanpath.model.RelationshipParty" inherit="true">

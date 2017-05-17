@@ -5,25 +5,26 @@
             </customerType>
             <legalName></legalName>
             <duns></duns>
+            <generateDuns></generateDuns>
             <approved>			                
                   <key></key>
 			</approved>
 			<reviewDate></reviewDate>
             <bureauData>
               <bureauData>
-                <agencyRatingDate></agencyRatingDate>
-                <agencyRating>
-                  <key></key>
-                </agencyRating>
-                <dnbReportDate></dnbReportDate>
-                <dnbCreditScore></dnbCreditScore>
+              <dnbCreditScore></dnbCreditScore>
                 <dnbViabilityRating></dnbViabilityRating>
                 <dnbDataDepthIndicator></dnbDataDepthIndicator>
+                <industryDBT></industryDBT>
+                <companyDBT></companyDBT>
                 <paydexTrend>
                   <key></key>
                 </paydexTrend>
-                <companyDBT></companyDBT>
-                <industryDBT></industryDBT>
+                <dnbReportDate></dnbReportDate>
+                <agencyRating>
+                  <key></key>
+                </agencyRating>
+                <agencyRatingDate></agencyRatingDate>
               </bureauData>
             </bureauData>
             <debtorContact>
@@ -34,8 +35,12 @@
             <creditLimit></creditLimit>
             <maxCreditPeriod></maxCreditPeriod>
             <riskScoreDttm></riskScoreDttm>
-            <riskScore></riskScore>
-            <adjRiskScore></adjRiskScore>
+            <riskScore>
+            	<key></key>
+            </riskScore>
+            <adjRiskScore>
+            	<key></key>
+            </adjRiskScore>
             <legalEntityType>
                  <key></key>
              </legalEntityType>
@@ -45,7 +50,9 @@
              	<key></key>
              </naicsCode>
              <publicCompany></publicCompany>
-             <website></website>
+             <website>
+             	<label></label>
+             </website>
             <primarySite>
                 <siteDetails>
                     <addresses>

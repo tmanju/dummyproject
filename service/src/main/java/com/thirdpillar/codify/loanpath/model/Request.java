@@ -7,10 +7,12 @@
  */
 package com.thirdpillar.codify.loanpath.model;
 
+import java.beans.Transient;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -63,6 +65,8 @@ public class Request extends BaseDataObject {
 	/** Use serialVersionUID for interoperability. */
 	private static final long serialVersionUID = -2616358184370623909L;
 	
+	@javax.persistence.Transient
+	private boolean synced = false;
 	// ~ Methods
 	// --------------------------------------------------------------------------------------------------------
 
@@ -409,13 +413,20 @@ public class Request extends BaseDataObject {
 	
 	public List<DebtorCustomer> getAllDebtorsDer(){
 
-		List<DebtorCustomer> debtorCustomers = new ArrayList<DebtorCustomer>();
+		List<DebtorCustomer> debtorCustomers = new LinkedList<DebtorCustomer>();
 		for (Facility facility : getAllActiveFacilities()) {
 				for(DebtorCustomer dc : facility.getDebtors()){
 					debtorCustomers.add(dc);
 				}
 			}
+		Collections.sort(debtorCustomers, new DebtorComparator());
 		return debtorCustomers;
+	}
+	
+	class DebtorComparator implements Comparator<DebtorCustomer> {
+		public int compare(DebtorCustomer d1, DebtorCustomer d2){
+			return d1.getFacilityCustomerRole().getCustomer().getLegalName().toLowerCase().compareTo(d2.getFacilityCustomerRole().getCustomer().getLegalName().toLowerCase());
+		}
 	}
 	
 	public List<FacilityCustomerRole> getAllFacilityCustomerRoles() {
@@ -907,6 +918,85 @@ public class Request extends BaseDataObject {
     	return (Facility)ContextHolder.getContext().getNamedContext().get("root_allFacilities");
     }
     
+    public void mergeCRMResponse(Request request, java.lang.String rStatus, IntegrationExchange integrationExchangeObj){
+    	EntityService es = new EntityService();
+    	if ("ERROR".equals(rStatus)) {
+			 LOGGER.error("******* Call Failed");
+			 CodifyMessage.addMessage("ERR_INT_HTTP_RESP_ERROR",CodifyMessage.Severity.ERROR, new String[]{"CRM service"});
+			 CodifyMessage.addMessage("ERR_INT_HTTP_REQ_FAIL",CodifyMessage.Severity.ERROR, new String[]{"CRM service"});
+			 
+			 ServiceMessage serviceMessage = (ServiceMessage)es.createNew(ServiceMessage.class);
+			 serviceMessage.setMessage("Integration call failed for CRM service.");
+			 serviceMessage.setStatus(rStatus);
+			 if(request.getServiceMessages() != null){
+				 request.getServiceMessages().add(serviceMessage); 
+			 }else{
+				 List<ServiceMessage> serviceMessages = new ArrayList<ServiceMessage>();
+				 serviceMessages.add(serviceMessage);
+				 request.setServiceMessages(serviceMessages);
+			 }
+			 CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"CRM service",serviceMessage.getMessage()});
+		 }else{
+			 Object object = integrationExchangeObj.getTaskOutput();
+		//List<Customer> customers = new ArrayList<Customer>();
+		if(object instanceof List){
+			LOGGER.info("**************Accept CRM response************************");
+			/**
+			 * Saving servicing identifier for account
+			 */
+			List<Object> objs = (List<Object>)object;
+			String externalRefId = null;
+			String custExternalRefId = null;
+			for(Object o : objs){
+				//Updating primary contact
+				if(o instanceof Request){
+					Request rs = (Request)o;
+					StringBuffer buffer = new StringBuffer();
+					if(rs.getServiceMessages() != null && !rs.getServiceMessages().isEmpty()){
+						for(ServiceMessage msg : rs.getServiceMessages()){
+							buffer.append(msg.getMessage());
+							buffer.append("\n");
+						}
+						rs.getServiceMessages().clear();
+					}
+					
+					if(buffer.toString().length()>0){
+						buffer = buffer.delete(buffer.length()-1, buffer.length());
+						CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"CRM service",buffer.toString()});
+						break;
+					}
+					
+					for(Facility f : rs.getAllFacilities()){
+						for(FacilityCustomerRole role : f.getFacilityCustomerRoles()){
+							if(role.getPartyRole() != null && role.getPartyRole().getKey().equals("PARTY_ROLE_TYPE_OWNER")){
+								externalRefId = role.getExternalIdentifier();
+							}
+						}
+					}
+				}
+				if(o instanceof Customer){
+					Customer cust = (Customer)o;
+					custExternalRefId = cust.getExternalIdentifierLookup();
+				}
+			}
+			for(Facility f : this.getAllFacilities()){
+				for(FacilityCustomerRole role : f.getFacilityCustomerRoles()){
+					if(role.getPartyRole() != null && role.getPartyRole().getKey().equals("PARTY_ROLE_TYPE_OWNER")){
+						if(externalRefId != null){
+							role.setExternalIdentifier(externalRefId);
+						}
+						if(custExternalRefId != null){
+							role.getCustomer().setExternalIdentifier(custExternalRefId);
+						}
+					}
+				}
+			}
+			System.out.println(object);
+			LOGGER.info("**************CRM response saved Successfully************************");
+		 }
+		}
+    }
+    
     public void mergeAkritivResponse(Request request, java.lang.String rStatus, IntegrationExchange integrationExchangeObj){
 		EntityService es = new EntityService();
 		
@@ -929,37 +1019,32 @@ public class Request extends BaseDataObject {
 		 }else{
 			 Object object = integrationExchangeObj.getTaskOutput();
 		//List<Customer> customers = new ArrayList<Customer>();
-		if(object instanceof Request){
+		if(object instanceof List){
 			LOGGER.info("**************Accept Akritiv response************************");
-			//Request responseObj = (Request)object;
 			/**
 			 * Saving servicing identifier for account
 			 */
-			
-				StringBuffer buffer = new StringBuffer();
-				//if(request.getServiceMessages() != null){
-					//request.getServiceMessages().clear();
-				//}
-				//System.out.println(responseObj);
-				//System.out.println(request.getServiceMessages());
-				//System.out.println(responseObj.getServiceMessages());
-				if(request.getServiceMessages() != null){
-					//request.getServiceMessages().addAll(responseObj.getServiceMessages());
-					for(ServiceMessage msg : request.getServiceMessages()){
-						buffer.append(msg.getMessage());
-						buffer.append("\n");
+			List<Object> list = (List)object;
+			for(Object o : list){
+				if(o instanceof Request){
+					StringBuffer buffer = new StringBuffer();
+					if(request.getServiceMessages() != null && !request.getServiceMessages().isEmpty()){
+						for(ServiceMessage msg : request.getServiceMessages()){
+							buffer.append(msg.getMessage());
+							buffer.append("\n");
+						}
+						request.getServiceMessages().clear();
+					}else{
+						synced = true;
 					}
-					request.getServiceMessages().clear();
+					
+					if(buffer.toString().length()>0){
+						buffer = buffer.delete(buffer.length()-1, buffer.length());
+						CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
+					}
+					break;
 				}
-				
-					//es.saveOrUpdate(request);
-					//es.saveOrUpdateAll(customers);
-					//es.flush();
-				
-				if(buffer.toString().length()>0){
-					buffer = buffer.delete(buffer.length()-1, buffer.length());
-					CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
-				}
+			}
 				LOGGER.info("**************Akritiv response saved Successfully************************");
 		 }
 		}
@@ -1178,5 +1263,13 @@ public class Request extends BaseDataObject {
 				}
 			}
 			return match;
+		}
+
+		public boolean isSynced() {
+			return synced;
+		}
+
+		public void setSynced(boolean synced) {
+			this.synced = synced;
 		}
 }

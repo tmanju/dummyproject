@@ -1027,6 +1027,11 @@
 	</bean>
 	<bean name="com.thirdpillar.codify.loanpath.model.Request.DebtorInEligible" class="com.thirdpillar.codify.loanpath.service.DebtorCustomerInEligibleBizOp" >
 	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Facility.sendDebtorsToAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsHandlerBizOp" >
+	</bean>
+	
+	<bean name="com.thirdpillar.codify.loanpath.model.Facility.sendDebtors" class="com.thirdpillar.foundation.service.WorkflowEventBizOp" >
+	</bean>
 	
 	<!-- Jobs for capital provider interest calculations -->
 	<bean name="com.thirdpillar.codify.loanpath.model.FacAllocator.DailyIntCalcBusinessOperation" class="com.thirdpillar.codify.loanpath.service.CalculateDailyInterestBizOp"/>
@@ -1089,5 +1094,7 @@
 		<property name="cronExpression" value="${feeUpdator.trigger.scheduler.expression}" />
 	</bean>
 	
-	<!-- Job for updating application fees end -->
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp">
+	</bean>
+
 </beans>

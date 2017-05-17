@@ -25,6 +25,28 @@
                         }
                     return match;
                 ]]></map:element>
+            </map:constraint>
+            
+            <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{facility.facilityCustomerRoles.primaryContactSSNRequired}</map:message>
+				<map:groups>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingAnalysis</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingDecision</map:value>
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$Approved</map:value>	 
+	  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$PendingCompleted</map:value>
+				</map:groups>             
+                <map:element name="matchedExpr"><![CDATA[
+                    boolean match = true;
+                    if (o.facilityCustomerRoles != empty){
+                        foreach(facilityCustomerRole : o.facilityCustomerRoles){
+                            if (facilityCustomerRole.?customer.Individual && facilityCustomerRole.primaryContact && facilityCustomerRole.customer.ssn == empty){
+                            			match = false;
+                            	}
+                            }  
+                        }
+                    return match;
+                ]]></map:element>
             </map:constraint>      
             <!-- More than one pricing option selected -->
             <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">

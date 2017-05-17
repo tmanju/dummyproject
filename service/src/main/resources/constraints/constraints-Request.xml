@@ -748,7 +748,7 @@
 		                ]]></map:element>
 			</map:constraint>  -->
 			
-			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+			<!-- <map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
 		                <map:message>{customer.primarySite.siteDetails.addresses.stateRequired}</map:message>
 						<map:groups>
 			  				<map:value>com.thirdpillar.codify.loanpath.ValidationGroup$RequestSubmit</map:value>
@@ -781,7 +781,7 @@
 							}
 		                return match;
 		                ]]></map:element>
-			</map:constraint>
+			</map:constraint> -->
 			
 			<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
 		                <map:message>{customer.primarySite.siteDetails.addresses.postalCodeRequired}</map:message>
