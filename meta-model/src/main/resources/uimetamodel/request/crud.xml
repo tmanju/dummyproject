@@ -3394,7 +3394,7 @@
 		<command id="Decline" name="Decline" action="DeclineRequest" type="businessOp" confirmation-key="application.decline.confirm"/>
 		<command id="DeclineInit" name="Decline" action="DeclineRequestInit" type="businessOp" confirmation-key="application.decline.confirm" />
 		<command id="Withdraw" name="Withdraw" action="WithdrawRequest" type="businessOp" />
-		<!-- <command id="updateDebtors" name="Update Debtors" action="updateDebtorsOnAkritiv" type="businessOp"/> -->
+		<command id="updateDebtors" name="Update Debtors" action="updateDebtorsOnAkritiv" type="businessOp"/>
 		<command name="Resend" action="sendToAkritiv" type="businessOp" />
 	</commands>
 	<beans>
