@@ -639,8 +639,8 @@
         	<field name="maxCreditPeriod" type="integer" length="9" />
         	<field name="daysBeyondTerms" type="integer" length="9"/>
         	<field name="industryDBT" type="text" length="9"/>
-        	<field name="servicingIdentifier" type="text" internal="true" tags="Header" indexed="true" unique="true"/>
-        	<field name="servicingIdentifierLookup" type="text" internal="true" tags="Header" indexed="true" unique="true"/>
+        	<field name="servicingIdentifier" type="text" internal="true" tags="Header" indexed="true"/>
+        	<field name="servicingIdentifierLookup" type="text" internal="true" tags="Header" indexed="true"/>
         	<reference name="debtorContact" entity-type="Contact" relation="owner"/>
         	<collection name="collaterals" collection-type="list" entity-type="Collateral" relation="owner" referred-by="customer"/>
             
