@@ -12483,4 +12483,60 @@
 			</attributeChoice>
 		</attributeChoices>
 	</attribute>
+	<attribute>
+		<key>DEBTOR_INELIGIBILITY_REASON</key>
+		<name>Ineligibility Reason</name>
+		<description>#DONE</description>
+		<attributeChoices>
+			<attributeChoice>
+				<sequence>1</sequence>
+				<code>1</code>
+				<value>Foreign Debtor</value>
+				<key>DEBTOR_INELIGIBILITY_REASON_FOREIGN_DEBTOR</key>
+				<attribute  reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>2</sequence>
+				<code>2</code>
+				<value>High Dilution</value>
+				<key>DEBTOR_INELIGIBILITY_REASON_HIGH_DILUTION</key>
+				<attribute  reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>3</sequence>
+				<code>3</code>
+				<value>Individual Consumer</value>
+				<key>DEBTOR_INELIGIBILITY_REASON_INDIVIDUAL_CUSTOMER</key>
+				<attribute  reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>4</sequence>
+				<code>4</code>
+				<value>Cannot Verify Information</value>
+				<key>DEBTOR_INELIGIBILITY_REASON_CANNOT_VERIFY_INFORMATION</key>
+				<attribute  reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>5</sequence>
+				<code>5</code>
+				<value>Low Credit Score</value>
+				<key>DEBTOR_INELIGIBILITY_REASON_LOW_CREDIT_SCORE</key>
+				<attribute  reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>6</sequence>
+				<code>6</code>
+				<value>Going Concern or Bankrupt</value>
+				<key>DEBTOR_INELIGIBILITY_REASON_GOING_CONCERN_OR_BANKRUPT</key>
+				<attribute  reference="../../.."/>
+			</attributeChoice>
+			<attributeChoice>
+				<sequence>7</sequence>
+				<code>7</code>
+				<value>Other</value>
+				<key>DEBTOR_INELIGIBILITY_REASON_OTHER</key>
+				<attribute  reference="../../.."/>
+			</attributeChoice>
+		</attributeChoices>
+	</attribute>
 </list>
