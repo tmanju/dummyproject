@@ -3247,8 +3247,12 @@
                     <param name="key">RISK_RATING_DESC</param>
                 </lookup>
 			</reference>
-
-        	 <reference name="facilityCustomerRole" entity-type="FacilityCustomerRole" relation="owner"/>
+			<reference name="ineligibilityReason" entity-type="AttributeChoice" relation="refers-to">
+	             <lookup>
+	                 <param name="key">DEBTOR_INELIGIBILITY_REASON</param>
+	             </lookup>
+	        </reference>
+	        <reference name="facilityCustomerRole" entity-type="FacilityCustomerRole" relation="owner"/>
         	<reference name="contact" entity-type="Contact" relation="owner"/>
         	<reference name="facility" entity-type="Facility" relation="refers-to"/>
         	<reference name="commentGroup" entity-type="CommentGroup" relation="owner"/>
