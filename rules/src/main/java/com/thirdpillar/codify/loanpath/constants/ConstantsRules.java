@@ -16,7 +16,8 @@ public class ConstantsRules {
 	public static final String FACILITY_TYPE_BASIS_ACTUAL_ACTUAL_KEY = "FACILITY_TYPE_BASIS_ACTUAL_ACTUAL";
 	public static final String FACILITY_TYPE_BASIS_ACTUAL_360_KEY = "FACILITY_TYPE_BASIS_ACTUAL_360";
 	public static final String FEE_DISTRIBUTION_PERCENT_KEY = "FEE_DISTRIBUTION_PERCENT";
-	
 	public static final String TASKBY_TASK_NAME = "com.thirdpillar.codify.loanpath.model.HumanTask.getTasksByTaskName";
+	public static final String YES_OR_NO_NO = "YES_OR_NO_NO";
+	
 }
 

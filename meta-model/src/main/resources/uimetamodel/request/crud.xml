@@ -1465,6 +1465,7 @@
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
 									<filter name="Ineligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_INELIGIBLE'" /> 
+									<filter name="Synced" expr="entity.syncToAkritiv.key == 'YES_OR_NO_YES'" /> 
 								</filters>
 								<columns>
 									<column name="debtor.refNumber" label="Debtor-Account"/>
@@ -1476,6 +1477,7 @@
 									<column name="debtor.creditPeriod" label="Credit Period"/>
 									<!-- <column name="debtor.syncedToAkritiv" label="Synced"/> -->
 									<column name="debtor.wfStatus" label="Decision"/>
+									<column name="debtor.syncToAkritiv" />
 								</columns>
 								<edit-canvas src-entity="DebtorCustomer" src-file="crud.xml" />
 								<commands>
