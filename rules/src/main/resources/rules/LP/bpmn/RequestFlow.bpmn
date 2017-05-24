@@ -9573,28 +9573,7 @@ System.out.println("======Exit Credit Analysis Custom User Task========");</scri
     <task id="_372" name="Update 100 debtors to akritiv" tns:taskName="IntegrationTask" >
       <extensionElements>
         <tns:onEntry-script scriptFormat="http://www.java.com/java">
-          <script>//Prepare 100 debtors to be synced to akritiv
-EntityService es = new EntityService();
-Request request = (Request)context.getVariable("contextEntity");
-List&lt;DebtorCustomer&gt; debtorCustomers = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncedToAkritiv", new String[]{"syncedToAkritiv","refNumber"}, new Object[]{false,request.getRefNumber()}, 0, 100, null);
-
-List&lt;Object&gt; outList = new LinkedList();
-
-for(DebtorCustomer d : debtorCustomers){
-		outList.add(d);
-}
-
-for(DebtorCustomer d : debtorCustomers){
-		outList.add(d.getFacilityCustomerRole().getCustomer());
-}
-
-
-Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
-inputMap.put("contextEntity",request);
-inputMap.put("entityOut",outList);
-inputMap.put("entityIn",debtorCustomers);
-
-context.setVariable("sfdcInputMap", inputMap);</script>
+          <script></script>
         </tns:onEntry-script>
         <tns:onExit-script scriptFormat="http://www.java.com/java">
           <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
@@ -9709,10 +9688,10 @@ context.setVariable("integrationExchange",null);</script>
     <endEvent id="_374" name="End" />
     <scriptTask id="_375" name="prepare debtors" scriptFormat="http://www.java.com/java" >
       <script>//Prepare 100 debtors to be synced to akritiv
+context.setVariable("sfdcInputMap", null);
 EntityService es = new EntityService();
 Request request = (Request)context.getVariable("contextEntity");
-List&lt;DebtorCustomer&gt; debtorCustomers = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncedToAkritiv", new String[]{"syncedToAkritiv","refNumber"}, new Object[]{false,request.getRefNumber()}, 0, 100, null);
-
+List&lt;DebtorCustomer&gt; debtorCustomers = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncToAkritiv", new String[]{"syncToAkritiv","refNumber"}, new Object[]{"YES_OR_NO_NO",request.getRefNumber()}, 0, 100, null);
 if(debtorCustomers != null &amp;&amp; !debtorCustomers.isEmpty()){
 List&lt;Object&gt; outList = new LinkedList();
 
@@ -9736,6 +9715,9 @@ context.setVariable("sfdcInputMap", inputMap);
     </scriptTask>
     <exclusiveGateway id="_376" name="Gateway" gatewayDirection="Diverging" />
     <endEvent id="_377" name="End" />
+    <scriptTask id="_378" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>CodifyMessage.addMessage("AKRITV_DEBTORS_INFO",CodifyMessage.Severity.INFO);</script>
+    </scriptTask>
 
     <!-- connections -->
     <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
@@ -10426,9 +10408,7 @@ return false;</conditionExpression>
     <sequenceFlow id="_318-_369" sourceRef="_318" targetRef="_369" />
     <sequenceFlow id="_329-_370" sourceRef="_329" targetRef="_370" />
     <sequenceFlow id="_376-_372" sourceRef="_376" targetRef="_372" name="Update debtors" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Map&lt;String,Object&gt;  m = (Map&lt;String,Object&gt; )context.getVariable("sfdcInputMap");
-
-if(m != null){
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if(context.getVariable("sfdcInputMap") != null){
 return true;
 }
 else{
@@ -10439,10 +10419,9 @@ return false;
     <sequenceFlow id="_373-_374" sourceRef="_373" targetRef="_374" />
     <sequenceFlow id="_371-_375" sourceRef="_371" targetRef="_375" />
     <sequenceFlow id="_375-_376" sourceRef="_375" targetRef="_376" />
-    <sequenceFlow id="_376-_377" sourceRef="_376" targetRef="_377" name="Exit" tns:priority="1" >
-      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >Map&lt;String,Object&gt;  m = (Map&lt;String,Object&gt; )context.getVariable("sfdcInputMap");
-
-if(m== null){
+    <sequenceFlow id="_378-_377" sourceRef="_378" targetRef="_377" />
+    <sequenceFlow id="_376-_378" sourceRef="_376" targetRef="_378" name="Exit" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if(context.getVariable("sfdcInputMap") == null){
 return true;
 }
 else{
@@ -11314,6 +11293,9 @@ return false;
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_377" >
         <dc:Bounds x="3565" y="413" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_378" >
+        <dc:Bounds x="3551" y="509" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_66-2-1-_66-2-2" >
         <di:waypoint x="133" y="50" />
@@ -12465,9 +12447,13 @@ return false;
         <di:waypoint x="3563" y="383" />
         <di:waypoint x="3484" y="438" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_376-_377" >
-        <di:waypoint x="3484" y="438" />
+      <bpmndi:BPMNEdge bpmnElement="_378-_377" >
+        <di:waypoint x="3591" y="533" />
         <di:waypoint x="3589" y="437" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_376-_378" >
+        <di:waypoint x="3484" y="438" />
+        <di:waypoint x="3591" y="533" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

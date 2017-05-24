@@ -3276,7 +3276,7 @@
                 <data>com.thirdpillar.foundation.model.WorkflowAware</data>
             </feature>
         	<find-queries>
-        		<query name="bySyncToAkritiv" select="many">where syncToAkritiv.key = :syncToAkritiv and facility.request.refNumber = :refNumber</query>
+        		<query name="bySyncToAkritiv" select="many">where syncToAkritiv.key = :syncToAkritiv and facility.request.refNumber = :refNumber and softDeletedOn is null</query>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
         		<query name="byAkritivCustomer" select="many"> where akritivCustomer = :akritivCustomer and facility is not null</query>
         		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
