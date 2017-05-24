@@ -936,6 +936,9 @@
 	<bean name="com.thirdpillar.codify.loanpath.model.Request.sendToAkritiv" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
 		<property name="eventName" value="sendToAkritiv" />
 	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="updateDebtorsOnAkritiv" />
+	</bean>
 	<bean name="com.thirdpillar.codify.loanpath.model.Request.sendToCrm" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
 		<property name="eventName" value="sendToCrm" />
 	</bean>
@@ -1094,7 +1097,7 @@
 		<property name="cronExpression" value="${feeUpdator.trigger.scheduler.expression}" />
 	</bean>
 	
-	<bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp">
-	</bean>
+	<!-- <bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp">
+	</bean> -->
 
 </beans>
