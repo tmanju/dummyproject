@@ -207,6 +207,8 @@ rule "SetSynctoAkritivOnPropsChange"
 	then
 		DebtorCustomer debtor = (DebtorCustomer)changeModelEvent.getEntity();
 		debtor.setSyncedToAkritiv(false);
-		AttributeChoice syncToAkritiv =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.YES_OR_NO_NO);
-		debtor.setSyncToAkritiv(syncToAkritiv);
+		AttributeChoice attributeChoiceNo =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.YES_OR_NO_NO);
+		debtor.setSyncToAkritiv(attributeChoiceNo);
+		debtor.setDeleted(attributeChoiceNo);
+		
 end
