@@ -1465,7 +1465,7 @@
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
 									<filter name="Ineligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_INELIGIBLE'" /> 
-									<filter name="Synced" expr="entity.syncToAkritiv.key == 'YES_OR_NO_YES'" />
+									<filter name="UnSynced" expr="entity.syncToAkritiv.key == 'YES_OR_NO_NO'" />
 									<filter name="Deleted" expr="entity.deleted.key == 'YES_OR_NO_YES'" /> 
 								</filters>
 								<columns>
@@ -2576,7 +2576,7 @@
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
 									<filter name="Ineligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_INELIGIBLE'" /> 
-									<filter name="Synced" expr="entity.syncToAkritiv.key == 'YES_OR_NO_YES'" />
+									<filter name="UnSynced" expr="entity.syncToAkritiv.key == 'YES_OR_NO_NO'" />
 									<filter name="Deleted" expr="entity.deleted.key == 'YES_OR_NO_YES'" />
 								</filters>
 								<columns>
