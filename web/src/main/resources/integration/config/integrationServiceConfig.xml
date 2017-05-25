@@ -31,7 +31,7 @@
 			<operation localName="pushRequest"/>
 			<parameters>
 				<parameter localName="entity" paramValue="data:debtor__c" paramType="String"/>
-				<parameter localName="action" paramValue="action" paramType="String"/>
+				<parameter localName="action" paramValue="data:update" paramType="String"/>
 				<parameter localName="objectType" paramValue="data:debtor__c" paramType="String"/>
 				<parameter localName="clientId" paramValue="data:akritiv-internex" paramType="String"/>
 				<parameter localName="data" paramValue="ENTITY" paramType="Element"/>
