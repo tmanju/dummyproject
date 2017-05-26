@@ -203,6 +203,7 @@
 				<field name="version"/>
 				<field name="sessionId"/>
 				<field name="processInstanceId"/>
+				<field name="debtors"/>
 			</excludes>
 		</class>
 		<class name="com.thirdpillar.codify.loanpath.model.Structure" inherit="true">

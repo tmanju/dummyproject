@@ -75,6 +75,15 @@
                 </tns:component>                
             </tns:canvas>
             <tns:canvas id="request_crud">
+            <tns:component id="updateDebtors">
+            	<tns:default>
+            		boolean isVisible = false;
+            			if(root != null &amp;&amp; root.inWfStatus("REQUEST_STATUS_PORTFOLIO_MANAGMENT")){
+            				isVisible = true;
+            			}
+            		return isVisible;
+            	</tns:default>
+            </tns:component>
             <tns:component id="DeclineInit">
             	<tns:default>
             		boolean isVisible = false;
