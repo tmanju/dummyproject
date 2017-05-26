@@ -559,7 +559,14 @@
 	  			</list>
 	  		</property>
 	  	</bean>
-		<bean name="com.thirdpillar.codify.loanpath.model.FileImport.fileImport" class="com.thirdpillar.foundation.service.FileImportBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.FileImport.fileImport" class="com.thirdpillar.foundation.service.FileImportBizOp">
+			<property name="validationGroups">
+				<list>
+					<value>javax.validation.groups.Default</value>
+					<value>com.thirdpillar.codify.bc.ValidationGroup$FileValidationGroup</value>
+				</list>
+			</property>
+		</bean>
 		<bean name="com.thirdpillar.codify.loanpath.model.UCC.UCCFiling" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
 			<property name="eventName" value="uccFilingEvent"/>
 		</bean>

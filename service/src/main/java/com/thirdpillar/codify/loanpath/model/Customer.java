@@ -1053,4 +1053,34 @@ public class Customer {
 	public void setTempDuns(String tempDuns) {
 		this.tempDuns = tempDuns;
 	}
+	
+	public Boolean validateDUNSAtCounterPartyUpload(){
+		boolean matched = false;
+		
+		if(this.getDuns() == null && this.getGenerateDuns() == false){
+			matched = true;
+		}
+		return matched;
+	}
+	
+	public Boolean validateConditionsAtCounterPartyUpload(){
+		boolean match = false;
+		if( this.getGenerateDuns()  && this.getBureauData() != null && this.getBureauData().size() > 0){
+			for(BureauData bureau:this.getBureauData()){
+				if( bureau.getDnbCreditScore() != null &&
+						bureau.getDnbViabilityRating() != null &&
+								bureau.getDnbDataDepthIndicator() != null &&
+												bureau.getIndustryDBT() != null &&
+														bureau.getCompanyDBT() != null &&
+																bureau.getPaydexTrend() != null &&
+																		bureau.getDnbReportDate() != null ){
+					match = true;
+					break;
+				}
+			}
+		}
+		
+		return match;
+		
+	}
 }
