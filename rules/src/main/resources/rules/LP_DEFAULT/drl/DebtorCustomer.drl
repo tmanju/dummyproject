@@ -29,6 +29,20 @@ import java.util.List;
 import java.math.BigDecimal;
 import java.lang.Integer;
 
+
+rule "SetDefaultDebtorDeleted"
+  agenda-group "NEW" 
+  when
+    #conditions
+        debtorCustomer:DebtorCustomer()
+  then 
+  		if(debtorCustomer != null){
+	  		AttributeChoice attributeChoiceNo =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.YES_OR_NO_NO);
+			debtorCustomer.setSyncToAkritiv(attributeChoiceNo);
+			debtorCustomer.setDeleted(attributeChoiceNo);
+		}
+ end
+ 
 rule "SetDebtorCustomerValues"
   agenda-group "NEW" 
   when
@@ -209,6 +223,5 @@ rule "SetSynctoAkritivOnPropsChange"
 		debtor.setSyncedToAkritiv(false);
 		AttributeChoice attributeChoiceNo =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.YES_OR_NO_NO);
 		debtor.setSyncToAkritiv(attributeChoiceNo);
-		debtor.setDeleted(attributeChoiceNo);
 		
 end

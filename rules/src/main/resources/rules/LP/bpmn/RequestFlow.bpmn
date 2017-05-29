@@ -9570,7 +9570,7 @@ System.out.println("======Exit Credit Analysis Custom User Task========");</scri
     <intermediateCatchEvent id="_371" name="Signal" >
       <signalEventDefinition signalRef="updateDebtorsOnAkritiv"/>
     </intermediateCatchEvent>
-    <task id="_372" name="Update 100 debtors to akritiv" tns:taskName="IntegrationTask" >
+    <task id="_372" name="Update 200 debtors to akritiv" tns:taskName="IntegrationTask" >
       <extensionElements>
         <tns:onEntry-script scriptFormat="http://www.java.com/java">
           <script></script>
@@ -9691,7 +9691,7 @@ context.setVariable("integrationExchange",null);</script>
 context.setVariable("sfdcInputMap", null);
 EntityService es = new EntityService();
 Request request = (Request)context.getVariable("contextEntity");
-List&lt;DebtorCustomer&gt; debtorCustomers = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncToAkritiv", new String[]{"syncToAkritiv","refNumber"}, new Object[]{"YES_OR_NO_NO",request.getRefNumber()}, 0, 100, null);
+List&lt;DebtorCustomer&gt; debtorCustomers = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncToAkritiv", new String[]{"syncToAkritiv","refNumber"}, new Object[]{"YES_OR_NO_NO",request.getRefNumber()}, 0, 200, null);
 if(debtorCustomers != null &amp;&amp; !debtorCustomers.isEmpty()){
 List&lt;Object&gt; outList = new LinkedList();
 
