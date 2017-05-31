@@ -152,6 +152,10 @@ rule "SetDbaNameOnCounterParty"
 			if(debtor.getFacilityCustomerRole().getCustomer() != null){
 				debtor.getFacilityCustomerRole().getCustomer().addToDbas(partyDba);
 			}
+			if(debtor.getFacility().getFacilityDBAList() == null){
+				debtor.getFacility().setFacilityDBAList(new ArrayList());
+			}
+			debtor.getFacility().getFacilityDBAList().add(partyDba);
 			debtor.setSyncedToAkritiv(false);
 		}
 end
@@ -186,6 +190,10 @@ rule "DeleteDbaNameOnCounterParty"
 				debtor.getFacilityCustomerRole().getCustomer().getDbas().remove(partyDba);
 			}
 			debtor.setSyncedToAkritiv(false);
+			
+			if(debtor.getFacility().getFacilityDBAList() != null && debtor.getFacility().getFacilityDBAList().size() > 0 && debtor.getFacility().getFacilityDBAList().contains(partyDba)){
+				debtor.getFacility().getFacilityDBAList().remove(partyDba);
+			}
 		}
 end
 

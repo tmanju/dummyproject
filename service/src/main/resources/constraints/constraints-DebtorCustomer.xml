@@ -129,7 +129,7 @@
       	<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
                 <map:message>{debtorCustomer.dbaname.duplicate}</map:message>
                 <map:element name="matchedExpr"><![CDATA[
-                   return o.duplicateDbaName();
+                   return o.isDebtorDuplicate();
                 ]]></map:element>
         </map:constraint>
       </map:class>
