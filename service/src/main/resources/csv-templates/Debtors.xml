@@ -12,6 +12,9 @@
 	<facility>
    		<refNumber></refNumber>
     </facility>
+    <ineligibilityReason>
+    	<key></key>
+    </ineligibilityReason>
     <nextReviewDate></nextReviewDate>
     <eligibleARLimit></eligibleARLimit>
     <retention></retention>
@@ -23,7 +26,4 @@
         <dbaName></dbaName>
       </partyDba>
     </dbas>
-    <ineligibilityReason>
-    	<key></key>
-    </ineligibilityReason>
 </com.thirdpillar.codify.loanpath.model.DebtorCustomer>
