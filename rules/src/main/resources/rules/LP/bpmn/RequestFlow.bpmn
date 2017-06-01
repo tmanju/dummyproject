@@ -3551,6 +3551,100 @@
   <itemDefinition id="_370-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
   <itemDefinition id="_370-teamsItem" structureRef="java.util.List" />
 
+  <itemDefinition id="_372-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_372-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_372-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_372-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_372-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_372-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_372-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_372-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_372-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_372-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_372-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_372-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_372-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_372-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_372-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_372-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_372-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_372-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_372-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_372-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_372-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_372-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_372-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_372-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_372-custNameItem" structureRef="String" />
+  <itemDefinition id="_372-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_372-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_372-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_372-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_372-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_372-taskActionItem" structureRef="String" />
+  <itemDefinition id="_372-creFlowItem" structureRef="String" />
+  <itemDefinition id="_372-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_372-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_372-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_372-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_372-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_372-autoDecisionMinYearsItem" structureRef="String" />
+  <itemDefinition id="_372-creditAnalystItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_372-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_372-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_372-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_372-nextDebtorStatusItem" structureRef="String" />
+  <itemDefinition id="_372-clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_372-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
+  <itemDefinition id="_372-teamsItem" structureRef="java.util.List" />
+
+  <itemDefinition id="_373-contextEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Request" />
+  <itemDefinition id="_373-nextFacilityStatusItem" structureRef="String" />
+  <itemDefinition id="_373-customersEmailListItem" structureRef="String" />
+  <itemDefinition id="_373-borrowerNameItem" structureRef="String" />
+  <itemDefinition id="_373-borrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_373-teamItem" structureRef="com.thirdpillar.codify.loanpath.model.Team" />
+  <itemDefinition id="_373-bureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_373-callConsumerBureauItem" structureRef="String" />
+  <itemDefinition id="_373-bureauSuccessItem" structureRef="String" />
+  <itemDefinition id="_373-mcdForLargeLoanItem" structureRef="String" />
+  <itemDefinition id="_373-isValidFicoScoreItem" structureRef="String" />
+  <itemDefinition id="_373-moveToStatusItem" structureRef="String" />
+  <itemDefinition id="_373-complianceSuccessItem" structureRef="String" />
+  <itemDefinition id="_373-manualDecisionItem" structureRef="String" />
+  <itemDefinition id="_373-requestCustomersItem" structureRef="java.util.List" />
+  <itemDefinition id="_373-customerRoleItem" structureRef="String" />
+  <itemDefinition id="_373-custFirstNameItem" structureRef="String" />
+  <itemDefinition id="_373-callProvisionItem" structureRef="String" />
+  <itemDefinition id="_373-provisionCustomersMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_373-borrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_373-coBorrowersItem" structureRef="java.util.Set" />
+  <itemDefinition id="_373-requestDecisionItem" structureRef="String" />
+  <itemDefinition id="_373-decisionFromTaskItem" structureRef="String" />
+  <itemDefinition id="_373-frozenReportsItem" structureRef="java.util.List" />
+  <itemDefinition id="_373-custNameItem" structureRef="String" />
+  <itemDefinition id="_373-approvalEntityItem" structureRef="com.thirdpillar.codify.loanpath.model.Approval" />
+  <itemDefinition id="_373-emailRecipientItem" structureRef="String" />
+  <itemDefinition id="_373-bureauReportItem" structureRef="com.thirdpillar.codify.loanpath.model.BureauReport" />
+  <itemDefinition id="_373-coborrowerNameItem" structureRef="String" />
+  <itemDefinition id="_373-coborrowerFirstNameItem" structureRef="String" />
+  <itemDefinition id="_373-taskActionItem" structureRef="String" />
+  <itemDefinition id="_373-creFlowItem" structureRef="String" />
+  <itemDefinition id="_373-writeupDocItem" structureRef="com.thirdpillar.codify.loanpath.model.Document" />
+  <itemDefinition id="_373-callCommercialBureauItem" structureRef="String" />
+  <itemDefinition id="_373-consumerBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_373-commercialBureauInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_373-isDocumentStatusRejectedItem" structureRef="String" />
+  <itemDefinition id="_373-autoDecisionMinYearsItem" structureRef="String" />
+  <itemDefinition id="_373-creditAnalystItem" structureRef="com.thirdpillar.codify.loanpath.model.User" />
+  <itemDefinition id="_373-sfdcInputMapItem" structureRef="java.util.Map" />
+  <itemDefinition id="_373-integrationExchangeItem" structureRef="com.thirdpillar.foundation.integration.IntegrationExchange" />
+  <itemDefinition id="_373-integrationResultStatusItem" structureRef="String" />
+  <itemDefinition id="_373-nextDebtorStatusItem" structureRef="String" />
+  <itemDefinition id="_373-clientIdItem" structureRef="java.lang.String" />
+  <itemDefinition id="_373-coaFacilityItem" structureRef="com.thirdpillar.codify.loanpath.model.Facility" />
+  <itemDefinition id="_373-teamsItem" structureRef="java.util.List" />
+
   <itemDefinition id="_66_multiInstanceItemType" />
 
   <itemDefinition id="_105_multiInstanceItemType" />
@@ -3601,6 +3695,7 @@
      <tns:import name="java.math.BigDecimal" />
      <tns:import name="java.util.Calendar" />
      <tns:import name="com.thirdpillar.foundation.model.Money" />
+     <tns:import name="java.util.*" />
     </extensionElements>
     <!-- process variables -->
     <property id="contextEntity" itemSubjectRef="_contextEntityItem"/>
@@ -9472,6 +9567,157 @@ System.out.println("======Exit Credit Analysis Custom User Task========");</scri
         <targetRef>_370_entityInput</targetRef>
       </dataInputAssociation>
     </task>
+    <intermediateCatchEvent id="_371" name="Signal" >
+      <signalEventDefinition signalRef="updateDebtorsOnAkritiv"/>
+    </intermediateCatchEvent>
+    <task id="_372" name="Update 200 debtors to akritiv" tns:taskName="IntegrationTask" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script></script>
+        </tns:onEntry-script>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <script>java.lang.String rStatus = (java.lang.String) context.getVariable("integrationResultStatus");
+
+IntegrationExchange integrationExchangeObj = (IntegrationExchange) context.getVariable("integrationExchange");
+System.out.println("===========integrationExchangeObj==========="+integrationExchangeObj);
+
+
+if ("ERROR".equals(rStatus)) {
+			 CodifyMessage.addMessage("ERR_INT_HTTP_RESP_ERROR",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service"});
+			 CodifyMessage.addMessage("ERR_INT_HTTP_REQ_FAIL",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service"});
+			 CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service","Integration call failed for Akritiv service."});
+}else{
+	Object object = integrationExchangeObj.getTaskOutput();
+ List&lt;ServiceMessage&gt; serviceMessages = new ArrayList&lt;ServiceMessage&gt;();
+if(object instanceof List){
+	List&lt;Object&gt; out = (List&lt;Object&gt;)object;
+	for(Object o : out){
+		if(o instanceof Facility){
+			Facility fac = (Facility)o;
+	        serviceMessages = fac.getServiceMessages();
+	        break;
+		}
+	}
+}
+
+if(!serviceMessages.isEmpty()){
+        		StringBuffer buffer = new StringBuffer();
+				for(ServiceMessage msg : serviceMessages){
+					buffer.append(msg.getMessage());
+					buffer.append("\n");
+				}
+					
+        		 if(buffer.toString().length()&gt;0){
+						buffer = buffer.delete(buffer.length()-1, buffer.length());
+						CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
+					}
+        	 }
+}
+		 
+		 
+
+
+
+context.setVariable("integrationResultStatus",null);
+context.setVariable("integrationExchange",null);</script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_372_inputInput" name="input" />
+        <dataInput id="_372_entityInput" name="entity" />
+        <dataInput id="_372_ServiceNameInput" name="ServiceName" />
+        <dataOutput id="_372_ResultExchangeOutput" name="ResultExchange" />
+        <dataOutput id="_372_ResultStatusOutput" name="ResultStatus" />
+        <inputSet>
+          <dataInputRefs>_372_inputInput</dataInputRefs>
+          <dataInputRefs>_372_entityInput</dataInputRefs>
+          <dataInputRefs>_372_ServiceNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_372_ResultExchangeOutput</dataOutputRefs>
+          <dataOutputRefs>_372_ResultStatusOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>sfdcInputMap</sourceRef>
+        <targetRef>_372_inputInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_372_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_372_ServiceNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">sforceDebtorService</from>
+          <to xsi:type="tFormalExpression">_372_ServiceNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_372_ResultExchangeOutput</sourceRef>
+        <targetRef>integrationExchange</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_372_ResultStatusOutput</sourceRef>
+        <targetRef>integrationResultStatus</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_373" name="Save Request" tns:taskName="SaveEntity" >
+      <ioSpecification>
+        <dataInput id="_373_entityInput" name="entity" />
+        <dataInput id="_373_EntityInput" name="Entity" />
+        <inputSet>
+          <dataInputRefs>_373_entityInput</dataInputRefs>
+          <dataInputRefs>_373_EntityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>contextEntity</sourceRef>
+        <targetRef>_373_entityInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_373_EntityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">contextEntity</from>
+          <to xsi:type="tFormalExpression">_373_EntityInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <endEvent id="_374" name="End" />
+    <scriptTask id="_375" name="prepare debtors" scriptFormat="http://www.java.com/java" >
+      <script>//Prepare 100 debtors to be synced to akritiv
+context.setVariable("sfdcInputMap", null);
+EntityService es = new EntityService();
+Request request = (Request)context.getVariable("contextEntity");
+List&lt;DebtorCustomer&gt; debtorCustomers = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncToAkritiv", new String[]{"syncToAkritiv","refNumber"}, new Object[]{"YES_OR_NO_NO",request.getRefNumber()}, 0, 200, null);
+if(debtorCustomers != null &amp;&amp; !debtorCustomers.isEmpty()){
+List&lt;Object&gt; outList = new LinkedList();
+
+for(DebtorCustomer d : debtorCustomers){
+		outList.add(d);
+}
+
+for(DebtorCustomer d : debtorCustomers){
+		outList.add(d.getFacilityCustomerRole().getCustomer());
+}
+
+
+Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
+inputMap.put("contextEntity",request);
+inputMap.put("entityOut",outList);
+inputMap.put("entityIn",debtorCustomers);
+
+context.setVariable("sfdcInputMap", inputMap);
+}
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_376" name="Gateway" gatewayDirection="Diverging" />
+    <endEvent id="_377" name="End" />
+    <scriptTask id="_378" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>CodifyMessage.addMessage("AKRITV_DEBTORS_INFO",CodifyMessage.Severity.INFO);</script>
+    </scriptTask>
 
     <!-- connections -->
     <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
@@ -10161,6 +10407,27 @@ return false;</conditionExpression>
     <sequenceFlow id="_332-_368" sourceRef="_332" targetRef="_368" />
     <sequenceFlow id="_318-_369" sourceRef="_318" targetRef="_369" />
     <sequenceFlow id="_329-_370" sourceRef="_329" targetRef="_370" />
+    <sequenceFlow id="_376-_372" sourceRef="_376" targetRef="_372" name="Update debtors" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if(context.getVariable("sfdcInputMap") != null){
+return true;
+}
+else{
+return false;
+}</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_372-_373" sourceRef="_372" targetRef="_373" />
+    <sequenceFlow id="_373-_374" sourceRef="_373" targetRef="_374" />
+    <sequenceFlow id="_371-_375" sourceRef="_371" targetRef="_375" />
+    <sequenceFlow id="_375-_376" sourceRef="_375" targetRef="_376" />
+    <sequenceFlow id="_378-_377" sourceRef="_378" targetRef="_377" />
+    <sequenceFlow id="_376-_378" sourceRef="_376" targetRef="_378" name="Exit" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >if(context.getVariable("sfdcInputMap") == null){
+return true;
+}
+else{
+return false;
+}</conditionExpression>
+    </sequenceFlow>
 
   </process>
 
@@ -11005,6 +11272,30 @@ return false;</conditionExpression>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_370" >
         <dc:Bounds x="3909" y="232" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_371" >
+        <dc:Bounds x="3432" y="357" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_372" >
+        <dc:Bounds x="3405" y="497" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_373" >
+        <dc:Bounds x="3404" y="596" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_374" >
+        <dc:Bounds x="3435" y="686" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_375" >
+        <dc:Bounds x="3523" y="359" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_376" >
+        <dc:Bounds x="3460" y="414" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_377" >
+        <dc:Bounds x="3565" y="413" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_378" >
+        <dc:Bounds x="3551" y="509" width="80" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_66-2-1-_66-2-2" >
         <di:waypoint x="133" y="50" />
@@ -12135,6 +12426,34 @@ return false;</conditionExpression>
       <bpmndi:BPMNEdge bpmnElement="_329-_370" >
         <di:waypoint x="3732" y="318" />
         <di:waypoint x="3959" y="256" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_376-_372" >
+        <di:waypoint x="3484" y="438" />
+        <di:waypoint x="3455" y="521" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_372-_373" >
+        <di:waypoint x="3455" y="521" />
+        <di:waypoint x="3454" y="620" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_373-_374" >
+        <di:waypoint x="3454" y="620" />
+        <di:waypoint x="3459" y="710" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_371-_375" >
+        <di:waypoint x="3456" y="381" />
+        <di:waypoint x="3563" y="383" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_375-_376" >
+        <di:waypoint x="3563" y="383" />
+        <di:waypoint x="3484" y="438" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_378-_377" >
+        <di:waypoint x="3591" y="533" />
+        <di:waypoint x="3589" y="437" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_376-_378" >
+        <di:waypoint x="3484" y="438" />
+        <di:waypoint x="3591" y="533" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

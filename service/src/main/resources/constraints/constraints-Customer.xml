@@ -427,6 +427,28 @@
                    	 	return match;
                    	 ]]></map:element>
 		</map:constraint>	
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{customer.csv.upload.generate.duns.required}</map:message>
+                <map:groups>
+		             <map:value>com.thirdpillar.codify.bc.ValidationGroup$FileValidationGroup</map:value>
+		        </map:groups>
+                   	 <map:element name="matchedExpr"><![CDATA[
+                   	 	boolean match = false;
+               	 		match = !o.validateDUNSAtCounterPartyUpload();
+                   	 	return match;
+                   	 ]]></map:element>
+		</map:constraint>		
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{customer.csv.upload.generate.parameters.required}</map:message>
+                <map:groups>
+		             <map:value>com.thirdpillar.codify.bc.ValidationGroup$FileValidationGroup</map:value>
+		        </map:groups>
+                   	 <map:element name="matchedExpr"><![CDATA[
+                   	 	boolean match = false;
+               	 		match = !o.validateConditionsAtCounterPartyUpload();
+                   	 	return match;
+                   	 ]]></map:element>
+		</map:constraint>
 <!-- 		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
 <!--                 <map:message>{customer.naicsCode.invalid}</map:message> -->
 <!--                    	 <map:element name="matchedExpr"><![CDATA[ -->

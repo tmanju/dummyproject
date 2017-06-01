@@ -1465,6 +1465,8 @@
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
 									<filter name="Ineligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_INELIGIBLE'" /> 
+									<filter name="UnSynced" expr="entity.syncToAkritiv.key == 'YES_OR_NO_NO'" />
+									<filter name="Deleted" expr="entity.deleted.key == 'YES_OR_NO_YES'" /> 
 								</filters>
 								<columns>
 									<column name="debtor.refNumber" label="Debtor-Account"/>
@@ -1476,6 +1478,8 @@
 									<column name="debtor.creditPeriod" label="Credit Period"/>
 									<!-- <column name="debtor.syncedToAkritiv" label="Synced"/> -->
 									<column name="debtor.wfStatus" label="Decision"/>
+									<column name="debtor.syncToAkritiv" />
+									<column name="debtor.deleted" />
 								</columns>
 								<edit-canvas src-entity="DebtorCustomer" src-file="crud.xml" />
 								<commands>
@@ -2572,6 +2576,8 @@
 									<filter name="Pending" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_PENDING'" /> 
 									<filter name="Eligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_ELIGIBLE'" /> 
 									<filter name="Ineligible" expr="entity.wfStatus.statusKey == 'DEBTOR_STATUS_INELIGIBLE'" /> 
+									<filter name="UnSynced" expr="entity.syncToAkritiv.key == 'YES_OR_NO_NO'" />
+									<filter name="Deleted" expr="entity.deleted.key == 'YES_OR_NO_YES'" />
 								</filters>
 								<columns>
 									<column name="debtor.refNumber" label="Debtor-Account"/>
@@ -2582,6 +2588,8 @@
 									<column name="debtor.concLimit" label="Concentration Limit %"/>
 									<column name="debtor.creditPeriod" label="Credit Period"/>
 									<column name="debtor.wfStatus" label="Decision"></column>
+									<column name="debtor.syncToAkritiv" />
+									<column name="debtor.deleted" />
 								</columns>
 								<edit-canvas id="Request.DebtorDecision">
 									<panel id="debtor.debtorInformation">
@@ -3394,7 +3402,7 @@
 		<command id="Decline" name="Decline" action="DeclineRequest" type="businessOp" confirmation-key="application.decline.confirm"/>
 		<command id="DeclineInit" name="Decline" action="DeclineRequestInit" type="businessOp" confirmation-key="application.decline.confirm" />
 		<command id="Withdraw" name="Withdraw" action="WithdrawRequest" type="businessOp" />
-		<!-- <command id="updateDebtors" name="Update Debtors" action="updateDebtorsOnAkritiv" type="businessOp"/> -->
+		<command id="updateDebtors" name="Update Debtors" action="updateDebtorsOnAkritiv" type="businessOp"/>
 		<command name="Resend" action="sendToAkritiv" type="businessOp" />
 	</commands>
 	<beans>

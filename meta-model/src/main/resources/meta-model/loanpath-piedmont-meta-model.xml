@@ -435,7 +435,7 @@
             <field name="firstName" type="text" indexed="true" ruleTriggerOnEvent="true"/>            
             <field name="middleName" type="text" ruleTriggerOnEvent="true"/>
             <field name="lastName" type="text" indexed="true" ruleTriggerOnEvent="true"/>
-            <field name="legalName" type="text" length="60" label="Legal Name" required="false" indexed="true"/>
+            <field name="legalName" type="text" length="255" label="Legal Name" required="false" indexed="true"/>
             <reference name="companyType" entity-type="AttributeChoice" relation="refers-to" label="Company Type">
                 <lookup>
                     <param name="key">COMPANY_TYPE</param>
@@ -849,6 +849,7 @@
             <find-queries>
         		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
+            	<query name="byDBANameAndFacility" select="many" >where dbaName = :dbaName and debtorCustomer.facility.refNumber = :refNumber and softDeletedOn is null</query>
             </find-queries>
         </entity>        
         
@@ -3247,8 +3248,23 @@
                     <param name="key">RISK_RATING_DESC</param>
                 </lookup>
 			</reference>
+			<reference name="ineligibilityReason" entity-type="AttributeChoice" relation="refers-to">
+	             <lookup>
+	                 <param name="key">DEBTOR_INELIGIBILITY_REASON</param>
+	             </lookup>
+	        </reference>
 
-        	 <reference name="facilityCustomerRole" entity-type="FacilityCustomerRole" relation="owner"/>
+	        <reference name="syncToAkritiv" entity-type="AttributeChoice" relation="refers-to">
+	        	<lookup>
+	        		<param name="key">YES_OR_NO</param>
+	        	</lookup>
+	        </reference>
+	        <reference name="deleted" entity-type="AttributeChoice" relation="refers-to">
+	        	<lookup>
+	        		<param name="key">YES_OR_NO</param>
+	        	</lookup>
+	        </reference>
+	        <reference name="facilityCustomerRole" entity-type="FacilityCustomerRole" relation="owner"/>
         	<reference name="contact" entity-type="Contact" relation="owner"/>
         	<reference name="facility" entity-type="Facility" relation="refers-to"/>
         	<reference name="commentGroup" entity-type="CommentGroup" relation="owner"/>
@@ -3262,7 +3278,7 @@
                 <data>com.thirdpillar.foundation.model.WorkflowAware</data>
             </feature>
         	<find-queries>
-        		<query name="bySyncedToAkritiv" select="many">where syncedToAkritiv = :syncedToAkritiv and facility.request.refNumber = :refNumber</query>
+        		<query name="bySyncToAkritiv" select="many">where syncToAkritiv.key = :syncToAkritiv and facility.request.refNumber = :refNumber and softDeletedOn is null</query>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
         		<query name="byAkritivCustomer" select="many"> where akritivCustomer = :akritivCustomer and facility is not null</query>
         		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>

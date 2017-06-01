@@ -268,7 +268,10 @@
 			<data-table name="customer.bankTrades" row="bankInformation" label="Bank Information">
 						<columns>
 							<column name="bankInformation.name" label="Bank Name"/>
-							<column name="bankInformation.branchAddress.city" label="City"/>
+							<column name="bankTrades.nameOnAccount" label="Name on Account" />
+							<column name="bankTrades.bankAccountNumber" label="Account Number" />
+							<column name="bankTrades.routingNumber" label="Routing Number" />
+							<column name="bankTrades.accountType" label="Account Type" />
 							<column name="bankInformation.branchAddress.stateProvince" label="State"/>
 							<column name="bankInformation.primary" label="Primary"/>
 						</columns>
