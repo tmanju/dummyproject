@@ -435,7 +435,7 @@
             <field name="firstName" type="text" indexed="true" ruleTriggerOnEvent="true"/>            
             <field name="middleName" type="text" ruleTriggerOnEvent="true"/>
             <field name="lastName" type="text" indexed="true" ruleTriggerOnEvent="true"/>
-            <field name="legalName" type="text" length="60" label="Legal Name" required="false" indexed="true"/>
+            <field name="legalName" type="text" length="255" label="Legal Name" required="false" indexed="true"/>
             <reference name="companyType" entity-type="AttributeChoice" relation="refers-to" label="Company Type">
                 <lookup>
                     <param name="key">COMPANY_TYPE</param>
