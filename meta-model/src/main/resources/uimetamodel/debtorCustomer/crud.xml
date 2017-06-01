@@ -10,6 +10,7 @@
 		<field name="debtorCustomer.wfStatus" label="Status"/>
 		<field name="debtorCustomer.servicingIdentifier" label="Servicing Identifier"/>
 		<field name="debtorCustomer.nextReviewDate" label="Next Review Date (if Ineligible)"/>
+		<field name="debtorCustomer.ineligibilityReason"/>
 	</panel>
 	<panel id="debtorCustomer.debtorLimit" label="Debtor-Account Limits">
 		<!-- <field name="debtorCustomer.proposedLimit" label="Debts Limit"/> -->
