@@ -71,7 +71,7 @@ public class DebtorCustomer extends BaseDataObject{
 				if(this.getRefNumber().equals(dc.getRefNumber())){
 					continue;
 				}
-				if(this.getId() == null && dc.getFacilityCustomerRole().getCustomer().getDuns().equals(this.getFacilityCustomerRole().getCustomer().getDuns())){
+				if(this.getId() == null && dc.getFacilityCustomerRole().getCustomer().getDuns()!= null && this.getFacilityCustomerRole().getCustomer().getDuns() != null && dc.getFacilityCustomerRole().getCustomer().getDuns().equals(this.getFacilityCustomerRole().getCustomer().getDuns())){
 					duplicateDebtor = true;
 				}
 			}
