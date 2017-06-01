@@ -26,4 +26,7 @@
         <dbaName></dbaName>
       </partyDba>
     </dbas>
+    <ineligibilityReason>
+    	<key></key>
+    </ineligibilityReason>
 </com.thirdpillar.codify.loanpath.model.DebtorCustomer>

@@ -3253,6 +3253,7 @@
 	                 <param name="key">DEBTOR_INELIGIBILITY_REASON</param>
 	             </lookup>
 	        </reference>
+
 	        <reference name="syncToAkritiv" entity-type="AttributeChoice" relation="refers-to">
 	        	<lookup>
 	        		<param name="key">YES_OR_NO</param>
