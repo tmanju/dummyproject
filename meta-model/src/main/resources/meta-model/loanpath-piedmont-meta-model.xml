@@ -3241,7 +3241,6 @@
         	<field name="akritivCustomer" type="boolean"/>
         	<field name="duplicateDbaNameValueDer" type="derived:text" />
         	<field name="dbaNameValueDer" type="derived:text" />
-        	<field name="syncedToAkritiv" type="boolean"/>
         	<!-- <reference name="account" entity-type="Account" relation="owner" ruleTriggerOnEvent="true"/> -->
         	<reference name="ratingDescription" entity-type="AttributeChoice" relation="refers-to">
                 <lookup>
