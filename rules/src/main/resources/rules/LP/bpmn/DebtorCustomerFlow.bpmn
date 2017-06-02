@@ -157,17 +157,17 @@
       <extensionElements>
         <tns:onEntry-script scriptFormat="http://www.java.com/java">
           <script>DebtorCustomer debtor1 = (DebtorCustomer) debtor;
-//DebtorCustomer debtor = (DebtorCustomer) context.getVariable("contextEntity");
 System.out.println("==============dataObject========"+debtor1);
-
+List&lt;Object&gt; outList = new LinkedList();
+List&lt;DebtorCustomer&gt; debtorCustomers = new ArrayList();
+debtorCustomers.add(debtor1);
+outList.add(debtor1);
+outList.add(debtor1.getFacilityCustomerRole().getCustomer());
 Map&lt;String,Object&gt; inputMap = new HashMap&lt;String,Object&gt;();
 inputMap.put("contextEntity",debtor1);
-inputMap.put("entityOut",debtor1);
-inputMap.put("entityIn",debtor1);
-inputMap.put("entityName","debtor__c");
-inputMap.put("objectType","debtor__c");
+inputMap.put("entityOut",outList);
+inputMap.put("entityIn",debtorCustomers);
 inputMap.put("action","update");
-
 context.setVariable("sfdcInputMap", inputMap);</script>
         </tns:onEntry-script>
         <tns:onExit-script scriptFormat="http://www.java.com/java">
@@ -215,7 +215,7 @@ context.setVariable("integrationResultStatus", null);</script>
       <dataInputAssociation>
         <targetRef>_42-2-4_ServiceNameInput</targetRef>
         <assignment>
-          <from xsi:type="tFormalExpression">akritivService</from>
+          <from xsi:type="tFormalExpression">sforceDebtorService</from>
           <to xsi:type="tFormalExpression">_42-2-4_ServiceNameInput</to>
         </assignment>
       </dataInputAssociation>
