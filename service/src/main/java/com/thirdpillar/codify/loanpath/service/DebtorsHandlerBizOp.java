@@ -90,7 +90,6 @@ public class DebtorsHandlerBizOp extends AbstractBusinessOperation{
         		 for(Object o : outList){
         			 if(o instanceof DebtorCustomer){
         				 DebtorCustomer d = (DebtorCustomer)o;
-        				 d.setSyncedToAkritiv(true);
         				 d.setServicingIdentifier(d.getServicingIdentifierLookup());
         				 entityService.update(d);
         			 }else if(o instanceof Customer){

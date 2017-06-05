@@ -156,7 +156,6 @@ rule "SetDbaNameOnCounterParty"
 				debtor.getFacility().setFacilityDBAList(new ArrayList());
 			}
 			debtor.getFacility().getFacilityDBAList().add(partyDba);
-			debtor.setSyncedToAkritiv(false);
 		}
 end
 
@@ -189,7 +188,6 @@ rule "DeleteDbaNameOnCounterParty"
 			if(debtor.getFacilityCustomerRole().getCustomer().getDbas() != null && !debtor.getFacilityCustomerRole().getCustomer().getDbas().isEmpty()){
 				debtor.getFacilityCustomerRole().getCustomer().getDbas().remove(partyDba);
 			}
-			debtor.setSyncedToAkritiv(false);
 			
 			if(debtor.getFacility().getFacilityDBAList() != null && debtor.getFacility().getFacilityDBAList().size() > 0 && debtor.getFacility().getFacilityDBAList().contains(partyDba)){
 				debtor.getFacility().getFacilityDBAList().remove(partyDba);
@@ -228,7 +226,6 @@ rule "SetSynctoAkritivOnPropsChange"
 		changeModelEvent:DebtorCustomer.ChangeModelEvent(property == "eligibleARLimit" || property == "retention" || property == "creditPeriod" || property == "concLimit" || property == "borrowingBaseRes" || property == "nextReviewDate", newValue != null)
 	then
 		DebtorCustomer debtor = (DebtorCustomer)changeModelEvent.getEntity();
-		debtor.setSyncedToAkritiv(false);
 		AttributeChoice attributeChoiceNo =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.YES_OR_NO_NO);
 		debtor.setSyncToAkritiv(attributeChoiceNo);
 		

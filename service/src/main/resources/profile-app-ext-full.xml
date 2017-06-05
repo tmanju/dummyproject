@@ -269,7 +269,6 @@
 				<field name="duplicateCustomer"/>
 				<field name="electronicComAgrAccepted"/>
 				<field name="emailOptOut"/>
-				<field name="maxCreditPeriod"/>
 				<field name="medicalOrDentalProvider"/>
 				<field name="partyPermissionPullBureau"/>
 				<field name="privacyIndicator"/>
