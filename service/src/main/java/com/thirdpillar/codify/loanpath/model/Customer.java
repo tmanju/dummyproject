@@ -807,30 +807,32 @@ public class Customer {
 
 		// Get all customers from database of type Non Individual.
 		List<Customer> existingCustomers = null;
-		if (getId() != null) {
-			existingCustomers = (List<Customer>) entityService
-					.findByNamedQueryAndNamedParam(
-							"com.thirdpillar.codify.loanpath.model.Customer.byCustTypeAndId",
-							new String[] { "customerType", "email", "id" },
-							new Object[] {
-									partyType,
-									getPrimarySite().getSiteDetails()
-											.getEmail(), getId() });
-		} else {
-			existingCustomers = (List<Customer>) entityService
-					.findByNamedQueryAndNamedParam(
-							"com.thirdpillar.codify.loanpath.model.Customer.byCustType",
-							new String[] { "customerType", "email" },
-							new Object[] {
-									partyType,
-									getPrimarySite().getSiteDetails()
-											.getEmail() });
+		if(getPrimarySite().getSiteDetails().getEmail() != null){
+			if (getId() != null) {
+				existingCustomers = (List<Customer>) entityService
+						.findByNamedQueryAndNamedParam(
+								"com.thirdpillar.codify.loanpath.model.Customer.byCustTypeAndId",
+								new String[] { "customerType", "email", "id" },
+								new Object[] {
+										partyType,
+										getPrimarySite().getSiteDetails()
+												.getEmail().toLowerCase(), getId() });
+			} else {
+				existingCustomers = (List<Customer>) entityService
+						.findByNamedQueryAndNamedParam(
+								"com.thirdpillar.codify.loanpath.model.Customer.byCustType",
+								new String[] { "customerType", "email" },
+								new Object[] {
+										partyType,
+										getPrimarySite().getSiteDetails()
+												.getEmail().toLowerCase() });
+			}
 		}
 
 		/**
 		 * If constraint fired from request context skip next lines of code.
 		 */
-		if (!existingCustomers.isEmpty()) {
+		if (existingCustomers != null && !existingCustomers.isEmpty()) {
 			flag = false;
 		}
 		return flag;
