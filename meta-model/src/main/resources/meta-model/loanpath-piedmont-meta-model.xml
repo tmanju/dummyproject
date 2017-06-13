@@ -684,8 +684,8 @@
                 <query name="byFeinAndId" select="many">where federalTaxId = :customerFEIN and id != :id</query>
                 <query name="byDunsLookup" select="one">where dunsLookup = :dunsLookup</query>
                 <query name="byDunsAndId" select="many">where duns = :duns and id != :id</query>
-				<query name="byCustTypeAndId" select="many">where customerType.key in (:customerType) and LOWER(primarySite.siteDetails.email)= LOWER(:email) and id != :id</query>
-				<query name="byCustType" select="many">where customerType.key in (:customerType) and LOWER(primarySite.siteDetails.email)= LOWER(:email)</query>
+				<query name="byCustTypeAndId" select="many">where customerType.key in (:customerType) and lower(primarySite.siteDetails.email)= (:email) and id != :id</query>
+				<query name="byCustType" select="many">where customerType.key in (:customerType) and lower(primarySite.siteDetails.email)= (:email)</query>
                 <query name="byExposureAmountAboveThreshold" select="many">cust inner join fetch cust.customerExposureLimits as cel where cel.exposureAmt.amount > (0.9 * cel.exposureLimitAmt.amount) and cust.limitEscalationDate is null</query>
                 <query name="byExposureAmountAboutToExpire" select="many">cust inner join fetch cust.customerExposureLimits as cel where cel.expiryDate between :startdate and :enddate and cust.limitEscalationDate is null</query>
             </find-queries>
