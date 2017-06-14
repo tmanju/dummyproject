@@ -9589,13 +9589,18 @@ if ("ERROR".equals(rStatus)) {
 }else{
 	Object object = integrationExchangeObj.getTaskOutput();
  List&lt;ServiceMessage&gt; serviceMessages = new ArrayList&lt;ServiceMessage&gt;();
-if(object instanceof List){
+EntityService es = new EntityService();
+Facility f = null;
+ if(object instanceof List){
 	List&lt;Object&gt; out = (List&lt;Object&gt;)object;
 	for(Object o : out){
 		if(o instanceof Facility){
 			Facility fac = (Facility)o;
 	        serviceMessages = fac.getServiceMessages();
-	        break;
+			f = fac;
+			es.saveOrUpdate(fac);
+			es.flush();
+			break;
 		}
 	}
 }
@@ -9611,6 +9616,7 @@ if(!serviceMessages.isEmpty()){
 						buffer = buffer.delete(buffer.length()-1, buffer.length());
 						CodifyMessage.addMessage("ERR_EXEC_INT_SERVICE",CodifyMessage.Severity.ERROR, new String[]{"Akritiv service",buffer.toString()});
 					}
+				f.getServiceMessages().clear();
         	 }
 }
 		 
@@ -9694,6 +9700,10 @@ Request request = (Request)context.getVariable("contextEntity");
 List&lt;DebtorCustomer&gt; debtorCustomers = (List&lt;DebtorCustomer&gt;)es.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.DebtorCustomer.bySyncToAkritiv", new String[]{"syncToAkritiv","refNumber"}, new Object[]{"YES_OR_NO_NO",request.getRefNumber()}, 0, 200, null);
 if(debtorCustomers != null &amp;&amp; !debtorCustomers.isEmpty()){
 List&lt;Object&gt; outList = new LinkedList();
+
+for(Facility f : request.getAllFacilities()){
+		outList.add(f);
+}
 
 for(DebtorCustomer d : debtorCustomers){
 		outList.add(d);
