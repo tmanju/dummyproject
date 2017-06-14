@@ -11,3 +11,7 @@ alter table internex5.LP_DEBTOR_CUST
 
 update internex5.LP_DEBTOR_CUST set SYNC_TO_AKRITIV_ID =(select lp_attrb_chc_id from internex5.lp_attrb_chc where key_ ='YES_OR_NO_YES' ) where servicing_id is not null;
 update internex5.LP_DEBTOR_CUST set SYNC_TO_AKRITIV_ID =(select lp_attrb_chc_id from internex5.lp_attrb_chc where key_ ='YES_OR_NO_NO' ) where servicing_id is null;
+
+
+alter table internex5.LP_DEBTOR_CUST drop synced_to_akritiv;
+alter table internex5.LP_DEBTOR_CUST_ drop synced_to_akritiv;

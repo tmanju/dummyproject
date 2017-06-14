@@ -2479,7 +2479,6 @@
 										<column name="debtor.ratingDescription" label="Rating Description"></column>
 										<column name="debtor.riskRating" label="Risk Rating"></column>
 										<column name="debtor.ratingDate" label="Date"></column>
-										<column name="debtor.syncedToAkritiv" label="Synced"/>
 										<column name="debtor.wfStatus" label="Status"></column>
 									</columns>
 									<edit-canvas id="Request.DebtorRiskRating">
