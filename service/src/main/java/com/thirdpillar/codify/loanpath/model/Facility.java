@@ -75,8 +75,7 @@ public class Facility extends BaseDataObject{
 
     @Transient private int facilityRank;
     @Transient private Date maturityDtTemp;
-
-
+    @Transient private List<PartyDba> facilityDBAList = null;
 
     public int getfacilityRank() {
         return facilityRank;
@@ -621,4 +620,11 @@ public class Facility extends BaseDataObject{
 		return match;
 	}
 	
+	public List<PartyDba> getFacilityDBAList() {
+		return facilityDBAList;
+	}
+
+	public void setFacilityDBAList(List<PartyDba> facilityDBAList) {
+		this.facilityDBAList = facilityDBAList;
+	}
 }

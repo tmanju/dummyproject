@@ -559,7 +559,14 @@
 	  			</list>
 	  		</property>
 	  	</bean>
-		<bean name="com.thirdpillar.codify.loanpath.model.FileImport.fileImport" class="com.thirdpillar.foundation.service.FileImportBizOp"/>
+		<bean name="com.thirdpillar.codify.loanpath.model.FileImport.fileImport" class="com.thirdpillar.foundation.service.FileImportBizOp">
+			<property name="validationGroups">
+				<list>
+					<value>javax.validation.groups.Default</value>
+					<value>com.thirdpillar.codify.bc.ValidationGroup$FileValidationGroup</value>
+				</list>
+			</property>
+		</bean>
 		<bean name="com.thirdpillar.codify.loanpath.model.UCC.UCCFiling" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
 			<property name="eventName" value="uccFilingEvent"/>
 		</bean>
@@ -936,6 +943,9 @@
 	<bean name="com.thirdpillar.codify.loanpath.model.Request.sendToAkritiv" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
 		<property name="eventName" value="sendToAkritiv" />
 	</bean>
+	<bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
+		<property name="eventName" value="updateDebtorsOnAkritiv" />
+	</bean>
 	<bean name="com.thirdpillar.codify.loanpath.model.Request.sendToCrm" class="com.thirdpillar.foundation.service.WorkflowEventBizOp">
 		<property name="eventName" value="sendToCrm" />
 	</bean>
@@ -1094,7 +1104,7 @@
 		<property name="cronExpression" value="${feeUpdator.trigger.scheduler.expression}" />
 	</bean>
 	
-	<bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp">
-	</bean>
+	<!-- <bean name="com.thirdpillar.codify.loanpath.model.Request.updateDebtorsOnAkritiv" class="com.thirdpillar.codify.loanpath.service.DebtorsUpdatorBizOp">
+	</bean> -->
 
 </beans>

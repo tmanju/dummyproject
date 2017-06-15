@@ -12,6 +12,9 @@
 	<facility>
    		<refNumber></refNumber>
     </facility>
+    <ineligibilityReason>
+    	<key></key>
+    </ineligibilityReason>
     <nextReviewDate></nextReviewDate>
     <eligibleARLimit></eligibleARLimit>
     <retention></retention>

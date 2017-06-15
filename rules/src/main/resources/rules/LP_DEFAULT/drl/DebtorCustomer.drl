@@ -29,6 +29,20 @@ import java.util.List;
 import java.math.BigDecimal;
 import java.lang.Integer;
 
+
+rule "SetDefaultDebtorDeleted"
+  agenda-group "NEW" 
+  when
+    #conditions
+        debtorCustomer:DebtorCustomer()
+  then 
+  		if(debtorCustomer != null){
+	  		AttributeChoice attributeChoiceNo =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.YES_OR_NO_NO);
+			debtorCustomer.setSyncToAkritiv(attributeChoiceNo);
+			debtorCustomer.setDeleted(attributeChoiceNo);
+		}
+ end
+ 
 rule "SetDebtorCustomerValues"
   agenda-group "NEW" 
   when
@@ -138,7 +152,10 @@ rule "SetDbaNameOnCounterParty"
 			if(debtor.getFacilityCustomerRole().getCustomer() != null){
 				debtor.getFacilityCustomerRole().getCustomer().addToDbas(partyDba);
 			}
-			debtor.setSyncedToAkritiv(false);
+			if(debtor.getFacility().getFacilityDBAList() == null){
+				debtor.getFacility().setFacilityDBAList(new ArrayList());
+			}
+			debtor.getFacility().getFacilityDBAList().add(partyDba);
 		}
 end
 
@@ -171,7 +188,10 @@ rule "DeleteDbaNameOnCounterParty"
 			if(debtor.getFacilityCustomerRole().getCustomer().getDbas() != null && !debtor.getFacilityCustomerRole().getCustomer().getDbas().isEmpty()){
 				debtor.getFacilityCustomerRole().getCustomer().getDbas().remove(partyDba);
 			}
-			debtor.setSyncedToAkritiv(false);
+			
+			if(debtor.getFacility().getFacilityDBAList() != null && debtor.getFacility().getFacilityDBAList().size() > 0 && debtor.getFacility().getFacilityDBAList().contains(partyDba)){
+				debtor.getFacility().getFacilityDBAList().remove(partyDba);
+			}
 		}
 end
 
@@ -206,5 +226,7 @@ rule "SetSynctoAkritivOnPropsChange"
 		changeModelEvent:DebtorCustomer.ChangeModelEvent(property == "eligibleARLimit" || property == "retention" || property == "creditPeriod" || property == "concLimit" || property == "borrowingBaseRes" || property == "nextReviewDate", newValue != null)
 	then
 		DebtorCustomer debtor = (DebtorCustomer)changeModelEvent.getEntity();
-		debtor.setSyncedToAkritiv(false);
+		AttributeChoice attributeChoiceNo =(AttributeChoice) LookupService.getResult("AttributeChoice.byKey", "key",ConstantsRules.YES_OR_NO_NO);
+		debtor.setSyncToAkritiv(attributeChoiceNo);
+		
 end

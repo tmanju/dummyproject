@@ -203,6 +203,7 @@
 				<field name="version"/>
 				<field name="sessionId"/>
 				<field name="processInstanceId"/>
+				<field name="debtors"/>
 			</excludes>
 		</class>
 		<class name="com.thirdpillar.codify.loanpath.model.Structure" inherit="true">
@@ -268,7 +269,6 @@
 				<field name="duplicateCustomer"/>
 				<field name="electronicComAgrAccepted"/>
 				<field name="emailOptOut"/>
-				<field name="maxCreditPeriod"/>
 				<field name="medicalOrDentalProvider"/>
 				<field name="partyPermissionPullBureau"/>
 				<field name="privacyIndicator"/>
