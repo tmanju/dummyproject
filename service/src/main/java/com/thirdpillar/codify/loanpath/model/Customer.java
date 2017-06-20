@@ -1085,4 +1085,21 @@ public class Customer {
 		return match;
 		
 	}
+	
+	/**
+	 * This method will read the counterparty records in csv and validate if a valid ISO code is present in the state column.
+	 * @return false if the state column in csv is invalid. 
+	 */
+	public Boolean validateStateCodeInCSVUpload(){
+		boolean match = true;  
+		if( this.getPrimarySite() != null && this.getPrimarySite().getSiteDetails() != null ){ 
+				if( this.getPrimarySite().getSiteDetails().getAddresses() != null && this.getPrimarySite().getSiteDetails().getAddresses().size() > 0 ){
+					for(Address address:this.getPrimarySite().getSiteDetails().getAddresses()){
+						if(address.getStateProvince() == null)
+							match = false;
+					}
+				}
+			}
+		return match;
+	}
 }

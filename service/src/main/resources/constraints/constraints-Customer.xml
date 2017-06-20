@@ -449,6 +449,15 @@
                    	 	return match;
                    	 ]]></map:element>
 		</map:constraint>
+		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint">
+                <map:message>{customer.primarySite.siteDetails.addresses.stateInvalid}</map:message>
+                <map:groups>
+		             <map:value>com.thirdpillar.codify.bc.ValidationGroup$FileValidationGroup</map:value>
+		        </map:groups>
+                   	 <map:element name="matchedExpr"><![CDATA[
+               	 		return o.validateStateCodeInCSVUpload();
+                   	 ]]></map:element>
+		</map:constraint>	
 <!-- 		<map:constraint annotation="com.thirdpillar.foundation.validation.MvelConstraint"> -->
 <!--                 <map:message>{customer.naicsCode.invalid}</map:message> -->
 <!--                    	 <map:element name="matchedExpr"><![CDATA[ -->
