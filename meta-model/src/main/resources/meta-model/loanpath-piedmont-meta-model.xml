@@ -849,7 +849,7 @@
             <find-queries>
         		<query name="byServicingIdentifier" select="one">where servicingIdentifier = :servicingIdentifier</query>
         		<query name="byRefNumber" select="one">where refNumber = :refNumber</query>
-            	<query name="byDBANameAndFacility" select="many" >where dbaName = :dbaName and debtorCustomer.facility.refNumber = :refNumber and softDeletedOn is null</query>
+            	<query name="byDBANameAndFacility" select="many" >where lower(dbaName) = :dbaName and debtorCustomer.facility.refNumber = :refNumber and softDeletedOn is null</query>
             </find-queries>
         </entity>        
         

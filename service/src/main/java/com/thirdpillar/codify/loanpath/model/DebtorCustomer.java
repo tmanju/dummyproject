@@ -110,9 +110,9 @@ public class DebtorCustomer extends BaseDataObject{
 			EntityService entityService = new EntityService<BaseDataObject>();
 			String[] queryParams = new String[] { "dbaName", "refNumber" };
 			
-			//Iterate on model Party DBA's to verify if any of the Model DBA Party entered is duplicate in Database or model 
+			//Iterate on model Party DBA's to verify if any of the Model DBA Party entered is duplicate (Case insensitive) in Database or model 
 			for( PartyDba p : modelFacilityDBAList ){
-				Object[] queryValues = new Object[] { p.getDbaName(),this.getFacility().getRefNumber() };
+				Object[] queryValues = new Object[] { p.getDbaName().toLowerCase(),this.getFacility().getRefNumber() };
 				List<PartyDba> existingPartyDbas = entityService.findByNamedQueryAndNamedParam("com.thirdpillar.codify.loanpath.model.PartyDba.byDBANameAndFacility",queryParams, queryValues);
 				if (existingPartyDbas != null && existingPartyDbas.size() > 0) {
 						for(PartyDba partyDBA:existingPartyDbas){
@@ -128,21 +128,25 @@ public class DebtorCustomer extends BaseDataObject{
 
 							@Override
 							public int compare(PartyDba dbaParty1,  PartyDba dbaParty2) {
-								return dbaParty1.getDbaName().compareTo(dbaParty2.getDbaName());
+								return dbaParty1.getDbaName().toLowerCase().compareTo(dbaParty2.getDbaName().toLowerCase());
 							}
 						});
 						
 						for(PartyDba partyDBA : modelFacilityDBAList){
 							if(!set.add(partyDBA)){
 								duplicateDBAName= partyDBA.getDbaName();
-								duplicateDebtorName= partyDBA.getCustomer().getLegalName();
+								for(PartyDba partyDba:set){
+									if(partyDba.getDbaName().equals(duplicateDBAName)){
+										duplicateDebtorName= partyDba.getCustomer().getLegalName();
+									}
+								}
 								flag = false;
 							}
 						}
 					}
 			}
 		}
-		
+	
 		return flag;
 	}
 	
@@ -176,5 +180,13 @@ public class DebtorCustomer extends BaseDataObject{
 
 	public void setDuplicateDebtorName(String duplicateDebtorName) {
 		this.duplicateDebtorName = duplicateDebtorName;
+	}
+	
+	public boolean validateIneligibilityReason(){
+		boolean match = true;
+		if(this.getIneligibilityReason() == null){
+			match = false;
+		}
+		return match;
 	}
 }
